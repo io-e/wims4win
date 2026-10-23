@@ -17,6 +17,7 @@
 
 /* Common routines in interfaces */
 #include "common.h"
+#include "../Platform/wims_platform.h"
 #define ch_root "bin/ch..root"
 
 int mypid;
@@ -35,7 +36,8 @@ char *cmdparm;
 int isabout=0;
 char *multiexec_random;
 int multiexec=0, mxpid, notfirst;
-int pipe_in[2], pipe_out[2];
+wp_chan chan;      /* parent<->CAS channel (was pipe_in/pipe_out) */
+wp_pid mxproc;     /* running CAS process */
 int debug=0;
 FILE *goin;
 unsigned int seed; /* random seed value */
@@ -167,59 +169,40 @@ void rmpid(int pid)
 
 int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *args)
 {
-    pid_t pid;
-    int i;
+    int i, r;
     struct stat st;
     char *cm, *p, *p2, abuf[MAX_LINELEN+1];
     char *arg[1024];
+    wp_isolation iso;
 
     for(cm=cmdf; isspace(*cm); cm++){};
     if(*cmdf==0) return -1;
-    fflush(NULL);
-/* flush all output streams before forking
- * otherwise they will be doubled */
-    pid=fork(); if(pid==-1) return -1;
-    if(!pid) { /* child */
-      if(!inf) {
-          dup2(pipe_in[0],0); close(pipe_in[1]);
-      }
-      else if (freopen(inf,"r",stdin) == NULL)
-            fprintf(stderr,"freopen failed");
-      if(!outf) {
-          dup2(pipe_out[1],1); close(pipe_out[0]);
-      }
-      else if (freopen(outf,"w",stdout) == NULL)
-            fprintf(stderr,"freopen failed");
-      if(errf && freopen(errf,"w",stderr) == NULL)
-            fprintf(stderr,"freopen failed");
-      snprintf(abuf,sizeof(abuf),"%s",find_word_start(args));
-      if(stat("../chroot/tmp/sessions/.chroot",&st)==0 || must_chroot) {
-          arg[0]=ch_root; i=1;
-      }
-      else {
-          i=0;
-          if(setreuid(getuid(),getuid()) || setregid(getgid(),getgid())) _exit(127);
-      }
-      arg[i++]=cmdf;
-      for(p=abuf; *p && i<1000; i++, p=find_word_start(p2))
-        if (*p=='\'')
-         {arg[i]=p2=++p; while(*p2 && *p2!='\'') p2++; if(*p2) *p2++=0;}
-        else
-         { arg[i]=p; p2=find_word_end(p); if(*p2) *p2++=0; }
-      arg[i]=NULL;
-      if(strchr(arg[0],'/')) execv(arg[0],arg);
-      else execvp(arg[0],arg);
-      fprintf(stderr,"%s not_INStalled",progname);
-      exit(127);
+    snprintf(abuf,sizeof(abuf),"%s",find_word_start(args));
+    if(stat("../chroot/tmp/sessions/.chroot",&st)==0 || must_chroot) {
+      arg[0]=ch_root; i=1; iso=WP_ISO_WRAPPER;
     }
-    else { /* parent */
-      addpid(pid); mxpid=pid;
-      if(outf) {
-          int status;
-          close(pipe_in[1]);
-          if(waitpid(pid,&status,0)==pid) {
-            rmpid(pid); mxpid=-1;
-          }
+    else {
+      i=0; iso=WP_ISO_DROP_PRIV;
+    }
+    arg[i++]=cmdf;
+    for(p=abuf; *p && i<1000; i++, p=find_word_start(p2))
+      if (*p=='\'')
+       {arg[i]=p2=++p; while(*p2 && *p2!='\'') p2++; if(*p2) *p2++=0;}
+      else
+       { arg[i]=p; p2=find_word_end(p); if(*p2) *p2++=0; }
+    arg[i]=NULL;
+    r=wp_spawn(&chan,arg,inf,outf,errf,iso,progname,&mxproc);
+    if(r==WP_E_NOISOLATION) {
+      fprintf(stderr,"%s: isolation unavailable on this platform, refused.\n",progname);
+      return -1;
+    }
+    if(r!=WP_OK) return -1;
+    /* parent */
+    addpid(mxproc.id); mxpid=mxproc.id;
+    if(outf) {
+      wp_chan_close_parent_write(&chan);
+      if(wp_wait(&mxproc,NULL)) {
+        rmpid(mxproc.id); mxpid=-1;
       }
     }
     return 0;
@@ -349,7 +332,7 @@ void prepare1(void)
       getstdin(); parm=stdinbuf;
       if(parm[0]==0) exit(0);
     }
-    if(pipe(pipe_in)<0 || pipe(pipe_out)<0) {
+    if(wp_chan_open(&chan)!=WP_OK) {
       fprintf(stderr,"%s: unable to create pipe.\n",progname);
       exit(1);
     }
@@ -384,7 +367,7 @@ void prepare1(void)
 
 void prepabout(char *cmd, char *outf, char *errf)
 {
-    (void)write(pipe_in[1],cmd,strlen(cmd));
+    (void)wp_write(&chan,cmd,strlen(cmd));
     execredirected(nameofcmd,NULL,outf,errf,cmdparm);
 }
 
@@ -435,12 +418,12 @@ void readresult(void)
     }
     else {
       if(mxpid>=0) {
-          if(kill(mxpid,0)<0 && errno==ESRCH) { /* this doesn't work */
+          if(!wp_alive(&mxproc)) { /* this doesn't work */
             fprintf(stderr,"%s not_INStalled",progname);
           }
           else {
             fprintf(stderr,"%s: execution error or time out.\n",progname);
-            kill(mxpid,SIGKILL);
+            wp_kill(&mxproc);
           }
           rmpid(mxpid); mxpid=-1;
       }
@@ -469,7 +452,7 @@ void dopipes(void)
     outptr=obuf; pp=pe=NULL;
     for(p1=ibuf; *p1; p1=p2) {
       p2=strchr(p1,'\n'); if(p2) p2++; else p2=p1+strlen(p1);
-      write(pipe_in[1],p1,p2-p1);
+      write(chan.in_w,p1,p2-p1);
 
       if(strstr(p1,startstring)!=NULL) iactive=1;
       reread:
@@ -504,36 +487,32 @@ void dopipes(void)
     long int i, k, l;
     int interval=20000; /* in microseconds */
     int timeout =300; /* in intervals */
+    int cr, cw;
     char *outptr;
     char *p1, *p2, *inp, *pw;
-    struct timeval t;
-    fd_set rset, wset;
 
     *obuf=0; if(mxpid<0) return;
     outptr=obuf; inp=inputbuf; k=0;
     while(inp<inputptr) {
-      t.tv_sec=0; t.tv_usec=interval;
-      FD_ZERO(&rset); FD_SET(pipe_out[0],&rset);
-      FD_ZERO(&wset); FD_SET(pipe_in[1],&wset);
-      i=pipe_out[0]; if(i<pipe_in[1]) i=pipe_in[1];
-      i=select(i+1,&rset,&wset,NULL,&t);
+      i=wp_poll(&chan,1,1,interval,&cr,&cw);
       if(i<=0) {
           k++; if(k>=timeout) return; /* time out */
       }
-      if(FD_ISSET(pipe_in[1],&wset)) {
+      if(cw) {
 /* Writing must be line by line, for otherwise
  * it will block when the input is large. */
           for(pw=inp; pw<inputptr && *pw!='\n'; pw++);
           if(pw<inputptr) pw++;
-          l=write(pipe_in[1],inp,pw-inp);
+          l=wp_write(&chan,inp,pw-inp);
           if(l<0 || l>inputptr-inp) return;
           inp+=l;
       }
-      if(FD_ISSET(pipe_out[0],&rset)) {
-          l=read(pipe_out[0],outptr,fsizelim-(outptr-obuf)-1);
+      if(cr) {
+          l=wp_read(&chan,outptr,fsizelim-(outptr-obuf)-1);
           if(l<=0 || l>fsizelim-(outptr-obuf)-1) {
             *outptr=0; break;
           }
+          if(WP_STRIP_CR_DEFAULT) l=wp_strip_cr(outptr,l);
           outptr+=l; *outptr=0;
       }
     }
@@ -544,14 +523,13 @@ void dopipes(void)
       p2=strstr(p1,endstring);
     }
     while(!p2) {
-      t.tv_sec=0; t.tv_usec=interval;
-      FD_ZERO(&rset); FD_SET(pipe_out[0],&rset);
-      i=select(pipe_out[0]+1,&rset,NULL,NULL,&t);
+      i=wp_poll(&chan,1,0,interval,&cr,NULL);
       if(i>0) {
-          l=read(pipe_out[0],outptr,fsizelim-(outptr-obuf)-1);
+          l=wp_read(&chan,outptr,fsizelim-(outptr-obuf)-1);
           if(l<=0 || l>fsizelim-(outptr-obuf)-1) {
             *outptr=0; break;
           }
+          if(WP_STRIP_CR_DEFAULT) l=wp_strip_cr(outptr,l);
           outptr+=l; *outptr=0;
       }
       else {
@@ -596,6 +574,6 @@ void run(void)
       unlink(inputfname); unlink(outputfname);
     }
     free(obuf); rmpid(mypid);
-    if(mxpid>0) {kill(mxpid,SIGKILL); rmpid(mxpid);}
+    if(mxpid>0) {wp_kill(&mxproc); rmpid(mxpid);}
 }
 

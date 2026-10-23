@@ -12,11 +12,12 @@ defines=@DEFINES@
 static=
 SETENV_OBJS=@SETENV_OBJS@
 STRIP=@STRIP@
-commonobj= common.o
+PLATFORM_OBJS= ../Platform/wp_common.o ../Platform/wp_posix.o
+commonobj= common.o $(PLATFORM_OBJS)
 progstatic=pari yacas maxima scilab
 progdynamic=gap octave m2
 progs=$(progstatic) $(progdynamic)
-H=../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
+H=../Platform/wims_platform.h ../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
 
 all: $(progs) install
 
@@ -50,3 +51,6 @@ scilab: scilab.o $(commonobj) $(SETENV_OBJS)
 
 yacas: yacas.o $(commonobj) $(SETENV_OBJS)
 	$(cc) $(cflags) $(LDFLAGS) $(static) yacas.o $(commonobj) $(SETENV_OBJS) $(lopt) -o yacas
+
+../Platform/%.o: ../Platform/%.c ../Platform/wims_platform.h
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<

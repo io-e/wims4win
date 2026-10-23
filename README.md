@@ -1,4 +1,4 @@
-# wims-port — portage natif Windows de WIMS
+# wims4win — portage natif Windows de WIMS
 
 Fork de travail de **WIMS** (WWW Interactive Multipurpose Server), trunk
 **r19040 / 4.33a**, visant un déploiement **natif sous Windows** (sans WSL),

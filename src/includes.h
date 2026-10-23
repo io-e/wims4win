@@ -79,7 +79,11 @@
 # include <crypt.h>
 #endif
 
-#include <sys/resource.h>
+#ifdef _WIN32
+# include "Platform/wp_compat.h"
+#else
+# include <sys/resource.h>
+#endif
 #ifndef RUSAGE_SELF
 # define RUSAGE_SELF 0
 #endif

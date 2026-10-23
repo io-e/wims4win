@@ -318,11 +318,22 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[]);
 char *mkfname(char buf[], char *s,...);
 extern char *trusted_modules;
 enum{is_file, is_dir, is_exec, is_fifo, is_socket, is_unknown};
+#if defined(_WIN32) || defined(WIMS_MX_PLATFORM)
+/* resident interfaces on the platform layer (src/Platform) */
+#include "Platform/wims_platform.h"
+extern struct mxtab {
+    char cmd[MAX_EXEC_NAME+1];
+    wp_chan chan;          /* stdin/stdout of the resident interface */
+    wp_fd err_r, err_w;    /* its stderr */
+    wp_pid pid;
+} mxtab[MAX_MULTIEXEC];
+#else
 extern struct mxtab {
     char cmd[MAX_EXEC_NAME+1];
     unsigned int fd1, fd2;
     int pipe_stdin[2], pipe_stdout[2], pipe_stderr[2];
 } mxtab[MAX_MULTIEXEC];
+#endif
 int ftest(char *fname);
 int multiexec(char *cmd, char **abuf);
 int wgetline(char buf[], size_t buflen, WORKING_FILE *f);

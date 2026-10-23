@@ -65,6 +65,18 @@ int main(int argc, char **argv)
     T("mx fixed: silent interface -> returns after ~3 s", l==0 && time(NULL)-t0>=2 && time(NULL)-t0<=5);
     wp_kill(&p); wp_wait(&p,&st);
   }
+  { /* resident spawn like lines.c multiexec(): stderr on its own pipe */
+    char *av_sh[]={"sh","-c","echo ERRLINE >&2; exec cat",NULL}; char r[256], e[64];
+    wp_fd er, ew; long l;
+    wp_chan_open(&c); wp_pipe_open(&er,&ew);
+    T("spawn_mx", wp_spawn_mx(&c,av_sh,ew,WP_ISO_NONE,1,"t",&p)==WP_OK);
+    l=wp_mx_exchange(&c,"q1","MXMARK",r,sizeof(r)-1,0);
+    T("spawn_mx: stdout exchange", l==2 && strcmp(r,"q1")==0);
+    T("spawn_mx: stderr pipe readable", wp_fd_readable(er,1000000)==1);
+    l=wp_fd_read(er,e,sizeof(e)-1); e[l>0?l:0]=0;
+    T("spawn_mx: stderr content", strcmp(e,"ERRLINE\n")==0);
+    wp_kill(&p); wp_wait(&p,&st);
+  }
 #else
   (void)av_sleep;(void)av_none;(void)out;(void)t0;
   wp_chan_open(&c);
@@ -99,6 +111,15 @@ int main(int argc, char **argv)
     T("win32: CR stripped", strcmp(buf,"\"hello world\"\n")==0 || strcmp(buf,"hello world\n")==0);
     T("win32: wait", wp_wait(&p,&st)==1 && st==0);
     T("win32: not alive after exit", wp_alive(&p)==0);
+  }
+  {
+    char *av_e[]={"cmd","/c","echo ERRLINE 1>&2",NULL}; char e[64]; wp_fd er, ew; long l;
+    wp_chan_open(&c); wp_pipe_open(&er,&ew);
+    T("win32: spawn_mx", wp_spawn_mx(&c,av_e,ew,WP_ISO_NONE,1,"t",&p)==WP_OK);
+    T("win32: spawn_mx stderr pipe readable", wp_fd_readable(er,3000000)==1);
+    l=wp_fd_read(er,e,sizeof(e)-1); e[l>0?l:0]=0; l=wp_strip_cr(e,l);
+    T("win32: spawn_mx stderr content", strncmp(e,"ERRLINE",7)==0);
+    wp_wait(&p,&st);
   }
   if(fake) {
     char *av_noread[]={fake,"noread",NULL}, *av_spawn[]={fake,"spawn",NULL};

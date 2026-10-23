@@ -928,12 +928,17 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
   if(!pid) {      /* child */
     char buf[MAX_LINELEN+1]; int k;
     (void)nice(10);      /* lower priority for children */
+#if defined(_WIN32) || defined(WIMS_MX_PLATFORM)
+    /* resident interfaces are spawned by multiexec() itself */
+    {
+#else
     if(is_multiexec) {
       dup2(mxtab[multiexec_index].pipe_stdin[0],0);
       dup2(mxtab[multiexec_index].pipe_stdout[1],1);
       dup2(mxtab[multiexec_index].pipe_stderr[1],2);
     }
     else {
+#endif
       if(inf!=NULL) (void)freopen(inf,"r",stdin);
       if(outf!=NULL) (void)freopen(outf,"w",stdout);
       if(errf!=NULL) (void)freopen(errf,"w",stderr);
@@ -1000,6 +1005,24 @@ int multiexec(char *cmd, char **abuf)
   multiexec_index=i;
   if(i==mxno) {
     if(mxno>=MAX_MULTIEXEC) return 0;
+#if defined(_WIN32) || defined(WIMS_MX_PLATFORM)
+    /* resident interface through the platform layer: same pipes/env as the
+     * fork path; isolation as execredirected (wrapexec==-1 -> drop privs).
+     * Not replicated: the setuid "promotion" for scripts (wrapexec==1 or
+     * non-ELF), meaningless on Windows. */
+    if(wp_chan_open(&mxtab[i].chan)!=WP_OK) return 0;
+    if(wp_pipe_open(&mxtab[i].err_r,&mxtab[i].err_w)!=WP_OK) return 0;
+    mystrncpy(mxtab[i].cmd,cmd,sizeof(mxtab[i].cmd));
+    mxno++;
+    exportall(); setenv("wims_exec_parm",multiexec_random,1);
+    lastdatafile[0]=lastftest[0]=0;
+    if(wp_spawn_mx(&mxtab[i].chan,abuf,mxtab[i].err_w,
+                   wrapexec==-1?WP_ISO_DROP_PRIV:WP_ISO_NONE,1,NULL,
+                   &mxtab[i].pid)!=WP_OK) {
+      mxno--; return 0;
+    }
+    wrapexec=0;
+#else
     if(pipe(mxtab[i].pipe_stdin)<0) return 0;
     if(pipe(mxtab[i].pipe_stdout)<0) return 0;
     if(pipe(mxtab[i].pipe_stderr)<0) return 0;
@@ -1007,6 +1030,7 @@ int multiexec(char *cmd, char **abuf)
     mxno++;      is_multiexec=1;
     exportall(); setenv("wims_exec_parm",multiexec_random,1);
     execredirected(abuf[0],NULL,NULL,NULL,abuf);
+#endif
   }
   is_multiexec=0;
   return 1;

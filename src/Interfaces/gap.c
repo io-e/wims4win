@@ -34,7 +34,11 @@ char *stringprinter="Print(\"%s\\n\");\n";
 int fsizelim=131072;
 int precision=20; /* default */
 
+#ifdef _WIN32
+char *nameofcmd="gap.exe -T -n";   /* gap.sh is a Unix wrapper; Windows ships gap.exe */
+#else
 char *nameofcmd="gap.sh -T -n";
+#endif
 char header[]="\n\
 ";
 

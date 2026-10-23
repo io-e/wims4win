@@ -75,6 +75,10 @@ char *illegal[]={
       "fork","putenv","graw","eval",
       "scanf","exec","unlink","umask","lstat","stat","rename",
       "glob","tilde_expand","pclose","popen2","waitpid",
+#ifdef _WIN32
+      /* Windows / Octave-for-Windows escape hatches (G5) */
+      "dos","winqueryreg","winopen","perl","python","python3",
+#endif
 };
 
 int illegal_no=(sizeof(illegal)/sizeof(illegal[0]));

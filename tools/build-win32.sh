@@ -21,7 +21,7 @@ for f in Lib/dir.c Lib/evalue.c Lib/levelcurve.c Lib/liblines.c Lib/libwims.c \
 done
 x86_64-w64-mingw32-ar rcs "$OUT/libwims-w32.a" "${objs[@]}"
 $CC $CFLAGS -c "$STAGE/Interfaces/common.c" -o "$OUT/obj/common.o"
-for prog in pari; do
+for prog in pari maxima gap octave m2 scilab yacas; do
   $CC $CFLAGS -c "$STAGE/Interfaces/$prog.c" -o "$OUT/obj/$prog.o"
   $CC -static -o "$OUT/$prog.exe" "$OUT/obj/$prog.o" "$OUT/obj/common.o" "$OUT/libwims-w32.a" -lm -lpthread
 done

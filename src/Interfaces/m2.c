@@ -117,7 +117,12 @@ void about(void)
 {
     char *p;
 
-    cmdparm=""; prepabout(quitstring,"/dev/null",outputfname);
+    cmdparm="";
+#ifdef _WIN32
+    prepabout(quitstring,"nul",outputfname);
+#else
+    prepabout(quitstring,"/dev/null",outputfname);
+#endif
     if(readabout()>0) {
       p=strchr(aboutbuf,'\n'); if(p!=NULL) *p=0;
       strip_trailing_spaces2(aboutbuf);

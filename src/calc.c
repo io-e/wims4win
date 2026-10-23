@@ -172,6 +172,11 @@ void _get_exec_error(char *errorfname, char *cmdname)
     if(l<0 || l>MAX_LINELEN) l=0;
     obuf[l]=0;
   }
+#ifdef _WIN32
+  /* CAS stderr is inherited (not piped through wp_strip_cr): strip \r so that
+   * "not_INStalled" / secure-mode diagnostics match the Linux byte stream. */
+  { char *i=obuf,*o=obuf; while(*i){ if(*i!='\r') *o++=*i; i++; } *o=0; }
+#endif
   if(obuf[0]) {
     p2=find_word_end(obuf);
     if((manageable<1 || strcasecmp(tmp_debug,"yes")!=0) &&

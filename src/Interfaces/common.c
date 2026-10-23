@@ -401,6 +401,9 @@ int readabout(void)
       fseek(ff,0,SEEK_END); l=ftell(ff); fseek(ff,0,SEEK_SET);
       l=fread(aboutbuf,1,aboutlen-10,ff); fclose(ff);
       if(l>0 && l<aboutlen) aboutbuf[l]=0; else aboutbuf[0]=0;
+#ifdef _WIN32
+      l=wp_strip_cr(aboutbuf,l);
+#endif
       p=find_word_start(aboutbuf); if(p>aboutbuf) ovlstrcpy(aboutbuf,p);
     }
     return strlen(aboutbuf);

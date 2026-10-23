@@ -24,9 +24,6 @@ unsigned wp_alarm(unsigned sec)
 int wp_no_fork(void){ fprintf(stderr,"wims: fork() unavailable; use platform spawn\n"); return -1; }
 int wp_symlink(const char *t, const char *l)
 { return CreateSymbolicLinkA(l,t,0)?0:-1; }
-/* DES crypt stub: always "fail closed" (no match). OpenSSL later. */
-char *crypt(const char *key, const char *salt)
-{ static char out[64]; (void)key; snprintf(out,sizeof(out),"%s*",salt?salt:""); return out; }
 int getrlimit(int r, struct rlimit *l){ (void)r; l->rlim_cur=l->rlim_max=~0UL; return 0; }
 int setrlimit(int r, const struct rlimit *l){ (void)r;(void)l; return 0; }
 int kill(int pid, int sig)

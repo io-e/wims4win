@@ -1,0 +1,41 @@
+INSTALL=install
+DESTDIR =
+BIN     = $(DESTDIR)/usr/bin
+MAN1    = $(DESTDIR)/usr/share/man/man1
+DOC	= $(DESTDIR)/usr/share/doc/chemeq
+TESTS   = $(DOC)/tests
+TESTSUITE	= tests/chemreport tests/chemreport.pl \
+		  tests/chemtest tests/chemtest.pl
+TESTSTUFF	= tests/test.stuff
+
+all : 
+	(cd src; ${MAKE})
+
+demo : all
+	(cd tests; chemreport)
+
+test : all
+	(cd tests; PATH=../src:$$PATH sh chemtest)
+
+install : all
+	${INSTALL} -d $(BIN) $(MAN1) $(TESTS)
+	${INSTALL} src/chemeq $(BIN)
+	gzip -c -9 chemeq.1 > chemeq.1.gz
+	${INSTALL} -m644 chemeq.1.gz $(MAN1)
+	${INSTALL} -m755 $(TESTSUITE) $(TESTS)
+	${INSTALL} -m644 $(TESTSTUFF) $(TESTS)
+
+uninstall :
+	rm $(BIN)/chemeq
+	rm $(MAN1)/chemeq.1.gz
+	rm -rf $(DOC)
+
+clean :
+	rm -f *~ *.gz semantic.cache
+	(cd src; ${MAKE} clean)
+
+chemeq.1: chemeq.man.xml
+	xsltproc --nonet --param man.charmap.use.subset "0" \
+	  --param make.year.ranges "1" \
+	  --param make.single.year.ranges "1" \
+	  $<

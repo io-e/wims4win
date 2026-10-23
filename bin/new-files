@@ -1,0 +1,56 @@
+#! /bin/sh
+#
+# List language-dependent system files that need to be retranslated
+# into language $1.
+
+lang=$1
+if [ -z "$lang" ]; then
+ echo "This tool lists WIMS system files that are modified and might
+need a retranslation to another language.
+
+Usage: $0 [your-language]
+
+The reference language is English.
+
+WARNING. The list may be incomplete, as some global modifications may
+touch all files independent of the language.
+"
+ exit
+fi
+
+cd `dirname $0`/../public_html
+wims_home=`pwd`
+
+checks="html scripts modules/adm modules/home modules/help modules/template modules/classes"
+
+files=`find $checks -type f -name \*.en |\
+	grep -v scripts/authors/`
+dirs=`find $checks -type d -name \*.en |\
+	grep -v modules/adm/manage.en |\
+	grep -v scripts/authors/ |\
+	grep -v modules/help/wimsdoc.en`
+dfiles=`find $dirs -type f -name \*.phtml`
+
+echo "
+WARNING. The list may be incomplete, as some global modifications may
+touch all files independent of the language. So please check all phtml
+files in a module if you see one file in that module shown in the list.
+
+" >&2
+
+for f in $files
+do
+ cf=`echo $f | sed 's/\.en$/.'$lang/`
+ if [ ! -f $cf ] || [ $f -nt $cf ]; then echo $cf; fi
+done
+
+for d in $dirs
+do
+ dfiles=`find $d -type f -name \*.phtml`
+ for f in $dfiles
+ do
+  cf=`echo $f | sed "s!\.en/!.$lang/!"`
+  if [ ! -f $cf ] || [ $f -nt $cf ]; then echo $cf; fi
+ done
+done
+

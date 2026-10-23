@@ -1,0 +1,74 @@
+<html>
+<head></head>
+    <body>
+    Data are processed via normal (rawmath) funtions.<br>
+    This can become really slow if too many datapoints/functions are asked.<br>
+    The available params are:<p>
+&lt;param name="background" value="hexcolor value"&gt;<br> 
+&lt;param name="foreground" value="hexcolor value"&gt;<br> 
+&lt;param name="dataurl" value="url"&gt;<br> 
+&lt;param name="height" value="integer"&gt;<br>
+&lt;param name="width" value="integer"&gt;<br> 
+&lt;param name="function" value="String1,String2,String3..."&gt;<br> 
+&lt;param name="smooth" value="0/1""&gt;<br> 
+&lt;param name="names" value="names function1,name function2 ... or left blank "&gt;<br> 
+&lt;param name="xmin" value="minimum x-value or left blank for auto detection"&gt;<br> 
+&lt;param name="xmax" value="maximum x-value or left blank for auto detection"&gt;<br> 
+&lt;param name="ymin" value="minimum y-value or left blank for auto detection"&gt;<br> 
+&lt;param name="ymax" value="maximum y-value or left blank for auto detection"&gt;<br> 
+&lt;param name="xlog" value="x-axis is log-scale: 0 or 1: default 0"&gt;<br> 
+&lt;param name="ylog" value="y-axis is log-scale: 0 or 1: default 0"&gt;<br> 
+&lt;param name="color" value="0 or 1 :default 1"&gt;<br> 
+&lt;param name="xtics" value=" zero 0, one 1, two 2, pi 3.1428, four "jan 2008", five 5.... or left blank "&gt;<br>
+&lt;param name="ytics" value="thing1 0, thing2 1, thing3 2, three 3, four 4, five 5...or left blank "&gt;<br>
+&lt;param name="xlabel" value="label of the x-axis: default x-axis"&gt;<br>
+&lt;param name="ylabel" value="label of the y-axis: default y-axis" &gt;<br> 
+&lt;param name="title" value="title of the plot" &gt;<br>
+<p>
+    
+	<applet width = "640" height = "480" codebase=".." archive="Plot.jar" code="ptolemy.plot.EditablePlotApplet"> 
+	    <param name = "progressbar" value = "true">
+            <param name = "scriptable" value = "false">
+	    <param name = "background" value = "#ffffff"> 
+	    <param name = "name" value = "PlotApplet">
+	    <param name="title" value="titel htmlsyntax: &amp; pi ... &pi;">
+	    <param name="xlabel" value="x-as label">
+	    <param name="ylabel" value="y-as label">
+	    <param name="grid" value="on">
+	    <param name="color" value="on">
+	    <param name="xmin" value="0">
+	    <param name="xmax" value="6">
+	    <param name="ymax" value="5">
+	    <param name="ymin" value="-5">
+	    <param name="color" value="on">
+	    <param name="smooth" value="0">
+	    <param name="function" value="tan(x),sin(x),cos(x),2*cos(x),cos(2*x),1/cos(x)">                                                                                              
+	    <param name="names" value="curve 1:tan(x),curve 2: sin(x),curve 3:cos(x),2*cos(x),cos(2*x),1/cos(x)">
+	    <param name="plotsteps" value="100">
+		
+	</applet> 
+    </body>
+</html>
+<!--     
+	
+<param name="background" value="hexcolor value"> 
+<param name="foreground" value="hexcolor value"> 
+<param name="dataurl" value="url"> 
+<param name="height" value="integer">
+<param name="width" value="integer"> 
+<param name="function" value="String1,String2,String3..."> 
+<param name="smooth" value="0/1""> 
+<param name="names" value="names function1,name function2 ... or left blank "> 
+<param name="xmin" value="minimum x-value or left blank for auto detection"> 
+<param name="xmax" value="maximum x-value or left blank for auto detection"> 
+<param name="ymin" value="minimum y-value or left blank for auto detection"> 
+<param name="ymax" value="maximum y-value or left blank for auto detection"> 
+<param name="xlog" value="x-axis is log-scale: 0 or 1: default 0"> 
+<param name="ylog" value="y-axis is log-scale: 0 or 1: default 0"> 
+<param name="color" value="0 or 1 :default 1"> 
+<param name="xtics" value=" zero 0, one 1, two 2, pi 3.1428, four "jan 2008", five 5.... or left blank ">
+<param name="ytics" value="thing1 0, thing2 1, thing3 2, three 3, four 4, five 5...or left blank ">
+<param name="xlabel" value="label of the x-axis: default x-axis">
+<param name="ylabel" value="label of the y-axis: default y-axis" > 
+<param name="title" value="title of the plot" >
+-->

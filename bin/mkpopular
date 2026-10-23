@@ -1,0 +1,71 @@
+#! /bin/sh
+#
+#	This script sorts modules according to their popularity.
+#	It can be run whenever you like, if your site has the
+#	traffic accounting activated.
+#	However, if your site does not have a very high trafic,
+#	it is better never to run it, in order to preserve the
+#	popularity register files coming with the wims distribution
+#	which are based on the statistics of the popular wims home server.
+#	
+
+# base directory.
+WIMS_HOME=`dirname $0`/..
+cd $WIMS_HOME
+WIMS_HOME=`pwd`
+
+if [ ! -f log/account/00access.act ]; then
+ echo Site accounting not available.
+ exit
+fi
+
+# bonus for new modules
+bonus=1500
+
+# start and end date
+start=`date -d '12 months ago' '+%Y%m%d'`
+end=`date -d '1 day ago' '+%Y%m%d'`
+endd=`date -d '1 day ago' '+%j'`
+endy=`date -d '1 day ago' '+%Y'`
+endt=`date -d '31 Dec' '+%j'`
+
+cd log/account
+stated=`ls [A-Z]* tool* contrib* | grep '@'`
+
+rm -f $WIMS_HOME/tmp/pop* >/dev/null 2>&1
+for m in $stated
+do
+ echo $m
+ mm=`echo $m | sed 's/\.[a-z][a-z]$/.??/g'`
+ cat $mm 2>/dev/null | sort -n >$WIMS_HOME/tmp/m
+ access=`awk 'BEGIN {a=0;b=0;};
+	$1>'$start' && $1<'$end' {a=a+sqrt($2);b++;};
+	END {print int(50*a)};' $WIMS_HOME/tmp/m`
+ beg=`awk '{print $1; exit}' $WIMS_HOME/tmp/m`
+ if [ -z $beg ]; then
+  access=0
+  laps=2
+ else
+  if [ $beg -lt $start ]; then beg=$start; fi
+  begd=`date -d $beg '+%j'`
+  begy=`date -d $beg '+%Y'`
+  begt=`date -d "31 Dec $begy" '+%j'`
+  laps=`expr 365 \* \( $endy - $begy \) + \( $endd - $begd \) + $begt - 365 + 1`
+ fi
+ pop=`expr \( $access + $bonus \) / $laps`
+ echo $m:$m $pop >>$WIMS_HOME/tmp/pop1
+ echo $m:$pop >>$WIMS_HOME/tmp/pop2
+done
+
+cd $WIMS_HOME
+tr @ / <tmp/pop1 >tmp/popp
+tr @ / <tmp/pop2 >tmp/popv
+sort -n -r -k2 <tmp/popp >tmp/pop1.sorted
+bin/dicsort tmp/popp
+bin/dicsort tmp/popv
+
+mv tmp/pop1.sorted public_html/bases/site/lists/popular
+mv tmp/popp.sorted public_html/bases/site/pop/dic
+mv tmp/popv.sorted public_html/bases/site/popular
+rm -f tmp/pop* tmp/m >/dev/null 2>&1
+

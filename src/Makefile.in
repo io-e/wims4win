@@ -1,0 +1,251 @@
+# @configure_input@
+
+# Buildoption reminders.
+# withwimsd=@with_wimsd@
+
+wims_home=..
+PACKAGE_BUGREPORT=@PACKAGE_BUGREPORT@
+PACKAGE_NAME=@PACKAGE_NAME@
+PACKAGE_VERSION=@PACKAGE_VERSION@
+PACKAGE_STRING=@PACKAGE_STRING@
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+cpp=@CPP@
+defines=@DEFINES@
+STRIP=@STRIP@
+rpath=
+libtype=static
+
+defs=$(defines) @D_CASE_INSENSITIVE_FS@
+NETLIBS=@NETLIBS@
+CRYPTLIB=@CRYPTLIB@
+lopt=-L$(wims_home)/lib $(NETLIBS) $(CRYPTLIB) -lwims -lm $(rpath)
+
+wimsd=@BUILD_WIMSD@
+O=auth.o calc.o cleaning.o compare.o config.o evalue.o exam.o exec.o files.o html.o insmath.o lines.o log.o mathfonts.o mathml.o matrix.o pedia.o rawmath.o score.o texmath.o test.o var.o variables.o wims.o
+
+
+all:: lib$(libtype) progs setupwims mkindex
+allwims:: lib$(libtype) progs setupwims
+# that line is for the debian package:
+all-debianpkg:: lib$(libtype) progs setupwims
+
+progs:: flydraw texgif mathml interfaces oef2wims msg2wims misc module $(wimsd) wimslogd wims
+
+distconfig: configure.in
+	autoconf
+	autoheader
+
+%.o: %.c *.h
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean::
+	rm -f wims *.o Common/*.o 2>/dev/null
+	cd Wimsd; make clean
+	cd Wimslogd; make clean
+	cd Lib; make clean
+	cd Interfaces; make clean
+	cd Misc; make clean
+	cd OefMsg2wims; make clean
+	cd Flydraw; make clean
+	cd Texgif; make clean
+	cd Module; make clean
+	cd Mathml; make clean
+	make cleangcov
+
+# preserves some generated files in log/, sessions/ and tmp/. Intended.
+distclean::
+	rm -f wims wims.o Common/*.o $(wims_home)/public_html/wims
+	rm -f ../public_html/bases/sys/defaults.conf
+	rm -f ../public_html/html/Changelog
+	rm -f ../log/classes/.teacher-cls
+	rm -f ../log/classes/.supervisor-supercls
+	rm -f ../log/classes/.supervisor-portal
+	rm -f ../log/classes/.teacher-supercls
+	rm -f ../log/classes/.teacher-portal
+	rm -f ../log/classes/.index
+	cd Wimsd; make distclean
+	cd Wimslogd; make distclean
+	cd Lib; make distclean
+	cd Interfaces; make distclean
+	cd Misc; make distclean
+	cd OefMsg2wims; make distclean
+	cd Flydraw; make distclean
+	cd Texgif; make distclean
+	cd Module; make distclean
+	$(wims_home)/public_html/mathfonts/clean
+	rm -rf autom4te.cache
+	rm -f config.h config.log config.status Makefile
+	# clean files which were installed in unusual fashions
+	rm -f ../bin/msg2wims
+	rm -f ../log/classes/.teacher-cls
+	rm -f ../log/classes/.supervisor-supercls
+	rm -f ../log/classes/.supervisor-portal
+	rm -f ../log/classes/.teacher-supercls
+	rm -f ../log/classes/.teacher-portal
+	rm -f ../other/bin/lceb_dynopt
+	rm -f ../public_html/bin/symtext
+	rm -f ../tmp/log/wimslogd.new
+	rm -f ../public_html/wims.cgi
+	rm -f ../log/unsecure
+	rm -f ../log/update-version
+	rm -f ../log/classes/.index
+	rm -f ../public_html/html/Changelog
+	rm -f ../public_html/scripts/help/cn/flydraw.phtml
+	rm -f ../public_html/scripts/help/en/flydraw.phtml
+	rm -f ../public_html/scripts/help/fr/flydraw.phtml
+	# clean files which should be removed by some other Makefile
+	rm -f Misc/checkmol/checkmol
+	rm -f Misc/lceb/lceb_dynopt
+	rm -f Misc/lceb/lceb_dyn
+	rm -f Misc/lceb/lceb_rec
+	rm -f Misc/lceb/lceb_bigsum
+	rm -f Misc/lceb/lceb_easiest
+	rm -f Misc/symtext/symtext
+	rm -f Misc/passcrypt
+	rm -f Flydraw/nametab.c
+	find . -name Makefile | xargs rm -f
+	find .. -name .wimshome | xargs rm -f
+
+# This target is specific for builds launched during debian packaging.
+# As an official debian package must always be built from bare sources,
+# calling distclean is mandatory. However rebuilding the complete set
+# of images used to render formulas (in non-mathml mode) is expensive,
+# and GIF files can be considered as harmless binaries, since they are
+# data rather than code. Also, each of those files is human-readable
+# (it is a character, rendered at some scale), so the call to
+# mathfonts/clean can be disabled.
+distclean_debuild::
+	rm -f wims wims.o Common/*.o $(wims_home)/public_html/wims
+	rm -f ../public_html/bases/sys/defaults.conf
+	rm -f ../public_html/html/Changelog
+	rm -f ../log/classes/.teacher-cls
+	rm -f ../log/classes/.supervisor-supercls
+	rm -f ../log/classes/.supervisor-portal
+	rm -f ../log/classes/.teacher-supercls
+	rm -f ../log/classes/.teacher-portal
+	rm -f ../log/classes/.index
+	cd Wimsd; make distclean
+	cd Wimslogd; make distclean
+	cd Lib; make distclean
+	cd Interfaces; make distclean
+	cd Misc; make distclean
+	cd OefMsg2wims; make distclean
+	cd Flydraw; make distclean
+	cd Texgif; make distclean
+	cd Module; make distclean
+	## DISABLED ## $(wims_home)/public_html/mathfonts/clean
+	rm -rf autom4te.cache
+	rm -f config.h config.log config.status Makefile
+	# clean files which were installed in unusual fashions
+	rm -f ../bin/msg2wims
+	rm -f ../log/classes/.teacher-cls
+	rm -f ../log/classes/.supervisor-supercls
+	rm -f ../log/classes/.supervisor-portal
+	rm -f ../log/classes/.teacher-supercls
+	rm -f ../log/classes/.teacher-portal
+	rm -f ../other/bin/lceb_dynopt
+	rm -f ../public_html/bin/symtext
+	rm -f ../tmp/log/wimslogd.new
+	rm -f ../public_html/wims.cgi
+	rm -f ../log/unsecure
+	rm -f ../log/update-version
+	rm -f ../log/classes/.index
+	rm -f ../public_html/html/Changelog
+	rm -f ../public_html/scripts/help/cn/flydraw.phtml
+	rm -f ../public_html/scripts/help/en/flydraw.phtml
+	rm -f ../public_html/scripts/help/fr/flydraw.phtml
+	# clean files which should be removed by some other Makefile
+	rm -f Misc/checkmol/checkmol
+	rm -f Misc/lceb/lceb_dynopt
+	rm -f Misc/lceb/lceb_dyn
+	rm -f Misc/lceb/lceb_rec
+	rm -f Misc/lceb/lceb_bigsum
+	rm -f Misc/lceb/lceb_easiest
+	rm -f Misc/symtext/symtext
+	rm -f Misc/passcrypt
+	rm -f Flydraw/nametab.c
+	find . -name Makefile | xargs rm -f
+	find .. -name .wimshome | xargs rm -f
+
+wims: $(O) Lib/libwims.o libwims
+	$(cc) $(LDFLAGS) $(cflags) Lib/libwims.o $(O) $(lopt) -o wims
+	$(STRIP) wims
+	./wims table
+
+setupwims:: wims wimslogd
+	./wims defaults > ../public_html/bases/sys/defaults.conf
+	./define.sh > ../public_html/bases/sys/define.conf
+	cp wims ../public_html/
+	cp Changelog ../public_html/html
+	chmod a+s ../public_html/wims
+	rm -f ../public_html/wims.cgi ../tmp/log/wimslogd.pid ../sessions/.wimslogd
+	ln -s wims ../public_html/wims.cgi
+	../bin/update
+	chmod a+rx ../public_html .
+
+libwims::
+	cd Lib; make all
+
+wimslogd::  lib$(libtype)
+	cd Wimslogd; make all
+
+wimsd:: lib$(libtype)
+	-cd Wimsd; make all
+
+oef2wims:: lib$(libtype)
+	cd OefMsg2wims; make oef2wims
+
+msg2wims:: lib$(libtype)
+	cd OefMsg2wims; make msg2wims
+
+interfaces:: lib$(libtype)
+	cd Interfaces; make all
+
+misc:: lib$(libtype)
+	cd Misc; make all
+	mkdir -p $(wims_home)/public_html/gifs/WIMSchem
+	cp $(wims_home)/src/Misc/applets/WIMSchem/src/images/*.png $(wims_home)/public_html/gifs/WIMSchem/
+	##cat $(wims_home)/src/Misc/canvasdraw/canvasdraw.html | sed 's/<\/html>//' | sed 's/<\/body>//' | sed 's/<\/center>//'|sed 's/<center>//'| sed 's/<h3>/<h2 class="wimscenter">/' | sed 's/\/h3>/\/h2>/g' | tail +10 > $(wims_home)/public_html/scripts/help/en/canvasdraw.phtml
+
+module:: lib$(libtype)
+	cd Module; make all
+
+flydraw:: lib$(libtype)
+	cd Flydraw; make all
+
+texgif:: lib$(libtype)
+	cd Texgif; make all
+
+mathml:: lib$(libtype)
+	cd Mathml; make all ; make install
+
+libstatic::
+	rm -f $(wims_home)/lib/libwims.so 2>/dev/null
+	cd Lib; make static
+
+maintainer::
+#  make fonts (need convert, Tex)
+	./mkmathfonts
+#  need convert
+	$(wims_home)/public_html/scripts/data/spuzzle/makepieces
+	$(wims_home)/public_html/scripts/data/qpuzzle/makepieces
+#  make icons and create icon css file (need convert, identify)
+	$(wims_home)/public_html/gifs/themes/mkindex
+#  make circuits images in gifs/symbols
+	$(wims_home)/public_html/scripts/data/circuits/mksymbols
+	cd $(wims_home)/public_html/themes ; ./mkcss.pl
+
+install::
+	$(wims_home)/bin/wrapuid
+
+mkindex::
+	cd $(wims_home) ; bin/mkindex
+
+cleangcov::
+	find . -name '*.gcno' -exec rm '{}' \;
+	find . -name '*.gcda' -exec rm '{}' \;
+	find . -name '*.gcov' -exec rm '{}' \;

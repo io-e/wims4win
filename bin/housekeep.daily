@@ -1,0 +1,264 @@
+#! /bin/sh
+
+# Home directory of wims.
+cd `dirname $0`/..
+WIMS_HOME=`pwd`
+
+today=`date '+%Y%m%d'`
+weekday=`date '+%w'`
+thisyear=`date '+%Y'`
+
+site_hostname=`awk -F'=' '$1=="site_hostname" {print $2; exit}' $WIMS_HOME/log/wims.conf`
+if [ -z $site_hostname ]; then
+  site_hostname=`hostname`
+fi
+
+# Forum management
+cd log/forums
+./.build-index
+cd $WIMS_HOME
+
+if [ "$site_accounting" = "yes" ]; then bin/account.sh; fi
+sleep 10
+cd $WIMS_HOME
+
+# TeX pictures and fonts since 90 days: atime can no longer be used.
+find public_html/w/instex -name '*.gif' -mtime +90 -exec rm '{}' ';' 2>/dev/null
+find public_html/w/instex -type d -empty -exec rm '{}' 2>/dev/null \;
+find public_html/w/texgif -name '*.font' -mtime +90 -exec rm '{}' ';' 2>/dev/null
+# Clean tmp directory
+find tmp -maxdepth 1 -type f -mtime +2 -exec rm '{}' ';' 2>/dev/null
+find tmp/forall -mindepth 1 -mtime +2 -exec rm '{}' ';' 2>/dev/null
+mkdir -p tmp/forall
+chmod a+rwx tmp/forall
+# clean tmp/whoconnect
+rm -rf tmp/whoconnect 2>/dev/null
+mkdir -p tmp/whoconnect
+
+# Any classes which will expire in one month?
+cd $WIMS_HOME/log/classes
+for cls in [0-9]*
+do
+exp=`awk -F'=' '$1=="!set class_expiration" {print $2; exit}' $cls/.def`
+
+# exp is the expiration date minus one month (-100 if the month is different
+# from january , -8900 else)
+exp1=`expr "$exp" : "....\(.*\).."`;
+if [ "$exp1" -eq "01" ]; then exp=`expr $exp - 8900`; else exp=`expr $exp - 100`; fi
+if [ "$exp" -eq "$today" ]; then
+email=`awk -F'=' '$1=="!set class_email" {print $2; exit}' $cls/.def`
+inst=`awk -F'=' '$1=="!set class_institution" {print $2; exit}' $cls/.def`
+desc=`awk -F'=' '$1=="!set class_description" {print $2; exit}' $cls/.def`
+
+mail $w_mail_opt -s "WIMS virtual class will expire in 30 days" "$email" <<@
+
+You have created a virtual class
+
+$inst, $desc
+
+(code $cls) on the site $site_hostname. This class will be closed in
+one month because it will reach its expiration date.
+You should download a archive file of your class and
+upload its content or part of it into another class.
+
+To get an archive file of the contents of this class, follow this link:
+
+--- WIMS (WWW Interactive Multipurpose Server)
+http://$site_hostname/wims/wims.cgi?module=adm/class/classes&+type=authsupervisor&+class=$cls
+
+@
+echo "$today housekeep class-advertising $cls: $email" >>$WIMS_HOME/log/mail.log
+fi
+
+done
+
+# Any expired classes?
+cd $WIMS_HOME/log/classes
+for cls in [0-9]*
+do
+ exp=`awk -F'=' '$1=="!set class_expiration" {print $2; exit}' $cls/.def`
+ if [ -z "$exp" ] || [ "$exp" -lt "$today" ]; then
+  email=`awk -F'=' '$1=="!set class_email" {print $2; exit}' $cls/.def`
+  inst=`awk -F'=' '$1=="!set class_institution" {print $2; exit}' $cls/.def`
+  desc=`awk -F'=' '$1=="!set class_description" {print $2; exit}' $cls/.def`
+  mail $w_mail_opt -s "WIMS virtual class expired" "$email" <<@
+
+You have created a virtual class
+
+	$inst, $desc
+
+(code $cls) on the site $site_hostname. This class is now closed,
+because it has reached its expiration date.
+
+The complete registry of this class (user list and activity history)
+is stored in an archive file, which can be recovered upon request
+to the webmaster of this site.
+
+--- WIMS (WWW Interactive Multipurpose Server)
+    http://$site_hostname/
+
+@
+  echo "$today housekeep class-expire $cls: $email" >>$WIMS_HOME/log/mail.log
+  rm -R $cls/.parmreg >/dev/null 2>&1
+  if [ -d $WIMS_HOME/log/ccaccount/$cls ]; then
+   tar -cf $cls/account.tar -C $WIMS_HOME/log ccaccount/$cls 2>/dev/null
+   rm -R $WIMS_HOME/log/ccaccount/$cls 2>/dev/null
+  fi
+  mkdir -p $WIMS_HOME/backup/oldclasses/$thisyear
+  tar -czf $WIMS_HOME/backup/oldclasses/$thisyear/$cls.tgz $cls
+  rm -R $cls >/dev/null 2>&1
+  # clean resource sharing links
+  find . -maxdepth 2 -type l -lname '*/$cls/*' -exec rm '{}' \;
+ fi
+done
+
+# Clean up remaining classes.
+## the number of exams is the number of sessions exams.
+examlog_lim2=`awk -F'=' '$1=="examlog_limit" {print $2; exit}' $WIMS_HOME/log/wims.conf`
+if [ -z $examlog_lim2 ]; then
+  examlog_lim2=`awk -F'=' '$1=="DF_examlog_limit" {print $2; exit}' $WIMS_HOME/public_html/bases/sys/defaults.conf`
+fi
+examlog_lim2=$(expr $examlog_lim2 + 1)
+cd $WIMS_HOME/log/classes
+find . -path '*/.parmreg/*' -type f -exec rm -f '{}' \;
+for l in `find . -name examlog -type d`; do
+ for d in $l/*; do
+   list=`ls -dt $d/* | tail -n +$examlog_lim2`
+   if [ -n "$list" ]; then rm -Rf $list; fi
+ done
+done
+
+# is the class number limit or the user number limit reached?
+# do it each 01 of month!
+today1=`date +%d`
+if [ "$today1" -eq "01" ]; then
+ cd $WIMS_HOME/log/classes
+ site_manager=`awk -F'=' '$1=="site_manager" {print $2; exit}' $WIMS_HOME/log/wims.conf`
+ user_limit=`awk -F'=' '$1=="user_limit" {print $2; exit}' $WIMS_HOME/log/wims.conf`
+ if [ -z $user_limit ]; then
+  user_limit=`awk -F'=' '$1=="DF_user_limit" {print $2; exit}' $WIMS_HOME/public_html/bases/sys/defaults.conf`
+ fi
+ class_limit=`awk -F'=' '$1=="class_limit" {print $2; exit}' $WIMS_HOME/log//wims.conf`
+ if [ -z $class_limit ]; then
+  class_limit=`awk -F'=' '$1=="DF_class_limit" {print $2; exit}' $WIMS_HOME/public_html/bases/sys/defaults.conf`
+ fi
+ nclass=`cat .index | wc -l`
+ cl=`awk -F, 'NF>2 {print substr($1,2) "/.userlist"}' .index`
+ nuser=`cat $cl | grep -c '^:'`
+ if [ $class_limit -lt $nclass ] || [ $user_limit -lt $nuser ] ; then
+  mail $w_mail_opt -s "WIMS virtual class limit" "$site_manager" <<@
+
+The server WIMS has reached the limit of classes.
+
+@
+ echo "$today housekeep class_limit or user_limit: $email" >>$WIMS_HOME/log/mail.log
+ fi
+fi
+
+# delete .anonymous in example classes
+cd $WIMS_HOME/log/classes
+clist=`ls -d [1-9][0-9][0-9][0-9]`
+for cls in $clist; do
+  rm -f $cls/motd/.anonymous 2>/dev/null
+  find $cls/.users -name "anonymous[1-9]*" -type f -delete 2>/dev/null;
+  find $cls/score -name "anonymous[1-9]*" -type f -delete 2>/dev/null;
+  find $cls/noscore -name "anonymous[1-9]*" -type f -delete 2>/dev/null;
+  sed -i '/anonymous/d' $cls/.userlist 2>/dev/null;
+  rm -f $cls/.userlist_external 2>/dev/null;
+  rm -f $cls/.usernextlist 2>/dev/null;
+  rm -f $cls/.userprevlist 2>/dev/null;
+  rm -f $cls/freelogin 2>/dev/null;
+done
+
+# calculate the size of the classes
+cd $WIMS_HOME/log/classes
+for cls in [0-9]*
+do
+ du -ks $cls > $cls/.du
+done;
+
+# cleanup the *.bin in score
+cd $WIMS_HOME/log/classes
+find . -type f -name "*.bin" -exec rm -v "{}" ";" 1>/dev/null
+## enlever les scoreavg aussi
+
+# check if all compulsory directories are here (only in non example classes)
+cd $WIMS_HOME/log/classes
+list=`find [0-9][0-9][0-9][0-9][0-9]* -maxdepth 0 -type d` ;
+for s in $list ; do
+   for d in .users sheets exams doc score noscore vote cdt src def livret seq tool ; do
+    mkdir -p $s/$d
+   done
+done
+# Sheet expiration management. This should be activated during summer vacation.
+for s in `find . -path '*/sheets/.sheets' -type f`; do
+# quick test: any sheet to expire now?
+   test=`awk 'BEGIN {a=0};
+	a==1 {a=0; if($1<'$today' && b==1) {print "Z"; exit}}
+	substr($1,1,1)==":" {a=1;b=substr($1,2,1)};' $s`
+# if test then change status code to 2 for sheets to expire
+# in temporary file, then overwrite old file with new one
+   if [ ! -z "$test" ]; then
+    awk 'BEGIN {a=0; v=0};
+	a==1 {a=0; if($1>='$today' || v!=1) {print t} else {print ":2"};}
+	substr($1,1,1)!=":" {print};
+	substr($1,1,1)==":" {a=1; t=$1; v=substr(t,2)};' $s >.sheets
+    mv -f .sheets $s
+   fi
+done
+
+# Sequence auto hide/show management.
+#for s in `find . -path '*/seq/.sequence[0-9]*' -type f`; do
+# quick test: any sequence to hide now?
+#   test=`sed -n 5p $s`
+#   if [ "$today" = "$test" ]; then
+#    awk 'BEGIN {cpt=0};
+#	{a+=1; if(a==4) {print "0"} else {print $0};}' $s >.tmp
+#    mv -f .tmp $s
+#   fi
+# quick test: any sequence to show now?
+#   test=`sed -n 6p $s`
+#   if [ "$today" = "$test" ]; then
+#    awk 'BEGIN {cpt=0};
+#	{a+=1; if(a==4) {print "1"} else {print $0};}' $s >.tmp
+#    mv -f .tmp $s
+#   fi
+#done
+
+# Build class index file
+rm -f .lockindex
+./.build-index
+
+##destroy the oldclasses which have been expired since more than $backup_delete days
+## if backup_delete has a numeric value all the first day of months
+cd $WIMS_HOME
+backup_delete=`awk -F'=' '$1=="backup_delete" {print $2; exit}' $WIMS_HOME/log/wims.conf`
+if [ "$backup_delete" ]; then
+  if test "$backup_delete" -eq "$backup_delete" 2>/dev/null; then
+   today1=`date +%d`
+   if [ "$today1" -eq "01" ]; then
+    find $WIMS_HOME/backup/oldclasses/[0-9]* -mtime +$backup_delete -exec rm '{}' ';' 2>/dev/null
+    find $WIMS_HOME/backup2/oldclasses/[0-9]* -mtime +$backup_delete -exec rm '{}' ';' 2>/dev/null
+    find $WIMS_HOME/backuprestore/oldclasses/[0-9]* -mtime +$backup_delete -exec rm '{}' ';' 2>/dev/null
+   fi
+  fi
+fi
+
+cd $WIMS_HOME/log
+
+if [ -d ccaccount ]; then
+ for c in `cd ccaccount; ls -d [0-9]* 2>/dev/null`; do
+  if [ ! -d classes/$c ]; then rm -rf ccaccount/$c; fi
+ done
+fi
+
+#
+
+rm -f $WIMS_HOME/public_html/scripts/model/*/list
+
+# make stat of server
+$WIMS_HOME/bin/statserver.sh
+
+# possible local housekeeping script
+cd $WIMS_HOME
+[ -x log/housekeep.local ] && log/housekeep.local

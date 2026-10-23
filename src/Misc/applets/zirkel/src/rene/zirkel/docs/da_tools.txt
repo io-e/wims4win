@@ -1,0 +1,610 @@
+VÆRKTØJER i JavaPasser
+	
+	Hjælp til beregningsudtryk findes under 
+	Hjælp, Korte hjælpetekster, Kommandotilstand.
+---------------------------------------------------------------------------------
+
+	En konstruktion består forskellige objekter der afhænger af
+	hinanden. F.eks. afhænger et linjestykke af de to endepunkter.
+
+	Denne tekst beskriver først begrebet objekter, deres 
+	egenskaber og indbyrdes afhængighed.
+	Derefter beskrives de forskellige værktøjer og indstillinger 
+	som findes i programmets værktøjspanel, dvs. ikonerne. 
+	Hold musen over ikonet et øjeblik, så kommer der en kort 
+	beskrivelse af værktøjet. Når værktøjet er valgt, viser 
+	statuslinjen hvilke skridt det pågældende værktøj venter.
+	
+OBJEKTER og EGENSKABER
+	Et objekt har en række egenskaber som indstilles i 
+	egenskabsdialogen. Det er en boks som kommer frem når man 
+	højreklikker på objektet eller klikker med egenskabsværktøjet 
+	(spørgsmålstegnet).
+	
+	Alle objekter har følgende egenskaber til fælles:
+	
+		Navn
+		Beskrivelse
+		Farve
+		Bredde (smal, normal, bred)
+		Om navnet vises (afgøres med en omskifter)
+		Om talværdien vises (hvis en sådan kan defineres)
+		Synlighed (afgøres med en omskrifter: vis/skjul objekt)
+
+	Ud over de fælles egenskaber er der egenskaber der er specielle 
+	for en bestemt objekttype. Punkter har f.eks. egenskaben udseende,
+	dvs. om punktet tegnes som cirkel, firkant eller prik.
+	
+	Når objekterne konstrueres, bruges standardværdierne for alle 
+	egenskaber. Disse indstillinger kan enten vælges ved ikonerne 
+	på værktøjslinjen eller i menuen Indstillinger. 
+	Efter konstruktionen kan de ændres i objektets egenskabsdialog som 
+	åbnes ved at højreklikke på objektet eller ved at vælge værktøjet 
+	indstillinger (ikonet med spørgsmålstegn). 
+	Den kan også åbnes via menuerne. 
+	Detaljerne i egenskabsdialogen omtales senere i forbindelse med
+	egenskabsværktøjet 
+	
+	
+OBJEKTER MED FAST STØRRELSE - egenskaben "Fast"
+	Punkter, linjestykker, cirkler og vinkler kan under bestemte betingelser
+	lægges fast på bestemte talværdier, så punktets placering, linjestykkets
+	længde, cirklens radius eller vinklens størrelse ikke kan ændres.
+
+	Ud over det kan man også konstruere cirkler med fast radius (som kun
+	afhænger af et centrumspunkt) og vinkler med fast størrelse (som kun
+	afhænger af to, ikke af tre punkter).
+	
+	Men det er muligt at lægge talværdien fast efter konstruktionen, hvis
+	de rigtige punkter kan flyttes. For linjestykkers vedkommende skal et 
+	endepunkt kunne flyttes, for cirkler radiuspunktet og for vinkler punktet
+	på det andet ben. I så fald kan man indsætte en talværdi eller et
+	beregningsudtryk. 
+	
+	Også punkter kan lægges fast hvis de ikke afhænger af andre objekter
+	(i modsætning til f.eks. skæringspunkter). Når punkter skal lægges fast,
+	skal der angives tal eller beregningsudtryk både for X og Y.
+	
+	Hvis man vil lægge et objekt fast på en bestemt talværdi allerede når
+	det konstrueres, kan man trykke på skift-tasten når sidste punkt afsættes
+	(eller vælge specielle værktøjer). Egenskabsdialogen åbner automatisk,
+	og man behøver kun at indtaste et udtryk for talværdien. 
+	På denne måde konstruerer man cirkler med fast radius som ikke er 
+	bestemt af et radiuspunkt, og vinkelben som ikke er bestemt af et punkt.
+	Detaljerne beskrives nedenfor under CIRKLER og VINKLER.
+	
+OBJEKTAFHÆNGIGHED, BESKRIVELSE (F11), SLETNING og FLYT BAGUD
+
+	Objekter gemmes i den rækkefølge de konstrueres. Listen over konstruerede
+	objekter ses ved at trykke F11 eller menuen Indstillinger, Beskrivelse.
+	Når man sletter med Tilbage-tasten eller ikonet "Slet sidste objekt" 
+	slettes altid det sidste objekt på listen, dvs. det sidst konstruerede.
+	
+	Med sletteværktøjetkan man frit vælge objekter der skal slettes, men 
+	dermed sletter man samtidig alle andre objekter der afhænger af det 
+	slettede objekt. Hvis man ved en fejl sletter et objekt der skal bruges, 
+	kan det genskabes med værktøjet "Fortryd sidste slet", men det skal 
+	ske inden man foretager flere sletninger.
+
+	Det er muligt at ændre på rækkefølgen ved at bruge menuen Udfør, Flyt
+	objekt opad på listen. Et objekt kan ikke sættes foran de objekter 
+	det afhænger af, f.eks. en cirkel op foran sit centrumspunkt.
+	Når man ændrer rækkefølgen, kommer en dialogboks frem hvor man kan
+	indtaste den nye placering. Hvis feltet "Indsæt efter" er udfyldt, 
+	betyder det at programmet viser det sidste objekt der er brugt i 
+	konstruktionen. Det er ikke muligt at indsætte efter noget tidligere på
+	listen.
+	Hvis man ikke indtaster noget, men lader feltet stå tomt, rykkes det
+	valgte objekt forrest på listen.
+	
+	Objekter tegnes i to omgange, først de objekter der skal være baggrund,
+	f.eks. udfyldte flader og cirkelskiver, og derefter andre objekter
+	som ikke skal dækkes af dem, f.eks. linjer og punkter.
+	I egenskabsdialogen findes et ikon der skubber objekterne i baggrunden 
+	ved tegningen.
+	
+
+---------------------------------------------------------------------------------
+	DE ENKELTE VÆRKTØJER
+---------------------------------------------------------------------------------
+
+PUNKT
+	
+	Et punkt kan konstrueres på forskellige måder. Med punktværktøjet
+	konstruerer man flytbare punkter som er basisobjekter for konstruktionen.
+	De konstrueres ganske enkelt ved at klikke på tegnefladen. Hvis man 
+	derved rammer et skæringspunkt mellem cirkler eller linjer, bliver man
+	spurgt om skæringen skal konstrueres. Hvis man svarer nej, konstrueres
+	i stedet et nyt punkt. (Spørgsmålet kan slås fra med menuen Indstillinger,
+	Programindstillinger, Spørg før konstruktion af skæringspunkt).
+
+	Punkter kan også konstrueres med skæringspunkt- eller midtpunkt-
+	værktøjet som beskrives i næste afsnit.
+	
+	Disse punkter er ikke frie, men afhænger selvfølgelig af de to objekter 
+	der skærer hinanden eller de to punkter som det er midtpunkt imellem.
+	
+	Et frit punkt kan også lægges fast, så det ikke kan flyttes med musen.
+	Det gøres som ovenfor nævnt i egenskabsdialogen.
+	
+PUNKT PÅ OBJEKT
+	Hvis man klikker på en linje, en halvlinje, et linjestykke eller 
+	en cirkel, bliver der konstrueret et punkt på dette objekt 
+	i stedet for et frit punkt. Det kan bevæges, men kun på linjen, 
+	vinkelbenet eller cirklen, og når disse objekter flyttes,
+	flytter punktet med. 
+	I egenskabsdialogen for punkter kan man binde eller frigøre punkter.
+		Hvis punktet er er bundet til et objekt og skal frigøres, 
+		trykker man "Frigør fra objekt".
+		Hvis punktet er frit og skal fastgøres, trykker man
+		"Fastgør til objekt". Dialogen lukker nu, og man skal
+		klikke på det objekt punktet skal fastgøres til.
+	Hvis man trykker på mellemrumstangenten før man vælger objektet, vil
+	det ikke blive flyttet i forhold til cirklen eller linjen, når disse
+	flyttes. Normalt projiceres punktet på ny, så det flytter sig når linjen 
+	eller cirklen bevæges.
+	
+	Man kan også bruge det særlige værktøj "Punkt på objekt" allerede ved
+	konstruktionen.
+	"Punkt på objekt" kan konstrueres på cirkler, linjer, halvlinjer, 
+	linjestykker og vinkelben, men ikke på: vinkelmarkeringsbuer og siderne 
+	af en polygon (hvis de ikke er konstrueret som linjestykker).
+	
+	Et punkt på et linjestykke kan ikke flyttes ud over endepunkterne. Et
+	linjestykke hvor begge endepunkter ligger på et andet linjestykke, kan
+	derfor ikke have fast længde.
+	
+	
+SKÆRINGSPUNKT
+	Med dette værktøj konstrueres skæringspunkter mellem to linjer, to 
+	cirkler eller en linje og en cirkel. Computeren er nødt til at vide
+	at skæringerne skal opfattes som punktet, selv om dette giver sig
+	selv ved en konstruktion med papir, blyant, lineal og passer.
+	
+	Programmet forsøger at efterligne den virkelige konstruktion så 
+	meget som muligt. Hvis man skal bruge et punkt i en konstruktion,
+	f.eks. som centrum i en cirkel, og man klikker på en skæring, vil
+	programmet spørge om skæringen skal konstrueres. Det svarer til
+	at man ved tegning kan bruge skæringer som udgangspunker for
+	en konstruktion.
+	
+	Læg mærke til at skæringen med en halvlinje eller et linjestykke
+	kun er defineret, når den ligger inden for endepunkterne.
+
+	Skæringspunkter kan konstrueres ved at man klikker på en skæring 
+	eller ved at man klikker på to forskellige objekter efter 
+	hinanden. I det sidste tilfælde bliver der konstrueret to skærings-
+	punkter hvor det er muligt, dvs. ved skæring mellem to cirkler
+	eller mellem en linje og en cirkel.
+	
+	I situationer hvor der er to skæringspunkter, kan det forekomme at 
+	kun det ene kan bruges i konstruktionen. I den situation kan det
+	være nødvendigt at angive at programmet skal bruge det punkt der
+	er tættest på et andet, eller det punkt der er forskelligt fra
+	et andet (på cirklen eller linjen). Det kan angives i egenskabs-
+	dialogen.
+	
+MIDTPUNKT
+	Et midtpunkt mellem to punkter kan konstrueres med et specielt
+	værktøj med sit eget ikon. Det kan konstrueres med en klassisk
+	konstruktion med passer og lineal, og værktøjet kan opfattes som
+	en genvej. 
+	Teknisk er der tale om et punkt der kun kan flyttes ved at flytte
+	de punkter det ligger midt imellem, men det kan bruges som udgangs-
+	punkt for videre konstruktioner på helt normal vis.
+	
+
+LINJER
+Linje - halvlinje - linjestykke - linjestykke med fast længde
+
+	Alle disse objekter afhænger af to punkter. Derfor må der vælges to 
+	punkter ved konstruktionen. 
+	Forskellen mellem dem drejer sig ikke kun om måden de bliver vist, 
+	men også:
+	1.	Punkter på en linje kan flyttes langs hele linjen, men 
+		på linjestykker ikke ud over enderne og på halvlinjer 
+		og vinkelben ikke forbi endepunktet.
+	2.	Skæringspunkter forsvinder hvis punktet bevæger sig ud 
+		over endepunkterne, og alt hvad der er konstrueret på
+		grundlag af dem er ikke længere defineret - men kommer
+		igen når punkterne igen flyttes inden for endepunkterne.
+	3.	Man kan kun vælge halvlinjer, vinkelben og linjestykker
+		ved at klikke inden for endepunkterne.
+	
+	Hvis mindst et af endepunkterne kan flyttes, kan man lægge
+	længden af linjestykker fast i egenskabsdialogen. Punktet flyttes
+	så langs linjestykket så den ønskede længde opnås. 
+	I stedet for en talværdi kan man angive et beregningsudtryk.
+	
+	Det særlige værktøj "Linjestykke med fast længde" konstruerer altid
+	et frit punkt ved andet klik.
+	
+	Værktøjslinjen og egenskabsdialogen for linjer indeholder et ikon for 
+	"Delvis tegning". Det betyder at linjerne kun tegnes et lille stykke 
+	længere end de punkter der ligger på dem, og det kan gøre konstruktionen
+	mere overskuelig.
+	
+	Værktøjslinjen og egenskabsdialogen for linjestykker indeholder et ikon 
+	for "Linjestykker som vektorer". Når det er aktiveret, tegnes de med en
+	pilespids i den ene ende.
+	
+
+NORMALER OG PARALLELLE
+	Disse to værktøjer fungerer stort set ens. I begge tilfælde skal man
+	vælge en linje, halvlinje eller et linjestykke, og dernæst et punkt.
+	Så konstrueres en linje gennem punktet, vinkelret på eller parallel
+	med den valgte linje.
+	De frembragte linjer kan anvendes i konstruktioner nøjagtig som alle
+	andre linjer.
+
+	Teknisk set konstrueres der en linje, men der er ingen mulighed for at
+	konstruere dem delvist synlige, og dette punkt findes heller ikke i 
+	egenskabsdialogen.
+	
+	
+	Programmet konstruerer normaler til linjestykker og halvlinjer selv om
+	det valgte punkt ligger uden for endepunkterne. I nogle tilfælde vil
+	denne konstruktion være ugyldig, og man kan da sætte hak i punktet 
+	"Begrænset" i egenskabsdialogen. Så konstrueres normalen kun inden for
+	linjestykkets eller halvlinjens begrænsning.
+	
+	Bemærk at begge konstruktioner kan gennemføres med passer og lineal, så
+	værktøjerne kan opfattes som forkortede konstruktioner.
+	
+
+
+CIRKLER
+Cirkel - Cirkel ud fra radius og midtpunkt - Cirkel med fast radius
+
+	Cirkel-værktøjet svarer til brugen af en passer. Aller enklest 
+	sætter man spidsen i et punkt og tegner cirklen gennem et
+	andet punkt. På samme måde venter værktøjet at man bruger to
+	punkter.
+
+	Programmet kan give sådanne cirkler en fast radius, hvis et af de
+	to punkter kan flyttes. Radius angives i egenskabsdialogen som et
+	tal eller beregningsudtryk.
+	
+	Passeren kan også bruges sådan at man først indstiller radius på en
+	given længde og derefter sætter den i centrumspunktet. Værktøjet 
+	"cirkel ud fra radius og centrum" virker på denne måde. I programmet
+	gøres det ved først at vælge to punkter hvis indbyrdes afstand 
+	bestemmer radius, og derefter vælge centrum.
+	(I den klassiske geometri er denne konstruktion ikke tilladt, men
+	en lidt mere indviklet, tilladt konstruktion giver samme resultat).
+	
+	Det tredje cirkelværktøj har en fast radius, men der skal ikke vælges
+	noget punkt til angivelse af radius. Man konstruerer denne form ved
+	at trykke på skift-tasten når man fastlægger radiuspunktet. Derved
+	bliver der hverken konstrueret eller valgt et punkt, men i stedet 
+	bestemmer stedet man klikker på størrelsen af radius. Egenskabsdialogen
+	åbner sig, og man kan bekræfte valget eller indtaste et nyt tal eller
+	beregningsudtryk.
+	Værktøjet er især nyttigt i makrodefinitioner. Her behøver man kun at 
+	have centrum som parameter, resten vælges af brugeren, og dermed opstår
+	ikke nogen ugyldige konstruktioner. (Se nærmere i Hjælp til makroer). 
+	
+	Cirkler kan også gøres delvis synlige, så man kun ser cirkelslaget
+	omkring punkter på periferien. Det gør konstruktionerne meget mere
+	overskuelige. Indstillingen kan enten foretages som standard før 
+	konstruktionen eller vælges i egenskabsdialogen.
+
+	Cirkler kan også tegnes udfyldt.
+	
+MARKER VINKEL
+	Værktøjet "Marker vinkel" tegner en bue for at markere en vinkel.
+	Den kan ikke bruges til at konstruere noget. 
+	Vinklen er bestemt af tre punkter ABC, og B er som normalt 
+	vinkelspidsen. 
+	Hvis "Tillad vinkler over 180°" er valgt med ikonet eller med menuen
+	Indstillinger, Andre indstillinger, er rækkefølgen af punkterne 
+	A og C vigtig. Så vises vinklen nemlig altid med punkterne imod
+	urets retning.
+	Hvis ikke "Tillad vinkler over 180°", vises altid den vinkel der
+	er mindre end 180 °. Indstillingen kan ændres i vinklens
+	egenskabsdialog.
+	
+	Egenskabsdialogen har også en række andre valg:
+	1.	Vinkler kan vise navn og/eller størrelse (i °). 
+	2.	Det er muligt at markere vinkler med tre forskellige 
+		buestørrelser.Den største kan bruges til at tegne 
+		cirkeludsnit, fordi vinkelbuen her altid tegnes ved A. 
+	3.	Hvis andet vinkelpunkt kan flyttes, kan størrelsen af 
+		vinklen lægges fast på et bestemt gradtal.
+	4.	Man kan vælge at få vinkelbuen udfyldt med farve.
+		
+
+VINKELBEN
+	I modsætning til "Marker vinkel" konstruerer værktøjet vinkelben
+	et objekt der kan bruges i den videre konstruktion. Det drejer
+	sig om en halvlinje, et vinkelben. 
+	Man kan konstruere vinkelbenet med det særlige værktøj, eller
+	med værktøjet "Marker vinkel", blot man trykker skift ved valget
+	af punkt på det andet ben. 
+	Uanset hvilken metode man vælger, bliver der ikke konstrueret 
+	eller valgt et punkt på det andet ben. I stedet lægges benet 
+	fast ved et gradtal, og egenskabsdialogen åbner så man kan 
+	bekræfte eller ændre tallet.
+	Hvis mærket i Fast er fjernet, kan vinklens størrelse ændres ved
+	at trække i vinkelbenet med musen.
+	
+VINKLERS NAVNE
+	Vinkler kan navngives med græske bogstaver, men det kræver
+	desværre at man bruger Suns JRE som Javafortolker. 
+	Hverken Netscape og Internet Explorer er i stand til at vise
+	dem korrekt i Java. 
+	Græske bogstaver kan indtastes f.eks. med \a for alfa.
+		
+	Hvis en vinkel er præcis 90°, eller hvis dens navn begynder med
+	et punktum, tegnes den med et 90°-symbol.
+
+	I vinklernes egenskabsdialog er der taget hensyn til alt dette.
+	
+	
+FLYTTEVÆRKTØJ
+	Alle objekter kan flyttes med højre musetast, men som alternativ
+	kan man bruge flytteværktøjet (med venstre musetast).
+	
+ANIMATION
+
+	Med animationsværktøjet kan punkter animeres, dvs. bevæges 
+	automatisk langs en cirkel eller et linjestykke. Først vælger
+	man et flytbart punkt der skal animeres, derefter de 
+	linjestykker eller cirkler der skal bruges i animationen.
+
+	For at få et punkt til at bevæge sig frem og tilbage langs et
+	linjestykke, må man konstruere linjestykket i begge retninger
+	(altså f.eks. AB og BA), og først vælge den ene og derefter
+	den anden retning.
+
+	Animationen går i gang når man klikker på et linjestykke
+	eller en cirkel der allerede er valgt. den fortsætter indtil
+	man vælger et værktøj, trykker på escape eller klikker på et
+	tomt sted på tegnefladen.
+
+	Animationer gemmes hvis de er aktive når konstruktionen gemmes, 
+	og de udføres i så fald automatisk når filen åbnes igen. Hvis 
+	sådanne animationer bruges i appletter (på Internetsider), kan 
+	brugeren kun starte og standse animationen. Det er praktisk
+	hvis brugren blot skal se resultatet, fordi værktøjet er lidt
+	indviklet at bruge. Det kan dog også gøres tilgængeligt på
+	værktøjslinjen.
+	
+
+SPOR - AUTOMATISK SPOR
+	Disse vigtige værktøjer bruges til at tegne spor efter punkter 
+	eller linjer som er konstrueret på grundlag af andre.
+	Når udgangspunkterne flyttes med musen, kan man se sporet efter 
+	det valgte punkt eller den valgte linje.
+	
+	Sporet efter et punkt viser de steder punktet har ligget, mens
+	sporet efter en linje tegner indhyldingskurven, dvs. en kurve
+	som linjen er tangent til under flytningen. 
+	
+	DeT automatiske spor adskiller sig ved at brugeren ikke selv skal
+	flytte det valgte udgangspunkt. Det bevæges i stedet automatisk 
+	langs en cirkel, en linje eller halvlinje eller et linjestykke. 
+	Ved brug af dette værktøj spørges efter linjen/cirklen som 
+	punktet skal bevæges langs.
+	Når punkterne er valgt, vises sporet samtidig med at punkter
+	og/eller linjer bevæges (animation). Ved klik på tegnefladen vises
+	animationen alene uden spor, og ved et nyt klik standser animationen
+	mens sporet gentegnes. Ved endnu et klik starter animationen forfra.
+	Det automatiske spor er animeret, dvs. punktet bevæges langs linjen
+	eller cirklen. Første gang man klikker på tegnefladen, forsvinder
+	stedlinjen og kun punktets bevægelse ses. Anden gang standser 
+	bevægelsen og kun sporet ses.
+	På en ældre maskine, under ca. 500MHz, er beregningen af sporet 
+	langsom, og man skal vente et øjeblik efter at valgene er foretaget.
+
+	Stedlinjen beregnes igen hvis et af udgangspunkterne flyttes.
+	Efter beregningen kan udgangspunkterne flyttes med venstre 
+	musetast.
+	
+	Sporet tegnes kun indtil et andet værktøj bliver valgt eller
+	der igen klikkes på sporværktøjet for at vælge ny objekter.
+	Man kan dog bevare det i konstruktionen ved at trykke på
+	Skift + Enter, men så kan sporet ikke længere animeres.
+	
+	Med begge værktøjer er det muligt at vise spor efter flere punkter
+	eller linjer, man trykker blot skift-tasten ned mens man vælger
+	objekter og slipper først tasten inden det sidste valg.
+	
+	Stedlinjer gemmes,når konstruktionen gemmes mens de er tegnet, 
+	og de vises igen når filen åbnes. Hvis de var animerede da den 
+	blev gemt, bliver de også animerede når filen åbnes, ellers ikke.
+	
+	
+BEREGNINGSUDTRYK
+	
+	Beregningsudtryk kan afhænge af andre objekter og genberegnes
+	konstant når de flyttes. 
+	De kan flyttes lige som andre objekter. Normalt vises deres
+	værdi, men man kan desuden (eller kun) vise en forklaring.
+	Visningen indstilles lige som for alle andre objekter i 
+	egenskabsdialogen. 
+
+Beregningsudtryk skrives således:
+
+	Mulige regnetegn er + - * / ^ 
+	Potensopløftning skrives ^ (eller **).
+	Beregningsudtryk følger den almindelige matematiske syntaks, herunder at
+	*/ går forud for +-, og de følger parenteser. 
+	Eksempel: 3.5*3+3/(4-5^2) 
+
+	Objektnavne på linjestykker, cirkler og vinkler kan bruges. I så fald
+	beregnes længden, henh. radius eller størrelse. Hvis navnet indeholder et
+	mellemrum, skal det skrives i "". 
+	Eksempel: AB/CD
+
+Faste udtryk og indbyggede funktioner:
+
+	pi (konstanten pi)
+		
+	x,y
+	Funktionerne x(P) og y(P) beregner et punkts x- og y-koordinater. 
+	Eksempel: x(P),y(P) : P's x- og y-koordinater.
+		
+	d
+	d(P,Q) beregner afstanden mellem to punkter. 
+	Eksempel: d(P,Q) : Afstanden mellem punkterne P og Q
+		
+	a
+	a(A,B,C) beregner vinklen ABC. angle360 og angle180 omformer tallet til
+	intervallerne 0° til 360°, henh. -180° til 180°.
+	Eksempel: a(A,B,C) : størrelsen af vinkel ABC (med vinkelspids i B)
+	Eksempel: angle360(A,B,C) : størrelsen af vinkel ABC, 
+	angivet i intervallet fra 0° - 360°
+	Eksempel: a(A,B,C) : størrelsen af vinkel ABC 
+	angivet i intervallet fra -180° til 180°.
+
+	if
+	if(a,b,c) giver mulighed for betingede udtryk: 
+	Hvis a er et gyldigt udtryk, returnerer funktionen b, 
+	også hvis a ikke kan levere nogen værdi.
+	Hvis a er et ugyldigt udtryk, returneres c.
+
+	sum
+	sum(a,b,c) returnerer summen af værdierne i parentesen.
+
+	sign
+	sign(a) giver  1 hvis a er positiv,-1 hvis a er negativ.
+
+Matematiske funktioner:
+
+	Programmet kender funktionerne sin, cos, tan, arcsin, arccos,
+	arctan, sqrt, exp, log und abs. Derudover afrundingsfunktionerne 
+	round, ceil und floor. 
+
+
+
+UDFYLDTE POLYGONER
+	
+	Polygoners indre kan udfyldes med farve med dette værktøj.
+	Polygonen defineres ved at klikke på hjørnepunkterne (mindst 3),
+	og den tegnes når man klikker endnu en gang på et af punkterne.
+	Hvis man aktiverer "Vis værdi", angives polygonens areal.
+
+	Flader ser bedst ud hvis de tegnes med "tynd linje". I Java 1.3
+	er de transparente (gennemsigtige). Hvis det ønskes kan dette 
+	slås fra på værktøjslinjen, i menuen Indstillinger eller i
+	egenskabsdialogen.
+	
+	Egenskabsdialogen giver også mulighed for at vælge om fladen skal
+	tegnes foran eller bagved punkter og linjestykker.
+	
+TEKST
+	
+	Med dette værktøj kan vilkårlige tekster på flere linje indsættes
+	i konstruktionen. Når værktøjet bruges, vælges først stedet hvor
+	teksten skal ses, og derefter fremkommer et vindue hvor
+	teksten kan indtastes.
+	For at redigere teksten klikker man i dens øverste venstre 
+	hjørne med egenskabsværktøjet.
+	
+VÆRKTØJET VIS/SKJUL OBJEKT
+	
+	Med dette værktøj kan objekters status ændres fra vist til skjult
+	og omvendt. Man kan imidlertid kun ændre skjulte objekter ved at
+	vise dem med værktøjet eller menupunktet "Vis skjulte objekter".
+	
+	Visningen af hvert enkelt objekt kan også indstilles i 
+	egenskabsdialogen.
+	
+	Når et andet værktøj er valgt, bliver objekter skjult hvis man 
+	klikker på dem mens Ctrl-tasten holdes nede.
+	
+	Hvis man holder skift-tasten nede mens man klikker på et objekt med
+	værktøjet "Vis/skjul", bliver objekterne helt skjult. Det betyder at
+	de heller ikke vises når indstillingen "Vis skjulte objekter" er 
+	aktiveret. I så fald er de kun tilgængelige via menuen 
+	Indstillinger, Beskrivelse (F11).
+	Det kan være praktisk ved meget komplekse konstruktioner.
+	
+VIS SKJULTE OBJEKTER
+	
+	Denne omskifter afgør om de skjulte objekter ses (med lysere farve)
+	eller skjules helt. Ikonet skal være trykket ned for at man kan
+	få adgang til de skjulte objekter. Det kan også gøres via menuen, men ikke
+	når konstruktioner udgives på WWW. Her er menuerne ikke tilgængelige.
+	
+	Værktøjet "Slet sidste objekt" virker forskelligt, afhængigt af 
+	om "Vis skjulte objekter" er aktiveret eller ej. Hvis indstillingen
+	er aktiveret, slettes de skjulte objekter der er konstrueret efter
+	det sidste synlige objekt, hvis der er nogen.
+	Når indstillingen er aktiveret, slettes det sidst tegnede objekt.
+
+	Hvis en applet ikke indeholder nogen knapper, er funktionen tilgængelig
+	ved højreklik.
+
+INDSTILLINGER FOR NÆSTE OBJEKTER
+
+	kan ændres med ikonerne
+	1.	Farve på næste objekt
+	2.	Bredde på næste objekt
+	3.	Type af næste punkt
+	4.	Delvis synlige cirkler
+	5.	Delvis synlige linjer
+	
+	Med disse ikoner ændres standardindstillingen for objekter der 
+	konstrueres efter valget. Nr. 1 - 3 ændrer udseende så de viser det 
+	aktuelle valg, mens nr. 4 og 5 er trykket ned når de er aktiveret.
+	
+	
+VIS NAVN - VIS STØRRELSE - LANGE NAVNE
+	
+	Disse indstillinger har også kun virkning for objekter der konstrueres
+	efter at valget er foretaget. 
+	Hvis de er aktiverede, betyder det henholdsvis at nye objekter altid
+	har deres navne, henholdsvis værdi vist. Lange objektnavne 
+	vedrører de navne programmet automatisk giver nye objekter. Hvis valget
+	er aktiveret bruges navne som Punkt 1, Linje 1 osv. - ellers bruges
+	forkortelser som P1 og l2.
+	
+VIS FARVER
+	
+	Med dette ikon kan man vælge at kun bestemte farver bliver vist. 
+	Hvis man vælger farverne med det formål, kan det give en god oversigt
+	over konstruktionens opbygning. 
+	Ikonet ændres, så det aktuelle valg ses. Det består enten af alle 6
+	farver eller af farven sort med kun en af de andre farver.
+	
+GITTER
+
+	Dette ikon aktiverer eller deaktiverer visning af et koordinatgitter.
+	Hvis gitteret vises, så vil nye punkter og punkter der bevæges med
+	højre musetast gøres til gitterpunkter (dvs. anbringes i krydsene).
+	
+	
+KOMMENTAR
+	
+	Ved tryk på ikonet vises konstruktionskommentaren (eller et tomt
+	indtastningsfelt). Med skift-tasten nedtrykket vises kommentarfeltet
+	for opgaver.
+	
+AFSPIL TRINVIS
+	
+	Med denne funktion kan man gå trinvis gennem konstruktionen. Der
+	fremkommer en menu med knapper der ligner en kassette- eller 
+	videobåndoptager. 
+	Hvis en applet ikke indeholder nogen knapper, er funktionen tilgængelig
+	ved højreklik.
+	
+	Det er muligt at indsætte pauser ("breakpoints") i afspilningen. På den
+	måde kan man nøjes med at gøre holdt ved vigtige konstruktionsskridt.
+	Det har betydning hvis man vælger "Afspil med pauser" som applet-stil
+	når konstruktionen bruges på en webside.
+
+BILLEDER OG BAGGRUND
+	
+	Omskifterknappen "Sæt eller slet baggrund" (med billede af et kamera)
+	gør den aktuelle konstruktion til baggrundsbillede. Det gør det muligt
+	at sammenligne ændringer med en tidligere udgave af konstruktionen.
+	Det er også muligt at bruge andre billeder som baggrund via menuen 
+	"Indstillinger, Baggrund". Det kan blandt andet bruges ved perspektiv-
+	konstruktioner ud fra et fotografi. 
+	Baggrundsbilleder kan være i .gif- eller .jpg-format.
+	
+	Den aktuelle konstruktion kan gemmes som billede i .bmp-format eller
+	som vektorgrafik i .fig-formatet (bruges især i Unix/Linux-systemer).
+

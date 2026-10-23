@@ -1,0 +1,17 @@
+Welkom bij P.e.L.!
+
+Je krijgt dit document te zien als dit de eerste keer is dat je dit
+programma gebruikt of als je een nieuwe versie installeerde. In deze
+tekst vind je uitleg over nieuwe kenmerken, verwijderde bugs en
+recente veranderingen.
+
+Zodra je wat meer ervaren wordt in het gebruik kan je best de
+'beginnersmodus' uitzetten.
+
+De thuispagina van P.e.L. en het e-mailadres van de auteur vind je
+
+op http://www.rene-grothmann.de/
+
+Voor vragen bij de Nederlandse versie kan je terecht bij
+
+jan.van.hee@khleuven.be

@@ -1,0 +1,65 @@
+<!--
+
+    Project buildfile for SharpTools.
+
+-->
+
+<project name="SharpTools" default="build" basedir=".">
+
+    <description>SharpTools: Spreadsheet</description>
+
+    <property name="ver" value="1.19"/>
+
+    <property name="src" location="."/>
+    <!--<property name="extern" location="extern"/>-->
+    <property name="build" location="build"/>
+    <property name="dist"  location="dist"/>
+
+    <path id="project.class.path">
+	<!--<pathelement location="${classpath}/rt.jar"/>-->
+	<!--<pathelement location="/usr/local/javalib/xerces.jar"/>-->
+    </path>
+
+    <target name="init">
+	<!-- Create the time stamp -->
+	<tstamp/>
+	<!-- Create the build directory structure used by compile -->
+	<mkdir dir="${build}"/>
+	<mkdir dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile the source">
+	<!-- Compile the java code from ${src} into ${build} -->
+	<javac srcdir="${src}" destdir="${build}" debug="on" 
+			source="1.6" target="1.6" encoding="8859_1">
+	    <classpath refid="project.class.path" />
+	</javac>
+    </target>
+    <presetdef name="javac">
+	<javac encoding="UTF-8" />
+    </presetdef> 
+    <target name="build" depends="compile" description="generate the distribution">
+	<!-- Create the distribution directory -->
+	<mkdir dir="${dist}"/>
+
+	<jar jarfile="${dist}/SharpTools.jar" basedir="${build}">
+    	    <manifest>
+    	    	<attribute name="Main-Class" value="SharpTools.SharpTools"/>
+    	    </manifest>
+	    <fileset dir="." includes="images/*.*" />
+	    <fileset dir="." includes="lang/*.properties" />
+	    <fileset dir="." includes="sharptools.ini" />
+	    
+	    <!-- embed any other appropriate jar files...
+	    <zipfileset src="extern/epsgraphics.jar"/>
+	    -->
+    	</jar>
+    </target>
+
+    <target name="clean" description="clean up">
+    	<!-- Delete the ${build} and ${dist} directory trees -->
+    	<delete dir="${build}"/>
+    	<delete dir="${dist}"/>
+    </target>
+
+</project>

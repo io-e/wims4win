@@ -1,0 +1,20 @@
+#! /bin/sh
+#
+# This script is used to mirror wims source and module distribution
+# from wims.univ-cotedazur.fr.
+
+# This line makes the mirroring only weekly (every sunday morning).
+# Comment out the line to make daily mirroring.
+[ `date '+%w'` = "0" ] || exit
+
+original=https://wims.univ-cotedazur.fr/download/
+cd `dirname $0/..`
+wimsbase=`pwd`
+cd public_html
+
+mkdir -p download
+
+wget -m -np -t1 -T60 -w2 -nH --progress=dot \
+	-Xdownload/wims/old \
+	https://wims.univ-cotedazur.fr/download/ >$wimsbase/tmp/wget.log 2>$wimsbase/tmp/wget.err
+

@@ -1,0 +1,276 @@
+Interactieve Modus
+
+	A=P() 
+		punt
+	    Tekent een punt op een willekeurige positie. 
+	    
+	A=P(0,1) 
+	    Een vast punt. 
+	    
+	a=l(B,C) 
+	    lijnstuk 
+	    Een lijnstuk van B tot C. 
+	    
+	a=l(B,2) 
+	    Een lijnstuk met vaste lengte (hier 2). 
+	    
+	a=r(B,C) 
+	    rechte 
+	    een rechte door B en C. 
+	    
+	a=s(B,C) 
+	    straal 
+	    Een straal (halfrechte) van B tot C. 
+	    
+	k=c(A,B) 
+	    cirkel 
+	    Een cirkel met als middelpunt A en straal AB. 
+	    
+	k=c(A,2) 
+	    Een cirkel met een vaste straal (hier 2). 
+	    
+	k=c(A,B,C) 
+	    Een cirkel met als middelpunt A en straal BC. 
+	    
+	A=I(g,g) 
+	    intersectie 
+	    Snijpunt van twee rechten. 
+	    
+	A,B=I(k,k) 
+	    Beide snijpunten tussen twee cirkels, of tussen cirkels en rechten. 
+	    
+	M=M(A,B) 
+	    middelpunt 
+	    Het middelpunt van het lijnstuk AB. 
+	    
+	g=e(g,A) 
+	    evenwijdige 
+	    De evenwijdige door punt A aan rechte g. 
+	    
+	g=n(g,A) 
+	    loodlijn 
+	    De loodlijn door A op g. 
+	    
+	a=h(A,B,C) 
+	    hoek 
+	    De hoek A,B,C 
+	    
+	a=h(A,B,90) 
+	    Een hoek met eenv vaste grootte. 
+	    
+	A=area(P1,P2,P3) 
+	    area 
+	    Tekent een oppervlakte met deze hoekpunten. 
+
+	E=uitdrukking(s)
+		uitdrukking
+		Maakt een uitdrukking met string s op een willekeurige plaats.
+	    
+	waarde(P,0,1) 
+	    waarde 
+	    Zet het punt P vast op gegeven coördinaten (0,1) 
+	    
+	waarde(l,2) 
+	    Fixeert de lengte van het lijnstuk l (op 2 cm). 
+	    
+	waarde(c,2) 
+	    Maakt de straal van de cirkel c vast. 
+	    
+	waarde(h,90) 
+	    Geeft een waarde aan een hoek h. 
+	    
+	waarde(waar,o) 
+	    Zorgt dat de waarde voor o wordt getoond.
+	    "waar" kan weggelaten worden.
+	    
+	waarde(waar) 
+	    Zorgt dat alle waarden vanaf nu worden getoond. 
+	    
+	naam(o,p) 
+	    naam 
+	    Geeft o de benaming p. 
+	    
+	naam(waar,o) 
+	    Zorgt dat de benaming van o wordt getoond. 
+	    "waar" mag je weglaten.
+	    
+	name(waar) 
+	    Zorgt dat alle benamingen vanaf nu worden getoond. 
+	    
+	verberg(waar,o) 
+	    verberg 
+	    Verbergt of toont o. 
+	    "waar" can be omitted.
+	    
+	verberg(waar) 
+	    Stelt de standaardtoestand van voorwerpen in. 
+	
+	invisible(true,o) 
+	    invisible 
+	    Hides or un-hides o completey. 
+	    "true" can be omitted.
+	    
+	verberg(waar) 
+	    Stelt de standaard volledig verborgen toestand voor voorwerpen in. 
+	
+	kleur(groen,o) 
+	    kleur
+	    Geeft voorwerp o de kleur groen (of rood, blauw, bruin) 
+	    
+	kleur(groen) 
+	    Stelt de standaardkleur in. 
+	    
+	dikte(dik,o) 
+	    dikte 
+	    Maakt voorwerp o dik (of normaal of dun). 
+	    
+	dikte(dik) 
+	    Stelt de standaard lijndikte in op dik (of normaal/dun) 
+	    
+	type(vierkant,P) 
+	    type 
+	    Stelt het punttype van P in op vierkant (cirkel/ruit/punt). 
+	    
+	type(vierkant) 
+	    Stelt het standaardpunttype in. 
+	    
+	gedeeltelijk(waar,k) 
+	    gedeeltelijk 
+	    Maakt voorwerp k gedeeltelijk zichtbaar. 
+	    "waar" mag je weglaten.
+	    
+	gedeeltelijk(true) 
+	    Stelt dit in als standaardtoestand. 
+	    
+	vul(waar,o) 
+	    vul 
+	    Maakt voorwerp o gevuld. 
+	    "waar" mag je weglaten.
+	    
+	terug(waar,o) 
+	    terug 
+	    Duwt het voorwerp o naar achteren. 
+	    "waar" mag je weglaten.
+	    
+	venster(0,0,5) 
+	    venster 
+	    Maakt het venster 2*5 breed met centrum (0,0). 
+
+	stomp(waar,h) 
+	    stomp
+	    Laat toe dat hoek h groter dan 180 graden wordt.
+	    "waar" mag je weglaten.
+	    
+	stomp(waar,h) 
+	    stomp
+	    De hoek is altijd stomp.
+	    "waar" mag je weglaten.
+	
+	beperk(c,A,B)
+		beperk
+		De cirkel c wordt alleen getekend van A tot B.
+	
+	Op plaatsen waar punten verwacht worden kan je c(k), a(l) en b(l)
+	gebruiken. c(k) is het middelpunt van de cirkel k, a(l) en b(l)
+	zijn de twee gegeven punten van een lijnstuk, straal of rechte.
+	
+
+Macro's
+
+	Macro's kan je ook in de interactieve modus gebruiken. Namen aan de
+	linkerkant van '=' worden toegekend aan de macrodoelen. Als er meerdere
+	doelen zijn moeten de namen gescheiden worden door komma's. Je mag een
+	extra parameter gebruiken om een waarde aan een voorwerp toe te kennen
+	(het programma zal je dan een waarde vragen in te geven).
+
+
+Wiskundige uitdrukkingen
+
+	Uitdrukking gebruiken de gebruikelijke wiskundige conventies, bvb. 
+	voorrang van */ of +-.  Je kan ook machtsverheffing gebruiken (^
+	of **). Ook haakjes kunnen gebruikt worden.
+	
+	Je kan volgende wiskundige functies gebruiken: sin, cos, tan,
+	arcsin, arccos, arctan, sqrt, abs, sign, exp and log. Afronden
+	naar gehele getallen kan met round, ceil en floor. x(P) en y(P)
+	berekenen de coördinaten van het punt P. d(P,Q) berekent de afstand
+	tussen twee punten P en Q. a(A,B,C) berekent de hoek ABC. angle360
+	en ange180 brengen hoeken terug tot het interval van 0 tot 360 en
+	van -180 to 180 graden respectievelijk.
+	
+	Namen van lijnstukken, cirkels en hoeken worden vertaald naar
+	lengte, straal en grootte respectievelijk.
+
+
+--- moet nog vertaald worden, sorry ---	
+Descriptive constructions in files
+
+	One can load constructions from a file, or edit and then load such
+	constructions. An example can is this file. The syntax is line
+	oriented and uses the commands described above. Line comments
+	starting with // may be used. The files may contain macros like
+	this
+	
+		macro U 
+		// Constructs a circle through three points
+		    parameter A=point // Select first point
+		    parameter B=point // Select second Point
+		    parameter C=point // Select third point
+		    g1=MS(A,B)
+		    g2=MS(A,C)
+		    U=intersection(g1,g2)
+		    target k=circle(U,A)
+		end
+	
+	The indents are optional. Comments in the parameter lines are used
+	as prompts, if the macro is used interactively. This macro calls
+	the macro MS with two parameters.
+	
+		macro MS
+			param A=point
+			param B=point
+			partial(true)
+			k1=circle(A,B)
+			k2=circle(B,A)
+			partial(false)
+			P1,P2=intersection(k1,k2)
+			invisible
+			target g=line(P1,P2)
+		end
+	
+	If a line constructs two objects, the target must be defined
+	separately. The invisible statement hides all details completely.
+	This command can also be applied to single objects. The showall
+	statement is the contrary.
+	
+		A,B=intersection(g,k)
+		target B
+	
+	If a macro has more than one target, all targets must be
+	assigned.
+	
+		A,B=test(...)
+	
+	Prompts are defined by the keyword prompt in front of an object
+	name.
+	
+		k=circle(A,5)
+		pompt k
+	
+	Here is an example of a macro using a segment as a parameter.
+	
+		macro MS
+		// Mittelsenkrechte
+			A=point
+			B=point
+		    parameter s=segment(A,B)
+		    ...
+		Ende
+	
+	If circles are used as a paramter, there is the special syntax
+	
+		M=point
+		parameter circle(M)
+	
+	This kind of circle can only be used in parameters.
+	

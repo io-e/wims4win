@@ -1,0 +1,87 @@
+#! /bin/sh
+
+WIMS_HOME=`dirname $0`/..
+cd $WIMS_HOME
+WIMS_HOME=`pwd`
+
+cd log/classes
+class=[0-9]*
+##if there is no old technical variables, put class in version 5
+for cl in $class; do
+  version=`cat $cl/version 2>/dev/null | awk '{print $1; exit}'`
+  if [ ! $version -lt 5 ]; then :;
+  else
+     tv=`grep user__ $cl/.users/* 2>/dev/null`
+     if [ -z "$tv" ]; then echo 5 >$cl/version ; fi ;
+  fi
+done
+
+exit
+
+forumdir=$WIMS_HOME/forums
+cmoduledir=$WIMS_HOME/public_html/modules/classes
+### all classes has now version >=4 so nothing is done ...
+## nothing is useful in this case
+for cl in $class
+do
+version=`cat $cl/version 2>/dev/null | awk '{print $1; exit}'`
+if [ ! $version -lt 3 ]; then :;
+else
+ if [ -z "$version" ]; then version=1; fi
+ if [ $version -lt 3 ]; then
+  cd $cl
+  if [ -d $forumdir/classes/$cl ]; then
+   rm -Rf forum 2>/dev/null
+   mv $forumdir/classes/$cl forum
+  fi
+  mkdir -p .score .noscore
+  for f in *
+  do
+   grep -v noscore $f >.score/$f
+   grep noscore $f >.noscore/$f
+   rm -f $f 2>/dev/null
+  done
+  echo 3 >version
+  mkdir -p sheets exams
+  for f in .sheet* .severity .weight .require
+  do
+   mv $f sheets 2>/dev/null
+  done
+  for f in .exam* .eseverity
+  do
+   mv $f exams 2>/dev/null
+  done
+  mv .users/supervisor . 2>/dev/null
+  for d in score noscore doc
+  do
+   mv -f .$d $d 2>/dev/null
+  done
+  cd ..
+ fi
+ if [ $version -lt 4 ]; then
+  cd $cl
+  if [ -e .src ] && [ ! -e src ]; then mv .src src; fi
+  neib=`awk -F= '$1=="sharing_exo" {print $2}' neighbors 2>/dev/null`
+  if [ ! -z "$neib" ]; then
+   rm -fR src def Ex* .src
+   touch ../$neib/Exindex ../$neib/Extitles
+   ln -s ../$neib/src .
+   ln -s ../$neib/def .
+   ln -s ../$neib/Exindex .
+   ln -s ../$neib/Extitles .
+  fi
+  if [ -d "$cmoduledir/$cl" ]; then
+   mv $cmoduledir/$cl/def . 2>/dev/null
+   mv $cmoduledir/$cl/Ex* . 2>/dev/null
+   rm -fR $cmoduledir/$cl
+  fi
+  echo 4 >version
+  cd ..
+ fi
+ fi
+done
+
+./.build-index
+rm -fR $cmoduledir/template* 2>/dev/null
+rm -fR $cmoduledir/[0-9]* 2>/dev/null
+

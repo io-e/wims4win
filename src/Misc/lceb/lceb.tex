@@ -1,0 +1,287 @@
+\documentclass[a4paper,oneside,11pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{geometry}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{url}
+\usepackage{xspace}
+\urlstyle{sf}
+\definecolor{green}{rgb}{0,0.8,0}
+\lstloadlanguages{C}
+\lstset{language=Java,extendedchars=true,stringspaces=false,tabsize=3,commentstyle=\color{blue},keywordstyle=\color{red},stringstyle=\color{green}} % Nice colors
+\lstset{labelstyle=\tiny,labelstep=1,labelsep=5pt} % line numbers
+
+\newcommand{\code}[1]{\texttt{#1{}}\xspace}
+\newcommand{\filename}[1]{\textbf{#1{}}\xspace}
+
+\geometry{reset}
+
+\setlength{\parskip}{0.5em}
+
+\title{Le Compte Est Bon}
+\author{Lucas \scshape{Nussbaum}}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+Ce problème est inspiré d'un jeu télévisé du même nom, faisant partie de l'émission \textsl{Des chiffres et des lettres}, diffusée sur \textsl{France 2}.
+
+\subsection{Règles}
+Six nombres (appelés \textit{nombres de base} par la suite) sont tirés au sort parmi les nombres de 1 à 10, 25, 50, 75 et 100. Un septième nombre, appelé \textit{but} par la suite, est tiré au sort entre 100 et 999. Le joueur doit combiner les 6 nombres de base à l'aide des opérations mathématiques addition, soustraction, multiplication et division entière pour obtenir le but ou, à défaut, un nombre s'en approchant le plus possible.
+
+\subsection{Exemples}
+Voici quelques exemples afin d'y voir plus clair :
+\begin{itemize}
+\item Nombres de base : 4, 3, 5, 100, 1 et 6. But : 886\\
+Il est possible d'atteindre le but à l'aide des opérations suivantes :
+
+100 - 1 = 99\\
+6 + 3 = 9\\
+99 * 9 = 891\\
+891 - 5 = 886
+
+\item Nombres de base : 8, 2, 5, 6, 1, 3. But : 927\\
+A l'aide des algorithmes exposés plus loin, nous pouvons déterminer qu'il n'est pas possible d'atteindre le but. Toutefois, il est possible d'atteindre 930, et c'est le nombre le plus proche du but qu'il soit possible d'atteindre. C'est donc la meilleure solution.
+
+6 * 5 = 30\\
+30 + 1 = 31\\
+8 + 2 = 10\\
+10 * 3 = 30\\
+31 * 30 = 930
+\end{itemize}
+
+\subsection{Intérêt algorithmique}
+Ce problème est très intéressant d'un point de vue algorithmique. Contrairement à ce qui est annoncé sur un site web, la seule solution possible n'est pas une recherche aléatoire. Plusieurs solutions permettent d'obtenir de manière performante des résultats, et sont suffisamment différentes pour qu'il soit intéressant de les comparer. Je vais étudier 2 solutions permettant d'obtenir de bons résultats dans la suite de ce texte.
+
+\section{Solution récursive}
+Cette solution est la plus facile à comprendre.
+
+\subsection{Principe}
+
+\begin{itemize}
+\item On part d'un tableau de 6 éléments contenant les 6 nombres de base.
+\item On combine deux de ces éléments afin d'en obtenir un nouveau.
+\item On obtient donc un tableau de 5 éléments, le nouvel élément remplaçant les 2 éléments nécessaires pour le former.
+\item On continue à créer de nouveaux éléments ainsi pour chaque tableau créé, pour chaque couple d'éléments possible, et pour chaque opérateur.
+\item On s'arrête lorsque le nouvel élément généré est égal au but.
+\item On garde en mémoire une trace de l'élément le plus proche du but, afin de pouvoir le retrouver si on n'arrive pas à atteindre le but.
+\end{itemize}
+
+\subsection{Exemple}
+On part de la situation suivante : Nombres de base : 4, 3, 5, 100, 1 et 6. But : 886.
+
+On a donc un tableau de 6 éléments contenant 4;3;5;100;1;6. Le premier couple qu'on peut créer à partir de deux éléments de ce tableau est le couple (4,3). On le combine à l'aide de l'addition, et on obtient 7.
+
+On obtient donc le tableau de 5 éléments 7;5;100;1;6. On remplace le couple (7,5) par 12, obtenu avec l'addition.
+
+On continue l'exploration descendante puis, si cette exploration ne permet pas d'atteindre le but, on essaie les autres opérateurs, et les autres couples.
+
+\subsection{Avantages et inconvénients}
+\subsubsection{Avantages}
+Le principal avantage de cet algorithme est bien sûr sa facilité de compréhension.
+
+De plus, il est rapide, et facile à implémenter.
+
+\subsubsection{Inconvénients}
+Le principal inconvénient de cet algorithme est qu'il ne permet pas de conserver en mémoire l'ensemble des solutions trouvées, ou des résultats intermédiaires. Cela peut-être gênant lors de l'analyse des résultats, par exemple pour rechercher un résultat particulier.
+
+D'autre part, la solution trouvée par l'algorithme n'est pas forcément la plus simple (celle obtenue en effectuant le moins d'opérations, ou en utilisant le moins de nombres de base). L'algorithme dynamique décrit plus loin permet d'éviter cet inconvénient.
+
+\subsection{Implémentation}
+Une implémentation en C est disponible dans le fichier \filename{lceb\_rec.c}.
+\subsubsection{Utilisation}
+Après l'avoir compilé en tapant \code{make}, lancer le programme en tapant \code{./lceb\_rec \textit{but suivi des 6 nombres de base}}. Par exemple :
+\begin{verbatim}
+$ ./lceb_rec 886 4 3 5 100 1 6
+Processing 4 3 5 100 1 6 . Goal : 886
+FOUND
+100 - 1 = 99
+6 + 3 = 9
+99 * 9 = 891
+891 - 5 = 886
+\end{verbatim}
+\code{FOUND} signifie que le but a été atteint. Dans le cas contraire, \code{NOTFOUND} est suivi du résultat atteint, ainsi que de la distance par rapport au but :
+\begin{verbatim}
+$ ./lceb_rec 749 4 1 2 3 8 6
+Processing 4 1 2 3 8 6 . Goal : 749
+NOTFOUND 750 1
+8 * 6 = 48
+48 + 2 = 50
+4 + 1 = 5
+5 * 3 = 15
+50 * 15 = 750
+\end{verbatim}
+
+\subsubsection{Détails de l'implémentation}
+Les valeurs contenues dans les tableaux sont stockées sous la forme d'une structure :
+\begin{verbatim}
+struct result {
+   int val; /* value */
+   operation op; /* operator */
+   struct result * l; /* left operand */
+   struct result * r; /* right operand */
+};
+\end{verbatim}
+En plus de contenir la valeur, elle contient les 2 résultats nécessaires pour l'obtenir, ainsi que l'opérateur utilisé. Si par exemple on stocke 4, comme la somme de 2 autres nombres 1 et 3, \code{val} vaudra 4, \code{op} vaudra ADD, et \code{l} et \code{r} pointeront respectivement sur les structures contenant 1 et 3.
+
+La fonction \code{dispres} permet de remonter l'arbre des opérations, et ainsi, d'écrire les opérations nécessaires pour arriver à un résultat sous une forme lisible, comme dans les exemples ci-dessus.
+
+La fonction \code{add} retourne, pour 2 nombres et un opérateur donnés, la structure du résultat, si l'opération est valide.
+
+La fonction \code{resultest} permet de vérifier si un résultat intermédiaire est égal au but, et arrête l'exploration si c'est le cas.
+
+La fonction \code{compute} est la fonction appelée récursivement pour traiter les tableaux de nombres.
+
+Il faut noter que la mémoire n'est jamais libérée. Tous les résultats intermédiaires sont conservés, car il serait trop compliqué de déterminer lesquels sont nécessaires à l'affichage ultérieur éventuel d'une série d'opérations par dispres.
+
+\section{Solution dynamique}
+
+Cette solution est bien plus satisfaisante d'un point de vue logique.
+
+\subsection{Principe}
+Comme dans tout algorithme dynamique, la recherche de la solution passe par la recherche de sous-solutions.
+
+Le point de départ est les 6 nombres de base. On va rechercher tous les résultats intermédiaires composés par 2 de ces 6 nombres de base, en combinant tous les couples possibles à l'aide de tous les opérateurs disponibles. Ensuite, les résultats intermédiaires composés de 3 nombres de base sont recherchés, puis par 4, 5, et 6 nombres de base.
+
+Dès qu'un résultat intermédiaire est égal au but, on peut s'arrêter : on a trouvé une solution, et c'est une des plus propres, puisqu'elle utilise un minimum de nombres de base.
+
+Si, à la fin de la recherche de tous les résultats intermédiaires, on n'a pas trouvé de résultat égal au but, il suffit de les parcourir à nouveau en recherchant le résultat qui s'en approche le plus.
+
+\subsection{Avantages et inconvénients}
+
+\subsubsection{Avantages}
+
+Cet algorithme peut être facilement adapté à la recherche de solutions spécifiques. Par exemple, il est facile de rechercher la solution utilisant le plus de nombres de base, ou passant par le résultat intermédiaire le plus grand. La solution récursive exposée précédemment ne permet pas de faire facilement de telles recherches.
+
+De plus, cet algorithme est rapide. Lors de la recherche de la première solution, il se montre un peu plus rapide que la solution récursive.
+
+\subsubsection{Inconvénients}
+
+Par contre, cet algorithme a le désavantage de nécessiter le stockage de tous les résultats intermédiaires. C'est aussi le cas dans la solution récursive avec l'implémentation choisie, mais d'autres implémentations de la solution récursive peuvent éviter ce problème. L'utilisation de la mémoire par l'implémentation de l'algorithme qui est présentée plus loin peut être très importante.
+
+\subsection{Implémentation}
+
+Une implémentation en C est disponible dans le fichier \filename{lceb\_dyn.c}.
+
+\subsubsection{Détails de l'implémentation}
+De nombreux points de l'implémentation sont communs avec celle de la solution récursive.
+
+Deux champs sont ajoutés à la structure \code{result} :
+\begin{itemize}
+\item \code{used} décrit quels sont les nombres de base utilisés par un résultat intermédiaire donné.
+\item \code{next} est un pointeur vers une structure result, permettant de stocker ces structures dans une liste chaînée.
+\end{itemize}
+
+Le tableau \code{results}, déclaré dans la fonction \code{main}, contient tous les résultats intermédiaires. \code{results[0]} contient les nombres de base, \code{results[1]} contient les résultats composés par 2 nombres de base, \code{results[2]} contient les résultats composés par 3 nombres de base, etc ...
+
+Dans l'implémentation actuelle, l'exploration est arrêtée dans \code{resultest} dès que le but est atteint. Ensuite, si le but n'est pas atteint, tous les résultats sont repassés en revue à la fin de la fonction \code{main} pour déterminer celui s'approchant le plus du but.
+
+\subsection{Optimisations éventuelles}
+\subsubsection{Mémorisation du résultat le plus proche en cours de calcul}
+Il est possible de mémoriser le résultat le plus proche du but en calculant la proximité du résultat courant dans \code{resultest}, et en positionnant \code{best} et \code{min}. Mais ce surplus de calcul ralentit l'algorithme. En effet, le but est atteint dans 98\% des cas, et il est donc préférable de rechercher le résultat le plus proche séparément.
+
+\subsubsection{Utilisation d'un tableau de fonctions pour les opérateurs}
+Une étude avec GNU prof tend à montrer que le \code{switch} dans la fonction \code{add} est un point faible de l'algorithme. Pour le contourner, un tableau de fonctions est ajouté. L'implémentation avec tableau de fonction est contenue dans \filename{lceb\_dynopt.c}.
+
+\section{Comparaison des performances des différentes implémentations}
+
+Ces valeurs ont été obtenues en compilant avec GNU cc v. 2.95.3, avec l'option -O6, et en utilisant une liste de 1000 valeurs générées aléatoirement avec le programme random.c.
+Les durées ont été mesurées avec l'utilitaire UNIX \code{time} et le script \code{lcebusedata.sh} fourni.
+
+\begin{tabular}{|l|c|c|c|}
+\hline
+Version & real & user & sys \\
+\hline
+Récursif & 1m13.324s & 1m5.239s & 0m20.903s \\
+Dynamique & 0m47.694s & 0m40.080s & 0m20.804s \\
+Dynamique optimisé & 0m47.665s & 0m40.230s & 0m20.693s \\
+\hline
+\end{tabular}
+
+La très faible différence entre les versions dynamiques et dynamiques optimisé laissent penser que le compilateur effectue lui-même l'optimisation consistant à utiliser un tableau de fonctions.
+
+\section{Rechercher autre chose}
+\subsection{Plus grande somme des résultats intermédiaires}
+Le programme \filename{lceb\_bigsum.c} montre avec quelle facilité il est possible de modifier la version dynamique pour rechercher autre chose. Ce programme recherche la solution dont la somme des résultats intermédiaires est la plus grande.
+
+Exemple :
+\begin{itemize}
+\item Avec recherche de la plus grande somme :
+\begin{verbatim}
+$ ./lceb_bigsum 374 50 3 5 10 8 75
+Processing 50 3 5 10 8 75 . Goal : 374
+FOUND
+75 * 50 = 3750
+3750 + 3 = 3753
+3753 - 5 = 3748
+3748 - 8 = 3740
+3740 / 10 = 374
+\end{verbatim}
+\item Version dynamique classique :
+\begin{verbatim}
+$ ./lceb_dyn 374 50 3 5 10 8 75
+Processing 50 3 5 10 8 75 . Goal : 374
+FOUND
+75 * 5 = 375
+10 - 3 = 7
+375 + 7 = 382
+382 - 8 = 374
+\end{verbatim}
+\end{itemize}
+
+\section{Recherche de la solution dont l'arbre est le moins profond}
+L'algorithme dynamique permet aussi, avec quelques modifications, de rechercher la solution dont l'arbre des solutions est le moins profond. Par exemple, si on cherche à faire 4 avec 1, 1, 1, 1, il sera plus élégant de faire (1 + 1) + (1 + 1), que ((1 + 1) + 1) + 1.
+
+Le fichier \filename{lceb\_easiest.c} recherche la solution dont l'arbre est le moins profond.
+
+Exemples :
+\begin{itemize}
+\item Version dynamique classique :
+\begin{verbatim}
+$ ./lceb_dyn 444 100 1 3 75 8 10
+Processing 100 1 3 75 8 10 . Goal : 444
+FOUND
+75 - 1 = 74
+10 + 8 = 18
+74 * 18 = 1332
+1332 / 3 = 444
+\end{verbatim}
+
+\item Version avec recherche de l'arbre le moins profond :
+En affichant tous les résultats intermédiaires, on constate que la solution proposée par l'algorithme dynamique classique a une complexité de 4221, alors qu'une autre solution, utilisant le même nombre de nombres de base, a une complexité inférieure :
+\begin{verbatim}
+*** 2421 ***
+75 - 1 = 74
+10 + 8 = 18
+18 / 3 = 6
+74 * 6 = 444
+\end{verbatim}
+\end{itemize}
+
+\section{Composition de l'archive}
+Outre les exemples déjà présentés, l'archive contient aussi plusieurs scripts permettant de faciliter les tests des différents algorithmes.
+\begin{itemize}
+\item \filename{Makefile} : fichier permettant d'automatiser la compilation des programmes en tapant \code{make}.
+\item \filename{getnotfound.sh} : ce fichier permet, à partir d'une liste de problèmes, d'afficher ceux pour lesquels une solution n'a pas pu être trouvée. Exemple : \code{./random 100 | ./getnotfound.sh lceb\_dyn}
+\item \filename{lceb\_bigsum.c}, \filename{lceb\_dyn.c}, \filename{lceb\_dynopt.c}, \filename{lceb\_easiest.c}, \filename{lceb\_rec.c} sont les fichiers sources des algorithmes présentés précédemment. Ils sont sous licence GPL.
+\item \filename{lceb.tex} est le fichier LaTeX utilisé pour générer ce que vous êtes en train de lire. Il est placé sous licence FDL.
+\item \filename{lcebusedata.sh} permet d'utiliser une liste de problèmes avec un algorithme. Exemple :\\ \code{./lcebusedata.sh lceb\_dyn liste}.
+\item \filename{random.c} permet de générer aléatoirement une liste de problèmes. Exemple : \code{./random 100} (pour générer 100 problèmes).
+\end{itemize}
+\section{Conclusion}
+
+J'espère que la lecture de ces quelques idées sur ce problème très ludique vous aura intéréssée. Si vous pensez que des améliorations sont à apporter à ce document ou aux programmes d'exemple, vous pouvez bien sûr me contacter à l'adresse \url{lucas@lucas-nussbaum.net}.
+
+\section{Licence}
+Copyright (c) 2002  Lucas Nussbaum <lucas@lucas-nussbaum.net>
+
+Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation.
+
+A copy of the license is available on \url{http://www.gnu.org}.
+\end{document}

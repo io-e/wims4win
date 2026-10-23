@@ -1,0 +1,146 @@
+#! /bin/sh
+#
+# This file generates mathematical fonts via tex2gif.
+# You must redefine the directory settings.
+
+textest=`tex -v 2>/dev/null`
+if [ -z "$textest" ]; then
+ cat <<@
+
+ERROR! TeX not found in your system.
+WIMS will not work properly without TeX. Please check your installation.
+
+@
+ exit 1
+fi
+
+cd `dirname $0`/..
+HOME_DIR=`pwd`
+SRC_DIR=$HOME_DIR/src
+HTML_DIR=$HOME_DIR/public_html
+FONT_DIR=$HTML_DIR/mathfonts
+FOUT_DIR=$HTML_DIR/w
+cd $SRC_DIR
+
+tex2gif=$HTML_DIR/bin/tex..gif
+texgifout=$HOME_DIR/tmp/texgif.out
+wims_server_base=$HTML_DIR
+texgif_tmpdir=$HOME_DIR/tmp
+texgif_fontdir=$FOUT_DIR/texgif
+texgif_texheader=$FONT_DIR/header.latex
+export wims_server_base texgif_tmpdir texgif_fontdir texgif_texheader
+export texgif_src texgif_outfile texgif_density
+rm -f $texgifout 2>/dev/null
+
+# test case-sensitiveness of the file system.
+# Note that there is a wims.c, but no WIMS.C in the directory.
+underscore="_"
+
+leftpar1='('
+rightpar1=')'
+leftbrace1='\{'
+rightbrace1='\}'
+Lleftpar='\left(';  Rleftpar='\right.'
+Lrightpar='\left.'; Rrightpar='\right)'
+Lleftbrace='\left\{'; Rleftbrace='\right.'
+Lrightbrace='\left.'; Rrightbrace='\right\}'
+add='\\ '
+in=$add$add
+for size in 2 3; do
+  for type in leftpar leftbrace rightpar rightbrace; do
+    eval L='$'L$type; eval R='$'R$type;
+    eval $type$size=\'$L\\begin\{array\}\{c\}$in\\end\{array\}$R\'
+  done
+  in=$in$add
+done
+# discontinuity !
+in=$in$add
+for size in 4 5 6 7 8 9 10; do
+  for type in leftpar leftbrace rightpar rightbrace; do
+    eval L='$'L$type; eval R='$'R$type;
+    eval $type$size=\'$L\\begin\{array\}\{c\}$in\\end\{array\}$R\'
+  done
+  in=$in$add
+done
+
+# for density in 100
+for density in 63 69 76 83 91 100 109 120 131 144 158 173
+do
+  texgif_density=$density
+  mkdir -p $FONT_DIR/$density
+
+  for f in `cat $SRC_DIR/mathfonts`
+  do
+    if (echo $f | grep '[A-Z]')>/dev/null; then F=$f$underscore; else F=$f; fi
+    texgif_outfile=$FONT_DIR/$density/$F.gif
+    if [ ! -s $texgif_outfile ]; then
+      echo $density/$f
+      texgif_src="\$ \\$f \$"
+      $tex2gif >>$texgifout
+    fi
+  done
+
+  for f in x y z
+  do
+    texgif_outfile=$FONT_DIR/$density/$f.gif
+    if [ ! -s $texgif_outfile ]; then
+      echo $density/$f
+      texgif_src="\$ $f \$"
+      $tex2gif >>$texgifout
+    fi
+  done
+
+  for f in A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+  do
+#upper case
+    F=$f$underscore
+    texgif_outfile=$FONT_DIR/$density/$f$F.gif
+    if [ ! -s $texgif_outfile ]; then
+      echo $density/$f$f
+      texgif_src="\$ \\mathbb $f \$"
+      $tex2gif >>$texgifout
+    fi
+    ##texgif_outfile=$FONT_DIR/$density/euf$F.gif
+    ##if [ ! -s $texgif_outfile ]; then
+    ##  echo $density/euf$f
+    ##  texgif_src="\$ \\mathfrak{$f} \$"
+    ##  $tex2gif >>$texgifout
+    ##fi
+    texgif_outfile=$FONT_DIR/$density/cal$F.gif
+    if [ ! -s $texgif_outfile ]; then
+      echo $density/cal$f
+      texgif_src="\$ \\mathcal{$f} \$"
+      $tex2gif >>$texgifout
+    fi
+#lower case
+    ##f=`echo $f | tr [:upper:] [:lower:]`
+    ##texgif_outfile=$FONT_DIR/$density/euf$f.gif
+    ##if [ ! -s $texgif_outfile ]; then
+    ##  echo $density/euf$f
+    ##  texgif_src="\$ \\mathfrak{$f} \$"
+    ##  $tex2gif >>$texgifout
+    ##fi
+  done
+# delimiters () {}
+  for type in leftpar leftbrace rightpar rightbrace; do
+    for size in 1 2 3 4 5 6 7 8 9 10; do
+      f=$type$size; eval src='$'$f
+      texgif_outfile=$FONT_DIR/$density/$f.gif
+      if [ ! -s $texgif_outfile ]; then
+        echo "$density/$f"
+        texgif_src="\$\$ $src \$\$"
+        $tex2gif >>$texgifout
+      fi
+    done
+  done
+
+  for syn in `cat $SRC_DIR/mathfonts-synonyms`
+  do
+     j1=`echo $syn | awk -F, '{print $1}'`
+     j2=`echo $syn | awk -F, '{print $2}'`
+     f=$FONT_DIR/$density/$j1.gif
+     if [ ! -r $f ]; then ln -s $j2.gif $f; fi
+  done
+done
+
+rm -f $HOME_DIR/tmp/texgif.*

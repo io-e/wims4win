@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<BODY bgcolor=white vlink="blue">
+
+<script language="javascript" type="text/javascript">                                                                                      
+function lees(){                                                                                                                           
+ var input=document.getElementById("plinko-II").ReadApplet();                                                                                               
+ alert(input);
+ document.getElementById("plinko-II").destroy();                                                                                                                             
+ }                                                                                                                                         
+</script>                                                                                                                                  
+<CENTER>
+    <APPLET codebase="dist" archive="Plinko-II.jar" id="plinko-II" CODE="PlinkoNegativeBinomial.class"  WIDTH=200 HEIGHT=100>
+	<param name="wims_exercise" value="1">
+	<!-- if wims_exercise = 0 , the applet will show it's original configuation and behaviour -->
+	<param name="R" value="2">
+	<!-- R is the number of Pin rows -->
+	<param name="xsize" value="800">
+	<param name="ysize" value="600">
+	<param name="fontsize" value="16">
+	<param name="bins" value="4">
+	<param name="chance" value="0.5">
+	<param name="speed" value="1">
+	<param name="title" value="Applet by Prof. P. Little">
+	<param name="language" value="fr">
+	<param name="balls" value="100">
+</APPLET>
+        <input type="button" name=".....TEST......" value=".....TEST....." onclick="javascript:lees();">
+   
+</BODY>
+</HTML>
+
+
+

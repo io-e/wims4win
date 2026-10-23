@@ -1,0 +1,50 @@
+# @configure_input@
+
+wims_home=../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+STRIP=@STRIP@
+libpath=-L$(wims_home)/lib
+libs=-lgd -lwims -lm
+defines=@DEFINES@
+rpath=
+lopt=$(libpath) $(libs)
+language=fr cn ca
+O=flylines.o nametab.o vimg.o objects.o flydraw.o
+H=../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
+
+all: nametab.c flydraw
+
+%.o: %.c *.h $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean:
+	rm -f *.o flydraw
+
+distclean:
+	rm -f flydraw $(wims_home)/other/bin/flydraw nametab.c
+	for i in $(language) en ; do rm -f ../../public_html/scripts/help/$$i/flydraw.phtml ; done
+	rm -f Makefile
+
+
+flydraw: $(O) *.h htmldoc.sh commands commands.* ../Lib/libwims.*
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(defines) $(O) $(lopt) -o flydraw
+	$(STRIP) flydraw
+	./flydraw table
+	cp flydraw ../../other/bin/flydraw
+	chmod a+x ../../other/bin/flydraw
+	./htmldoc.sh >../../public_html/scripts/help/en/flydraw.phtml
+	for i in $(language) ; do ./htmldoc.sh $$i >../../public_html/scripts/help/$$i/flydraw.phtml ; done
+	./flydraw2js.pl ; cp flydraw.js ../../public_html/scripts/js/edit_area/reg_syntax/flydraw.js ; rm flydraw.js
+
+
+nametab.c: nametab.sh colors
+	./nametab.sh
+
+test: flydraw
+	@cd test; sh test-line
+
+.PHONY: all clean distclean test

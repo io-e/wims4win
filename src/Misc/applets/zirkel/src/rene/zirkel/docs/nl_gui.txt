@@ -1,0 +1,105 @@
+Het hoofdvenster
+
+	Het grootste deel van dit venster toont (eventueel een stuk van) de
+	constructie. Je kan dit zicht verplaatsen met de pijltjestoetsen of
+	door het menu te gebruiken. In- of uitzoomen kan met +/- (of -zoals
+	altijd- via het menu).
+	
+	Boven de constructie vind je de werktuigenlijst. Als je met de muis
+	blijft stilstaan boven een icoontje, krijg je een korte omschrijving. 
+	De onderste rij iconen toont de constructiewerktuigen (punt,
+	lijnstuk, middelpunt, ...). De bovenste rij bevat standaardinstellingen
+	en instellingen voor het tekenen. Eventueel kan je deze werktuigenlijst
+	beperken tot 1 rij.
+	
+	Onder de constructie is er een vakje waar je belangrijke informatie
+	kan lezen. In de niet-visuele (beschrijvende) modus wordt dit vak 
+	vervangen door een invoervak.
+	
+	Meer mogelijkheden (zoals het opslaan en openen van een bestand)
+	vind je in het menu.
+
+
+De werktuigenlijst aanpassen
+
+	Kies in het menu "Opties->Wijzig werktuigenlijst". Je kan elk icoon
+	apart (de)selecteren door erop te klikken. Je kan ook aangeven dat
+	de iconen in 1 rij moeten getoond worden. De werktuigenlijst bevat 
+	dan enkel de voornaamste werktuigen.
+	
+	Je kan de werktuigenlijst ook onder de constructie zetten (door het
+	vinkje af te zetten bij "Opties->Voorkeuren->Werktuigenlijst
+	boven constructie").
+	
+	Werktuigen die niet meer voorkomen in de werktuigenlijst (omdat je
+	de iconen ervan niet meer laat zien) kan je nog wel gebruiken via
+	de sneltoetsen of via het menu.
+	
+	
+Beperkte schoolmodus
+
+	In deze modus kan de gebruiker alleen die werktuigen gebruiken die
+	daadwerkelijk in de werktuigenlijst als iconen zichtbaar zijn. Dit
+	geldt zowel voor de visuele als voor de beschrijvende modus en ook voor
+	het tonen van verborgen voorwerpen en het gebruik van macro's. Meer info
+	vind je in de HTML helppagina's.
+
+
+De muis
+
+	De linkermuisknop gebruik je om een voorwerp aan te maken (met
+	behulp van het geselecteerde werktuig). Een voorbeeld: als het 
+	'puntgereedschap' geselecteerd is in de werktuigenlijst, zie je
+	onderaan (in het statusvak) dat je een punt kunt aanmaken.
+	
+	Veel werktuigen verwachten dat je andere voorwerpen selecteert.
+	Zo kan je bvb. een lijnstuk construeren door twee punten te
+	selecteren. Als je het eerste punt geselecteerd hebt wordt het
+	rood, en lees je in het statusvak dat je verondersteld wordt een 
+	tweede punt te selecteren. Om een lijnstuk, rechte, cirkel,.. te
+	selecteren kan je gelijk waar erop klikken.
+	
+	Als je keuze niet uniek kan bepaald worden (bvb. omdat er 
+	verschillende voorwerpen op elkaar liggen), krijg je een lijst 
+	met mogelijke voorwerpen te zien. Je kan dan hieruit een voorwerp
+	kiezen door het te dubbelklikken, of door het aan te klikken en dan
+	op de knop te duwen. Het kan zelfs met het toetsenbord. In deze lijst
+	worden punten in het zwart, lijnen in het rood, cirkels in het blauw 
+	en andere voorwerpen in het groen getoond. Als de optie "lange
+	voorwerpnamen" actief is, is het gemakkelijker om de verschillende
+	types voorwerpen te herkennen. Als er enkel korte namen worden
+	getoond, is enkel de eerste letter in de lijst verschillend, en
+	wordt het bijgevolg wat moeilijker om de verschillende types uit
+	elkaar te houden.
+	
+	Belangrijk om weten is dat het programma automatisch een punt
+	zal aanmaken als het verwacht dat je op een punt klikt maar
+	je klikt op een vrij gebied. Analoog wordt er een snijpunt
+	aangemaakt als je op de intersectie van twee voorwerpen klikt.
+	Er is een speciale optie om het andere snijpunt in dit geval te
+	verbergen. Deze optie staat standaard aan.
+		
+	Als je de 'Shift' toets ingedrukt houdt als je een cirkel, lijnstuk
+	of een hoek construeert, veronderstelt het programma dat het voorwerp
+	vast is en krijg je een dialoogvenstertje. Je kan dan een vaste
+	waarde ingeven voor het voorwerp, of je kan het dialoogvenster
+	sluiten waardoor je de huidige waarde als vaste waarde kiest.
+	
+	De rechtermuisknop (opm: op Mac wordt dit muisknop + 'appeltje' toets)
+	wordt gebruikt om punten te bewegen (als alternatief voor het 
+	'beweeg' gereedschap), om labels van voorwerpen te bewegen, of
+	om het dialoogvenstertje met de voorwerpinstellingen te openen.
+	Als je rechtsklikt op een label zonder het te bewegen, springt het
+	naar zijn eerste (default) positie.
+	
+	De 'Control' toets kan je gebruiken als alternatief voor het
+	'verberg' werktuig. Cirkels en rechten worden eerst gedeeltelijk
+	zichtbaar en vervolgens verborgen.
+	
+	
+Het toetsenbord
+	
+	Elk werktuig heeft een sneltoets. Je vindt deze in het menu. Enkele
+	voorbeelden: 'p'= puntwerktuig selecteren, 'l'= lijnstukwerktuig,
+	'c'= cirkelwerktuig, ... Bemerk dat het statusvakje onderaan steeds
+	een andere tekst zal tonen voor elke toets die je indrukt.	

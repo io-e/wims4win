@@ -1,0 +1,32 @@
+CC=@CC@
+CFLAGS=@CFLAGS@
+CXX = g++
+CXXFLAGS= @CXXFLAGS@ -g
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@ -I/usr/local/include/
+
+RECODE_SUPPORT =
+LIBS= -lm -lgmp -lgmpxx
+
+all : units-filter
+
+test : all
+	sh units-test
+
+units-filter : unitesparser.o decimal.o
+	${CXX} $(CXXFLAGS) $(LDFLAGS) -o units-filter unitesparser.o decimal.o $(LIBS)
+
+decimal.o: decimal.cc decimal.h
+	${CXX} $(CXXFLAGS) $(CPPFLAGS) -c decimal.cc
+
+unitesparser.o : uniteslex.cc unitesparser.cc
+	${CXX} $(CXXFLAGS) $(CPPFLAGS) -c $(RECODE_SUPPORT) unitesparser.cc
+
+uniteslex.cc : unites.l unites.y unites.h
+	flex  -ouniteslex.cc unites.l
+
+unitesparser.cc: unites.y
+	bison  --verbose -o unitesparser.cc unites.y
+
+clean :
+	rm -f *~ uniteslex.cc unitesparser.cc *.o  *.output units-filter

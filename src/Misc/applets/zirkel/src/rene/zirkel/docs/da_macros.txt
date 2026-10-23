@@ -1,0 +1,137 @@
+Makroer
+
+	Makroer er forkortelser for konstruktionsskridt. De kan opfattes som små 
+	underprogrammer som kan sættes i gang, når der er brug for det. Først laver
+	man en konstruktion, og ved en makro lærer programmet konstruktionsskridtene
+	og kan bruge dem andre steder. 
+	
+	Makroer fungerer på den måde at de konstruerer målobjekter ud fra parametre:
+	-	parametre: de objekter der skal være tilstede for at konstruktionen 
+		kan udføres
+	-	målobjekter: de objekter som makroen konstruerer
+ 
+	Makroer kan også bruges i beskrivende konstruktioner der er gemt som 
+	selvstændige filer. Syntaksen ligner i så fald procedurer i et program-
+	meringssprog.
+
+	Makroer har parametre som bestemmer udgangsobjekterne. For eksempel er 
+	afhænger midtnormalen mellem to punkter af de to punkter, og har altså dem
+	som parametre. Objekter der allerede er tegnet kan fungere som målobjekter
+	for makroen, f.eks. den linje der er midtnormal mellem de to punkter. Når
+	makroen defineres, bliver det undersøgt om målobjekterne kan konstrueres ud
+	fra parametrene, og makroen består kun af de skridt der er nødvendige for at
+	konstruere dem. 
+	Man kan skjule mellemtrinnene i konstruktionen så kun målobjekterne bliver 
+	vist. 
+
+Makrodefinitioner
+
+	Første skridt er at fastlægge parametrene. Det vælger man enten ved 
+	menupunktet Funktioner, Angiv makroparametre eller ved at trykke på 
+	makroværktøjet. Derefter vælger man parametrene med musen. På værktøjsikonet 
+	ser man at punkterne til venstre for pilene er røde; det betyder at 
+	parametrene skal fastlægges.
+		
+	Så trykker man igen på værktøjet, og nu bliver punkterne til højre for 
+	pilene røde. Det betyder at der kan vælges målobjekter. I denne tilstand 
+	viser programmet kun de objekter der kan konstrueres ud fra parametrene. 
+	Hvis man ikke angiver nogen målobjekter, består makroen af alle de 
+	eksisterende objekter der kan konstrueres ud fra parametrene. Ellers består 
+	den kun af de objekter der er nødvendige for at konstruere målet ud fra 
+	parametrene. 
+
+	Det er ofte en fordel at angive målobjekter. Hvis der er defineret et 
+	målobjekt, kan alle mellemtrin automatisk blive skjult; ellers er alle 
+	objekter synlige som også var synlige i den oprindelige konstruktion.
+	Det er også en fordel at angive målobjekter hvis makroen skal bruges i 
+	kommandotilstand. Der kan brugeren nemlig give målobjekterne navne når 
+	makroen kaldes. 
+		
+	Ved tredje tryk på værktøjet (eller valget Funktioner, Definer makro) 
+	defineres makroen. Den skal altid have et navn, og det lægges fast i 
+	dialogboksen. Her kan der også indsættes en kommentar som brugeren kan se 
+	når han vælger hvilken makro der skal køres. Kommentaren bør henvise til 
+	de betegnelser der er valgt i "Spørg efter parametre". 
+
+	I de følgende felter, en for hver parameter, er der tekster som brugeren får
+	at se, når der skal indtastes en parameter.
+
+	Man kan også definere en makro der konstruerer en cirkel med fast radius 
+	eller en vinkel med fast størrelse og give brugeren mulighed for at indtaste 
+	størrelsen. Vinkel eller cirklen skal være blandt makroens målobjekter, og
+	man angiver navnet på dette objekt i linjen "Spørg efter:". 
+	Når makroen køres, åbner en dialogboks hvor brugeren kan indtaste 
+	størrelsen, og cirklen eller vinklen konstrueres med dette mål. Den 
+	indtastede værdi kan være et hvilket som helst beregningsudtryk (nærmere
+	beskrevet under Hjælp til kommandotilstand). I dialogboksen står navnet på 
+	cirklen eller vinklen som opfordring til indtastning.
+
+Åbne og gemme makroer
+
+	Makroer kan åbnes og gemmes sammen med konstruktionen eller for sig selv.
+
+	Når valgmuligheden Gem med makroer er aktiveret i menuen Filer, bliver alle
+	makroer gemt sammen med konstruktionen. Når en konstruktion åbnes, bliver
+	alle dens makroer åbnet samtidig. Hvis der allerede findes makroer med samme
+	navn, bliver der spurgt om de skal overskrives.
+
+	Makroer kan også åbnes og gemmes som separate filer. Det sker gennem menuen
+	Funktioner. Makroer har filtypen *.mcr. Filformaterne er identiske, men
+	rene makrofiler indeholder ingen konstruktioner.
+
+	Når man gemmer som HTML, skal man være opmærksom på at brugeren kun kan 
+	benyttede makroerne, hvis Kør makro-værktøjet står til rådighed. Hvis han 
+	har værktøjet "Makro parametre/mål/definer", kan han også selv definere 
+	makroer.
+
+Kør makroer
+
+	Makroer startes med værktøjet Kør makro. Den ønskede makro vælges på listen
+	over eksisterende makroer. Hvis man trykker skift, når man vælger værktøjet,
+	åbnes den sidst valgte makro en gang til. 
+
+	Når makroen er startet, viser statuslinjen den tekst der er skrevet under 
+	Spørg efter parametre, hvilken type objekt der skal vælges og dets nummer.
+	Brugeren er nødt til f.eks. at vælge et punkt, hvis et punkt er angivet som 
+	parametertype.
+
+	Hvis der står "Mellemrumstanget vælger..." i parentes, så kan man bruge
+	mellemrumstangenten til at vælge det samme punkt som ved sidste makrokald,
+	eller første gang makroen kaldes det samme punkt som blev brugt ved makro-
+	definitionen. Det gør det betydelig lettere at køre makroer med mange
+	parametre. 
+
+	Når alle parametre er valgt, bliver makroen udført. Hvis makroen har en 
+	værdiparameter, kommer en dialogboks frem hvor der bliver spurgt efter denne
+	værdi. Så kan ethvert gyldigt beregningsudtryk bruges, specielt også værdien 
+	af objekter der allerede er konstrueret. 
+
+Sekundære parametre
+
+	Normalt er det bedst at vælge punkter som parametre. Man kan imidlertid
+	også vælge cirkler og linjer. Ved linjestykker og linjer tegnet ud fra to
+	punkter (altså ikke parallelle, normaler og faste vinkler), bliver ende-
+	punkterne sekundære parametre, hvis de er nødvendige ved konstruktionen af
+	målobjekterne.
+	Hvis det er tilfældet, må brugeren også vælge et objekt af samme type ved
+	makrokaldet. Hvis makroen bruger linjerne uden deres definitionspunkter,
+	kan en hvilken som helst linje bruges. Ved cirkler er centrum altid en
+	sekundær parameter. 
+
+	Sekundære parametre bliver tilføjet mens makroen kører. Det er vigtigt at
+	være opmærksom på at de skal have samme konfiguration som da makroen blev
+	defineret. Hvis den er defineret ud fra koncentriske cirkler, skal de 
+	cirkler brugeren vælger, også være koncentriske. Hvis linjestykkerne 
+	AB og BC bliver brugt som parametre, skal makroen kaldes med linjestykker
+	f.eks. EF og FG. 
+
+	Som eksempel kan en makro konstruere en midtnormal ud fra en linjestykke. 
+	Endepunkterne bliver da sekundære parametre. 
+
+Beregningsudtryk i makroer
+
+	Beregningsudtryk bliver korrekt oversat i makroer. Hvis et udtryk f.eks. 
+	er defineret ved hjælp af værdien af en makroparameter, bliver det ved
+	kørslet erstattet af værdien af det objekt, brugeren har valgt for para-
+	meteren. Der giver mulighed for meget snedige konstruktioner, som imidlertid
+	også kan være meget uoverskuelige.

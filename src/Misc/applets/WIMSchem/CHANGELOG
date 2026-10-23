@@ -1,0 +1,69 @@
+11/2013 new version of WIMSchem based on SketchEl 1.21: (08/Nov/2008) 
+
+NOTES:
+
+-- I've not used the latest version (2013) because it is approx. 700 kB and all extra functionality 
+   centered on the standalone application , and not the applet version.
+    
+IMPLEMENTED:
+17/11: 
+    - top menubar and left buttonbar configurable via applet params (of course same syntax as WIMSchem)
+    - added public function getSVG(type_or_url) ; works again
+    - param "file" works again
+    - param "template1"..."template_n" works again
+    - param "atoms" works again
+    - param "show_carbon" and "show_hydrogen" works again
+    - param "user_selection" of bonds and atoms works
+    - param "select_atoms" , "select_bonds" , "select_atom_color1..n" , "select_bond_color1..n" work again
+    - translation of tooltips via properties  (to do menu translation)
+    - added param 'atom_button_row' to add an extra row of buttons for atom selection (only if <param name="TOOL_SETATOM" value="yes">)
+    - atom_button_row (SOUTH) and button_row (WEST) may be separated from main window
+    - SetMoleculeNative(molecule_native_string)  restored
+    - added <param name="zoomfactor" value="1.2345"> : click on structure --> zoom in ; click on structure --> normal
+    - changed depreciated API (URLencode)
+    - restored javascript:readApplet() returns --> molweight+"\n"+plainformula+"\n"+htmlformula+"\n"+plainformula+"\n"+latexformula;
+    (skipped the 'smiles export' : no good)
+    - corrected template loading (load template as unkown format, eg MDLmol or Native *.el)
+    - in case <param name="color_alpha" value="255" /> I overrule and set alpha=140 : otherwise marking of atoms will  be solid disks...
+    - compatibility: corrected public functions : old_name <-- new_name  (many public functions were renamed ,pffff)
+    - compatibility: (default) settings of 'show_carbon' 'show_hydrogen'  ( MainApplet.java : boolean viewC = viewH = true) Disable using params 
+    - force virtual machine to use Locale.US (e.g. decimal point and not a decimal commma...)
+    - atom & bond user_selection is also visible in SVG reply molecule (same colour scheme as for applet window)
+    - atom & bond param selection is also visible in SVG reply molecule (same colour scheme as for applet window)    
+26/11 - Finished !!
+WIMSchem.svg is 100% (I hope) compatible with WIMSchem.old
+Just copy it into '~/public_html/java/WIMSchem/'
+If you don't want SVG...no need to change your exercises / checkfiles / answertypes
+If you do want SVG, follow the instructions below.
+
+    
+SENDING TO SERVER LARGE FILES INCLUDING SVG
+Use the next html/javscript to send HUGE files to wims (no other method will post bigger strings !)
+	
+<form action="http://$wims_ref_name?form-data$session" method="post" enctype="multipart/form-data" >
+ <input type="hidden" name="session" value="$session" />
+ <input type="hidden" name="lang" value="$lang" />
+ <input type="hidden" name="cmd" value="reply" />
+ <input type="hidden" name="module" value="$module" />
+ <input type="hidden" id="reply_input"  name="reply$i" value="" />
+</form>
+  <!-- the exercise + applet id=WIMSchem -->
+ 
+<input type="submit"  value="OK and SEND" onclick="javascipt:sendanswer();" />
+
+<script  type="text/javascript">
+ function sendanswer(){
+  var wimschem = document.getElementById('WIMSchem');
+  var your_svg = wimschem.getSVG("1"); 		// the student drawiing in single line SVG/XML
+  var my_svg = wimschem.getSVG("2");   		// the correct molecule in single line SVG/XML 
+				    		// ...use applet param "file2" for url to correct answer mdlmol file 
+  var your_mdmol = wimschem.GetMoleculeMDLMol();// the student drawing MDLmol file in multiline format
+  wimschem.stop();wimschem.destroy();		// optional
+  var reply_input  = document.getElementById("reply_input");
+  reply_input.value = my_svg+"\n"+your_svg+"\n"+your_mdmol; // this scheme is advised
+  return;
+ }
+</script>
+
+
+

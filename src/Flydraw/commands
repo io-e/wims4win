@@ -1,0 +1,361 @@
+:affine a,b,c,d,tx,ty
+
+ Make an affine transformation for the subsequent objects: (x;y) -> [a,b;c,d](x;y)+(tx;ty).
+:alt texte
+
+This command is only available for WIMS OEF and doc and MUST appear on the first line. It gives the attribut alt="text" to the image.
+:animate fra,del,rep
+
+ This command is only available for WIMS OEF and doc, and MUST appear on the first line or after the command alt. Set up animation for fra frames, with del seconds between frames, and rep repetitions (rep=0 means infinite repetition).<br> Frame control is done via two variables: <tt>animstep</tt> (integer) going from 1 to frame count, and <tt>s</tt> going from 0 to 1.
+:animstep n
+
+Set up an integer which can be called in any evaluation. Used for animation. Direct use of this command must be avoided under WIMS.
+:arc x,y,w,h,a1,a2,[color]
+
+ Arc segment of an ellipse of width w and hight h centered at (x,y), from angle a1 to angle a2 (in degrees) counterclockwise. It is recommended to take x to ensure compatibility with canvasdraw.
+:arrow x1,y1,x2,y2,l,[color]
+
+ Arrow (x1,y1)--->(x2,y2), where l is the length (in pixels) of arrowhead.
+:arrow2 x1,y1,x2,y2,l,[color]
+
+ Two sided arrow (x1,y1)<--->(x2,y2), where l is the length (in pixels) of arrowhead.
+:arrows [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+ Arrow (x1,y1)--->(x2,y2), (x3;y3)--->(x4;y4) where l is the length (in pixels) of arrowhead.
+:arrows2 [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+ Two sided arrow (x1,y1)<--->(x2,y2), (x3;y3)<--->(x4;y4) where l is the length (in pixels) of arrowhead.
+:circle x,y,r,[color]
+
+ Circle of center (x,y) and radius r (in pixels).
+:circles [color],x1,y1,r1,x2,y2,r2 ...
+
+ Circles of center (x1;y1) and radius r1 (according to xrange) ...
+:comment
+
+ Does nothing.
+:copy x,y,x1,y1,x2,y2,[filename]
+ insert
+ Insert the region from (x1,y1) to (x2,y2) (in pixels) of [filename] to (x,y). If x1=y1=x2=y2=-1, the whole [filename] is copied. [filename] is the address of the file from the directory wims/public_html/gifs or from the directory common_images for OEF modules.
+:copyresized x1,y1,x2,y2,dx1,dy1,dx2,dy2,[filename]
+
+ Insert the region from (x1,y1) to (x2,y2) (in pixels) of [filename], possibly resized, to the region of (dx1,dy1) to (dx2,dy2). If x1=y1=x2=y2=-1, the whole [filename] is copied and resized.
+:crosshair x1,y1,[color]
+
+ draw a crosshair point at (x1,y1)
+:crosshairs [color], x1,y1,x2,y2,...
+
+ draw multiple crosshair points at given coordinates (x1,y1), (x2,y2), ...
+:crosshairsize w
+
+ Set crosshair size to w (in pixels).
+:dashed
+
+ Keyword: Indique que la commande suivante est en pointillés si cette possibilité existe pour cette commande.
+:dashhalfline x1,y1,x2,y2,[color]
+
+ Dashed halfline from (x1;y1) through (x2; y2).
+:darrow x1,y1,x2,y2,l,[color]
+ dasharrow dashedarrow
+ Dashed arrow (x1,y1)- - ->(x2,y2), where l is the length (in pixels) of arrowhead.
+:darrow2 x1,y1,x2,y2,l,[color]
+dasharrow2 dashedarrow2
+ Two sided dashed arrow (x1,y1)<- - ->(x2,y2), where l is the length (in pixels) of arrowhead.
+:darrows [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+ Dashed arrow from (x1;y1) to (x2;y2), from(x3;y3 ) to (x4;y4) where l is the length (in pixels) of arrowhead.
+:darrows2 [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+ Dashed arrow from (x1;y1) to (x2;y2), from(x3;y3 ) to (x4;y4) where l is the length (in pixels) of the two arrowheads.
+:dashhalfline x1,y1,x2,y2,[color]
+
+ Halfline from (x1; y1) through (x2; y2).
+:dhline x,y,[color]
+dashedhorizontalline dashhorizontalline hdline horizontaldashedline
+ Dashed horizontal line through (x,y).
+:diamondfill x,y,nx,ny,[color]
+ diafill
+ Flood fill the region containing (x,y) with the same original color by double hatching (parallel lines), (nx,ny) being the horizontal and vertical distance between adjacent lines (in pixels).
+:dline x1,y1,x2,y2,[color]
+ dashedline dashline
+ Dashed line through (x1; y1) et (x2; y2).
+:dlines [color],x1,y1,x2,y2,x3,y3...
+ dashedlines dashlines
+ Dashed line through (x1;y1) and (x2;y2), (x3;y3) and (x4;y4) etc.
+:dpolyline [color],x1,y1,x2,y2,x3,y3...
+
+ n dashed line segments (x1,y1)---(x2,y2)---(x3,y3)...
+:dotfill x,y,nx,ny,[color]
+ pointfill diskfill
+ Flood fill the region containing (x,y) with the same original color by (fat) dots at each (nx,ny) pixels.
+:dsegment x1,y1,x2,y2,[color]
+ dashsegment
+ Dashed line segment (x1,y1)---(x2,y2).
+:dvline x,y,[color]
+dashedverticaline dashverticalline vdline verticaldashedline
+ Dashed vertical line through (x,y).
+:ellipse x,y,w,h,[color]
+
+Ellipse with center (x,y), width w and height h.
+:ellipses [color],x1,y1,w1,h1,x2,y2,w2,h2,...
+
+Ellipse with center (x1,y1), width w1 and height h1 etc.
+:fcircle x,y,d,[color]
+ ball disk filledcircle
+ Filled disk of center (x,y) and diameter d (in pixels).
+:fcircles [color],x1,y1,r1,x2,y2,r2 ...
+
+ Filled disks of center (x1;y1) and radius r1 (according to xrange) ...
+:fellipse x,y,w,h,[color]
+filledellipse
+ Filled ellipse with center (x,y), width w and height h.
+:fhypcircles [color],x1,y1,r2,x2,y2,r2,...
+
+Filled hyperbolic disks of hyperbolic center (x1;y1) and hyperbolic radius r1 (according to xrange) ...
+:fhyppolygon [color],x1,y1,x2,y2,x3,y3,...
+
+Filled hyperbolic polygon in Poincaré disk with vertices (x1; y1), (x2; y2), (x3; y3),... (géométrie hyperbolique) et rempli avec la couleur color.
+:fhyptriangle x1,y1,x2,y2,x3,y3,[color]
+
+ Filled hyperbolic triangle in Poincaré disk with vertices (x1; y1), (x2; y2), (x3; y3)
+:fill x,y,[color]
+flood floodfill
+ Flood fill the region containing (x,y) with the same original color, by color.
+:filled
+
+Keyword: means that the following object will be filled with color, if it makes sense
+:filltoborder x,y,[color1],[color2]
+
+ Flood fill by color2 the region containing (x,y) and bounded by color1.
+:fpoly [color],x1,y1,x2,y2,x3,y3...
+ filledpoly filledpolygon fpolygon
+ Filled polygon (x1,y1)--(x2,y2)--(x3,y3)...
+:frect x1,y1,x2,y2,[color]
+ filledrect fillecrectangle frectangle
+ Filled rectangle with corners (x1,y1) and (x2,y2).
+:fsquare x,y,s,[color]
+filledsquare
+ Filled square with sides s (in pixels) and first corner at (x,y).
+:ftriangle x1,y1,x2,y2,x3,y3,[color]
+filledtriangle
+ Filled triangle with vertices (x1,y1),(x2,y2),(x3,y3).
+:ftriangles [color], x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,...
+
+ Filled triangles with vertices (x1,y1),(x2,y2),(x3,y3), then (x4,y4),(x5,y5),(x6,y6),...
+:gridfill x,y,nx,ny,[color]
+
+ Flood fill the region containing (x,y) with the same original color by a grid of horizontal and vertical lines with distance (nx,ny) (in pixels).
+:halfline x1,y1,x2,y2,[color]
+
+Halfline from (x1; y1) through (x2; y2).
+:hatchfill x,y,nx,ny,[color]
+
+ Flood fill the region containing (x,y) with the same original color by hatching (parallel lines), (nx,ny) being the horizontal and vertical displacement of adjacent lines (in pixels).
+:hline x,y,[color]
+horizontalline
+ Horizontal line through (x,y).
+:hlines [color],x1,y1,x2,y2,...
+
+ Horizontal lines through (x1,y1), (x2,y2), ...
+
+:hypcircles [color],x1,y1,r2,x2,y2,r2,...
+
+Hyperbolic circles of hyperbolic center (x1;y1) and hyperbolic radius r1 (according to xrange) ...
+
+:hyplines [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Hyperbolic lines in Poincaré disk through (x1; y1) and (x2; y2), (x3; y3) and (x4; y4), ...
+:hyppolygon [color],x1,y1,x2,y2,x3,y3,...
+
+Hyperbolic polygon in Poincaré disk (x1,y1)-(x2,y2)-(x3,y3)... in Poincaré disk
+:hyprays [color],x0,y0,x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+hyperbolic segments (x0,y0)---(x1,y1), (x0,y0)---(x2,y2), ...
+:hypsegments [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Hyperbolic segments in Poincaré disk between (x1; y1) and (x2; y2), (x3; y3) and (x4; y4), etc
+:hyptriangle x1,y1,x2,y2,x3,y3,[color]
+
+Hyperbolic triangle with vertices (x1; y1), (x2; y2), (x3; y3)
+:interlace
+
+Set interlaced image
+:killaffine
+
+ Reset affine transformation to identity.
+:killbrush
+
+Turns off brush selection for line drawing.
+:killlinear
+killrotation killrotate
+ Reset linear transformation to identity.
+:killmoebius
+
+ Reset Moebius transformation to identity.
+:killtile
+
+ Turns off tile selection for filling.
+:killtranslation
+killtranslate
+ Reset translation to identity.
+:lattice x0,y0,x1,y1,x2,y2,n1,n2,[color]
+
+ A lattice of n1xn2 points starting with (x0,y0), with n1 rows in direction of (x1,y1) and n2 rows in direction of (x2,y2).
+:levelcurve [color],[expression],l1,l2,...
+
+ Draws level curves for expression, with levels l1, l2,...
+:levelstep n
+
+ Set the number of pixel steps in levelcurve plotting. Between 1 and 16, default to 4.
+:lines [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+ Lines through  the points (x1; y1) and (x2; y2), (x3; y3) and (x4; y4), etc
+:linear a,b,c,d
+
+ Make a linear transformation for the subsequent objects: (x;y) -> [a,b;c,d](x;y).
+:linewidth w
+
+ Set line width to w (in pixels) for line drawing.
+:moebius a,b,theta
+
+ Make a Moebius transformation in the Poincare disk for the subsequent objects, in complex coordinate z -> exp(i \pi/180*theta)(z+m)/(conj(m)z+1) with m=a+i b of module <1, theta in degree.
+
+Copy the image [filename] in the parallelogram given by parallelogram command (with deformation) and apply to it the transformations n_1, ..., n_k (up to 19). If no n1 ... are given, all the transformations are applied. So setparallelogram and some setvector or setmatrix or settransform must be previously defined.
+:new x,y
+
+ Set a new image of size x,y.
+:noreset
+
+ keyword: if it is followed by dashed or filled, the following commands are dashed or filled, up to the command reset
+:output [filename]
+
+ Output the current image to [filename].
+:parallel x1,y1,x2,y2,xv,yv,n,[color]
+
+ n parallel segments starting from (x1,y1)---(x2,y2), with displacement (xv,yv).
+:pixels [color],x1,y1,x2,y2,...
+
+ Points (all of diameter 1) at (x1,y1), (x2,y2), ...
+:plot [color],[formula]
+curve
+ Plot a curve according to [formula] which can be either an explicit function of x, or a pair of parametric functions in t.
+:plotjump j
+
+ Plotted curve will jump if two consecutive points have distance more than j pixels. Useful to avoid plotting discontinuous functions as continuous. Default value: 200.
+:plotstep n
+plotsteps tstep tsteps
+ Set the number of point computations in curve plot. Defaults to 100.
+:point x,y,[color]
+
+ A (fat) point at (x,y), whose diameter is equal to linewidth.
+:points [color],x1,y1,x2,y2,...
+
+ (Fat) points at (x1,y1), (x2,y2), ..., whose diameters are equal to linewidth.
+:polygon [color],x1,y1,x2,y2,x3,y3...
+poly
+ Polygon (x1,y1)-(x2,y2)-(x3,y3)...
+:polyline [color],x1,y1,x2,y2,x3,y3...
+brokenline
+ n line segments (x1,y1)---(x2,y2)---(x3,y3)...
+:range x1,x2,y1,y2
+
+ Set the drawing range to [x1,x2] horizontally and [y1,y2] vertically. Note that by default, horizontal range is [0,xsize-1] and vertical range is [ysize-1,0].
+:rays [color],x0,y0,x1,y1,x2,y2...
+
+ Line segments (x0,y0)---(x1,y1), (x0,y0)---(x2,y2), ...
+:rect x1,y1,x2,y2,[color]
+ rectangle
+ Rectangle with corners (x1,y1) and (x2,y2).
+:reset
+
+Keyword: reset the command "noreset"
+:resetmatrix n
+
+Reset n-th linear or affine transformation to identity.
+:resetparallelogram
+
+kill setparallelogram
+:resetvector n
+
+Reset n-th translation to identity.
+:resettransform n
+
+Reset n-th linear, affine transformation and n-th translation to initial values (identity or null vector).
+:rotate d
+ rotation
+ Make a rotation of degree d counter-clockwise (centered at (0,0)), for the subsequent objects.
+:segment x1,y1,x2,y2,[color]
+ seg
+ Line segment (x1,y1)---(x2,y2).
+:segments [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Line segments (x1; y1)---(x2; y2), (x3; y3)---(x4; y4), ...
+:setbrush [filename]
+
+ Use the image [filename] as a brush for all line draws.
+:setmatrix n,a,b,c,d
+
+Make the n-th linear transformation for multicopy objects: (x;y) -> [a,b;c,d](x;y).
+:setparallelogram xs,ys,xu,yu,xv,yv
+
+Prepare the place where the image will be copied by multicopy (mathematical coordinates) : xs,ys mathematical coordinates of the origin point, xu,yu mathematical coordinates of the "horizontal line of the image" to copy, xv,yv mathematical coordinates of the "verticale line of the image" to copy.
+:setpixel x,y,[color]
+
+ A point (of diameter 1 pixel) at (x,y).
+:setstyle [color1],[color2],...
+
+ Set the line style to color1,color2,...
+:settile [filename]
+
+ Use the image [filename] as a tile for all filling commands.
+:settransform n,a,b,c,d,tx,ty
+
+Make the n-th linear transformation for multicopy objects: (x;y) -> [a,b;c,d](x;y) + (tx;ty). (settransform n,a,b,c,d,tx,ty is equivalent to setmatrix n,a,b,c,d and setvector n,tx,ty, so it kills a previous definition setmatrix n,a,b,c,d with the  same number n).
+:setvector n,tx,ty
+
+Make the n-th translation for multicopy objects: (x;y) -> (tx,ty).
+:size x,y
+
+ Set the image size to x pixels horizontally and y pixels vertically.
+:square x,y,s,[color]
+
+ Square with sides s (in pixels) and first corner at (x,y).
+:text [color],x,y,[font],[string]
+print string write
+ Write the string at (x,y), with font=small,medium,large or giant.
+:textup [color],x,y,[font],[string]
+stringup writeup
+ Write upwards the string at (x,y), with font=small,medium,large or giant.
+:trange t1,t2
+ ranget
+ Set the t range to [t1,t2] for parametric curve plotting. Defaults to [0,1].
+:translation tx,ty
+translate
+ Make a translation for the subsequent objects: (x;y) -> (x;y)+(tx;ty).
+:transparent [color]
+
+ Makes [color] a transparent color.
+:triangle x1,y1,x2,y2,x3,y3,[color]
+
+ Triangle with vertices (x1,y1),(x2,y2),(x3,y3).
+:triangles [color], x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,...
+
+ Triangles with vertices (x1,y1),(x2,y2),(x3,y3), then (x4,y4),(x5,y5),(x6,y6),...
+:vimg n
+
+ Enable (1) or disable (0) vector graphics output.
+:vimgfile [filename]
+
+ Direct vector graphics output (currently DXF only) to [filename].
+:vline x,y,[color]
+verticalline
+ Vertical line through (x,y).
+:vlines [color],x1,y1,x2,y2,...
+
+ Vertical line through (x1;y1), (x2;y2), ...
+:xrange x1,x2
+ rangex
+ Set the horizontal drawing range to [x1,x2]. Defaults to [0,xsize-1].
+:yrange y1,y2
+ rangey
+ Set the horizontal drawing range to [y1,y2]. Defaults to [ysize-1,0].

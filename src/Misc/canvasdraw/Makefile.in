@@ -1,0 +1,41 @@
+# I don't know of another way to get the absolute path...$(CURDIR) does not work if
+# Makefile is called from another Makefile...
+
+wims_home=`pwd | awk -F/src '{ print $$1 }'`
+canvasdraw_home=$(wims_home)/src/Misc/canvasdraw
+cc=@CC@
+ifneq ($(wildcard ../katex),)
+cflags=@CFLAGS@ -DKATEX_INSTALLED
+else
+cflags=@CFLAGS@
+endif
+ldflags= @LDFLAGS@ -L../../Lib -lwims -lm
+STRIP= @STRIP@
+public_script=$(wims_home)/public_html/bin/canvasdraw
+public_bin=$(wims_home)/other/bin
+O=canvasuserdraw.o canvasreply.o canvasutils.o canvasdragstuff.o canvasmultidraw.o canvasmacro.o canvasdraw.o
+H=../../Lib/libwims.h ../../config.h ../../includes.h ../../wimsdef.h
+
+all:canvasdraw setup
+
+%.o: %.c *.h $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean:
+	rm -f $(canvasdraw_home)/canvasdraw $(canvasdraw_home)/*.o
+
+distclean:
+	rm -f $(canvasdraw_home)/canvasdraw
+	rm -f $(wims_home)/public_html/bin/canvasdraw
+
+canvasdraw: $(O)
+	$(cc) $(cflags) $(O) $(ldflags) -o canvasdraw
+	$(STRIP) canvasdraw
+
+setup:
+	cp canvasdraw $(public_bin)
+	echo "#!/bin/sh" > $(public_script)
+	echo "./bin/wrap..exec ../other/bin/canvasdraw  <<@" >>  $(public_script)
+	echo "\$$wims_exec_parm" >> $(public_script)
+	echo "@" >> $(public_script)
+	chmod a+x $(public_script)

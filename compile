@@ -1,0 +1,312 @@
+#! /bin/sh
+
+# Color constants
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+NC='\033[0m' # No Color
+# sample : I ${RED}love${NC} WIMS
+
+if [ "$(id -ru)" = 0 ]; then
+  cat <<@
+You are trying to compile WIMS as 'root'. You should not do that !
+Please compile as 'wims'.
+@
+  exit 1
+fi
+
+option=$1
+
+##########################################################################
+cat <<@
+Welcome to the compilation of WIMS (WWW Interactive Multipurpose Server)
+
+@
+cd `dirname $0`
+dir=`pwd`;
+
+mkdir -p lib sessions
+mkdir -p tmp tmp/log tmp/sessions tmp/whoconnect
+
+if [ ! "$option" ] ; then option=no ; fi ;
+## option: --mathjax --jmol --geogebra --shtooka --gcov --jme
+for a in $(seq $#) ; do opt=$1;
+  if [ "$opt" = "--build-chroot" ] ; then
+    if [ -d chroot ] ; then
+      mkdir -p chroot/tmp
+      mkdir -p chroot/tmp/sessions
+      touch chroot/tmp/sessions/.chroot
+    else
+      cat <<@
+You must first get and install the chroot directory. See the README
+
+@
+      exit 1
+    fi
+  fi
+  if [ "$opt" = "--mathjax" ] ; then
+    echo "${PURPLE}** MathJax installation **${NC}"
+    #vmathjax=2.7.9
+    vmathjax=3.2.0
+
+    cd tmp
+    echo "downloading MathJax $vmathjax"
+    wget https://github.com/mathjax/MathJax/archive/$vmathjax.zip
+    if [ -f "$vmathjax.zip" ] ; then
+      echo "unzipping MathJax $vmathjax"
+      unzip -q $vmathjax.zip && echo "unzipped successfully"
+      rm -f $vmathjax.zip
+      cd $dir
+      if [ -d "public_html/scripts/js/mathjax" ] ; then
+        rm -rf public_html/scripts/js/mathjax
+      fi
+      mv -f tmp/MathJax-*/es5 public_html/scripts/js/mathjax
+      echo "${GREEN}Success${NC} : Mathjax $vmathjax has been installed."
+    else
+      echo "${RED}Warning : Mathjax hasn't been downloaded.${NC}"
+      sleep 5
+      cd $dir
+    fi
+  fi
+  if [ "$opt" = "--jmol" ] ; then
+    echo "${PURPLE}** jMol installation **${NC}"
+    vjmol0=14
+    vjmol1=29
+    vjmol2=26
+    vjmol012=$vjmol0.$vjmol1.$vjmol2
+    vJmol=Jmol-$vjmol012
+    vjmol=jmol-$vjmol012
+    cd tmp
+    echo "downloading $vJmol-binary.zip"
+    wget --no-check-certificate https://downloads.sourceforge.net/project/jmol/Jmol/Version%20$vjmol0.$vjmol1/Jmol%20$vjmol012/$vJmol-binary.zip
+    if [ -f "$vJmol-binary.zip" ] ; then
+      echo "unzipping $vJmol-binary.zip"
+      unzip -q $vJmol-binary.zip && echo "unzipped successfully"
+      cd $vjmol;
+      echo "unzipping jsmol.zip"
+      unzip -q jsmol.zip && echo "unzipped successfully"
+      cd $dir
+      if [ -d "public_html/java/jmol/j2s" ] ; then
+        mv public_html/java/jmol/j2s public_html/java/jmol/j2s_tmp
+      fi
+      if [ -d "public_html/java/jmol/idioma" ] ; then
+        mv public_html/java/jmol/idioma public_html/java/jmol/idioma_tmp
+      fi
+      mv -f tmp/$vjmol/jsmol/j2s public_html/java/jmol/j2s
+      mv -f tmp/$vjmol/jsmol/idioma public_html/java/jmol/idioma
+      cp -f tmp/$vjmol/jsmol/JSmol.min.js public_html/java/jmol/
+      cp -f tmp/$vjmol/jsmol/JSmol.min.nojq.js public_html/java/jmol/
+      cp -f tmp/$vjmol/jsmol/js/Jmol2.js public_html/java/jmol/
+      cp -f tmp/$vjmol/jsmol/js/JSmolJSV.js public_html/java/jmol/
+      cp -f tmp/$vjmol/jsmol/js/JSmolJME.js public_html/java/jmol/
+      rm -rf tmp/$vjmol
+      rm -rf tmp/$vJmol-binary.zip
+      rm -rf public_html/java/jmol/j2s_tmp
+      rm -rf public_html/java/jmol/idioma_tmp
+
+      echo "${GREEN}Success${NC} : $vJmol has been installed."
+    else
+      echo "${RED}Warning : $vJmol hasn't been downloaded.${NC}"
+      sleep 5
+      cd $dir
+    fi
+
+    ##vJSME=2018-10-28
+    ##cd tmp
+    ##echo "downloading JSME v$vJSME"
+    ##wget 'https://www.dropbox.com/s/aklw9uftv3ztmym?dl=1' -O JSME_$vJSME.zip
+    ##if [ -f "JSME_$vJSME.zip" ] ; then
+    ##  echo "unzipping JSME_$vJSME.zip"
+    ##  unzip -q JSME_$vJSME.zip && echo "unzipped successfully"
+    ##  rm -f JSME_$vJSME.zip
+    ##  cd $dir
+    ##  if [ -d "public_html/java/jmol/jsme" ] ; then
+    ##    mv public_html/java/jmol/jsme public_html/java/jmol/jsme_tmp
+    ##  fi
+    ##  mkdir public_html/java/jmol/jsme
+    ##  mv -f tmp/JSME_$vJSME/jsme public_html/java/jmol/jsme/
+##
+    ##  rm -rf tmp/JSME_$vJSME
+    ##  rm -rf public_html/java/jmol/jsme_tmp
+    ##  echo "${GREEN}Success${NC} : JSME has been installed."
+    ##else
+    ##  echo "${RED}Warning : JSME hasn't been downloaded.${NC}"
+    ##  sleep 5
+    ##  cd $dir
+    ##fi
+    jsmol=1;
+  fi
+  if [ "$jsmol" = 1 ] || [ "$opt" = "--jme" ]; then
+    echo "downloading JSME"
+    cd tmp;
+    wget 'https://wiki.wimsedu.info/lib/exe/fetch.php?&media=installation:jsme.tgz' -O jsme.tgz
+    if [ -f "jsme.tgz" ] ; then
+      tar xzf jsme.tgz
+      rm -f jsme.tgz
+      cd $dir
+      if [ -d "public_html/java/jmol/jsme" ] ; then
+        mv public_html/java/jmol/jsme public_html/java/jmol/jsme_tmp
+      fi
+      mkdir public_html/java/jmol/jsme
+      mv -f tmp/jsme public_html/java/jmol/jsme/
+      rm -rf tmp/jsme
+      rm -rf public_html/java/jmol/jsme_tmp
+      echo "${GREEN}Success${NC} : JSME has been installed."
+    else
+      echo "${RED}Warning : JSME hasn't been downloaded.${NC}"
+      sleep 5
+      cd $dir
+    fi
+  fi
+  if [ "$opt" = "--geogebra" ] ; then
+    echo "${PURPLE}** GeoGebraWeb installation **${NC}"
+    # vGeogebra=GeoGebraWeb-WIMS-5.0.700.0
+    vGeogebra=GeoGebraWeb-WIMS-5.0.452.0
+    ggb_folder=public_html/scripts/js/geogebra
+    cd tmp
+    echo "downloading $vGeogebra.zip"
+    wget https://wims.univ-cotedazur.fr/download/others/$vGeogebra.zip && echo "downloaded successfully"
+    if [ -f "$vGeogebra.zip" ] ; then
+      echo "unzipping $vGeogebra.zip"
+      unzip -q $vGeogebra.zip && echo "unzipped successfully"
+      rm -f $vGeogebra.zip
+      cd $dir
+      if [ -d "$ggb_folder/geogebraweb" ] ; then
+        mv $ggb_folder/geogebraweb $ggb_folder/geogebraweb_tmp
+      fi
+      mv -f tmp/$vGeogebra $ggb_folder/geogebraweb
+      rm -rf tmp/$vGeogebra
+      rm -rf $ggb_folder/geogebraweb_tmp
+      echo "geogebra_exists=yes" | cat > $ggb_folder/test
+      echo "${GREEN}Success${NC} : $vGeogebra has been installed."
+    else
+      echo "${RED}Warning : $vGeogebra hasn't been downloaded.${NC}"
+      sleep 5
+      cd $dir
+    fi
+  fi
+  if [ "$opt" = "--modules" ] ; then
+    echo "load modules"
+    src/wims_modules.pl
+    cd $dir
+  fi
+  if [ "$opt" = "--shtooka" ] ; then
+    echo "load audio shtooka"
+    bin/swac
+    cd $dir
+  fi
+  if [ "$opt" = "--gcov" ] ; then
+    export CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+  fi
+  shift
+done
+
+##delete files *.bin in log/classes
+##in housekeep.daily in directory log/classes
+## find . -type f -name "*.bin" -exec rm -v "{}" ";" 1>/dev/null
+find log/classes -path "log/classes/*/score/*.bin" -exec rm -f "{}" ";"
+cd src
+
+##if [ -f ../.wims_maintainer_mode ]; then
+##  touch configure.ac ;
+##  if (autoconf); then :; else
+##    echo "[maintainer mode] Please install autoconf first."
+##    exit 1
+##  fi
+##  autoheader
+##fi
+./configure || exit
+### use the following for Ubuntu 24.04
+# ./configure CFLAGS="-g -O2 -D_FORTIFY_SOURCE=-1"  || exit
+### if some files are not found during compilation, you can try something like that
+#./configure CFLAGS="-g -O2 -I/usr/local/include" LDFLAGS=-L/usr/local/lib || exit
+#./configure CFLAGS="-g -O2 -I/opt/homebrew/include" CXXFLAGS="-g -O2 -I/opt/homebrew/include" LDFLAGS=-L/opt/homebrew/lib || exit
+make clean || exit
+make all || exit
+
+if [ -f ../.wims_maintainer_mode ]; then
+### use convert, identify
+  make maintainer || exit
+### all the maintainers should have Apache ant - java compilation
+  ##if (ant -version); then :; else
+  ##  echo "[maintainer mode] Please install Apache ant first."
+  ##  exit 1
+  ##fi
+  if (magick -version) || (identify -version); then :; else
+    echo "[maintainer mode] Please install magick convert and identify first."
+    exit 1
+  fi
+  cd Misc ; make maintainer || exit
+  cd ..
+fi
+if [ -f ../.wims_maintainer_mode ]; then
+  echo "** Make canvadraw documentation... "
+  cd Misc/canvasdraw
+   LC_ALL=C sh canvasinfo.sh 1>/dev/null
+  cd ../..
+fi
+
+cd ..
+cp public_html/gifs/svg/iconeserver_orig.svg public_html/gifs/svg/iconeserver.svg
+if [ -f log/wims.conf ]; then
+  color=`cat log/wims.conf | grep "ref_bgcolor" | sed "s/ref_bgcolor=//"`;
+  if [ "$color" ]; then
+    cat public_html/gifs/svg/iconeserver_orig.svg | sed "s/fill:#777777/fill:$color/" > public_html/gifs/svg/iconeserver.svg
+  fi
+else
+  cat <<@
+
+You can configure some parameters which allow the manager site
+to make more configuration from the web interface.
+
+Please write the IP address of the wims webmaster ? [127.0.0.1]
+@
+  read ans1
+  if [ -z $ans1 ]; then :; else
+    echo "manager_site=$ans1" >> log/wims.conf
+    chmod 600 log/wims.conf
+  fi
+  cat <<@
+
+Please write the email address of the wims webmaster: ? []
+@
+  read ans2
+  if [ -z $ans2 ]; then
+     if [ -z $ans1 ]; then :; else echo "site_manager=" >> log/wims.conf; fi
+  else
+     if [ -z $ans1 ]; then echo "manager_site=127.0.0.1" >> log/wims.conf ; fi
+     echo "site_manager=$ans2" >> log/wims.conf
+     chmod 600 log/wims.conf
+  fi
+fi
+if [ -f log/.wimspass ]; then :; else
+  cat <<@
+
+Please give the password for the wims webmaster
+You can change it in the file log/.wimspass
+Webmaster password: ? []
+@
+  read ans3
+  if [ -z $ans3 ]; then :; else
+    echo "$ans3" > log/.wimspass
+    chmod 600 log/.wimspass
+  fi
+fi
+if [ $option = "--build-chroot" ] ; then
+  script=wrapuid ;
+else
+  script=setwrapexec ;
+fi
+
+cat <<@
+
+Please run './bin/$script' (and './bin/apache-config' for the first installation) as root
+(e.g. using sudo) to finish WIMS setup.
+
+See README about installation of help and teaching modules.
+
+@
+
+exit

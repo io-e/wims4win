@@ -1,0 +1,2036 @@
+.start 
+.related online license gui tips localize 
+Contextuele hulp
+
+Dit hulpsysteem  geeft je tips over het huidige werktuig, of over je
+laatste actie. Bijvoorbeeld, om wat uitleg te verkrijgen over de
+macro's, moet je de macrofunctie kiezen en op het I-icoontje klikken om er
+meer over te leren. Met dezelfde toets kan je het venster sluiten, of je
+kan het ook gewoon laten open staat. Plaats vervolgens dit venster naast
+het P.e.L.-venster om beide vensters te kunnen zien. P.e.L. zal de positie en
+grootte van het venster onthouden.
+
+In het bovenste deel van dit help-venster zie je een lijst met verwante
+thema's. Om ze te kunnen lezen, moet je er één uitkiezen.
+
+Je mag ook zoeken naar sleutelwoorden. Wanneer je zoekt naar "macro" of
+woorden waarin "macro" voorkomt, zal het programma "macro"
+terugvinden. De zoekresultaten worden voorgesteld in de lijst. Als er
+een verband is, wordt één van de gevonden onderwerpen geopend.
+
+Deze Nederlandse vertaling is het werk van de studenten van het eerste
+jaar Toegepaste informatica van het departement Rega van de 
+Katholieke Hogeschool Leuven. Zij gebruiken P.e.L. voor het vak wiskunde
+en vertaalden de meer dan 1000 regels uit dit bestand voor het vak Engels.
+"Alles kan beter" en dat gaat ook op voor deze vertaling. Voor opmerkingen,
+suggesties,... kan je steeds terecht bij jan PUNT van PUNT hee AT khleuven
+PUNT be (zelf e-mailadres samenstellen AUB).
+
+Succes met P.e.L.
+
+De auteur 
+René Grothmann
+
+.online 
+.related start tips 
+Online Hulp
+
+Je vindt de website van P.e.L. via mijn persoonlijke website op
+"www.rene-grothmann.de". Je mag op deze website altijd komen kijken voor
+nieuwe versies van Pel. Bekijk ook eens de voorbeelden en demo's.
+
+Ik opende twee discussiegroepen over P.e.L. op Yahoo groups. Eén ervan is
+in het Duits, den andere in het Engels. Je vindt de Engelse versie van
+deze discussie via de 'support' link op de website van P.e.L.
+
+Je mag me natuurlijk altijd mailen. Je vindt mijn e-mail adres ook op mijn
+website.
+
+
+.license 
+.related online start 
+Licentie voor P.e.L.
+
+P.e.L. is gratis software onder GPL (Gnu General Public License) en u bent
+vrij om dit programma te gebruiken als u wilt. Als u het verdeelt, moet
+u minstens een link naar mijn website toevoegen.
+
+U mag ook de broncode afhalen van de website van Pel. Deze broncode en
+alle wijzigingen die u of anderen aanbrengen moeten echter wel open
+blijven. U bent verplicht om zowel de broncode als de aanpassingen te
+verschaffen met het programma. Bovendien moet u een link naar de
+originele bron voorzien.
+
+Dezelfde licentie geldt ook voor de documentatie.
+
+Als u geld wilt verdienen met dit programma, kunt u dit doen door in
+extra diensten te voorzien zoals boeken, instructies, leerprogramma’s en
+dergelijke. U kunt ook het programma bundelen in een commerciële
+distributie van software zoals in een linuxdistributie. Indien u dit
+doet, verzoek ik u vriendelijk om verwittigt te worden en een voorbeeld
+te krijgen, dank u.
+
+.gui 
+.related iconbar mouse zoom online keyboard 
+Gebruikersinterface
+
+Het groter gebied dat u ziet is het belangrijkste venster van Pel. Het
+toont de constructies. Het beeld kan verplaatst worden met de
+pijltoetsen en vergroot worden met +/-.  Anderzijds, is er een
+hulpmiddel om te zoomen en de constructies met de muis te verslepen.
+
+Boven de constructie vind je de iconenwerkbalk. Als de muis langer
+dan twee seconden boven een icoon blijft staan, krijg je een tip
+te zien. Je kan de werkbalk ook beperken tot 1 lijn. Als er twee
+lijnen gebruikt worden, dan vind je de constructiewerktuigen op 
+de onderste lijn. De bovenste lijn bevat dan de standaardinstellingen
+en instellingen voor het constructievenster.
+
+Onder het constructievenster is er een 'toestandsveld'. Het toont
+belangrijke informatie. In de niet-visuele modus (beschrijvende modus) 
+wordt deze lijn vervangen door een invoerregel.
+
+De menu's bevatten veel andere opties, zoals bvb. bestanden bewaren
+of laden. Achter elke optie zie je ook de sneltoets (als er een is).
+
+.iconbar
+.related restricted gui settings
+Iconenbalk
+
+Om een icoon te selecteren, klik je er op. Voor meer informatie hou
+je de muis even over het icoon. Er komt dan een klein venster met
+een beetje uitleg (tooltip).
+
+Er zijn verschillende soorten iconen:
+
+1) Iconen die invoer met de muis verwachten: voorbeelden zijn werktuigen
+om punten, lijnstukken,... te maken, of de selectie van macroparameters of
+inzoomen.
+
+2) Iconen om een standaardinstelling te veranderen: voorbeelden zijn
+de standaardkleur, punt type, lijndikte,... 
+
+3) Iconen die iets in het tekenvenster veranderen: voorbeelden zijn het 
+aan- of itzetten van het rooster, verbergen of tonen van voorwerpen,...
+
+4) Symbolen die iets doen: Voorbeelden zijn het plaatsen of het verwijderen
+van het laatste object.
+
+Om de symbolenbalk te configureren, start je het dialoogvenster met de
+overeenstemmende menukeuze.  Je kunt eender welk symbool selecteren
+of de selectie ongedaan maken. Je kan kiezen of je de
+werkknoppen wil weergeven in 1 enkele rij. Dan zal de symbolenbalk
+enkel de meest dringende werktuigen weergeven.
+
+De symbolenbalk kan onder de constructie gezet worden.
+
+Werktuigen die niet meer in de iconenbalk voorkomen kan je nog steeds
+gebruiken via het toetsenbord of de menu's.
+
+Om meer te leren over de werktuigen in de symbolenbalk, hou de muis
+even op het symbool. Er zal in het kort info verschijnen. Sommige
+symbolen zullen andere informatie laten zien als je de CTRL-toets 
+ingedrukt houdt.
+
+.restricted beginner 
+.related iconbar 
+Beperkte iconenbalk
+
+Er bestaat een beperkte vorm van de iconenbalk. Die wordt mee bewaard met
+de constructie. De gebruiker krijgt dan bij het inladen van de constructie
+deze beperkte iconenbalk te zien.
+
+Om de beperkte iconenbalk te activeren selecteer je
+dit via het menu 'opties'. Wijzig nu de iconenbalk. Verwijder alle
+onnodige werktuigen die de gebruiker zouden kunnen in verwarring brengen.
+
+Zodra je de beperkte iconenbalk uitzet, of wanneer je een nieuwe
+constructie laadt, krijg je de volledige iconenbalk terug.
+
+Er is ook een speciale iconenbalk voor beginners.  Sommige opties die
+verwarrend kunnen zijn ontbreken hier.  Beginners zouden beter in deze modus
+starten.
+
+.mouse
+.related gui settings hide point circle move keyboard
+De muis
+
+De linker muisknop wordt gebruikt om objecten te creëren afhankelijk van
+het actieve werktuig.
+
+Voor veel hulpmiddelen moet de gebruiker meer dan één object gebruiken. 
+In dit geval wordt het eerste punt rood terwijl het  hulpmiddel wacht op
+het tweede punt. Als een rechte of een lijnstuk nodig is, kan je overal op
+het object klikken.
+
+Als de muisaanwijzer over een voorwerp staat zal het oplichten als het
+op dat ogenblik kan gebruikt worden in de constructie. Dat maakt het iets
+gemakkelijker om de juiste voorwerpen te selecteren.
+
+Als de keuze niet uniek bepaald is, zal het programma een lijst van
+mogelijke objecten tonen.  Men kan dan een object uit deze lijst kiezen
+door erop te dubbelklikken, of door het de selecteren en op de knop te
+drukken, of met het toetsenbord.  Punten zullen zwart zijn, hoeken groen
+en cirkels blauw.  Je kan het selectiedialoogvenster uitzetten.  het
+programma zal dan het meest dichtsbijzijnde object automatisch kiezen.
+
+Een belangrijke eigenschap is dat een punt automatisch zal gecreërd
+worden, als het programma van de gebruiker verwacht dat hij een punt
+selecteert, en hij op een vrije ruimte klikt.  Bovendien zullen
+snijpunten gecreërd worden als de gebruiker op een snijpunt klikt. 
+Punten zullen ook verbonden worden met objecten als de gebruiker op een
+object klikt.
+
+Wanneer de SHIFT toets ingedrukt wordt terwijl een cirkel, segment of
+een hoek wordt geconstrueerd, zal het programma aannemen dat het object
+vastgelegd moet worden, en wordt een dialoogvenster van het object
+getoond. Hier kan de gebruiker een waarde ingeven om het object vast te
+leggen, of kan het venster gewoon gesloten worden en wordt de huidige
+waarde gebruikt.
+
+De rechtermuisknop beweegt punten (en is dus een alternatief voor het
+'beweeg' werktuig), naamlabels van objecten, en het opent het dialoogvenster 
+met instellingen voor objecten. Als u op een label met de rechtermuisknop klikt, 
+maar niet beweegt, springt het label naar zijn standaardlocatie.
+
+Met de CTRL-toets en de rechtermuisknop, kunnen objecten verborgen
+worden. Cirkels en lijnen worden eerst gedeeltelijk, daarna volledig
+verborgen.
+
+.background 
+.related gui move htmlexport Background Pictures
+
+P.e.L. kan een afbeelding weergeven achter de huidige constructie. Deze
+afbeelding kan zelf een constructie zijn, of een afbeelding geladen uit
+een bestand.
+
+Een afbeelding uit een bestand kan herhaald (als tegelpatroon), gecentreerd 
+of uitgetrokken worden om in het constructiescherm te passen. Er is 
+een speciale optie aanwezig om het programmavenster aan de afmeting 
+van de geladen afbeelding aan te passen.
+
+Als de afbeelding precies in het venster past, zal een link opgeslagen
+worden, samen met de HTML uitvoer. In dit geval zal de grootte van de
+applet gelijk zijn aan de grootte van de afbeelding. De afbeelding moet
+in de map opgeslagen worden waarin het applet staat. Wijzig het HTML
+bestand als u de afbeelding in een andere map plaatst.
+
+
+.properties 
+.related edit colors hide mouse transparent point fixedangle replay animatebreak 
+Objecteigenschappen 
+
+Je kunt de eigenschappen van een
+object openen door gebruik te maken van de rechter muistoets, ofwel met
+het 'wijzig' werktuig. Veel eigenschappen komen bij alle objecten
+voor. 
+
+  - Naam
+  - Omschrijving 
+  - Eenheid   
+  - Kleur   
+  - Dikte   
+  - Zichtbaar/onzichtbaar   
+  - Naam tonen   
+  - Waarde tonen   
+  - Achtergrondstatus   
+  - Doorzichtigheid   
+  - Breekpunt 
+
+Namen kunnen bijna alle karakters bevatten.
+Als de naam een tilde (~) bevat, wordt enkel dat deel getoond dat voor de
+tilde staat. Op die manier kan je bvb. twee punten dezelfde naam geven.
+De naam van een voorwerp moet uniek zijn. Benamingen worden automatisch 
+gegenereerd maar je kan ze later aanpassen. 
+
+Sommige objecten hebben een grootte en een eenheid. De
+grootte wijzigen kan enkel bij vaste objecten. Eenheden zijn alle
+mogelijke teksten die na de waarde komen. Voor hoeken kan
+je het 'graden' symbool gebruiken.
+
+De dikte is verschillend voor verschillende objecten. Gelieve dit uit te
+proberen om het effect ervan waar te nemen. Objecten kunnen verborgen
+worden of helemaal verborgen worden. In het tweede geval kan er enkel
+toegang verkregen worden via de constructiebeschrijving.
+
+Je kan zowel de naam als de waarde van een object tonen, zoals bvb.
+"s=2". Als de naam eindigt met het karakter '_' (zoals bvb. "P_") dan
+wordt "_" niet getoond en is er ook geen "=". 
+
+Andere objecten kunnen worden opgevuld. Verder kan voor deze objecten de
+transparantie worden aan- en uitgeschakeld. Normaal gezien staan er
+enkel gevulde objecten in de achtergrond, maar elk ander object kan
+eveneens in de achtergrond worden gezet. 
+
+Breekpunten zijn belangrijk voor het afspelen en voor de animatie van 
+constructies.
+
+Voor bijzondere objecten zijn er nog andere instellingen, zoals punttype 
+en lijnstijl.
+
+Kijk ook eens naar de knoppen aan de onderzijde van het dialoogvenster
+met de eigenschappen. Zo hebben punten bijvoorbeeld een speciale knop 
+om een object te kiezen om ze mee te verbinden en hebben vaste hoeken
+een speciale knop om de grootte van een andere hoek te kopiëren.
+
+.transparent 
+.related colors reorder properties 
+Transparantie
+ 
+Indien Java 1.2 of hoger wordt gebruikt, zijn transparante objecten mogelijk.
+Op oudere Java systemen zullen objecten nooit transparant worden
+getoond. Bovendien ondersteunt EPS geen transparantie. 
+
+Gevulde voorwerpen worden normaal gezien in de achtergrond getekend. 
+Dit gedrag kan aan- en uitgeschakeld worden in het dialoogvenster 
+voor instellingen van alle objecten. Als je het uitschakelt wordt het 
+object getekend in de volgorde van het construeren. 
+
+Transparantie kan worden uitgeschakeld voor individuele
+objecten in hun eigenschappendialoogvenster.
+
+
+.point 
+.related boundpoint intersection settings mouse properties 
+Punten
+
+Een punt kan gegenereerd worden door verschillende werktuigen. Het "punt"
+gereedschap maakt normaal gezien een vrij (beweegbaar) punt aan.
+
+Als je echter het "snijpunt" gereedschap gebruikt, wordt er een snijpunt
+gegeneerd (eventueel na het beantwoorden van een vraag, maar dat gedrag kan
+je af- of aanzetten). Snijpunten zijn niet vrij, maar worden bepaald door
+de twee voorwerpen die snijden.
+
+Een punt wordt gebonden aan een cirkel of een rechte, als een cirkel of
+rechte geselecteerd wordt bij het aanduiden van een punt. Ook hiervoor
+kan je een bevestigingsvraag af- of aanzetten. De SHIFT toets zet de positie
+van een punt relatief ten opzichte van een object vast. 
+
+Punten kunnen vastgezet worden. Dit kan door de SHIFT toets ingedrukt
+te houden bij het aanmaken van het punt. Er opent dan een dialoogvenster
+waarin je kan aanduiden dat het punt vast zijn.
+
+Zoals andere objecten kunnen vrije punten onmiddellijk na het genereren 
+verplaatst worden. Tijdens het verplaatsen zal de grootte en de naam 
+van het geselecteerde punt verschijnen, tenzij dit in de opties afgezet is.
+
+.boundedpoint 
+.related point line mouse properties 
+Punten op objecten
+
+Dit zijn punten, die dat aan een lijn of een cirkel gebonden zijn. Ze
+zullen altijd met de cirkel meebewegen als de cirkel verplaatst wordt.
+Een punt kan op elk moment van een object losgekoppeld worden en aan een
+nieuw object verbonden worden, door het gebruik van het
+eigenschappenvenster. 
+
+Punten kunnen gebonden worden op twee manieren. Ofwel wordt het punt 
+telkens geprojecteerd wanneer je het object verplaatst, ofwel blijft 
+het punt in zijn relatieve positie op het object. 
+De eerste manier kun je gebruiken door de Shifttoets ingedrukt
+te houden wanneer het object geselecteerd is (alleen als het punt
+gecreëerd is met het werktuig 'punt op voorwerp'). Bovendien kan de
+relatieve instelling verwijderd worden of aangepast worden in de object
+editor. De relatieve manier wordt standaard gebruikt. 
+
+Gebonden punten zijn niet vrij. Als echter een lijnstuk met beide eindpunten 
+op een lijn ligt, en één van hen een gebonden punt is (op de lijn), kan dit
+lijnstuk vastgezet worden.
+
+
+.line ray 
+.related point parallel properties segment 
+Rechten en Stralen (halfrechten)
+Deze objecten hangen af van twee punten. De gebruiker moet dus twee
+punten kiezen om de constructie te kunnen maken. 
+
+Het verschil tussen de verschillende soorten lijnen (lijnstuk, straal,
+rechte), betreft niet alleen  het uitzicht van deze objecten. Snijpunten en
+loodlijnen gedragen zich anders bij deze objecten. Dit wil zeggen
+dat snijpunten met stralen ongeldig worden wanneer het snijpunt niet op
+de straal ligt. Ook dat loodlijnen op een straal ongeldig worden, als de
+snijding met de lijn niet op dat deel ligt. Bij loodrechte lijnen is het
+mogelijk om dit gedrag uit te zetten via een optie in het dialoogvenster
+van de loodlijn. 
+
+Merk op dat de werktuigen voor loodrechten, vaste hoeken of evenwijdigen
+ook lijnen genereren.
+
+Zie ook: lijnstukken
+
+.segment fixedsegment 
+.related expressionsyntax point parallel properties line 
+Lijnstukken 
+
+De lengte van een lijnstuk kan vast zijn als het één vrij eindpunt heeft. 
+Om een dergelijk lijnstuk te genereren hou je de
+Shifttoets ingedrukt terwijl je het tweede punt aanduidt. Er kan
+ook gebruik gemaakt worden van het speciale icoontje (in dit geval zal
+het tweede punt altijd aangemaakt worden). 
+
+Segmenten kunnen afgebeeld worden als een pijl. 
+
+Zie ook: rechten en stralen.
+
+.circle circle3 
+.related properties point transparency fixedcircle
+Cirkels 
+
+Er zijn drie types van cirkels. Cirkels rond een punt M en door
+een punt A, Cirkels rond een punt M met straal AB, en vaste cirkels.
+Elke type heeft zijn eigen icoon. De eerste gaat uit van 2 punten, de
+tweede verwacht drie punten en de laatste slechts één punt. 
+
+Het tekenen van een cirkel kan beperkt worden tussen twee gedefinieerde punten,
+zodat je een cirkelboog krijgt. In dit geval is het mogelijk de cirkelboog
+minder dan 180 graden te houden (bv. altijd zal de kleinere cirkelboog
+getekend worden bij het vastleggen van de einden van de boog). Je
+selecteert de eindpunten van de cirkelboog via de knop in het
+eigenschappenvenster van de cirkel. 
+
+Zie ook: Vaste Cirkels
+
+.fixedcircle 
+.related reorder expressionsyntax properties point transparency 
+Vaste cirkels 
+
+Vaste cirkels hebben geen punt op de cirkel om de straal te bepalen. Om zo
+een cirkel te construeren, hou je de SHIFT toets ingedrukt wanneer je het
+middenpunt definieert, of je gebruik het speciale 'vaste cirkel' gereedschap. 
+Dit opent het instellingenvenster waar je eender welke expressie voor de straal
+kunt ingeven. Als je de cirkel direct na het aanmaken versleept, 
+zal het instellingsvenster niet openen maar zal de huidige grootte 
+worden gebruikt. 
+
+De grootte van de vaste cirkel kan afhankelijk zijn van een afstand 
+tussen twee punten gebruikmakend van een expressie. Gebruik hiervoor 
+de 'bepaal grootte' optie in het instellingenvenster. Merk op dat alleen 
+punten die al vroeger (voordat je de cirkel maakte) geconstrueerd waren 
+kunnen worden gebruikt.
+
+.intersection
+.related point properties segment selectintersection
+Snijpunten
+
+Dit werktuig genereert snijpunten tussen rechten, cirkels en tussen een
+rechte en een cirkel. Dit hoef je natuurlijk niet te doen als je een
+constructie op papier maakt. Bij een computerconstructie moet je
+echter expliciet aangeven welke snijpunten berekend moeten worden. 
+
+Een snijpunt wordt ook automatisch gegenereerd als het programma van
+de gebruiker verwacht dat hij een punt selecteert en de gebruiker dicht
+tegen een snijpunt klikt. Vooraleer je klikt zie je dan trouwens het
+snijpunt al oplichten.
+
+Standaard staat het icoon voor dit werktuig niet in de werktuigenbalk, want
+in de meeste gevallen kan je het 'punt' gereedschap gebruiken om een snijpunt
+te maken.
+
+Zie ook: Snijpunten selecteren
+
+
+.selectintersection 
+.related intersection point 
+Snijpunten selecteren
+
+Merk op dat er twee snijpunten tussen cirkels zijn. Het programma maakt
+enkel beide wanneer de twee cirkels achtereenvolgens geselecteerd worden
+met de “intersection tool”. Als slechts één punt gewenst is, verberg dan
+het andere. Bij automatisch aangemaakte snijpunten (je duidt rechtstreeks
+het snijpunt aan en niet eerst de ene en dan de andere cirkel) zal het 
+andere punt niet aangemaakt worden.
+
+Er is een subtiel probleem in de manier waarop het programma de twee
+snijpunten van de cirkels (of cirkel en rechte) rangschikt. In
+tegenstelling met andere software gebeurt dit op een voorspelbare wijze.
+Bij cirkels zal de rangschikking omkeren als de cirkels in de andere 
+volgorde selecteert. De snijpunten tussen cirkel en rechte hangen af 
+van de richting van de rechte (bepaald door de volgorde van de punten
+die de rechte definiëren). Probeer de rechte te verplaatsen tot ze de 
+cirkel niet meer snijdt, verplaats ze daarna terug. De volgorde 
+van de snijpunten zal ongewijzigd blijven.
+
+Soms moet het juiste snijpunt kunnen aangegeven worden. Dit kan gebeuren
+door te vermelden dat een snijpunt verschillend moet zijn van een ander
+punt. De snijpunten zullen gerangschikt worden zodat het gekozen
+snijpunt het verst van dat andere punt verwijderd is. Het dialoogvenster
+voor snijpunten heeft een speciaal invoerveld om dit andere punt
+te bepalen, of er kan gebruik gemaakt worden van de knop om dit punt
+interactief te selecteren.
+
+Bemerk dat dit type snijpunt automatisch aangemaakt wordt wanneer het
+andere snijpunt op de omtrek van beide cirkels ligt en
+zichtbaar is. 
+
+Je kan ook specificeren dat het snijpunt datgene moet zijn dat het
+dichtste bij een gegeven punt ligt.
+
+.parallel plumb midpoint 
+.related line point properties 
+Evenwijdigen en loodlijnen, middelpunten.
+
+Dit zijn simpelweg kortere wegen naar klassieke constructies. De eerste
+twee gereedschappen maken lijnen. Het middelpunt is vanzelfsprekend een
+punt.
+
+Loodlijnen naar segmenten worden ongeldig wanneer de intersectie zich
+niet in het segment bevindt. Je kan deze eigenschap afzetten in het
+eigenschappen dialoogvenster.
+
+.move 
+.related circle angle background mouse) 
+Beweeg Voorwerpen.
+
+Dit gereedschap kan gebruikt worden om punten te verplaatsen, als een
+alternatief voor het gebruik van de rechtermuisknop. Je kan er ook cirkels
+en hoeken met een vaste grootte mee verslepen, tenzij die voorwerpen
+vastgemaakt werden. Om ze los te maken, hou je de CTRL toets ingedrukt 
+terwijl je met de muis beweegt.
+
+Wanneer het beweeggereedschap geselecteerd is of wanneer het naar zijn
+oorspronkelijke toestand teruggebracht wordt met de ESC toets, lichten
+alle vrije (beweegbare) objecten eventjes rood op.
+
+Indien de SHIFT toets is ingedrukt, blijft de oude constructie zichtbaar
+op de achtergrond tijdens de  beweging.
+
+
+.tracker objecttracker 
+.related point animate background mouse 
+Volgen en Automatisch volgen.
+
+Deze belangrijke gereedschappen tekenen een meetkundige plaats van
+punten, of genereren een curve, die een set van lijnen als raaklijnen heeft.
+
+Het 'volgen' werktuig in zijn simpelste vorm werkt als volgt: de gebruiker 
+beweegt een punt, en tegelijkertijd wordt het spoor van een ander punt 
+getekend (je zou dit een 'puntspoor' kunnen noemen). 
+Daarom verwacht dit werktuig dus dat je een punt dat kan
+gevolgd worden, aanduidt. Vervolgens kan elk ander punt
+verplaatst worden met de linkermuisknop. Meer dan één volgpunt kan
+geselecteerd worden door het indrukken van de SHIFT toets. Zo krijg
+je dus meer dan één meetkundige plaats.
+
+Een andere optie is dat het gereedschap een curve kan construeren, die
+een gegeven set van lijnen heeft als raaklijnen, genaamd een lijnspoor.
+In dit geval moeten de eerste geselcteerde objecten rechten, stralen
+of lijnstukken zijn. Je kan lijnsporen en puntsporen mengen.
+
+Het 'automatische volgen' verplaatst punten automatisch op een gegeven
+object. Je moet dus het punt of de punten die gevolgd worden, het
+object (circel, lijnstuk, rechte), en het punt dat bewogen moet worden
+meegeven. De meetkundige plaats wordt herberekend als andere punten 
+bewogen worden, waardoor de afhankelijkheid aan deze parameters aangetoond
+wordt.  De meetkundige plaats is geanimeerd, tot de gebruiker ergens in de
+constructie klikt. Meer dan 1 lijn of punt dat gevolgd wordt kan gekozen
+worden door het ingedrukt houden van de SHIFT toets. Je moet er wel aan
+denken dat het eerste punt dat je geselecteerd hebt de nauwkeurigheid
+van de meetkundige plaats controleert.
+
+Het werktuig 'automatisch volgen' probeert alle posities van de constructie 
+te doorlopen, waarbij ze ongeldige toestanden vermijden. Als het eerste 
+gevolgd punt of lijn ongeldig wordt, zal het bewegend punt omkeren, 
+en als bvb. één van beide snijpunten van twee cirkels ongeldig wordt, wordt
+het andere gekozen.
+
+De snelheid van de animatie kan verkleind of vergroot worden met de
+sneltoetscombinatie SHIFT + links/rechts. Denk er aan dat je in de
+constructie eerst moet klikken om het toetsenbord actief te maken.
+
+Meetkundige plaatsen worden opgeslagen aan de hand van hun parameters. 
+Als ze geanimeerd is, wordt dit ook opgeslagen in het bestand. Als je
+dan de constructie laadt, wordt de (geanimeerde) meetkundige plaats 
+weergegeven. Meetkundige plaatsen zijn geen constructievoorwerpen. 
+Ze worden opgeslagen in de hoofding van de constructie en je kan 
+op basis van een meetkundige plaats geen verdere constructies doen. Concreet
+voorbeeld: als de meetkundige plaats een rechte is, dan kan je van deze
+rechte verderop in de constructie geen gebruik maken (bvb. je kan er
+geen loodlijn op tekenen...).
+
+De meetkundige plaats wordt verwijderd als een ander gereedschap 
+geselecteerd wordt, of als het 'volgen' gereedschap opnieuw geselecteerd 
+wordt.
+
+Automatisch gegenereerde meetkundige plaatsen kan je aan de constructie 
+toegevoegen met de overeenkomstige menukeuze. Op deze manier is het mogelijk 
+verschillende onafhankelijke automatische sporen  te creëren in 1 constructie. 
+Je kan ook de parameters van de curve verslepen en onmiddelijk de veranderingen
+zien. Je denkt er wel best aan niet te veel automatische meetkundige
+plaatsen te creëren, aangezien deze het hertekenen van de constructie 
+vertragen.
+
+Het kan ook handig zijn de meetkundige plaats als achtergrond te zetten.
+
+
+
+
+.animate 
+.related circle line 
+Animatie
+
+Dit werktuig animeert een punt dat zich beweegt op een of meerdere lijnstukken
+of cirkels. Om de animatie te beginnen selecteer je een punt en daarna
+een reeks van lijnstukken of cirkels. Om de selectie te beëindigen 
+selecteer je het punt of een van de lijnstukken of cirkels nog eens.
+
+Om de animatie te stoppen klik je op de constructie. Om ze in de andere
+richting te laten lopen, houd je SHIFT ingedrukt terwijl je op 
+de constructie klikt.
+
+Animaties worden bewaard in het constructiebestand. In een applet maakt de
+animatie gebruikersinteractie volledig onmogelijk.
+
+Om heen en weer te gaan op lijnstukken of cirkelbogen SHIFT+klik je in de
+constructie. Op cirkels zal dit de richting van de animatie veranderen.
+
+.angle 
+.related circle properties fixedangle 
+Hoeken
+
+Normale hoeken zijn versiering en kunnen niet gebruik maken om iets te
+construeren. De volgorde van input is A,B,C met B het hoekpunt.
+
+Hoeken kunnen getoond worden in drie verschillende groottes, waarvan de
+grootste een cirkelvormige boog toont die begint in A.
+
+Hoeken kunnen Griekse letters in hun naam hebben. Voor een alfa typ je
+\a. Hoeken van 90° of waarvan de naam begint met '.'  worden aangeduid
+met een punt (als de instelling om de grootte van de hoek aan te
+geven aan staat, natuurlijk). Hoeken kunnen gevuld worden.
+
+Standaard kunnen hoeken niet groter dan 180° worden. De volgorde van A
+en C maakt niet uit, maar dit kan veranderd worden in het eigenschappen
+dialoogvenster.
+
+Zie : Vaste Hoeken
+
+.fixedangle 
+.related circle reorder expressionsyntax properties angle
+Vaste Hoeken
+
+Vaste hoeken hebben geen punt C, maar een vaste grootte. Deze maakt men
+door de SHIFT toets ingedrukt te houden wanneer men op C klikt, of met
+het gereedschap voor vaste hoeken. Dit zal het dialoogvenster met de
+instellingen openen. Hier kan de gebruiker voor de grootte van
+de hoek een wiskundige uitdrukking invoeren. Als men de hoek 
+onmiddellijk hersleept zal het dialoogvenster niet openen.
+
+De grootte van een vaste hoek kan je ook bepalen door drie gegeven punten. 
+Om dit te doen selecteer je de knop “bepaal grootte…” in het dialoogvenster 
+van de instellingen en selecteer je drie punten A, B, C, waarvan B het 
+hoekpunt is. De hoek zal dezelfde grootte hebben als de hoek ABC. Merk op dat
+enkel de punten die gemaakt zijn voor het maken van de hoek gebruikt
+kunnen worden.
+
+Vaste hoeken kunnen omgekeerd worden. Op die manier hoef je niet 
+noodzakelijk de positieve draaizin te gebruiken. Als bovendien een hoek 
+standaard beperkt is tot 180°, en als zo een hoek gemaakt is op een 
+wiskundig negatieve manier, dan zal deze omgekeerd worden. Er is een 
+icoontje in het dialoogvenster van de instellingen dat het omkeren regelt.
+
+Zie: Hoeken
+
+.area 
+.related point properties background 
+Gevulde Veelhoeken
+
+Met dit gereedschap kun je een gevulde veelhoek maken door verbindingen
+van lijnstukken. Geef de hoekpunten van de veelhoek aan. Dubbelklik op
+laatste punt.
+
+De lijnen worden verborgen, wanneer de veelhoek in het eigenschappenmenu
+dunne lijndikte heeft.
+
+.expression 
+.related angles circles properties reorder expressionsyntax
+Uitdrukkingen
+
+Je kan rekenkundige uitdrukkingen gebruiken in P.e.L. om volgende 
+dingen te bepalen:
+ 
+ - coördinaten van punten, 
+ - lengten van lijnstukken, 
+ - stralen van cirkels,
+ - hoekgroottes.
+
+Voorts kun je de waarden van uitdrukkingen in constructies weergeven.
+Gebruik het 'wiskundige uitdrukking' werktuig om uitdrukkingen op 
+het scherm te plaatsen (en de rechtermuisknop om de uitdrukking te bewegen). 
+Je moet wel een geldige uitdrukking ingeven in het dialoogvenster. 
+Uitdrukkingen kunnen een verklarende uitleg hebben en mogelijk 
+de berekende waarde weergeven. Ze kunnen bewogen worden met 
+de rechtermuisknop zoals de andere voorwerpen.
+
+Zie ook: Syntaxis voor uitdrukkingen
+
+
+.expressionsyntax 
+.related fixedangles fixedcircles point properties reorder 
+Syntaxis voor uitdrukkingen
+
+Naam
+ Voorbeeld 
+ Beschrijving
+
++,-,*,/,^ of ** 
+ 3.5*3+3/(4-5^2) 
+ Rekenkundige operatoren.
+
+Objectnaam 
+ AB/CD 
+ De naam van een lijnstuk, cirkel, hoek of andere uitdrukkingen.
+
+Functie 
+ sin(a) 
+ De functies abs, sign, cos, tan, arcsin, arccos, arctan,
+sqrt, exp, log, round, ceil, floor, deg, rad, angle180 en angle360.  
+Bemerk dat de trigonometrische functies werken met graden. Omrekenen
+naar graden kan je via de functie deg(x).
+
+Pi 
+ pi 
+ De constante Pi.
+
+x,y 
+ x(P), y(P) 
+ x- en y- coördinaten van een punt.
+
+d 
+ d(P,Q) 
+ Afstand tussen twee punten.
+
+d 
+ d(x) 
+ Berekent veranderingen van de uitdrukking x.  Als x een punt is,
+ berekent het veranderingen.
+
+sum 
+ sum(x,f) 
+ Telt x op.  Als f negatief of ongeldig is, wordt de som terug op 0 gezet.
+
+a 
+ a(P,Q,Z) 
+ Grootte van hoek PQZ.
+
+scale 
+ scale(x,a,b) 
+ De relatieve positie van x in [a,b], als x in dit
+interval ligt.  Anders wordt de uitdrukking ongeldig.
+
+if 
+ if(e,e1,e2) 
+ Geeft e1 weer, als e geldig is, anders e2.
+
+invalid 
+ invalid
+ Geeft een ongeldige uitdrukking weer.
+
+&&,||,! ! 
+ (x<4 && y<4) 
+ Logische uitdrukkingen, 1 is juist, 0 is fout.
+
+<, >, <=, >=, ==, ~= 
+ x<y 
+ Vergelijking van getallen.  ~= betekent "ongeveer gelijk".
+
+Bemerk dat uitdrukkingen alleen kunnen gebruikt worden bij objecten
+hiervoor geconstrueerd.  Om de volgorde te veranderen van een
+constructie, gebruik het hersorteergereedschap.
+
+.area
+.related properties point transparent 
+Opgevulde veelhoeken
+
+Dit vult het met hoekpunten afgebakende gebied met een kleur.  De
+opvulling zou op licht moeten gezet worden.  In Java 1.3 zullen
+opgevulde gebieden transparant zijn.  Om het gebied af te bakenen
+selecteer je de hoeken.  De afbakening is voltooid door een voorafgaand
+geselecteerde hoek terug te selecteren.
+
+.text 
+.related replay comment properties 
+Tekst
+
+Dit toont een tekst van meerdere regels in de constructie.  Je kan de
+tekst bewerken door gebruik te maken van een ingebouwde editor.  Deze
+editor bevat een knop om het dialoogvenster voor objecteigenschappen te
+bereiken.  Door gebruik te maken van rekenkundige uitdrukkingen kan je
+hier de positie van de tekst regelen.  Merk op dat ongeldige posities de
+tekst onzichtbaar maken, een kenmerk dat soms nuttig is.
+
+Verborgen teksten verschijnen namelijk tijdens stapsgewijs terugspelen
+van de constructie bij de specifieke stap. Dit laat toe om plaatselijke 
+commentaren te tonen van constructiestappen die later verdwijnen.
+
+
+.quadric 
+.related properties point transparent 
+Kegelsneden
+
+Kegelsneden zijn oplossingen van vergelijkingen die gevormd worden door
+lineaire combinaties van x^2, y^2, x, y, xy en 1 (kwadratische functies
+in twee variabelen). Kegelsneden worden bepaald door 5 punten. Je
+selecteert simpelweg deze 5 punten.
+
+Om de eigenschappen van de kromme aan te passen dient u erop te klikken
+en het normale dialoogvenster voor de eigenschappen gebruiken. Kegelsneden
+zullen hun bepalende formule weergeven als hun waarde.
+
+.hide 
+.related construction properties mouse 
+Objecten Verbergen
+
+Dit zal objecten verbergen. Om verborgen objecten zichtbaar te maken
+dient u de optie aan te zetten om alle verborgen objecten weer te geven.
+Het verbergen van objecten kan ook gebeuren door de CTRL knop in te
+drukken en dan het object aan te klikken met de rechtermuisknop. Als u
+dit gebruikt zullen cirkels en lijnen eerst deels worden weergegeven, en
+pas verdwijnen bij de tweede klik.
+
+Als de SHIFT knop ingehouden wordt terwijl een object wordt geselecteerd
+om te verbergen, zal dit object volledig verborgen worden. In dit geval
+kan men het object alleen zichtbaar maken door gebruik te maken van de
+objectenlijst in de constructiebeschrijving.
+
+Het is ook mogelijk om alle duplicaten van objecten te verbergen. Enkel
+het meest recente object zal dan zichtbaar zijn. Druk hiervoor de CTRL
+knop in terwijl u het gereedschap om te verbergen selecteert, of gebruik
+hiervoor het menu.
+
+.rename
+.related properties 
+Hernoem Alfabetisch
+
+Je kan lijnen hernoemen tot a,b,c, punten tot A,B,C en hoeken tot
+\a,\b,\c door te klikken met je muis, gebruikmakend van dit gereedschap.
+De eerste ongebruikte letter zal worden gebruikt.
+
+Als je de letter “a” nodig hebt voor twee verschillende objecten,
+gebruik dan “a~1” en “a~2”. Namen worden enkel getoond tot de “~”.
+
+Je kan een bepaald punt speciaal hernoemen tot A, B, C door de
+SHIFT toets in te drukken terwijl je klikt op een punt. Als de letters
+reeds gebruikt werden in de constructie, zullen ze verwisseld worden. Om
+opnieuw te beginnen, druk je op de escapetoets.
+
+.delete undo back 
+.related construction 
+Objecten Verwijderen
+
+Dit gereedschap verwijdert de meest recente objecten, en al de verborgen
+objecten ervoor. “Ongedaan maken” herstelt meteen al deze objecten.
+
+Er bestaat een ander gereedschap dat elk object, en alle objecten die
+erop steunen, kan verwijderen.
+
+“Ongedaan maken” herstelt enkel één van deze opdrachten.
+
+.function 
+.related expressionsyntax properties 
+Functies en Krommen
+
+Het programma kan functies en parametrische krommen voorstellen. Om een
+functie te creëren, kan je het menu gebruiken of op het icoon klikken.
+In het dialoogvenster, voer je de start- en stopwaarden van de variabele
+parameter en de stapgrootte in. Indien je het wenst, kan je eender welke
+string als parameternaam gebruiken, maar je kan natuurlijk ook de
+standaard “x” gebruiken.
+
+Voor een simpele functie, geef “x” voor de x-waarde, en “f(x)” voor de Y-
+waarde. “f(x)” moet een geldige uitdrukking zijn.
+
+Voor een parametrische  curve, moet je twee functies hebben een voor de
+x-waarde en een voor de y-waarde.
+
+Het programma zal de parametervariabele verhogen van start tot einde
+gebruik makend van de gegeven de stapgrootte. Als de functie geldig is
+tussen de twee parameterstappen, wordt er een lijnstuk in de constructie
+getekend, gebruik makend van de constructiecoördinaten.
+
+.defaults 
+.related line angle colors 
+Standaardinstellingen
+
+Je kan van nieuwe objecten de standaardkleuren en een aantal andere
+instellingen aanpassen
+
+ - de kleur van objecten 
+ - de dikte van objecten 
+ - stijl van de punten 
+ - gedeeltelijk zichtbare cirkels 
+ - gedeeltelijk zichtbare rechten 
+ - lijnstukken als pijlen geven
+ - Naam tonen 
+ - Waarde tonen 
+ - Gebruik lange namen 
+ - Hoeken groter dan 180 graden 
+ - niet transparante objecten
+
+
+.edit 
+.related mouse properties 
+Voorwerpen wijzigen
+
+Wijzig de eigenschappen van één of meer voorwerpen. Om meerdere
+voorwerpen te selecteren, hou de SHIFT-toets ingedrukt. Als er meerdere
+voorwerpen geselecteerd zijn, hebben de velden in het dialoogvenster
+een ongeldige toestand. Alleen de veranderde velden zullen dan 
+worden gebruikt om de voorwerpen aan te passen.
+
+.show 
+.related hide 
+Verborgen volgens kleur
+
+Toon of verberg voorwerpen met specifieke kleuren. Dit wordt gebruikt om
+de constructie duidelijker te maken.
+
+.grid 
+.related zoom move mouse 
+Raster
+
+Hiermee regel je of het coördinatensysteem al dan niet zichtbaar is. 
+Nieuwe punten en punten die worden bewogen met de rechtermuisknop 
+zetten zich vast op de rasterpunten als het raster zichtbaar is
+(magnetisch raster).
+
+Als het raster zichtbaar is terwijl de constructie bewaard wordt, zal
+het getoond worden als de constructie geladen wordt.
+
+
+.replay 
+.related htmlexport text animatebreak 
+Loop stapsgewijs door constructie
+
+Deze optie opent een kleine dialoog met navigatieknoppen waaronder de
+gebruikelijke knoppen voor snel terugspoelen enz. Daarnaast kunnen
+breekpunten aangebracht worden met deze optie. Breekpunten zijn
+belangrijk voor HTML export in afspeelmodus.
+
+Eens je een breekpunten aangebracht hebt, kan je ernaar springen
+door een simpele klik.
+
+Om een 'verbergend breekpunt' aan te maken, houd je de SHIFT toets
+ingedrukt terwijl je het breekpunt aanmaakt. Verbergende breekpunten
+verbergen alle voorgaande objecten tot het vorige breekpunt. De
+constructie zal worden opgesplitst in verschillende stukken.
+
+Breekpunten en verbergende breekpunten kunnen ook ingesteld worden in de
+eigenschappendialoog.
+
+Tijdens het afspelen zal verborgen tekst zichtbaar worden.
+
+
+.animatebreak 
+.related replay 
+Geanimeerde Breekpunten
+
+Dit hulpmiddel gaat automatisch van breekpunt tot breekpunt. Om de
+snelheid te verhogen of te verminderen druk de SHIFT toets in samen
+met de rechter of linker pijltjestoets.
+
+.draw 
+.related mouse 
+Teken met de muis.
+
+Je kan tekenen met de muis in de huidige kleur door op dit
+pictogram te drukken . Om de tekening te verwijderen, druk je op de
+ESC toets of gebruik je het menu.
+
+De tekening wordt mee met de constructie bewaard. Hou er wel rekening
+mee dat een vrije muistekening de bestandsgrootte sterk doet toenemen.
+
+.zoom 
+.related mouse grid 
+Zoomen met behulp van de muis
+
+Zoom in en uit door met de muis in de buitenste rand van de
+constructie te slepen. Beweeg de constructie door in het midden
+van de constructie te slepen (de muiscursor ziet er in dit geval
+trouwens anders uit).
+
+U kunt ook zoomen met +/- toetsen en bewegen met de
+pijltjestoetsen.
+
+Het huidige zicht zal in het bestand worden bewaard.
+
+.parameter 
+.related runmacro parametertypes target
+Macroparameters 
+
+Macro's zijn een belangrijk hulpmiddel voor ingewikkeldere
+constructies. Zonder het gebruik van macro's zou enkel het construeren
+van simpele figuren mogelijk zijn. Macro's voegen meerdere stappen
+tijdens een constructie samen in een enkele stap. Ze gedragen zich zoals
+subroutines in een programmeertaal. Macro lijken op reeds bestaande
+werktuigen waarvan de functie echter door de gebruiker bepaald is.
+
+Bij een macro moeten objecten meegegeven worden die dienen als parameter of
+als doelobject, net zolas het 'lijnstuk' gereedschap voor het tekenen 
+2 punten als parameter en een lijnstuk als doel heeft.
+
+Macros in P.e.L zijn makkelijk aan te maken. Je toont de macro welk
+deel van je constructie het zou moeten kennen. We noemen dit het
+“definitiepatroon”. Om het patroon te creeëren, teken je een
+aantal doelen vertrekkend van een aantal opgegeven parameters. 
+Bij voorbeeld, je zou de middelloodlijn van een lijnstuk kunnen construeren,
+vertrekkend van de twee punten van het lijnstuk. Deze twee punten
+zijn dan je macroparameters, de middelloodlijn wordt dan het doel.
+
+Tijdens de eerste stap toon je de macro de startvoorwerpen. De macro zal
+leren dat dit de parameters van je constructie zijn. Daarna druk je nog
+eens op het 'macro' icoon (dat dan van uitzicht zal veranderen!) om de 
+doelen te definiëren.
+
+Zie: Doelen
+
+
+
+.target 
+.related parameter runmacro parametertypes 
+Doelen
+
+Nadat je je parameters hebt geselecteerd, druk je nogmaals op het macro
+iccon om de doelen te selecteren. Je zal enkel die objecten zien die
+construeerbaar zijn  met de huidig ingestelde parameters . Je zal bvb
+enkel de middelloodlijn van twee punten zien, als je deze twee punten
+geselecteerd hebt als macroparameters. Je ziet ook alle tussenliggende
+constructiestappen, tenzij je ze verborgen hebt.
+
+Selecteer de doelen nu. In het voorbeeld: selecteer de middelloodlijn.
+
+Je moet dus steeds minstens 1 doelobject definiëren. Als je geen doelen
+selecteert dan zullen alle visueel zichtbare objecten geconstrueerd
+worden door de macro. Doelen zullen de standaardkleur en -stijl aannemen
+wanneer de macro uitgevoerd wordt. Alle ander objecten krijgen  de stijl
+van het definitiepatroon, met uitzondering van de zwarte objecten.
+Deze krijgen de standaardkleur. De verborgen objecten zullen ook
+automatisch verborgen geconstrueerd worden. Er bestaat echter een optie
+om alle objecten,  die geen doelen zijn,  automatisch te verbergen (ook
+al zijn de objecten zichtbaar geconstrueerd). 
+
+Als de macro in de beschrijvende modus gebruikt wordt (door het intikken
+van commando's), kan je enkel een naam toekennen aan de doelen.
+
+Nog een druk op het 'macro' icoon laat je toe de macro te definiëren 
+via een dialoogvenster.
+
+Zie ook: macrodefinitie
+
+
+.macro 
+.related runmacro parametertypes parameter target expression fixedcircle fixedangle hintparameters 
+Macrodefinitie
+
+Nadat je parameters en doelen hebt geselecteerd, kan je (met een
+volgende klik op het macro icoon) de macro definiëren met behulp van een
+dialoogvenster.
+
+Hier kan je de naam en commentaar ingeven en de invoervragen voor elke
+parameter aanpassen. Commentaar en invoervragen zijn belangrijk,
+aangezien het kan voorkomen dat de gebruiker niet weet wat de macro
+doet, en dus ook niet weet wat de macro nodig heeft om zijn taak uit te
+voeren. De invoervragen worden in de statusbalk getoond, terwijl de
+macro op invoer wacht. Het is mogelijk om een parameter te linken aan
+een object A, door gebruik te maken van “=A” bij de parameterinvoer. In
+plaats van naar de parameter te vragen zal het object A gebruikt worden,
+als A bestaat en van hetzelfde type is.
+
+Standaard verbergen macro’s alle objecten die gedupliceerd zijn van al
+bestaande objecten. Hier krijg je de mogelijkheid deze eigenschap uit te
+schakelen.
+
+Verder is het mogelijk om aan de gebruiker de waarde te vragen van ofwel
+een vaste cirkel, een vaste hoek of een uitdrukking, terwijl de macro
+loopt. Om dit te doen vul je de naam van de cirkel, hoek of uitdrukking
+in in het invoerveld op de laatste regel. De gebruiker zal via een
+dialoogvenster gevraagd worden naar een rekenkundige uitdrukking. Je kan
+aan de gebruiker de waarde van verschillende voorwerpen vragen, door ze 
+met komma's van elkaar te scheiden.
+
+
+.hintparameters
+.related macro
+Hintparameters
+
+Een speciale eigenschap verbergt parameters. Als een verborgen punt
+als macroparameter tijdens de generatie van de macro wordt gekozen, en
+als dat punt aan een punt geassocieerd wordt dat tijdens de
+parameterselectie bij het uitvoeren wordt geproduceerd, zal dit nieuwe
+punt worden verborgen nadat de macro in werking is gesteld.
+Deze eigenschap maakt het mogelijk om punten als hintparameters te
+gebruiken. Een voorbeeld zou een macro zijn, die een gelijkzijdige
+driehoek op een lijnstuk produceert. De hint zou een derde klik zijn
+die  één van beide eindpunten van het lijnstuk aanwijst. In dit geval, 
+moet een uitdrukking voor één van de hoeken van 60° worden gebruikt 
+waarin het derde punt wordt betrokken, iets zoals "60*sign(180-a(P,A,B))".
+
+
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters
+Een macro uitvoeren
+
+De macro moet worden geselecteerd uit een lijst.  Als men de SHIFT-toets 
+indrukt zal automatisch de laatst gebruikte macro geselecteerd worden.
+Vervolgens zal het programma elke parameter vragen aan de gebruiker
+en het verwachte objecttype tonen.
+
+Macro's kunnen ook geselecteerd worden met de rechter muisknop. 
+Kies de macro uit de lijst in het menu.
+
+Als u "spatiebalk selecteert ..." ziet staan, kan u dit object 
+simpelweg kiezen door op de spatiebalk te drukken.  Dt is handig 
+als de macro verschillende malen wordt gebruikt.
+
+Tenslotte wordt de macro uitgevoerd.  Indien de macro een waarde 
+nodig heeft voor een vaste cirkel of hoek, zal deze die vragen 
+met een dialoogvenster.  De gebruiker kan elke rekenkundige uitdrukking 
+invoeren voor deze waarde. 
+
+Indien de volledige previewweergave ingeschakeld is, zal je het resultaat 
+van de verwerking zien voordat het laatste parametervoorwerp geselecteerd is.
+
+
+
+.defaultmacros
+.related runmacro save
+Standaardmacro's
+
+Bij het starten kijkt P.e.L naar een bestand genaamd ".default.mcr" 
+in de huidige folder. Als er zo een bestand bestaat, worden de macro's 
+die dit bestand bevat, geladen.
+
+Deze standaardmacro's zijn beschermd. Ze worden niet verwijderd 
+wanneer een nieuw bestand geladen wordt en ze worden niet bewaard 
+samen met constructies. Om beschermde macro's te verwijderen, 
+ga je hiernaar in het macro menu, en selecteer je alle macro's.
+
+Je kan zelf standaardmacro's maken.  Je dient simpelweg een bestand 
+".default.mcr" op te slaan in de huidige map. Als je een 
+specifieke taalversie (bvb. voor de Nederlandse versie
+van P.e.L.) nodig hebt, moet je het bestand als 
+".nl_default.mcr" op te slaan, waar "nl" de afkorting voor Nederlands is, 
+of je overschrijft gewoon ".default.mcr".
+
+.localize
+.related defaultmacros
+Taalaanpassingen
+
+P.e.L. bestaat reeds in verschillende talen. Indien je echter je 
+eigen versie wil voorzien moet je de volgende bestanden vertalen:
+ - ZirkelProperties.properties
+ - info.txt
+
+Het properties-bestand dient vertaald te worden naar een interne 
+unicode voorstelling door een tooltje met de naam "native2ascii". 
+Het is aan te raden om dit door mij te laten doen voor u.  
+Stuur me gewoon het bestand.
+
+Het hulp-bestand moet simpelweg in uw lokale codering gemaakt worden.
+
+
+.fixparameters
+.related runmacro parameter
+Vaste macroparameters
+
+U kan ook de selecte van macroparameters vast zetten door de SHIFT-toets 
+in te drukken tijdens de selectie. Dit zal een kopie van de macro aanmaken,
+die vast is in deze parameters. Je kan uiteraard niet alle parameters 
+vast maken (want dan hou je niets veranderlijks meer over).
+
+Een parameter kan vast gezet worden terwijl de macro bepaald wordt. 
+Om dit te doen breng '=A' in als prompt van de parameter. 
+Deze parameter zal zich vastzetten op het object met naam 'A'.
+
+
+
+.parametertypes
+.related parameter
+Parametertypes
+
+Het gemakkelijkst is punten te nemen als parameters. Andere objecttypes 
+zijn echter ook mogelijk.
+
+Rechten, stralen, lijnstukken en cirkels brengen secundaire parameters 
+voort, namelijk de twee eindpunten of respectievelijk het midden. 
+Dit vergemakkelijkt het gebruik van macro's. De gebruiker moet echter 
+opletten om deze parameters in dezelfde configuratie te gebruiken. 
+Twee concentrische cirkels moeten concentrisch zijn. 
+Wanneer de lijnstukken AB en BC macro parameters zijn, dan moet de gebruiker 
+bvb. de lijnstukken EF en FG kiezen. In deze gevallen is het beter om punten 
+te gebruiken als parameters.
+
+Rechten en stralen bestaan in twee verschillende types: met twee 
+gedefinieerde punten of met één gedefinieerd punt (vb. evenwijdige lijnen). 
+In de macro zijn rechten, stralen en lijnstukken opgeslagen als 
+rechten zonder punten, als hun gedefinieerde punten niet gebruikt 
+worden in de bedoelde constructie of als ze slechts 
+één gedefinieerd punt hebben. De gebruiker kan dan gelijk 
+welke rechte als parameter kiezen. Als één van de twee gedefinieerde 
+punten gebruikt wordt, dan moet de gebruiker een rechte, 
+straal of lijnstuk kiezen van hetzelfde type. 
+Dit is weer ingewikkeld en het beste zou zijn om punten te gebruiken.
+
+
+
+.htmlexport
+.related runningdemo save comment exportdialog jobexport 
+HTML Export
+
+P.e.L. kan HTML- pagina's voor je constructies produceren, die een applet
+bevatten dat de constructie toont.
+
+Eerst vul je het dialoogvenster in. Vervolgens kies je een bestand 
+en -voor opgaven met een oplossing- een andere voor de oplossing.
+Dan moet je het volgende publiceren:
+
+ - de juist gegeneerde HTML- pagina,
+ - een oplossingspagina, indien aanwezig,
+ - stijlbladen, indien aanwezig,
+ - het appletarchief zirkel.jar (dit is het volledige P.e.L. programma),
+ - het constructiebestand. 
+ 
+Je leert het meest over dit onderwerp door een aantal websites te
+bekijken waar P.e.L. als applet gebruikt wordt (bvb. www.renegrothmann.de 
+of wiskunde.rega.be). Gebruik in je browser de fucntie om de broncode van
+de pagina te bekijken ('view source', 'bekijk bron',...)
+
+Merk op dat meetkundige plaatsen en animaties mee met de constructie 
+worden bewaard. Zij zullen automatisch in de constructie weer verschijnen 
+die in applets wordt getoond. In dit geval is er geen gebruikersinteractie. 
+Voor dit soort applets (met animatie of meetkundige plaatsen) gebruik je
+best de 'gewone' of de 'randen' stijl voor het applet.
+
+Merk op dat de meetkundige plaatsen automatisch worden getoond, 
+als zij werden getoond toen de bouw werd bewaard.
+
+Het is best om slechts één applet op elke HTML- pagina te hebben.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+HTML Export met sjabloon ('template')
+
+Dit is een gemakkelijke manier om je constructies te exporteren 
+naar HTML. Het programma laadt een sjabloon voor de HTML pagina, 
+en vult de noodzakelijke informatie in door alle plaatsruimtes ('placeholders') 
+te vervangen op de sjabloonpagina. Het dialoogvenster is veel korter, 
+vermits de meeste informatie moet opgeslagen worden in het sjabloonbestand,
+inclusief grootte van de applet, de applet- en paginakleuren,
+style sheets en plaats van het jar archief.
+
+De documentatie bevat een paar sjablonen. Sjabloonbestanden gebruiken de 
+extensie "*.template". Je kan deze sjabloonbestanden editeren met elke
+tekst- of HTML-editor. Gebruikers van buitelandse talen moeten UTF-8 
+afvinken in het instellingen dialoogvenster, of moeten een editor 
+gebruiken die overweg kan met UTF codering (bijvoorbeeld mijn 
+teksteditor JEm, de HTML editors van Mozilla of Frontpage van MS 
+en vele anderen). Je mag je sjabloon baseren op de
+sjabloonbestanden die je in de documentatie vindt.
+
+De volgende plaatsruimtes worden herkend:
+
+#title
+  Wordt vervangen door de constructietitel zoals getoond 
+  in het export dialoogvenster.
+
+#comment1,#comment2,...
+  Dit zal vervangen worden door de sectie van de constructiecommentaar
+  met het overeenkomstige nummer. Commentaarsecties zijn van elkaar 
+  gescheiden door lijnen bestaande uit "~". Elke paragraaf van de 
+  commentaarsectie zal worden omsloten door <p>...</p>.
+
+#comment
+  Werkt zoals tekst, maar zoekt niet naar commentaarsecties.
+
+#text1,#text2,...
+  Werkt zoals #comment1,... maar genereert geen paragrafen
+ <p>...</p>. De gebruiker kan elke HTML-element toevoegen naar keuze. 
+
+#text
+  Werkt zoals #text1,... maar zoekt niet naar commentaarsecties.
+
+#parameter
+  Voegt volgende appletparameters in: bestand of opgave, 
+  stijl, werktuigen en opties.
+
+#color
+  Voegt de appletparameters voor de kleuren in.
+
+#font
+  Voegt de appletparameters voor lettertype en aantal cijfers in.
+
+#codebase
+  De codebasis van het export dialoogvenster.
+
+Dit is een voorbeeld van een simpel template bestand.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=#F0F0F0>
+  <H1>
+  #title
+  </H1>
+  <CENTER>
+  <P>
+ <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400" 
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+
+
+.exportdialog
+.related htmlexport jobexport
+Exportinstellingen
+
+Applets kunnen verschillende stijlen hebben:
+- Gewoon: Het applet heeft geen rand. De gebruiker kan enkel 
+verborgen elementen laten zien en punten bewegen. 
+
+- Rand: Het applet krijgt een rand. 
+
+- Rand en iconen: Het applet krijgt een rand en iconen. 
+De gebruiker kan dingen construeren. 
+
+- Rand, iconen en status: Het applet krijgt een statuslijn. 
+De statustekst wordt ook afgebeeld in de browser statuslijn. 
+
+- Rand, iconen en invoerlijn: De constructie moet gemaakt worden in
+beschrijvende (niet-visuele) modus. 
+
+- Weergave met rustpunten: 3 knoppen worden afgebeeld om navigatie 
+mogelijk te maken van breekpunt tot breekpunt. Om de breekpunten 
+te plaatsen, gebruik je het 'toon constructie' werktuig. 
+
+Paginatitel: Dit is de titel van je pagina in <H1> stijl.
+
+CSS stijlbestand: 'Cascading Style Sheets' zijn nuttig om 
+meerdere pagina's een consistent voorkomen te geven. 
+Als je ze niet gebruikt, laat dit invoervak dan leeg.
+Gebruik een relatief (t.o.v. het zirkel.jar archief) pad.
+
+Breedte, hoogte: De dimensies van het appletvenster.
+
+Constructiebestand: De naam van het bestand dat de constructie bevat,
+meestal in dezelfde directory als het HTML bestand. Hoe dan ook, 
+de bestandnamen moeten relatief zijn t.o.v. het programma-archief. 
+Absolute URLs en paden zijn niet toegestaan hier.
+
+Jar bestand: Dit is het programma-archief. Het pad hiernaartoe moet relatief
+t.o.v. de HTML-pagina uitgedrukt worden.
+
+Kleur: Je kan een kleur kiezen voor de pagina-achtergrond en
+voor de applet-achtergrond. De kleur kan gekozen worden met de knop onderaan
+het dialoogvenster.
+
+Bovendien zijn er knoppen om de gedefinieerde kleuren van de 
+constructie-elementen en de constructie-achtergrond op te slaan. 
+De achtergrond van de constructie kan anders zijn dan de achtergrond 
+van de applet en de achtergrond van de pagina.
+
+Bewaar aantal beduidende cijfers: Zal de instellingen bewaren voor 
+het aantal cijfers. Zou moeten aanstaan.
+
+Bewaar commentaar: Dit zal commentaar plaatsen onder het applet. Alle browsers
+zouden de standaard UTF-8 codering moeten aankunnen. Indien niet, verander
+naar de Windows codering in de 'andere instellingen'.
+
+Werktuigen: Deze 2 icoonbalken laten je de werktuigen kiezen 
+die afgebeeld zouden moeten worden voor de gebruiker. 
+In elk geval zou je het 'maak wissen ongedaan' (undo) gereedschap
+moeten voorzien. Met het speciale icoon voor 2 lijnen krijgt de gebruiker 
+2 lijnen met werktuigen.
+
+De gebruiker kan enkel macro's definiëren, als je hem het macro 
+gereedscahp geeft. En hij kan enkel macro's gebruiken indien dit
+werktuig beschikbaar is.
+
+De iconen met het rode vraagteken zijn knoppen voor het object 
+selectie dialoogvenster, de vraag voor punten op objecten en voor intersecties.
+Standaard staan al deze dialogen en vragen af in applets.
+
+In de niet-visuele modus helpen de iconen de gebruiker de syntax te vinden.
+In deze modus werken alle constructiewerktuigen.
+
+
+.jobexport 
+.related htmlexport exportdialog 
+Exporteer opgave
+
+'Weergeven als opgave': moet worden aangevinkt om de constructie
+als opgave te bewaren.
+
+Oplossingbestand - Spring naar oplossing - Bewaar oplossingbestand
+- Link naar oplossing: deze instellingen laten de automatische 
+generatie van een oplossingspagina toe. Dit is een afzonderlijke pagina 
+waar de oplossing getoond wordt. Als de gebruiker de taak beëindigd heeft 
+kan de  browser direct naar de oplossingspagina gaan. 
+Men kan ook onder de constructie een link naar deze pagina zetten.
+
+Commentaar: exporteert uiteraard de commentaar van de opgave. 
+De commentaar bij de constructie wordt enkel getoond op de oplossingspagina.
+
+.runningdemo 
+.related htmlexport online 
+Een lopende demo maken
+
+Het is mogelijk om een applet te gebruiken om een reeks constructies te
+laden en hen te tonen aan de gebruiker aan een bepaalde regelmaat. 
+De appletsyntaxis is vrij verschillend en er is geen automatische
+uitvoer.
+
+Eeen voorbeeld van een aplet-code ziet er als volgt uit.
+
+ <aPPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+       WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+Het bestand "demo.xml "bevat de lijst van bestanden. Het is een XML-bestand 
+met een eenvoudige syntaxis. Hier is een voorbeeld.
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <Demo delay="30">
+ <File name="Uhr.zir" delay="20">Clockwork</File>
+ <File name="Cindarella-Maschine.zir">Cindarella machine</File>
+   ...
+ </Demo>
+
+De vertragingsparameters zijn in seconden.
+
+
+.visual 
+.related expressionsyntax descriptivefiles runmacro 
+Beschrijvende Constructies
+
+In deze modus is er een inputlijn onder de constructie.
+Volgende dingen zijn verschillend:
+
+ - Het kiezen van een werktuig zal slechts een inputpatroon tonen. 
+ - De noodzakelijke constructieparameters moeten volgens naam worden ingevoerd.
+ - De naam van het geconstrueerde object kan links van het
+   gelijkheidsteken worden geplaatst.
+ - De constructie wordt uitgevoerd door op de entertoets te drukken.
+
+Er is een vaste syntaxis voor de input.
+
+ name=function(parameter,...) 
+ name1,name2=function(parameter,...)
+
+De tweede regel is van toepassing bij intersecties (sijndingen) en bij macro's
+met verschillende doelvoorwerpen.
+
+Als je geen naam invult, kiest P.e.L. een standaardnaam, zoals bvb. P3, I2,...
+
+Hierna volgt een korte beschrijving van de syntaxis. Merk op dat je
+overal waar een waarde verwacht wordt, een wiskundige uitdrukking kan
+gebruiken. Lege haakjes mag je weglaten. Het verschil tussen hoofdletters
+en kleine letters is belangrijk! Je mag kiezen of je de korte of de lange
+beschrijving gebruikt: A=P() is hetzelfde als A=Punt()
+
+Opmerking: we geven hier de Nederlandse vertalingen van de commando's. Je 
+kan ook steeds de Engelse commando's gebruiken (voor meer info, zie de website
+van de auteur: http://www.renegrothmann.de)
+
+Syntaxis 
+ Lang 
+ Beschrijving 
+ 
+A=P() 
+ Punt 
+ Genereert een punt (met naam 'A') op een willekeurige positie . 
+ 
+A=P(0,1) 
+  Een vast punt. 
+ 
+a=l(B,C) 
+ lijnstuk 
+ Een lijnstuk van B tot C. 
+ 
+a=l(B,2) 
+  Een lijnstuk met een vaste lengte. 
+ 
+a=r(B,C) 
+ rechte 
+ Een rechte door B en C. 
+ 
+a=s(B,C) 
+ straal 
+ Een straal (halfrechte) van B tot C. 
+ 
+c=c(A,B) 
+ cirkel 
+ Een cirkel rond A door B . 
+ 
+c=c(A,2) 
+  Een cirkel met een vaste straal . 
+ 
+c=c(A,B,C) 
+  Een cirkel rond A met straal BC . 
+ 
+A=I(a,b) 
+ intersectie 
+ Intersectie (snijpunt(en)) van twee rechten a en b. 
+ 
+A,B=I(c1,c2) 
+ Beide snijpunten tussen twee voorwerpen (bvb. twee cirkels) . 
+ 
+away(A,P) 
+ away 
+ Houd het snijpunt A weg van het punt P . 
+ 
+M=M(A,B) 
+ Middelpunt
+ Het middelpunt van AB. 
+ 
+g=e(d,A) 
+ evenwijdige 
+ De evenwijdige door A aan d . 
+ 
+g=n(g,A) 
+ loodlijn
+ De loodlijn (normaal) door A op g . 
+ 
+a=h(A,B,C) 
+ hoek 
+ De hoek A,B,C 
+ 
+a=h(A,B,90) 
+  Een hoek met een vaste grootte. 
+ 
+A=V(P1,P2,P3) 
+ veelhoek 
+ Maakt een oppervlakte met deze hoekpunten . 
+
+Q=Kegelsnede(P1,P2,P3,P4,P5)
+ Construeert een kegelsnelde door deze 5 punten.
+
+F=function(a,b,d,t,xt,yt)
+ Creates a function on [a,b] with step size d, plotting xt,yt,
+ which are expressions depending on the variable t.
+
+waarde(P,0,1) 
+ waarde 
+ Maakt het punt vast op de gegeven coördinaten. 
+ 
+waarde(l,2) 
+  Fixeert de lengte van het lijnstuk l . 
+ 
+waarde(c,2) 
+  Zet de straal van cirkel c gelijk aan 2 . 
+ 
+waarde(w,32) 
+  Maakt de hoek w gelijk aan 32 graden . 
+ 
+waarde(true,o) 
+  Zorgt dat de waarde van o getoond wordt . 
+ 
+waarde(o) 
+  snellere schrijfwijze voor het bovenstaande . 
+ 
+waarde(true) (of waarde(vals))
+  Bepaalt de standaardinstelling om waarden al dan niet te tonen . 
+ 
+naam(o,p) 
+ naam 
+ Verandert de naam van o in p . 
+ 
+naam(true,o) 
+  Zorgt ervoor dat de naam van voorwerp o getoond wordt . 
+ 
+naam(o) 
+  Toont de naam van voorwerp o. 
+ 
+naam(waar) 
+  Standaardinstelling om vanaf nu de naam van alle voorwerpen te tonen. 
+ 
+verberg(waar,V) 
+ verberg 
+ Verbergt of toont voorwerp V . 
+ 
+verberg(V) 
+  Verbergt V. 
+ 
+verberg(waar) 
+  Alle voorwerpen worden vanaf nu standaard verborgen getekend. 
+ 
+kleur(groen,V) 
+ kleur 
+ Geef voorwerp V een bepaalde kleur (kies uit rood, groen, bruin, 
+ blauw, zwart). 
+ 
+kleur(groen) 
+  Bepaalt de standaardkleur voor alle volgende voorwerpen. 
+ 
+dikte(dik,V)  
+ dikte 
+ Kies als lijndikte voor voorwerp V dik, normaal of dun. 
+ 
+dikte(dun)
+  Bepaal de standaardlijndikte voor alle volgende voorwerpen. 
+ 
+type(ruit,P)  
+ type 
+ Teken het punt P als een vierkant, ruit, cirkel, punt, kruis, 
+ diagonaal kruis. 
+ 
+type(diagonaal kruis)  
+  Kies het standaard punttype voor alle volgende punten. 
+ 
+gedeeltelijk(V) 
+ gedeeltelijk
+ Toon voorwerp V gedeeltelijk.
+ 
+gedeeltelijk(waar,V) 
+ gedeeltelijk
+ lange versie van het vorige. 
+ 
+gedeeltelijk(waar) 
+  Bepaal de standaardinstelling voor alle volgende voorwerpen. 
+ 
+vul(V) 
+vul(waar,V) 
+ vul 
+ Toon voorwerp V (bvb. cirkel) al dan niet gevuld. 
+ 
+terug(V) 
+terug(waar,V) 
+ achtergrond 
+ Verplaats voorwerp V al dan niet naar de achtergrond. 
+ 
+venster(0,0,5) 
+ venster 
+ Stel het tekenvenster in op breedte 2*5 en centrum (0,0). 
+
+valid(o)
+valid(true,o)
+ Behandel lijnstukken en stralen als rechten bij intersecties
+ en loodlijnen. o is het snijpunt of de loodlijn.
+
+stomp(a)
+stomp(waar,a)
+ Zorgt ervoor dat hoeken groter dan 180 graden kunnen worden.
+
+vast(a)
+vat(waar,a)
+ Maak het voorwerp a niet-doorzichtig.
+
+beperk(c,A,B)
+ Beperk cirkel c tot de boog AB.
+
+valid(o)
+valid(waar,o)
+ Verwijder de beperkingen bij loodlijnen en intersecties.
+ Deze voorwerpen zullen toch geldig zijn, zelfs als het snijpunt
+ buiten het lijnstuk of de boog valt.
+
+
+Je kan ook macro's gebruiken. Namen aan de linkerkant van het 
+gelijkheidsteken worden toegekend aan doelvoorwerpen. Een bijkomende 
+parameter kan je gebruiken om een waarde aan een voorwerp toe te kennen 
+bij het gebruik van interactieve modus. 
+
+.descritivefiles run 
+.related visual save 
+Beschrijvende constructies in bestanden
+
+Je kan beschrijvende constructies van een bestand inladen of eerst
+editeren (met een editor) en dan inladen.
+
+Per lijn komt er één commando. Commentaar start met //
+Het is ook mogelijk om macro's te gebruiken, zoals in onderstaand
+voorbeeld getoond wordt.
+
+macro U 
+ // Construeert een cirkel door drie punten 
+     parameter A=Punt // Selecteer eerste punt 
+     parameter B=Punt // Selecteer tweede punt
+     parameter C=Punt // Selecteer derde punt
+     g1=ML(A,B) // pas macro ML toe (zie onder)
+     g2=ML(A,C)
+     U=Intersectie(g1,g2) 
+     target k=cirkel(U,A) 
+ end
+
+Inspingen hoeft niet (maar maakt de code wel leesbaarder).
+Commentaarlijnen in een macro worden als 'prompt' gebruikt als 
+je de macro interactief gebruikt. Bovenstaande macro roept een andere 
+macro ML (middelloodlijn) op met twee parameters. 
+
+macro ML 
+     param A=Punt 
+     param B=Punt 
+     gedeeltelijk(waar) 
+     k1=cirkel(A,B)
+     k2=cirkel(B,A) 
+     gedeeltelijk(vals) 
+     P1,P2=Intersectie(k1,k2) 
+     target g=rechte(P1,P2) 
+ end
+
+Als een rechte twee voorwerpen construeert, dan moeten de doelen
+apart gedefinieerd worden, zoals bvb:
+ A,B=intersectie(g,k) 
+ target B
+
+Als een macro meer dan een doel heeft, moeten alle doelen een aparte naam
+krijgen:
+ A,B=test(...)
+
+'Prompts' (vragen bij een invulvak) worden gedefinieerd door het
+kernwoord 'prompt' voor de voorwerpnaam te vermelden:
+ k=cirkel(A,5) 
+ prompt k
+
+Hier volgt een voorbeeld van een macro die een lijnstuk als parameter
+gebruikt:
+ macro ML 
+ // Middelloodlijn 
+  A=Punt 
+  B=Punt 
+  parameter s=lijnstuk(A,B)
+  ... 
+ end
+
+
+Als cirkels gebruikt worden als parameters, dan is er een speciale syntax:
+  M=point 
+  parameter circle(M)
+
+Dit soort cirkel kan alleen maar gebruikt worden in parameters.
+
+Het speciale commando "showall" toont alle tussenliggende voorwerpen, 
+anders zullen alleen maar doelen zichtbaar zijn. Het commando 
+"invisible" verbergt alle objecten die geen doelen zijn.
+
+.assignments
+.related save restricted colors comment
+Opgaven
+
+Opgaven (of werkjes) zijn slechts gedeeltelijk weergegeven constructies 
+die de gebruiker moet afwerken. De computer zal alleen maar controleren
+of de geconstrueerde doelobjecten dezelfde zijn, terwijl de constie zelf 
+anders kan zijn. De gebruiker ontvangt een boodschap zodra hij de constructie 
+vervolledigd heeft.
+
+Opgaven worden gegenereerd door het laatste object dat aan de gebruiker 
+getoond wordt te kiezen. Bovendien moeten er doelobjecten zijn.
+De doelobjecten zullen weergegeven worden in een lichte kleur tenzij ze 
+verborgen worden voordat de constructie opgeslagen wordt.
+
+Doelen die je aanduidt terwijl je de SHIFT toets ingedrukt houdt,
+worden niet gecontroleerd.
+
+Om de opgave te testen, kijk je in het menu onder 'speciaal'.
+In tegenstelling tot wat de gebruiker te zien zal krijgen, zal er 
+een volledige set van werktuigen beschikbaar zijn.
+Je kan de beperkte iconenbalk gebruiken om de opdracht op te slaan.
+
+Veelhoeken als doelen moeten worden gedefinieerd via de 
+kleinste set van hoekpunten. Als de gebruiker bij het oplossen 
+aanvullende punten creëert op de zijde van de 
+veelhoeken dan worden deze punten overgeslaan.
+
+.browser
+.related online
+Opstarten van de hulpbrowser
+
+Om de HTML-help in de browser te starten, moet je hem configureren.
+Geef het pad naar de browser in in het dialoogvester. Als dit pad
+spaties bevat, gebruik je dubbele aanhalingstekens.
+
+Voeg bovendien het pad naar het help indexbestand toe. Dit zou al 
+voorgeconfigureerd moeten zijn. Als er geen hulp gevonden wordt, 
+zal de het dialoogvenster de website van Grothmann gebruiken.
+
+Er is een grote keuze aan browsers. Naast de alomgekende Internet
+Explorer zijn er ook modernere en betere browsers zoals Mozilla,
+Firefox, Opera, Safari enz. Standaard kiest het programma voor 
+Explorer op Windows platformen en voor Netscape op andere platformen.
+
+.comment
+.related assignments parameter htmlexport
+Commentaar
+
+Iedere constructie kan een commentaar hebben. De commentaar zal aan de 
+gebruiker getoond worden als hij de constructie laadt. Commentaren 
+kunnen geëxporteerd worden naar HTML.
+
+Opgave hebben een speciaal commentaarvenster. Dit krijgt de gebruiker
+te zien als de opgave ingeladen wordt.
+
+Macro's kunnen ook commentaren hebben. Het is een goed idee om dit
+altijd te doen en deze commentaar steeds zinvol in te vullen.
+
+.fonts 
+.related zoom save 
+Lettertype
+
+Er zijn lettertypes in twee groottes beschikbaar. Lettertypes en 
+punten worden echter met de constructie herschaald. Voor kleine 
+vensters of applets zou dit kunnen leiden tot erg kleine 
+lettertypes en punten. Om dit te voorkomen bestaat er een minimale grootte.
+
+Verder kunnen vette lettertypes globaal gebruikt worden. Deze optie 
+is aangeraden voor grote bitmap files.
+
+
+.save 
+.related assignments parameter descriptivefiles print defaultmacros filedialog 
+Bestanden bewaren en inladen.
+
+Constructies worden in een bestand met XML-formaat bewaard. 
+Deze (tekst)bestanden zijn ook leesbaar voor mensen. Open maar eens
+een gewoon .zir bestand (een constructie) met een gewone editor (bvb.
+notepad). Normale constructies bevatten de extensie “.zir”, 
+terwijl opdrachten de extensie “.job” hebben. Macro’s hebben 
+als extensie “.mcr”.
+
+Constructies kunnen macro’s bevatten. Er is een knop aanwezig 
+om te bepalen of de huidige macro’s moeten opgeslaan worden 
+samen met de constructies. Om de opeenstapeling van macro’s 
+van verschillende constructies te vermijden kan men alle macro’s 
+verwijderen voordat een nieuwe constructie wordt geladen. 
+Ook hiervoor bestaat een optie.
+
+Bestanden kunnen gecomprimeerd worden door een “z” toe te voegen 
+aan hun extensie. Er is geen noodzaak om dit te doen, tenzij om 
+de downloadtijd van het bestand te verkleinen indien het bestand 
+op een server wordt geplaatst.
+
+Er zijn speciale menu-onderdelen om taken, macro’s en 
+beschrijvende constructies te laden in bestanden.
+
+Zie: Bestandsdialoog
+
+
+.filedialog 
+.related save settings 
+Het bestandsdialoogvenster
+
+Het bestandsdialoogvenster ('file dialog') is wat je dagelijks 
+gebruikt als je bestanden op je systeem bewaart of opent.
+
+P.e.L. implementeert een eigen bestandsdialoogvenster omdat 
+de eigen dialoogvensters van Windows en Linux fouten vertoonden 
+wanneer ze gebruikt werden door Java. Als je toch gebruik wilt maken 
+van het normale dialoogvenster van het systeem, kan je via de menukeuze
+Opties->Andere instellingen de optie 'vervang bestandsdialoog van het
+systeem' uitschakelen.
+
+Het bestandsdialoogvenster van P.e.L. gebruikt een historiek voor bestanden, 
+mappen en filters. De mappenhistoriek heeft een speciaal 
+uitrol keuzemenu, en de historiek van het bestands- en zijn 
+patroonvelden worden getoond als je de pijltjes naar boven of onder aanklikt
+met de muis.
+
+De navigatie doorheen de verschillende mappen doe je door te dubbelklikken 
+op een mapnaam in het linker paneel. De “terug” knop opent de vorige mappen. 
+Wanneer je een bestand wilt gebruiken, kan je ofwel dubbelklikken 
+op de naam van het bestand in het rechter paneel, ofwel kan je 
+het bestand selecteren en het daarna gebruiken via de actieknop onderaan.
+
+Je zal wel merken dat het mogelijk is om verschillende 
+bestandspatronen in te geven, gescheiden door spaties. Bestandspatronen 
+beschikken over meerdere zoek-argumenten, een “?” voor één enkele letter 
+en een “*” voor een combinatie van letters.
+
+De knop 'nieuwe map' hieronder creëert een nieuwe map. Vul de naam 
+van de map in in het veld. Bestanden of mappen kunnen met dit dialoogscherm 
+echter niet worden verwijderd.
+
+De “home” knop brengt U naar de “home” map van P.e.L., 
+indien P.e.L. geïnstalleerd is in de “home” map van de gebruiker. 
+De engelse benaming is “Car Files”. Indien dergelijk bestand 
+niet aanwezig is, zal de “home” knop je naar de “home” map 
+van de gebruiker brengen. In Windows is dit “Mijn Documenten” 
+of in het engels “My documents”. In Linux verwijst dit naar je eigen “home” 
+map. Je kan deze map veranderen door de SHIFT-CRTL toetsen  
+in te drukken wanneer je op de “home” knop drukt. De huidige map wordt 
+dan de nieuwe “home” map van P.e.L. Een nieuwe druk met deze toetsen 
+herstelt de oude instellingen.
+
+.print
+.related settings
+Afdrukken en exporteren van constructies
+
+Er bestaan verschillende manieren om je constructies naar andere 
+programma's te exporteren of om ze op een andere wijze extern te bekijken.
+
+Allereerst kan je je constructies afdrukken. Er is een optie waarmee 
+je kan afdrukken op ware grootte, zodat eenheden van 1 
+precies 1 cm zijn.
+
+Bovendien kan je in allerlei grafische en vectoriële bestandstypes 
+exporteren. Voor Word raad ik EPS aan als vectorieel type, en PNG 
+als bitmap. De grootte van deze laatste is aanpasbaar aan grotere 
+formaten dan de huidige vensterafmetingen. Er zal een boodschap komen 
+waarbij je de afmetingen van de bitmap moet bevestigen, of je kan een 
+veelvoud gebruiken van het huidige venster. Wees er attent op dat je 
+misschien beter vette en grote lettertypes gebruikt bij grote afmetingen, 
+en misschien ook dikkere lijnen.
+
+Je kan ook de afmetingen berekenen voor afdrukken van 72 of 300 dpi. 
+Gebruik voor Word 300 dpi en PNG als uitvoer. Word zal de figuur 
+correct schalen, zodat één eenheid 1 cm wordt. Natuurlijk moet je het 
+bladformaat niet overschrijden.
+
+Bij bitmaps zal de huidige achtergrond genomen worden als die optie 
+geactiveerd is bij de speciale instellingen.
+
+.construction
+.related hide reorder
+Lijst van objecten
+
+Je kan een lijst van objecten in je constructie krijgen door gebruik 
+van het corresponderende menu. Deze lijst kan gebruikt worden om 
+onzichtbaare objecten te bewerken. Dat is de enige manier om toegang 
+te krijgen tot volledig verborgen constructiestappen.
+
+De lijnen hebben dezelfde kleuren als de objecten.
+
+
+.colors
+.related htmlexport
+Kleuren instellen
+
+Je kan de verschillende kleuren van P.e.L. naar je wensen aanpassen. 
+Kleuren zullen niet bewaard worden met je constructie, maar worden 
+wel mee geëxporteerd naar HTML.
+
+Kleuren zijn samengesteld in het rood, groen en blauw (RGB) kleurmodel. 
+Schakel voor de beste compatibiliteit terug naar de standaardkleuren.
+
+
+.settings
+.related restricted iconbar tips beginner
+Speciale instellingen
+
+Dit venster bevat enkele instellingen bestemd voor gevorderde gebruikers.
+Desondanks spelen sommige van deze instellingen ook een rol bij de
+beginnersmodus.
+
+Allereerst kan je het weergeven van objectenlabels inschakelen terwijl 
+het object wordt bewogen. Deze optie kan storend zijn, maar in bepaalde gevallen
+kan toch ook wel nuttig zijn .
+
+Vervolgens kan je sommige vragen, die het programma vraagt voor belangrijke 
+acties, in- of uitschakelen.
+
+Als je het dialoogvenster om objecten te kiezen, uitschakelt zal het programma 
+altijd het eerste object selecteren, zelfs als de selectie niet alleen 
+kan bepaald worden door de positie van de muis.
+
+Je kan ook de preview uitschakelen, of beperken tot bepaalde punten. 
+In de beginnersmodus worden enkel punten getoond in de preview, 
+aangezien andere objecten de gebruiker kunnen misleiden.
+
+De icoonbalk kan helemaal onderaan het venster geplaatst worden, 
+en gereedschaptips kunnen uitgeschakeld worden.
+
+Je kan het gewone bestandsdialoogvenster van het systeem gebruiken. 
+Ik verkies het mijne te gebruiken, en het heeft inderdaad zijn voordelen. 
+Maar ik kan geen bestanden verwijderen of van naam veranderen.
+
+Op een trage computeren kan je best anti-aliasing uitschakelen. Deze optie
+zorgt ervoor dat figuren mooier getekend worden, maar dat gaat wel
+ten koste van de snelheid waarmee de computer tekent.
+
+Je kan de UTF-8 codering best altijd gebruiken, maar het is mogelijk 
+om je lokale codering te gebruiken voor constructiebestanden. 
+Dit heeft invloed op de commentaar en beschrijvingen in je bestanden. 
+Gebruik de lokale instellingen alleen als je zelf de constructie 
+wilt bewerken en je geen UTF-8 editor hebt.
+
+Bitmaps worden normaal gemaakt op een witte achtergrond. 
+Je kan het programma jouw achtergrondkleur laten gebruiken.
+
+In de smartboard mode zal je niet gewoon kunnen slepen. 
+Een smartboard kan geen muisbewegingen detecteren, dus worden 
+deze vervangen door te slepen. Je moet één keer meer klikken om 
+de constructie af te maken. Dit is enkel belangrijk voor previews.
+
+.reorder
+.related circle angle expressionsyntax
+Nieuwe volgorde aan punten toekennen
+
+De constructie is als een ketting van objecten. Objecten kunnen 
+enkel afhangen van objecten die hen vooraf gaan. Het is onmogelijk 
+om een uitdrukking te gebruiken die objecten bevat die later worden 
+geconstrueerd. VB.: Je kan de grootte van een vaste hoek enkel geven 
+als A, B en C geconstrueerd zijn voordat de vaste hoek is geconstrueerd.
+
+Het is echter wel mogelijk om de volgorde van de constructie te wijzigen. 
+Hiervoor bestaat een speciaal hulpmiddel, en als je hiermee een object 
+selecteert, zal het programma dit object zo ver mogelijk naar het begin 
+van de constructie verplaatsen.
+
+.tips
+.related online browser start move intersection expression reorder
+Tips
+
+In deze hulpsectie geven we enkele tips om vaak voorkomende problemen 
+op te lossen.
+
+** Ongeldige Constructies **
+Verplaats één van de basispunten om een constructie te testen. 
+Indien de constructie niet geldig blijft, is de reden vaak dat je 
+geen correct snijpunt koos. Je hebt in de plaats daarvan een lijn 
+gedefinieerd die toevallig door het snijpunt gaat.
+
+** Verkeerde Kruising ** 
+Als de constructie ongeldig wordt, als de volgorde van de basispunten 
+wordt veranderd of als één punt aan een andere kant komt te staan, 
+heb je met dit probleem te maken. Als je constructie voor alle 
+situaties geldig moet zijn, zorg er dan voor dat je correcte 
+kruisingen kiest. Als de automatische selectie van P.e.L. niet volstaat, 
+kan je de kruising manueel selecteren. Open zijn eigenschappen en 
+kies "dicht bij" of "weg van". Kies dan een punt dat dichter bij 
+of verder weg van het kruisingspunt zou moeten zijn.
+
+** Object is niet gevonden in Uitdrukkingen **
+In een uitdrukking kan je enkel objecten gebruiken die voor 
+de uitdrukking gedefinieerd zijn. Want anders zou je circulaire 
+afhankelijkheden kunnen doen ontstaan. Om dit te voorkomen kan je 
+de volgorde van de constructie aanpassen met het "herschikkingsgereedschap".
+
+.keyboard
+.related gui delete zoom mouse iconbar
+Het toetsenbord gebruiken
+
+De meeste commando's in P.e.L. hebben sneltoetsen. Kijk in het menu 
+om de sneltoetsen voor elk commando te vinden. Sneltoetsen 
+verschillen afhankelijk van de taal. In de Nederlandse vertaling is de
+sneltoets meestal de eerste letter van het werktuig ('r' voor rechte,
+'h' voor hoek, ...)
+
+Merk op dat je de constructie soms een focus van het toetsenbord 
+zal moeten geven. Hiervoor klik je op een lege plaats met de rechter muisknop.
+
+Handige sneltoetsen zijn de backspace-toets om de laatste actie 
+te verwijderen, de "+" en "-" toetsen om in of uit te zoomen, 
+en de pijltjestoetsen om de constructie te bewegen. 
+Voorts zal F1 de contextgebonden hulp openen.
+
+De ESC toets reset het huidige gereedschap.
+
+Merk op dat de CTRL-toets aangepast gereedschap selecteert van de 
+icoonbalk voor sommige iconen. Daarenboven veranderen 
+de SHIFT- en CTRL-toetsen het gedrag van bepaalde gereedschappen.
+
+De spatiebalk wordt door sommige Java versies gebruikt om 
+knoppen in te drukken. Andere versies gebruiken de RETURN-toets.

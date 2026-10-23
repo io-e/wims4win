@@ -1,0 +1,11 @@
+#! /bin/sh
+#
+# Fixes uid/gid of wrap..exec and ch..root; see the documentation of the two
+# scripts below.
+#
+# Must be run as root.
+#
+cd `dirname $0`/..
+./bin/setwrapexec # mandatory
+./bin/setwimsd    # optional
+./bin/setchroot   # optional

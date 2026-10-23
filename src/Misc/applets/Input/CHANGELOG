@@ -1,0 +1,12 @@
+13/11/2011
+build.xml: test.html will not be copied to "~/public_html/java/test.html" during compilation
+
+12/11/2011
+In order to uniform the build of generally used applets :
+ant's build.xml build creates:
+~/public_html/java/Input/input.jar
+and symlink to ~/public_html/java/input.jar (backward compatibility)
+and copy test.html to ~/public_html/java/test.html
+The Makefile will -also...-- copy the input.jar into ~/public_html/java/Input/input.jar
+
+future applet usage: use "java/Input/input.jar"

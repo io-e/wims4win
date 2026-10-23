@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+use File::Find;
+my ($mdir) = @ARGV;
+my (@FILES) = ();
+sub wanted {
+   if (-f && ! -x) { push(@FILES, $File::Find::name); }
+}
+find(\&wanted, $mdir);
+for (sort @FILES) { s!^$mdir/!!; print "$_\n"; }

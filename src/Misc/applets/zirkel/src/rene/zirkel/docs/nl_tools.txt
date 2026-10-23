@@ -1,0 +1,329 @@
+P.e.L., Werktuigen (Gereedschappen)
+
+	In dit stuk beschrijven we de verschillende werktuigen en opties
+	die je in de werktuigenlijst (icoonbalk) van het programma vindt.
+	Als je trouwens met de muis even over een icoon blijft staan, krijg
+	je een korte beschrijving. Kijk ook eens naar de statusbalk onder-
+	aan het scherm: je krijgt er te zien welke stap het programma
+	van jou verwacht bij het geselecteerde gereedschap.
+	
+	Werktuigen gebruik je om voorwerpen te construeren. De volgende
+	eigenschappen gelden voor alle voorwerpen.
+	
+	Je kan voor deze eigenschappen standaardwaarden kiezen, of je kan
+	zelf waarden ingeven in een dialoogvenster dat bij dit voorwerp
+	hoort.
+
+
+Voorwerpen vastmaken
+
+	Je kan verschillende dingen vast maken. Van een punt kan je de
+	plaats fixeren, van een lijnstuk de lengte, van een cirkel de straal
+	en van een hoek de grootte. Om een voorwerp vast te maken kan je een
+	wiskundige uitdrukking gebruiken. De eenvoudigste wiskundige
+	uitdrukking is natuurlijk een gewoon getal.
+	
+	Om bvb. een lijnstuk met een vaste lengte te tekenen kan je twee
+	dingen doen. Ofwel teken je het lijnstuk en roep je dan het
+	dialoogvenster op (rechtsklikken op het voorwerp; bij Mac: klikken
+	+ 'Appeltje' ingedrukt houden)  om de lengte aan te passen en vast 
+	te maken. Ofwel houd je de 'Shift' toets ingedrukt als je het tweede 
+	punt van het lijnstuk maakt. Het dialoogvenster wordt dan automatisch 
+	geopend. Voor cirkels en hoeken gebeurt iets gelijkaardigs, maar je 
+	krijgt een speciaal soort voorwerp. Meer info vind je wat lager 
+	in deze tekst.
+	
+
+Afhankelijkheden
+
+	Voorwerpen worden achter elkaar in een rij bewaard. Vaak hangen
+	
+	ze af van andere voorwerpen. De ketting van voorwerpen bepaalt
+	welk voorwerp eerst getekend wordt. Om een voorwerp meer naa c vr 
+	voor in de rij te 'duwen' gebruik je in het menu "Acties->
+	Voorwerpen naar achteren verplaatsen". Vanzelfsprekend kan een 
+	voorwerp niet voor een andere voorwerp waarvan het afhangt, geplaatst
+	worden.	
+	Gevulde veelhoeken e.d. kunnen voor de andere voorwerpen getekend
+	worden als de achtergrond 'aan' staat in het instellingen dialoog-
+	venster.
+
+
+Punt
+
+	Je kan met behulp van verschillende werktuigen een punt maken. Het
+	'punt'-werktuig maakt normaal gezien een vrij (beweegbaar) punt aan.
+	Als je echter op een snijding klikt, vraagt het programma je om een
+	snijpunt aan te maken. Snijpunten zijn niet vrij, maar hangen af van
+	de twee snijdende voorwerpen.
+	
+	Je kan punten vast maken. 'Shift' ingedrukt houden zorgt ervoor dat
+	het dialoogvenster automatisch opent. Uitleg over de instellingen in
+	dit dialoogvenster vind je elders.
+	
+
+Rechte - Lijnstuk - Straal - Lijnstukken met vaste lengte
+
+	Deze voorwerpen hangen af van twee punten. Je moet dus twee punten opgeven
+	om ze te construeren. De verschillen tussen rechten, lijnstukken
+	en stralen zijn niet beperkt tot het visuele aspect. Snijdingen en
+	loodlijnen gedragen zich anders voor elk type voorwerp. Zo worden
+	bvb. snijdingen met lijnstukken ongeldig als het snijpunt niet op het
+	lijnstuk ligt. Loodlijnen op lijnstukken worden eveneens ongeldig
+	als het voetpunt van de loodlijn niet op het lijnstuk ligt. Voor
+	loodlijnen kan je dit gedrag echter uitzetten.
+
+	Merk trouwens op dat het 'loodlijn'-, 'vaste hoek'- en "evenwijdige'-
+	werktuig ook rechten genereert.
+	
+	De lengte van een lijnstuk kan vast zijn als het 1 vrij eindpunt heeft.
+	Om een dergelijk lijnstuk te maken hou je de 'Shift' toets ingedrukt
+	bij het selecteren van het tweede punt. Een andere mogelijkheid is het
+	werktuig 'Lijnstuk met een vaste lengte' gebruiken (via het menu of via
+	de iconen). In dit geval wordt het tweede punt steeds aangemaakt als
+	een vast punt.
+	
+
+Cirkel - cirkel m.v.b. drie punten - Cirkel met vaste straal
+
+	Het verschil tussen het 'cirkel'- en het 'Cirkel met straal r en
+	middelpunt M'-werktuig is dat het eerste een cirkel maakt met als
+	middelpunt het beginpunt van de straal. Het tweede werktuig kan
+	ook cirkels maken met een ander middelpunt. Dit werktuig verwacht
+	dat je drie punten ingeeft: twee punten A en B die de straal AB bepalen,
+	en als derde punt het middelpunt M.
+	
+	De grootte (de straal) van de eerste soort cirkel kan vast gemaakt worden
+	als het middelpunt vrij beweegbaar is.
+	
+	De tweede soort cirkel kan eventueel ook met behulp van het gewone
+	'Cirkel'-werktuig gemaakt worden, maar dan moet je wel een hulpconstructie
+	gebruiken.
+		
+	Er is ook een derde soort cirkel die geen punt voor de straal heeft.
+	Dit is vooral bruikbaar als je macro's gebruikt. Om dit soort van cirkel
+	te maken hou je de 'Shift' toets ingedrukt als je het punt om de straal
+	te bepalen definieert. Een alternatief is het speciale icoon gebruiken
+	of via het menu het 'Cirkel met vaste straal'-werktuig selecteren. Je
+	hoeft hier dan geen eindpunt voor de straal op te geven, maar kan een
+	uitdrukking invullen voor de straal in het dialoogvenstertje.
+	
+
+Intersecties (snijdingen)	
+
+	Dit werktuig genereert snijpunten tussen rechten, cirkels en tussen een
+	rechte en een cirkel. Het lijkt een overbodig werktuig. Als je immers
+	een constructie op papier uitvoert, zie je ogenblikkelijk alle snijpunten.
+	Een computerprogramma kan echter niet zo eenvoudig alle snijpunten
+	berekenen. Het maakt echter ook de nodige stappen voor de constructie
+	duidelijker als je expliciet alle benodigde snijpunten moet aanduiden.
+	Een snijpunt wordt ook aangemaakt als het programma verwacht dat je
+	een punt selecteert, maar je in de buurt van een snijpunt klikt. Als het
+	'intersectie'-werktuig geselecteerd is kan je de twee voorwerpen aanduiden
+	waarvan de snijpunten berekend moeten worden. Je kan echter ook klikken
+	op het gewenste snijpunt zonder de snijdende voorwerpen apart te selecteren.
+		
+	Bemerk dat twee cirkels elkaar (meestal) in twee punten snijden. Dit
+	programma maakt beide snijpunten aan. Als je slechts 1 snijpunt wilt,
+	dan kan je eenvoudigweg het andere verbergen. Bij een snijpunt dat
+	automatisch wordt gemaakt, wordt het andere snijpunt niet gemaakt.
+	
+	Een lijnstuk is niet hetzelfde als een rechte: lijnstukken kunnen elkaar
+	enkel snijden tussen de twee eindpunten. Rechten lopen oneindig ver door.
+	
+	Het is wat moeilijker om te begrijpen in welke volgorde de twee
+	snijpunten van cirkels (of van een cirkel en een rechte) worden gemaakt.
+	Deze volgorde wordt -in tegenstelling tot andere meetkundeprogramma's-
+	continu herberekend. Dit wil zeggen dat bvb. voor de snijding van twee
+	cirkels de volgorde van de snijpunten zal veranderen als je de (volgorde
+	van de) cirkels omwisselt. De volgorde van de snijpunten bij de snijding
+	van een rechte met een cirkel hangt af van de richting van de rechte 
+	(de volgorde waarin je de twee punten hebt geselecteerd om de rechte
+	te tekenen). Om dit in te zien kan je bvb. de rechte eens bewegen tot
+	ze de cirkel niet meer snijdt. Als je dan de rechte terug beweegt tot er
+	terug snijpunten zijn, zal de volgorde van de snijpunten ongewijzigd zijn.
+		
+	Soms moet je de volgorde zelf nader bepalen. Dit kan door een van de
+	snijpunten op te leggen dat het moet verschillen van een bepaald
+	ander punt. De snijpunten zullen dan zo geordend worden dat het gekozen
+	snijpunt het verst verwijderd is van het ander punt. Dit is een continue
+	manier om de snijpunten te selecteren. Het dialoogvenster voor
+	intersecties bevat een speciale invoerlijn om het ander punt op te
+	geven.
+	
+	Dit type snijpunten wordt automatisch gegenereerd als het ander snijpunt
+	een punt is op de omtrek van beide cirkels en als het punt zichtbaar is.
+
+
+Evenwijdige - Loodlijn
+
+	Deze werktuigen spreken voor zich. Het resultaat is een rechte.	
+
+	
+Middelpunt
+	
+	Tekent het punt dat in het midden van de twee geselecteerde punten ligt.
+	
+	
+Hoek - Vaste hoek
+
+	Gewone hoeken zijn decoratief en kunnen niet gebruikt worden om iets
+	te construeren. De volgorde waarin je de punten opgeeft is: punt op eerste
+	been (A), hoekpunt (B), punt op tweede been (C).	
+	
+	De tweede soort hoek heeft geen punt C, maar een vaste grootte. Je
+	maakt hem door de 'Shift' toets in te drukken als je klikt voor het punt
+	C of door het speciale werktuig te selecteren (via icoon of via het menu:
+	"Acties->Vaste voorwerpen->Vaste hoek"). Er komt dan een dialoogvenster
+	te voorschijn. Je kan hier dan voor de grootte van de hoek een wiskundige
+	uitdrukking invullen.
+	
+	Hoeken kunnen getoond worden in drie verschillende formaten. Het grootste
+	formaat toont een deel van een cirkel die begint in A.
+	
+	Je kan Griekse letters gebruiken in de naam van een hoek. Om bvb. een
+	alfa te krijgen tik je \a. Rechte hoeken of hoeken waarvan de naam 
+	begint met een "." krijgen een label met een punt, als naamweergave
+	of grootteweergave 'aan' staan (in het menu: "Andere instellingen").
+	Je kan een hoek vullen.
+	
+
+Punt op voorwerp
+
+	Dit is een punt dat op een rechte of een cirkel ligt. Als je de rechte
+	of de cirkel beweegt, beweegt het punt mee op een continue manier. Als
+	het punt vast was, krijg je een projectie van het vaste punt op
+	het voorwerp waarop het punt lag. Je kan een punt op een voorwerp steeds
+	losmaken van dit voorwerp door gebruik te maken van het dialoogvenster`
+	met de eigenschappen van het punt.
+	
+	Punten op een voorwerp zijn niet vrij.	If however, a segment lies with both
+	endpoints on a line, and one of them is a bounded point (to the
+	line), the segment can be fixed (see above about fixed objects).
+
+
+ 
+Beweeg punt
+	
+	Alternatief voor rechtermuisknop (Mac: muis + 'Appeltje' toets)
+	
+	
+Volgen - Automatisch volgen
+
+	Deze belangrijke werktuigen worden gebruikt om meetkundige plaatsen
+	te tekenen.
+	
+	'Volgen' werkt als volgt. Je beweegt een punt en het spoor van een
+	ander punt (waarin je een potlood vastgeklemd hebt) wordt getekend.
+	Het werktuig verwacht dat je eerst het punt met het vastgeklemde 
+	potlood selecteert. Vervolgens kan je een punt bewegen met de 
+	linkermuisknop.	
+	
+	Bij 'Automatisch volgen' beweegt het punt automatisch op een gegeven
+	voorwerp. Als invoer moet je eerst het punt dat gevolgd wordt (met
+	het geklemde potlood), vervolgens het punt dat je zal bewegen en
+	tenslotte het voorwerp waarop dit te bewegen punt ligt, opgeven.
+	Telkens je een ander punt beweegt, wordt de meetkundige plaats
+	herberekend, zodat je kan zien hoe ze afhangt van andere punten.
+	Het volgen is een animatie die blijft lopen tot je ergens in de
+	constructie klikt.
+	
+	Meetkundige plaatsen worden samen met de constructie bewaard. Als
+	ze geanimeerd is wordt ze ook als zodanig bewaard. Als de constructie
+	dan wordt ingeladen wordt ook de (geanimeerde) meetkundige plaats
+	getoond.
+	
+	De meetkundige plaats wordt gewist als er een ander werktuig wordt
+	geselecteerd of als het 'volgen' werktuig opnieuw wordt geselecteerd.
+	
+
+	
+Animatie
+	
+	Laat een punt bewegen op een lijnstuk of een cirkel. Om de animatie
+	te starten selecteer je een punt en vervolgens een opeenvolging
+	van lijnstukken of cirkels. Je eindigt met het opnieuw selecteren
+	van het punt of een van de voorwerpen. Om de animatie te stoppen,
+	klik je ergens op de constructie.
+	
+	Animaties worden meebewaard met het constructiebestand. In applets
+	verhinderen ze elke interactie met de gebruiker.
+
+	
+Wiskundige uitdrukkingen
+
+	Je kan de waarde van een wiskundige uitdrukking in de constructie
+	laten zien. De uitdrukking kan een extra tekstje met uitleg 
+	meekrijgen. De waarde va, de uitdrukking kan al dan niet getoond worden,
+	afhankelijk van de knop. Meer uitleg vind je online.
+	
+
+Gevulde veelhoeken	
+
+	Dit vult de oppervlakte tussen hoeken met een kleur. Je kiest best
+	een lichte kleur als vulkleur. In java 1.3 is de opvulling trans-
+	parant. Om de oppervlakte te bepalen selecteer je de hoeken.
+	De bepaling is volledig als je een van de eerder geselecteerde hoeken
+	opnieuw selecteert. 
+		
+
+Tekst
+	
+	Toont tekst (eventueel meerdere regels) in de constructie
+	
+	
+Macro's oproepen en maken
+	
+	Wordt uitgelegd in "Over macro's".
+	
+	
+Voorwerpen verbergen en tonen
+	
+	Met dit gereedschap verberg je een voorwerp. Je kan het ook gebruiken
+	om een verborgen voorwerp opnieuw zichtbaar te maken, maar dat lukt
+	alleen maar als de optie 'Toon verborgen voorwerpen' geselecteerd is.
+	Een andere manier om een voorwerp selecteren is 'control' ingedrukt
+	houden en op het voorwerp klikken. Als je 'control'-klikt op cirkels
+	en rechten worden ze eerst gedeeltelijk zichtbaar. Een tweede keer 
+	klikken maakt ze volledig onzichtbaar.
+
+	
+Wis laatste voorwerp
+	
+	Verwijdert het laatste zichtbare voorwerp
+	
+
+
+Kleur - punttype - dikte - gedeeltelijk zichtbare cirkels en rechten -
+lijnstukken als vectoren.	
+	
+	Dit zijn standaardwaarden voor nieuwe voorwerpen
+	
+
+Toon voorwerpnamen - voorwerpwaarden - Lange voorwerpnamen	
+	
+	Andere standaardwaarden.
+	
+	
+Toon kleur
+	
+	Laat alleen die voorwerpen zien met de geselecteerde kleur.
+	
+	
+Toon verborgen voorwerpen
+	
+	Bepaalt of verborgen voorwerpen helemaal niet getoond worden of
+	met een lichtgrijs lijntje (zodat je ze terug kan tonen met behulp
+	van het 'verberg'-werktuig)
+	
+	
+Raster
+	
+	Zet het raster aan of uit. Als het raster aan staat zullen nieuwe
+	punten of punten die bewogen worden met de rechtermuisknop naar
+	de rasterpunten springen.
+	
+	
+Commentaar, beschrijving
+	
+	Toont de commentaar of -met gebruik van 'shift' toets- de opgavetekst.

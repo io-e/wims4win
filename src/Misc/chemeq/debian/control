@@ -1,0 +1,21 @@
+Source: chemeq
+Section: tex
+Priority: optional
+Maintainer: Georges Khaznadar <georgesk@ofset.org>
+Build-Depends: flex (>= 2.5.31-1), bison, debhelper (>= 4.0.0)
+Standards-Version: 3.7.2
+
+Package: chemeq
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: tetex-bin, wims
+Description: Parser for chemical formula and equilibria
+ chemeq is a basic standalone filter written in C language,
+ flex and bison. It inputs strings like:
+  2H2 + O2 ---> 2 H2O
+ then it outputs LaTeX code and messages about the equilibrium of a
+ chemical reaction.
+ .
+  example:~/src$ echo "2H2 + O2 ---> 2 H2O" | chemeq -lc
+  2\,H_{2}\,+\,O_{2}\,\rightarrow\,2\,H_{2}O
+  OK

@@ -1,0 +1,244 @@
+#! /bin/sh
+#
+# Update modules from download host
+
+if [ -z "$w_wims_session" ] && [ -z "$scripttest" ]; then
+  echo "This is a script for automatic execution."
+  echo "Please don't run it by hand."
+  exit
+fi
+
+############ Subroutines #########################
+
+singlespace() {
+  echo "$@" | tr '[:blank:],"' '   ' | tr -s ' ' | \
+  sed 's/^ //;s/ $//' | tr ' ' '|'
+}
+
+defaults() {
+  grep '^DF_.*=' public_html/bases/sys/defaults.conf | grep -v '"' | sed 's/^DF_//;s/=/="/;s/$/"/' >tmp/def1
+  grep '=' log/wims.conf | grep -v '"' | sed 's/=/="/;s/$/"/' >>tmp/def1
+  echo "$w_mu_add" >>tmp/def1
+  grep -v '^PATH' tmp/def1 >tmp/def2
+  hostname=`awk -F'=' '$1=="site_hostname" {print $2; exit}' $wims_home/log/wims.conf`
+  if [ -z $hostname ]; then
+    hostname=`hostname`
+  fi
+  . tmp/def2
+  rm -f tmp/def?
+}
+
+translate() {
+  if [ -z "$1" ]; then echo ".*"; return; fi
+  export wims_exec_parm w_dictionary w_translator_unknown w_translator_switch
+  wims_exec_parm=`echo "$@" | tr ',;"' '   '`
+  w_dictionary=public_html/bases/sys/zonedic
+  w_translator_unknown=leave
+  w_translator_switch=
+  wims_exec_parm=`public_html/bin/translator`
+  public_html/bin/translator | tr ' ' '\n' | sort | uniq | tr '\n' ' '
+}
+
+installone() {
+  tgz=`echo $1 | cut -d, -f1`
+  mod=`echo $tgz | cut -d/ -f2`
+  addr=`echo $mod | tr \~ /`
+  dir=`dirname $addr`
+  mname=`echo $addr | awk -F/ '{print $NF}'`
+  wims_exec_parm=$mu_site/$tgz.tgz
+  msg="$2 $addr"
+  public_html/bin/webget >download/modules/$mod.tgz 2>/dev/null
+  tar -Cdownload/modules -xzf download/modules/$mod.tgz 2>/dev/null
+  if [ ! -f download/modules/$mname/INDEX ]; then
+    echo "$msg: Download failed."
+  else
+    rm -fR $installdir/$addr
+    mkdir -p $installdir/$dir
+    mv -f download/modules/$mname $installdir/$dir
+    find $installdir/$addr ! \( -type f -o -type d \) -exec rm -fR '{}' \;
+    find $installdir/$addr -type f -exec chmod a-x '{}' \;
+    find $installdir/$addr -name .DS_Store -exec rm -f '{}' \;
+    chmod -R og-w $installdir/$addr
+    vtest=`awk -F= 'NF == 2 && $1 ~ /^version[ \t]*$/ {print $2}' $installdir/$addr/INDEX 2>/dev/null`
+    if [ -n "$vtest" ]; then
+      echo "$msg:  Successful."
+      echo $addr >>$wims_home/log/modupdate
+      echo "$today: $addr $vtest" >>$wims_home/public_html/modules/Changelog.$3
+      find $wims_home/public_html/w/instex -path "*$addr*" -name '*.gif' -exec rm -f '{}' \;
+    else
+      echo "$msg:  Install failed."
+    fi
+  fi
+  rm -fR download/modules/*
+}
+
+############ Main work ###########################
+
+# These are for testing purposes
+#indexfile=index.test
+#installdir=testing/modules
+
+indexfile=index.gz
+installdir=public_html/modules
+
+if [ -z "$wims_home" ]; then
+  cd `dirname $0`/..
+  wims_home=`pwd`
+else
+  cd $wims_home
+fi
+today=`date '+%Y%m%d'`
+wday=`date '+%w'`
+defaults
+
+if [ -z "$mu_delay" ]; then mu_delay=0; fi
+if [ -z "$mu_auto" ] || [ "$mu_auto" = "none" ]; then exit; fi
+if [ $mu_delay -gt 7 ] && [ "$wday" != "0" ] && [ -z "$w_wims_session" ]; then exit; fi
+
+export wims_exec_parm
+bases=public_html/bases
+site=$bases/site
+sys=$bases/sys
+tmpdir=tmp/log
+outfile=$tmpdir/modupdate.out
+rm -f $outfile
+if [ -z "$w_wims_version" ]; then
+  w_wims_version=`cd public_html; ./wims version`
+fi
+site_languages=`singlespace "$site_languages" | tr ' ' '|'`
+
+mu_download_site=`echo "$mu_download_site" | tr ',' ' '`;
+for depot in $mu_download_site; do
+  mu_site=`awk -F'=' '$1=="mu_site" {print $2;exit}' $sys/publishcenter/$depot`;
+
+wims_exec_parm=$mu_site/$indexfile
+zone=`translate $mu_zone`
+cat=`translate $mu_cat`
+zone=`singlespace "$zone"`
+cat=`singlespace "$cat"`
+start=`date -d "$mu_delay days ago" '+%Y%m%d' 2>/dev/null`
+if [ -n "$start" ]; then
+  start="&& substr(\$1,1,8) <= $start"
+fi
+wva=`echo $w_wims_version | tr -d '[0-9.]'`
+wv1=`echo $w_wims_version | tr -d '[a-zA-Z]'`
+
+public_html/bin/webget 2>/dev/null >$tmpdir/index.gz
+gunzip -f $tmpdir/index.gz
+egrep -v '(\~)|(\.\.)|(\<adm/)|(\<home)|(\<template/)|(\<devel/)|(\<com/)' $tmpdir/index | \
+  awk 'NF==6 && ($5 < "'$wv1'" || ($5 == "'$wv1'" && substr($1,18) <= "'$wva'" )) '"$start"' {print $2" "$4" "$6" "$3" "$5}' | \
+  sort -r -k3,5 | \
+  awk 'BEGIN {a1=a2=a3=a4=a5="";};
+       $3 !~ /^('$zone')\/('$cat')\// {next};
+       a3 == $3 && (a4 < $4 || (a4 == $4 && a5 < $5)) {
+    a1=$1; a2=$2; a4=$4; a5=$5};
+       a3 != $3 {if(a1 != "" ) {print a1" "a2" "a3" "a4" "a5};
+    a1=$1; a2=$2; a3=$3; a4=$4; a5=$5;}
+       END {if(a1 != "") print a1" "a2" "a3" "a4" "a5}' | \
+  egrep '^('$site_languages')' | \
+  awk '{print $3" "$4" "$2" "$5}' | sort >$tmpdir/published
+mv -f $tmpdir/index $tmpdir/index.bak
+
+join -t: -11 -21 $site/addr $site/version | \
+  awk -F: '{print $2" "$3}' | sort >$tmpdir/existing
+tmp=`cat $site/deprecated_modules`
+echo "$tmp" >>$tmpdir/existing
+cat $tmpdir/existing | sort >$tmpdir/existing2
+mv $tmpdir/existing2 $tmpdir/existing
+
+if [ -f $wims_home/log/modupdate ]; then
+ sort <$wims_home/log/modupdate >$tmpdir/recent
+ join -v2 -11 -21 $tmpdir/recent $tmpdir/published >$tmpdir/published2
+else
+ mv $tmpdir/published $tmpdir/published2
+fi
+mix=`join -a2 -11 -21 $tmpdir/existing $tmpdir/published2`
+new=`echo "$mix" | awk -v center="$depot" 'NF==4 {print $4"@"$1","$2","$3","center}' | tr '@/' '/~' | head -100`
+modif=`echo "$mix" | awk -v center="$depot" 'NF==5 && $3>$2 {print $5"@"$1","$3","$4","center}' | tr '@/' '/~' | head -100`
+
+rm -fR download/modules
+mkdir -p download/modules
+
+
+if [ -n "$modif" ]; then
+ modif1=`echo "Modules updated in the publication :
+$modif"`
+fi
+if [ -n "$new" ]; then
+ new1=`echo "Modules added to the publication :
+$new"`
+fi
+
+if [ -n "$new1" ]; then
+ tot="$modif1
+
+$new1"
+else
+ tot="$modif1"
+fi
+
+case "$mu_auto" in
+ check)
+  if [ -z "$tot" ]; then exit; fi
+  echo "
+WIMS server on $hostname: checking new modules from
+publication center $mu_site (no real update is done).
+
+$tot" >>$outfile
+ ;;
+
+ install)
+  if [ -n "$new" ]; then
+   echo "
+WIMS server on $hostname: installing new modules from $mu_site.
+" >>$outfile
+   for l in $new; do installone $l Install new >>$outfile; done
+   [ -d /wsys ] && touch /wsys/wims/timestamp
+  fi
+ ;;
+
+ update)
+  if [ -n "$modif" ]; then
+   echo "
+WIMS server on $hostname: updating existing modules from $mu_site.
+" >>$outfile
+   for l in $modif; do installone $l Update modif >>$outfile; done
+   [ -d /wsys ] && touch /wsys/wims/timestamp
+  fi
+ ;;
+
+ all)
+  modd=
+  if [ -n "$new" ]; then
+   echo "
+WIMS server on $hostname: installing new modules from $mu_site.
+" >>$outfile
+   for l in $new; do installone $l Install new >>$outfile; done
+   modd=yes
+  fi
+  if [ -n "$modif" ]; then
+   echo "
+WIMS server on $hostname: updating existing modules from $mu_site.
+" >>$outfile
+   for l in $modif; do installone $l Update modif >>$outfile; done
+   modd=yes
+  fi
+  [ -n "$modd" ] && [ -d /wsys ] && touch /wsys/wims/timestamp
+ ;;
+
+esac
+
+done;
+
+
+if [ -s "$outfile" ]; then
+ if [ "$1" = "mail" ]; then
+  cat $outfile | mail $w_mail_opt -s "WIMS module update result" $site_manager
+  echo "$today modupdate to $site_manager" >>$wims_home/log/mail.log
+  mkdir -p $wims_home/public_html/rss
+  perl bin/rss.pl --wims="http://$hostname/wims" --file=public_html/modules/Changelog --out=public_html/rss --type=new
+  perl bin/rss.pl --wims="http://$hostname/wims" --file=public_html/modules/Changelog --out=public_html/rss --type=modif
+ else
+  cat $outfile
+ fi
+fi

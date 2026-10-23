@@ -1,0 +1,39 @@
+        -------------------------------------------
+                     Units-filter V0.9   
+        -------------------------------------------
+                              (c)2000 G. Khaznadar
+                  <georgesk@boltz.univ-littoral.fr>
+        -------------------------------------------
+
+Units-filter is a basic standalone filter written in C language,
+flex and bison. It inputs strings like "1.5e3 µN.m.s^-1" (it could
+be the time growth ratio of a torque) and outputs the value in
+standard SI unit, followed by the physical dimension of this value.
+
+example :~/src$ echo 1.5e3 µN.m.s^-1 | units-filter
+0.0015   2   1  -3   0   0   0   0
+example :~/src$
+
+                                2     -3
+which means : 0.0015 (SI unit) m .kg.s
+
+When the input is not successfully parsed, the filter fails with
+the exit code 1.
+
+This filter can be embedded in educational test systems, in order to
+analyze a student's answer to a problem of physics or chemistry.
+
+This software snippet is GPL, see the file COPYING.
+
+Feedback is welcome.
+
+--
+Georges.
+
+-----------------------------------------------------------
+			INSTALLATION
+-----------------------------------------------------------
+inside the src/ subdirectory, run "make".
+You can try the script units-test to see some typical inputs and
+outputs. 
+

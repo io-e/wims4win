@@ -1,0 +1,35 @@
+# @configure_input@
+
+wims_home=../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+ranlib=@RANLIB@
+defines=@DEFINES@
+SETENV_OBJS=@SETENV_OBJS@
+O=dir.o evalue.o levelcurve.o liblines.o math.o text.o mt19937ar.o libwims.o
+H=libwims.h ../config.h ../includes.h ../wimsdef.h
+
+all: libwims.a
+
+static: libwims.a
+
+%.o: %.c $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+libwims.a: $(O) $(SETENV_OBJS)
+	ar rc $@ $(O) $(SETENV_OBJS)
+	$(ranlib) $@
+	cp $@ $(wims_home)/lib
+
+clean::
+	rm -f libwims.so libwims.a *.o 2>/dev/null
+
+distclean::
+	rm -f libwims.so libwims.a libwims.o 2>/dev/null
+	rm -f Makefile
+	cd $(wims_home)/lib; rm -f libwims* 2>/dev/null
+
+

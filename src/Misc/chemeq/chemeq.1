@@ -1,0 +1,210 @@
+'\" t
+.\"     Title: CHEMEQ
+.\"    Author: Georges Khaznadar <georgesk@debian.org>
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 06/19/2013
+.\"    Manual: User Manuals
+.\"    Source: chemeq 2.10
+.\"  Language: English
+.\"
+.TH "CHEMEQ" "1" "06/19/2013" "chemeq 2.10" "User Manuals"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+chemeq \- Chemical Equation Parser and Renderer
+.SH "SYNOPSIS"
+.HP \w'\fBchemeq\fR\ 'u
+\fBchemeq\fR [\fB\-M\fR] [\fB\-m\fR] [\fB\-l\fR] [\fB\-c\fR] [\fB\-w\fR] [\fB\-C\fR] [\fB\-e\fR] [\fB\-s\fR] [\fB\-n\fR] [\fB\-W\fR]
+.HP \w'\fBchemeq\fR\ 'u
+\fBchemeq\fR [\fB\-h\fR] [\fB\-v\fR]
+.SH "DESCRIPTION"
+.PP
+\fBchemeq\fR
+is a chemical equation analyzer\&. It is a fast lexical and syntaxic analyser which helps to find out chemical informations embedded in source chemical equations\&. Data can be output in various sophisticated formats, depending on options\&. \*(Aqchemeq\*(Aq defaults to \*(Aqchemeq \-mlcwCn\*(Aq\&.
+.SH "OPTIONS"
+.PP
+\fB\-M\fR
+.RS 4
+Outputs al list of space separated molecular weights\&.
+.RE
+.PP
+\fB\-m\fR
+.RS 4
+Outputs a
+\fBm\fRinimal output\&. It allows chemeq to be idempotent, i\&.e\&. the command \*(Aqchemeq | chemeq\*(Aq is equivalent to \*(Aqchemeq\*(Aq\&.
+.RE
+.PP
+\fB\-l\fR
+.RS 4
+Outputs a
+\fBL\fRaTeX string representing the chemical equation\&.
+.RE
+.PP
+\fB\-c\fR
+.RS 4
+Outputs a message giving informations about the Conservation of elements and charges in the equation\&. \*(AqOK\*(Aq means that both elements and electric charges are balanced\&.
+.RE
+.PP
+\fB\-w\fR
+.RS 4
+Outputs the LaTeX string representing the Gulder\-\fBW\fRaage equation related to the input chemical equation, or the Nernst equation, if the input equation is a redox semi\-equation\&.
+.RE
+.PP
+\fB\-C\fR
+.RS 4
+Outputs a detailed
+\fBC\fRount of the molecules and atoms contained in each member of the chemical equation\&. For example for the equation "H2_g + 1/2 O2_g \-\-> H2O" it outputs: "H2_g|H:1*2, 1/2 O2_g|O:1/2*2; H2O|H:1*2 O:1*1"
+.RE
+.PP
+\fB\-e\fR
+.RS 4
+Outputs a detailed count of the
+\fBE\fRlectrical charges\&.
+.RE
+.PP
+\fB\-s\fR
+.RS 4
+Outputs a list of the chemical
+\fBS\fRpecies\&.
+.RE
+.PP
+\fB\-n\fR
+.RS 4
+Outputs a
+\fBN\fRormalized string accounting for the input equation\&. Two chemical equations having the same normalized string are chemically equivalent, even if the molecules are scrambled around and the coefficient are not equal but proportionnal\&.
+.RE
+.PP
+\fB\-W\fR
+.RS 4
+Changes the behavior of the renderer for some versions of
+\fBW\fRims : works around a bug whith the macro \erightarrow\&.
+.RE
+.PP
+\fB\-h\fR
+.RS 4
+Displays
+\fBH\fRelp\&.
+.RE
+.PP
+\fB\-v\fR
+.RS 4
+Displays the
+\fBV\fRersion number
+.RE
+.SH "ENVIRONMENT"
+.PP
+\fBchemeq_input\fR, \fBw_chemeq_input\fR
+.RS 4
+if set, this variables\*(Aqs value overrides the standard input\&. If this variable is not set, the variable w_chemeq_input is taken in account (useful for the WIMS server)\&.
+See above (useful for the WIMS server)\&.
+.RE
+.PP
+\fBchemeq_option\fR
+.RS 4
+if set, this variable\*(Aqs value overrides the options\&.If this variable is not set, the variable w_chemeq_option is taken in account (useful for the WIMS server)\&.
+.RE
+.PP
+\fBw_chemeq_option\fR
+.RS 4
+See above (useful for the WIMS server)\&.
+.RE
+.SH "EXAMPLES"
+.PP
+\fBecho "1/2 Cu^2+ + OH\- \-> 1/2Cu(OH)2s" | chemeq\fR
+.RS 4
+will display informations about the reaction of hydroxyde and Cu II ions\&.
+.RE
+.PP
+\fBecho "MnO4^\- + 8H3O^+ + 5e\- \-\-> Mn^2+ + 12 H2O" | chemeq\fR
+.RS 4
+will display informations about the reaction of reduction of permanganate ions in an acid environment\&.
+.RE
+.PP
+\fBecho "MnO4^\- + 8H3O^+ + 5e\- \-\-> Mn^2+ + 12 H2O" | chemeq \-w\fR
+.RS 4
+will display the LaTeX format for the Nernst law related to the reduction of permanganate ions in an acid environment\&.
+.RE
+.PP
+\fBecho "MnO4^\- + 8H3O^+ + 5e\- \-\-> Mn^2+ + 8 H2O" | chemeq \-c\fR
+.RS 4
+will highlight the lack of conservation of elements H and O (water molecules are not well balanced)\&.
+.RE
+.SH "NOTES"
+.PP
+\fBsyntax of ions\fR
+.RS 4
+allthough in some cases, shorter expressions are sucessfully parsed, it is safer to consider that an "up arrow" (^) must be put before the charge symbols of an ion\&. Examples : H3O^+, Fe(CN)6^4\-, OH^\-
+.RE
+.PP
+\fBComposing chemical equations\fR
+.RS 4
+Two operators are defined, # as an additive oprator and ~ (tilde) as a substractive operator: they allow to compose several chemical equations
+.sp
+\fB echo "MnO4^\- + 8H3O^+ + 5e\- \-\-> Mn^2+ + 8 H2O ~ 5Fe^3+ + 5e\- \-> 5Fe^2+" | chemeq\fR
+.sp
+will display the pure redox equation from the first equation, minus the second one\&. Electrons are simplified\&. So it will be equivalent to:
+.sp
+\fB echo "MnO4^\- + 8H3O^+ + 5Fe^2+\-\-> Mn^2+ + 8 H2O + 5Fe^3+" | chemeq \fR
+which is their combination\&.
+.RE
+.PP
+\fBMutiplying a chemical equation by one coefficient\fR
+.RS 4
+The operator * permits to multiply a whole equation by one coefficient which may be a fraction\&. Here is an example:
+.sp
+\fB echo "5 * Fe^3+ + e\- \-> Fe^2+" | chemeq \fR
+.sp
+will be equivalent to
+.sp
+\fB echo "5Fe^3+ + 5e\- \-> 5Fe^2+" | chemeq\fR
+.RE
+.PP
+\fBCombining chemical equations, with coefficients\fR
+.RS 4
+The two previous techniques can be used at the same time, which enables you to make more comlicated combinations, like this one:
+.sp
+\fB echo "Fe^3+ + e^\- \-> Fe^2+ (0\&.77 V) # Fe^2+ + 6CN^\- \-> Fe(CN)6^4\- (Kfa=1e24) ~ Fe^3+ + 6CN^\- \-> Fe(CN)6^3\- (Kfb=1e31)" | chemeq \fR
+.sp
+which will work as expected, and yeld a good value for the stan\(hy dard potential of the redox couple of hexacyanoferrate II and III ions\&.
+.RE
+.SH "KNOWN BUGS"
+.PP
+When not specified, chemical entities coming from the standard input are believed to be in aqueous solutions\&. Water is considered by default as the main solvent\&. Only one liquid (aqueous) phase is currently taken in account\&. All solid chemical entities are considered as parts of separated phases\&. Suffixes _s, _g and _aq can be used to enforce the type of some chemical entities\&. There may be problemes when you write a standard potential with no decimal dot\&. For example, the entry
+\fBMn^2+ + 2e^\- \-> Mn_s (\-1 V)\fR
+would trigger an error\&. Then write
+\fBMn^2+ + 2e^\- \-> Mn_s (\-1\&.0 V)\fR
+or the more accurate value
+\fBMn^2+ + 2e^\- \-> Mn_s (\-1\&.18 V)\fR
+and there will be no error\&.
+.SH "AUTHOR"
+.PP
+\fBGeorges Khaznadar\fR <\&georgesk@debian\&.org\&>
+.RS 4
+Wrote this manpage\&.
+.RE
+.SH "COPYRIGHT"
+.br
+Copyright \(co 2000-2013 Georges Khaznadar
+.br
+.PP
+Redistribution and use of this manpage in source and binary forms, with or without modification, are permitted under the terms of the GNU General Public Licenses, version 2
+.PP
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED\&. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE\&.
+.sp

@@ -1,0 +1,78 @@
+##############
+séparer make  and  make install. Cela réduirait le temps d'indisponibilité du serveur 
+##############
+Les valeurs des variables threshold1 et threshold2 sont calculées actuellement pour 
+un seul processeur. Ce qui explique que pour des machines ayant beaucoup de processeurs,
+il faille l'augmenter considérablement sous peine d'avoir un message d'erreur.   
+Il serait peut-être nécessaire de changer ce calcul soit en demandant le nombre de processeurs,
+soit en le calculant au moment de la compilation. 
+#############
+Class supervisor: unlock exam access control
+
+Function calculator: definite integral broken for oscillating functions.
+Translator incompatibility with dictionaries with accents.
+
+Add module_option and option "securereply".
+race condition in wimslogd updating.
+
+Gateway: write to teachers.
+Gateway moduser: userlist in other classes not updated.
+Quota for nested classes.
+module publication search.
+Gateway: forum management.
+
+special log for directexec.
+Independence des feuilles d'examen.
+Trouble with javascript animation replay?
+Add sheet exercise renewal limitations.
+csv down/upload in gateway: supervise and participate, add/remove superclass.
+
+Publish: block same title publication.
+An ordinary site with good titles for search engines.
+
+Add command !logline, to append a line to a file in log.
+Gateway: score collect
+Gateway: installation by file (specific designs only)
+adm/class/userlist: var.avg should be moved into wimslogd.
+sheet data cached in wimslogd: 8K buffer per sheet, 32 sheets. 256K.
+
+popup is not working for module documents: should move popup module to scripts.
+uniformize header.
+a softer anti-back-button policy, with an adm module.
+batch colored instex.
+instex cache not working.
+use html 4.01 fonts.
+
+Modtool: help on domains.
+Disable general rafale? In particular backups.
+Deductio: multiplication by 0 and equivalence in ineq.
+
+Good replies not shown in coord.
+conditional execution in flydraw.
+Insertion of TeX in flydraw.
+
+Forum: email interface.
+rpm: must test old wims group and group compatibility.
+utf-8 adaptation.
+Recover deleted files in Modtool.
+
+languages: lisp, scheme.
+Method to kill/stop browser history list?
+Class: Recover/cover scores during selected period. Risky! No.
+But one can selectively erase activities for a particular student.
+
+Certificate sheets. WIMS certificate system.
+
+instex/insdraw: do not repeat identical generations (transmission cost).
+
+Mathml support
+
+Exo in worksheet: next exercise.
+bouton javascript pour tourner les images.
+
+# Optimizations:
+quadratic algorithm in !item of.
+Interfaces: replace indefinite waiting for stdin by timeout.
+
+#I18N support: 
+using GNU gettext, using UTF-8 encoding.

@@ -1,0 +1,130 @@
+<html>
+<head></head>
+    <body>
+	Data processed via a function)<p>
+	Using the "ptolemy.plot.HistogramApplet" from the Plot.jar
+	<p>
+	<applet width = "640" height = "480" codebase=".." archive="Plot.jar" code="ptolemy.plot.HistogramApplet"> 
+	    <param name = "progressbar" value = "true">
+            <param name = "scriptable" value = "false">
+	    <param name = "background" value = "#ffffff"> 
+	    <param name = "name" value = "PlotApplet">
+	    <param name = "function" value="cos(x)">
+	    <param name="xlabel" value="x-as label">                                                                                       
+            <param name="ylabel" value="y-as label">                                                                                       
+            <param name="grid" value="on">                                                                                                 
+            <param name="color" value="on">                                                                                                
+            <param name="xmin" value="-10">                                                                                                  
+            <param name="xmax" value="10">                                                                                                  
+            <param name="ymax" value="">                                                                                                  
+            <param name="ymin" value="">                                                                                                 
+            <param name="color" value="on">                                                                                                
+            <param name="smooth" value="0">
+	    <param name="bargraph" value="0.7,0.15"> 
+	    <param name="binwidth" value="0.1">
+	    <param name="binoffset" value="0.1">                                                                                            
+            <param name="function" value="3*sin(4*x),cos(2*x)">                                                
+            <param name="names" value="curve 1,curve 2,curve 3">                          
+            <param name="plotsteps" value="100"> 
+	</applet> 
+	<p>
+
+	 A histogram plotter<br>  The plot can be configured and data can
+ be provided either through a file with commands or through direct
+ invocation of the public methods of the class<br>  To read a file or a
+ URL, use the read() method<br>
+ <p>
+ When calling the public methods, in most cases the changes will not
+ be visible until paint() has been called<br>  To request that this
+ be done, call repaint()<br>  One exception is addPoint(), which
+ makes the affect of the new point visible immediately (or nearly
+ immediately) if the plot is visible on the screen<br>
+ <p>
+ The ASCII format for the file file contains any number commands,
+ one per line<br>  Unrecognized commands and commands with syntax
+ errors are ignored<br>  Comments are denoted by a line starting with a
+ pound sign "#"<br>  The recognized commands include those supported by
+ the base class, plus a few more<br>  The commands are case
+ insensitive, but are usually capitalized<br>  The number of data sets
+ to be plotted does not need to be specified<br>  Data sets are added as needed<br>
+ Each dataset is identified with a color (see the base class)<br>
+ <P>
+ The appearance of the histogram can be altered by the following commands:
+ <pre>
+ Bars: <i>width</i>
+ Bars: <i>width, offset</i>
+ </pre>
+ The <i>width</i> is a real number specifying the width of the bars
+ as a fraction of the bin width<br>  It usually has a value less than
+ or equal to one,
+ and defaults to 0<br>5<br>  The <i>offset</i> is a real number
+ specifying how much the bar of the <i>i </i><sup>th</sup> data set
+ is offset from the previous one<br>  This allows bars to "peek out"
+ from behind the ones in front<br>  It defaults to 0<br>15<br>
+ Note that the frontmost data set will be the first one<br>
+ <p>
+ The width of each bin of the histogram can be specified using:
+ <pre>
+ BinWidth: <i>width</i>
+ </pre>
+ This is given in whatever units the data has<br>
+ By default, each bin is centered at <i>x</i> = <i>nw</i>,
+ where <i>w</i> is the width of the bin and <i>n</i> is an integer<br>
+ That bin represents values in the range (<i>x - w/2, x + w/2</i>)<br>
+ The alignment of the bins can be changed with the following command:
+ <pre>
+ BinOffset: <i>offset</i>
+ </pre>
+ If this method is used with argument <i>o</i>, then each bin is
+ centered at <i>x = nw + o</i>, and represents values in the range
+ (<i>x - w/2 + o, x + w/2 + o</i>)<br>  So for example, if <i>o = w/2</i>,
+ then each bin represents values from <i>nw</i> to
+ (<i>n</i> + 1)<i>w</i> for some integer <i>n</i><br>
+ The default offset is 0<br>5, half the default bin width<br>
+ <p>
+ To specify data to be plotted, start a data set with the following command:
+ <pre>
+ DataSet: <i>string</i>
+ </pre>
+ Here, <i>string</i> is a label that will appear in the legend<br>
+ It is not necessary to enclose the string in quotation marks<br>
+ To start a new dataset without giving it a name, use:
+ <pre>
+ DataSet:
+ </pre>
+ In this case, no item will appear in the legend<br>
+ New datasets are plotted <i>behind</i> the previous ones<br>
+ The data itself is given by a sequence of numbers, one per line<br>
+ The numbers are specified as
+ strings that can be parsed by the Double parser in Java<br>
+ It is also possible to specify the numbers using all the formats
+ accepted by the Plot class, so that the same data may be plotted by
+ both classes<br>  The <i>x</i> data is ignored, and only the <i>y</i>
+ data is used to calculate the histogram<br>
+
+    </body>
+    
+</html>
+
+<!--
+<param name="background" value="hexcolor value">
+<param name="foreground" value="hexcolor value">
+<param name="dataurl" value="url">
+<param name="height" value="integer">
+<param name="width" value="integer">
+<param name="function" value="String1,String2,String3...">
+<param name="smooth" value="0/1"">
+<param name="names" value="names function1,name function2 ... or left blank ">
+<param name="xmin" value="minimum x-value or left blank for auto detection"> 
+<param name="xmax" value="maximum x-value or left blank for auto detection"> 
+<param name="ymin" value="minimum y-value or left blank for auto detection"> 
+<param name="ymax" value="maximum y-value or left blank for auto detection"> 
+<param name="xlog" value="x-axis is log-scale: 0 or 1: default 0">
+<param name="ylog" value="y-axis is log-scale: 0 or 1: default 0"> 
+<param name="color" value="0 or 1 :default 1">
+<param name="xtics" value=" zero 0, one 1, two 2, pi 3.1428, four "jan 2008", five 5.... or left blank ">
+<param name="ytics" value="thing1 0, thing2 1, thing3 2, three 3, four 4, five 5...or left blank ">
+<param name="xlabel" value="label of the x-axis: default x-axis"> 
+<param name="ylabel" value="label of the y-axis: default y-axis" >
+<param name="title" value="title of the plot" >
+-->

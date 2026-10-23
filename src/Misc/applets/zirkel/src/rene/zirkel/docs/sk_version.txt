@@ -1,0 +1,19 @@
+Vítajte v C.a.R.!
+
+Domácu stránku C.a.R. a aktuálnu emailovú adresu autora programu nájdete na 
+
+http://www.z-u-l.de/
+
+Domáca stránka C.a.R. tiež obsahuje históriu verzií, ktorá dokumentuje 
+zmeny v programe.
+
+Na Yahoo groups existuje fórum venované programu. Odkaz nájdete 
+v dokumentácii. Naviac jestvuje používatelské Wiki s množstvom 
+informácií a správ o C.a.R.
+
+Dakujem za používanie tohto programu! Program možno volne používat 
+a šírit pod licenciou GNU GPL.
+
+Webovská stránka slovenskej verzie programu je
+http://vk.upjs.sk/~tuleja/CaR/
+Táto stránka obsahuje aj sadu tutoriálov pre prácu s programom.

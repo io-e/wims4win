@@ -1,0 +1,35 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+rpath=@RPATH@
+STRIP=@STRIP@
+lopt=-L$(wims_home)/lib -lwims -lm $(rpath)
+
+O=compile.o match.o suffix.o translate.o symtext.o
+H=../Lib/libwims.h ../../config.h ../../includes.h ../../wimsdef.h
+all:: symtext
+
+%.o: %.c *.h $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean::
+	rm -f *.o symtext
+
+distclean:
+	rm -f *.o symtext
+	cd $(wims_home)/public_html/bin; rm -f symtext 2>/dev/null; cd ../../src/Misc/symtext
+	rm -f Makefile
+
+symtext: $(O)
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(O) $(lopt) -o symtext
+	./symtext -t
+	$(STRIP) $@
+	cp $@ $(wims_home)/public_html/bin
+
+

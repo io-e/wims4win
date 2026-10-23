@@ -1,0 +1,114 @@
+#! /bin/sh
+
+################# Adjustable parameters ########################
+
+# Where to put the target.
+export target=/tmp/wims-deb
+
+# Structure under debian. usrdir for system files, vardir for data.
+export usrdir=/usr/share/wims
+export vardir=/var/lib/wims
+export usr=$target$usrdir
+export var=$target$vardir
+
+# usrdir or vardir. Don't change this.
+export wimshome=$usrdir
+
+# Files and directories to put to usrdir.
+export usrcontent="bin lib other public_html src \
+	README compile localwims"
+
+# Files and directories to put to vardir.
+export varcontent="download log s2 sessions tmp \
+	update.sh"
+
+# Empty directories to add to usrdir and vardir.
+export usradd=""
+export varadd="backup w"
+
+# Directories in which we should add a .wimshome indicating file.
+export addhome="$usr $var $var/w"
+
+# usrdir directories to be moved to vardir/w.
+# These are things in public_html (hence usrdir) that may be written to.
+# Each word must have two components separated by a comma:
+# First component is the target directory name under var/w, 
+# and the second is the source directory under public_html.
+export wtrans="adm/local,modules/adm/local
+devel,modules/devel
+local,modules/local
+themes/local,themes/local"
+
+############### End of modifiable contents ######################
+
+cd `dirname $0`/..
+export whome=`pwd`
+
+cat <<@
+This script generates a WIMS directory structure conform de debian standard:
+system files in /usr/share/wims and data files in /var/lib/wims.
+
+It should be run on a freshly decompressed and compiled WIMS distribution.
+
+The result will be put into $target/.
+@
+
+echo "Clean up $target first..."
+rm -fR $target
+if [ -e $target ]; then
+ echo "Unable to clean $target. Please verify your access rights."
+ exit
+fi
+
+mkdir -p $usr $var
+if [ ! -d $usr ]; then
+ echo "Unable to create directory $target. Please check your access rights."
+ exit
+fi
+
+echo $wimshome >$target/wimshome
+echo "Install $usr..."
+for d in $usrcontent; do
+ cp -PpR $d $usr
+ ln -s $usrdir/$d $var
+done
+for d in $usradd; do
+ mkdir -p $usr/$d
+ ln -s $usrdir/$d $var
+done
+ln -s $vardir $usr/var
+mv -f $usr/public_html/w $var
+ln -s $vardir/w $usr/public_html
+mkdir -p $var/w/modules
+for d in $wtrans; do
+ trans1=`echo $d | cut -d, -f1`
+ trans2=`echo $d | cut -d, -f2`
+ rm -fR $usr/public_html/$trans2
+ mkdir -p $var/w/$trans1
+ cp $target/wimshome $var/w/$trans1/.wimshome
+ ln -s $vardir/w/$trans1 $usr/public_html/$trans2
+done
+echo "Install $var..."
+for d in $varcontent; do
+ cp -PpR $d $var
+ ln -s $vardir/$d $usr
+done
+for d in $varadd; do
+ mkdir -p $var/$d
+ ln -s $vardir/$d $usr
+done
+ln -s $usrdir $var/usr
+chmod og-rwx $var/backup
+
+echo Making home directory references...
+find $target -name .wimshome -exec cp $target/wimshome '{}' \;
+for d in $addhome; do
+ cp $target/wimshome $d/.wimshome
+done
+rm -f $target/wimshome
+
+usage=`du -hs $usr | cut -f1`
+echo "Size of $usr: $usage."
+usage=`du -hs $var | cut -f1`
+echo "Size of $var: $usage."
+

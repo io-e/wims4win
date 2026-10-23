@@ -1,0 +1,251 @@
+# @configure_input@
+
+wims_home=../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+STRIP=@STRIP@
+rpath=
+libtype=static
+NETLIBS=@NETLIBS@
+lopt=-L$(wims_home)/lib -lwims -lm $(rpath)
+H=../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
+
+publicbin=curvecomp cyclicode ftype oncechar shortpath webget
+Publicbin=$(publicbin) Plouffe clickzone html2msg huffman translator wrap chroot voronoi
+Publicbin2=$(Publicbin) test cryptarith
+namechange=wrap..exec ch..root
+Homebin=exostat dicsort modind modstat ccsum phtmltext
+progs=$(Publicbin) $(Homebin)
+progs2=$(Publicbin2) $(Homebin)
+units=@BUILD_UNITS@
+chemeq=@BUILD_CHEMEQ@
+bioinfo=C_etat_civil tab1d tab2d test_cond
+Otherbin=$(units) $(chemeq) whirlgif
+checkmol=checkmol matchmol
+crossword=crossword
+lceb=lceb_dynopt
+moneyprint=moneyprint
+toascii=toascii
+scienceprint=scienceprint
+sigdigits=sigdigits
+canvasdraw=canvasdraw
+
+OTHERDIR=$(wims_home)/other/bin
+PUBDIR=$(wims_home)/public_html/bin
+BINDIR=$(wims_home)/bin
+
+all:: $(progs) mathexp symtext $(Otherbin) bioinfo checkmol lceb crossword moneyprint toascii scienceprint sigdigits canvasdraw
+
+maintainer::
+
+%.o: %.c $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+chemeq units-filter::
+	(cd $@/src; make && $(STRIP) $@)
+	cp $@/src/$@ $(OTHERDIR)
+
+voronoi::
+	cd voronoiW; make && $(STRIP) voronoi
+	cp voronoiW/voronoi $(PUBDIR)
+
+whirlgif::
+	cd whirlgif; make && $(STRIP) whirlgif
+	cp whirlgif/whirlgif $(OTHERDIR)
+
+mathexp::
+	cd mathexp; make mathexp
+
+symtext::
+	cd symtext; make
+
+bioinfo::
+	cd bioinfo; make && $(STRIP) $(bioinfo)
+	cd $@ ; cp $(bioinfo) ../$(OTHERDIR)
+
+checkmol::
+	cd checkmol; make && $(STRIP) checkmol
+	cp $@/checkmol $(OTHERDIR)
+	-rm -f $(OTHERDIR)/matchmol
+	ln -s $(OTHERDIR)/checkmol $(OTHERDIR)/matchmol
+
+lceb::
+	cd lceb ; make && $(STRIP) lceb_dynopt
+	cp $@/lceb_dynopt $(OTHERDIR)
+
+crossword::
+	cd crossword ; make && $(STRIP) crossword
+	cp $@/crossword $(OTHERDIR)
+
+moneyprint::
+	cd moneyprint ; make && $(STRIP) moneyprint
+	cp $@/moneyprint $(OTHERDIR)
+
+toascii::
+	cd toascii ; make && $(STRIP) toascii
+	cp $@/toascii $(OTHERDIR)
+
+scienceprint::
+	cd scienceprint ; make && $(STRIP) scienceprint
+	cp $@/scienceprint $(OTHERDIR)
+
+sigdigits::
+	cd sigdigits ; make && $(STRIP) sigdigits
+	cp $@/sigdigits $(OTHERDIR)
+
+canvasdraw::
+	cd canvasdraw ; make
+	# cp $@/canvasdraw $(OTHERDIR)
+
+java::
+	cd authors/jm.evers/applets ; make && make install
+	cd applets ; make && make install
+
+clean:
+	rm -f $(progs2) *.o
+	cd mathexp; make clean
+	cd units-filter/src; make clean
+	cd chemeq/src; make clean
+	cd voronoiW; make clean
+	cd whirlgif; make clean
+	cd bioinfo; make clean
+	cd checkmol; make clean
+	cd symtext; make clean
+	cd lceb; make clean
+	cd crossword ; make clean
+	cd moneyprint ; make clean
+	cd toascii ; make clean
+	cd scienceprint ; make clean
+	cd sigdigits ; make clean
+	cd canvasdraw ; make clean
+
+distclean: clean
+	rm -f $(progs2)
+	cd mathexp; make distclean
+	cd voronoiW; make distclean
+	cd whirlgif; make distclean
+	cd bioinfo; make distclean
+	cd units-filter/src; make clean
+	cd chemeq/src; make clean
+	cd lceb ; make clean
+	cd checkmol ; make clean
+	cd crossword ; make clean
+	cd moneyprint ; make clean
+	cd toascii ; make clean
+	cd scienceprint ; make clean
+	cd sigdigits ; make clean
+	cd canvasdraw; make distclean
+	cd $(OTHERDIR); rm -f $(Otherbin) $(bioinfo) $(checkmol) $(lceb) $(crossword) $(moneyprint) $(toascii) $(scienceprint) $(sigdigits)
+	cd $(BINDIR); rm -f $(Homebin)
+	cd $(PUBDIR); rm -f $(Publicbin2) $(namechange)
+	rm -f Makefile
+
+#################################################
+webget: webget.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) webget.c $(NETLIBS) -lm -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+
+test: test.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) test.c -lm -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+shortpath: shortpath.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) shortpath.c -lm -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+oncechar: oncechar.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) oncechar.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+cryptarith: cryptarith.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) cryptarith.c -lm -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+ftype: ftype.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) ftype.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+cyclicode: cyclicode.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) cyclicode.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+curvecomp: curvecomp.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) curvecomp.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+Plouffe: Plouffe.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) Plouffe.c -lm -o $@
+	$(STRIP) $@
+	rm -f $(PUBDIR)/$@; cp $@ $(PUBDIR)
+
+translator: suffix.o translator.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) suffix.o translator.o $(lopt) @STATIC_LIB@ -o translator
+	$(STRIP) translator
+	cp translator $(PUBDIR)
+
+html2msg: html2msg.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) html2msg.o $(lopt) -o html2msg
+	$(STRIP) html2msg
+	cp html2msg $(PUBDIR)
+
+huffman : huffman.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) huffman.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+
+wrap: wrap.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) wrap.c @STATIC_LIB@ -o wrap
+	$(STRIP) wrap
+	cp -f wrap $(PUBDIR)/wrap..exec
+	echo yes >$(wims_home)/log/unsecure
+
+chroot: chroot.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) chroot.c @STATIC_LIB@ -o chroot
+	$(STRIP) chroot
+	cp -f chroot $(PUBDIR)/ch..root
+	echo yes >$(wims_home)/log/unsecure
+
+#################################################
+
+dicsort: suffix.o dicsort.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) suffix.o dicsort.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(BINDIR)
+modind: suffix.o translator_.o modind.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) suffix.o translator_.o modind.o $(lopt) -o $@
+	$(STRIP) $@
+	rm $(BINDIR)/$@; cp $@ $(BINDIR)
+modstat: modstat.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) modstat.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(BINDIR)
+ccsum: ccsum.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) ccsum.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(BINDIR)
+
+exostat: exostat.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) exostat.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(BINDIR)
+
+#passcrypt: passcrypt.c
+#	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) passcrypt.c $(lopt) @CRYPTLIB@ -o $@
+#	$(STRIP) $@
+#	cp $@ $(OTHERDIR)
+
+phtmltext: phtmltext.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) phtmltext.o $(lopt) -o $@
+	$(STRIP) $@
+	cp $@ $(BINDIR)
+
+clickzone: clickzone.o
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) clickzone.o $(lopt) -lgd -o $@
+	$(STRIP) $@
+	cp $@ $(PUBDIR)
+

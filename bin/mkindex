@@ -1,0 +1,398 @@
+#! /bin/sh
+#
+#	This script do many things (should be cleaned)
+#  - update sheets from example class (will be indexed after)
+#  - indexes wims server resources (modules, sheets).
+#  - with option "withoef", do something counting oef exercises,
+#        make a list of oef (module,name_exofile) in bases/site/oef/
+#        does not seem to be yet in use - take Changelog
+#  - make slib index
+#  - make shtooka packs index
+#  - build index of docs in bases/doc
+#  - make model list
+#  - make oefdocumentation for javascript in createxo
+#  - make index in wimsdoc.en
+#	It should be run each time a module is added or modified.
+#
+
+# base directory.
+test=`dirname $0`
+if [ -z "$test" ]; then WIMS_HOME=..; else WIMS_HOME=$test/..; fi
+cd $WIMS_HOME
+WIMS_HOME=`pwd`
+
+export mlist slist glist dicsort_separator dicsort_grouping
+export w_translator_unknown w_dictionary w_translator_switch translator_input
+LANG=C
+
+BASES=$WIMS_HOME/public_html/bases
+export PERL5LIB=${BASES}/sys
+MODULES=$WIMS_HOME/public_html/modules
+translator=$WIMS_HOME/public_html/bin/translator
+dicsort=$WIMS_HOME/bin/dicsort
+SLIB=$WIMS_HOME/public_html/scripts/slib
+SWAC=$WIMS_HOME/public_html/scripts/data/swac
+MODEL=$WIMS_HOME/public_html/scripts/model
+CIRCUIT=$WIMS_HOME/public_html/scripts/data/circuits
+BGIMAGE=$WIMS_HOME/public_html/gifs/bg
+IMAGETHEME=$WIMS_HOME/public_html/gifs/themes
+OEF=$WIMS_HOME/public_html/scripts/oef
+CLASSES=$WIMS_HOME/log/classes
+DOC=$WIMS_HOME/public_html/scripts/docu
+BASESDOC=$WIMS_HOME/public_html/bases/doc
+THEME=$WIMS_HOME/public_html/themes
+DATAMODULE=$WIMS_HOME/public_html/modules/data
+FORTUNE=$BASES/fortune
+KEYWDIR=$WIMS_HOME/public_html/scripts/keywords
+WIMSDOC=$WIMS_HOME/public_html/modules/help
+GLOSSARY=$WIMS_HOME/public_html/scripts/data/glossary
+SHEET=$BASES/sheet
+echo " bin/mkindex > copy all sheets in open classes to bases/sheet/ "
+$WIMS_HOME/bin/mkexamplesheet.sh $WIMS_HOME
+
+mkdir -p $BASES/site
+
+# MAX_LINELEN
+linelen=15000
+
+cd $MODULES
+grep -l "ask_trusted=yes" */*/*/var.init | awk -F "/" '{ print $1"/"$2"/"$3 }' > $BASES/site/trusted_modules
+
+mlist=`find [EHKUGRL]* tool data contrib -name INDEX 2>/dev/null\
+  | sed 's!/INDEX$!!g' | sort`
+mlist2=`find local com help -follow -name INDEX 2>/dev/null\
+  | sed 's!/INDEX$!!g' | sort`
+mlist="$mlist
+$mlist2"
+mlist3=""
+rm -f $BASES/site/deprecated_modules
+for a in $mlist
+do
+  b=`grep "deprecated=yes" $a/INDEX`
+  if [ -z "$b" ]; then
+    mlist3="$mlist3
+$a";
+  else
+    va=`grep -e  "\bversion=.*" $a/INDEX | sed 's/version=//'`
+    echo "$a $va" >>$BASES/site/deprecated_modules
+  fi;
+done
+mlist=$mlist3;
+
+echo " bin/mkindex > bin/css.pl"
+cd $WIMS_HOME ;
+perl bin/css.pl
+
+echo " bin/mkindex > cd $BASES/sys; ./mkindex"
+cd $BASES/sys ;
+./mkindex
+cd $WIMS_HOME
+mkdir -p $KEYWDIR
+cp $BASES/sys/tmp/* $KEYWDIR
+
+echo " bin/mkindex > preparing indexation of sheets"
+cd $SHEET
+slist="`find . -name '*.def' | sed 's!^./!!g;s!.def$!!g' | sort`"
+mkdir -p $SHEET/index
+rm -f $SHEET/index/*
+
+echo " bin/mkindex > preparing indexation of glossary..."
+cd $GLOSSARY
+perl mkindex.pl
+glist=`cat $GLOSSARY/glist`
+mkdir -p $GLOSSARY/index
+rm -f $GLOSSARY/index/*
+
+echo " bin/mkindex > preparing indexation of modules..."
+cd $BASES
+rm -fR site2
+cp -pPR site site2
+cd site2
+rm -f [A-Z].?? lists/[A-Z].??
+mkdir -p lists
+
+cd $WIMS_HOME
+echo " bin/mkindex > bin/modind"
+bin/modind || exit
+
+echo " bin/mkindex > sorting indexation lists..."
+cd $BASES/site2 || exit
+rm -f mkindex.log
+dicsort_separator=':'
+dicsort_grouping=' '
+for f in [A-Z].??
+do
+  $dicsort $f >>mkindex.log
+  mv $f.sorted $f
+done
+cd $BASES/site2
+
+dicsort_grouping=
+for f in title title_?? description addr serial language author version weight.??
+do
+  $dicsort $f >>mkindex.log
+  mv $f.sorted $f
+done
+n=`grep -c . addr`
+rm -f $WIMS_HOME/log/modupdate
+echo Indexed $n modules.
+
+w_translator_switch="leavelines file"
+w_translator_unknown=leave
+w_dictionary=serial
+translator_input=popular
+$translator >popular.1
+$dicsort popular.1 >>mkindex.log
+grep '^[0-9]' popular.1.sorted >popular.1
+
+awk -F: '{print $1}' title | uniq >lists/total
+
+cd lists
+cats=`ls [A-Z].??`
+cd ..
+
+for t in $cats
+do
+ w_translator_unknown=leave
+ w_dictionary=pop/dic
+ w_translator_switch="leaveline file"
+ translator_input=lists/$t
+ $translator | sort -n -r -k2 2>/dev/null |\
+   awk 'BEGIN {a=0}; {a+=length()+1};
+	a >= '$linelen' {exit};
+	{print}' >pop/$t
+done
+
+# Robot lists
+langs=`ls A.* | sed 's/^A\.//g'`
+w_translator_switch="leaveline file"
+w_dictionary=popular
+w_translator_unknown=leave
+translator_input=lists/robot.phtml
+$translator | sort -nr >lists/robot.sorted
+
+for l in $langs
+do
+ awk -F, '$2=="'$l'" {print "!href module="$3" "$4"\n, "$5" <br>"}' lists/robot.sorted >lists/robot-$l.phtml
+done
+rm -f lists/robot.*
+
+cd $BASES
+if [ -d site2 ]; then
+ mv site site.old
+ mv site2 site
+ [ -d site ] && rm -fR site.old
+fi
+
+for a in "$SHEET" "$GLOSSARY"
+do
+  cd $a/index
+  n=`grep -c . addr`
+  echo Indexed $n $a.
+  dicsort_grouping=' '
+  $dicsort addr >>mkindex.log
+  mv addr.sorted addr
+  $dicsort serial >>mkindex.log
+    mv serial.sorted serial
+  for f in ??
+  do
+    $dicsort $f >>mkindex.log
+    mv $f.sorted $f
+  done
+  dicsort_grouping=
+  for f in title description information
+  do
+    $dicsort $f >>mkindex.log
+    mv $f.sorted $f
+  done
+done
+
+# OEF exercises - what does it do ??? do not be used
+if [ "$1" = "withoef" ]; then
+  echo Listing OEF exercices by order of time...
+  TMP=$WIMS_HOME/tmp/oefs
+  tmp1=${TMP}1; tmp2=${TMP}2; tmp3=${TMP}3
+
+  mkdir -p $BASES/site/oef
+  cd $BASES/site/lists
+  langs=`ls O.* | sed 's/^O\.//g'`
+  cd $MODULES
+  ## FIXME Changelog does not exist just Changelog.new Changelog.modif
+  newmod=`awk '$2=="added" {print $4}' Changelog | head -20 | tr -d '()'`
+  for l in $langs
+  do
+   oefmodules=`egrep '^[A-Z]|^contrib' $BASES/site/lists/O.$l`
+   rm -f $tmp1 $tmp2 $tmp3 2>/dev/null
+   for m in $oefmodules
+   do
+    mt=`echo $m | sed 's/.[a-z][a-z]$//'`
+    test=`echo "$newmod" | grep $mt`
+    if [ -z "$test" ]; then out=$tmp1; else out=$tmp2; fi
+    perl -e 'for (@ARGV) {@S=stat($_); print "$_ $S[9]\n"}'\
+      $m/src/*.oef >> $out
+   done
+   for tmp in $tmp1 $tmp2; do
+     if [ -s $tmp ]; then
+      sort -nr -k2 $tmp | cut -d' ' -f1 >> $tmp3
+     fi
+   done
+   if [ -s $tmp3 ]; then
+    sed 's!/src/!,!g;s/\.oef$//g' $tmp3 > $BASES/site/oef/new.$l
+    n=`grep -c . $tmp3`
+    echo "$l: $n OEF sorted."
+   fi
+  done
+  rm -f $tmp1 $tmp2 $tmp3 2>/dev/null
+fi
+
+### create the taxonomy
+echo "create taxonomy ..."
+cd $BASES
+./mkbrowse
+
+cd $BASES/dic ;
+./mkindex.sh
+
+#slib index
+echo "index slib ..."
+cd $SLIB
+./mkindex >>mkindex.log
+
+##wimsdoc.en
+echo "index wimsdoc ..."
+cd $WIMSDOC/wimsdoc.en
+sh Makeindex
+cd $WIMSDOC/wimsdoc.cn
+## the rights are not good for wimsdoc.cn/Makeindex
+sh Makeindex
+
+#shtooka index
+echo "index swac"
+cd $SWAC
+rm -f index.log
+./mkindex >>index.log
+
+
+# make index bases doc
+$BASES/doc/.build-index 1>/dev/null
+
+#model list
+for i in fr en cn ca it ; do rm -f $MODEL/$i/list ; done
+
+#oef/qcm
+# generate exercises in directory oef/$lang/qcm
+echo "generate qcm models ..."
+for i in fr en cn nl ; do
+  cd $OEF/$i/qcm ;
+  touch $OEF/$i/qcm/src/cpp/qcm.cpp;
+  $OEF/mkindex $WIMS_HOME ;
+done
+# copy model in class 9001
+cp $MODEL/fr/src/*.oef $CLASSES/9001/src
+
+# generate exercises in example class
+cd $CLASSES
+clist=`ls -d [1-9][0-9][0-9][0-9]`
+for cls in $clist; do
+ cd $CLASSES/$cls ;  $OEF/mkindex $WIMS_HOME 2>/dev/null
+done
+
+echo " compile documents in example classes"
+cd $CLASSES
+clist=`ls -d [1-9][0-9][0-9][0-9]`
+for cls in $clist; do
+  cd $CLASSES/$cls
+  if [ ! -d doc ] ; then
+    echo " no document in $cls" 1>/dev/null
+  else
+    cd doc
+    dlist=`ls`
+    if [ ! -d "$dlist" ] ; then
+      for doc in $dlist ; do
+        cd $CLASSES/$cls/doc/$doc ; $DOC/mkindex $WIMS_HOME $CLASSES/$cls/doc/$doc 2>/dev/null 1>/dev/null
+      done
+    fi
+  fi
+done
+echo " generate presentation pages in example class"
+cd $CLASSES
+clist=`ls -d [1-9][0-9][0-9][0-9]`
+for cls in $clist; do
+  cd $CLASSES/$cls/sheets
+  prlist=`ls sheet*.src 2>/dev/null`
+  if [ ! -d "$prlist" ] ; then
+    w_msg2wims_primitives=`grep msgprim $WIMS_HOME/public_html/scripts/primitives/allmsgprim | awk -F "=" '{print $2}'`
+    export w_msg2wims_primitives
+    for pr in $prlist ; do
+      file=`basename $pr .src`
+      $WIMS_HOME/bin/msg2wims $pr $file.def 1>/dev/null
+    done
+  fi
+done
+echo " compile documents in bases/doc"
+cd $BASESDOC
+clist=`ls -d [0-9]*`
+for doc in $clist; do
+  cd $BASESDOC/$doc
+  $DOC/mkindex $WIMS_HOME $BASESDOC/$doc 1>/dev/null 2>/dev/null
+done
+cd $BASESDOC/1028; sh mkdoc.sh
+echo " generate oefdocumentation for javascript"
+cd $WIMS_HOME
+perl bin/oefdoc.pl
+
+echo " make circuits index and generate component images"
+## should also understand mkindex and
+cd $CIRCUIT
+./mksymbols ; ./mkthumbs
+
+echo " make some bg images"
+cd $BGIMAGE
+./.generate
+
+echo " attribut list in public_html/themes/"
+cd $IMAGETHEME
+./mkattribut
+
+
+echo " make images in some datamodule"
+cd $DATAMODULE/images;
+##create test if done ; do nothing if file test exists
+if [ -f "roadsigns.fr/INDEX" ]; then
+  if [ -f "roadsigns.fr/test" ] ; then echo "no modification in $DATAMODULE/images/roadsigns.fr";
+  else
+   dir=$DATAMODULE/images/roadsigns.fr
+   for z in 500 200 100 ; do
+     cd $dir/images ; mkdir -p png$z ;
+     for a in `ls svg/*.svg`; do file=`basename $a .svg`; convert  $a -resize $z $dir/images/png$z/$file.png 2>/dev/null ; done;
+   done;
+   touch $dir/test ; echo "yes" > $dir/test
+  fi
+fi;
+
+echo " make file.dat for fortune"
+cd $FORTUNE
+##create test if done ; do nothing if file test exists
+if [ `which strfile` ]; then
+ if [ -f "test" ]; then
+  echo "no modification in $FORTUNE ; you must delete $FORTUNE/test to recreate the files .dat";
+ else
+  for a in `ls -d *`;
+   do cd $a;
+     if [ ! `ls -d * | wc -c` -eq 0 ] ; then
+       for b in `ls` ; do
+         file=`basename $b .dat` ;
+         strfile $file ;
+       done;
+     fi;
+    cd ..;
+   done
+ fi
+ touch $FORTUNE/test ; echo "yes" >  $FORTUNE/test
+fi
+
+# cleanup the *.bin in score
+cd $CLASSES
+echo " cleanup classes"
+find . -type f -name "*.bin" -exec rm -v "{}" ";" 1>/dev/null
+# rm scoreavg also

@@ -1,0 +1,41 @@
+# @configure_input@
+
+wims_home=../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+STRIP=@STRIP@
+rpath=
+libtype=static
+lopt=-L../../lib -lwims -lm $(rpath)
+oefO=oeflines.o compare.o outexec.o process.o sp.o oef2wims.o
+msgO=msglines.o compare.o def.o doc.o sp.o msg2wims.o
+H=../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
+all: oef2wims msg2wims
+
+%.o: %.c *.h $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean:
+	rm -f oef2wims  msg2wims *.o 2>/dev/null
+
+distclean:
+	rm -f oef2wims $(wims_home)/bin/oef2wims 2>/dev/null
+	rm -f msg2wims $(wims_home)/bin/msg2wims $(wims_home)/public_html/bin/msg2wims 2>/dev/null
+	rm -f Makefile
+
+oef2wims: $(oefO) ../Lib/libwims.*
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(defines) $(oefO) $(lopt) -o oef2wims
+	$(STRIP) oef2wims
+	chmod og-x oef2wims
+	./oef2wims table
+	cp oef2wims $(wims_home)/bin
+
+msg2wims: $(msgO) ../Lib/libwims.*
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(defines) $(msgO) $(lopt) -o msg2wims
+	./msg2wims table
+	$(STRIP) msg2wims
+	cp msg2wims $(wims_home)/bin

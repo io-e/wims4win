@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WimsChem Test 1</title>
+</head>
+<body>
+<!--
+<form id="form" action="$wims_refname?form-data$session" method="post" enctype="multipart/form-data" >
+    <input type="hidden" name="session" value="$session" />
+    <input type="hidden" name="lang" value="nl" />
+    <input type="hidden" name="cmd" value="reply" />
+    <input type="hidden" name="module" value="$module" />
+    <input type="hidden" id="reply"  name="reply$counter" value="" />
+</form>
+-->
+<script>
+var testmol="CCCCCCC(O)CCCCCCCCCCC(=O)O\n"+
+"JME 2006.05 Tue Aug 19 08:32:49 CEST 2008\n"+
+"\n"+
+" 21 20  0  0  0  0  0  0  0  0999 V2000\n"+
+"    0.7000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"   13.3000    2.4249    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"   13.3000    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.0000    8.4870    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.0000    1.2124    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.7000    2.4249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    7.0000    3.6373    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    6.3000    4.8497    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    8.4000    3.6373    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    4.9000    4.8497    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.0000    3.6373    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    9.1000    2.4249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    4.2000    6.0622    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"   10.5000    2.4249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.7000    4.8497    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    2.8000    6.0622    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"   11.2000    1.2124    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.0000    6.0622    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    2.1000    7.2746    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"   12.6000    1.2124    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"    0.7000    7.2746    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n"+
+"  1  5  1  0  0  0  0\n"+
+"  2 20  2  0  0  0  0\n"+
+"  3 20  1  0  0  0  0\n"+
+"  4 21  1  0  0  0  0\n"+
+"  5  6  1  0  0  0  0\n"+
+"  6 11  1  0  0  0  0\n"+
+"  7  8  1  0  0  0  0\n"+
+"  7  9  1  0  0  0  0\n"+
+"  8 10  1  0  0  0  0\n"+
+"  9 12  1  0  0  0  0\n"+
+" 10 13  1  0  0  0  0\n"+
+" 11 15  1  0  0  0  0\n"+
+" 12 14  1  0  0  0  0\n"+
+" 13 16  1  0  0  0  0\n"+
+" 14 17  1  0  0  0  0\n"+
+" 15 18  1  0  0  0  0\n"+
+" 16 19  1  0  0  0  0\n"+
+" 17 20  1  0  0  0  0\n"+
+" 18 21  1  0  0  0  0\n"+
+" 19 21  1  0  0  0  0\n"+
+"M  END\n";
+function show(t){
+  var wimschem =  document.getElementById("wimschem.new")
+  var  outputdiv = document.getElementById("outputdiv");
+  switch(t){
+  case 0: wimschem.SetMoleculeMDLMol(testmol);break;
+  case 1:outputdiv.innerHTML = wimschem.getSVG(1);
+    outputdiv.style.backgroundColor = "orange";
+    outputdiv.style.display = "block";
+    break;
+  case 2:outputdiv.innerHTML = wimschem.ReadAtomSelection();
+    outputdiv.style.backgroundColor = "orange";
+    outputdiv.style.display = "block";
+    break;
+  case 3:outputdiv.innerHTML = wimschem.ReadBondSelection();
+    outputdiv.style.backgroundColor = "orange";
+    outputdiv.style.display = "block";
+    break;
+  case 4:sendanswer();
+  }
+}
+function sendanswer(){
+  var wimschem = document.getElementById('wimschem.new');
+  var your_svg = wimschem.getSVG("1");
+  var my_svg = wimschem.getSVG("2");
+  var mdmol = wimschem.GetMoleculeMDLMol();
+  reply = my_svg+"\n"+your_svg+"\n"+mdmol;
+  document.write(reply);
+  return;
+}
+</script>
+
+<table>
+  <tr>
+    <th>
+      <div id="outputdiv" ></div>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <applet name="WIMSchem" id="wimschem.new" code="WIMSchem.MainApplet" archive="dist/WIMSchem.jar" width="550" height="650">
+        <param name="atoms" value="C,N,O,S,Mn,Ni,Mg,Pb,Ca,Li,K,Na,Si"><!-- provate collection of usable atoms -->
+        <param name="language" value="en"><!-- supportded en / nl : fr not translated -->
+        <param name="atom_button_row" value="1"><!-- show an addional row with atom buttons: buttonrow may be detached from applet -->
+        <param name="zoomfactor" value="1.3"><!-- append javascript zoom to SVG export -->
+        <!-- <param name="file" value="http://localhost/molfiles/a.mol"> ==> <!-- this molecule will be shown in the apple if param 'showfile' = 1 -->
+        <param name="showfile" value="yes"><!-- if 1/yes loaded file (MDLMol/Native) is shown -->
+        <param name="user_selection" value="1"><!-- allow student to select bonds & atoms -->
+        <!-- optional for all colors Atoms & Bonds : default 100 -->
+        <param name="color_alpha" value="100"><!-- needed otherwise atoms will be hidden by solid disk -->
+        <param name="default_atom_select_color" value="255,0,0"><!-- optional : default 255,0,0 [red] -->
+        <param name="default_bond_select_color" value="255,0,0"><!-- optional : default 255,0,0 [red] -->
+        <param name="select_atoms" value="1,3"><!-- line numbers in server loaded MDLMol file -->
+        <param name="select_bonds" value="2,4"><!-- line numbers in server loaded MDLMol file -->
+          <!-- colors used for showing server selected atoms and bonds -->
+        <param name="select_atom_color1" value="255,0,0"><!-- optional : default colors = red or default_select_color -->
+        <param name="select_atom_color2" value="0,255,0"><!-- optional : default colors = red or default_select_color -->
+        <param name="select_atom_color3" value="0,0,255"><!-- optional : default colors = red or default_select_color -->
+        <param name="select_atom_color4" value="0,0,255"><!-- optional : default colors = red or default_select_color -->
+
+        <param name="select_bond_color1" value="255,0,0"><!-- optional : default colors = red or default_select_color -->
+        <param name="select_bond_color2" value="0,255,0"><!-- optional : default colors = red or default_select_color -->
+        <param name="select_bond_color3" value="0,0,255"><!-- optional : default colors = red or default_select_color -->
+        <param name="select_bond_color4" value="0,0,255"><!-- optional : default colors = red or default_select_color -->
+
+        <param name="show_hydrogen" value="1"><!-- optional; default is yes / 1 -->
+        <param name="show_carbon" value="1"><!-- optional; default is yes / 1 -->
+        <param name="rotation" value="45"> <!-- optional : angle in degrees -->
+        <!-- the lefthand tool button bar : buttonrow is detachable from main applet window -->
+        <param name="TOOL_CURSOR" value="yes"><!-- needed for mouse action -->
+        <param name="TOOL_UNSELECT" value="yes"> <!--unselect studen drawing -->
+        <param name="TOOL_SELECT" value="yes"> <!--unselect studen drawing -->
+        <param name="TOOL_ROTATOR" value="yes">
+        <param name="TOOL_ERASOR" value="yes">
+        <param name="TOOL_DIALOG" value="yes">
+        <param name="TOOL_EDIT" value="yes">
+        <param name="TOOL_SETATOM" value="yes">
+        <param name="TOOL_SINGLE" value="yes">
+        <param name="TOOL_DOUBLE" value="yes">
+        <param name="TOOL_TRIPLE" value="yes">
+        <param name="TOOL_ZERO" value="yes">
+        <param name="TOOL_INCLINED" value="yes">
+        <param name="TOOL_DECLINED" value="yes">
+        <param name="TOOL_CHARGE" value="yes">
+        <param name="TOOL_UNDO=" value="no">
+        <param name="TOOL_REDO=" value="no">
+        <param name="TOOL_TEMPLATE" value="yes">
+        <param name="TOOL_CUT" value="no">
+        <param name="TOOL_COPY" value="no">
+        <param name="TOOL_PASTE" value="no">
+        <!-- the top menu -->
+        <param name="MENU_BLOCK" value="yes">
+        <param name="MENU_SELECT" value="yes">
+        <param name="MENU_TRANSFORM" value="yes">
+        <param name="MENU_ZOOM" value="yes">
+        <param name="MENU_SHOW" value="yes">
+        <param name="MENU_HYDROGEN" value="yes">
+        <param name="MENU_STEREO" value="yes">
+        <param name="MENU_HELP" value="yes">
+        (java unavailable)
+      </applet>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <input type="button" onclick="javascript:show(0)" value="SHOW A MOLECULE" />
+      <input type="button" onclick="javascript:show(1)" value="SHOW SVG" />
+      <input type="button" onclick="javascript:show(2)" value="SHOW ATOM SELECTION" />
+      <input type="button" onclick="javascript:show(3)" value="SHOW BOND SELECTION" />
+      <input type="button" onclick="javascript:show(4)" value="SENT TO WIMS" />
+    </th>
+  </tr>
+</table>
+</body>
+</html>
+

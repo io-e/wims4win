@@ -1,0 +1,44 @@
+#YACC=yacc
+YACC=bison -y -v
+LEX=flex -P$(YYPREFIX) -olex.yy.c
+SWIG=swig
+LDFLAGS=@LDFLAGS@
+CFLAGS=@CFLAGS@
+CXXFLAGS=@CXXFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+
+
+RM=rm -f
+INSTALL=install -c
+wims_home=../..
+BINDIR=$(wims_home)/bin
+
+YYPREFIX=wims_mathml_yy
+
+all:    y.tab.c lex.yy.c wims_mathml
+
+y.tab.c:	wims_mathml.y
+		$(YACC) -p $(YYPREFIX) -d wims_mathml.y
+
+lex.yy.c:	wims_mathml.l
+		$(LEX) wims_mathml.l
+
+y.tab.o:	y.tab.c wims_mathml.h
+		$(CC) $(CFLAGS) $(CPPFLAGS) -c -o y.tab.o y.tab.c
+
+lex.yy.o:	lex.yy.c y.tab.c wims_mathml.h
+		$(CC) $(CFLAGS) $(CPPFLAGS) -c -o lex.yy.o lex.yy.c
+
+wims_mathml:	lex.yy.o y.tab.o wims_mathml.cc wims_mathml.h
+		$(CXX) $(CFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) -o wims_mathml lex.yy.o y.tab.o wims_mathml.cc
+
+universal:
+		CFLAGS='-arch i686 -arch ppc' make all
+
+clean:
+		$(RM) y.tab.* lex.yy.c wims_mathml *.o *.output *.so *.dll *.sl *.bundle
+
+install: wims_mathml
+		$(INSTALL) wims_mathml $(BINDIR)
+

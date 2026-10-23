@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -f test.stuff ]; then
+    cat test.stuff | /usr/bin/perl chemtest.pl
+elif [ -f test.stuff.gz ]; then
+    zcat test.stuff.gz | /usr/bin/perl chemtest.pl
+fi

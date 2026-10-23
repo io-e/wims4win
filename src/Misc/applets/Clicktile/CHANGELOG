@@ -1,0 +1,160 @@
+15/2/2008
+Modified "rooster.jar" into premature Symmetry.jar
+Params not yet fully functional
+Lines not yet implemented
+Only rectangles for now [x-size y-size may differ]
+
+16/2/2008
+
+Different Colors and single/multiple coordinates for "teacher image" seem to work.
+/* avaliable colors:
+0 "white" {255,255,255}
+1 "red" {255,0,0}
+2 "green" {0,255,0}
+3 "blue" {0,0,255}
+4 "orange" {238,154,0}
+5 "yellow" {255,255,0}
+6 "purple" {160,32,240}
+7 "lightgreen" {144,238,144}
+8 "lightblue" {173,216,230}
+9 "cyan" {0,255,255}
+10 "brown" {165,24,24}
+11 "salmon" {250,128,114}
+12 "pink" {255,192,203}
+13 "black" {0,0,0}
+*/
+
+Output via ReadApplet() gives all objects.
+todo 1 : prohibit clicking on teacher image [shows some strange behaviour]
+todo 2 : implement line 
+todo 3 : param to read only the "student actions" [linked to "todo 1"]
+ 
+
+16/2/2008 bis
+todo 1 and todo 3 "solved". I Need to test it, before going further.
+
+16/2/2008 bisbis
+tests go fairly well.
+Next step will draw lines...and clean up.
+
+
+17/2/2008
+added:    
+<param name="point_color" value="black">
+<param name="points" value="0,1:1,0">
+<param name="point_size" value="5">
+
+point_color may be one of the 13 internal colors.
+if "points" is a single set value="x,y" we will draw a point with point_size px size 
+if "points" is a pair value="x1,y1:x2,y2" we will draw a line [todo: with point_size px thickness] 
+if "points" is a set value="x1,y1:x2,y2,x3:y3...x_n:y_n" we will draw a polygone [todo : with point_size px thickness]
+
+All drawing are displayed as top layer on the canvas.
+
+First cleanup of horrible programming mess...
+
+corrected missing alignment in single point:  fillOval() needs to be corrected for thickness...
+corrected missing color:black
+translated colornames
+
+17/2/2008 bis
+Changed param names to proposition of B.Perrin-Riou.
+
+<applet id="Symmetry" code="Symmetry.class" codebase="." archive="Symmetry.jar" width="500" height="500">
+    <param name="point_color" value="white">
+    <param name="point" value="-5:-5,-5:5,5:5,5:-5">
+    <param name="segment" value="">
+    <param name="poly" value="">
+    <param name="line" value="">
+    <param name="linewidth" value="15">
+    <param name="return_all_objects" value="0">
+    <param name="language" value="fr">
+    <param name="xrange" value="-11,11">
+    <param name="yrange" value="-11,11">    
+    <param name="background_color" value="black">
+    <param name="square1" value="4:1,4:2,4:3,4:4,5:4,6:4,8:4,8:3,8:2,8:1,5:1,6:1,7:1">
+    <param name="square1_color" value="blue">
+    <param name="square2" value="-4:1,-4:2,-4:3,-4:4,-5:4,-6:4,-8:4,-8:3,-8:2,-8:1,-5:1,-6:1,-7:1">
+    <param name="square2_color" value="yellow">
+</applet>
+
+Now :
+multiple point(s) may be defined
+multiple poly(s) may be defined
+multiple segment(s) may be defined
+multiple line(s) may be defined
+
+However: only 1 type at a time !! 
+Leave other params empty.
+The next config will show the "poly":
+<param name="point" value="">
+<param name="segment" value="">
+<param name="poly" value="-10:-10,5:5,10:-10">
+<param name="line" value="">
+
+Segment and line are the same ... for now.
+
+Added more defaults to avoid problems with params.
+Added some more error checking
+While testing: Open Your Java Console !!
+
+Increased amount or elementary rectangles per single "square_n" object to (width x height)
+
+18/2/2008
+
+Changed param syntax: square_color1 --> square1_color
+added:
+<param name="status" value="waiting"> used for interactive exercise
+<param name="status" value="done"> used for showing correct drawing
+
+Color cycling now limited to used colors in the defined "square1...square_n"
+IMPORTANT: right mouse click changes color
+IMPORTANT: left mouse click is used to make drawing
+
+19/2/2008 (BPR)
+New param to add some colors (eventually other than the one used for square)
+<param name="color" value="purple,cyan">
+
+Left mouse click can be used also to change color (hope it will be OK ! for computer with no right mouse)
+
+22/2/2008 (BPR)
+Left mouse click is not the background color at the beginning
+change poly to polygon
+fix bug (?): Ry*Ry-> MAX
+
+28/2/2008 (BPR)
+Change the name : it is now Clicktile !
+
+28/2/2008 (BPR)
+add param for image in background
+<param name="image" value="http://..."><param name="copy" value="a,b">
+(a and b are the coordinates in pixels of the left top corner of the image). 
+
+To fix: if the coordinates of a square are not inside the range, the applet 
+is opened, but the squares in this color can be changed (it should not)
+
+27/12/2010 (JE)
+uniform build via "ant"
+to compile, type:
+ant -v -l log.txt
+fixed if given square not in xrange/yrange
+revised mouselisteners
+added painting with mouse drag (faster then just clicking
+corrected ignored linewidth setting (now using Graphics2D...)
+
+28/12/2010 (JE)
+corrected paint_over_question...
+
+1/2/2011 (JE)
+added public function ReadXY()
+Very similar to ReadApplet()
+But only returning 2 lines : x-coordinate_list +"\n"+ y-coordinate_list
+x1,x2,x3...x_n +"\n"+ y1,y2,y3...y_n
+No color information.
+Can be used to speed up parsing data in WIMS
+See 1.html
+
+
+
+
+ 

@@ -1,0 +1,445 @@
+# -*- coding: latin-1 -*-
+== simple assignement ==
+ bar=just a test
+ foo=another test
+----
+bar == just a test
+foo == another test
+== !append word ==
+ # test of the command !append 
+ foo=Hello
+ foo=!append word World to $foo
+----
+foo == Hello World
+== !append item ==
+ # test of the command !append 
+ foo=Hello Roméo
+ foo=!append item Juliette to $foo
+----
+foo == Hello Roméo,Juliette
+== !append line ==
+ foo=
+ !for i=1 to 5
+   foo=!append line Here is the line $i to $foo
+ !next i
+----
+foo == Here is the line 1
+Here is the line 2
+Here is the line 3
+Here is the line 4
+Here is the line 5
+== !char ==
+ phrase=Bonjour François
+ foo=!char 1,3,5,7,9,11,13,15 of $phrase
+----
+foo == BnorFaçi
+== !charcnt ==
+ foo=!charcnt BONJOUR
+----
+foo == 7
+== !column ==
+ matrix=a1,a2,a3;b1,b2,b3;c1,c2,c3
+ foo=!column 1,3 of $matrix
+----
+foo == a1, a3;b1, b3;c1, c3
+== !deaccent ==
+foo=!deaccent àâä-éèêë-îï-öô-ùûü-ç-ÀÂÄ-ÈÉÊË-ÎÏ-ÔÖ-ÙÛÜ-Ç
+----
+foo == aaa-eeee-ii-oo-uuu-c-AAA-EEEE-II-OO-UUU-C
+== !declosing ==
+ foo=!declosing (1+2+3+4)
+----
+foo == 1+2+3+4
+== !defof ==
+ # no test since it implies an external file. Maybe something should be
+ # implemented to support extra files.
+== !detag ==
+ foo=!detag <a_strange_html_tag>Hello</another_strange_html_tag>
+----
+foo == Hello
+== !embraced ==
+ foo=!embraced extract {à{b}}c
+ bar=!embraced extract $foo 
+----
+foo == à{b}
+bar == b
+== !eval ==
+ foo=!eval 2*pi
+----
+foo == 6.2831853
+== !evalsubst ==
+ # this primitive is very basic, so it features some bugs, see below.
+ f=x^2+x+1
+ foo=!evalsubst x=(-1) in $f
+ bar=!evalsubst x=-1 in $f
+----
+foo == 1
+bar == -1
+== !getopt ==
+ phrase=hello=bonjour in French
+ foo=!getopt hello in $phrase
+ bar=!getopt bonjour in $phrase
+ baz=!getopt hallo in $phrase
+ phrase=hello="Guten Tag" in German
+ plop=!getopt hello in $phrase
+----
+foo == bonjour
+bar == bonjour
+baz == 
+plop == Guten Tag
+== !hex ==
+ foo=!hex Eh bien, çà donc !
+----
+foo == 4568206269656E2C20E7E020646F6E632021
+== !htmlmath ==
+ foo=!htmlmath 2E5
+----
+foo == 2 &times; 10<sup>5</sup>
+== !item ==
+ liste=un,verre,ça,va,trois,verres,bonjour,les dégâts
+ foo=!item -5..-1 of $liste
+----
+foo == va, trois, verres, bonjour, les dégâts
+== !itemcnt ==
+ liste=un,verre,ça,va,trois,verres,bonjour,les dégâts
+ foo=!itemcnt $liste
+----
+foo == 8
+== !items2lines ==
+ liste=un,verre,ça,va,trois,verres,bonjour,les dégâts
+ foo=!items2lines $liste
+----
+foo == un
+verre
+ça
+va
+trois
+verres
+bonjour
+les dégâts
+== !items2words ==
+ liste=un,verre,ça,va,trois,verres,bonjour,les dégâts
+ foo=!items2words $liste
+----
+foo == un verre ça va trois verres bonjour les dégâts
+== !line ==
+ phrase=Maître corbeau, sur son arbre perché,\
+ Tenait en son bec un fromage.\
+ Maître Renard, par l'odeur alléché,\
+ Lui tint à peu près ce langage :
+ foo=!line 2..-1 of $phrase
+----
+foo == Tenait en son bec un fromage.
+Maître Renard, par l'odeur alléché,
+Lui tint à peu près ce langage :
+== !linecnt ==
+ phrase=Maître corbeau, sur son arbre perché,\
+ Tenait en son bec un fromage.\
+ Maître Renard, par l'odeur alléché,\
+ Lui tint à peu près ce langage :
+ foo=!linecnt $phrase
+----
+foo == 4
+== !line2items ==
+ phrase=Maître corbeau, sur son arbre perché,\
+ Tenait en son bec un fromage.\
+ Maître Renard, par l'odeur alléché,\
+ Lui tint à peu près ce langage :
+ foo=!lines2items $phrase
+----
+foo == Maître corbeau, sur son arbre perché,,Tenait en son bec un fromage.,Maître Renard, par l'odeur alléché,,Lui tint à peu près ce langage :
+== !lines2words ==
+ phrase=Maître corbeau, sur son arbre perché,\
+ Tenait en son bec un fromage.\
+ Maître Renard, par l'odeur alléché,\
+ Lui tint à peu près ce langage :
+ foo=!lines2words $phrase
+----
+foo == Maître corbeau, sur son arbre perché, Tenait en son bec un fromage. Maître Renard, par l'odeur alléché, Lui tint à peu près ce langage :
+== !listcomplement ==
+ l1=a,c,d,e,f,h
+ l2=a,b,d,e,g,i,j
+ foo=!listcomplement $l1 in $l2
+ bar=!listcomplement $l2 in $l1
+----
+foo == b,g,i,j
+bar == c,f,h
+== !listintersect ==
+ l1=a,c,d,e,f,h
+ l2=a,b,d,e,g,i,j
+ foo=!listintersect $l1 and $l2
+----
+foo == a,d,e
+== !listunion ==
+ l1=a,c,d,e,f,h
+ l2=a,b,d,e,g,i,j
+ foo=!listunion $l1 and $l2
+ bar=!listunion $l2 and $l1
+----
+foo == a,c,d,e,f,h,b,g,i,j
+bar == a,b,d,e,g,i,j,c,f,h
+== !lituniq ==
+ foo=!listuniq a,a,b,b,a,c,d,c
+----
+foo == a,b,c,d
+== !lookup ==
+ # no test since it implies an external file. Maybe something should be
+ # implemented to support extra files.
+== !lower ==
+# cannot lower accented chars ... is it a feature?
+ foo=!lower BONJOUR ÀÂÄ-ÈÉÊË-ÎÏ-ÔÖ-ÙÛÜ-Ç
+----
+foo == bonjour ÀÂÄ-ÈÉÊË-ÎÏ-ÔÖ-ÙÛÜ-Ç
+== !makelist ==
+# this example comes from the technical documentation of Wims
+ foo=!makelist [x;x+1;xx] for x in a,x and y,1,(2,3)
+----
+foo == [a;a+1;xx],[x and y;x and y+1;xx],[1;1+1;xx],[(2,3);(2,3)+1;xx]
+== !mathsubst ==
+ foo=!mathsubst x=y in [a;a+1;xx],[x and y;x and y+1;xx],[1;1+1;xx],[(2,3);(2,3)+1;xx]
+----
+foo == [a;a+1;xx],[y and y;y and y+1;xx],[1;1+1;xx],[(2,3);(2,3)+1;xx]
+== !nonempty ==
+ phrase1=Ligne 1,\
+ \
+ Ligne 3,\
+ Ligne 4
+ phrase2=a,,c,d,,f,g
+ foo=!nonempty line $phrase1
+ bar=!nonempty item $phrase2
+----
+foo == Ligne 1,
+Ligne 3,
+Ligne 4
+bar == a,c,d,f,g
+== !nospace ==
+ phrase=Maître corbeau, sur son arbre perché,\
+ Tenait en son bec un fromage.\
+ Maître		Renard, par l'odeur alléché,\
+ Lui tint à peu près ce langage :
+ foo=!nospace $phrase
+----
+foo == Maîtrecorbeau,sursonarbreperché,Tenaitensonbecunfromage.MaîtreRenard,parl'odeuralléché,Luitintàpeuprèscelangage:
+== !positionof ==
+ phrase=Maître corbeau, sur son arbre perché,\
+ Tenait en son bec un fromage.\
+ Maître Renard, par l'odeur alléché,\
+ Lui tint à peu près ce langage :
+ l=Tenait en son bec un fromage.
+ liste=a,à,â,ä
+ foo=!positionof char î in $phrase
+ bar=!positionof word Maître in $phrase
+ baz=!positionof line $l in $phrase
+ plop=!positionof item â in $liste
+----
+foo == 3,71
+bar == 1,13
+baz == 2
+plop == 3
+== !product ==
+ f=x^2
+ foo=!product $f for x=1 to 5 step 2
+ bar=!product $f for x=1 in 1,3,5
+----
+foo == 225
+bar == 225
+== !randchar ==
+# cannot implement a test without replacing the generator of pseudo-random
+# numbers by a predictable generator
+== !randitem ==
+# cannot implement a test without replacing the generator of pseudo-random
+# numbers by a predictable generator
+== !randline ==
+# cannot implement a test without replacing the generator of pseudo-random
+# numbers by a predictable generator
+== !randword ==
+# cannot implement a test without replacing the generator of pseudo-random
+# numbers by a predictable generator
+== !rawmath ==
+ foo=!rawmath (x+1)(x-1)
+ bar=!rawmath 5x^3
+----
+foo == (x+1)*(x-1)
+bar == 5*x^3
+== !rawmatrix ==
+ foo=!rawmatrix cos(2 theta), sin(2theta); -sin(2theta), cos(2theta)
+----
+foo == cos(2*theta), sin(2*theta)
+-sin(2*theta), cos(2*theta)
+== !reaccent ==
+foo=!reaccent a`a^a"-e'e`e^e"-i^i"-o"o^-u`u^u"-c~-A`A^A"-E'E`E^E"-I^I"-O"O^-U`U^U"-C~
+----
+foo == àâä-éèêë-îï-öô-ùûü-ç-ÀÂÄ-ÉÈÊË-ÎÏ-ÖÔ-ÙÛÜ-Ç
+== !recursion ==
+ recursion_start=1
+ f=x*last
+ foo=!recursion $f for x=1 to 5
+ bar=!recursion $f for x in 1,2,3,4,5
+----
+foo == 120
+bar == 120
+== !reinput ==
+ foo=!reinput a&nbsp;b<b>c</b>
+----
+foo == a&amp;nbsp;b&lt;b>c&lt;/b>
+== !rename ==
+# this primitive cannot be tested without runnin wims in a CGI context
+# we shouldfind some other way to test it
+== !replace ==
+ foo=!replace André by Benoît in Andrée Ziegler
+ bar=!replace internal \" by « in \"bonjour\"
+ baz=!replace item number 2 by Monsieur in Bonjour, Madame, Éon
+----
+foo == Benoîte Ziegler
+bar == «bonjour«
+baz == Bonjour,Monsieur, Éon
+== !select ==
+ matrix=pair,2; impair,3; pair,4; impair, 5; pair, 6; impair, 7
+ foo=!select $matrix where column 1 = pair
+----
+foo == pair,2; pair,4; pair, 6
+== !shuffle ==
+# cannot implement a test without replacing the generator of pseudo-random
+# numbers by a predictable generator
+== !singlespace ==
+ phrase=Maître corbeau,		sur son arbre perché,\
+ Tenait		en son bec un fromage.\
+ Maître Renard, par	l'odeur alléché,\
+ Lui tint à peu		près ce langage :
+ foo=!singlespace $phrase
+----
+foo == Maître corbeau, sur son arbre perché, Tenait en son bec un fromage. Maître Renard, par l'odeur alléché, Lui tint à peu près ce langage :
+== !solve ==
+ foo=!solve sin(x)=0.5 for x=0 to 10
+----
+foo == 0.52359878,2.6179939,6.8067841,8.9011792
+== !sort ==
+ liste=6,1,3,5,4,2
+ foo=!sort list $liste
+----
+foo == 1,2,3,4,5,6
+== !sum ==
+ f=x^2
+ foo=!sum $f for x=1 to 5
+----
+foo == 55
+== !texmath ==
+ foo=!texmath [ 4,5;6,7]
+ # for some reason thiscommand prepends a space to the result; is it a feature?
+----
+foo ==  \begin{pmatrix}4 &5\cr 6 &7 \end{pmatrix}
+== !text common ==
+ foo1=!text common élève and éleva
+----
+foo1 == élv
+== !text common mask ==
+ foo2=!text common élève and éleva mask 01111
+----
+foo2 == lv
+== !text compare ==
+ foo3=!text compare élève and éleva
+-----
+foo3 == 00101
+== !text copy ==
+ foo4=!text copy élève mask 00101
+----
+foo4 == èe
+== !text count ==
+ foo5=!text count e,v in élève mask 01101
+----
+foo5 == 1
+== !text diff ==
+ foo6=!text diff élève from éleva mask 11110
+----
+foo6 == è
+== !text expand ==
+ foo7=!text expand èe using 00101
+----
+foo7 ==   è e
+== !text insert ==
+ foo8=!text insert èe into éleva mask 00101
+----
+foo8 == élève
+== !text interact ==
+ itab=0123\
+ 0000\
+ 0123\
+ 0202\
+ 0321
+ foo9=!text interact 3 and 3 table $itab
+----
+foo9 == 1
+== !text mark ==
+ foo10=!text mark èe in élève
+----
+foo10 == 00101
+== !text max ==
+ foo11=!text max 1246 and 6421
+----
+foo11 == 6446
+== !text min ==
+ foo12=!text min 1246 and 6421
+----
+foo12 == 1221
+== !text occur ==
+ foo13=!text occur abcdefghijklmnopqrstuvwxyz in élevage
+----
+foo13 == aeglv
+== !text remove ==
+ foo14=!text remove aeglv in élevage
+----
+foo14 == é
+== !text reorder ==
+ foo15=!text reorder élevage by 3,1,2
+----
+foo15 == eélgvae
+== !text repeat ==
+ foo16=!text repeat -oOo- to 25
+----
+foo16 == -oOo--oOo--oOo--oOo--oOo-
+== !text reverse ==
+ foo17=!text reverse tnavrené
+----
+foo17 == énervant
+== !text select ==
+ foo18=!text select elv in élevage
+----
+foo18 == leve
+== !translate ==
+ foo=!translate x to y in x^2-2*x+1
+ bar=!translate internal " to ' in "bonjour", comment "ça va ?"
+----
+foo == y^2-2*y+1
+bar == 'bonjour', comment 'ça va ?'
+== !trim ==
+# this primitive cannot be tested with the current version od the test program,
+# since theprogram trims each line of data before its evaluation by Wims.
+== !upper ==
+# cannot upper accented chars ... is it a feature?
+ foo=!upper bonjour àâä-éèêë-îï-öô-ùûü
+----
+foo == BONJOUR àâä-éèêë-îï-öô-ùûü
+== !values ==
+ f=x^2
+ foo=!values $f for x=1 to 5
+----
+foo == 1,4,9,16,25
+== !values with recursion ==
+ f=x*last
+ recursion_start=1
+ foo=!values $f for x=1 to 5
+----
+foo == 1,2,6,24,120
+== !varlist ==
+ f=sin(sqrt(x^2+y^2)/100)
+ foo=!varlist nofn $f
+----
+foo == x,y
+== !word ==
+ foo=!word 2..4 of un deux trois quatre cinq six
+----
+foo == deux trois quatre
+== !wordcnt ==
+ foo=!wordcnt un deux trois quatre cinq six
+----
+foo == 6

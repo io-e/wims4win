@@ -1,0 +1,20 @@
+This package was debianized by Georges Khaznadar <gekhajofour@netinfo.fr> on
+Thu, 28 Apr 2002 22:50:45 +0200.
+
+It was downloaded from ftp://boltz.univ-littoral.fr/pub/chemeq
+
+Upstream Author: Georges Khaznadar <gekhajofour@netinfo.fr>
+
+Since version 1.2 :
+Atomic data from gperiodic, authored by Kyle Burton <mortis@voicent.com>,
+ downloaded from http://gperiodic.seul.org/
+
+Copyright:
+
+This software is copyright (c) 2000-02 by Georges Khaznadar
+
+You are free to distribute this software under the terms of
+the GNU General Public License.
+On Debian systems, the complete text of the GNU General Public
+License can be found in /usr/share/common-licenses/GPL file.
+

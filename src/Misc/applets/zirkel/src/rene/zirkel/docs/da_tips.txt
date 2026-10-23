@@ -1,0 +1,132 @@
+Vigtige tips
+
+	Denne tekst indeholder forskellige oplysninger som det har vist sig at
+	brugerne ofte er i tvivl om. 
+
+Konstruktion af linjestykker med fast længde, cirkler med fast radius osv.
+
+	Man kan konstruere et normalt linjestykke og derefter åbne egenskabs-
+	dialogen med et højreklik, indtaste længden og afkrydse "Fast". Man kan
+	også åbne egenskabsdialogen ved at vælge værktøjet "Indstil 
+	objektegenskaber." 
+	Man kan også indtaste de faste værdier allerede under konstruktionen. Det 
+	gøres ved at trykke skift-tasten nede mens man vælge linjestykkets andet 
+	endepunkt. Hvis linjestykket kan tildeles fast længde, åbner 
+	egenskabsdialogen sig automatisk, og man behøver kun at indtaste længden. 
+	På samme måde går man frem ved vinkler, cirkler og punkter. 
+	Når det drejer sig om punkter, bliver deres koordinater fastlagt.
+
+	Læg mærke til at f.eks. et linjestykke kun kan få fast længde hvis et af
+	endepunkterne kan flyttes frit og ikke afhænger af andre punkter.
+	
+	Man kan også bruge beregningsudtryk til at fastlægge størrelserne. 
+	Syntaksen i beregningsudtryk er forklaret under Hjælp, Korte hjælpe-
+	tekster. Forklaringen findes både i teksten om værktøjer og teksten 
+	om kommandotilstand.
+	
+	Der findes også specielle objekter med faste størrelser, nemlig 
+	cirkler og vinkel med fast størrelse. Sådanne cirkler har intet radius-
+	punkt, og vinklerne har ikke noget punkt på andet ben. Man kan ikke 
+	ændre en normal cirkel eller vinkel via egenskabsdialogen, for der er
+	tale om en anden type objekt. 
+	De faste størrelser skal med allerede i konstruktionen. Det kan gøres 
+	enten ved at trykke skift-tasten ned under konstruktionen, eller ved
+	at vælge de særlige værktøjer som konstruerer disse objekter. 
+	
+
+Vis og skjul objekter
+
+	Her bruges værktøjet "Skjul objekt", dvs. ikonet med spøgelset.
+	For at gøre skjulte objekter synlige igen, skal man imidlertid først
+	vælge indstillingen "Vis skjulte objekter" enten i værktøjspanelet eller
+	i menuen Indstillinger.
+	Ændringen kan også foretages i objektets egenskabsdialog. 
+	
+	Den letteste måde at skifte mellem vis og skjul er at klikke på objektet
+	med CTRL-tasten nedtrykket.
+	
+	Man kan også skjule alle objekter med en bestemt farve ved hjælp af 
+	værktøjet "Vis udvalge farver" eller ved menupunktet Indstillinger, 
+	Vis farver.
+	
+Skæringspunkter
+
+	Skæringspunkter skal konstrueres før skæringen kan bruges i en videre
+	konstruktion. 
+	Normalt konstrueres de med værktøjet "Skæringspunkt". Det vælges i 
+	værktøjspanelet, med menupunktet Udfør, Simple værktøjer, Skæringspunkt, 
+	eller med genvejstasten x.
+	Når værktøjet er valgt, kan man enten klikke direkte på skæringen eller
+	på de to objekter hvis skæringspunkt skal konstrueres. 
+	
+
+	Når skæringspunktet skal bruges i den videre konstruktion, kan man som
+	regel undgå at vælge værktøjet. Når programmet forventer at der angives
+	et punkt, kan der ske tre forskellige ting:
+	1. Hvis man klikker på et tomt sted, opstår et nyt punkt.
+	2. Hvis man kllikker på et eksisterende punkt, bliver det valgt.
+	3. Hvis man klikker på en skæring, konstrueres skæringspunktet automatisk.
+	   (I menuen Indstillinger, Programindstillinger, kan man vælge om der
+		 skal spørges før skæringspunktet konstrueres). 
+	
+	Hvis der indgår en cirkel i skæringspunktet, er der altid to skærings-
+	punkter. Hvis man klikker på cirklen og det objekt den skærer, konstrueres 
+	begge to. Hvis man derimod klikker på selve skæringen, konstrueres kun
+	dette skæringspunkt. 
+	Man kan konstruere begge punkter og skjule eller slette det ene. I egen-
+	skabsdialogen for et skæringspunkt kan man indstille at det altid skal 
+	være forskelligt fra et andet punkt. Det er nogle gange nødvendigt. 
+
+Spor
+
+	Der findes spor som brugeren frembringer ved at trække et punkt, og 
+	automatiske spor. Hver har sit værktøj. 
+	Spor konstrueres manuelt på denne måde: Først vælges de punkter hvis 
+	stedlinje skal tegnes. Man kan evt. vælge flere punkter ved at trykke på 
+	skift-tasten mens man klikke, undtagen ved sidste punkt). Herefter vælges
+	det punkt der skal flyttes, og man trækker punktet. Det kan ske med venstre
+	eller højre musetast.
+	De punkter hvis stedlinje tegnes, skal naturligvis afhænge af det punkt der
+	flyttes, hvis der skal komme et spor ud af det.
+	
+	Til automatiske spor vælger man et eller flere punkter hvis stedlinje
+	skal tegnes, men inden man vælger det punkt der skal flyttes, skal man 
+	vælge det objekt som punktet skal flyttes rundt på. Det kan være en linje, 
+	halvlinje, linjestykke eller cirkel. Når punktet der skal flyttes derefter
+	vælges, tegnes sporet automatisk. 
+	
+	Begge slags spor kan tegnes automatisk når man bruger en konstruktion i
+	en Java-applet. Når et spor er synligt i konstruktionen, bliver det 
+	tilsvarende felt i Gem som HTML-dialogen automatisk udfyldt rigtigt.
+	
+	
+
+Vinkler
+	
+	Vinkler er som standard altid under 180°. Denne indstilling kan ændres ved at
+	klikke på ikonet "Tillad vinkler over 180°", ved menupunktet Indstillinger, Andre
+	indstillinger, Tillad vinkler over 180° eller med genvejstasten CTRL+F12. Den kan
+	også ændres individuelt i egenskabsdialogen for en vinkel. 
+	
+	
+
+Tastatur
+	
+	Næsten alt kan styres ved tastaturet. Genvejstasterne kan ses i menuerne.
+
+Fejl ved makrobenyttelsen
+
+	Denne fejlmelding møder man i makroer der har cirkler eller linjestykker
+	som parametre. Ved brugen skal man have samme konfiguration af endepunkter
+	(for linjestykker) eller centrer (for cirkler) som ved makrodefinitionen.  
+	
+	Hvis en makro f.eks. er defineret med linjestykket AB og linjestykket BC
+	som parametre, så skal man ved brug af makroen angive to linjestykker med
+	et fælles endepunkt. Et andet eksempel: hvis makroen har to koncentriske
+	cirkler som parametre, giver det en fejl hvis man kalder makroen med 
+	to cirkler med hver sit centrum. 
+	Alt andet ville også være meget forvirrende.
+
+Forfatterens e-mail-Adresse er grothm@ku-eichstaett.de - oversætteren er
+niels.johnsen1@skolekom.dk
+

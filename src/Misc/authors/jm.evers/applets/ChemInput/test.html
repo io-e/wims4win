@@ -1,0 +1,58 @@
+<html>
+ <body>
+    <script type="text/javascript">
+	function ReadThisTo(t){
+	    var reply="";
+	    if(t == 2){ reply = document.getElementById('MiniInputApplet').ReadHtml();}
+	    else
+	    if(t == 1){ reply = document.getElementById('MiniInputApplet').ReadAnswer();}
+	    else {reply = document.getElementById('MiniInputApplet').ReadLatex();}
+	    
+	    alert(reply.toString());
+	}
+
+	function ReadThis(t){
+	    if(t == 2){ reply = document.getElementById('MiniInputApplet').ReadHtml();}
+	    else
+	    if(t == 1){ reply = document.getElementById('MiniInputApplet').ReadAnswer();}
+	    else {reply = document.getElementById('MiniInputApplet').ReadLatex();}
+	    
+	    alert(reply);
+	}    
+    </script>
+    <applet id="ChemInput" name="ChemInput" code="ChemInputApplet.class" codebase="dist" archive="ChemInput.jar" width="140" height="40">
+	<param name="applettext" value="2C_{17}H_{35}CH_{2}OH + 54O_{2} \rightleftharpoons 36CO_{2} + 38H_{2}O"><!-- optional param,  in "latex" -->
+	<param name="lang" value="nl"><!-- default en options nl,fr -->
+	<param name="fontsize" value="26"><!-- default 18 -->
+	<param name="frame_width" value="420"><!-- initial width of popup window ; is user resizable -->
+	<param name="frame_height" value="180"><!-- initial height of popup window ; is user resizable  -->
+	<param name="pencolor" value="0,0,255,1"><!-- default black  ; R,G,B,alpha -->
+	<param name="bgcolor1" value="250,240,240,0.2"><!-- canvas bgolor;default white ; R,G,B,alpha -->
+	<param name="bgcolor2" value="10,255,10,0.5"><!-- active typing bar; default green ;R,G,B,alpha -->
+	<param name="bgcolor3" value="250,240,225,0.2"><!-- menubbar color; default white ;R,G,B,alpha -->
+	<param name="chembuttons" value="1"><!-- Default 1/yes ; options 0/no ; shows a few arrows-->
+	<param name="navbuttons"  value="1"><!-- Default 1/yes ; options 0/no ; shows a few navigation buttons -->
+    </applet
+
+    <applet id="MiniInputApplet" name="MiniInputApplet" code="MiniInputApplet.class" codebase="dist" archive="ChemInput.jar" width="440" height="40">
+	<param name="applettext" value="2C_{17}H_{35}CH_{2}OH + 54O_{2} \rightleftharpoons 36CO_{2} + 38H_{2}O"> 
+<!-- optional param,  in "latex" -->
+	<param name="lang" value="nl"><!-- default en options nl,fr -->
+	<param name="fontsize" value="16"><!-- default 18 -->
+	<param name="pencolor" value="0,0,255,1"><!-- default black  ; R,G,B,alpha -->
+	<param name="bgcolor1" value="250,240,240,0.2"><!-- canvas bgolor;default white ; R,G,B,alpha -->
+	<param name="bgcolor2" value="10,255,10,0.5"><!-- active typing bar; default green ;R,G,B,alpha -->
+	<param name="bgcolor3" value="250,240,225,0.2"><!-- menubbar color; default white ;R,G,B,alpha -->
+    </applet
+
+    <p>
+    <input type="button" name="frame ascii" value="html" onclick="javascript:ReadThis(2);">
+    <input type="button" name="frame ascii" value="wims answer" onclick="javascript:ReadThis(1);">
+    <input type="button" name="frame Latex" value="Latex" onclick="javascript:ReadThis(0);">       
+    <br>
+    <input type="button" name="embed ascii" value="html" onclick="javascript:ReadThisTo(2);">
+    <input type="button" name="embed ascii" value="wims answer" onclick="javascript:ReadThisTo(1);">
+    <input type="button" name="embed Latex" value="Latex" onclick="javascript:ReadThisTo(0);">       
+ </body>
+</html>
+

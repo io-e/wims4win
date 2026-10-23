@@ -1,0 +1,27 @@
+chemeq (1.1.0.3-4) stable; urgency=low
+
+  * corrected build-depends according to last post about Bug#146552
+    gcc and g++ are no more in buid-depends.
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Tue May 14 23:20:32 CEST 2002
+
+  * corrected a missing parenthesis in chemreport.pl (test suite)
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sun May 12 15:53:36 CEST 2002
+
+  * added build-depends : flex, bison, gcc, g++
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sat May 11 19:06:01 CEST 2002
+
+  * Integrated test suite
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sun May  5 10:12:49 CEST 2002
+
+  * Initial Release.
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Thu, 28 Apr 2002 22:50:45 +0200
+
+Local variables:
+ mode: debian-changelog
+End:
+

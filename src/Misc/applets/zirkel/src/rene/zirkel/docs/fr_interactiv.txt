@@ -1,0 +1,302 @@
+Mode descriptif:
+
+	A=P()
+	    point
+	    Point aléatoire.
+
+	A=P(0,1)
+	    A point fixe.
+
+	a=s(B,C)
+	    segment
+	    segment de B à C.
+
+	a=s(B,2)
+	    segment de longueur fixe.
+
+	a=l(B,C)
+	    droite ("line")
+	    droite passant par B et C.
+
+	a=r(B,C)
+	    demi-droite ("ray")
+	    A demi-droite d'origine B passant par C.
+
+	k=c(A,B)
+	    cercle
+	    A cercle de centre A passant par B.
+
+	k=c(A,2)
+	    A cercle de rayon fixe.
+
+	k=c(A,B,C)
+	    A cercle de centre A et de rayon BC.
+
+	A=I(d,d)
+	    intersection
+	    intersection entre deux droites.
+
+	A,B=I(c,c)
+	    intersection entre deux cercles, ou entre un cercle et une droite.
+
+	M=M(A,B)
+	    milieu
+	    milieu de AB.
+
+	g=par(d,A)
+	    parallèle
+	    parallèle à d menée par A.
+
+	g=perp(d,A)
+	    perpendiculaire
+	    perpendiculaire à d menée par A.
+
+	a=a(A,B,C)
+	    angle
+	    angle A,B,C (dans l'ordre: B est le sommet)
+
+	a=a(A,B,90)
+	    angle de mesure fixe (sommet: B)
+
+	A=poly(P1,P2,P3)
+	    polygone plein
+	    polygone P1 P2 P3.
+
+	E=expression(s)
+	    expression
+	    crée l'expression s (expression arithmétique) à un emplacement
+            aléatoire.
+
+	value(P,0,1)
+	    valeur ("value")
+	    Fixe les coordonnées du point P
+
+	value(s,2)
+	    Fixe la longueur du segment s.
+
+	value(c,2)
+	    Fixe le rayon du cercle c.
+
+	value(a,90)
+	    Fixe la mesure de l'angle a.
+
+	value(true,o)
+	    fixe le mode d'affichage de o.
+	    "true" (vrai) peut être omis.
+
+	value(true)
+	    fixe le mode d'affichage par défaut des valeurs.
+
+	name(o,p)
+	    nom
+	    donne p comme nom à o.
+
+	name(true,o)
+	    affichage ou non du nom de o.
+	    "true" peut être omis.
+
+	name(true)
+	    mode d'affichage par défaut des noms.
+
+	hide(true,o)
+	    caché ("hide")
+	    cache ou montre o.
+	    "true" peut être omis.
+
+	hide(true)
+	    valeur par défaut de l'affichage des objets.
+
+	invisible(true,o)
+	    invisible (dans les macros)
+	    cache complètement o ou non.
+	    "true" peut être omis.
+
+	invisible(true)
+	    valeur par défaut de l'attribut précédent.
+
+	col(green,o)
+	    couleur ("color")
+	    fixe la couleur de l'objet o (green, blue, cyan, brown).
+
+	col(green)
+	    couleur par défaut (ici: vert).
+
+	th(thin,o)
+	    epaisseur ("thickness")
+	    fixe l'épaisseur de o (thick, normal, thin)
+	    (thick=epais; thin=pointillé)
+
+	th(thick)
+	    épaisseur de trait par défaut
+
+	type(square,P)
+	    type
+	    type d'affichage du point P: square (carré), circle (cercle),
+            diamond (losange), dot (point).
+
+	type(square)
+	    type d'affichage par défaut des points.
+
+	part(true,k)
+	    partiel
+	    affichage partiel de l'objet k.
+	    "true" peut être omis.
+
+	part(true)
+	    affichage par défaut (partiel ou non).
+
+	fill(true,o)
+	    plein ("fill")
+	    remplit l'objet o.
+	    "true" peut être omis.
+
+	back(true,o)
+	    arrière-plan ("background")
+	    fait passer l'objet o à l'arrière-plan.
+	    "true" peut être omis.
+
+	window(0,0,5)
+	    fenetre ("window")
+	    fixe la taille de la fenetre (largeur 2^5 et centre (0,0)).
+
+	obtuse(true,a)
+	    obtus
+	    autorise l'angle a à devenir obtus.
+	    "true" peut être omis.
+
+	acute(true,a)
+	    aigu
+	    force l'angle a à rester aigu.
+	    "true" peut être omis.
+
+	restrict(c,A,B)
+            arc de cercle
+            ne dessine que l'arc AB du cercle c
+
+
+        Partout où des points sont attendus, c(k), a(s) et b(s) peuvent être
+        utilisés:
+        c(k) est le centre du cercle k, a(s) et b(s) sont les deux points
+        définissant le segment, la droite ou la demi-droite.
+
+Macros:
+        On peut aussi définir des macros en mode descriptif.
+        Les noms à gauche du symbole = seront assignés aux objets finaux.
+        S'il y a plusieurs objets finaux, les noms doivent être séparés
+        par des virgules. On peut utiliser un paramètre additionnel
+        pour affecter une valeur à un objet; cette valeur sera demandée
+        par le programme en mode interactif.
+
+
+Expressions:
+
+        Les expressions obéissent aux conventions mathématiques usuelles,
+        y compris les règles de	précédence de */ sur +-. On peut aussi utiliser
+        l'opérateur d'élévation à la puissance ^ (qu'on peut aussi écrire **).
+        Les parenthèses sont autorisées et respectées.
+
+        Les fonctions mathématiques usuelles, comme sin, cos, tan,
+        arcsin, arccos, arctan, sqrt, abs, sign, exp et log sont disponibles.
+        Pour arrondir à des valeurs entières, on dispose des fonctions
+        round, ceil et floor. x(P) and y(P) fournissent les coordonnées d'un
+        point, d(P,Q) la distance de deux points, a(A,B,C) l'angle ABC; angle360
+        et angle180 obligent les mesures des angles à rester comprises
+        respectivement entre 0 et 360, ou entre -180 et 180.
+
+        La fonction scale(x,a,b) calcule (x-a)/(b-a). Elle n'est valide que si
+        x appartient à l'intervalle (a,b). d(x) calcule les variations de x.
+        Si x est un point, elle calcule le mouvement de ce point. sum(x,f)
+        ajoute x. Ceci peut être utilisé pour intégrer. Si f est négatif ou
+        n'est pas valide, la somme est remise à 0.
+
+        La fonction if(e,e1,e2) renvoie e1, si e est valide, sinon e2. La
+        constante "invalid" renvoie une expression non valide.
+
+        Les noms des segments, des cercles et des angles sont évalués
+        respectivement comme leur longueur, leur rayon et leur mesure.
+
+
+Enregistrement d'une construction dans un fichier:
+
+        On peut écrire une construction en mode descriptif sous forme de texte,
+        en utilisant n'importe quel éditeur de texte simple (par exemple le
+        bloc-notes sous Windows; mais pas un traitement de texte qui rajoute des
+        instructions de formatage...), sauvegarder ce texte dans un fichier
+        (avec l'extension ".run"), et ensuite charger ce fichier de construction
+        dans C.a.R. (menu fichier: ouvrir une construction): voir un exemple
+        plus bas.
+        La syntaxe est basée sur la notion de ligne (une commande par ligne)
+        et utilise les commandes décrites plus haut. Les lignes commençant par
+        // sont considérées comme des commentaires et ne sont pas interprétées.
+        Les fichiers de constructions peuvent contenir des macros comme celle-ci:
+
+
+		macro U
+		// Construit le cercle passant par 3 points
+		    param A=point // choisir le premier point
+		    param B=point // choisir le deuxième Point
+		    param C=point // choisir le troisième point
+		    g1=MS(A,B)
+		    g2=MS(A,C)
+		    U=intersection(g1,g2)
+		    target k=c(U,A)
+		end
+
+        (target ("cible") désigne les objets finaux de la macro
+        param ("paramètre") les objets initiaux
+        end ("fin") signale la fin de la macro)
+
+        L'indentation est facultative. Les commentaires dans les lignes
+        de définition des paramètres sont utilisés comme requêtes dans la ligne
+        de commande, si la macro est utilisée de manière interactive.
+        Cette macro fait appel à la macro MS qui demande deux objets initiaux:
+
+		macro MS
+			param A=point
+			param B=point
+			part(true)
+			k1=c(A,B)
+			k2=c(B,A)
+			part(false)
+			P1,P2=intersection(k1,k2)
+			invisible
+			target g=d(P1,P2)
+		end
+
+        Si une ligne du programme construit deux objets, l'objet final
+        ("target") doit être défini sur une autre ligne. La commande "invisible"
+        cache complètement toutes les étapes intermédiaires de la construction.
+        Cette commande peut aussi être appliquée individuellement à des objets.
+        La commande "showall" ("montrer tout") est son contraire.
+
+		A,B=intersection(g,k)
+		target B
+
+        Si une macro a plus d'un objet final, tous les objets finaux doivent
+        être affectés.
+
+		A,B=test(...)
+
+        Le mot-clé "prompt" précédant le nom d'un objet indique une requête:
+
+		k=c(A,5)
+		prompt k
+
+        Voici un exemple de macro utilisant un segment comme objet initial:
+
+		macro MS
+		// médiatrice
+			A=point
+			B=point
+		    param s=segment(A,B)
+		    ...
+		end
+
+        Si des cercles sont utilisés comme objets initiaux, la syntaxe prend
+        la forme suivante:
+
+		M=point
+		param c(M)
+
+        Ce type de cercle ne peut être utilisé que comme objet initial.
+

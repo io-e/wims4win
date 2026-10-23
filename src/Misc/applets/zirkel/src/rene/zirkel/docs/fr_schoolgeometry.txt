@@ -1,0 +1,60 @@
+
+
+Ce programme est la version Java du programme C.a.R.
+(Compasses and Ruler: la Règle et le Compas),
+initialement conçu pour Windows.
+Cette version a été complètement réécrite pour Java
+et utilise un format de fichier incompatible
+avec la version précédente, basé sur le standard XML.
+Vous trouverez un lien vers le site de ce programme
+sur ma page d'accueil (voir plus bas).
+Vous y trouverez également mon adresse électronique actuelle.
+
+Ce programme a pour but de simuler les constructions
+à la règle et au compas de la géométrie élémentaire.
+Contrairement au dessin sur papier, il est possible de déplacer
+les points de base de la construction une fois la figure achevée,
+ce qui permet de mieux comprendre comment la figure dépend de ces points;
+on peut également visualiser la trace des différents points de la figure
+quand les points de base se déplacent.
+
+Ce programme est un logiciel libre développé sous la licence Gnu.
+La page d'accueil du programme présente un lien vers cette licence.
+Le point essentiel en est que les sources de ce programme sont libres,
+et qu'il en va de même pour les versions dérivées ou modifiées.
+
+Le programme offre plus de possibilités que celles qui apparaissent
+sur les différents menus. Une documentation complète
+(pour l'instant en anglais) est disponible sur la page d'accueil.
+On peut aussi la télécharger et la consulter avec n'importe quel navigateur web.
+Sous Windows, le programme d'installation installe automatiquement cette
+documentation. Un tutoriel est également disponible, qui nécessite un navigateur
+récent implémentant Java.
+
+Il est cependant facile de commencer à utiliser ce programme,
+à partir des remarques générales suivantes:
+
+- Le programme utilise le bouton droit de la souris pour:
+	-éditer les propriétés des objets,
+	-déplacer les points, ainsi que les noms des objets lorsque ceux-ci sont
+        affichés.
+
+- Le clic gauche associé aux touches Ctrl et Maj (Shift) ont
+un effet particulier: le premier (clic gauche, touche Maj enfoncée)
+fixe les points ainsi que la longueur des segments, quand on l'utilise pour
+créer le deuxième point du segment; le second (clic gauche, touches Maj et Ctrl
+enfoncées) est un raccourci pour cacher un objet.
+
+Des raccourcis clavier sont associés aux différentes actions;
+ceux-ci sont précisés entre parenthèses après chaque entrée sur le menu.
+Il faut cependant que la fenêtre principale soit activée
+pour que ces raccourcis prennent effet: il peut donc être nécessaire
+de faire un clic droit dans cette fenêtre pour les mettre en oeuvre.
+
+La ligne d'état en bas de la fenêtre principale affiche l'action attendue
+de l'utilisateur.
+
+Amusez-vous bien avec ce programme!
+
+Priv.-Doz. Dr. R. Grothmann
+http://www.rene-grothmann.de/

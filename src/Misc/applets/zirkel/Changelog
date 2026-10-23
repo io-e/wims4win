@@ -1,0 +1,127 @@
+12/2010
+Adapted build.xml to wims.(GK. Debian build)
+
+15/6/2009
+Corrected vertical y-axis text
+Added param <param name="decimals" value="2">
+This is the precision of reply_answer send to WIMS.
+Usefull in large constructions...to limit query string and avoid trouble with server settings.
+
+To be used independant of :
+<param name="editdigits" value="2">
+<param name="displaydigits" value="2">
+<param name="angledigits" value="3">                                                                                                  
+
+  
+24/5/2009
+Corrected language settings [param "language"]
+Added reading of freehand drawing. [a string of x/y points]
+Added applet params for grid & axis.
+Added applet params for x-axis/y-axis text.
+Added applet param for y-axis text orientation.
+Added applet param for background image [animated gif, jpeg , png etc] http://localhost/test.gif
+example: 
+<applet id="CaR" codebase="build" archive="zirkel.jar" code="rene.zirkel.ZirkelApplet.class" WIDTH="400" HEIGHT="400" ALIGN="CENTER" MAYSCRIPT>
+    <!-- <param name="file" value="http://localhost/1.zir"> -->
+    <!-- <param name="background_image" value="http://localhost/test.jpg"> -->
+    <param name="language" value="fr">
+    <!-- if axes/grid is activated -->
+    <param name="x_axis_text" value="my x-axis"><!-- default "x-axis" ; unicodesymbols allowed (if OS permits) &#8594; &#8660; -->
+    <param name="y_axis_text" value="my y-axis"><!-- default "y-axis" -->
+    <param name="y_axis_text_vertical" value="true"><!-- default "false" -->
+    
+    <!-- some more params ;there are many more defined -->
+    <param name="nomousezoom" value="true">
+    <param name="minfontsize" value="14">
+    <param name="smallicons" value="what_ever"> <!-- size 32 ; remove param-tag for lager icons  size 64 -->
+    <param name="grid" value="what_ever"> <!-- if grid param-tag is present, show grid ;value is non-important  -->
+    <param name="snap" value="left"> <!-- if grid is present, snap to grid [left side oriented]  -->                                                                                          
+    <param name="editdigits" value="2">                                                                                                  
+    <param name="displaydigits" value="2">                                                                                                  
+    <param name="angledigits" value="3">                                                                                                  
+    <param name="color" value="255,255,255">                                                                                                  
+    <param name="tools" value="line point area angle circle segment function ray">                                                                 
+    <param name="options" value="back grid delete mouse">                                                                                                       
+    <param name="style" value="full">
+    No java
+</applet>
+look in 1.html for jsavascript examples 
+
+31/1/2009
+Added GetAllObjects();
+
+function ReadApplet_II(){                                                                                                      
+    <!-- this function retreives all construction details -->                                                                  
+    <!-- excluded objects with name prefix \"my_\"          -->                                                                  
+    var data=document.getElementById(\"CaR\").getAllObjects().split(',');                                                        
+    var cnt=0;var reply=new Array();                                                                                           
+    for(var p=0;p<data.length;p++){                                                                                            
+        reply[cnt]=data[p].toString();                                                                                         
+        cnt++;                                                                                                                 
+    }                                                                                                                          
+    alert(\"the reply is:\n\"+reply);                                                                                            
+}
+
+32/1/2009
+Added "ray" , "function" , "intersection_point" , "point_on" to the detectable objects.
+Remark: I've not yet found a "zirkel way" to change from degrees to radians. 
+E.g. a function sin(x) will use x in degrees. 
+
+
+
+
+30/1/2009
+
+Adding Zirkel to SVN.
+
+[from 1.html]
+
+The next drawing details can be retreived. 
+All objects must be named correctly by the student.
+Multiple Objects of the same type but non-requested name will be ignored. 
+If an object/name combination is not present, the student will receive an browser alert message. 
+ 
+The implemented objects are [for now] : 
+* point , send as "point=point_name:x=x_value:y=y_value \n" 
+* line , y=slope*x+contant is send as "line=line_name:slope=a_number:constant=a_number:affine \n" 
+    * if the line is vertical is will be send as "line=line_name:x=a_number:vertical \n" 
+    * if the line is horizontal is will be send as "line=line_name:y=a_number:horizontal \n" 
+* segment , send as "segment=segment_name:x=a_number:y=a_number:x=a_number:y=a_number: length=a_number \n" 
+* fixedcircle , send as "fixedcircle=fixed_circle_name:x=a_number:y=a_number:r=a_number \n" 
+* circle , send as "circle=circle_name:x=a_number:y=a_number:r=a_number \n" 
+* angle , send as "angle=angle_name:value=a_number \n" [degrees or radians depending on appletparam] 
+* area , send as "area=area_name:x=a_number:y=a_number..... :area=a_number \n" 
+* function [no details ,yet]
+
+Other objects -see zirkel/zirkel/rene/zirkel/objects/*java - could be implemented, if needed.
+No extra applet params were defined. [not yet needed]
+ 
+The applets public_function to communicate with javascript  getDrawing("object","name_of_object"); 
+or with multiple occurances of an object:getDrawing("object","name1,name2,name3,name4,..."); 
+_________________________________________________________________ 
+This example javascript code could be used to produce a working WIMS exercise.
+
+function ReadApplet(){
+    <!-- this array should be produced using WIMS variables... -->;
+    var list_of_objects=["point,p1,p2,p3","line,l1,l2","function","area,poly1","angle,a1","circle","fixedcircle","segment"]; 
+    var count=0;var reply=new Array();var data;var tmp; 
+    for(var p=0;p<list_of_objects.length;p++){ 
+	tmp=list_of_objects[p].split(','); 
+	if(tmp[0].length>0){ 
+	    for(var s=1;s<tmp.length;s++){ 
+		data=document.applets[0].getDrawing(tmp[0],tmp[s]); 
+		if(data.indexOf("error")!=-1){ 
+		    alert("Your answer will not be send...\nthe next object could not be detected in your drawing...\n\n:"+data); return; 
+		} 
+		else 
+		{ 
+		    reply[count]=data; 
+		    count++; 
+		} 
+	    } 
+	} 
+    } 
+}
+ 
+Note: all this is not yet used is a wims-module.
+If needed -for example in OEF anstype? - everything can be adapted !

@@ -1,0 +1,33 @@
+# @configure_input@
+
+wims_home=../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+STRIP=@STRIP@
+lopt=-L$(wims_home)/lib -lwims -lm $(rpath)
+O=basic.o colors.o tfm.o gf.o font.o image.o dvi.o texgif.o
+H=../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
+all: texgif
+
+%.o: %.c *.h $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean::
+	rm -f *.o texgif
+	rm -fR test/texg* test/[0-9]*
+
+distclean: clean
+	rm -f $(wims_home)/public_html/bin/tex..gif
+	rm -f Makefile
+
+texgif: $(O)
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(defines) $(O) -lgd $(lopt) -o texgif
+	$(STRIP) texgif
+	cp texgif $(wims_home)/public_html/bin/tex..gif
+
+colors.c: ../Flydraw/colors colors.sh
+	./colors.sh

@@ -1,0 +1,41 @@
+#! /bin/sh
+#
+# You can put here the name of your favorite browser.
+
+BROWSER=mozilla
+WIMSD_PORT=18881
+
+#################################################
+#						#
+#          Do not touch the following		#
+#						#
+#################################################
+
+cd `dirname $0`
+WIMS_HOME=`pwd`
+
+WIMSD_ACCEPT=local
+export HOME WIMSD_PORT WIMSD_ACCEPT
+rm -f tmp/wimsd
+bin/wimsd&
+sleep 1
+ntest=`ps xa`
+wimsdtest=`echo "$ntest" | grep wimsd | awk '{print $1}'`
+if [ -z "$wimsdtest" ]; then
+ echo Unable to bring up WIMS http server.
+ exit 1
+fi
+
+ntest=`echo "$ntest" | grep $BROWSER | awk '{print $1}'`
+for pid in $ntest
+do
+ kill -s KILL $pid
+done
+
+$BROWSER "http://localhost:$WIMSD_PORT/wims.cgi"
+
+for pid in $wimsdtest
+do
+ kill $pid
+done
+

@@ -1,0 +1,214 @@
+#######################################################################
+# fichier de test pour chemeq.
+#
+# les lignes comprennent une entrée pour chemeq puis la liste des lignes
+# que chemeq doit rendre. 
+#
+# les lignes commençant par une dièse sont des commentaires.
+# les commentaires ne sont permis qu'avant une ligne d'entrée.
+#
+# le résultat n'affiche que "OK" ou un message d'erreur en rapport
+# avec la première ligne de chaque test. Voir le fichier test.stuff
+# pour en savoir plus.
+#x
+#x
+#######################################################################
+#
+# une équation déséquilibrée
+#
+#######################################################################
+MnO4^- + 8H3O^+ + 5e- --> Mn^2+ + 4 H2O
+MnO4^- + 8 H3O^+ + 5 e^- -> Mn^2+ + 4 H2O
+\mathrm{Mn}\mathrm{O}_{4}^{-}\,+\,8\,\mathrm{H}_{3}\mathrm{O}^{+}\,+\,5\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Mn}^{2+}\,+\,4\,\mathrm{H}_{2}\mathrm{O}
+ERROR H : 24 Mn : 1 O : 12 / H : 8 Mn : 1 O : 4
+E\,=\,E_{0}\,+\,\frac{R\,T}{5\,F}\log\frac{[\mathrm{Mn}\mathrm{O}_{4}^{-}]\,[\mathrm{H}_{3}\mathrm{O}^{+}]^{8\,}}{[\mathrm{Mn}^{2+}]}
+MnO4^-|Mn:1*1 O:1*4, 8 H3O^+|H:8*3 O:8*1, 5 e^-|e:5*1; Mn^2+|Mn:1*1, 4 H2O|H:4*2 O:4*1
+H3O^+ + 1/8 MnO4^- + 5/8 e^- -> 1/2 H2O + 1/8 Mn^2+
+#######################################################################
+#
+# des équations équilibrées
+#
+#######################################################################
+1/2 Cu^2+ + OH- ->  1/2Cu(OH)2
+1/2 Cu^2+ + OH^- -> 1/2 Cu(OH)2
+\frac{1}{2}\,\mathrm{Cu}^{2+}\,+\,\mathrm{O}\mathrm{H}^{-}\,\longrightarrow\,\frac{1}{2}\,\mathrm{Cu}(\mathrm{O}\mathrm{H})_{2}
+OK
+\frac{[\mathrm{Cu}(\mathrm{O}\mathrm{H})_{2}]^{\frac{1}{2}\,}}{[\mathrm{Cu}^{2+}]^{\frac{1}{2}\,}\,[\mathrm{O}\mathrm{H}^{-}]}\,=\,K
+1/2 Cu^2+|Cu:1/2*1, OH^-|O:1*1 H:1*1; 1/2 Cu(OH)2|Cu:1/2*1 O:1/2*2 H:1/2*2
+Cu^2+ + 2 HO^- -> Cu(HO)2
+#
+MnO4^- + 8H3O^+ + 5e- --> Mn^2+ + 12 H2O
+MnO4^- + 8 H3O^+ + 5 e^- -> Mn^2+ + 12 H2O
+\mathrm{Mn}\mathrm{O}_{4}^{-}\,+\,8\,\mathrm{H}_{3}\mathrm{O}^{+}\,+\,5\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Mn}^{2+}\,+\,12\,\mathrm{H}_{2}\mathrm{O}
+OK
+E\,=\,E_{0}\,+\,\frac{R\,T}{5\,F}\log\frac{[\mathrm{Mn}\mathrm{O}_{4}^{-}]\,[\mathrm{H}_{3}\mathrm{O}^{+}]^{8\,}}{[\mathrm{Mn}^{2+}]}
+MnO4^-|Mn:1*1 O:1*4, 8 H3O^+|H:8*3 O:8*1, 5 e^-|e:5*1; Mn^2+|Mn:1*1, 12 H2O|H:12*2 O:12*1
+H3O^+ + 1/8 MnO4^- + 5/8 e^- -> 3/2 H2O + 1/8 Mn^2+
+#######################################################################
+#
+# un équilibre chimique en phase gazeuse
+#
+#######################################################################
+SO3_g -----> SO2_g + 1/2 O2_g  (Kp=16.3)
+SO3_(g) -> SO2_(g) + 1/2 O2_(g) (Kp = 16.3)
+\mathrm{S}\mathrm{O}_{3}_{(g)}\,\longrightarrow\,\mathrm{S}\mathrm{O}_{2}_{(g)}\,+\,\frac{1}{2}\,\mathrm{O}_{2}_{(g)}\,(Kp\,=\,16.3)
+OK
+\frac{P_{\mathrm{S}\mathrm{O}_{2}}\,P_{\mathrm{O}_{2}}^{\frac{1}{2}\,}}{P_{\mathrm{S}\mathrm{O}_{3}}}\,=\,Kp\,=\,16.3
+SO3_(g)|S:1*1 O:1*3; SO2_(g)|S:1*1 O:1*2, 1/2 O2_(g)|O:1/2*2
+O3S_(g) -> 1/2 O2_(g) + O2S_(g) (Kp = 16.3)
+#######################################################################
+#
+# un équilibre chimique en phases gazeuse et solide
+#
+#######################################################################
+2HgO_s  -> 2Hg_g + O2_g (Kp=1.67e-22)
+2 HgO_(s) -> 2 Hg_(g) + O2_(g) (Kp = 1.67e-22)
+2\,\mathrm{Hg}\mathrm{O}_{(s)}\,\longrightarrow\,2\,\mathrm{Hg}_{(g)}\,+\,\mathrm{O}_{2}_{(g)}\,(Kp\,=\,1.67\times 10^{-22})
+OK
+P_{\mathrm{Hg}}^{2\,}\,P_{\mathrm{O}_{2}}\,=\,Kp\,=\,1.67\times 10^{-22}
+2 HgO_(s)|Hg:2*1 O:2*1; 2 Hg_(g)|Hg:2*1, O2_(g)|O:1*2
+HgO_(s) -> Hg_(g) + 1/2 O2_(g) (Kp = 8.35e-23)
+#######################################################################
+#
+# une réaction rédox avec de l'eau, un soluté et un gaz
+#
+#######################################################################
+2H3O^+ + 2e- ---> H2g + 2H2O (Eo=0.0 V)
+2 H3O^+ + 2 e^- -> H2_(g) + 2 H2O (Eo = 0 V)
+2\,\mathrm{H}_{3}\mathrm{O}^{+}\,+\,2\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{H}_{2}_{(g)}\,+\,2\,\mathrm{H}_{2}\mathrm{O}\,(Eo\,=\,0 V)
+OK
+E\,=\,0\,+\,\frac{R\,T}{2\,F}\log\frac{[\mathrm{H}_{3}\mathrm{O}^{+}]^{2\,}}{P_{\mathrm{H}_{2}}}
+2 H3O^+|H:2*3 O:2*1, 2 e^-|e:2*1; H2_(g)|H:1*2, 2 H2O|H:2*2 O:2*1
+H3O^+ + e^- -> 1/2 H2_(g) + H2O (Eo = 0 V)
+#######################################################################
+#
+# un équilibre entre solutés en phase aqueuse
+#
+#######################################################################
+I- + I2 -> I3^- (K=714)
+I^- + I2 -> I3^- (K = 714)
+\mathrm{I}^{-}\,+\,\mathrm{I}_{2}\,\longrightarrow\,\mathrm{I}_{3}^{-}\,(K\,=\,714)
+OK
+\frac{[\mathrm{I}_{3}^{-}]}{[\mathrm{I}^{-}]\,[\mathrm{I}_{2}]}\,=\,K\,=\,714
+I^-|I:1*1, I2|I:1*2; I3^-|I:1*3
+I^- + I2 -> I3^- (K = 714)
+##########################################################
+#  Une réaction rédox, avec des ions marqués ++
+##########################################################
+Fe^++ + 2e- --> Fes
+Fe^2+ + 2 e^- -> Fe_(s)
+\mathrm{Fe}^{2+}\,+\,2\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Fe}_{(s)}
+OK
+E\,=\,E_{0}\,+\,\frac{R\,T}{2\,F}\log([\mathrm{Fe}^{2+}])
+Fe^2+|Fe:1*1, 2 e^-|e:2*1; Fe_(s)|Fe:1*1
+Fe^2+ + 2 e^- -> Fe_(s)
+##########################################################
+#  Une réaction rédox, avec des ions complexes
+##########################################################
+[Fe(CN)6]^4- + 2e- --> Fes + 6CN-
+[Fe(CN)6]^4- + 2 e^- -> Fe_(s) + 6 CN^-
+[\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}]^{4-}\,+\,2\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Fe}_{(s)}\,+\,6\,\mathrm{C}\mathrm{N}^{-}
+OK
+E\,=\,E_{0}\,+\,\frac{R\,T}{2\,F}\log\frac{[[\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}]^{4-}]}{\,[\mathrm{C}\mathrm{N}^{-}]^{6\,}}
+[Fe(CN)6]^4-|Fe:1*1 C:1*6 N:1*6, 2 e^-|e:2*1; Fe_(s)|Fe:1*1, 6 CN^-|C:6*1 N:6*1
+[Fe(CN)6]^4- + 2 e^- -> 6 CN^- + Fe_(s)
+###########################################################
+# Anti-composition de deux demi-réactions rédox
+###########################################################
+MnO4^- + 8H+ + 5e- -> Mn^2+ +4H2O ~ 5Fe^3+ + 5e- -> 5Fe^2+
+5 Fe^2+ + 8 H^+ + MnO4^- -> 5 Fe^3+ + 4 H2O + Mn^2+
+5\,\mathrm{Fe}^{2+}\,+\,8\,\mathrm{H}^{+}\,+\,\mathrm{Mn}\mathrm{O}_{4}^{-}\,\longrightarrow\,5\,\mathrm{Fe}^{3+}\,+\,4\,\mathrm{H}_{2}\mathrm{O}\,+\,\mathrm{Mn}^{2+}
+OK
+\frac{[\mathrm{Fe}^{3+}]^{5\,}\,[\mathrm{Mn}^{2+}]}{[\mathrm{Fe}^{2+}]^{5\,}\,[\mathrm{H}^{+}]^{8\,}\,[\mathrm{Mn}\mathrm{O}_{4}^{-}]}\,=\,K
+5 Fe^2+|Fe:5*1, 8 H^+|H:8*1, MnO4^-|Mn:1*1 O:1*4; 5 Fe^3+|Fe:5*1, 4 H2O|H:4*2 O:4*1, Mn^2+|Mn:1*1
+Fe^2+ + 8/5 H^+ + 1/5 MnO4^- -> Fe^3+ + 4/5 H2O + 1/5 Mn^2+
+###########################################################
+# Composition de deux demi-réactions rédox
+###########################################################
+MnO4^- + 8H+ + 5e- -> Mn^2+ +4H2O # 5Fe^2+ -> 5e- + 5Fe^3+
+5 Fe^2+ + 8 H^+ + MnO4^- -> 5 Fe^3+ + 4 H2O + Mn^2+
+5\,\mathrm{Fe}^{2+}\,+\,8\,\mathrm{H}^{+}\,+\,\mathrm{Mn}\mathrm{O}_{4}^{-}\,\longrightarrow\,5\,\mathrm{Fe}^{3+}\,+\,4\,\mathrm{H}_{2}\mathrm{O}\,+\,\mathrm{Mn}^{2+}
+OK
+\frac{[\mathrm{Fe}^{3+}]^{5\,}\,[\mathrm{Mn}^{2+}]}{[\mathrm{Fe}^{2+}]^{5\,}\,[\mathrm{H}^{+}]^{8\,}\,[\mathrm{Mn}\mathrm{O}_{4}^{-}]}\,=\,K
+5 Fe^2+|Fe:5*1, 8 H^+|H:8*1, MnO4^-|Mn:1*1 O:1*4; 5 Fe^3+|Fe:5*1, 4 H2O|H:4*2 O:4*1, Mn^2+|Mn:1*1
+Fe^2+ + 8/5 H^+ + 1/5 MnO4^- -> Fe^3+ + 4/5 H2O + 1/5 Mn^2+
+###########################################################
+# Anti-composition de deux demi-réactions rédox avec potentiels standards
+###########################################################
+MnO4^- + 8H+ + 5e- -> Mn^2+ +4H2O (1.51 V)~ 5Fe^3+ + 5e- -> 5Fe^2+ (0.77 V)
+5 Fe^2+ + 8 H^+ + MnO4^- -> 5 Fe^3+ + 4 H2O + Mn^2+ (3.50866e+62)
+5\,\mathrm{Fe}^{2+}\,+\,8\,\mathrm{H}^{+}\,+\,\mathrm{Mn}\mathrm{O}_{4}^{-}\,\longrightarrow\,5\,\mathrm{Fe}^{3+}\,+\,4\,\mathrm{H}_{2}\mathrm{O}\,+\,\mathrm{Mn}^{2+}\,(3.50866\times 10^{+62})
+OK
+\frac{[\mathrm{Fe}^{3+}]^{5\,}\,[\mathrm{Mn}^{2+}]}{[\mathrm{Fe}^{2+}]^{5\,}\,[\mathrm{H}^{+}]^{8\,}\,[\mathrm{Mn}\mathrm{O}_{4}^{-}]}\,=\,3.50866\times 10^{+62}
+5 Fe^2+|Fe:5*1, 8 H^+|H:8*1, MnO4^-|Mn:1*1 O:1*4; 5 Fe^3+|Fe:5*1, 4 H2O|H:4*2 O:4*1, Mn^2+|Mn:1*1
+Fe^2+ + 8/5 H^+ + 1/5 MnO4^- -> Fe^3+ + 4/5 H2O + 1/5 Mn^2+ (7.01731e+61)
+###########################################################
+# Multiplication de tous les coefficients d'une réaction
+###########################################################
+5*Fe^3+ + e- -> Fe^2+
+5 Fe^3+ + 5 e^- -> 5 Fe^2+
+5\,\mathrm{Fe}^{3+}\,+\,5\,\mathrm{e}^{-}\,\longrightarrow\,5\,\mathrm{Fe}^{2+}
+OK
+E\,=\,E_{0}\,+\,\frac{R\,T}{5\,F}\log\frac{[\mathrm{Fe}^{3+}]^{5\,}}{[\mathrm{Fe}^{2+}]^{5\,}}
+5 Fe^3+|Fe:5*1, 5 e^-|e:5*1; 5 Fe^2+|Fe:5*1
+Fe^3+ + e^- -> Fe^2+
+###########################################################
+# Anti-composition de deux demi-réactions rédox avec des multiplicateurs
+###########################################################
+MnO4^- + 8H+ + 5e- -> Mn^2+ +4H2O (1.51 V)~ 5 * Fe^3+ + e- -> Fe^2+ (0.77 V)
+5 Fe^2+ + 8 H^+ + MnO4^- -> 5 Fe^3+ + 4 H2O + Mn^2+ (3.50866e+62)
+5\,\mathrm{Fe}^{2+}\,+\,8\,\mathrm{H}^{+}\,+\,\mathrm{Mn}\mathrm{O}_{4}^{-}\,\longrightarrow\,5\,\mathrm{Fe}^{3+}\,+\,4\,\mathrm{H}_{2}\mathrm{O}\,+\,\mathrm{Mn}^{2+}\,(3.50866\times 10^{+62})
+OK
+\frac{[\mathrm{Fe}^{3+}]^{5\,}\,[\mathrm{Mn}^{2+}]}{[\mathrm{Fe}^{2+}]^{5\,}\,[\mathrm{H}^{+}]^{8\,}\,[\mathrm{Mn}\mathrm{O}_{4}^{-}]}\,=\,3.50866\times 10^{+62}
+5 Fe^2+|Fe:5*1, 8 H^+|H:8*1, MnO4^-|Mn:1*1 O:1*4; 5 Fe^3+|Fe:5*1, 4 H2O|H:4*2 O:4*1, Mn^2+|Mn:1*1
+Fe^2+ + 8/5 H^+ + 1/5 MnO4^- -> Fe^3+ + 4/5 H2O + 1/5 Mn^2+ (7.01731e+61)
+###########################################################
+# Anti-composition de deux demi-réactions rédox avec des mutiplicateurs
+###########################################################
+2 * MnO4^- + 8H+ + 5e- -> Mn^2+ +4H2O ~ 5 * O2_g + 2H^+ + 2e^- -> H2O2
+6 H^+ + 5 H2O2 + 2 MnO4^- -> 8 H2O + 2 Mn^2+ + 5 O2_(g)
+6\,\mathrm{H}^{+}\,+\,5\,\mathrm{H}_{2}\mathrm{O}_{2}\,+\,2\,\mathrm{Mn}\mathrm{O}_{4}^{-}\,\longrightarrow\,8\,\mathrm{H}_{2}\mathrm{O}\,+\,2\,\mathrm{Mn}^{2+}\,+\,5\,\mathrm{O}_{2}_{(g)}
+OK
+\frac{\,[\mathrm{Mn}^{2+}]^{2\,}\,P_{\mathrm{O}_{2}}^{5\,}}{[\mathrm{H}^{+}]^{6\,}\,[\mathrm{H}_{2}\mathrm{O}_{2}]^{5\,}\,[\mathrm{Mn}\mathrm{O}_{4}^{-}]^{2\,}}\,=\,K
+6 H^+|H:6*1, 5 H2O2|H:5*2 O:5*2, 2 MnO4^-|Mn:2*1 O:2*4; 8 H2O|H:8*2 O:8*1, 2 Mn^2+|Mn:2*1, 5 O2_(g)|O:5*2
+H^+ + 5/6 H2O2 + 1/3 MnO4^- -> 4/3 H2O + 1/3 Mn^2+ + 5/6 O2_(g)
+###########################################################
+# Composition et anti-compositions de plus de deux réactions
+###########################################################
+Fe^3+ + e^- -> Fe^2+ # Fe^2+ + 6CN^- -> Fe(CN)6^4- ~ Fe^3+ + 6CN^- -> Fe(CN)6^3-
+Fe(CN)6^3- + e^- -> Fe(CN)6^4-
+\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{3-}\,+\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{4-}
+OK
+E\,=\,E_{0}\,+\,\frac{R\,T}{1\,F}\log\frac{[\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{3-}]}{[\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{4-}]}
+Fe(CN)6^3-|Fe:1*1 C:1*6 N:1*6, e^-|e:1*1; Fe(CN)6^4-|Fe:1*1 C:1*6 N:1*6
+Fe(CN)6^3- + e^- -> Fe(CN)6^4-
+###########################################################
+# Composition et anti-compositions de plus de deux réactions
+###########################################################
+Fe^3+ + e^- -> Fe^2+ (0.77 V) # Fe^2+ + 6CN^- -> Fe(CN)6^4- (Kfa=1e24) ~ Fe^3+ + 6CN^- -> Fe(CN)6^3- (Kfb=1e31)
+Fe(CN)6^3- + e^- -> Fe(CN)6^4- (0.355899 V)
+\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{3-}\,+\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{4-}\,(0.355899 V)
+OK
+E\,=\,0.355899\,+\,\frac{R\,T}{1\,F}\log\frac{[\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{3-}]}{[\mathrm{Fe}(\mathrm{C}\mathrm{N})_{6}^{4-}]}
+Fe(CN)6^3-|Fe:1*1 C:1*6 N:1*6, e^-|e:1*1; Fe(CN)6^4-|Fe:1*1 C:1*6 N:1*6
+Fe(CN)6^3- + e^- -> Fe(CN)6^4- (0.355899 V)
+###########################################################
+# Composition de deux réactions entraînant une simplification dans un membre
+###########################################################
+2Fe^3+ +2e^- -> 2Fe^2+ ~ Fe^2+ + 2e^- -> Fe_s
+Fe_(s) + 2 Fe^3+ -> 3 Fe^2+
+\mathrm{Fe}_{(s)}\,+\,2\,\mathrm{Fe}^{3+}\,\longrightarrow\,3\,\mathrm{Fe}^{2+}
+OK
+\frac{[\mathrm{Fe}^{2+}]^{3\,}}{\,[\mathrm{Fe}^{3+}]^{2\,}}\,=\,K
+Fe_(s)|Fe:1*1, 2 Fe^3+|Fe:2*1; 3 Fe^2+|Fe:3*1
+Fe_(s) + 2 Fe^3+ -> 3 Fe^2+
+############################################################
+# Vérification que chemeq -n retire bien les suffixes _aq
+############################################################
+Cu^2+_aq + 2 e^- -> Cu_s
+Cu^2+_(aq) + 2 e^- -> Cu_(s)
+\mathrm{Cu}^{2+}_{(aq)}\,+\,2\,\mathrm{e}^{-}\,\longrightarrow\,\mathrm{Cu}_{(s)}
+OK
+E\,=\,E_{0}\,+\,\frac{R\,T}{2\,F}\log([\mathrm{Cu}^{2+}_{(aq)}])
+Cu^2+_(aq)|Cu:1*1, 2 e^-|e:2*1; Cu_(s)|Cu:1*1
+Cu^2+ + 2 e^- -> Cu_(s)

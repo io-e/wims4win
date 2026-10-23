@@ -1,0 +1,26 @@
+#! /bin/sh
+
+thisdir=`pwd | sed 's!/cpp$!!;s!/src$!!'`
+cd $thisdir
+typ=$1
+oeftest=`grep '^category=' INDEX 2>/dev/null`
+if [ -z "$typ" ]; then echo "$oeftest" | grep oef >/dev/null && typ=oef; fi
+if [ -z "$typ" ]; then echo "$oeftest" | grep deductio >/dev/null && typ=deduc; fi
+if [ -z "$typ" ]; then echo "$oeftest" | grep document >/dev/null && typ=docu; fi
+if [ -z "$typ" ]; then echo "$oeftest" | grep dialog >/dev/null && typ=dialog; fi
+if [ -z "$typ" ]; then echo "$oeftest" | grep scenario >/dev/null && typ=scenario; fi
+if [ -z "$typ" ]; then exit; fi
+
+lastdir=$thisdir
+wims_home=$w_wims_home
+
+while [ -z "$wims_home" ] && [ "$lastdir" != "/" ]
+do
+ wims_home=`cat $lastdir/.wimshome 2>/dev/null`
+ lastdir=`dirname $lastdir`
+done
+
+if [ -z "$wims_home" ]; then exit; fi
+
+. $wims_home/public_html/scripts/$typ/mkindex
+

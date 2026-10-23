@@ -1,0 +1,20 @@
+Bem-Vindo ao Régua e Compasso
+
+Essa mensagem aparece automaticamente ao usar pela primeira vez o programa
+após instalação ou atualização. O objetivo é informar sobre novidades,
+alterações e correções no programa.
+
+O ReC já foi traduzido para diversos idiomas. Os endereços das respectivas
+versões de páginas podem ser encontrados na página do autor:
+
+http://www.rene-grothmann.de/
+
+ou em:
+
+http://www.ntegravatai.relrs.g12.br/progr/ReC/
+
+Obrigado por usar Régua e Compasso! Esse programa é gratuito e
+distribuído sob Licença Pública Geral Gnu (Gnu GPL).
+
+*There is a forum now on yahoo groups. You will find a link in the
+documentation*

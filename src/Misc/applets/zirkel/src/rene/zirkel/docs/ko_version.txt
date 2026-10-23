@@ -1,0 +1,24 @@
+Welcome to C.a.R.!
+
+You will find the homepage of C.a.R. and my current mail address at
+
+http://www.z-u-l.de/
+
+The homepage of C.a.R. also contains a version history documenting
+recent changes.
+
+There is a forum on Yahoo groups. You will find a link in the
+documentation. Moreover, there is a user Wiki with lots of
+information and news about C.a.R.
+
+Thanks for using this program! The program is free to use and
+distribute under the Gnu GPL License.
+
+사단법인 전국수학교사모임(수학사랑) 소프트웨어 활용팀에서
+메뉴 및 도움말을 한글화 하였습니다.
+(소프트웨어 활용팀원 : 양인웅,최정은,문소연,박선영,조성윤)
+
+메뉴 및 도움말 수정 요청이나 질문은
+	C.a.R. 게시판 : http://125.240.223.200/cafe/car/
+	양인웅 : fitfit@paran.com 
+을 이용해 주십시오.

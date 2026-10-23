@@ -1,0 +1,90 @@
+Belangrijke tips
+
+	Op deze pagina vind je een aantal belangrijke dingen die iets minder
+	evident zijn en waar in het verleden reeds gebruikers mee geworsteld
+	hebben.
+
+
+Lijnstukken met vaste lengte, cirkels met vaste straal enz. aanmaken
+
+	Je kan dit op verschillende manieren doen. Nemen we het voorbeeld van
+	het lijnstuk met vaste lengte. Je kan een gewoon lijnstuk tekenen en
+	hiervan de eigenschappen wijzigen. In het dialoogvenster geef je
+	dan een waarde voor de lengte en vink je 'vast' aan. Een kortere manier
+	is de 'shift' toets ingedrukt houden als je het tweede eindpunt maakt. 
+	Het dialoogvenster wordt dan voor jou geopend en de 'vast' keuzemogelijkheid
+	staat al aangevinkt. Voor cirkels en zelfs voor punten is het 
+	verhaal analoog.
+
+	Er is nog een derde methode, en dat is gebruik maken van een speciaal
+	gereedschap. In het menu vind je die bij "Acties->Vaste voorwerpen".
+	Cirkels met een vaste straal zijn anders dan gewone cirkels omdat je
+	geen tweede punt nodig hebt. Enkel een middelpunt en een lengte voor
+	de straal volstaan. Voor hoeken is dit analoog. Een gewone hoek is
+	bepaald door drie punten. Vaste hoeken zijn bepaald door twee punten
+	en een getal.
+	
+Voorwerpen verbergen en tonen
+
+	Dit doe je normaag gezien met het 'Verberg' werktuig. Kies dit 
+	werktuig en klik op het voorwerp dat je wil verbergen. Om het terug
+	zichtbaar te maken zit je met een probleem. Je moet terug op het voorwerp
+	klikken maar je ziet het niet meer... De oplossing: zet eerst "Opties->
+	Toon verborgen voorwerpen" aan. Nu kan je de verborgen voorwerpen 
+	aanklikken om ze terug zichtbaar te maken. Je kan het tonen of verbergen
+	van voorwerpen ook instellen in het dialoogvenster van het voorwerp.
+	
+	De snelste manier om iets te verbergen is op een voorwerp klikken met
+	de 'control' toets ingedrukt.
+	
+	Je kan ook bvb. alleen de groene voorwerpen tonen via het menu ("Opties->
+	Toon kleur")
+	
+	
+Intersecties (snijdingen)
+
+	Snijpunten moet je construeren. Dit doe je normaal gezien met
+	het 'intersectie' werktuig (via het icoon of via het menu "Acties->
+	Elementaire werktuigen->Intersectie"). Je kan ofwel op het snijpunt 
+	zelf klikken, ofwel beide snijdende voorwerpen een voor een selecteren.
+	Als een van beide voorwerpen een cirkel is, kan je twee snijpunten
+	bekomen. Wat dan vaak gebeurt is dat het snijpunt dat men niet direct
+	nodig heeft, wordt verborgen.
+	
+	Als het programma als invoer een punt vraagt kunnen er drie dingen 
+	gebeuren:
+	1. Als je op een vrije plaats klikt wordt er nieuw punt gemaakt.
+	2. Als je op een bestaand punt klikt, wordt het geselecteerd.
+	3. Als je op een snijpunt klikt dat nog niet werd geconstrueerd, dan
+	wordt dit snijpunt aangemaakt (Dit wordt eerst aan de gebruiker 
+	gevraagd.). Er is in dit geval een speciale optie om het ander
+	snijpunt automatisch te verbergen.
+
+	Soms is het nodig om duidelijk beide snijpunten uit elkaar te houden,
+	omdat je bvb. 1 welbepaald snijpunt moet gebruiken. Je kan dan
+	1 snijpunt apart behandelen door te bepalen dat een van de snijpunten
+	verschillend moet zijn van een gegeven punt.
+	
+
+Fouten bij het gebruik van een macro
+
+	Een macroconstructie loopt fout als de secundaire parameters niet in
+	dezelfde volgorde aangeduid werden als bij de macrodefinitie was
+	vastgelegd. Stel bvb. dat een macro twee lijnstukken als parameters
+	heeft en dat de macrodefinitie ervan uitgaat dat het eindpunt van
+	het eerste lijnstuk samenvalt met het beginpunt van het tweede. Als
+	je nu bij het uitvoeren van de macro twee lijnstukken als parameter
+	opgeeft waar het eindpunt van de eerste niet samenvalt met het beginpunt
+	van de tweede, loopt de macro fout.
+	
+	Of stel: je macro maakt gebruik van twee concentrische cirkels. Twee niet-
+	concentrische cirkels opgeven heeft geen enkele zin, en dus is het logisch
+	dat het programma een foutmelding geeft.
+	
+	In het algemeen kunnen we zeggen dat dit soort problemen alleen voorkomt
+	in macro's die cirkels of lijnstukken als parameters hebben.
+	
+
+
+Voor vragen: mijn e-mailadres is grothm@ku-eichstaett.de
+Opmerkingen bij de vertaling: jan.van.hee@khleuven.be

@@ -1,0 +1,20 @@
+# @configure_input@
+
+wims_home=../..
+STRIP=@STRIP@
+
+all: draw-ode
+
+draw-ode::
+	cd drawode; make drawode
+	$(STRIP) drawode/drawode
+	cp drawode/drawode $(wims_home)/public_html/bin/draw..ode
+
+clean:
+	cd drawode; make clean
+
+distclean:
+	cd drawode; make clean
+	rm -f $(wims_home)/public_html/bin/draw..ode 2>/dev/null
+	rm -f Makefile
+

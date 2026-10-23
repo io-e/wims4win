@@ -1,0 +1,23 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+
+O=tab1d tab2d test_cond C_etat_civil
+
+all: $(O)
+
+%: %.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o $@ $<
+
+clean:
+	rm -f $(O)
+
+distclean: clean
+	rm -f Makefile
+	

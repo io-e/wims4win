@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+
+	This is the Ant build script for ThreeD.jar.
+	to build ,type:
+	ant -v 
+	to clean , type
+	ant -v clean
+	
+-->
+
+
+<project name="ThreeD" default="jar" basedir=".">
+
+	<description>ThreeD build file</description>
+	<!-- Set global properties for this build. -->
+	<property name="version"          value="0.1"/>
+	<property name="source-dir"       location="src"/>
+	<property name="build"        location="build"/>
+	<property name="dist"         location="dist"/>
+	<property name="java-level"       value="1.4"/>
+	<!-- used for install of symlink & jar -->
+	<property name="WIMS_HOME"  value="../../../.."/>
+	<property name="APPLET_DIR" value="public_html/java"/>
+	<property name="EVERS_APPLET_DIR" value="public_html/scripts/authors/jm.evers/applets"/>
+	
+	<!-- Compiles the classes.  -->
+	<target name="compile" description="Compile the source">
+		<delete includeEmptyDirs="true" quiet="true" dir="${build}"/>
+		<mkdir dir="${build}"/>
+		<javac srcdir="${source-dir}" destdir="${build}"
+		    deprecation="yes" debug="${debug}" debuglevel="${debuglevel}"
+		    source="${java-level}" target="${java-level}"/>
+	</target>
+
+
+	<!-- Creates the jar file. -->
+
+	<target name="jar" depends="compile" description="Create ThreeD jar">
+		<mkdir dir="${dist}"/>	
+		<jar destfile="${dist}/ThreeD.jar">
+			<fileset dir="${build}"/>
+			<manifest>
+				<attribute name="Specification-Title" value="ThreeD"/>
+				<attribute name="Specification-Version" value="${version}"/>
+				<attribute name="Implementation-Title" value="ThreeD"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+				<section name="ThreeD">
+					<attribute name="Specification-Title" value="ThreeD"/>
+					<attribute name="Specification-Version" value="${version}"/>
+					<attribute name="Implementation-Title" value="ThreeD"/>
+					<attribute name="Implementation-Version" value="${version}"/>
+				</section>
+			</manifest>
+
+		</jar>
+	</target>
+	<target name="clean" description="clean up">
+	<!-- Delete the ${build} and ${dist} directory trees -->
+	    <delete dir="./build"/>
+	    <delete dir="./dist"/>
+	</target>
+
+
+</project>
+
+

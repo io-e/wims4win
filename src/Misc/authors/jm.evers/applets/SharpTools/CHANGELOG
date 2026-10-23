@@ -1,0 +1,75 @@
+3/2010
+jm.evers
+
+- Adapting applet to WIMS usage.
+- Correcting a few flaws.(and introducing a few...)
+- Sends spreadsheet data as matrix directly to WIMS
+- Optional javascript methods for sending data...
+
+
+<applet id="SharpTools" archive="dist/SharpTools.jar" code="SharpTools/MainApplet" width="120" height="30"><!-- open & close buttons -->
+    <param name="language" value="nl"><!-- nl,fr default en -->
+    <param name="X_screen_location" value="100"><!-- location on screen for applet window : default 0 -->
+    <param name="Y_screen_location" value="100"><!-- location on screen for applet window : default 0 -->
+    <param name="window_width" value="700"><!-- xsize of spreadsheet -->
+    <param name="window_height" value="400"><!-- ysize of spreadsheet -->
+    <param name="replyurl" value="http://localhost/wims/wims.cgi?module=$module&session=$sssion&reply$n=">
+    <param name="matrix_format" value="true"><!-- reply to wims in matrix [1a,2a,3a,4a;1b,2b,3b,4b;1c,2c,3c,4c;1d,2d,3d,4d;etc] -->
+    <param name="empty_cell" value="null"><!-- if matrix=true , fill the empty cells with this String : default null --> 
+    <!-- if matrix=false the reply will be lines for rows and tab for columns -->
+    <param name="file" value="http://localhost/test.tsv"><!-- internal format TSV : wims getfile reading or direct downloading from module_dir -->
+    <param name="fontsize" value="16">
+
+    <!-- options. not really needed ... configuring the menu & toolbar -->
+    <param name="COLUMNWIDTH" value="80"> 
+    <param name="FIRSTCOLUMNWIDTH" value="40">
+    <param name="HISTOGRAMWIDTH"  value="400">
+    <param name="HISTOGRAMHEIGHT"  value="400"> 
+    <param name="COLUMNS" value="5">
+    <param name="ROWS" value="5">
+    <param name="TOOLBAR_NEW" value="false"> 
+    <param name="TOOLBAR_PRINT" value="false">
+    <param name="TOOLBAR_UNDO" value="true">
+    <param name="TOOLBAR_REDO" value="true">
+    <param name="TOOLBAR_CUT" value="true">
+    <param name="TOOLBAR_COPY" value="true">
+    <param name="TOOLBAR_PASTE" value="true">
+    <param name="TOOLBAR_FIND" value="true">
+    <param name="TOOLBAR_INSERTROW" value="true">
+    <param name="TOOLBAR_INSERTCOLUMN" value="true">
+    <param name="TOOLBAR_DELETEROW" value="true">
+    <param name="TOOLBAR_DELETECOLUMN" value="true">
+    <param name="TOOLBAR_SORTCOLUMN" value="true">
+    <param name="TOOLBAR_HISTOGRAM" value="true">
+    <param name="TOOLBAR_HELP" value="true">
+    <param name="TOOLBAR_FUNCTIONS" value="true">
+ NO JAVA
+</applet>
+
+
+Change logs
+===================================
+
+1.2
+
+- Column headers enabled
+- Column width can be dynamically adjusted
+
+1.1
+
+- Rewrote base dialog class (SharpDialog) and all other dialog subclasses;
+  this makes creating new dialogs much easier
+- Shariz Kanga <skanga@bigfoot.com> made Sharp Tools able to import tables
+  from a database by JDBC.  Tested with HSQL and Oracle (by Shariz) and
+  MySQL (by me).
+- Use extention file name ".cvs" instead of ".sts".
+- Put stuff in jar files.
+
+If you want to use the new database function, you need to download the JDBC
+driver(s) and put in CLASSPATH (edit SharpTools or SharpTools.bat).
+
+Below are some such websites:
+
+MySQL: http://www.worldserver.com/mm.mysql/
+HSQL: http://sourceforge.net/projects/hsqldb/
+

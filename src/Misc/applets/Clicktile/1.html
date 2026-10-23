@@ -1,0 +1,42 @@
+<!-- J.M.Evers 15/2/2009 
+ This is all amateur scriblings...so No Copyrights
+ example html page:
+-->
+<html>
+	<body>
+		<script language="javascript" type="text/javascript">
+		    function readthis(){
+ 			var input=document.getElementById("Clicktile").ReadApplet(); 
+ 			alert(input);
+ 		    }
+		    function readxy(){
+ 			var input=document.getElementById("Clicktile").ReadXY(); 
+ 			alert(input);
+ 		    }
+		</script>
+		<applet id="Clicktile" code="Clicktile.class" codebase="dist" archive="Clicktile.jar" width="400" height="400">
+		    <param name="language" value="en">
+		    <param name="return_all_objects" value="no">
+		    <param name="status" value="waiting">
+		    <param name="xrange" value="-5,5">
+		    <param name="yrange" value="-5,5">
+		    <param name="linewidth" value="5">
+		    <param name="segment" value="5:-5, -5:5">
+		    <param name="point_color" value="white">
+		    <param name="square1" value="0:3,-3:3">
+		    <param name="square1_color" value="purple">
+		    <param name="square2" value="2:3,1:0">
+		    <param name="square2_color" value="white">
+		    <param name="square3" value="-3:2,-1:-1">
+		    <param name="square3_color" value="blue">
+		    <param name="square4" value="3:4,0:0">
+		    <param name="square4_color" value="lightblue">
+		    <param name="background_color" value="red">
+		</applet>
+	    <p>
+	    <input type="button" name="ReadApplet" value="ReadApplet" onclick="javascript:readthis();">
+	    <br>
+	    <input type="button" name="ReadXY" value="ReadXY" onclick="javascript:readxy();">
+	    </p>
+	</body>
+</html>

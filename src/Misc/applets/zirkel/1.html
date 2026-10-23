@@ -1,0 +1,188 @@
+<html>
+    <body>
+	<font size="-2">
+	The next drawing details can be retreived:
+	<ul>
+	    <li>
+		point , send as "<tt>point=point_name:x=x_value:y=y_value \n</tt>"
+	    </li>
+	    <li>
+	        line  , <tt>y=slope*x+contant</tt> is send as "<tt>line=line_name:slope=a_number:constant=a_number:affine \n</tt>"
+		<br> if the line is vertical is will be send as "<tt>line=line_name:x=a_number:vertical \n</tt>"
+		<br> if the line is horizontal is will be send as "<tt>line=line_name:y=a_number:horizontal \n</tt>"
+	    </li>
+	    <li>
+		segment , send as "<tt>segment=segment_name:x=a_number:y=a_number:x=a_number:y=a_number:length=a_number \n</tt>"
+	    </li>
+	    <li>
+		fixedcircle , send as "<tt>fixedcircle=fixed_circle_name:x=a_number:y=a_number:r=a_number \n</tt>"
+	    </li>
+	    <li>
+		circle , send as "<tt>circle=circle_name:x=a_number:y=a_number:r=a_number</tt> \n"
+	    </li>
+	    <li>
+		angle , send as "<tt>angle=angle_name:value=a_number</tt> \n" [degrees or radians depending on appletparam]
+ 	    </li>
+	    <li>
+		area , send as "<tt>area=area_name:x=a_number:y=a_number..... :area=a_number \n</tt>"
+	    </li>
+	    <li>
+		function, send as "<tt>function= name : 4*x^2</tt>"
+	    </li>
+	    <li>
+		freehand_drawing, freehand_point:noname:x=a_number:y=a+number\n</tt>"
+	    </li>
+	</ul>
+	The three applets public_functions to communicate with javascript :
+	<ol>
+	<li>
+	    <tt>getConstruction()</tt> retreives the xml-construction string [original Zirkel]
+	</li>
+	<li> <tt>getDrawing("object","name_of_object");</tt><br>
+	or with multiple occurances of an object:<tt>getDrawing("object","name1,name2,name3,name4,...");</tt>
+	<br>All objects <u>must be named correctly</u> by the student<br>
+	Multiple Objects of the same type but non-requested name will be ignored.<br>
+	If an object/name combination is not present, the student will receive an browser alert message.
+	</li><li> <tt>getAllObjects();</tt> this function retreives all objects drawn in the construction,<br>
+	except object with prefix "my_"...like in "my_circle1".
+	</ol>
+	<hr>
+	These example javascript code could be used to produce a working WIMS-exercises:<p>
+	<pre><tt> 
+	    function ReadApplet_I(){
+		&lt;!-- this array should be produced using WIMS variables... --&gt;;
+		var list_of_objects=["freehand_drawing,"noname"","point,p1,p2,p3","line,l1,l2","function","area,poly1","angle,a1","circle","fixedcircle","segment"];
+		var count=0;var reply=new Array();var data;var tmp;
+		for(var p=0;p&lt;list_of_objects.length;p++){
+		    tmp=list_of_objects[p].split(',');
+		    if(tmp[0].length&gt;0){
+			for(var s=1;s&lt;tmp.length;s++){
+			    data=document.applets[0].getDrawing(tmp[0],tmp[s]);
+			    if(data.indexOf("error")!=-1){
+				alert("Your answer will not be send...\nthe next object could not be detected in your drawing...\n\n:"+data); return;
+			    }
+			    else
+			    {
+				reply[count]=data;
+				count++;
+			    }
+			}
+		    }
+		}
+	    }
+	<hr>
+	    function ReadApplet_II(){                                                                                                      
+                &lt;!-- this function retreives all construction details --&gt;                                                                  
+                &lt;!-- excluded objects with name prefix "my_"        --&gt;                                                                  
+                var data=document.getElementById("CaR").getAllObjects().split(',');                                                        
+                var cnt=0;var reply=new Array();                                                                                           
+                for(var p=0;p&lt;data.length;p++){                                                                                            
+                    reply[cnt]=data[p].toString();                                                                                         
+                    cnt++;                                                                                                                 
+                }                                                                                                                          
+                alert("the reply is:\n"+reply);                                                                                            
+            }                                                                                                                              
+
+	</tt>
+	</pre>
+	</font>
+	<script language="javascript" type="text/javascript">
+	    function ReadApplet_I(){
+		<!-- this example array could be filled by WIMS -->
+		var list_of_objects=["point,p1,p2,p3","line,l1,l2","function","area,poly1","angle,a1","circle","fixedcircle","segment"];
+		var count=0;var reply=new Array();var data;var tmp;
+
+		for(var p=0;p<list_of_objects.length;p++){
+		    tmp=list_of_objects[p].split(',');
+		    if(tmp[0].length>0){
+			for(var s=1;s<tmp.length;s++){
+			    <!-- the applet function : getDrawing("string","strings") -->
+			    <!-- the applet function : getDrawing("object","name_of_object") -->
+			    <!-- or with multiple occurances of an object -->
+			    <!--  getDrawing("object","name1,name2,name3,name4,...") -->
+			    data=document.getElementById("CaR").getDrawing(tmp[0],tmp[s]);
+			    if(data.indexOf("error")!=-1){
+				alert("Your answer will not be send...\nthe next object could not be detected in your drawing...\n\n:"+data); return;
+			    }
+			    else
+			    {
+				reply[count]=data;
+				count++;
+			    }
+			}
+		    }
+		    
+		
+		}
+		alert("the reply is:\n"+reply);
+	    }                                                                                                                                          
+
+            function ReadApplet_II(){                                                                                                      
+                <!-- this function retreives all construction details -->                                                                  
+                <!-- excluded objects with name prefix "my_"          -->                                                                  
+                var data=document.getElementById("CaR").getAllObjects().split(',');                                                        
+                var cnt=0;var reply=new Array();                                                                                           
+                for(var p=0;p<data.length;p++){                                                                                            
+                    reply[cnt]=data[p].toString();                                                                                         
+                    cnt++;                                                                                                                 
+                }                                                                                                                          
+                alert("the reply is:\n"+reply);                                                                                            
+            }     
+	    
+	    function ReadApplet_III(){
+		<!-- this is the original getConstruction() of Zirkel -->
+		var data=document.getElementById("CaR").getConstruction();
+		alert(data.toString());
+	    }	
+	</script>
+	<table>
+	    <tr>
+	    <td>
+		Get all objects in the drawing:<br>
+		<input type="button" onclick="javascript:ReadApplet_II()" name="TEST_II" value="getAllObjects();">
+		<hr>
+		or ...
+		Get the xml-string from the original public function:<br>
+		<input type="button" onclick="javascript:ReadApplet_III()" name="TEST_II" value="getConstruction();">
+		<hr>
+		or ...
+		<ol>
+		    <li>Draw 3 points named p1,p2,p3</li>
+		    <li>Draw 2 lines named l1,l2</li>
+		    <li>Draw an area named poly1</li>
+		    <li>Draw an angel named a1</li>
+		</ol>
+		<br> 
+		<input type="button" onclick="javascript:ReadApplet_I()" name="TEST_I" value="getDrawing();">
+	    </td>
+	    <td>
+		<applet id="CaR" codebase="dist" archive="zirkel.jar" code="rene.zirkel.ZirkelApplet.class" WIDTH="400" HEIGHT="400" ALIGN="CENTER" MAYSCRIPT>
+		    <!-- <param name="file" value="http://localhost/1.zir"> -->
+		    <!-- <param name="background_image" value="http://localhost/test.jpg"> -->
+		    <param name="language" value="fr">
+		    <!-- if axes/grid is activated -->
+		    <param name="x_axis_text" value="my x-axis"><!-- default "x-axis" ; unicodesymbols allowed (if OS permits) &#8594; &#8660; -->
+		    <param name="y_axis_text" value="this is my y-axis text"><!-- default "y-axis" -->
+		    <param name="y_axis_text_vertical" value="true"><!-- default "false" -->
+		    <param name="decimals" value="2"><!-- precision in answer send to WIMS ;useful in large constructuons...to limit query string -->                                                                                                  
+		    
+		    <!-- some more params ;there are many more defined -->
+		    <param name="nomousezoom" value="false">
+		    <param name="minfontsize" value="14">
+		    <param name="smallicons" value="what_ever"> <!-- size 32 ; remove param-tag for lager icons  size 64 -->
+		    <param name="grid" value="what_ever"> <!-- if grid param-tag is present, show grid ;value is non-important  -->
+		    <param name="snap" value="yes"> <!-- yes/true : if grid is present, snap to grid [left side oriented]  -->                                                                                          
+		    <param name="editdigits" value="2">                                                                                                  
+		    <param name="displaydigits" value="2">                                                                                                  
+		    <param name="angledigits" value="3">                                                                                                  
+		    <param name="color" value="255,255,255">                                                                                                  
+		    <param name="tools" value="line point area angle circle segment function ray">                                                                 
+		    <param name="options" value="back grid delete mouse">                                                                                                       
+		    <param name="style" value="full">
+		    No java
+		</applet>
+	    </td>
+	    </tr>
+	</table>    
+    </body>
+</html>

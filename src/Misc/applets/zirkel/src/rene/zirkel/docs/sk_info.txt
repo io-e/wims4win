@@ -1,0 +1,1920 @@
+// Help file syntax
+// This is the help file for C.a.R., used inside the program
+// for context sensitive help, and also to extract HTML
+// pages using the Translator program contained in C.a.R.
+// Refer to the Wiki for more information.
+
+.index
+.related start online license gui
+C.a.R.
+
+//image images/ZuL-Logo.png
+
+C.a.R. obsahuje __kontextovú§pomoc__ ktorú možno vyvolat kedykolvek pocas používania programu. Poskytuje pomoc ohladom práve aktívneho nástroja. Teraz cítate webové stránky extrahované automaticky z tejto kontextovej pomoci. Na týchto stránkach nájdete zoznam __klúcových§slov__ a zoznam tém pomoci. Navyše je k dispozícii vyhladávanie, jednak na týchto stránkach ako aj v systéme pomoci samotného programu. 
+
+Viac informácií o C.a.R. získate ak sa pozriete na tutoriály na týchto slovenských stránkach, alebo ak preskúmate originálne anglické alebo nemecké stránky programu, kde sa nachádzajú príklady aplikácií programu a tiež množstvo ukážok. Okrem toho je k dispozícii diskusné fórum na Yahoo, Wiki ohladom C.a.R. a dokonca aj mnohojazycný casopis CarZine. Ak chcete ešte viac informácií o programe, skúste vyhladávanie na webe.
+
+Vela úspechov pri používaní C.a.R. vám želá autor
+
+Rene Grothmann
+
+.start
+.related online license gui tips localize language
+Kontextová pomoc
+
+//image images/Help.jpg
+
+//image- images/info.png
+Pomocou __kontextovej pomoci__ získate rady pre prácu s práve používaným nástrojom, alebo rady týkajúce sa vami naposledy uskutocnenej cinnosti. Ak napríkad chcete získat pomoc ohladom nástroja na tvorbu makier, vyberte ho a potom stlacte ikonku __Kontextová§pomoc__. Okno s pomocou môžete zatvorit stacením tej istej ikonky, alebo ho môžete jednoducho nechat otvorené. V takom prípade ho umiestnite vedla okna C.a.R. aby ste mohli vidiet naraz obe okná. Okno si bude pamätat svoju polohu aj velkost.
+
+V hornej casti tohoto okna s pomocou sa nachádza polícko so zoznamom súvisiacich __tém__.
+
+Tiež môžete vyhladávat pomocou __klúcových§slov__ alebo lubovolných iných slov v súbore. Ak zadáte pri vyhladávaní "makro", systém nájde "Makro", a tiež slová obsahujúce "makro". Výsledky vyhladávania sa zobrazia v polícku so zoznamom. Ak je vyhladávanie úspešné, tak sa v okne otvorí prvá z nájdených tém.
+
+Všetko dobré pri práci s C.a.R. vám želá
+
+René Grothmann
+
+.online
+.related start tips license
+Pomoc online
+
+__Domovskú§stránku__ C.a.R. nájdete na "www.z-u-l.de". Môžete tam nájst nové verzie programu, prípadne si tam môžete popozerat rôzne ukážky použitia programu. Ak ste si nainštalovali verziu programu s dokumentáciou a chcete aby sa táto dokumentácia otvárala priamo z menu, môžete si zistit cestu k nej na vašom pocítaci a zadat ju C.a.R. ak kliknete na "Nastavit prehliadac stránok" v menu pomoci a zadáte tam vašu cestu namiesto webovej adresy domovských stránok. Inak bude C.a.R. otvárat domkumentáciu z mojej webovej stránky. 
+
+Na Yahoo groups som založil dve diskusné skupiny s témou C.a.R. Jedna z nich je v nemcine a druhá v anglictine. Diskusnú skupinu v anglictine nájdete pomocou odkazu "support" na domovskej stránke C.a.R. Jestvuje tiež Wiki pre C.a.R., kde môžete sami prispiet k vývoju programu.
+
+Samozrejme, možete ma nakontaktovat pomocou __emailu__. Moju emailovú adresu nájdete na mojich súkromných osobných stránkach, na ktoré je na domovskej stránke C.a.R. "www.z-u-l.de" odkaz. 
+
+.license
+.related online start
+__Licencia__ programu C.a.R.
+
+C.a.R. je __volne použitelný a šíritelný program__ publikovaný pod licenciou GPL (General Public License). Môžte ho volne a bez poplatkov používat. Ak ho budete šírit dalej, musíte uviest prinajmenšom odkaz na oficiálne stránky programu. 
+
+Cez domovské stránky programu si môžete stiahnut aj zdrojový kód programu, ktorý môžete následne sami menit. Avšak pozmenený zdrojový kód, ktorý zmeníte vy, alebo ktokolvek iný, musí aj nadalej zostat volný. Pri šírení vašej novej verzie ste povinný poskytnút spolu s programom aj jeho zdrojový kód. Naviac, ste povinný uviest aj odkaz na pôvodnú verziu programu. Uistite sa, že táto cast dokumentácie sa šíri spolu s vašimi súbormi.
+
+Rovnaká licencia sa vzahuje aj na dokumentáciu.
+
+Ak chcete na tomto programe zarobit peniaze, môžete to urobit, ak poskytnete dodatocné služby, ako napr. knihy o programe, rôzne návody, tutoriály a pod. Program môžete tiež zahrnút do komercnej distribúcie softvéru, napr. do __Linuxovej__ distribúcie. Chcel by som tu požiadat, aby ste mi v takom prípade dali vediet, a poslali vzorku vášho produktu, ak je to možné.
+
+.gui
+.related iconbar mouse zoom online keyboard
+Používatelské rozhranie
+
+//image images/Gui.jpg
+
+Obsah okna programu C.a.R. Zobrazuje geometrickú konštrukciu. Pohlad na konštrukciu možno menit pomocou __šípok§na§klávesnici__. Priblížit alebo vzdialit možno konštrukciu pomocou kláves __+/-__. Druhou možnostou je použitie nástroja pre približovanie/vzdalovanie a posúvanie konštrukcie pomocou myši (ikonka s lupou). Tretou možnostou je približovat/vzdalovat konštrukciu pomocou __kolieska§na§myši__ a posúvat ju tak, že __pravým§tlacidlom§myši__ tukneme niekde do prázdnej plochy výkresu a pri jeho držaní budeme myšou tahat.
+
+Nad konštrukciou sa nachádza __panel nástrojov s ikonkami__. Ak zastavíte kurzorom myši nad ktoroukolvek ikonkou a pockáte aspon 2 sekundy, zobrazí sa __text s popisom toho, co ikonka robí__. Ikony je možné koncentrovat do jednoriadkového panelu nástrojov. Pri dvojriadkovom paneli nástrojov obsahuje jeho dolná cast nástroje na konštrukciu a horná cast obsahuje nástroje, ktorými sa dajú menit nastavenia programu a nastavenia zobrazovania konštrukcie.
+
+Panel nástrojov môže obsahovat aj __panel§makier__.
+
+Pod konštrukciou sa nachádza __stavový§riadok__, ktorý zobrazuje dôležité textové informácie. Ak program beží v __nevizuálnom§móde__, je tento riadok nahradený riadkom pre textový vstup.
+
+Na lavej strane okna môže byt pomocou klávesy F11 zobrazený volitelný __zoznam§objektov__. Možno ho nakonfigurovat tak, aby zobrazoval len isté typy objektov. Kliknite nan __pravým§tlacidlom§myši__ a zobrazia sa vám dalšie možnosti tohto zoznamu. Ak dvojkliknete na riadok s nejakým objektom, budete môct tento objekt upravit. Ak chcete upravit naraz niekolko objektov, najprv ich vyberte za súcastného stlacenia __CRTL__ alebo __ŠIFT__ klávesu ako zvycajne.
+
+Zoznam objektov možno rozšírit alebo zúžit, ak kliknete na jeho pravý okraj a potiahnete doprava alebo dolava. 
+
+Menu obsahujue množstvo dalších možností, ako je nacítavanie a ukladanie súborov. Nájdete v nom aj __klávesové§skratky§k§nástrojom__.
+
+Pozrite tiež: Zoznam objektov, Myš, Panel nástrojov, Klávesnica
+
+.iconbar
+.related restricted gui settings
+Panel nástrojov
+
+Kliknutím na ikonku ju vyberiete. Ak podržíte nad ikonkou chvílu myš, dozviete sa viac o jej význame. Zobrazí sa malé polícko s textovým popisom.
+
+Existujú rôzne druhy ikoniek.
+
+Ikonky po vybratí ktorých treba ešte klikaním myšou špecifikovat, co presne majú robit: Prikladmi takých ikoniek sú ikonka Bod alebo ikonka Úšecka, ikonka definujúca makro, ci ikonka pre približovanie a vzdalovanie.
+
+Ikonky, ktorými sa menia predvolené nastavenia: Napríklad ikonka pre nastavenie predvolenej farby objektu, alebo ikonka na nastavenie tvaru bodu.
+
+Ikonky na zmenu vzhladu: Napríklad ikonka na zobrazenie mriežky, alebo ikonka na zobrazenie ukrytých prvkov.
+
+Ikonky, ktoré uskutocnia nejakú cinnost: Napríklad ikonka pre úpravu komentára alebo ikonka na zmazanie naposledy vytvoreného objektu.
+
+Panel nástrojov môžete nakonfigurovat pomocou menu "Nastavenia/Upravit panel nástrojov". Môžete vybrat alebo zrušit výber ktorejkolvek ikonky. Navyše môžete predvolit, aby sa ikonky zobrazovali len v jednom riadku. V takom prípade sa v paneli nástrojov zobrazia len tie najnutnejšie nástroje. Ak je program v normálnom móde, možno nástroje, ktoré nie sú vybraté stále použit pomocou klávesnice alebo cez položky menu.
+
+Pomocou menu "Nastavenia/Špeciálne nastavenia" možno predvolit aby sa panel nástrojov zobrazoval pod konštrukciou.
+
+.restricted beginner
+.related iconbar
+Obmedzený panel nástrojov
+
+Existuje obmedzená forma panelu nástrojov, ktorá sa ukladá spolu s konštrukciou. Ked sa takáto konštrukcia nacíta, používatel bude mat k dispozícii na paneli len ikonky, ktoré sme pred uložením vybrali.
+
+Ikonky, ktoré sa objavia je možné vybrat v menu "Nastavenia/Obmedzený súbor ikon". Tam môžete odobrat nepotrebné ikonky, prípadne všetky nástroje, ktoré by mohli byt pre žiaka pri konštrukcii mätúce a zavádzajúce.
+
+Ak sa chcete vrátit spät k úplnému panelu nástrojov, odznacte v menu "Nastavenia/Obmedzený súbor ikon", alebo nacítajte novú konštrukciu.
+
+Navyše jestvuje špeciálny panel nástrojov pre zaciatocníkov. Niektoré nástroje, ktoré by pre nich mohli byt mätúce sú z neho vynechané. Zaciatocníci by mali zacat v tomto móde.
+
+.mouse
+.related gui settings hide point circle move keyboard edit
+Myš
+
+Pomocou lavého tlacidla myši sa vytvárajú objekty. Druh objektu závisí na práve
+aktívnom nástroji. 
+
+Pri mnohých nástrojoch sa ocakáva, že používatel vyberie viac ako jeden objekt. V takom prípade je prvý bod zvýraznený cervenou farbou, zatialco nástroj caká na zadanie dalších bodov.
+
+Ak je v konštrukcnom kroku potrebné zadat priamku, polpriamku alebo úsecku, môžete kliknút kdekolvek na tieto objekty.
+
+ak môžu byt objekty pod kurzorom myši, použité v aktuálnom konštrukcnom kroku, budú zvýraznené žltou farbou. Tak sa výber správnych objektov stáva jednoduchším.
+
+Ak nie je výber objektu kliknutím jednoznacne urcený, program zobrazí dialóg so zoznamom možných objektov. Z tochto zoznamu možno žiadaný objekt vybrat dvojklikom, alebo tak, že ho vyberiete a stlacíte tlacidlo OK, prípadne pomocou klávesnice. Body budú oznacené ciernou farbou, priamky, polpriamky a úsecky cervenou, uhly (a dalšie objekty) zelenou a kružnice modrou. Toto dialógové okno možno vypnút. Program potom bude vždy automaticky vyberat najbližší z objektov.
+
+Dôležitou vlastnostou programu je, že ked program ocakáva od používatela výber už jestvujúceho bodu a používatel klikne do prázdneho miesta, tak sa tento bod vytvorí automaticky. Navyše sa budú automaticky vytvárat priesecníky ak na ne používatel klikne. Ak používatel vytvorí nový bod kliknutím na priamku, polpriamku, úsecku alebo kružnicu, bude novovytvorený bod k tomuto útvaru automaticky viazaný. 
+
+Ked je pri konštrukcii kružnice, úsecky alebo uhla stlacený kláves ŠIFT, program bude predpokladat, že objekt má byt fixovaný a zobrazí dialógové okno objektu. V tomto okne môže používatel zadat požadovanú hodnotu pre objekt, alebo jednoducho ho môže zavriet a ponechat mu jeho aktuálnu hodnotu.
+
+Pri stlacenom pravom klávese možno tahaním myšou posúvat objekty. Je to alternatíva k nástroju posúvania v paneli nástrojov. Možno tak tiež menit polohu menoviek objektov. Okrem toho kliknutie pravým tlacítkom na objekt spôsobí zobrazenie dialógového okna nastavení pre tento objekt. Ak pravým tlacidlom myši klikneme na menovku objektu, ale neposúvame ju, skocí menovka do jej predvolenej polohy. Ak máme pri kliknutí pravým tlacítkom na menovku objektu stlacený kláves ŠIFT, budeme môct menovku presunút na ktorékolvek miesto výkresu. Inak bude jej poloha obmedzená do blízkosti objektu.
+
+Pri súcastnom stlacení klávesu CTRL a pravého tlacidla myši, možno upravovat podmienky týkajúce sa vlastností objektu.
+
+Ak stacíme kláves CTRL spolu s klávesom ŠIFT a klikneme pravým tlacítkom myši na objekt, objekt skryjeme. Kružnice a priamky sa najprv stanú ciastocné a až potom skryté.
+
+.background
+.related gui move htmlexport
+Obrázky v pozadí
+
+C.a.R. dokáže za konštrukciou zobrazit obrázok. Tento obrázok môže byt istý stav konštrukcie alebo môže íst o obrázok nahratý zo súboru.
+
+Obrázok v pozadí možo umestnit na stred, natiahnut aby vyplnil obrazovku, alebo ním možno konštrukciu vydláždit. Jestvuje špeciálne nastavenie, ktorým sa prispôsobí velkost okna konštrukcie velkosti obrázku, ked sa obrázok nacíta. 
+
+Ak sa velkost obrázku presne zhoduje s velkostou okna, bude pri HTML exporte uložený aj odkaz na obrázok. Velkost vytvoreného appletu sa potom bude zhodovat s velkostou obrázku. Obrázok musí byt umiestnený v priecinku kde bude applet.
+
+.properties
+.related edit colors hide mouse transparent point fixedangle replay animatebreak expressionsyntax latex
+Vlastnosti objektov
+
+Pomocou kliknutia pravým tlacítkom alebo pomocou nástroja na úpravy zobrazíte dialógové okno vlastností objektu. Väcšina nastavení je pre všetky objekty spolocná.
+
+ - meno
+ - popis
+ - jednotka
+ - farba
+ - hrúbka
+ - stav ohladom skrytia
+ - zobrazovanie mena
+ - zobrazovanie hodnoty
+ - velké alebo tucné písmo
+ - stav ohladom umiestnenia v pozadí
+ - stav ohladom priehladnosti
+ - bod prerušenia
+
+Mená objektov môžu pozostávat skoro zo všetkých znakov. Ak obsahujú "~", bude sa zobrazovat len cast mena pred vlnovkou. Tak možno zdanlivo rovnakým menom oznacit viacero objektov. Meno musí byt jedinecné. Popisy sú vytvárané automaticky, ale možno ich zmenit. Ak sú zmenené, používatel sa môže vrátit k automatickému popisovaniu, ak zadá prázdny riadok.
+
+V zobrazení konštrukcie môže byt využité druhé meno objektu, rôzne od interného mena. Toto je užitocné, ak chceme na popis konštrukcie použit LaTeX-ovský skript ohranicený $...$. Druhé meno môže obsahovat výrazy v %...%, ktoré sú vyhodnocované pocas behu programu. Retazce v tvare %=s% budú nahradené aktuálnym menom objektu "s". Retazce v tvare %~s% budú nahradené rovnicou objektu s.
+
+Niektoré objekty majú velkost a jednotky. Zmena velkosti funguje len pre fixné objekty. Jenotkou môže byt akýkolvek text zapísaný po velkosti. Pre uhly používajde symbol pre stupen.
+
+Nastavovanie hrúbky funguje pre rôzne objekty rôzne. Biela hrúbka znamená, že objekt bude neviditelný, ale nie jeho menovka. Objekty možno skryt, alebo úplne skryt. V druhom prípade sa k nim možno dostat len cez panel s popisom konštrukcie.
+
+Zobrazenie mena a hodnoty môže byt skombinované ako v "s=2". Ak je meno ukoncené podciarkníkom ako v "P_", bude symbol "_" vynechaný a nezobrazí sa "=".
+
+Niektoré objekty ako napríklad kružnice a uhly môžu byt vyplnené. Navyše možno pre výpln týchto objektov zapnút alebo vypnút priehladnost. Zvycajne sa v pozadí nachádzajú iba vyplnené objekty, ale do pozadia možno presunút aj dalšie objekty. Všimnite si, že použitím podmieneného formátovania môže byt dosiahnuté špecifické poradie objektov na pozadí.
+
+Body prerušenia majú svoj význam pre prehrávanie konštrukcie a pre animáciu bodov prerušenia.
+
+Všimnite si tiež tlacidlá v dolnej casti dialógového okna vlastností. Napríklad v prípade bodov možno špeciálnym tlacidlom nastavit objekt, na ktorý majú byt viazané. V prípade fixných uhlov a kružníc tám nájdete tlacidlo pre nastavenie ich velkosti. Po jeho stlacení sa dialógové okno zavrie a používatel musí vybrat objekty alebo velkosti z konštrukcie.
+
+.latex
+.related properties text
+Latex
+
+C.a.R. používa HotEqn na zobrazenie rovníc pomocou znackovacieho jazyka LaTeX. Ak ho chcete použit, uzavrite text v $...$. LaTeXovské znackovanie možno použit v riadkoch textových objektov, v menovkách výrazov, alebo v menách objektov. Je užitocné aj pri zobrazení špeciálnych mien (pomocou druhého mena) ako napríklad $P_1$.
+
+HotEqn nedokáže zobrazit všetko to, co samotný LaTeX. Avšak toho, co dokáže je dost. Podporované je zobrazovanie gréckych mien (\alpha, \beta, ...) ako aj mnoho špecifických symbolov, napr. (\nabla). Tiež sú podporované znacky \percent a
+\dollar, ktoré sa nenachádzajú v normálnom LaTeXu. Samozrejme sú podporované dolné (x_n) aj horné indexy (x^2) a tiež zlomky (\frac{1}{x} alebo \dfrac). Podporované sú tiež velké operátory ako znacka integrácie a znacka sumácie (\int_a^b), a tiež limity (\lim_{x \to \infty}).
+
+Navyše užitocné sú aj velké zátvory (\left[ a \right]). Podporované je aj Latexovské prostredie array (\begin{array}{cc}2&3\\3&4\end{array}). Binomické koeficienty sa zobrazia pomocou \choose a tiež sa dá použit \atop ({2 \atop 3}).
+
+Viac informácií o HotEqn získate z HTML dokumentácie.
+
+.transparent
+.related colors reorder properties
+Priehladnost
+
+Ak máte nainštalovanú Javu 1.2 alebo novšiu verziu, budete môct využit priehladné objekty. Na starších verziách Javy sa to nedá. 
+
+Priehladnost nie je podporovaná ani pri exportovaní do EPS a PDF.
+
+Vyplnené objekty sa za normálnych okolností vykreslia v pozadí. Toto správanie sa dá pre každý objekt individuálne vypnút (a znovu zapnút) pomocou jeho dialógového okna vlastností. V takom prípade sa budú objekty ukladat nad seba v poradí v akom boli konštruované.
+
+Priehladnost môže byt nastavená u každého objektu zvlášt, pomocou jeho dialógvého okna vlastností.
+
+.point
+.related boundedpoint intersection settings mouse properties selfreference
+Body
+
+Bod možno vytvorit rôznymi nástrojmi. Nástroj na vytvorenie bodu za normálnych okolností vytvorí volný (pohyblivý) bod. Ak máme pri vytváraní bodu stlacený kláves ŠIFT, vytvorený bod bude fixný, pricom jeho zafixovanie bude popisovat výraz v jeho  dialógovom okne vlastností.
+
+Ak klikneme na priesecník dvoch kružníc alebo podobných objektov, automaticky sa vytvorí priesecník. Za normálnych okolností je potvrdzovací dialóg takéhoto vytvárania bodov vypnutý. Samozrejme, priesecníky nie sú volné, ale ich poloha závisí na objektoch, ktoré sa pretínajú.
+
+Body môžu byt viazané na kružnice a priamky, polpriamky, úsecky a dalšie objekty ako sú stopy, kuželosecky a funkcie. Ak chcete takýto viazaný bod vytvorit, kliknite na daný objekt kurzorom myši pri predvolenom nástroji na vytváranie bodov. Možno zapnút potvrdzovanie takéhoto vytvárania.
+
+Pohybovat možno aj fixnými (zafixovanými) bodmi, ak sa výraz popisujúci ich polohu vztahuje len na samotný taký bod a na žiaden iný objekt (@-odkazy sa nerátajú). V takomto prípade sa poloha bodu prepocítava pomocou výrazu. Toto je užitocné, ked treba obmedzit pohyb bodov.
+
+Tak ako iné objekty, možno aj volné body tahat hned potom, co sú vytvorené. Pocas tahania sa bude zobrazovat menovka, pokým túto možnost nevypnete.
+
+Vid tiež: Samoodkazovanie, Priesecníky, Body na objektoch
+
+.boundedpoint
+.related point line mouse properties
+Body na objektoch
+
+Sú to body, ktoré sú viazané na priamku, polpriamku, úsecku, kružnicu, automatickú stopu, graf funkcie alebo parametrickú krivku. Ak budeme objektom na ktorý sú viazané pohybovat, bude sa ich poloha spojito menit. Pomocou dialógového okna vlastností možno bod z daného objektu uvolnit a viazat na iný objekt.
+
+Viazané body sa dajú vytvorit bud pomocou nástroja na vytvorenie bodu tým, že klikneme na priamku alebo podobný objekt, alebo pomocou špeciálneho nástroja. Navyše každý bod možno naviazat na objekt neskôr, pomocou dialógového okna vlastností. Stací ukoncit dialógové okno stlacením tlacidla VIAZAT NA OBJEKT a potom tuknút na požadovaný objekt.
+
+Body môžu byt na objekty viazané dvoma spôsobmi. Bud sa snaží bod udržat si svoju absolútnu polohu na výkrese, alebo sa snaží udržat si svoju relatívnu polohu voci danému objektu objektu. Prednastavené udržiavanie relatívnej polohy možno vypnút tak, že v dialógovom okne vlastností bodu zrušíme zaškrtnutie "fixný". 
+
+.line ray
+.related point parallel properties segment
+Priamky a polpriamky
+
+Priamkou chápeme priamku prechádzajúcu dvoma bodmi, rovnobežku alebo kolmicu, prípadne druhé rameno fixného uhla. 
+
+Rozdiel medzi priamkou a polpriamkou nespocíva len v ich zobrazení v programe. Kolmice a priesecníky sa správajú v prípade priamok a polpriamok rôzne. Konkrétne priesecník s polpriamkou jestvuje len vtedy, ak na nej leží. Nestací aby ležal na priamke, ktorej je daná polpriamka súcastou. Kolmica na polpriamku z daného bodu nebude jestvovat, ak jej priesecník s priamkou, na ktorej polpriamka leží, nebude na polpriamke. Toto správanie je možné zmenit odznacením zaškrtnutia "Obmedzený/á" v dialógovom okne vlastností kolmice.
+
+Všimnite si, že nástroje na vytváranie kolmíc, fixných uhlov a rovnobežiek vytvárajú nové priamky alebo polpriamky.
+
+Vid: Úsecky
+
+.segment fixedsegment
+.related expressionsyntax point parallel properties line
+Úsecky
+
+Úsecka je cast priamky ležiaca medzi dvoma bodmi priamky. Všimnite si, že prednastavené správanie sa programu je také, že priesecník s úseckou existuje len vtedy, ak leží medzi krajnými bodmi úsecky.
+
+Dlžku usecky možno fixovat, ak má jeden volný koncový bod. Ak chcete takú úsecku vytvorit pomocou nástroja pre vytvorenie úsecky, podržte pri volbe druhého krajného bodu úsecky kláves ŠIFT, alebo zafixujte velkost úsecky v dialógovom okne jej vlastností.
+
+Úsecky možno zobrazit ako vektory. Nastavuje sa to v dialógovom okne vlastností úsecky.
+
+Vid tiež: Priamky a polpriamky
+
+.circle circle3
+.related properties point transparency fixedcircle
+Kružnice
+
+Program podporuje tri typy kružníc. Kružnice so stredom M prechádzajúce cez bod A, kružnice so stredom M a polomerom AB a fixné kružnice. Každý typ má svoj vlastný nástroj. Prvý typ predpokladá zadanie dvoch bodov, druhý troch a tretí len jedného bodu.
+
+Kreslenie kružnice môže byt obmedzené tak, že sa vykreslí len cast oblúka medzi dvoma danými bodmi kružnice. V tomto prípade je možné nastavit, aby oblúk nebol nikdy väcší ako 180° (t.j. aby sa vykreslil kratší oblúk medzi vybranými bodmi kružnice). Koncové body vyberiete pomocou tlacidla v dialógovom okne vlastností kružnice. To, ci je oblúk väcší, alebo menší ako poloblúk nastavíme stlacením tlacidla VYTVÁRAT UHLY VACSIE AKO 180° v dialógovom okne vlastností kružnice.
+
+Kružnice môžu byt vyplnené. Oblúky možno vyplnit dvoma spôsobmi. Bud sa vyplní kruhový odsek alebo kruhový výsek daný oblúkom.
+
+Je možné nastavit, aby sa nevykreslovala celá kružnica, ale len tá jej cast, ktorá je v konštrukcii potrebná. Takto ombedzené kružnice sa vykreslia ako malé oblúciky prechádzajúce cez všetky body, ktoré sa ku kružnici vztahujú.
+
+
+Vid tiež: Fixné kružnice
+
+.fixedcircle
+.related circle reorder expressionsyntax properties point transparency
+Fixné kružnice
+
+U fixných kružníc nie je definovaný bod na polomere. Ak chcete takúto kružnicu vytvorit, držte stlacený kláves ŠIFT, ked vyberáte bod na kružnici (ten sa následne nevytvorí). Alebo použite nástroj na vytváranie fixných kružníc. Pri jeho použití sa otvorí dialógové okno nastavení kružnice, kde môžete zadat výraz pre polomer fixnej kružnice. Ak kružnicou hned po jej vytvorení potiahnete, dialógové okno sa neotvorí a bude použitá aktuálna velkost kružnice. 
+
+Fixné kružnice možno nastavit tak, aby sa ich polomer rovnal vzdialenosti dvoch daných bodov A, B, ak použijeme pre ich polomer výraz d(A,B). Alebo môžeme stlacit tlacidlo NASTAVIT VELKOST... v dialógovom okne nastavení. 
+
+Velkost fixných kružníc možno menit aj tahaním myšou, ak zrušíme nastavenie "fixná/ý" v dialógovom okne vlastností.
+
+.intersection
+.related point properties segment selectintersection
+Priesecníky
+
+Priesecník možno vytvorit pomocou nástroja pre vytvorenie bodu, tak že klikneme na priesecník, alebo použitím špeciálneho nástroja pre priesecník. Nástroj pre priesecník je za normálnych okolností ukrytý, kedže vo väcšine prípadov možno použit nástroj na vytváranie bodov.
+
+Môže íst o priesecníky medzi priamkami, kružnicami, grafmi funkcií, parametrickými krivkami a automatickými stopami, ktoré sú do konštrukcie importované ako normálne objekty. Ak robíme konštrukciu na papieri, nezdá sa nám casto že vytvorenie priesecníka je nieco, comu sa treba nejako obzvášt venovat. Vznikajú samé od seba. Pocítac vypocíta všetky možné priesecníky. To, že musíme priesecníky na pocítaci explicitne skonštruovat, konštrukciu výrazne sprehladnuje.
+
+Je možné vytvorit aj priesecníky medzi kuželoseckami a stopami. Upozornujeme, že výpocet takýchto priesecníkov môže byt casovo nárocný. Ak vytvoríte privela komplikovaných priesecníkov, spomalí to vašu konštrukciu.
+
+Vid tiež: Výber priesecníkov
+
+.selectintersection
+.related intersection point
+Výber priesecníkov
+
+Dve kružnice sa môžu pretnút v dvoch bodoch. Ak použijeme nástroj pre vytvorenie priesecníka a postupne vyberieme dve kružnice, program vytvorí naraz oba ich priesecníky. Ak potrebujete len jeden, ten druhý jednoducho skryte. Ak je použité automatické vytváranie priesecníkov, nebude druhý priesecník vytvorený.
+
+Jestvuje jeden problém ohladom spôsobu, akým program zoradzuje dva priesecníky dvoch kružníc (alebo kružnice a priamky). Na rozdiel od iných programov to tento program robí predpovedatelným spôsobom. Ak v prípade kružníc vyberiete kružnice v opacnom poradí, poradie priesecníkov sa vymení. Poradie priesecníkov priamky a kružnice závisí na smere priamky (t.j. na poradí vytvorenia jej definujúcich bodov). Skúste posunút priamkou tak, aby už kružnicu nepretínala, a potom ju vrátte spät. Poradie priesecníkov bude rovnaké.
+
+Niekedy je potrebné priesecníky urcit presnejšie. To sa dá urobit tak, že jednému priesecníku "povieme" aby bol rôzny od nejakého iného daného bodu. Priesecníky budú potom zoradené tak, že vybratý priesecník bude od tohto bodu dalej. Dialógové okno pre priesecníky obsahuje šeciálne polícko, kde sa tento bod dá zadat, a tiež tlacidlo, pomocou ktorého ho možno zadat interaktívne.
+
+Takýto typ priesecníkov sa vytvára automaticky, ak další priesecník je bod ležiaci na obvode oboch kružníc a ak je tento bod viditelný.
+
+Môžete tiež nastavit, aby priesecníkom bol bod, ktorý je najbližšie k nejakému danému bodu. 
+
+Možno nastavit, aby sa poradie výberu kružníc prepínalo automaticky. Tak ako pri automatických stopách konštrukcia vtedy prebehne cez všetky stavy.
+
+
+.parallel plumb midpoint
+.related line point properties
+Rovnobežky, kolmice, stredy
+
+Možno ich chápat ako "skratky" pre vykonanie klasických konštrukcií. Prvé dva nástroje vytvárajú priamky. Tretí vytvorí samozrejme bod.
+
+Kolmice na úsecky prestanú existovat, ak ich priesecník s priamkou, na ktorej leží úsecka, je mimo úsecky. Toto správanie je možné vypnút v dialógovom okne vlastností.
+
+
+.move
+.related circle angle background mouse
+Posúvanie objektov
+
+Tento nástroj posúva body. Je to alterantíva k posúvaniu bodov pravým tlacidlom myši. Tiež ním možno tahat fixné uhly a fixné kružnice, pokým tieto objekty nie sú upevnené. Ak takéto upevnené objekty chcete uvolnit, podržte pocas tahania stlacené tlacidlo CTRL. 
+
+Hned po tom, co vyberiete nástroj pre posúvanie objektov, prípadne potom, co ho resetujete stlacením klávesu ESC, budú všetky objekty, ktorými možno pohybovat oznacené cervenou farbou a budú blikat.
+
+Je možné pohybovat naraz viacerými objektami. Ak to chcete urobit, podržte pritom ako ich vyberáte myšou stlacený kláves SHIFT, a pustite ho po vybratí posledného bodu.
+
+Ak je pri posúvaní stlacený kláves SHIFT, bude posúvanie obmedzené na oblast, v ktorej sú všetky priesecníky platné. V appletoch možno toto správanie prednastavit pomocou parametra "restrictedmove".
+
+Ak je pri posúvaní stlacený kláves CTRL, zostane strý stav konštrukcie pocas posúvania zobrazený v pozadí.
+
+.tracker
+.related point animate background mouse objecttracker
+Manuálne sledovanie stopy bodu a priamky
+
+Tento nástroj vykresluje stopy pohybujúcich sa bodov a priamok. V prípade pohyblivého bodu sa vykresluje jeho trajektória. V prípade pohybujúcej sa priamky sa vykresluje krivka, ku ktorej je sledovaná priamka v každej svojej polohe dotycnicou (tzv. obálka systému priamok). 
+
+Najprv je potrebné vybrat jeden alebo viacero bodov, ktoré majú byt sledované. Potom možno pomocou lavého tlacidla myši posúvat nejakým bodom, posuvníkom, alebo iným pohyblivým objektom, ktorý ovplyvnuje polohu sledovaného bodu. Tým sa vytvorí jeho stopa. Ak chcete vybrat viac ako jeden objekt, ktorý sa bude sledovat, podržte pri vyberaní objektov stlacený kláves SHIFT. 
+
+Farba stopy bude rovnaká ako farba sledovaných objektov a stopa zostane viditelná, pokým sa nevyberie iný konštrukcný nástroj, alebo pokým sa stopa neresetuje tlacidlom ESC.
+
+Stopy bodov a priamok možno pomiešat. Stopy priamok možno vytvorit z priamok, polpriamok a úseciek.
+
+Ak chcete, aby stopa zostala nastálo v konštrukcii, musíte použit nástroj na automatické sledovanie stopy.
+
+Vid tiež: Automatické sledovanie stopy bodu a priamky
+
+
+.objecttracker
+.related tracker point animate
+Automatické sledovanie stopy bodu a priamky
+
+Tento nástroj vykresluje stopy závislých bodov a priamok (podobne ako nástroj pre manuálne sledovanie stopy) tak, že animuje pohyb jedného nezávislého bodu pozdlž priamky alebo po kružnici, rýchlostou, ktorú môže používatel ovládat. Najprv vyberte jeden alebo viacero závislých bodov alebo priamok, ktoré chcete sledovat. Ak chcete sledovat pohyb viacerých objektov, držte pri ich výbere stlacený kláves SHIFT. Potom môžete vyberat nezávislý bod na priamke alebo na kružnici, prípadne posuvník, výraz, alebo priamku ci kružnicu. Ak ste vybrali priamku alebo kružnicu, musíte ešte na nej urcit nezávislý bod, ktorý sa po nej bude pohybovat. Pocítac bude pohybovat nezávislým bodom, alebo posuvníkom, prípadne bude menit výraz, a bude vykreslovat automaticky stopy vybraných závislých objektov.
+
+Ak by prvý sledovaný závislý objekt prestal byt platný (napr. by to bol priesecnák, ktorý prestal byt platný) pohyb nezávislého bodu sa automaticky obráti. V prípade, že by prvý sledovaný závislý objekt prestal byt platný, pretože prestali jestvovat priesecníky dvoch kružníc, bude sa potom, co sa automaticky zmení smer pohybu nezávislého bodu sledovat pohyb druhého priesecníka. Tým pádom konštrukcia prebehne cez všetky možné stavy.
+
+Rýchlost animácie možno zväcšit alebo zmenšit pomocou klávesu SHIFT a pravej alebo lavej šípky klávesnice. Opakované klikanie lavým tlacidlom myši prepína animáciu medzi tromi režimami: animácia a viditelná stopa, animácia a skrytá stopa, stopa bez animácie. V poslednom režime možno nezávislý bod tahat pomocou lavého tlacidla myši. Dalšie body možno hocikedy tahat pomocou pravého tlacidla myši, ale pocas takéhoto tahania bude stopa skrytá a animácia pozastavená. 
+
+Ak je konštrukcia nahratá v okamihu, ked je tento nástrok aktívny, bude aktívny aj pri jej opätovnom nacítaní.
+
+Ak chcete zastavit animáciua odstránit stopy, vyberte z palety nástrojov lubovolný iný nástroj.
+
+Permanentné stopy
+
+Ak chcete aby zostala prvá stopa v konštrukcii nastálo, stlacte kombináciu klávesov SHIFT a ENTER, alebo vyberte nástroj automatického sledovania stopy so stlaceným klávesom CTRL. Vytvorí sa nový objekt, pricom sa použije aktuálna hodnota farby a hrúbky ciary. Stopu možno následne upravit rovnakým spôsobom ako akýkolvek iný objekt. Je možné vytvorit priesecníky medzi takto vytvorenou stopou a inými objektami a tiež je možné na stopu umiestnovat body.
+
+Stopy vytvorené týmto spôsobom sú prepocítavané pri každej zmene v konštrukcii, co môže na starších pocítacoch program spomalit. Je preto múdre, ak pocet stôp obmedzíme a ak ombedzíme aj ich dlžky, aby sme odlahcili procesoru pocítaca. Navyše je možné odškrtnutím, prípadne zaškrtnutím polícka v dialógovom okne vlastností stopy prepocítavanie stopy vypnút, prípadne znovu zapnút.
+
+Vid tiež: Manuálne sledovanie stopy bodu a priamky
+
+
+.animate
+.related circle line
+Animácia
+
+Tento nástroj môže animovat pohyb jedného bodu pozdlž jednej alebo niekolkých úseciek alebo kružníc. Najprv vyberte bod, pohyb ktorého sa má animovat, potom postupne vyberajte úsecky alebo kružnice. Ich výber ukoncíte tak, že na posledný objekt kliknete dvakrát (dvojkliknete).
+
+Ak chcete animáciu ukoncit, kliknite niekde do konštrukcie. Ak chcete obrátit smer animácie, kliknite myšou pri stlacenom klávese SHIFT. Kombinácia klávesov SHIFT a +/- mení rýchlost animácie. 
+
+Animácie sa ukladajú do súboru s konštrukciou. Ak je animácia použitá v applete, bude interakcia používatelov s appletom vylúcená.
+
+Ak kliknete do konštrukcie a máte stlacený kláves SHIFT, zmeníte tým smer pohybu bodu po úsecke, kružnici alebo po oblúku.
+
+
+.angle
+.related circle properties fixedangle
+Uhly
+
+Normálne uhly slúžia iba na oznacenie a nemôžu byt použité na konštrukciu. Poradie zadávania bodov je A, V, B, kde V je vrchol.
+
+Uhly možno zobrazit v troch rôznych velkostiach. Ak vyberiete najväcšiu velkost, bude oblúcik uhla zacínat v bode A.
+
+Uhly môžu obsahovat vo svojich menách grécke písmená. Ak chcete aby meno obsahovalo napr. alfa, zadajte \a, \A a.t.d. Môžete použit všetky znaky Unicode pomocou \0XXXX, kde XXXX je lubovolné hexadecimálne císlo. Uhly, ktorých velkost je 90°, alebo majú meno zacínajúce "." budú v prípade, že je zapnuté zobrazovanie velkosti, oznacené bodkou. Uhly môžu byt vyplnené. Rovnaký efekt možno dosiahnut pomocou použitia druhého mena (aliasu).
+
+Správanie uhlov je prednastavené tak, že nikdy nie sú väcšie ako 180°. Na poradí zadania bodov A a B nezáleží. Avšak toto správanie je možné vypnút v dialógovom okne vlastností uhla.
+
+Tak ako u iných objektov, ak zvolíte neviditelnú hrúbku, bude zobrazená menovka uhla ale samotný uhol nie.
+
+Vid tiež: Fixné uhly
+
+.fixedangle
+.related circle reorder expressionsyntax properties angle
+Fixné uhly
+
+Fixné uhly nemajú tretí definujúci bod, ale majú fixnú velkost. Tento typ uhla sa viac podobá na polpriamku ako na uhol. Je možné vytvárat priesecníky s ramenom uhla bez definujúceho bodu alebo nan umiestnovat body.
+
+Fixné uhly možno vytvorit tak že pri kliknutí urcujúcom polohu tretieho definujúceho bodu máme stlacený kláves SHIFT. Možno ich tiež vytvorit pomocou špeciálneho nástroja pre fixný uhol. Tento nástroj automaticky otvorí dialógové okno nastavení, kde používatel môže zadat lubovolný výraz pre velkost uhla. Ak uhol hned po vytvorení potiahneme, dialógové okno sa neotvorí. 
+
+Velkost fixných uhlov možno menit pomocou úpravy ich troch definujúcich bodov. Dá sa to urobit tak, že vyberiete tlacidlo NASTAVIT VELKOST v dialógovom okne nastavení a vyberiete tri body A, V, B, kde V je vrchol uhla. Velkost uhla môžete menit aj pomocou lubovolného výrazu.
+
+U fixných uhlov možno lahko zmenit aj orientáciu. Takto nie sme obmedzení len na kladnú orientáciu, ale môžeme používat aj zápornú. Navyše, ak je velkost uhla obmedzená od 0° do 180° (co je prednastavené správanie), a ak jeho definujúce body vyberieme v takom poradí, že rameno VB možno z ramena VA získat otocením okolo bodu V o záporný uhol bude fixný uhol AVB orientovaný v zápornom zmysle. V dialógovom okne nastavení je špeciálna ikonka, ktorou možno uhol invertovat.
+
+Vid tiež: Uhly
+
+.area
+.related point properties background
+Vyplnené mnohouholníky
+
+Tento nástroj vytvára zo zadaných vrcholov vyplnený mnohouholník. Treba zadat krajné body a dvojkliknút na posledný bod. Strany sú skryté, ak má mnohouholník v dialógovom okne nastavené vybratú neviditelnú hrúbku.
+
+Hodnotou vyplneného mnohouholníka je jeho obsah. Znamienko hodnoty závisí na orientácii jeho vrcholov. 
+
+
+.expression
+.related angles circles properties reorder expressionsyntax
+Výrazy
+
+V C.a.R. možno aritmetické výrazy použit na nastavenie
+
+ - súradníc bodov
+ - dlžok úseciek
+ - polomerov kružníc
+ - velkostí uhlov
+
+Naviac možno zobrazit hodnoty výrazov v konštrukciách. Ak chcete umiestnit výrazy na obrazovku použite nástroj na výrazy. Na posúvanie výrazu poslúži pravé tlacidlo myši. V dialógovom okne výrazu treba zadat platný výraz. Výrazy môžu obsahovat vysvetlujúci text a môžu alebo nemusia zobrazovat svoju vypocítanú hodnotu. 
+
+Skryté výrazy sú užitocné na výpocet hodnôt, ktoré chceme použit v konštrukcii neskôr. 
+
+Hodnotu výrazu možno nastavovat aj posuvníkom. V takom prípade bude môct používatel posúvat zlava doprava bod, cím sa bude nastavovat hodnota premennej. Posuvník má minimálnu a maximálnu hodnotu, ktorú môže premenná dosiahnut.
+
+Vo vysvetlujúcom texte výrazu je možné použit LaTeX-ovské znacky. V takom prípade je ich potrebné uzavriet medzi $...$.
+
+Vid tiež: Syntax výrazov
+
+.expressionsyntax
+.related fixedangles fixedcircles point properties reorder function
+Syntax výrazov
+
+Meno 
+ Príklad 
+ Popis 
+ 
++, -, *, /,^ alebo ** 
+ 3.5*3+3/(4-5^2) 
+ Elementárne matematické operácie. 
+ 
+Meno objektu 
+ AB/CD 
+ Meno úsecky, kružnice, uhla a dalších výrazov. Objekt nesmie závisiet na aktuálnom objekte. Ak chcete odkazovat na objekty ich menom, použite syntax @meno alebo @"meno". Toto však nebude fungovat pri makrách. Ak sa objekt nenájde, vznikne chyba.
+ 
+Funkcia 
+ sin(a) 
+ Funkcie abs, sign, sin, cos, tan, arcsin, arccos, arctan, sqrt, exp, log, round, ceil, floor, deg, rad, sinhyp, coshyp, angle180 a angle360.
+ Všimnite si, že trigonometrické funkcie ocakávajú argument v stupnoch. Ak chcete použit radiány, musíte ich premenit na stupne. Použite funkciu deg(x), alebo funkcie rsin, rcos, rtan, rarcsin, rarccos, rarctan.
+ 
+Používatelská funkcia
+ f(a)
+ Vpocíta hodnotu používatelom definovanej funkcie pre a.
+
+Pi 
+ pi 
+ Konštanta Pi. 
+ 
+x,y,z 
+ x(P), y(P) , z(P)
+ x-ová a y-ová súradnica bodu, prípadne z-hodnota bodu.
+ 
+d 
+ d(P,Q) 
+ Vzdialenost dvoch bodov. 
+ 
+d 
+ d(x) 
+ Pocíta zmeny výrazu x. Ak x je bod, pocíta jeho pohyby.
+ 
+sum
+ sum(x,f)
+ Spocíta x. Ak je f záporné alebo neplatné, hodnota sumy sa nastaví na nulu.
+ 
+a 
+ a(P,Q,Z) 
+ Velkost uhla PQZ. 
+
+scale 
+ scale(x,a,b) 
+ Pocíta relatívnu polohu x v intervale <a,b), ak je x v tomto intervale. Inak sa stane výraz neplatným.
+
+if 
+ if(e,e1,e2)
+ Vráti e1, ak platí e, inak e2. 
+
+invalid
+ invalid 
+ Vráti neplatný výraz.
+
+&&,||,! ! 
+ (x<4 && y<4) 
+ Logické výrazy. && znamená konjunkciu, || disjunkciu, 1 je pravda, 0 je nepravda. 
+
+<, >, <=, >=, ==, ~= 
+ x<y 
+ Porovná císla. ~= znamená "približne rovné". 
+
+integrate
+ integrate(f,a,b)
+ integrate(f)
+ Vypocíta urcitý integrál funkcie f od a do b pomocou Romberg metódy. f
+musí byt objekt funkcie (pavdepodobne skrytý). Používa y-ovú zložku funkcie. Ak f zobrazuje iba body, je spocítaná Riemannovská suma. Ak f je parametrická, vypocíta plochu vnútri krivky, alebo jej dlžku, ak nie je funkcia vyplnená.
+
+zero
+ zero(f,a,b)
+ Nájde nulový bod funkcie f v intervale a, b. Znamienko hodnoty funkcie v bodoch a a b musí byt rôzne. Procedúra používa metódu secníc.
+
+diff
+ diff(f,a)
+ Numerická hodnota derivácie f v bode a. Aproximuje ju výrazom (f(h)-f(-h))/(2h)
+
+min,max
+ min(f,a,b)
+ Vypocíta polohu minima (maxima) funkcie f medzi a a b.
+
+this
+ x(this)
+ Vztahuje sa na objekt obsahujúci tento výraz.
+ 
+windoww,windowh,windowcx,windowcy
+ Vracia rozmery a súradnice stredu aktuálnej obrazovky.
+ 
+pixel
+ Vracia pocet pixelov na jednotku dlžky súradníc. Nepoužívat pri tlaci.
+ 
+simulate
+ simulate(e,x,f)
+ Nastaví výraz e na hodnotu x, prepocíta konštrukciu s touto novou hodnotou a vráti hodnotu f. V lubovolnom case možno vypocítat len jednu simuláciu, ciže simulácie nemožno vnárat. Namiesto e možno použit výraz, fixný uhol, alebo fixnú kružnicu.
+
+.text
+.related replay comment properties latex
+Text
+
+Zobazí v konštrukcii viacriadkový text. Text možno menit pomocou interného editora.V tomto editore sa nachádza klasické tlacidlo, ktorým možno vyvolat dialógové okno vlastností objektu.
+
+Ak chcete vytvorit v texte riadok napísaný hrubým, velkým prípadne hrubým a velkým písmom, dajte na zaciatok riadku znaky *, **, alebo ***. Ak chcete použit príkazy LaTeXu, uzavrite riadok, alebo jeho cast (casti) medzi znaky dolára $...$. Naviac môžete použit výrazy uzavreté medzi %..%. Tieto výrazy sa pred zobrazením vyhodnotia a v texte sa zobrazí výsledok vyhodnotenia. Retazce v tvare %=s% budú nahradené aktuálnym menom objektu "s" a retazce v tvare %~s% budú nahradené rovnicou objektu s.
+
+Skryté texty sa objavia v režime prehrávania. To umožnuje zobrazovanie lokálnych komentárov konštrukcných krokov, ktoré neskôr zmiznú.
+
+.quadric
+.related properties point transparent
+Kuželosecky
+
+Kuželosecky sú množiny bodov, ktoré sú riešeniami rovníc, ktoré sú vytvorené lineárnou kombináciou clenov x^2, y^2, x, y, xy a 1 (kvadratických funkcií dvoch premenných). Kuželosecku možno jednoznacne urcit piatimi bodmi. Jednoducho ich treba vybrat.
+
+Ak chcete upravit vlastnosti krivky, kliknite na nu pravým tlacítkom a použite obycajné dialógové okno vlastností. Po kliknutí na tlacidlo hodnota sa zobrazí rovnica kuželosecky.
+
+Na kuželosecky je možné umiestnovat body a tiež je možné vytvárat prieniky kuželoseciek s dalšími objektami.
+
+
+.hide
+.related construction properties mouse
+Ukrývanie objektov
+
+Pomocou tejto funkcie je možné ukrývat objekty, alebo uryté objekty znovu zviditelnit. Ak chcete nejaký ukrytý objekt zviditelnit, stlacte tlacidlo (prepínac) na zobrazenie všetkých ukrytých objektov a kliknite nan. Objekty možno ukrývat aj tak, že na ne klikneme pravým tlacidlom myši a držíme pri tom stlacený kláves CTRL. V tomto prípade po prvom kliknutí prejdú kružnice, priamky, polpriamky a úsecky do prechodového stavu a po druhom kliknutí sa ukryjú.
+
+Ak pri výbere objektu na urytie máme stlacené tlacidlo SHIFT, bude objekt ukrytý úplne. V takom prípade ho je možné zviditelnit jedine pomocou zoznamu objektov v popisnom okne konštrukcie.
+
+Pomocou menu UPRAVIT/SKRYT DUPLIKÁTY je možné ukryt všetky duplicitné objekty. Viditelnými zostanú potom len tie, ktoré boli vytvorené najneskôr. Bud držte pri výbere nástroja na ukrytie stlacený kláves CTRL, alebo použite menu UPRAVIT/SKRYT DUPLIKÁTY.
+
+
+.rename
+.related properties
+Premenovat v abecednom poradí
+
+Tento nástroj umožnuje premenovat priamky na a, b, c, ..., body na A, B, C, ..., a uhly na \a, \b, \c, ..., pomocou jednoduchého klikania myšou. Ak je vybratý tento nástroj a ak klikneme na nejaký objekt, bude pomenovaný nasledujúcim, ešte nepoužitým písmenom v abecednom poradí.
+
+Ak budete pri klikaní na body držat stlacený kláves SHIFT, budú body na ktoré klikáte pomenované A, B, C, ..., aj napriek tomu, že už predtým boli v konštrukcii tieto písmená použité. V takom prípade budú automaticky premenované. Od zaciatku možno zacat tak, že stalcíte kláves ESC.
+
+Mimochodom, ak potrebujete použit napr. písmeno "a" pre dva rôzne objekty, použite "a-1" a "a-2". Bude zobrazená len cast mena objektu pred pomlckou. Druhým riešením je použit alias (druhé meno).
+
+.delete undo back
+.related construction
+Zmazat posledný objekt
+
+Tento nástroj vymaže naposledy vytvorené objekty a všetky skryté objekty pred nimi. Vrátite ich spät, ak kliknete na nástroj VRÁTIT SPÄT NAPOSLEDY VYMAZANÉ OBJEKTY.
+
+Jestvuje aj další nástroj, ktorý zmaže lubovolný objekt a všetky objekty, ktoré na nom závisia. Aj tu platí, že ich vrátite spät, ak stlacíte nástroj VRÁTIT SPÄT NAPOSLEDY VYMAZANÉ OBJEKTY.
+
+
+.function
+.related expressionsyntax properties
+Funkcie a krivky
+
+Program dokáže zobrazit grafy funkcií a parametrických kriviek. Graf funkcie je možné vytvorit pomocou položky menu alebo stlacením ikonky. V dialógovom okne, ktoré sa objaví, zadajte zaciatocnú a koncovú hodnotu premennej parametra a tiež velkost kroku. Ak chcete, môžete použit na oznacenie premennej parametra lubovolný retazec. Predvolená hodnota je "x".
+
+Ak vytvárate graf funkcie, ponechajte polícko VÝRAZ PRE X prázdne a do polícka VÝRAZ PRE Y zadajte "f(x)". Pritom "f(x)" musí byt platný výraz.
+
+Ak vytvárate graf parametrickej krivky, budete potrebovat zadat dva výrazy, jeden do polícka VÝRAZ PRE X a druhý do polícka VÝRAZ PRE Y.
+
+Program bude postupne zväcšovat hodnotu premennej parametra od zaciatocnej hodnoty po koncovú hodnotu pri danom kroku. Ak je funkcia pri danom kroku parametra platná, bude do konštrukcie vykreslená úsecka do sústavy súradníc používanej v konštrukcii. 
+
+Funkcie možno používat pri definovaní iných funkcií. V takom prípade sa vypocíta hodnota VÝRAZu PRE Y.
+
+Funkcie a krivky môžu byt vyplnené. V prípade parametrickej krivky je stredom 0, ale to možno zmenit. Urobíte to tak, že v dialógovom okne vlastností stlacíte tlacidlo NASTAVIT STRED.
+
+Funkciu f možno zredukovat na sériu bodov. Ak bude takáto funkcia mat byt dotatocne vyplnená, bude použitá Riemannova step funkcia.
+
+
+.defaults
+.related line angle colors
+Prednastavené nastavenia
+
+Je možné nastavit prednastavené nastavenia farby, vzhladu a niektorých dalších vlastností novovytvorených objektov. Konkrétne:
+
+ - farbu objektov
+ - hrúbku objektov
+ - štýl bodov
+ - ciastocné zobrazovanie kružníc
+ - ciastocné zobrazovanie priamok
+ - zobrazovanie úseciek ako šípok
+ - zobrazovanie mena
+ - zobrazovanie hodnoty
+ - používanie dlhých mien
+ - velké a hrubé písmo
+ - používanie uhlov väcších ako 180°
+ - nastavenie nepriesvitnosti objektov
+
+Tieto prednastavené nastavenia sú dostupné cez menu a tiež ako nástroje v paneli nástrojov.
+
+.edit
+.related mouse properties
+Edit Objects
+
+This tool edits the properties of one or more objects. To select
+several objects, hold the SHIFT key. The edit dialog for more than one
+objects has fields in an invalid state. Only the changed fields will
+be used to update the objects.
+
+If the CTRL key is pressed when the tool is selected, the last
+object will be edited.
+
+If the CTRL key is pressed, when an object is selected with the right
+mouse button, an editor for the conditional formats of objects opens.
+For colors, thickness and other properties, it is possible to define
+conditions to activate these properties. This is useful for special
+effects. Each property can have a condition and it will be enabled
+when this condition evaluates to true, which is any value other then
+0.
+
+A special condition is the z-buffer value. It determines the order
+of painting. The objects with the largest z-buffer are painted first.
+All objects that have a z-buffer value are painted after the background
+objects, but before any other objects.
+
+One can set the properties of several objects at once. The current
+object can be referred to by the name "this".
+
+.show
+.related hide
+Hide by Color
+
+Show or hide objects with specific colors. This is used to make the
+construction clearer.
+
+.grid
+.related zoom move mouse
+Grid
+
+This tool toggles the display of the coordinate system. A menu switch
+determines, if a full grid is shown, or only the coordinate axis.
+
+If the grid is on, new points and points moved by the right mouse
+button snap to grid points. However, it is possible to snap with the
+move tool and the left mouse button instead, changing an advanced
+setting. This may be useful for constructions on Web pages with
+grids.
+
+If the grid is on while the construction is saved, it will be switched
+on, when the construction is loaded.
+
+.replay
+.related htmlexport text animatebreak
+Walk through constructions
+
+This tool opens a small dialog with navigation buttons containing
+buttons for forward, back, fast forward, fast rewind etc. Additionally,
+breakpoints can be set with this tool. There is a button to jump to
+the next breakpoint. Moreover, breakpoints are important for HTML
+export in replay style.
+
+To set a hiding breakpoint hold the shift key while setting the
+breakpoint. Hiding breakpoints hide all previous objects up to the
+next previous breakpoint. The construction will be split into several
+parts.
+
+Breakpoints and hiding breakpoints can also be set in the properties
+dialog.
+
+During the replay, hidden texts will be visible.
+
+.animatebreak
+.related replay
+Animate breakpoints
+
+This tool automatically goes from breakpoint to breakpoint. To increase
+or decrease the speed, press shift plus the right or left key.
+
+.draw
+.related mouse
+Paint with the Mouse
+
+This tool paints sketches above the currenct construction with the
+mouse in the current color. To erase the sketch, press escape or use
+the menu entry. The sketch will be saved with the construction.
+
+.zoom
+.related mouse grid
+Zoom with the mouse
+
+With this tool it is poosible to zoom in and out by dragging in the
+outer region of the construction, and to move the construction by
+dragging the inner region of the construction.
+
+Note that it is possible to zoom the construction at any time with a
+mouse wheel, and to move the construction with the right mouse button,
+dragging some empty spot.
+
+One can also zoom with the +/- keys, and move with the arrow keys.
+
+The current viewing window is saved in the construction file, and the
+same view will be used when the construction is loaded.
+
+.parameter
+.related runmacro parametertypes target macro
+Macro Parameters
+
+Macros are an important tool for more complicated constructions.
+Without macros, only simple constructions can be done. Macros collect
+many constructions steps into one construction step. They behave like
+subroutines in a programming language. Macros are like new, user
+defined tools.
+
+A macro needs parameter objects and target objects, just like the
+segment tool takes two points as parameters and has a segment as its
+target.
+
+Macros in Z.u.L. are easily defined. Show the macro, which part of
+your construction it should learn. This part is called the "pattern
+construction". To create the pattern, construct some targets starting
+with some given parameter objects. E.g., you could construct the
+middle perpendicular line of a segment between two points, starting
+with the two points.
+
+In the first step of macro creation, the macro needs to learn your
+starting points. In the next step, you press the macro tool once more
+and define the targets. In the final step, the macro dialog appears
+and the macro definition is finished.
+
+Continue with: Targets
+
+.target
+.related parameter runmacro parametertypes macro
+Targets
+
+After the macro parameters have been selected, another click on the
+macro tool starts the selection of the targets. Here, only those
+objects are visible that are constructible from the parameters. E.g.,
+the middle perpendicular of two points is visible, if the two points
+have been selected as parameters. All intermediate construction steps
+are visible too unless they are hidden.
+
+Select the targets now. In the example ment?ned above, select the
+middle perpendicular line.
+
+At least one target object should always be defined. Otherwise, all
+visible objects will be constructed by the macro. Moreover, targets
+will get the default color and styles when the macro is used. All
+other objects get the style in the definition pattern, with the
+exception that black objects get the default color. Especially, all
+hidden objects will be constructed in the hidden state. However, there
+is an option to hide all objects that are no targets automatically,
+even if they were visible in the construction. Moreover, if the macro
+is used in the descriptive mode, the user can assign names only to
+target objects.
+
+Another click on the macro tool finished the definition of the macro
+using a dialog. 
+
+Continue with: Macro Definition
+
+.macro
+.related runmacro parametertypes parameter target expression fixedcircle
+fixedangle hintparameters selfreference defaultmacros macroerror
+Macro Definition
+
+After all parameters and targets have been selected, another click on
+the macro tool defines the macro using a dialog. 
+
+Here, the name of the macro and a comment can be set. It is possible
+to definie the user prompts for each parameter. Comments and user
+prompts are important, since the user might not know, what the macro
+does and what it needs. The prompts are displayed in the status line,
+while the macro waits for parameters.
+
+It is possible to fix a parameter to an object A by using "=A" for the
+parameter prompt. The parameter will not be prompted, but instead an
+object "A" will be used, if there is one, and if it has the correct
+type.
+
+Be default, macros hide all objects that are duplicated from existing
+objects. This behaviour can be changed here.
+
+Moreover, it is possible to ask the user for a value for either a
+fixed circle, a fixed angle or an expression while the macro is
+running. To do this, enter the name of the circle, the angle or
+the expression into the box in the last line. The user will be prompted
+with a dialog and can enter any arithmetic expression. Several comma
+separated objects can be prompted from the user.
+
+See also: Hint Parameters, Self reference
+
+.hintparameters
+.related macro
+Hint Parameters
+
+A special feature hides parameters. If a hidden point is chosen as a
+macro parameter during the generation of the macro, and if that point
+is associated to a point generated during the parameter selection
+when the macro is used, this new point will be hidden after the macro
+has been run. 
+
+This feature makes it possible to use points as hint parameters. An
+example would be a macro, which generates an equilateral triangle on a
+segment. The hint would be a third click indicating either side of the
+segment. In this case, an expression must be used for one of the 60
+degree angles involving the third point, something like
+"60*sign(180-a(P,A,B))".
+
+.selectmacro
+.related runmacro macro
+The Macro Selection Dialog
+
+The macro selection dialog contains a list of all macros. Macros may
+be organized in submenus. To switch to a submenu, double click on
+it. To revert to the parent directory, double click on "..". To put
+the macro into a subdirectory, rename it like "subdir/macroname".
+Default macros are displayed in red.
+
+If the dialog allows multiple selections, subdirectories can be selected.
+In this case, all macros in all subdirectories of this subdirectory will
+be selected at once.
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters
+selectmacro
+Running a Macro
+
+If the SHIFT key is pressed when the macro run tool is selected,
+the previously used macro will be selected automatically. If not,
+and there is more than one macro, the macro selection dialog will
+open. After the user has chosen a macro, the program will prompt for 
+each parameter, and the expected object type and the prompt will be
+displayed in the status line.
+
+Macros can also be selected with the right mouse button. Choose the
+macro from the list in the popup menu.
+
+If "Space selects ..." appears in the status line, this parameter
+object can be selected by pressing the space bar. This feature is
+useful, if the macro is used several times.
+
+At the end, the macro will be executed. If the macro needs a value for
+a fixed circle or angle, it will prompt for this value with a dialog
+box. The user can enter any arithmetic expression there.
+
+If the full preview is turned on, the result of the macro operation
+can be seen before the last parameter point is selected.
+
+See: Macro Selection Dialog, Macro Definition
+
+.defaultmacros
+.related runmacro save
+Default Macros
+
+When starting, C.a.R. looks for a file named ".default.mcr" in the
+current directory. If there is such a file, the macros contained in
+this file are loaded. Note, that there is a a default macro file in
+the program archive, which is used, if the program does not find
+another file.
+
+The default macros are protected. They are not deleted when a new
+file is loaded and they are not saved with constructions. To delete
+protected macros, use the menu entry in the macro menu, and select all
+macros. 
+
+You can create default macros yourself. Simply save a file
+".default.mcr" into the current directory. If you need a special
+language version, save the file as ".la_default.mcr", where "la" is
+your language shortcut, of simply overwrite ".default.mcr". the
+language shortcut can be found in the "about" dialog.
+
+.macroerror
+.related macro
+Warning: "Object is used, but not in Macro"
+
+This warning occurs if an object in the macro refers to an object not
+contained in the macro. Usually, the reason is a @... reference in
+an expression, maybe in the conditional formatting of objects. Those
+references do not make objects depend on the referred object, and thus
+the objects are still constructable. However, they might not work as
+expected, or might even refer to wrong objects when used.
+
+Another type of references are the bounds of circular arcs. Since those
+bounds depend on the circle most of the time, the circle arc cannot depend
+on the bounds to avoid circular dependencies. If you ignore the
+warning, the arc will be determined by objects with the same name.
+
+A third reason may be an intersection with circles. To choose the
+intersection, the intersection may be kept different from a given point.
+This might happen automatically, if the other intersection already
+exists. If you ignore the warning, this intersection will be kept away
+from a point with the same name, or will become an unrestricted
+intersection.
+
+To avoid the warning, add the missing object to the parameters, so that
+it is included in the macro.
+
+.localize
+.related defaultmacros
+Localized Help
+
+C.a.R. already runs in many languages. However, if you want to provide
+your own version, you should translate
+
+ - ZirkelProperties.properties
+ - info.txt
+
+The properties file needs to be translated into an internal Unicode
+representation by a tool named "native2ascii". It is wise to let me do
+that for you. Simply send me the file. I will also include your
+translation into the current distribution.
+
+The help file should be in your local encoding.
+
+.fixparameters
+.related runmacro parameter
+Fixed Parameters
+
+You can also fix the selection of macro parameters by pressing the
+SHIFT key during the selection. This will create a copy of the macro,
+which is fixed in these parameters. You cannot fix all parameters
+of course.
+
+A parameter can be fixed, while the macro is defined. To do that,
+"=A" is used as the prompt of the parameter. The parameter
+will then be fixed to the object with name "A".
+
+.parametertypes
+.related parameter
+Types of Parameters
+
+Macro should use points as parameters simply. This makes dependencies
+easier to understand and avoids many problems. But other types of
+parameters are possible too.
+
+Lines, rays, segments, and circles generate secondary parameters,
+namely the two end points, or the center respectively. This simplifies
+macro usage. However, the user must take care to use these parameters
+in the same configuration. Two concentric circles must be concentric.
+If the segments AB and BC are macro parameters, then the user must
+choose segments EF and FG. In these cases, it might be better to use
+points as parameters.
+
+Lines and rays are of two types: with two defining points, and with
+one defining point (e.g., parallel lines). In the macro, lines, rays,
+and segments are stored as pointless lines, if their defining points
+are not used in the target construction, or if they have only one
+defining point. The user can then choose any line as a parameter. If
+one of the two defining points is used, the user will have to choose a
+line, ray or segment of the same type. Again, this is complicated, and
+it may be best to use points.
+
+.htmlexport
+.related runningdemo save comment exportdialog jobexport
+HTML Export
+
+C.a.R. can generate HTML pages for your constructions. These HTML
+pages contain an applet that displays the construction. In the dialog
+for HTML export the appearance of the page and the applet can be set.
+
+To set up a HTML page, a construction file has to bes created, and,
+for assignments with solution pages, another one for the solution.
+One needs to publish
+
+ - the HTML page just generated, 
+ - a solution page, if present,
+ - style sheets, if present, 
+ - the applet archive zirkel.jar,
+ - the construction file. 
+
+Note that tracks and animations are saved with the construction. They
+will automatically reappear in constructions, which are displayed in
+applets. In this case, there is no user interaction. So you should use
+the plain or border style for these applets.
+
+Note that tracks are displayed automatically, if they were displayed
+when the construction was saved.
+
+It is best to have only one applet on each HTML page.
+
+See also: HTML Export dialg.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+HTML Export with Templates
+
+This is a comfortable way to export your construction to HTML. The
+program loads a template for the HTML page, and fills in the necessary
+information replacing all placeholders on the template page. The
+dialog is much shorter, since most information is continained in
+the template file, including applet size, applet and page colors,
+style sheets and archive position.
+
+The documentation of C.a.R. contains some templates to start with.
+Template files use the extension "*.template". You can edit these
+template files with any file or HTML editor. Foreign language users
+should disable UTF-8 in the settings dialog, or they must use an
+editor, capable of handling UTF properly (e.g my text editor JE, the
+HTML editors of Mozilla, or Frontpage by MS, and many others). You can
+base your template on the template files that come with the
+documentation.
+
+The following placeholders are recognized in template files.
+
+#title
+  Replaced by the construction title as shown in the export dialog.
+
+#comment1,#comment2,...
+  This will be replaced by the section of the construction comment
+with the corresponding number. Comment sections are separated by lines
+consisting of "~". Each paragraph of the comment section will be
+bracketed by <p>...</p>.
+
+#comment
+  Works like text, but does not look for comment sections.
+
+#text1,#text2,...
+  Works like #comment1,... but does not generate paragraphs
+<p>...</p>. The user can provide any HTML-tags he likes.
+
+#text
+  Works like #text1,... but does not look for comment sections.
+
+#parameter
+  Inserts the applet parameters: file or job, style, tools and options.
+
+#color
+  Inserts the applet parameters for colors.
+
+#font
+  Inserts the applet parameter for fonts and digits.
+
+#codebase
+  The codebase from the export dialog.
+
+Here is a very simple template file.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=#F0F0F0>
+  <H1>
+  #title
+  </H1>
+  <CENTER>
+  <P>
+  <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400" 
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+See also: Export Dialog
+
+.exportdialog
+.related htmlexport jobexport
+Export Dialog
+
+Applets can have several styles.
+
+- Plain: The applet has no border. The user can only display hidden
+elements and move points. One should use the same color for the page
+and the applet in this case. 
+
+- Border: The applet gets a border. 
+
+- Border and Icons: The applet gets a border and icons. The user can
+construct things. 
+
+- Border, Icons and Status: The applet gets a status line. The status
+text is displayed in the browser status line too. 
+
+- Border, Icons and Input Line: The construction must be done in
+descriptive (non-visual) mode. 
+
+- Replay with Breakpoints: Three buttons are displayed to enable
+navigation from breakpoint to breakpoint. To set the breakpoints, use
+the replay tool. 
+
+Title of Page: This is the title of your page in <H1> style.
+
+CSS Style-Files: Cascading Style Sheets are useful to give several
+pages a common appearance. If you do not use them, leave the input
+empty. Use a path relative to the program archive.
+
+Width, Height: The dimensions of the applet display.
+
+Construction File: The name of the file containing the construction,
+usually in the same directory as the HTML file. However, the file
+names must be relative to the program archive. Absolute URLs and paths
+are not allowed here.
+
+Jar File: This is the program archive. The path must be relative to
+the HTML page.
+
+Colors: You can choose a color for the page background and for the
+applet background. The color can be chosen with the button below.
+
+Moreover, there are switches to save the defined colors for the
+construction elements and for the construction background. The
+background of the construction can be different from the background of
+the applet and the background of the page.
+
+Save Digits: Will save the settings for the number of digits. Should
+be enabled.
+
+Show Comment: This will put the comment below the applet. All browsers
+should be able to handle the default UTF-8 encoding. If not switch to
+the Windows encoding in the special settings.
+
+Tools: These two icon bars let you choose the tools, which should be
+displayed to the user. In any case, one should provide the undo tool.
+With the special icon for two lines the user gets two lines of tools.
+
+The user can only define macros, if you give him the macro tool. And
+he can run only macros only, if this tool is available.
+
+The icons with the question mark are switches for the object selection
+dialog, the question for points on objects and for intersections.
+By default, all these dialogs and questions are turned off in applets.
+
+In the non-visual mode, the icons help the user to find the syntax.
+In this mode, all construction tools work.
+
+.jobexport
+.related htmlexport exportdialog
+Export Assignments
+
+Display as Assignment: Needs to be checked to save the construction as
+an assignment.
+
+Solution File - Jump - Save - Link: These settings allow the automatic
+generation of a solution page, which is a separate page to display the
+solution. After the user finishes the assignment, the browser can jump
+directly to the solution page. One can also set a link to this page
+below the construction.
+
+Comment: Exports the assignment comment, of course. The construction
+comment is only shown on the solution page.
+
+.runningdemo
+.related htmlexport online
+Creating a running demo
+
+It is possible to get an applet to load a series of constructions and
+display them to the user at a given rate. The applet syntax is quite
+different and there is no automatic export.
+
+An example of the applet code looks like this.
+
+ <APPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+       WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+The file "demo.xml" contains the file list. It is an XML file with a
+straightforward syntax. Here is a sample.
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <Demo delay="30">
+ <File name="Uhr.zir" delay="20">Clockwork</File>
+ <File name="Cindarella-Maschine.zir">Cindarella machine</File>
+   ...
+ </Demo>
+
+The delay parameters are in seconds.
+
+.visual
+.related expressionsyntax descriptivefiles runmacro
+Descriptive Constructions
+
+In this mode, there is an input line below the construction. The
+following differences apply.
+
+ - Choosing a tool will only display an input pattern. 
+ - The necessary construction parameters must be supplied by name. 
+ - The name of the constructed object may be given left of an equality sign =.
+ - The construction is carried out be pressing Return. 
+
+There is a fixed syntax for the input.
+
+ name=function(parameter,...)
+ name1,name2=function(parameter,...)
+
+The second line applies to intersection and macros with several
+targets.
+
+If the name is missing, the new object will get the default name. 
+
+Here is a short description of the syntax. Note, that expressions may
+be used in all places, where a value is expected. Empty brackets can
+be omitted.
+
+Syntax 
+ Long 
+ Description 
+ 
+A=P() 
+ point 
+ Generates a point at random position. 
+ 
+A=P(0,1) 
+  A fixed point. 
+ 
+a=s(B,C) 
+ segment 
+ A segment from B to C. 
+ 
+a=s(B,2) 
+  A segment of fixed length. 
+ 
+a=g(B,C) 
+ line 
+ A line through B and C. 
+ 
+a=r(B,C) 
+ ray 
+ A ray from B to C. 
+ 
+k=k(A,B) 
+ circle 
+ A circle around A trough B. 
+ 
+k=k(A,2) 
+  A circle with fixed radius. 
+ 
+k=k(A,B,C) 
+  A circle around A with radius BC. 
+ 
+A=S(g,g) 
+ intersection 
+ An intersection between two lines. 
+ 
+A,B=S(k,k) 
+ Both intersections between circles, or circles and lines. 
+ 
+away(A,P) 
+ away 
+ Keeps the intersection A away from the point P. 
+ 
+M=M(A,B) 
+ middle 
+ The midpoint of AB. 
+ 
+g=pl(g,A) 
+ parallel 
+ The parallel through A to g. 
+ 
+g=p(g,A) 
+ plumb 
+ The perpendicular through A to g. 
+ 
+a=w(A,B,C) 
+ angle 
+ The angle A,B,C 
+ 
+a=w(A,B,90) 
+  An angle of fixed size. 
+ 
+A=area(P1,P2,P3) 
+ area 
+ Creates an area with these corners. 
+
+Q=quadric(P1,P2,P3,P4,P5)
+ Creates a conic section through these points.
+
+F=function(a,b,d,t,xt,yt)
+ Creates a function on [a,b] with step size d, plotting xt,yt,
+ which are expressions depending on the variable t.
+
+value(P,0,1) 
+ value 
+ Fixes the coordinates of the point 
+ 
+value(s,2) 
+  Fixes the length of the segment. 
+ 
+value(k,2) 
+  Fixes the radius of a circle. 
+ 
+value(w,90) 
+  Fixes the size of an angle. 
+ 
+value(true,o) 
+  Sets the display of the value for o. 
+ 
+value(o) 
+  Sets the display of the value for o to on. 
+ 
+value(true) 
+  Sets the default display of values. 
+ 
+name(o,p) 
+ name 
+ Sets the name of o to p. 
+ 
+name(true,o) 
+  Sets the display of the name for o. 
+ 
+name(o) 
+  Sets the display of the name for o to on. 
+ 
+name(true) 
+  Sets the default display of names. 
+ 
+hide(true,o) 
+ hide 
+ Hides or un-hides o. 
+ 
+hide(o) 
+  Hides o. 
+ 
+hide(true) 
+  Sets the default hidden state for objects. 
+ 
+col(green,o) 
+ color 
+ Sets the color of o to red, green, blue or brown. 
+ 
+col(green) 
+  Sets the default color. 
+ 
+th(thick,o) 
+ thickness 
+ Sets the thickness of o to thick, normal or thin. 
+ 
+th(thick) 
+  Sets the default thickness 
+ 
+type(square,P) 
+ type 
+ Sets the point type to square, circle, diamond or point. 
+ 
+type(square) 
+  Sets the default point type. 
+ 
+part(k) 
+part(true,k) 
+ partial 
+ Sets the object k to partial display or full display. 
+ 
+part(true) 
+  Sets the default partial state. 
+ 
+fill(o) 
+fill(true,o) 
+ fill 
+ Sets the object o to filled state or outline state. 
+ 
+back(o) 
+back(true,o) 
+ background 
+ Sets the object o to the background or not. 
+ 
+window(0,0,5) 
+ window 
+ Sets the view window to width 2*5 and center (0,0). 
+
+valid(o)
+valid(true,o)
+ Treat segments and rays as lines in intersections and in
+ perpendicular lines. o is the intersection or the perpendicular.
+
+obtuse(a)
+obtuse(true,a)
+ Set angles so that they can become greater then 180 degrees.
+
+solid(a)
+solid(true,a)
+ Set the object to the nontransparent state.
+
+restrict(c,A,B)
+ Restrict a circle to become an arc from A to B.
+
+valid(o)
+valid(true,o)
+ Remove the restrictions from perpendicular lines and intersection.
+ These objects will be valid, even if the intersection is outside a
+ segment or an arc.
+
+rename(A,B)
+ Rename the object A to B.
+ 
+Macros can be used too. Names left of = will be assigned to targets.
+If there are several targets, the names must be separated by commas.
+One additional parameter may be used to assign a value for an object,
+which would be prompted in interactive mode.
+
+.descritivefiles run
+.related visual save
+Descriptive constructions in files
+
+Descriptive constructions can be loaded from a file. Alternatively
+edit the description and then load the construction. 
+
+The syntax is line oriented and uses the commands described above.
+Line comments //... may be used. The files may contain macros in the
+following format.
+
+ macro U 
+ // Constructs a circle through three points
+    parameter A=point // Select first point
+    parameter B=point // Select second Point
+    parameter C=point // Select third point
+    g1=MS(A,B)
+    g2=MS(A,C)
+    U=intersection(g1,g2)
+    target k=circle(U,A)
+ end
+
+The indents are optional. Comments in the parameter lines are used as
+prompts, if the macro is used interactively. This macro calls the
+macro MS with two parameters.
+
+ macro MS
+  param A=point
+  param B=point
+  partial(true)
+  k1=circle(A,B)
+  k2=circle(B,A)
+  partial(false)
+  P1,P2=intersection(k1,k2)
+  target g=line(P1,P2)
+ end
+
+If the command constructing the target constructs two objects, the
+target can be defined separately.
+
+ A,B=intersection(g,k)
+ target B
+
+If a macro has more than one target, all targets must be assigned.
+
+ A,B=test(...)
+
+Prompts are defined by the keyword prompt in front of an object name.
+
+ k=circle(A,5)
+ prompt k
+
+Here is an example of a macro using a segment as a parameter.
+
+ macro MS
+ // Mittelsenkrechte
+  A=point
+  B=point
+    parameter s=segment(A,B)
+    ...
+ end
+
+If circles are used as a parameter, there is the special syntax
+
+ M=point
+ parameter circle(M)
+
+This kind of circle can only be used in parameters.
+
+The special command "showall" shows all intermediate objects.
+Otherwise, only targets will be visible. The command "invisible"
+superhides all objects that are no targets.
+
+.assignments
+.related save restricted colors comment
+Assignments
+
+Assignments (or jobs) are incompletely displayed constructions, which
+the user is supposed to finish. The computer will only check for the
+constructed target object, and the solution itself might be different
+than the give one. The user will receive a message, as soon as he has
+completed the construction. The target objects will be displayed in a
+light color, unless they are hidden before the construction is saved.
+
+Assignments are generated by choosing the last object to be displayed
+to the user. Furthermore, there must be target objects. Targets are
+not checked for the solution, if they are generated pressing the SHIFT
+key.
+
+To test the assignment, click on the menu entry for this. In contrast
+to the user, you will have the complete set of tools available,
+however. You can use the restricted icon bar to save the assignment.
+
+Area objects as targets should be defined by the least set of corner
+points. If the solving user creates additional points on the sides of
+the polygons those points will be skipped.
+
+.browser
+.related online
+Starting the help browser
+
+To start the HTML help in the browser, you need to configure it. Enter
+the command line to the browser in the dialog. If the path contains
+blanks, include the browser in double quotes.
+
+Moreover, add the path to the help index file. This should be
+preconfigured already. If no help is found, the configuration dialog
+will use the web page.
+
+The default browser is the explorer on Windows systems, and Netscape
+elsewhere.
+
+.comment
+.related assignments parameter htmlexport
+Comments
+
+Every construction can have a comment. The comment will be displayed
+to the user when he loads the construction. Moreover, comments can be
+exported to HTML.
+
+Assignments will have a special comment, displayed to the user, when
+the assignment is presented.
+
+Macros can and should have comments too, explaining their usage and
+purpose.
+
+.fonts
+.related zoom save
+Fonts
+
+Fonts can either be set globally or for each object. Global settings
+have preference.
+
+C.a.R. uses fonts in two sizes and strokes. Fonts and points are
+scaled with the construction, however. For small windows or applets,
+this would lead to very small fonts and points. Thus there is a
+minimal point size. Bold fonts are recommended for small screen sizes
+and high resolutions.
+
+Note, that fonts for graphics export can be scaled to an exact size.
+The screen preview for the graphics export scales the fonts
+to get the same visual appearance of the construction.
+
+.sizes
+Sizes
+
+In this dialog, you can set the minimal line, point and font sizes.
+To keep the same impression on all screen sizes, these items are
+scaled. But you can set the minimal sizes here.
+
+Moreover, you can set the arrow size, and the selection size for cursor
+selection of objects.
+
+Note that for graphics exports, you may set the these values exactly,
+independent
+of the size of the output.
+
+These sizes can be exported to applets.
+
+.save
+.related assignments parameter descriptivefiles print defaultmacros filedialog
+Saving and loading files
+
+Constructions are saved in XML-format to computer files. This format
+is human readable. Normal constructions have the extension ".zir",
+and assignments have the extension ".job". Macros use ".mcr".
+
+Constructions may contain macros. There is a switch, if the current
+macros should be saved along with the constructions or not. To avoid
+accumulating macros from several constructions, it might be a good
+idea to delete all macros before a new construction is loaded. There
+is a switch to do this by default.
+
+Files can be compressed by adding "z" to their extension. There is no
+need to do this, unless you want to minimize download time, when
+the file comes from a server.
+
+There are special menu items to load assignments, to load macros, and
+to load descriptive constructions in files.
+
+See: File Dialog
+
+.filedialog
+.related save settings
+The File Dialog
+
+C.a.R. implements an own file dialog since the file dialogs of Windows
+and Linux had some defects when used from Java. If you want to use the
+normal system file dialog, however, you can switch to it in the
+special settings.
+
+The file dialog of C.a.R. uses histories for files, directories and
+filters. The directory and file history has a special drop down choice
+menu, and the history of the file and pattern fields show when the
+cursor up or down key is pressed in these fields.
+
+Navigate in the directories with a double click on the directory name
+in the left panel. The "Back" button opens previous directories. To
+choose a file, you can double click on its name in the right panel, or
+select it and use the action button.
+
+It is possible to enter several file patterns separated by spaces.
+File patterns can contain one or more place holders, "?" for single
+letters and "*" for strings.
+
+With a button a new directory can be created. Enter the name of the
+directory into the directory field. Files or directories cannot be
+deleted in this dialog.
+
+The home button brings you to the home directory of C.a.R., if
+installed in the home directory of the user. The English name is "CaR
+Files". If there is no such file, the button brings you to the user
+home directory. In Windows, the English name is "My Documents". In
+Linux, the home button brings you into your home directory. It is
+possible to change the home directory by pressing the home button with
+SHIFT-CTRL. The current directory will become the new home directory
+for C.a.R. Another click with these keys restores the old settings.
+
+.print
+.related exportsettings print
+Print and Export Constructions
+
+There are several ways to export your constructions to other programs
+or view them externally. 
+
+First of all, you can print your constructions. There is an option to
+print in exact scaling, so that units of 1 are 1 cm exactly. Make
+sure, the construction window fits on the paper for this option.
+
+Moreover, you can export in various graphics and vector formats. For
+word processors, I recommend using PNG, properly scaled for the exact
+output width.
+
+For PNG output, a dialog will open, where the output size is set.
+Alternatively, use a factor relative to the screen size. It is also
+possible to determine the size using the graphics width and height in
+cm and the resolution. There is a drop down selection box for various
+formats. If "1:1 scaled" is used, a scaled version (1 unit = 1 cm)
+with a 300 dpi resolution is used. Make sure, the output fits on your
+paper.
+
+Since lines, fonts and points may become too small in small pictures,
+it is possible to scale these sizes in cm. Use the preview to see
+the effect on the screen.
+
+For use with the typesetting program LaTeX, C.a.R. can generate two
+accompanying files, the bounding box file, and a file to draw the
+image. The latter has the same name as the PNG file, but an extension
+"ztx" (zirkel tex). It is possible to let LaTeX do the drawing of the
+strings and equations in the construction. In the dialog, select the
+type of strings that should be done by LaTeX. The graphics export will
+generate the necessary LaTeX commands. This type of LaTeX export will
+work with pdflatex and latex. In the LaTeX source, it is necessary to
+import the "graphicx" package, and to load the image file with an input
+command, like in
+
+ \begin{figure}
+ \centering
+ \input{image.ztx}
+ \end{figure}
+
+C.a.R. can also copy graphics to the clipboard. The same scaling will
+apply like in PNG output. If a screen dump of the construction is
+needed, use "screen size" in the scaling dialog.
+
+For PDF output, only set the picture sizes in cm. PDF can also scale
+lines, fonts and points.
+
+.construction
+.related hide reorder
+List of objects
+
+C.a.R can display a list of objects in your construction with the
+corresponding menu entry. This list can be used to edit invisible
+objects. In fact, it is the only way to access completely hidden
+construction steps. The lines in the list have the same colors as the
+objects. Completely hidden objects are in brackets.
+
+Restrict the display to certain types of objects with the drop down
+menu in the first line of the dialog. Completely hidden objects will
+only be visible in the "All Objects" state.
+
+The view is either sorted in the order the objects were constructed,
+or in the order the objects are stored. Note that the program may
+change the order of the objects to make sure no object refers to
+another object, which is defined later.
+
+.colors
+.related htmlexport
+Set colors
+
+Set the various colors of C.a.R. to your liking. Colors will not be
+saved with your construction, but are exported to HTML.
+
+Colors are composed in the red, green and blue color model. Switch
+back to default colors for best compatibility.
+
+.settings
+.related restricted iconbar tips beginner
+Special Settings
+
+This dialog contains some settings for advanced users. Some of these
+settings are affected by the beginner mode, however.
+
+First of all, there is a switch for the display of object labels while
+the object is moved. This option may be disturbing, but it is quite
+useful in some cases. C.a.R. can restrict that to fixed objects only.
+
+Then, there are switchs for some questions the program asks before
+critical actions.
+
+If the dialog to choose objects is disabled, the program will always
+select the first object, even if the selection cannot be determined
+uniquely from the mouse position.
+
+It is also possible to turn off the construction preview, or restrict
+it to points. By default, most tools show a preview of the result
+before the last parameter point is selected. In the beginner mode, only
+points are shown in preview, since other objects tend to mislead the
+users.
+
+The icon bar can be placed to the lower edge of the window, and
+tooltips can be disabled.
+
+Some users want to use the system file dialog. I prefer mine, and it
+does indeed have some advantages. However, it cannot delete or rename
+files. It can create directories, however.
+
+One should use UTF-8 encoding all the time, but C.a.R can also choose
+to use the local encoding for construction files. This affects
+comments and descriptions in the files. Use the local setting only,
+if you want to edit the construction yourself, and if you do not have
+a UTF-8 editor.
+
+In the smartboard mode, dragging will behave differently. A smartboard
+cannot report mouse movements, so they are replaced by drags. You have
+to click once more to complete the construction. This is only
+important for the preview of construction steps.
+
+By default, the program writes backups of the files before
+overwriting. If you find you do not need these, disable the backup
+feature.
+
+The user can choose to call the macro popup dialog with a single
+or a double click of the right mouse button.
+
+On a slow system, one may want to disable the smooth graphics with
+anti-aliasing.
+
+Due to obvious limitations in the screen resolution, points can either
+be drawn as exact rectangles, or exactly at the right spot, but not
+always as exact squares. One can determine the prefered method here.
+
+.exportsettings
+.related settings print
+Settings for Graphics Export
+
+Normally, points and fonts are scaled. But the minimal sizes are 
+respected, if this is enabled, since fonts would become to small
+otherwise. To get large fonts in small prints, use the scaling feature
+in the graphics export.
+
+Bitmaps are normally generated on a white background. You can tell the
+program to use your background color.
+
+.reorder
+.related circle angle expressionsyntax
+Reorder points
+
+It is possible to change the order of the construction manually. There
+is a special tool for this, and if you select an object with this
+tool, the program will try to move this object as far to the start of
+the construction as possible. This may be useful to control the sequence
+the objects are drawn.
+
+However, reordering is obsolete now. C.a.R. reorders the cosntruction
+chain itself, if objects refer to later objects. Moreover, it is
+possible to control the sequence of drawing using conditional
+formatting.
+
+.tips
+.related online browser start move intersection expression reorder
+Tips
+
+In this help section, we give some tips to solve common problems.
+
+Invalid Constructions. To test a construction, move one of the basic
+points. If the construction does not remain valid, the most common
+reason is that you did not choose an intersection properly. Instead,
+you may have defined a line that goes through the intersection point
+only by chance.
+
+Wrong Intersection. If a construction becomes invalid, whenever the
+order of the basic points is changed or if one point is flipped to
+another side, you are facing the problem to choose the right
+intersection point. So, if you want your construction to be valid for
+all situations, make sure, you choose all intersections properly. If
+the automatic selection of C.a.R. fails, you can select the
+intersection by hand. Open its properties and press "Close to" or
+"Away from". Then choose a point that should be nearer to or further
+away from the intersection point. You can also set intersection close
+to itself. In this case, the intersection will behave continously.
+
+.keyboard
+.related gui delete zoom mouse iconbar
+Using the Keyboard
+
+Most commands in C.a.R. have keyboard shortcuts. Have a look into the
+menu to find the shortcut for each command. Shortcuts depend on the
+language.
+
+Note, that you need to give your construction the keyboard focus if
+it looses the focus. Click on an empty spot with the right mouse
+button.
+
+Useful shortcuts are the backspace key to delete the last action,
+the +/- key to zoom in and out, and the arrow keys to move the
+construction. Moreover, F1 will open the context sensitive help.
+
+The important ESC key resets the current tool.
+
+Note that the CTRL-key  and the SHIFT-key change the behavior of some
+tools.
+
+The SPACE-key is used by Java and Windows versions to press buttons.
+Some systems use the RETURN key instead.
+
+.image
+.related background
+Images
+
+Images can be added to the construction as objects. Images use either
+two anchor points or three. In the first case, the image is rotated
+and scaled, in the second case, an affine transformation is used. If
+you want only two points, double click the second point.
+
+These images must be in the same directory as the construction.
+
+See also: Background Images
+
+.language
+Set Language
+
+By default, C.a.R. starts with the language of the system it is running
+on. It can be told to start in any other of the implemented languages.
+Use the following shortcuts for the current languages
+
+ English - en
+ German - de
+ French - fr
+ Netherlands - nl
+ Italian - it
+ Spanish - es
+ Portuguese - pt
+ Brazilian - br
+ Slovenian - sl
+ Danish - da
+ Norway - no
+ Poland - pl
+ Russian - ru
+ Korean - co
+
+Either use the menu item to set the language or set the command line parameter
+like "-l de" for the German language.
+
+.selfreference
+.related macro point
+Self Reference
+
+E.g., it is possible to define a point which always snaps to integer
+parameters. To do this, fix the coordinates using the floor(...)
+function. Such a fixed point will still be moveable by the user. The
+rule is that a point referring to itself only (@-references do not
+count) is moveable. In this case, the rest of the construction moves
+first, then the point.
+
+Such moveable fixed points can also be created by macros. The point
+must be a macro parameter, and this parameter must be selected with
+the shift key, when the macro is created. When the macro runs, the
+points chosen for the parameter gets the coordinate fixes.

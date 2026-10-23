@@ -1,0 +1,103 @@
+<!--
+
+    Project buildfile for WIMSchem.
+
+-->
+
+<project name="WIMSchem" default="dist" basedir=".">
+
+    <description>WIMSchem: Sketcher of Elements</description>
+
+    <property name="ver" value="1.19"/>
+    <!-- image directory for extended help on WIMSchem (B. Perrin-Riou) -->
+    <property name="wims_images_dir" location="../../../../public_html/gifs/WIMSchem"/>
+    <property name="src" location="src"/>
+    <!--<property name="extern" location="extern"/>-->
+    <property name="build" location="build"/>
+    <property name="dist"  location="dist"/>
+    <property name="pkg"  location="pkg"/>
+
+    <path id="project.class.path">
+	<!--<pathelement location="${classpath}/rt.jar"/>-->
+	<!--<pathelement location="/usr/local/javalib/xerces.jar"/>-->
+    </path>
+
+    <target name="init">
+	<!-- Create the time stamp -->
+	<tstamp/>
+	<!-- Create the build directory structure used by compile -->
+	<mkdir dir="${build}"/>
+	<!-- Create image directory for extended help on WIMSchem (B. Perrin-Riou) -->
+	<mkdir dir="${wims_images_dir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile the source">
+	<!-- Compile the java code from ${src} into ${build} -->
+	<javac srcdir="${src}" destdir="${build}" debug="on" 
+			source="1.5" target="1.5" encoding="8859_1">
+	    <classpath refid="project.class.path" />
+	</javac>
+    </target>
+
+    <target name="build" depends="compile" description="post-compilation">
+    </target>
+
+    <target name="dist" depends="build" description="generate the distribution">
+	<!-- Create the distribution directory -->
+	<mkdir dir="${dist}"/>
+	<mkdir dir="${build}/templ"/>
+	<mkdir dir="${build}/lang"/>
+	<mkdir dir="${build}/images"/>
+	
+    	<exec dir="${src}/templ/" executable="/bin/sh" output="${build}/templ/list">
+    	    <arg line="-c 'ls *.el'"/>
+    	</exec>
+    	<exec executable="/bin/sh">
+    	    <arg line="-c 'cp ${src}/lang/*properties ${build}/lang'"/>
+    	</exec>
+    	<exec executable="/bin/sh">
+    	    <arg line="-c 'cp ${src}/images/*.png ${build}/images'"/>
+    	</exec>
+    	<exec executable="/bin/sh">
+    	    <arg line="-c 'cp ${src}/images/*.gif ${build}/images'"/>
+    	</exec>
+	<!-- Copy images to directory for extended help on WIMSchem (B. Perrin-Riou) -->
+    	<exec executable="/bin/sh">
+    	    <arg line="-c 'cp ${src}/images/*.png ${wims_images_dir}'"/>
+    	</exec>
+    	<exec executable="/bin/sh">
+    	    <arg line="-c 'cp ${src}/templ/*.el ${build}/templ'"/>
+    	</exec>
+
+	<jar jarfile="${dist}/WIMSchem.jar" basedir="${build}">
+    	    <manifest>
+    	    	<attribute name="Main-Class" value="WIMSchem.MainWindow"/>
+    	    </manifest>
+	    <fileset dir="." includes="lang/*.properties" />
+	    <fileset dir="." includes="images/*.png" />
+	    <fileset dir="." includes="images/*.gif" />
+	    <fileset dir="." includes="templ/list" />
+	    <fileset dir="." includes="templ/*.el" />
+	    
+	    <!-- embed any other appropriate jar files...
+	    <zipfileset src="extern/epsgraphics.jar"/>
+	    -->
+    	</jar>
+    </target>
+
+    <target name="pkg" depends="dist" description="assemble the package">
+    	<exec executable="/bin/sh">
+	    <arg line="-c 'tar czf ${pkg}/WIMSchem-${ver}-src.tar.gz build.xml *.java ds/*.java images/*.png  images/*.gif lang/*.properities templ/*.el CHANGELOG'"/>
+	</exec>
+	<exec executable="cp">
+	    <arg line="${dist}/WIMSchem.jar ${pkg}/WIMSchem-${ver}.jar"/>
+	</exec>
+    </target>
+
+    <target name="clean" description="clean up">
+    	<!-- Delete the ${build} and ${dist} directory trees -->
+    	<delete dir="${build}"/>
+    	<delete dir="${dist}"/>
+    </target>
+
+</project>

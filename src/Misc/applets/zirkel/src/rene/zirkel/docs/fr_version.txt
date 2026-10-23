@@ -1,0 +1,24 @@
+Bienvenue sur C.a.R.!
+
+Vous n'avez jamais utilisé ce programme, ou vous venez d'installer
+une nouvelle version. Ce fichier a pour but de vous informer
+des nouvelles caractéristiques, des corrections de bogues,
+et des changements récents.
+
+Une fois que vous aurez suffisamment d'expérience du programme,
+vous pourrez désactiver le mode débutant.
+
+Vous trouverez la page d'accueil de C.a.R. et mon adresse électronique
+actuelle sur ma page d'accueil:
+
+http://www.rene-grothmann.de/
+
+La page d'accueil de C.a.R. comporte également un historique récapitulant
+les derniers changements.
+
+Il y a maintenant un forum de discussion pour les utilisateurs de C.a.R.
+sur Yahoo. Un lien se trouve dans la documentation.
+
+Merci d'utiliser ce programme!
+C'est un logiciel libre, distribué sous la licence GPL
+(General Public License) du Gnu.

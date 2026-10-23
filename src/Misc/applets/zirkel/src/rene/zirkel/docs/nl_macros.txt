@@ -1,0 +1,135 @@
+Macro's
+	
+	Bij het maken van constructies komt het voor dat je geregeld een
+	aantal stappen herhaalt. Je moet bvb. voor een constructie 10 keer
+	het zwaartepunt van een driehoek construeren. Dit is tijdrovend en
+	saai routinewerk. Jammer genoeg is er geen 'zwaartepunt' werktuig
+	in het menu te bespeuren. Je kan echter je eigen 'zwaartepunt' werktuig
+	maken. We spreken dan over een macro.
+	
+	Om een macro te maken voer je de constructie 1 keer uit. In boven-
+	staand voorbeeld teken je drie punten, 2 middelpunten, 2 zwaartelijnen
+	en het zwaartepunt als intersectie van de zwaartelijnen. Je 'leert'
+	de macro dan wat de gegevens zijn (de zogenaamde 'parameters')waar 
+	de gebruiker van vertrekt (hier: de drie hoekpunten). Vervolgens
+	'leer' je de macro wat het eindresultaat (de zogenaamde 'doelen')
+	is.
+	
+	Je kan ook in beschrijvende constructies macro's gebruiken. Meer 
+	info vind je in "help->beschrijvende constructies".
+	
+
+Macro maken
+
+	Om een macro aan te maken kan je gebruik maken van het macro-
+	werktuig (icoon met als korte uitleg "macro parameters/doelen/
+	definitie). Volg nu volgende stappen:
+	1. Klik op het werktuigicoon. Het icoon verandert van uitzicht.
+	2. Selecteer met de muis de macroparameters (bvb. de drie hoekpunten).
+	3. Klik opnieuw op het werktuigicoon. Het icoon verandert opnieuw.
+	4. Selecteer de doelen
+	5. Klik opnieuw op het werktuigicoon, dat opnieuw verandert.
+	6. Vul de gegevens in het definitievenstertje in.
+	
+	Opmerkingen bij stap 4:
+	Je krijgt alleen die voorwerpen te zien die op basis van de
+	macroparameters kunnen geconstrueerd worden. Selecteer nu alle
+	gewenste doelen. Als je niets selecteert, zullen alle zichtbare
+	voorwerpen door de macro worden geconstrueerd. Doelen nemen de
+	standaardinstelling voor kleur en lijkdikte over. Alle andere 
+	voorwerpen krijgen dezelfde stijl als bij het maken van de
+	macro, behlave de zwarte voorwerpen, die de standaard ingestelde
+	kleur zullen overnemen. Alle verborgen voorwerpen worden ook 
+	geconstrueerd als verborgen voorwerpen. Er is echter ook een optie
+	om alle voorwerpen die geen doelen zijn toch automatisch te
+	verbergen, zelfs als ze zichtbaar waren in de constructie.  Als
+	de macro in beschrijvende modus gebruikt wordt kan de gebruiker
+	alleen een naam aan doelobjecten geven. Daarom moet je steeds
+	minstens 1 doelvoorwerp aanduiden in een macro.
+	
+	Opmerkingen bij stap 6:
+	Je kan in dit dialoogvenster de macronaam en commentaar ingeven.
+	Tevens kan je de aangeven wat de macro aan de gebruiker komt
+	vragen voor elk parametervoorwerp. Dit doe je door in de vakjes
+	te klikken en de tekst die daar al staat (bvb. "P1") te wijzigen
+	in een zinvolle boodschap voor de gebruiker (bvb. "Eerste punt").
+	Je kan ook aangeven of alle voorwerpen buiten de macrodoelen moeten
+	verborgen worden of niet. Het is tenslotte mogelijk om de gebruiker
+	naar een waarde te vragen als de macro uitgevoerd wordt (voor bvb.
+	de straal van een cirkel of de grootte van een hoek). Om dit te doen
+	vul je de naam van de cirkel of de hoek in in het veldje onderaan
+	in het dialoogvenster. De gebruiker kan dan als de macro uitgevoerd
+	wordt elke wiskundige uitdrukking ingeven.	
+
+
+Macro's bewaren en laden
+
+	Je kan een macro ofwel samen met de constructie ofwel apart bewaren
+	en inladen. Het bestandsformaat voor een macrobestand is identiek
+	aan het normale bestandsformaat, maar het bevat alleen macro's
+	en geen constructie. Als de optie om macro's samen met de constructie
+	te bewaren 'aan' staat, dan worden de macro's samen met de constructie
+	bewaard. Als dit soort van bestand wordt ingeladen krijgt de
+	gebruiker een waarschuwingsboodschap als hij een bestaande macro
+	wil overschrijven. Om je constructie naar HTML te exporteren moet je
+	de macro's samen met de constructie bewaren.
+
+
+Een macro uitvoeren
+
+	Dit doe je met het "macro uitvoeren" werktuig, dat je ofwel via de
+	iconen in de werktuiglijst, ofwel in het menu ("Macro's->Macro uitvoeren")
+	selecteert. Je moet dan de gewenste macro selecteren uit een lijstje.
+	Als je echter de 'Shift' toets ingedrukt houdt terwijl je op het icoontje
+	drukt, wordt de laatst uitgevoerde macro automatisch gekozen. Het programma
+	vraagt dan naar elke parameter en toont telkens de voorwerpen die het
+	verwachte type hebben.
+		
+	Je kan ook een macro starten met de rechtermuisknop (als er maar 1 muisknop
+	is, doe je dit door een speciale toets ingedrukt te houden als je klikt, bvb.
+	bij Mac: 'Appeltje' toets indrukken en dan klikken). Kies dan gewoon de gewenste
+	macro uit het lijstje.
+	
+	Als je de tekst "Spatiebalk kiest ..." te zien krijgt, kan je het voorwerp
+	gewoon selecteren door op de spatiebalk te duwen. Dit is vooral handig
+	als je de macro verschillende keren moet uitvoeren.
+	
+	De macro wordt dan uitgevoerd. Als de macro een waarde nodig heeft voor
+	de straal van een cirkel of voor een hoek, dan krijg je een dialoogvenster,
+	waar je dan een uitdrukking kan invullen.
+	
+
+Soorten parameters
+
+	Punten zijn het gemakkelijkst te gebruiken als macroparameters. Andere
+	types voorwerpen zijn echter ook mogelijk.
+	
+	Lijnstukken, stralen (halfrechten), rechten en cirkels genereren 
+	'secundaire' paramters, nl. de twee eindpunten of het middelpunt.
+	Op die manier wordt het gebruik van de macro iets eenvoudiger. Je
+	moet er echter wel voor zorgen dat je dit soort van paramters (lijn-
+	stukken, stralen, ...) correct gebruikt. Zo bvb. als de macro twee
+	concentrische cirkels als parameters verwacht, moet je ook daadwerkelijk
+	twee concentrische cirkels opgeven. Of ook, als een macro twee lijnstukken
+	AB en BC als invoer verwacht, dan moet je ook twee lijnstukken waarvan
+	het beginpunt van de tweede samenvalt met het eindpunt van de eerste, aanduiden.		
+
+	Rechten en stralen bestaan in twee verschillende types: ofwel met twee
+	bepalende punten, ofwel met 1 bepalend punt (bvb. evenwijdige rechte). In
+	de macro worden rechten, stralen en lijnstukken bewaard zonder punten als
+	deze punten niet gebruikt worden in de macroconstructie of als er maar 1
+	bepalend punt is. Je kan in dat geval elke willekeurige rechte als
+	parameter kiezen. Als de macroconstructie echter wel een van de twee
+	bepalende rechten gebruikt, moet je een rechte,... van hetzelfde type
+	(met twee bepalende punten) gebruiken.
+	
+
+Uitdrukkingen in macro's
+
+	Als je een uitdrukking in een macro gebruikt, zullen de parametervoorwerpen
+	die in deze uitdrukking voorkomen correct worden vervangen. Een raad echter:
+	vermijd dit soort van "constructie", aangezien je je er niets anders dan problemen
+	mee op de hals haalt.	
+
+
+	

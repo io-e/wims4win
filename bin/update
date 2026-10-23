@@ -1,0 +1,170 @@
+#! /bin/sh
+
+cd `dirname $0`
+## do not seem no more useful, except for updating very old versions of wims
+### should be commented
+./classupdate
+cd ..
+wimshome=`pwd`
+
+if [ -z "$1" ]; then wimshome2=$wimshome; else wimshome2=$1; fi
+
+if [ ! -e s2 ]; then
+ if [ -f /cdrom/knowims-hd-install ]; then
+  mkdir -p -m og-rwx /ramdisk/s2
+  ln -s /ramdisk/s2 .
+ else
+  mkdir -m og-rwx s2
+ fi
+fi
+
+for d in public_html/modules public_html/modules/devel public_html/modules/local \
+	public_html/bases public_html/bases/doc other log/classes \
+	public_html/modules/adm/local
+do
+ mkdir -p $d
+ echo $wimshome2 >$d/.wimshome 2>/dev/null
+done
+rm -fr public_html/modules/adm/coqw* 2>/dev/null
+
+#########################
+
+VERSION=357
+
+v=`cat log/update-version 2>/dev/null`
+if [ "$v" != "" ] && [ "$v" -ge "$VERSION" ]; then exit; fi
+
+## this is for update very old version of wims.
+## depend of the log/update-version
+## should be in an other file
+
+echo "cleanup"
+# cleanup list
+rmlist="scripts/chrono.js
+html/classes
+modules/home/modules
+modules/home/tool
+bin/frename
+bases/dic/en/.cnt.en.*
+bases/dic/fr/.cnt.fr.*
+"
+for f in $rmlist
+do
+ rm -f public_html/$f 2>/dev/null
+done
+
+mv -f public_html/html/motd.* log 2>/dev/null
+find public_html/modules -name writable -exec rm -R '{}' \; 2>/dev/null
+rm -Rf public_html/html/default public_html/bin/instex* public_html/instex public_html/w/instex/* public_html/mathfonts/texgif 2>/dev/null
+# rm -f log/wimslogd.pid 2>/dev/null
+chmod og-w tmp
+cd $wimshome/public_html/bases/sys
+find . -type l -exec rm '{}' \;
+for l in cn es it tw nl si
+do
+ if [ ! -r indignore.$l ]; then
+  cp indignore.en indignore.$l >/dev/null 2>/dev/null
+ fi
+done
+
+cd $wimshome/public_html/scripts/authors
+find . -type l -exec rm '{}' \;
+cd $wimshome/public_html/modules/classes
+find . -type l -exec rm '{}' \;
+for l in ??
+do
+ cp -p com/* $l
+done
+cd $wimshome/public_html/modules/template
+find . -type l -exec rm '{}' \;
+for l in oef.??
+do
+ cp oef.com/* $l
+done
+for l in deductio.??
+do
+ cp deductio.com/* $l 2>/dev/null
+done
+cd $wimshome/public_html/modules/adm
+find texo.?? -type l -exec rm '{}' \;
+for l in texo.??
+do
+ cp texo/* $l
+done
+
+cd $wimshome
+if [ -f public_html/wims.conf ]; then mv public_html/wims.conf log/wims.conf; fi
+if [ -f .wimspass ]; then mv .wimspass log/.wimspass; fi
+if [ -d forums ]; then
+ mv forums/[0-9]* log/forums 2>/dev/null
+ rm -f public_html/modules/adm/forum/forums
+ ln -s ../../../../log/forums public_html/modules/adm/forum
+ cd log/forums
+ ./.build-index
+fi
+cd $wimshome
+oldcrontab=`crontab -l 2>/dev/null`
+accountest=`echo "$oldcrontab" | grep -v '#' | grep 'log/account.sh'`
+if [ ! -z "$accountest" ]; then
+ echo site_accounting=1 >>log/wims.conf
+ newcrontab=yes
+fi
+backtest=`echo "$oldcrontab" | grep -v '#' | grep 'bin/backup'`
+if [ ! -z "$backtest" ]; then
+ bh=`echo "$backtest" | cut -d' ' -f2`
+ if [ "$bh" = "1" ]; then bh=2; fi
+ if [ "$bh" = "23" ]; then bh=22; fi
+ echo backup_hour=$bh >>log/wims.conf
+ newcrontab=yes
+fi
+
+if [ "$newcrontab" = "yes" ]; then
+ chmod og-rwx log/wims.conf
+ echo "$oldcrontab" | grep -v 'log/account.sh' | grep -v 'bin/backup' >tmp/crontab
+ crontab tmp/crontab
+fi
+
+# Clean up modules
+cd $wimshome/public_html/modules
+oeflist=`find . -name INDEX -exec egrep -l '^category=.*(oef|deductio|document)' '{}' \; | sed 's!/INDEX$!!'`
+for m in $oeflist; do
+ cd $wimshome/public_html/modules/$m
+ rm -f mkindex src/Makefile src/cpp/Makefile
+ if [ -L proc ]; then
+  echo $m
+  cat=`grep '^category=' INDEX`
+  oeftest=`grep '^category=.*oef' INDEX`
+  typ=
+  if [ -n "$oeftest" ]; then typ=oef; typ2=oef; fi
+  dedtest=`grep '^category=.*deductio' INDEX`
+  if [ -n "$dedtest" ]; then typ=deductio; typ2=deduc; fi
+  if [ -n "$typ" ]; then
+   rm -f proc
+   deftest=`find var.def -type l`
+   if [ -n "$deftest" ]; then
+    rm -f var.def
+    echo "vardef=$typ2/var.def" >>INDEX
+   fi
+   links=`find . -maxdepth 1 -type l | sed 's!^./!!'`
+   rm -f $links
+   for f in `grep -l 'proc/' * 2>/dev/null`; do
+    echo "$m/$f:"
+    ed $f <<@
+,s!proc/!$typ2/!g
+,w
+@
+   done
+   for f in $links; do
+    cp -f $wimshome/public_html/modules/template/$typ.com/$f .
+   done
+  fi
+ fi
+done
+# This one should be removed in order to accept new version.
+# Otherwise it destroys the oef managing module.
+# rm -Rf $wimshome/public_html/modules/H1/algebra/oefprop.cn
+
+cd $wimshome
+echo $VERSION >log/update-version
+exit 0
+

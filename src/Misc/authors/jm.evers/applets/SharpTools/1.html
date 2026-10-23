@@ -1,0 +1,85 @@
+
+<html>
+    <head>
+	<title>Spreadsheet - Applet</title>
+	<style>a:link{color:blue;text-decoration:none;}a:hover{color:red;text-decoration:none;}</style> 
+    </head> 
+    <body  bgcolor="#408040" text="#ffffff" link="#80ff80" vlink="#70d070" alink="#80ffff">
+	<h1>SpreadSheet Applet</h1>
+	    <script language="javascript" type="text/javascript">                             
+    		function readthisraw(){                                                                                                   
+    		var input=document.getElementById("SharpTools").ReadRawApplet();                                                       
+                    alert("we will send to WIMS:\n\n"+input);
+		}
+    		function readthis(){                                                                                                   
+    		var input=document.getElementById("SharpTools").ReadApplet();                                                       
+                    alert("we will send to WIMS:\n\n"+input);
+		}
+		function showapplet(){                                                                                              
+                    document.getElementById("SharpTools").ShowSpreadSheet(true);                                                      
+                                                                                                                                    
+                }                                                                                                                   
+                function hideapplet(){                                                                                              
+                    document.getElementById("SharpTools").ShowSpreadSheet(false);                                                       
+                                                                                                                                    
+                } 
+	    </script>
+	    <applet id="SharpTools" archive="dist/SharpTools.jar" code="SharpTools/MainApplet" width="120" height="30">
+		<param name="language" value="nl">
+		<param name="X_screen_location" value="100"><!-- default 0-->
+		<param name="Y_screen_location" value="100"><!-- default 0-->
+		<param name="window_width" value="700">
+		<param name="window_height" value="400">
+		<param name="replyurl" value="http://localhost/wims/wims.cgi?module=$module&session=$sssion&reply$n=">
+		<param name="reply_type" value="1">
+		<!-- 0 = matrix  ["1","2","3";"a","b","c"] note: "" string protection for pari evaluation -->
+		<!-- 1 = csv 1,2,3 \n a,b,c  note : no string protection -->
+		<!-- 2 = tsv 1 \t 2 \t 3 \n a \t b \t c  note : no string protection -->
+		<param name="convert_initial_tsv_to_matrix" value="true"><!-- append (to the reply) a line with the given/initial tsv-flie as a matrix -->
+		<param name="file" value="http://localhost/test.tsv">
+		<param name="fontsize" value="16">
+		<param name="empty_cell" value="null">
+		<!-- fill the empty cells with a String : default null --> 
+		<!-- sizes in pixels -->
+		<param name="COLUMNWIDTH" value="80"> 
+		<param name="FIRSTCOLUMNWIDTH" value="40">
+		<param name="HISTOGRAMWIDTH"  value="400">
+		<param name="HISTOGRAMHEIGHT"  value="400"> 
+		<!-- configuring the menu & toolbar -->
+		<!-- accepted value's like caseinsensitive : TRUE , 0 , NO , NEE , NON -->
+		<!-- all other value will result in FALSE -->
+		<param name="COLUMNS" value="5">
+		<param name="ROWS" value="5">
+		<param name="TOOLBAR_NEW" value="false"> 
+		<param name="TOOLBAR_PRINT" value="false">
+		<param name="TOOLBAR_UNDO" value="true">
+		<param name="TOOLBAR_REDO" value="true">
+		<param name="TOOLBAR_CUT" value="true">
+		<param name="TOOLBAR_COPY" value="true">
+		<param name="TOOLBAR_PASTE" value="true">
+		<param name="TOOLBAR_FIND" value="true">
+		<param name="TOOLBAR_INSERTROW" value="true">
+		<param name="TOOLBAR_INSERTCOLUMN" value="true">
+		<param name="TOOLBAR_DELETEROW" value="true">
+		<param name="TOOLBAR_DELETECOLUMN" value="true">
+		<param name="TOOLBAR_SORTCOLUMN" value="true">
+		<param name="TOOLBAR_HISTOGRAM" value="true">
+		<param name="TOOLBAR_HELP" value="true">
+		<param name="TOOLBAR_FUNCTIONS" value="true">
+	    </applet>
+	    <br>
+	    Reading raw input:
+	     <input type="button" name=".....RAW......" value="RAW" onclick="javascript:readthisraw();">                    
+            <br>
+	    Reading calculated formula's:                                                                                                                    
+	     <input type="button" name=".....TEST......" value="CALCULATED" onclick="javascript:readthis();">                    
+            <br>
+	    Showing the applet with Javascript:                                                                                                                    
+            <input type="button" name=".....SHOW......" value=".....SHOW....." onclick="javascript:showapplet();">                  
+            <br>                                                                                                                    
+	    Hiding the applet with Javascript:                                                                                                                    
+            <input type="button" name=".....HIDE......" value=".....HIDE....." onclick="javascript:hideapplet();">
+	</h1>
+    </body>
+</html>
+

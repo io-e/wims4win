@@ -1,0 +1,1488 @@
+.start
+.related online license gui tips
+Tematska pomoè
+
+Ta pomoè deluje kot kontekstno obèutljiva pomoè - glede na izbrano orodje - ponudi 
+namreè ravno tisti opis, ki je za trenutno izbrano orodje pomemben.
+Tako lahko pustimo okno pomoèi odprto in se premikamo po orodjih, v oknu pa
+se ob kliku na izbrano orodje pojavi ustrezna pomoè
+
+Na spustnem meniju lahko izberemo pomoèi za sorodne teme ali lastnosti, ki so 
+najbolj sorodne izbrani opciji. 
+
+Z pomoèjo gumbov spodaj pa lahko išèemo po pomoèi tako, da vtipkamo kljuèno besedo, ki 
+seveda mora biti prava - ustrezna.
+
+Po preskoku na novo temo se na prejšnjo lahko vrnemo s tipko "nazaj"
+
+Veliko uspeha s programom R.i.Š
+. vam želi avtor
+
+Rene Grothmann
+
+.online
+.related tips, start
+Pomoè v spletnem brskalniku
+
+Domaèa stran programa Z.u.L. je "www.z-u-l.de". Tam najdemo podatke o
+novih razlièicah, povezave, prenose za program, demonstracije, navodila
+in še veliko veè...
+
+Na portalu Yahoo je tudi forum, povezavo nanj najdemo na 
+Domaèi strani programa.
+
+Po elektronski je dosegljiv avtor R. Grothmann, elektronski naslov lahko
+najdemo na domaèi strani http://www.rene-grothmann.de; 
+prevod v slovensko razlièico programa - Stanislav 
+Šenveter z elektronskim naslovom stanislav.senveter@guest.arnes.si 
+
+.license
+.related online start
+Licenèni pogoji programa R.i.Š.
+
+R.i.Š
+. je prosti program, za katerega pa veljajo doloèila GPL licence - 
+(Gnu General Public License). Lahko ga poljubno uporabljamo. Èe pa ga 
+razširjamo, mora biti vsaj ena povezava na domaèo stran programa Z.u.L (http://www.z-u-l.de)
+
+Tudi izvorna koda je dostopna. Vsak njen spremenjen del pa mora biti prav tako
+prosto dostopen in tudi tukaj mora biti vsaj ena povezava na izvorni tekst.
+
+Enaki licenèni pogoji veljajo tudi za dokumentacijo.
+
+Èe napišete priroènik, knjigo, navodila, spletni portal, imate teèaj in podobno 
+za ta program, smete za to prejeti honorar.
+
+.gui
+.related iconbar mouse zoom online keyboard
+Grafièna lupina programa
+
+Najveèji del grafiène površine programa je seveda namenjen prikazu geometrijske 
+konstrukcije. Prikazani del slike lahko poveèujemo in zmanjšujemo s tipkama +/- ali pa s 
+posebnim orodjem s pomoèjo miške.
+
+Nad konstrukcijsko površino je ikonska zbirka orodij. Ikone prikazujejo
+orodja in èe se z miškinim kazalcem nekaj èasa zadržimo nad njimi, se 
+prikaže njihov kratki opis. Poleg tega ikona stilistièno prikazuje orodje,
+da ga lažje spoznamo. Ikone so v dveh vrsticah. V zgornji so ukazi, namenjeni 
+nastavitvam, spreminjanju lastnosti, in podobno,
+v spodnji pa ikone, v glavnem namenjene konstrukcijskim korakom in animacijam.
+
+Pod risalno površino je statusna vrstica, v kateri so teksti z opisom trenutnega
+konstrukcijskega ukaza, ali naslednjega prièakovanega objekta v konstrukciji.
+
+V meniju so vsi ukazi in nastavitve dosegljivi še enkrat. Razvršèeni so v štiri 
+skupine: Ukazi, Možnosti, Makroji in Posebnosti. Pri teh ukazih so pripisane 
+bližnjice s tipkami, ki še poenostavijo delo s programom.
+
+.iconbar
+.related restricted gui settings
+Seznam orodij
+
+V programu je veè vrst orodij.
+
+- orodja, ki "prièakujejo" poseg z miško: ukazi s toèkami, izbira parametrov
+za makroje ali za približevanje/oddaljevanje (poveèanje/zmanjšanje) slike.
+
+- orodja, s katerimi spremenimo nastavitve novih objektov: npr. barve, tipi
+toèk, debeline...
+
+- orodja za splošne nastavitve konstrukcije: prikaz koordinatne mreže, prikaz skritih 
+objektov in podobno.
+
+- orodja za neposredno dejanje: brisanje nazadnje konstruiranega objekta, ali dodajanje
+komentarja.
+
+Za oblikovanje prikazanih ikonskih orodij imamo na razpolago poseben ukaz, ki je
+dosegljiv le preko menija: v tem dialogu s klikom na ikono doloèimo, ali bo v prikazu
+ali ne. Tu velja še omeniti šolski naèin z avtomatskim minimalnim naborom orodij in s 
+tem ikon in zaèetniški naèin. V obeh naèinih tipkovnico ali preko menija lahko dosežemo 
+seveda vsa orodja.
+
+Orodja lahko nastavimo tudi pod risalno površino.
+
+Razpored ikon je lahko v eni ali dveh vrsticah. V enovrstiènem izboru so le najnujnejše ikone pa še te lahko potem preko menija izberemo ali ne.
+
+Èe z miško zastanemo nad ikono, ki oznaèuje orodje, dobimo njen kratek opis. Èe ima orodje s tipko Ctrl drug pomen, moramo, ko smo nad ikono, pritisniti tipko Ctrl, da dobimo še ta pomen. 
+
+.restricted beginner
+.related iconbar
+Omejen nabor orodij
+
+Obstaja nastavitev za omejen in neomejen nabor orodij. V primeru omejenega nabora 
+orodij se ta nastavitev shrani s konstrukcijo vred in se potem z njo tudi naloži.
+To uporabimo, èe želimo uporabniku definirati, katera orodja pri konstrukciji naj
+uporablja. Tudi pri nalogah, ki jih postavimo s programom.
+
+Na razpolago imamo izbiro zaèetniškega naèina, ki izbere posebna orodja, katerih 
+število je zares omejeno na najnujnejša orodja za zaèetnika. In dobro je, da vsak 
+uporabnik najprej zaène delati v tem naèinu in šele ko se programu privadi, izbere dodatna 
+orodja. 
+
+
+.mouse
+.related gui settings hide point circle move keyboard
+Uporaba miške
+
+Levi miškin gumb služi predvsem zato, da izberemo objekt, ki ga potrebujemo za konstrukcijo. Ta se obarva rdeèe, dokler ni konstrukcija zakljuèena. Premico in krožnico izberemo tako, da kliknemo kjerkoli na njej. Zapolnjen objekt izberemo kjerkoli na obarvanem delu, da le ni tam kakšnega drugega objekta in bi prišlo do dvoumnosti. (glej naprej)
+
+Èe funkcija za to možnost ni izklopljena (Možnost/Posebne nastavitve), se objekti, ki jih lahko uporabimo, pri prehodu miške preko njih obarvajo, izstopijo in oznaèijo z veèjo piko. To olajša izbiro objektaza konstrukcijo. Toèke, ki ob tem nastanejo, se seveda prav tako prikazujejo.
+
+Èe izbira objekta ni enolièna, se pojavi seznam vseh takih objektov, ki so kandidati zaradi svoje lege in potem izberemo ustreznega po imenu tako da kliknemo nanj z miško. Seveda moramo poznati njegovo ime. V seznamu se toèke pojavijo v èrni, premice rdeèi, krožnice modri in koti ter ostali objekti v zeleni barvi.
+
+Desni miškin gumb se uporablja za premikanje toèk, oznak in za nastavljanje lastnosti objektov. Prosto toèko lahko z zadržanim desnim gumbom premikamo po risalni površini. Èe pa na njej le kliknemo z desnim gumbom, se pojavi dialog z lastnostmi te toèke. Enako pa izberemo dialog tudi za druge objekte z desnim klikom.
+
+Tudi imena objektov premikamo z desnim gumbom na enak naèin kot toèke. Èe pa na njih le kliknemo, se postavijo sami na zaèetno mesto ob objektu. Èe jih želimo premakniti kamorkoli, držimo še tipko dvigalko. Èe pa kliknemo le z desno tipko, se postavijo v zaèetni položaj
+Èe z desnim miškinim klikom držimo še tipko Ctrl, bomo za oznaèen objekt prikazali vse možnosti pogojnega urejanja. Nasploh Ctrl tipka skupaj z miškinim klikom spremeni lastnosti objektov. 
+Z desnim gumbom pa lahko izberemo tudi okno programa, èe trenutno ni aktivno. Na ta naèin postane aktivno tudi za vnos ukazov preko tipkovnice. Morda bomo v tem primeru morali klikniti v prvi vrstici seznama makrojev, ki se bo v tem primeru pojavil. Èe pa kliknemo z levim gumbom na risalni površini, se bo izvedla konstrukcija trenutno izbranega geometrijskega objekta (osenèeno orodje iz nabora ikon). 
+
+.background
+.related gui move htmlexport
+Slike za ozadje
+
+Možnost je tudi slika za ozadje. Takšno sliko lahko vzamemo kar iz
+obstojeèe konstrukcije, ali pa vstavimo sliko iz datoteke. V tem primeru z njo 
+lahko tlakujemo, jo usredinimo ali jo razpnemo - vse z ukazi, ki jih najdemo v meniju
+"Možnosti/Ozadje". Pri nalaganju nove konstrukcije se ozadje ne zbriše, prav tako pa 
+se s shranjevanjem ne shrani ozadje.
+
+Slike za ozadje lahko uporabljamo tudi na appletih. V tem primeru 
+pri izvozu konstrukcije v HTML uporabimo možnost slike kot ozadje
+in ta slika mora biti v istem imeniku, kot HTML datoteka in datoteka
+s konstrukcijo.
+
+.properties
+.related edit colors hide mouse transparent point fixedangle replay animatebreak
+Lastnosti objekta
+
+Dialog za nastavitev lastnosti objekta odpremo z desnim klikom na njem.
+
+Vsi objekti imajo lastnosti
+
+ - Ime
+ - Opis
+ - Enota
+ - Barvo
+ - Debelino
+ - Skrito ali ne
+ - Prikaz imena
+ - Prikaz vrednosti (velikosti)
+ - Ozadje ali ospredje
+ - Prozornost
+ - Prekinitvene toèke
+
+Imena so lahko sestavljena iz vseh èrk, obstaja pa možnost postavljanja znaka "~", za katerega velja, da je meja prikaza imena v konstrukciji. To omogoèa prikaz enakih imen objektov, ki pa v resnici ni dovoljen in tudi imena niso enaka. Mogoèe je prikazovati tudi grška imena objektov \a \b \c. 
+
+Opis se generira avtomatsko, lahko pa ga spreminjamo. To lahko poènemo roèno (vsak objekt posebej), ali pa izberemo možnost avtomatskga poimenovanja (po abecedi - tudi kote v grški abecedi).
+
+Nekateri objekti imajo polje za velikost in enoto. Velikost lahko spreminjamo le objektom z doloèeno velikostjo. Enoto podamo za velikostjo in je lahko kakršnokoli zaporedje znakov. Za kote podajamo simbol za stopinje 0. Imena in enot za prikaz lahko povežemo, s èimer prikažemo na primer d=3. Èe se ime konèa z "_", bo ta "_" odstranjen in "=" odpade.
+
+Barva in debelina sta preprosti za uporabo. Debelina deluje glede na objekt. Uèinek lahko takoj preverimo. Objekte lahko skrijemo, ali pa popolnoma skrijemo. V tem primeru lahko nastavljamo njegove lastnost le preko opisa konstrukcije, saj je le še tam naveden. Objekte lahko postavimo v ozadje, najveèkrat to storimo z zapolnjenimi objekti.
+
+Nekateri objekti so lahko zapolnjeni z barvo. Tem lahko vklopimo ali izklopimo
+prozornost.
+
+Prekinitvene toèke so pomembne za ponovitev konstrukcije in za animacijo prekinitvenih toèk. Skrite prekinitvene toèke nastavimo z dvigalko. 
+
+Toèke imajo štiri razliène oblike, daljice lahko proglasimo za vektorje (usmerjene
+daljice)
+
+V spodnjem delu dialoga so razni gumbi, odvisno od objekta. Toèke imajo gumb 
+za povezavo z objektom, Krožnice s konstantnim polmerom in koti s konstantno
+velikostjo pa gumbe za nastavitev velikosti.
+
+.point
+.related boundedpoint intersection settings mouse properties
+Toèke
+
+Toèko lahko postavimo na risalno površino na razliène naèine. Z ikonsko 
+ukazno izbiro za toèko, jo postavimo z miško kjerkoli s klikom na levi 
+gumb. Toèka je obièajno osnova za nadaljnje konstrukcijske elemente.
+
+Èe kliknemo na preseèišèi dveh krožnic ali krožnice in premice, se prav tako 
+pojavi toèka, ki je ravno presek teh objektov. Èe kliknemo na premici, daljici, 
+poltraku ali daljici dobimo toèko na tem objektu; in ta toèka je z njim povezana.
+Kasneje imamo možnost to povezavo v nastavitvah toèke preklicati, ali (ponovno)
+vzpostaviti. Pripomniti velja, da pri kliku na preseèišèe dobimo opozorilno vprašanje,
+ali naj program to toèko resnièno ustvari, imamo pa možnost to vprašanje izkljuèiti,
+tako da se toèka konstruira brez vprašanja. 
+
+Premakljive toèke lahko fiksiramo na doloèeno mest in postanejo nepremakljive. Ta
+izbira je v doloèilih lastnosti toèke, ki jih dosežemo s klikom na desni gumb miške,
+ko smo nad toèko, ali pa ob izbrani ikoni za urejanje objektov in levim klikom na 
+toèko. Koordinati toèke lahko doloèimo tudi z vnosom izraza v lastnostih toèke. Èe 
+pri kliku na risalni površini držimo tipko Shift, smo izbrali fiksiranje toèke. To 
+lahko uporabljamo za zaznamovanje nekih znaèilnih mest.
+
+Preden levi klik "popustimo", lahko toèko še premikamo, da ji doloèimo pravo lego. Ob
+ob tem se bo prikaz(ov)alo ime in koordinate toèke, razen èe to možnost med "Posebnimi 
+nastavitvami" izkljuèimo.
+
+.boundedpoint
+.related point line mouse properties
+Povezane toèke
+
+Te toèke ležijo na premici, daljici, poltraku ali krožnici in so z njo povezane s 
+posebno izbiro, ki jo najdemo v dialogu lastnosti te toèke in jo lahko po želji
+vkljuèimo ali izkljuèimo. Seveda pa povežemo tudi katerokoli prosto toèko z enim od 
+teh objektov, èe je seveda na razpolago. Ta možnost v lastnostih toèke se imenuje 
+"Poveži z objektom" in ko jo izberemo se dialog zapre in z miško izberemo želeni objekt, tako da nanj kliknemo. Èe pa že vnaprej želimo toèko povezati s katerimkoli 
+od obstojeèih objektov, preprosto z levim gumbom kliknemo na njem, èe imamo seveda 
+"Toèko" izbrano kot konstrukcijski element.
+
+Povezava toèke z objektom deluje na dva naèina. Ali se vsakiè projicira na objekt,
+ali pa je njena lega taka, da se objekta oprijemlje. Prvo opcijo dosežemo tako, da
+ob kliku na objekt držimo še tipko Shift (dvigalko). V nastavitvah toèke mora biti v tem primeru doloèenost toèke neaktivna.
+
+Toèka na objektu ni prosta toèka. Daljice s takšnimi krajišèi so na ta naèin lahko
+daljice s konstantno dolžino.
+
+Tudi tukaj daljice ne obravnavamo kot premico, toèka leži zmeraj na daljici.
+
+.line ray
+.related point parallel properties
+Premice in poltraki
+
+Ta dva objekta sta odvisna od dveh toèk. Torej ju tudi konstruiramo tako, da na
+kakršenkoli naèin izberemo dve toèki. 
+
+Razlika med premico in poltrakom ni le v njuni predstavitvi, tudi izbira z 
+miško je mogoèa le na narisanem delu teh dveh objektov. Tako na primer pravokotnica
+veè ne bo veljaven objekt, èe ne bo dela poltraka, s katerim je bila  doloèena. 
+Predvsem pa ne bo njunega preseèišèa. V tem pogledu je torej med poltrakom in 
+premico velika razlika.
+
+Premice lahko predstavimo le delno. V tem primeru se bodo kmalu za toèkama, s katerima 
+je doloèena, konèala. To uporabljamo predvsem za preglednejše konstrukcije.
+
+Primerjaj: Daljice
+
+.segment fixedsegment
+.related point parallel properties
+Daljice, daljice s konstantno dolžino
+
+Dolžino daljice je mogoèe narediti za konstantno, èe je  eno od krajišè prosta toèka
+in jo premikamo toliko èasa, da dosežemo želeno dolžino daljice. Dolžina je lahko 
+tudi poljuben številski izraz. Orodje za konstantno dolžino daljice pri drugem kliku
+doloèi sicer prosto toèko, ki pa je vezana na dolžino. (z njo je mogoèe konstruirati 
+krožnico.
+
+Orodje za daljice s konstantnimi dolžinami je v zaèetnem naèinu izkljuèeno, saj jim 
+je mogoèe z urejanjem daljice pozneje doloèiti dolžino, ali pa za drugi klik 
+pritisniti dvigalko (Shift), in tako fiksirati drugo toèko.
+
+Primerjaj: Premice in poltraki
+
+.circle circle3
+.related reorder expressionsyntax properties point transparency fixedcircle
+Krožnice, krožnice skozi tri toèke
+
+Krožnica je objekt, ki ga konstruiramo s šestilom. Najpreprostejši je
+primer, ko "zapièimo" konico šestila v središèe in ga raztegnemo do neke toèke, 
+ki potem doloèa velikost polmera. To orodje torej prièakuje dve toèki, 
+ki ju lahko doloèimo med konstrukcijo. 
+
+Drugi primer imamo, ko želimo narisati krog z doloèenim polmerom, ki ga
+doloèimo s pomoèjo dane daljice. Za to imamo natanko takšno orodje: "Krožnica s
+polmerom - dano daljico in središèem - toèko". Izberemo torej dve toèki - polmer 
+in dano toèko - središèe.
+
+Krožnice so lahko vidne samo delno, kar zelo izboljša preglednost konstrukcije.
+Splošna nastavitev "Krožnica po delih" "izriše" samo tiste dele krožnice, kjer krožnice 
+doloèajo preseèišèa, za krožni lok med dvema toèkama pa moramo najprej izbrati 
+toèki na krožnici in nato v lastnostih krožnice interaktivno doloèiti krožni
+lok, ki bo viden. Kroge ali krožne izseke lahko obarvamo, kar zopet konstrukcijo 
+polepša in jo naredi preglednejšo.
+
+Glej tudi: Krožnice z doloèenim polmerom
+
+.fixedcircle
+.related reorder expressionyntax properties point transparency
+Krožnice z doloèenim polmerom
+
+Obstajajo krožnice, ki nimajo toèke, ki bi doloèala polmer, ampak poznamo
+le njegovo velikost. V tem primeru imamo dve možnosti. Pri doloèitvi toèke 
+polmera pritisnemo dvigalko in namesto postavljene toèke se odpre dialog
+v katerem le vnesemo dolžino polmera kot število ali veljavni izraz.
+Druga možnost je, da uporabimo orodje krožnica s konstantnim polmerom,
+kjer pa ravnamo podobno, kot v prvem primeru, le da ne uporabimo dvigalke.
+Èe miške ne spustimo, se spreminja velikost polmera in se dialog za vnos
+izraza za velikost ne pokaže.
+
+V dialogu nastavitvah krožnice s konstantnim polmerom je gumb "Nastavi 
+velikost, kjer skozi izbiro dveh toèk izberemo velikost in se vrnemo na 
+možnost "krožnica s polmerom in središèem". Seveda morata toèki na risalni 
+površini že obstajati in ju ni mogoèe na novo postaviti med konstrukcijo.
+
+
+.intersection
+.related point properties selectintersection
+Preseèišèa
+
+Orodje za preseèišèe doloèi toèko preseèišèe med premicama, premico
+in krožnico, med krožnicama daljico in premico .... Preseèišèa lahko 
+konstruiramo tudi avtomatsko, èe smo nad mestom preseèišèa in kliknemo 
+z levim gumbom (èe je vklopljena ustrezna možnost, nas poseben dialog vpraša
+ali res želimo konstruirati to preseèišèe) ob tem pa sta poudarjena
+oba objekta, ki doloèata preseèišèe.
+
+Èe z orodjem za preseèišèe izberemo eno za drugim krožnico in krožnico ali 
+premico in krožnico, se konstruirata obe preseèišèi.
+
+Orodje za preseèišèe je privzeto izklopljeno, saj je enostavno mogoèe
+doloèati preseèišèa s toèkami.
+
+Pri daljicah in poltrakih je seveda treba vedeti, da preseèišèa lahko konstruiramo 
+le, èe obstajajo, kar pa ni vedno res, ali pa po dinamiènih postopkih,
+ki jih ta program omogoèa, sèasoma izginejo.
+
+Glej še: Izbira preseèišèa
+
+.selectintersection
+.related intersection
+Izbira preseèišèa
+
+Pri preseèišèih, kjer dobimo dve toèki, lahko nastopi problem, da
+za nadaljevanje konstrukcije potrebujemo le eno od njiju, oziroma je ena
+od njiju primernejša za konstrukcijo. Vrstni red preseèišè sicer
+lahko doloèimo glede na vrstni red izbranih objektov. Je pa dobrodošlo, da bi 
+enemu od preseèišè "odvzeli" lastnost, da je preseèišèe; tako bi preseèišèi loèili in se tako sklicevali le na eno preseèišèe. 
+
+Najenostavnejši primer za to je zrcaljenje preko premice. Potem ko potegnemo pravokotnico na premico zrcaljenja in iz preseèišèa pravokotnice in premice naèrtamo krožnico, ki bo doloèala oddaljenost preslikane toèke, moramo na neka naèin povedati, da je vseeno, na kateri strani je dana toèka, ki jo zrcalimo. To naredimo z izbiro možnosti Razlièno od v lastnostih preseèišèa.
+
+Èe ena toèka preseèišèa dveh krogov že obstaja, postavi orodje "Preseèišèe" toèko, ki je preseèišèe in je od obstojeèega vedno razlièno. To je ponavadi zelo dobrodošlo za nadaljnjo konstrukcijo.
+
+V lastnostih preseèišè je gumb, s katerim lahko doloèimo navezno toèko na katero se bomo sklicevali za izbiro v  nadaljevanju konstrukcije.
+
+Glej še: Preseèišèa
+
+.parallel plumb midpoint
+.related line point properties
+Vzporednice, pravokotnice in središèa
+
+To so orodja, ki jih v konstrukcijah uporabljamo zelo pogosto in jih
+tudi zelo poenostavijo. Vzporednica in pravokotnica sta premici, kot ju 
+poimenujemo v geometriji, središèe je toèka, ki je na sredi med poljubnima
+toèkama in je torej tudi središèe daljice.
+
+.move
+.related circle angle background mouse
+Premikanje objektov
+
+To orodje je alternativa desnemu miškinemu gumbu, s katerim prav 
+tako premaknemo katerikoli objekt. Èe pa uporabimo orodje, uporabimo 
+seveda levi gumb. Èe je veè kandidatov, se pojavi izbirni dialog
+vseh kandidatov. 
+
+Z izbiro orodja, ali spreklicem z Esc tipko kratko utripajo vsi premakljivi objekti v kostrukciji.
+
+Èe držimo dvigalko med vleèenjem, se izriše originalna lega objekta
+pred vleèenjem.
+
+S hkratnim pritiskom na tipko Ctrl in levi mmiškinim gumbom lahko 
+izberemo in s tem spreminjamo velikost krožnic s konstantnim polmerom 
+in kotov s konstantno velikostjo.
+
+.tracker
+.related point animate mouse objecttracker
+Geometrijsko mesto toèk in ogrinjaèe
+
+Eno najkoristnejših orodij tega programa, s katerim lahko dobimo sled toèke,
+èe se neka druga toèka, od katere je odvisna, premika po premici, daljici, 
+poltraku ali krožnici. Izberemo lahko celo veè toèk. Pri tem morate držati 
+tipko dvigalko. Potem bo vsaka toèka izrisala svoje sledi.
+
+Geometrijsko mesto toèk se izrisuje, dokler ne izberemo drugega orodja, ali
+orodje za "Sled toèke ali premice".
+
+Èe namesto toèke izberemo premico, se izriše ogrinjaèa. To je krivulja, za katero so premice, ki jih dobimo s premikanjem toèke, tangente. Tudi v tem primeru lahko izberemo veè premic hkrati, s pomoèjo dvigalke, kot v primeru toèk. Lahko izberemo tudi toèke in premice istoèasno.
+
+Tako izrisane krivulje se shranijo. Èe so animirane, bodo animirane tudi ob naslednjem odpiranju. Ni pa ta krivulja konstrukcijski objekt, shrani se posebej v glavi konstrukcije.
+
+Primerjaj: Avtomatsko generiranje geometrijskega mesta toèk
+
+.objecttracker
+.related point animate mouse tracker
+Avtomatsko generiranje geometrijskega mesta toèk
+
+Pri avtomatskem generiranju geometrijskega mesta toèk se bo toèka na premici, daljici, poltraku ali krožnici, ki smo jo izbrali za premikanje, zaèela sama premikati in tako se bo tudi geometrijsko mesto toèk zaèelo samo izrisovati. Zato moramo vnesti tudi ta objekt, po katerem se toèka premika. Ta objekt pa ne sme biti odvisen od toèke za premikanje.
+
+Tudi tukaj smemo izbrati za geometrijsko mesto veè toèk hkrati. Seveda
+prva toèki vodi izrisovanje krivulje.
+
+Pri avtomatskem izrisovanju "poskuša toèka preteèi" vse možnosti za svoje lege; èe pride do "konca", zaène znova, z obrnjeno orientacijo.
+
+Avtomatsko geometrijsko mesto toèk se preraèuna takoj, ko spremenimo lege izèodišènih objektov in se izriše nova krivulja. Izhodišèno toèko premaknemo z desno miškino tiko.
+
+Samosled se najprej animira, po naslednjem kliku teèe animacija brez izrisovanja toèk krivulje, po naslednjem kliku pa se izriše še krivulja. Animacijo pospešimo ali upoèasnimo s pritisnjeno dvigalko in hkratnim pritiskanjem smerniških tipk levo-upoèasnjevanje, desno-pospeševanje.
+
+Izrisano krivuljo lahko prenesemo kot objekt v konstrukcijo, za kar obstaja
+možnost v meniju. Moramo pa vedeti, da se v tem primeru ponovno izrisovanje 
+konstrukcije bistveno upoèasni.
+
+Primerjaj: Geometrijsko mesto toèk in ogrinjaèe
+
+.animate
+.related circle line
+Animacije
+
+S tem orodjem lahko toèke animiramo tako, da se gibljejo po daljicah ali
+krožnicah. Najprej izberemo toèko za animacijo, zatem daljico ali krožnico,
+po kateri se toèka giblje in zakljuèimo izbor tako, da še enkrat kliknemo 
+že izbrano smer gibanja toèke. Animacija nato teèe, dokler ne izberemo
+novega orodja, ali kliknemo kjerkoli na praznem mestu risalne površine.
+
+
+Smer gibanja po krožnici poteka obièajno v negativni smeri (smer gibanja
+urinega kazalca), èe pri izboru toèke držimo dvigalko, bo gibanje toèke
+nasprotno usmerjeno. S tem dosežemo, da bo toèka potovala po delih krožnice ali daljicah tja in nazaj.
+
+Animacije se shranijo in ob nalaganju konstrukcije ponovno zaženejo.
+
+.angle
+.related circle properties defaults fixedangle
+Koti
+
+Enostavni koti so zgolj okras - oznaka. Z njimi ne moremo nièesar
+konstruirati. Kote doloèimo s tremi toèkami, pri èemer je srednja toèka 
+vrh kota.
+ 
+Koti so privzeto vedno manjši od 180 stopinj, vrstni red vnosa toèk ni pomembno.
+Te lastnosti lahko v nastavitvenem dialogu vedno tudi popravimo.
+
+Prikažemo lahko imena, velikost, ali oboje. Pri majhnih kotih je za prikaz 
+oznak in velikosti manj prostora, zato imamo na razpolago tri velikosti kotnega loka.
+Pri tretji velikosti lahko prikažemo velikost krogovega izseka, saj se v tem primeru 
+lok zaène pri prvi toèki, s katero smo kot doloèili.
+
+Kote lahko oznaèimo tudi z grškimi èrkami, vendar le pri Sunovi Javi in ustreznem 
+vstavku v spletnih brskalnikih.
+
+Primerjaj: Koti z doloèeno velikostjo
+
+.fixedangle
+.related circle reorder expressionsyntax properties defaults angle
+Koti z doloèeno velikostjo
+
+Koti z doloèeno velikostjo nimajo drugega kraka doloèenega s toèko, ampak
+pri tretjem kliku dobimo dialog v katerega vnesemo velikost kota. Kot 
+se tedaj obnaša kot žarek, ki ga nato lahko uporabljamo za nadaljnje konstrukcije.
+To konstrukcijo lahko izvedemo tudi tako, da pri reji toèki pritisnemo 
+dvigalko in prav tako dobimo dialog za vnos velikosti.
+
+Kote z doloèeno velikostjo lahko v nastavitvenem dialogu obrnemo. Èe smo 
+kot narisali z opcijo "manjši od 180 stopinj", se avtomatsko obrne kot zunanji kot.
+Tako da pri konstruiranju ni treba paziti na pozitivno orientacijo kota.
+
+
+Primerjaj: Koti
+
+.area
+.related point properties background
+Zapolnjeni mnogokotniki
+
+S tem orodjem konstruiramo barvno zapolnjene mnogokotnike. V zaporedju po vrsti 
+izbiramo toèke in vnos zakljuèimo z izborom prve toèke. Tedaj se poligon sklene 
+in zakljuèi.
+
+Stranice mnogokotnika dobijo barvo notranjosti, èe izberemo v lastnostih
+èrtkano lastnost èrte. Èe izberemo debelo èrto, pa zopet stranic ne vidimo,
+barva notranjosti mnogokotnika pa je bolj intenzivna izbrana barva.
+
+.expression
+.related expressionsyntax fixedangles fixedcircles point properties
+Izraèunani izrazi
+
+S programom imamo možnost izdelati tudi izraèunane konstrukcije, saj lahko
+vnesemo aritmetiène izraze, tako za velikosti objektov, kakor tudi sam
+aritmetièni izraz. S tem lahko vnesemo koordinate toèk, dolžine stranic,
+polmere krožnic ali velikosti kotov.
+
+Ko vnesemo izraz  sam zase, prikazuje velikost izraèunane kolièine. Njegov
+položaj lahko izbiramo in prestavljamo, kot položaj vsakega drugega objekta.
+Tudi z izrazom lahko odpremo dialog lastnosti, kjer lahko urejamo vse 
+njegove lastnosti.
+
+Njegova oznaka je lahko ime, ali kar njegov opis, ki ga po želji prikažemo
+ali pa ne.
+
+.expressionsyntax
+.related expression reorder point fixedcircle fixedangle
+Sintaksa izrazov
+
+Ime 
+ Primer 
+ Opis 
+ 
++, -, *, /,^ 
+ 3.5*3+3/(4-5^2) 
+ Elementaren aritmetièni izraz. ^ uporabljamo za potenco. 
+ 
+Ime objekta 
+ AB/CD 
+ Imena daljic, krožnic in kotov vrnejo njihove dolžine ali velikosti. Èe ime vsebuje presledek, mora biti ograjen z narekovaji "". Uporabljamo lahko tudi druge izraze.
+ 
+Funkcije 
+ sin(a) 
+ Najpogostejše matematiène funkcije (glej seznam) 
+ 
+Pi 
+ pi 
+ Konstanta za število Pi. 
+ 
+x,y 
+ x(P),y(P) 
+ X- in y-koordinati toèke P. 
+ 
+d 
+ d(P,Q) 
+ razdalja med toèkama P in Q.
+ 
+d 
+ d(x) 
+ sprememba koordinate x, pri premiku toèke ali sprememba velikosti kota.
+ 
+if
+ if(e,e1,e2)
+ Vrne e1, èe velja e, sicer pa e2. Èe je e logièni izraz, se preverja njegova resniènost in v primeru resniènosti je rezultat e1, v primeru neresniènosti pa e2
+ 
+sum
+ sum(x,e)
+ Prišteje x. Vsota je 0, èe je e negativen ali neveljaven izraz.
+ 
+a 
+ a(A,B,C) 
+ Velikost kota ABC (z vrhom v B). 
+ 
+scale
+ scale(x,a,b)
+ Vrne relativno lego x v intervalu [a,b), èe x leži v tem intervalu. Sicer je izraz neveljaven
+ 
+valid,invalid 
+ valid,invalid 
+ konstanti, ki vrneta 0, oziroma neveljavni izraz.
+
+&& 
+ x<3 && y<3 
+ Logièni in. Logiène funkcije vrnejo 0, èe niso resniène, sicer pa 1
+ 
+|| 
+ x<3 || y<3 
+ Logièni ali. 
+
+! 
+ ! (x<3 && y<3) 
+ Logièni ne. 
+
+>, >=, <, <=, ==, ~= 
+ x<3 
+ Relacija primerjanja. "~=" pomeni "približno enako", pomeni enako do 10^(-10). 
+
+Obièajne matematiène funkcije ,ki jih imamo v programu na razpolago so: abs, sign, 
+sin, cos, tan, arcsin, arccos, arctan, sqrt, exp in log. Poleg tega pa še številske
+funkcije round, ceil in floor za zaokrožanje na cela števila. angle180 in angle360
+sta posebni funkciji, ki kot preraèunata tako, da bo med 0 in 180, oz 360 stopinj.
+
+Funkciji sin in cos sta definirani za stopinje. Za preraèunavanje uporabljamo funkciji rad(x) in deg(x).
+
+Posebej je treba paziti, da v izrazu uporabljamo objekte, ki smo jih konstruirali 
+pred vnosom izraza.
+
+.text
+.related replay comment properties
+Tekst
+
+S tem orodjem lahko vnesemo poljubni tekst èez veh vrstic na risalno površino.
+Z izbiro orodja se odpre okno, v katerem lahko vpišemo tekst; na dnu tega okna
+je že pripravljen gumb, s katerim izberemo nastavljanje lastnosti teksta. Nastavimo
+lahko barvo, debelino, položaj, vidnost. 
+
+Skriti teksti se pri ponovitvi konstrukcije prikažejo in s tem lahko komentiramo 
+posamezne konstrukcijske korake, ki pa na konèni konstrukciji niso vidni. Tako
+lahko za tekstom nastavimo prekinitvene toèke pri ponovitvi konstrukcije.
+
+.quadric
+.related properties point transparent
+Stožnice
+
+Stožnice (krivulje II. reda) so èrte nièel algebrskih enaèb druge stopnje dveh
+spremenljivk. Glede na to, da imamo šest èlenov enaèbe (x^2, y^2, x*y, x, y, 1),
+zadošèa pet toèk, da rešimo ta sistem. Program nato doloèi enaèbo in izriše 
+krivuljo.
+
+Za doloèitev stožnice torej vnesemo pet toèk.
+
+.hide
+.related construction properties mouse
+Skrivanje objektov
+
+Z orodjem za skrivanje ali prikazovanje spremenimo doloèilo te lastnosti objektov
+in jo lahko izberemo in spremenimo tudi kadarkoli v nastavitvah lastnosti
+objektov. Seveda lahko vklopimo prikazovanje, èe imamo izbrano še doloèilo
+prikazovanja skritih objektov, kajti le tako lahko vidimo tudi sicer skrite 
+objekte.
+
+Na kratko spremenimo status objekta z desnim gumbom ob tem, da držimo tipko 
+Ctrl. 
+
+Èe ob izbrani možnosti Skrivanje objektov držimo dvigalko in kliknemo na objekt se ta skrije popolnoma in ga sploh ni mogoèe videti. "Odkrijemo " ga lahko le tako, da v tekstu konstrukcije popravimo doloèilo.
+
+Tudi vse duplikate objektov lahko skrijemo z eno potezo. Uporabimo možnost izbire v meniju, ali pa pri izbiri možnosti Skrivanje objektov uporabimo Ctrl tipko. Viden je takrat vselej le zadnji objekt.
+
+.rename
+.related properties
+Alfabetsko preimenovanje
+
+S tem orodjem lahko premice avtomatièno preimenujemo v a, b, c, toèke v A, B, C in kote v \a, \b, \c, èe ta imena le niso v konstrukciji že uporabljena. V tem primeru že uporabljena imena paè izpusti.
+
+Èe želimo uporabljati ime a dvakrat (za dva razlièna objekta, uporabljamo za drugi objekt ime "a~1" in tako bosta za oba objekta prikazani imeni ?a?.
+
+Da bomo izbrane toèke vendarle poimenovali po vrsti z A, B, C,..., kljub temu da so ta imena že uporabljena, držimo pri izbiri imen dvigalko. V tem primeru bo èrka zamenjana, èeprav je enkrat v konstrukciji že uporabljena. Èe želimo ponovno zaèeti, ponovno izberemo orodje za alfabetsko preimenovanje, ali pa pritisnemo tipko Esc.
+
+.delete undo back
+.related construction
+Brisanje objektov
+
+Z orodjem za brisanje zadnjega objekta zbrišemo nazadnje konstruirani objekt
+z risalne površine. Èe je pred njim še nekaj skritih, se zbrišejo tudi ti, vse do zadnjega prikazanega objekta, ki ostane. Èe pa je izbrano orodje za prikazovanje skritih objektov, pa se prejšnji sicer skriti objekti ne zbrišejo. 
+
+Z naslednjim orodjem lahko zbrišemo poljubni prej konstruirani objekt. Ta zbriše seveda vse od njega odvisne objekte. 
+
+Povrni brisanje pa vse zbrisane objekte vrne nazaj na risalno površino, èe le nismo vmes konstruirali kakšnega novega objekta.
+
+.function
+.related expressionsyntax properties
+Funkcije in krivulje
+
+Program lahko riše enostavne funkcije in krivulje. Za to imamo posebno orodje oziroma možnost v meniju. Po klicu enega ali drugega, se pojavi dialog, v katerem imamo veè vrstic za podatke o funkciji, od imena, obmoèja neodvisne spremenljivke, in dolžine koraka. Obièajno pustimo ime neodvisne spremenljivke, kot je že nastavljeno ? x. 
+
+Pri funkcijah lahko vnesemo tudi premike in raztege ? na primer za nedvisno spremenljivko x vnesemo vrednost odvisne spremenljivke kot "sin(x/pi*180)".
+
+Pri krivuljah imamo dve spremenljivki in dve funkciji x, y kot parametrièna funkcija.
+
+Program nariše funkcijo v konstrukciji, kjer uporablja koordinate kot v konstrukciji. Da dobimo boljši vpogled v funkcijo je dobro v tem primeru vklopiti možnost prikaza koordinatnega sistema. 
+
+.defaults
+.related line angle colors iconbar
+Nastavitve
+
+Za nove objekte lahko nastavimo.
+
+ - Barvo
+ - Debelino
+ - Obliko toèke
+ - Delni prikaz krožnic
+ - Skrajšane premice
+ - Daljice kot vektorje
+ - Prikaz imen
+ - Prikaz vrednosti (velikosti)
+ - Dolga imena
+ - Koti veèji od 180 stopinj
+ - Neprozorni objekti
+
+Ta  orodja so vsa v zgornji vrstici dvovrstiènega prikaza orodij, ki je tako logièno urejen, da ima v zgornji vrstici nastavitve, v spodnji pa konstrukcijska orodja in animacije.
+
+.edit
+.related mouse properties
+Urejanje objektov
+
+Z orodjem za urejanje objektov priklièemo dialog, v katerem je veè
+ali manj možnosti, ki so dovolj jasno in enostavno prikazane. Èe držimo
+dvigalko, lahko izberemo veè objektov, v tem primeru dobimo drugaèen dialog in spremenjena nastavitev se potem nanaša na vse objekte. To velja seveda le za uporabo orodja "urejanje objektov".
+
+Èe držimo ob izbiri tega orodja tipko Ctrl, dobimo avtomatsko urejanje zadnjega konstruranega  objekta.
+
+.show
+.related hide
+Skrivanje po barvah
+
+S tem orodjem izbiramo prikaz objektov tiste barve, ki je trenutno na ikoni in se z vsakim novim klikom po ikoni zamenja. Na ta naèin lahko ustvarimo preglednost konstrukcije in še bolj, konstrukcijskih korakov, èe jih po barvi ustrezno pripravimo.
+
+.grid
+.related zoom mouse zoom
+Prikaz koordinatne mreže
+
+Ta ikona preklaplja med prikazom koordinatne mreže in njenim skrivanjem. Ob prikazani mreži se toèke prilepijo na polovici stranice oz preseèišèa mreže, tiste kateri smo najbližje, razen v središèu kvadratka. Tudi pri premikanju se to upošteva.
+
+Èe je mreža vklopljena, se ta nastavitev ob shranjevanju zapiše, tako da ob naslednjem nalaganju te datoteke ostane vklopljena in se tudi prikaže.
+
+.replay
+.related htmlexport text animatebreak
+Ponovitev konstrukcije po korakih
+
+S to možnostjo se korak za korakom "sprehodimo" skozi konstrukcije. Ob tem imamo na voljo menu, s katerim se pomikamo korak naprej, korak nazaj, preskoèimo na zaèetek, na konec ali na prekinitveno toèko. V HTML izvozu privzeto dosežemo ponovitev konstrukcije z desnim gumbom.
+
+Prekinitvene toèke postavimo med ponovitvijo konstrukcije s posebno možnostjo za to, ki jo enostavno prepoznamo ali poèakamo na opis pri ikoni. Pri izvozu moramo pri postavljenih prekinitvenih toèkah izbrati možnost "Ponovitev s prekinitvenimi toèkami", kar nam da možnost, da se v spletnem pregledovalniku gibljemo od zaèetka preko prekinitvenih toèk do konca.
+
+Pri ponovitvi konstrukcije po korakih se prikazuje tudi skriti tekst s prekinitvenimi toèkami vsekakor le, èe skriti tekst stoji na prekinitveni toèki. 
+
+Skrite prekinitvene toèke postavimo z dvigalko. Taka prekinitev skrije vse objekte od prejšnje prekinitvene toèke do te. Tako konstrukcija razpade na zaporedje korakov.
+
+.animatebreak
+.related replay
+Animiranje prekinitvenih toèk
+
+S tem bo ponovitev konstrukcije potekala od ene prekinitvene toèke do druge, tudi to pokorakihv kombinaciji s posameznimi koraki. Hitrost tega prikaza lahko uravnavamo s smerniškimi tipkami.
+
+Animacija se shrani skupaj s konstrukcijo in se ob naslednjem nalaganju konstrukcije avtomatsko zažene.
+
+.draw
+.related mouse
+Skiciranje z miško
+
+S tem orodjem z miško preprosto skiciramo po risalni površini v izbrani barvi. Risba se lahko shrani in z njo dodamo tisto, za kar nimamo konstrukcijskega orodja, ali pa risalno površino uporabimo kot skicirko.
+
+.zoom
+.related mouse grid
+Premikanje in poveèevanje/pomanjševanje z miško
+
+S tem orodjem lahko del konstrukcije spremenimo po velikosti. Èe z miško vleèemo (s pritisnjenim levim gumbom) proti robu se poveèuje, proti središèu pa zmanjšuje. Èe kliknemo v sredini slike, se oblika miške spremeni v smerni križ in se slika premika.
+
+Ob shranjevanju se zapiše tudi spremenjena velikost in ob naslednjem nalaganju se velikost prilagodi, tako da se naloži ta del v novo sliko.
+
+.parameter
+.related runmacro parametertypes target macro hintparameter
+Parametri makroja
+
+Makroji so pomemben del konstrukcijskih nalog, posebej èe gre za bolj kompleksne naloge. Makroji so novi ukazi, v katerih je zbranih veè elementarnih korakov za enovit nov ukaz. Na ta naèin prihranimo mnogo èasa in truda, da poenostavimo kompleksnejše konstrukcije. Najbolj lahko makroje primerjamo s podprogrami v programskem jeziku.
+
+Definicija makroja je preprosta. Najprej opravimo vzorèno konstrukcijo tega, kar bi z enim ukazom radi konstruirali. Ta vzorèna konstrukcija ima, kot kasneje makro, zaèetne objekte (kot vhodne parametre) in izhodne objekte, cilj konstrukcije (kot rezultat podprograma). Npr.: simetrala daljice, kot makro potrebuje za vhodne (zaèetne) parametre dve toèki (krajišèi daljice), rezultat, ki ga mora makro dati, pa je premica (simetrala stranice).
+
+Na tak naèin tudi makro definiramo. Po izbiri ustreznega orodja se pojavi na ikoni nova slika z rdeèimi toèkami na levi in èrnimi na desni - torej gre za izbor zaèetnih objektov, ki ga opravimo z miško. Po novem kliku na ikono se barve toèk zamenjajo, torej prièakuje cilj makroja - kaj naj makro skonstruira. Zatem makro le še  poimenujemo in že ga lahko uporabljamo.
+
+Glej še: Cilj (rezultat) makroja
+
+.target
+.related runmacro parameter macro
+Cilj (rezultat) makroja
+
+Po vnosu parametrov lahko po volji izberemo ciljne objekte. Pojavijo se le objekti, ki so lahko cilji makroja. Torej ne moremo izbrati nemogoèega cilja. Èe ne vnesemo nobenega ciljnega objekta, bo makro konstruiral vse objekte, ki jih lahko konstruira. 
+
+Èe definiramo cilje, bodo vsi vmesni objekti skriti. Sicer pa bodo vidni vsi tisti objekti, ki so vidni v vzorèni konstrukciji. 
+
+Sicer pa je smiselno izbrati ciljne objekte, saj se lahko kasneje (tudi v ukazni konstrukciji) sklicujemo na makro z imenom in vhodnimi parametri.
+
+Glej še: Definicije makrojev
+
+.macro
+.related target parameter runmacro
+Definicije makrojev
+
+Po tretjem kliku se pojavi dialog, v katerem vnesemo njegovo ime in s tem je makro definiran. V tem dialogu lahko vnesemo še opis makroja, ki ga pojasnjuje. Seveda se opis nanaša na pomen in vhodne parametre makroja ter na njegov cilj.
+
+Naslednja polja vsebujejo vhodne parametre v taki obliki, kot se bodo pojavljali v statusni vrstici ob uporabi makroja. 
+
+Parameter lahko doloèimo tudi za natanèno doloèen objekt, èe vnesemo "=Ime" kot promet. Èe tak objekt v konstrukciji obstaja in je tudi ustreznega tipa, ga ob uporabi makroja ne bo treba vnesti, ampak se bo avtomatsko izbral.
+
+Nastaviti je mogoèe tudi, ali se bodo konstrukcijski deli prikazovali ali ne ali jih v celoti skrijemo.
+
+Makroji skrijejo objekte, ki so duplikati že konstruiranih objektov. To obnašanje pa lahko izklopimo.
+
+Pri klicu makroja je mogoèe vnesti tudi vrednost (npr. velikost kota, dolžino polmera, ali tudi kakšen izraz). Ta vrednost je lahko dolžina polmera kroga, velikost kota, ali vrednost kakšnega aritmetiènega izraza.Vnesemo ime krožnice, kota ali  daljice s konstantno velikostjo,  seveda pa lahko uporabimo za to tudi makroparameter. Pri zagonu se bo pojavil dilaog za vnos vrednosti ali izraza.Krožnica ali kot bo potem konstruiran/a s to vrednostjo. Lahko pa zahtevamo tudi vnos veè razliènih vrednosti. Te potem loèimo z vejico.
+
+.hintparameter
+.related macro parameter
+Parametri z namigom
+
+Da bi lahko vnesli v makro toèko, ki služi le za orientacijo in se med izvajanjem makroja konstruira, potem pa zopet izgine, mora imeti pri izboru parametrov status skrivanja.
+
+S tem lahko nastavljamo toèke za namig. Primer bi lahko bil makro za konstruiranje enakostraniènega trikotnika nad dano daljico in to na tisti strani, na kateri bo uporabnik kliknil z miško. Za definicijo kota lahko potem vnesemo izraz "if(a>0,60,-60)".
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters
+Zagon makrojev
+
+Makroje zaženemo z orodjem za zagon makrojev. Dobimo seznam definiranih makrojev in paè izberemo ustreznega iz seznama, èe pa ni definiran ali naložen noben makro, dobimo o tem obvestilo, potem ko smo izbrali to možnost.  Èe ob zagonu orodja držimo dvigalko, bo dani makro še enkrat izbran. Makroje lahko "poklièemo" tudi z desnim klikom na praznem delu risalne površine. Pojavi se meni z makroji, ki jih imamo na razpolago in zopet izberemo željenega.
+
+Po zagonu makroja se v statusni vrstici za imenom makroja pojavi doloèen tekst za vsak vhodni parameter z zahtevami za njegov vnos s tipom in zaporedno številko parametra.
+
+Èe je v oklepajih ("preslednica izbere..."), je mogoèe izbrati isti objekt, kot pri zagonu makroja pred tem. To pospeši zahtevnejšo veèkratno uporabo makroja z veè parametri.
+
+Ko smo izbrali parametre, se makro izvede. Èe makro vsebuje vrednost, kot vhodni parameter, se pojavi ustrezen dialog, kjer je to vrednost mogoèe vnesti. tako število, kot kakršenkoli veljavni matematièni izraz s parametri.
+
+.fixparameters
+.related runmacro parameter
+Fiksirani parametri
+
+Pr izvajanju makroja imamo možnost narediti kopijo tega makroja, pri kateri bodo nekateri parametri prevzeti avtomatièno. To dosežemo tako, da držimo dvigalko med izborom parametra. Ko se ta makro zakljuèi, se ponovno zažene isti makro, ki že obdrži prej z dvigalko izbrane parametre. 
+
+Èe pa takšni makroji zahtevajo objekte, ki ne obstajajo, makro zopet "prièakuje", da vnesemo ustrezen objekt. Enako velja èe takšne objekte zbrišemo.
+
+Sicer pa lahko doloèimo doloèene parametre pri definiciji makroja tako, da vnesemo kot Prompt "=ime objekta". 
+
+.parametertypes
+.related parameter
+Tipi parametrov
+
+V splošnem je najugodneje kot parametre doloèiti toèke. Seveda so mogoèe tudi krožnice in premice. Pri daljicah, premicah skozi dve toèki (torej ne vzporednice, pravokotnice ali koti s konstantno velikostjo) imamo doloèeni toèki, ki te objekte doloèata, za parametra. Èe je na primer kot parameter premica (ne pa premica skozi dve toèki), paè lahko izberemo pri makroju katerokoli premico.
+
+Dodatne parametre doloèimo med izvajanjem makroja. Ob tem je važno paziti na enako konfiguracijo teh parametrov med izvajanjem makroja. Èe sta uporabljeni kot parameter daljici AB in BC, moramo med potekom vnesti daljici EF in FG. Zato je v takem primeru bolje kot parametre podati toèke.
+
+Kot primer lahko konstruiramo simetralo stranice s pomoèjo makroja, ki je odvisen od daljice (krajišè daljice).
+
+.defaultmacros
+.related runmacro save
+Privzeti makroji
+
+Pri zagonu programa R.i.Š
+ se naložijo makroji iz datoteke ".sl_default.mcr", ki so vkljuèeni v arhivski datoteki. Naloženi makroji so zašèiteni, kar pomeni da se ne shranjujejo s konstrukcijo, niti se ne zbrišejo ob nalaganju nove konstrukcije.
+
+Èe pa ne želimo, da se ti makroji naložijo ob zagonu programa, imamo za to posebno možnost v menijih "Makroji/Zbriši makro".
+
+Èe želimo nabor zaèetnih makrojev obogatiti, shranimo datoteko makrojev kot ".sl_deault.mcr" v zaèetni imenik.
+
+.htmlexport
+.related save runningdemo comment exportdialog exportjob
+HTML-Izvoz
+
+Konstrukcije ali naloge lahko izvozimo kot javanski applet in ga kot takega predstavimo v HTML datoteki. Vse to delo za nas opravi program v posebni menujski možnosti - "Možnosti/Izvoz v HTML" ali na kratko Ctrl-e. Preden to naredite, morate shraniti konstrukcijsko datoteko. Sicer pa program sam na to opozori.
+
+Geometrijsko mesto toèk in animacije se v appletu zaženejo takoj, ko se ta naloži, èe je bilo pri shranjevanju to nastavljeno.  
+
+Po vnosu vseh doloèil in potrditvi se pojavi izbira za ime datoteke, s katerim bomo kasneje v spletnem brskalniku odprli ta applet.
+
+Potem, ko smo lokalno sestavili HTML datoteko in jo preverili, jo postavimo na spletni strežnik. V istem imeniku, kjer je ta HTML datoteka, mora biti še:
+
+- datoteka z rešitvijo, èe gre za nalogo,
+- èe uporabljamo CSS-datoteke - datoteka s temi doloèili,
+- Applet-arhiv datoteka zirkel.jar
+- datoteka s konstrukcijo,
+- èe imamo sliko za ozadje, še ta datoteka s sliko.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+HTML izvoz s predlogo
+
+S pomoèjo te možnosti lahko enostavno dobimo prilagojene spletne strani uporabniku. Predloga vsebuje vse potrebne podatke, vkljuèno z velikostjo prikazanega appleta, barvo strani in appleta, CSS datoteke in arhiv appleta. Potem je dialog za izvoz posebej enostaven.
+
+V tem dialogu je torej treba nastaviti pot do datoteke zirkel.jar, torej tudi ?../?, èe je datoteka v mapi višje, datoteka s konstrukcijo mora biti podana relativno glede na datoteko zirkel.jar ? na primer ?mapa/datoteka.zir?. 
+
+Nekatere predloge so obrazložene v dokumentaciji. Uporabnik lahko v skladu s svojimi potrebami in poznavanjem HTML jezika izdela svoje predloge. Predloga deluje na prinzipu ?lukenj?, ki jih zapolnimo s svojimi dodatki. Vsi nadomestki se zaènejo z znakom #, datoteka s predlogo pa ima konènico *.template.
+.
+Veliko predlog zahteva veè odsekov v opisu konstrukcij. Odseki so loèeni z vrstico z znakom "~".
+
+Pogram podpira kodiranje UTF-8, tako da ne sme biti niti problemov s šumniki in sièniki v slovenšèini. 
+
+Implementirani so naslednji vzorci:
+
+#title
+  Nadomešèen z naslovom izvoza.
+
+#comment1,#comment2,...
+Bo zamenjano s komentarjem, ki nastopa v konstrukciji. Komentar konstrukcije bo razdeljen na odstavke preko vrstic z znakom "~". Vsak odstavek danega odseka bo obdan z ukazoma <p>...</p>.
+  
+#comment
+  Kot #comment1,... uporabljen bo cel komentar.
+
+#text1,#text2,...
+  Kot #comment1,... ne bodo pa uporabljeni ukazi <p>...</p>  Ti in vsi drugi HTML ukazi morajo potem biti zapisani v komentarju.
+
+#text
+  Kot #texte1,... a brez odsekov.
+
+#parameter
+  Vpeljuje potrebne parametre za applet.
+
+#color
+  Vpelje potrebne parametre za barvo.
+
+#font
+  Vpelje potrebne parametre za fonte.
+
+#codebase
+  Vkljuèi Codebase iz izvoznega dialoga.
+
+Tukaj je preprost primer za vzorèno datoteko.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" 
+  CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=#F0F0F0>
+  <H1>
+  #title
+  </H1>
+  <CENTER>
+  <P>
+  <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400"
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+.exportdialog
+.related htmlexport exportjob
+Nastavitve izvoznih parametrov
+
+Naslov strani: naslov spletne strani, ki se pojavi v brskalniku. Ima doloèilo <H1> in se kot takšen na strani tudi pojavi, pod njim pa je usredinjena slika appleta.
+
+Datoteka s CSS stili (Cascading Style Sheets) to je tudi sicer uporabno, da imajo naše strani podoben izgled. Èe te datoteke nimamo, pustimo to vrstico prazno. Ta datoteka je lahko tudi v podimeniku trenutnega, in to doloèimo v poti, ki pa ima obliko UNIX loèitev "/".
+
+
+irina, višina: se nanaša na širino in višino appleta.
+
+Datoteka s konstrukcijo: Ime datoteke, s katerim smo poimenovali konstrukcijo, ko smo jo shranili. V splošnem je ta datoteka v iistem imeniku, lahko pa je tudi kje drugje in zopet povemo z relativno potjo do nje (npr: "../test.zir"). Pomembno je, da je datoteka podana relativno glede na arhivsko datoteko "zirkel.jar", ni dovoljeno uporabljati absolutnih URL naslovov.
+
+Barva - ozadje strani - ozadje appleta: vrstica prikazuje belo barvi privzeto, spodaj pa je gumb, s katerim doloèimo barvi po obièajnem RGB naèinu - "zmešamo" željeno barvo. Èe appleta ne želimo uokviriti, to je ponujena možnost, je dobro izbrati barvo za applet in ozadje strani.
+
+Shrani definirano ozadje. Èe je v konstrukciji definirano ozadje in sika ustreza velikosti okna, se bo s to izbiro shranila povezava na sliko, vkljuèno z doloèeno velikostjo, ki smo jo nastavlili v sliki.
+
+Seveda povezava kaže na ime datoteke s sliko vkljuèno s potjo.
+
+Slog appleta: na izbiro imamo te možnosti:
+
+- Ravnina: applet brez robov. V tem primeru je smiselno izbrati enako barvo appleta in ozadja strani. Tukaj ni mogoèe nièesar konstruirati, ampak le prikazati skrite objekte (z desnim gumbom).
+
+- Okvir: Optièno privzdignjen applet z robom s 3D efektom, ki obdaja konstrukcijo.
+
+- Okvir in ikone: tukaj že lahko konstruiramo. Za to je prikazana vrstica ikon, s katere lahko izberemo željene.
+
+- Okvir, ikone in statusna vrstica: pojavi se tudi statusna vrstica, v kateri so obièajni opisi ukazov in parametrov. Sicer se statusna vrstica pojavi v statusni vrstici brskalnika.
+ 
+- Ponovitev s prekinitvenimi toèkami: Spodaj se pojavijo gumbi za kontrolo ponovitev. Èe smo definirali ponovitvene toèke tudi gumb za prekinitvene toèke.
+
+Èe aktiviramo Shrani komentar, se bo pod appletom pojavil opis komentarja. 
+
+Zaradi nastavitve UTF-8 bodo v tem komentarju vidni tudi šumniki in sièniki. Seveda pa mora biti enako kodiranje nastavljeno tudi na spletni strani.
+
+Barve: èe definiramo svoje barve in to nastavimo v izbirnem izvoznem dialogu, bo tako tudi na spletni strani.
+
+Na izbiro imamo ikone orodij in nastavitev, ki jih vkljuèimo (ali ne) v HTML datoteko. Seveda bomo izbrali tista orodja, ki so za morebitno konstrukcijo ali reševanje naloge potrebna. Lepo je, èe vkljuèimo ikono za brisanje zadnjega objekta, pa izbira barve, ki bo naredila konstrukcijo preglednejšo. Ne smemo pozabiti, da bo uporabnik imel na razpolago tista orodja, ki smo jih vkljuèili.
+
+Za zahtevnejše primere lahko vkljuèimo tudi orodje za makroje, ali pa z urejevaknikom teksta vnesemo definicijo makroja na prvo mesto orodij. Èe je kakšen makro vsebovan v konstrukciji, se bo ta pojavil na prvem mestu.
+
+V ukaznem naèinu ikone pomagajo uporabniku pri sintaksi ukazov, in zopet predvidimo potrebna orodja. Seveda pa delujejo v tem naèinu vsi ukazi programa.
+
+Èe smo vklopili pred shranjeanjem prikazovanje skritih objektov in s tem konstrukcijo shranili, bomo v appletu videli skrite objekte v konstrukciji.
+
+
+.exportjob
+.related htmlexport exportdialog comment
+Izvoz nalog
+
+Naloga: služi za to, da shranimo naloge kot obièajne konstrukcije. Pri pravih nalogah moramo aktivirati doloèilo naloge.
+
+Rešitev - Odpri rešitev - Shrani datoteko z rešitvijo - Povezava do rešitve: Te tri možnosti avtomatizirajo sestavljanje datoteke z rešitvijo. Datoteka z rešitvijo je prav tako HTML datoteka, ki vsebuje sliko rešitve. Na datoteko z rešitvijo se uporabnik lahko poveže potem, ko je rešil nalogo, ali pa je pod nalogo povezava na rešitev za manj izkušenega uporabnika, ki bo moal pogledati ešitev, preden bo rešil nalogo. Ali pa je izbrano oboje.
+
+Možnost izvoza naloge torej sam pripravi datoteko z rešitvijo, ki je shranjena kot Ravnina, toerj brez možnosti kakršnihkoli orodij.
+
+Komentar: tukaj se shrani opis naloge, kot smo ga vnesli v programu. In ta komentar se pojavi tudi v datoteki z rešitvijo.
+
+.runningdemo
+.related htmlexport online
+Tekoèa demonstracija
+
+Zaporedje konstrukcij je mogoèe s posebnim zaporejem ukazov prikazati na
+spletu, èeprav za to trenutno ni automatskega ukaza za izvoz. Doloèimo 
+lahko dolžino prikaza ene slike in s tem tempo prikaza. Primer je tudi na
+spletni strani s pomoèjo, tukaj pa je podana koda definicije takšnega 
+demonstracijskega uèinka:
+
+ <APPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+V datoteki "demo.xml" pa mora na poseben naèin biti zapisan seznam konstrukcij, 
+ki se bodo zvrstile na prikazu.Sintaksa te datoteke za preprost primer prezentacije 
+dveh datotek, ki smo ju shranili kot konstrukciji: "Ura.zir" in "strojcinderella.zir"
+je takšna:
+
+ <
+xml version="1.0" encoding="utf-8"
+>
+ <Demo delay="30">
+ <File name="Ura.zir" delay="20">Delovanje ure</File>
+ <File name="strojcinderella.zir">Stroj Cinderella</File>
+   ...
+ </Demo>
+ 
+.visual
+.related expressionsyntax descriptivefiles runmacro
+Opisne (ukazne) konstrukcije
+
+V tem naèinu podamo konstrukcijske korake kot ukaze v uposebni ukazni
+vrstici, ki se automatsko odpre pod risalno površino ob izbiri tega
+ukaza. Ikone za konstrukcijske ukaze sicer ostanejo prikazane, vendar
+jih ne moremo uporabiti, kot to lahko v grafiènem (vizualnem) naèinu.
+
+Klik na orodje sedaj povzroèi, da se v statusni vrstici pojavi ukaz za dani konstrukcijski objekt, ki pa ga moramo obièajno še dopolniti. Poleg tega potrebnih parametrov sedaj ne moremo izbrati na risalni površini, ampak jih moramo vnesti z imenom. Prav tako moramo sami na novo poimenovati vnešeni konstrukcijski element in to je potem veljavno ime zanj in ga lahko uporabljamo v nadaljevanju konstrukcije. Vnos ukaza zakljuèimo s potrditveno tipko [Return] in èe je sintaksa veljavna, se bo element pojavil na risalni površini.
+
+Seveda je sintaksa doloèena in najsplošnejša oblika ukaza je taka:
+ ime=funkcija(parameter,...)
+ ime1,ime2=funkcija(parameter,...)
+
+Ta sintaksa je splošno veljavna. Ime lahko spustimo. Tedaj bo element dobil privzeto ime, kot ga dobi pri vizualni konstrukciji.
+
+Sledi pregledni seznam enostavnih sintaktiènih ukazov za razne objekte. Imena so prevedena, kot uporabniški vmesnik, smemo uporabiti tudi angleške ukaze. Vnesemo lahko dolge ukaze, ali okrajšave za ukaze, velikih in malih èrk pri tem ne razlikujemo.
+
+Èe je zahtevani parameter toèka, lahko uporabimo ukaze c(k), a(d), b(d) za središèe krožnice k, eno ali drugo krajišèe daljice d, ali eno in drugo toèko premice ali poltraka, s katerima sta ta dva definirana.
+
+Primer
+ Dolga oblika
+ Alternativa
+ Opis
+
+A=P() 
+ Toèka
+ point
+ Postavi toèko sluèajno kamorkoli na risalno površino.
+ 
+A=P(0,1) 
+ Toèka 
+ Postavi toèko s koordinatama  (0,1)
+ 
+a=s(B,C) 
+ Daljica 
+ segment 
+ Nariše in definira daljico BC 
+ 
+a=s(B,2) 
+ Nariše in definira daljico od B na desno, s konstantno dolžino 2. Pri tem nastane avtomatsko še ena toèka, desno krajišèe daljice.
+ 
+a=l(B,C) 
+ Premica 
+ line 
+ Nariše in definira premico skozi B in C. 
+ 
+a=r(B,C) 
+ Poltrak 
+ ray 
+ Nariše in definira poltrak z vrhom B skozi C. 
+ 
+k=c(A,B) 
+ Krožnica 
+ circle 
+ Nariše in definira  krožnico s središèem v A skozi B. 
+ 
+k=k(A,2) 
+ Nariše in definira krožnico, s središèem v toèki A, katere polmer je 2. Namesto številke lahko uporabimo na primer tudi dolžino kakšne daljice, ali kakršenkoli izraz. 
+ 
+k=k(A,B,C) 
+ Nariše in definira krožnico s središèem v A s polmerom BC. 
+ 
+A=I(g,g) 
+ Preseèišèe 
+ intersection 
+ Nariše in definira preseèišèe premic p1 in p2. 
+ 
+A,B=S(k,k) 
+ Nariše in definira obe preseèišèi krožnic k1 in k2. Lahko vnesemo le eno toèko ali pa sploh nobene. 
+ 
+Razloèi(A,P) 
+ Razloèi 
+ away 
+ Preseèišèe A je razlièna toèka od toèke A. 
+ 
+Bliže(A,P) 
+ bliže 
+ close 
+ Preseèišèe A naj bo èimbliže toèki P. 
+ 
+M=M(A,B) 
+ Središèe 
+ midpoint 
+ Nariše in definira središèe med A in B. 
+ 
+g=p(p,A) 
+ Vzporednica 
+ parallel 
+ Nariše in definira  vzporednico premici p, skozi toèko A. 
+ 
+r=l(p,A) 
+ Pravokotnica 
+ plumb 
+ Konstruira pravokotnico  r na p skozi toèko A. 
+ 
+k=a(A,B,C) 
+ Kot 
+ angle 
+ Konstruira kot ABC (vrh kota v B). 
+ 
+k=a(A,B,90) 
+ Konstruira kot 90 stopinj ABC. Namesto 90 lahko uporabimo kakršenkoli izraz. 
+ 
+A=A(A,B,C) 
+ Mnogokotnik 
+ polygon 
+ Konstruira zapolnjen mnogokotnik z oglišèi v toèkah A,.B,C
+ 
+vrednost(P,0,1) 
+ Vrednost 
+ value 
+ Postavi toèko P s koordinatama (0,1). 
+ 
+vrednost(s,2) 
+   Daljica s bo dolga 2. 
+ 
+vrednost(k,2) 
+   Polmer krožnice k bo 2. 
+ 
+vrednost(a,90) 
+   Postavi velikost kota a na 90 stopinj. 
+ 
+vrednost(o) 
+vrednost(res je,o) /vrednost(ni res,o)
+   Preklapljanje prikazovanja/skrivanja vrednost objekta o. 
+ 
+vrednost(res je)/vrednost(ni res) 
+   Postavi privzeto ne/prikazovanje vrednosti. 
+ 
+ime(o,p) 
+ Ime 
+ name 
+ Objektu o predpiše ime p. 
+ 
+ime(o) 
+ime(res je,o)/ime(ni res,o) 
+   Preklapljanje prikazovanja/skrivanja imena objekta o.  . 
+ 
+ime(res je) /ime(ni res)
+ Postavi privzeto ne/prikazovanje imen 
+ 
+skrij(o) 
+skrij(res je,o) 
+ skrij 
+ hide 
+  Preklapljanje prikazovanja/skrivanja objekta o. 
+ 
+skrij(res je) 
+ Postavi privzeto skrivanje/prikazovanje objektov
+ 
+barv(èrna,o) 
+ Barva
+ color 
+ Pobarva objekt z eno od barv èrna, modra, zelena, rjava (black, blue, green, brown) 
+ 
+barv(zelena) 
+ Nastavi privzeto barvo na zeleno. 
+ 
+debelina(debelo,o) 
+ Debelina 
+ thickness 
+ Nastavi predstavitev objekta na debelo, osnovno ali tanko (thick, normal, thin) 
+ 
+debelina(debelo) 
+  Nastavi privzeto predstavitev objekta na debelo ... 
+ 
+tip(kvadratek,P) 
+ Tip 
+ type 
+ Nastavi prikaz toèke P na kvadratek, karo, krogec ali pika (square, diamond, circle, point) 
+ 
+tip(kvadratek) 
+ Nastavi privzeto predstavitev toèke. 
+ 
+del(k) 
+del(res je,k) 
+ Delno 
+ partial 
+ Postavi delno predstavitev objekta k. 
+ 
+Delno(res je)/Delno(ni res) 
+  Nastavi privzeto delno prikazovanje. 
+ 
+zapolni(o) 
+Zapolni(res je,o) 
+ Zapolni 
+ fill 
+ Objektu o doloèi, ali bo zapolnjen, ali ne. 
+ 
+nazaj(o) 
+Nazaj(res je,o) 
+ Nazaj 
+ back 
+ Spreminjanje objekta v ozadje ali ospredje. 
+ 
+okno(0,0,5) 
+ Okno 
+ window 
+ Nastavi okno pogleda v središèe (0,0) in širino 2*5. 
+
+
+Velavna(o)
+velavna(res je,o)
+  Obravnavaj daljice kot premice glede na preseèišèa in pravokotnice. o je 
+  preseèišèe oz. pravokotnica.
+
+Topokotno(a)
+topokotno(res je,a)
+ obtuse
+ Nastavi za kote, da so lahko veèji od 180 stopinj.
+
+Enobarvno(a)
+solid(res je,a)
+ Solid
+ Nastavi objekt tako, da ne bo prozoren.
+
+Omejeno(c,A,B)
+ omejeno
+ Nastavi krožnico v delu krožnega loka od  A do B.
+
+Veljavna(o)
+veljavna(res je,o)
+ valid
+ Odstrani omejitve pravokotnic in preseèišè, da so veljavne tudi, ko izpadejo iz obsega daljic in krožnih lokov.
+
+Preimenuj(A,B)
+ preimenuj
+ Preimenuj objekt iz  A v B.
+
+Makroji
+
+Uporabljamo lahko tudi makroje. Ime funkcije je v tem primeru ime makroja. Makro se vedno nanaša na neki ciljni objekt, ki ga pri njegovi definiciji moramo navesti.
+
+Pri makrojih, pri katerih je treba vnesti vrednost za neki objekt, lahko to velikost podamo kot dodatni parameter.
+
+.descritivefiles run
+.related visual save
+Opisne konstrukcije v datotekah 
+
+S tem je mogoèe konstrukcijo izvajati opisno in jo kot tako zapisati v tekstovno datoteko. Datoteka lahko vsebuje tudi definicije makrojev, ki jih lahko "poklièemo" z imenom makroja in vhodnimi parametri. Konstrukcijo lahko v resnici sestavimo s kakršnimkoli urejevalnikom in jo nato vèitamo v program s posebno možnostjo "Odpri opisno konstrukcijo".
+
+Ti opisi izgledajo podobno kot obièajne konstrukcije. Vsebujejo lahko komentarje, ki jih naznaèimo z "//" v zaèetku vrstice in vse za njimi je opis. Uporabljan jezik je vrstièni ukazni jezik (vsaka vrstica en ukaz)
+
+Vsebujejo lahko tudi makroje, ki se sklicujejo na druge, že prej definirane makroje.
+Poglejmo si preprost primer.
+
+ Makro Krožnica skozi tri toèke 
+ // Krožnica skozi trei toèke
+    Parameter A=P // Prva toèka
+    Parameter B=P // Druga toèka
+    Parameter C=P // Tretja toèka
+    g1=Simetrala daljice(A,B)
+    g2=Simetrala daljice(A,C)
+    U=Preseèišèe(g1,g2)
+    Cilj k=k(U,A)
+ Konec
+
+Zaèetna vrstica je shranjena kot komentar. Parametre vnesemo z ukazom Parameter (lahko tudi par) z besedo Cilj oznaèimo, kaj je cilj makroja in Konec pove, kje je konec definicije parametra. Posamezni komentarji so opisi parametrov pri vnosu ob zagonu makroja.
+
+Makro v zgornjem primeru klièe makro Simetrala daljice, ki je definiran takole:
+
+ Makro Simetrala daljice
+ // Simetrala daljice
+	Param A=Toèka
+	Param B=Toèka
+	Delno(res je)
+	k1=krožnica(A,B)
+	k2=krožnica(B,A)
+	Delno(ni res)
+	P1,P2=preseèišèe(k1,k2)
+	Cilj g=premica(P1,P2)
+ Konec
+
+Makro Simetrala daljice ima za cilj simetralo daljice (kot vidimo v opisu makroja) in ga lahko poklièemo z definicijo tega objekta - torej premice, ki ima za vhodna parametra krajišèi te daljice. Veè objektov lahko definiramo loèene z vejicami:  P1,P2=preseèišèe(k1,k2)
+Potem lahko definiramo  Cilj P2
+
+Makro ima lahko veè ciljev, ki jih lahko definiramo z enim samim klicem:  A,B=test(...)
+
+Mogoèe je definirati prièakovanje vrednosti makroja. Za to uporabljamo rezervirano besedo Prompt. Na to se bo v zagonu makroja pojavil dialog za vnos vrednosti ali izraza. Pri ukazni konstrukciji pa vnesemo dodatni parameter, ki mora biti objekt s konstantno dolžino.
+
+Pri definicijah makrojev velja poudariti, da bodo konstruirani le tisti objekti, ki jih je v resnici mogoèe konstruirati iz obstojeèih (vhodnih) objektov. Drugih konstrukcijskih korakov ne bo izvedel.
+
+Èe kot prametre podajamo krožnice ali premice, moramo poadati tudi njihova doloèila. Simetrala daljice je tako na primer odvisna od daljice.
+
+ Makro MS
+ // Simetrala daljice
+	A=Toèka
+	B=Toèka
+    Parameter s=Daljica(A,B)
+	Delno(res je)
+	k1=krožnica(A,B)
+	k2=kožnica(B,A)
+	delno(ni res)
+	P1,P2=Preseèišèe(k1,k2)
+	Cilj g=Premica(P1,P2)
+ Konec
+
+Èe bomo uporabljali krožnice kot parametre, uporabljamo posebno sintakso:
+
+A=Toèka
+Parameter k=Krožnica(A) Ta vrsta parametrov je seveda smiselna le kot parameter.
+
+Obstaja poseben ukaz Vidno (showall), ki "naredi" vse vmesne objekte makroja vidne. Nasprotno deluje ukaz Skrito (invisible).
+
+.assignments
+.related save restricted colors comment
+Naloge
+
+V poglavju naloge razumamo konstrukcijske naloge, ki jih lahko zastavimo in predvidimo tudi njihovo rešitev. Poti do nje ni videti in ko odpremo takšno datoteko, lahko dobimo najprej tekst naloge, in potem jo moramo izvesti. Èe smo postopali korektno - in s tem dobili ciljni konstrukcijski objekt, dobimo potrditev v opozorilu - Narejeno! Nalogo moramo seveda definirati. To storimo v meniju naloge. Najprej izberemo zadnji prikazani objekt. Pote pa ciljni objekt in naloga je zastavljena. Pri izvozu naloge v HTML (kar je sicer najbolj smiselna uporaba te  možnosti - ne pa edina) lahko izberemo še orodja, ki jih bomo dali na razpolago reševalcu. Ta se potem pojavijo naspletni strani - skupaj s tekstom naloge.
+
+Posebej lahko rešitev shranimo v poseben applet, kamor lahko pokažemo tudi s povezavo.
+
+V meniju je posebna možnost za testranje naloge, preden jo shranimo kot nalogo in nato objavimo. Za nalogo lahko doloèimo tudi poseben komentar oziroma pojasnilo. 
+
+Èe pri izbiri ciljnega objeta držimo tipko dvigalko (Shift), bo ciljni objekt sicer prikazan, ne bomo pa dobili potrditve, ko smo ga pri reševanju naloge dosegli.
+
+Èe ciljni objekt pred shranjevanjem skrijemo, tudi pri prikazu naloge ne bo viden. Seveda moramo v tem primeru jasno definirati nalogo.
+
+Èe je cilj nalogemnogokotnik, uporabljamo le potrebna oglišèa. Èe so potrebne neke vmesne toèke na primer na stranicah mnogokotnika, program to prepozna in te toèke morajo biti podane tudi v rešitvi naloge.
+
+.browser
+.related online
+Pomoè v brskalniku
+
+Pomoè v spletnem brskalniku lahko sami oblikujemo. Torej nastavimo tako brskalnik, ki ga uporabljamo in pot do spletnega naslova, na katerem je ta pomoè. V opracijskem sistemu Windows program izbere Internet Explorer kot priivzeti brskalnik, èe želimo drugega, ga moramo nastaviti. Èe poti do pomoèi ne najde, izbere spletno pomoè na domaèi strani programa.
+
+Pri konfiguraciji poti do pomoèi, moramo paziti, da v primeru, èe ta pot vsebuje presledke, pot zapišemo v dvojnih narekovajih: "..." .
+
+.comment
+.related assignment parameter htmlexport
+Opombe (komentarji) h konstrukciji
+
+Konstrukcije lahko opremimo s komentarji. Ti se prikažejo ob nalaganju konstrukcije. Prav tako lahko komentarje izvozimo v HTML datoteke.
+
+Pomembni so komentarji nalog. Z njimi je smiselno podati besedilo in cilj naloge.
+
+Tudi makri lahko vsebujejo komentarje.
+
+.fonts
+.related zoom save
+Fonti
+
+V programu lahko uporabljamo fonte v dveh velikostih, seveda vse enako v dani konstrukciji. Fonti se poveèujejo s poveèevanjem okna, tako kot velikosti toèk. Ker v majhnih oknih privede do premajhnih objektov, le-te lahko nastavimo z najmanjšo velikostjo toèke.  
+
+Izberemo lahko tudi odebeljene èrke, kar je posebej primerno za izvoz slik.
+
+.save
+.related assignments parameter descriptivefiles print defaultmacros filedialog print
+Shranjevanje in nalaganje
+
+Konstrukcije se zapisujejo v datoteke v formatu XML. Tak format lahko v tekstovnem urejevalniku normalno beremo. Privzeta konènica konstrukcij je ".zir", nalog ".job" in makrojev ".mcr". 
+
+V konstrukcijah so lahko vsebovani makroji, ali pa ne. S preklopnikom to izberemo, ali pa izkljuèimo "Datoteke/Vkljuèi makroje". S preklopnikom "Zbriši makroje pred nalaganjem" jih ne preberemo v konstukcijo. To pa ne velja za privzete makroje. 
+
+Datoteke lahko shranimo v stisnjeni obliki, ki jo izberemo avtomatièno, èe dodamo konènico ".z".
+
+.print
+.related settings
+Tiskanje in izvoz grafike
+
+Konstrukcije lahko natisnemo. Imamo doloèilo, s katerim povemo, da je dolžina 1 dolžina 1 cm na papirju. 
+
+Imamo na razpolago veè formatov grafiènih datotek. Za vektorsko grafiko je najuporabnejša možnost EPS format, za BMP pa PNG. Oba formata lahko uvozimo v urejevalnike tekstov.
+
+Bitmap datoteke lahko skaliramo veèje, kot je prikaz na ekranu. pri tem imamo v v meniju izvoza možnost nastaviti faktor. Preprosto vnesemo faktor in potrdimo. Prav tako imamo gumba za 72 in 300 DPI. Za Word je najbolje uporabiti 300 DPI in PNG format. Seveda ne smemo preseèi širine papirja.
+
+Primerjaj tudi: Izbira datoteke
+
+.filedialog
+.related save settings
+Dialog za izbiro datotek
+
+Program privzeto uporablja svoj dialog za izbiro datotek. To lahko zamenjamo v dialogu "posebnih nastavitev".
+
+V lastnem meniju za izbiro datotek se ohranjajo prejšnje nastavitve datoteènih vzorcev in imen map. S pritiskom smerniških tipk gor/dol lahko iz seznama prejšnjih datotek izberemo ustrezno, že uporabljano datoteko.
+
+Mape izberemo z dvojnim klikom na levem seznamu, datoteke pa iz seznama v desnem oknu. Seveda pa imamo gumbe "Shrani" ali "Odpri", s katerima izberemo željen ukaz.
+Gumb "Nazaj" nas vrne v prejšnji imenik. Ta ukaz deluje tudi potem, ko že zakljuèimo izbiranje datoteke. Zato je bolje uporabljati sprogramiran dialog za izbiro datotek.
+
+Gumb "Lastni" nas postavi v domaèo mapo uporabnika - od koder smo program zagnali. To  nastavimo v namestitvi programa pri možnosti "ZuL Datoteke". Èe tega imenika ni , poišèe program v operacijskem sistemu Windows "domaèo mapo" uporabnika, prav tako pa tudi v Linuxu.   Èe držimo med klikom dvigalko in Ctrl tipko, naredimo trenutni imenik kot novi "lastni" imenik.
+
+Da naredimo novo mapo, v okence "Mapa" vtipkamo ime mape in kliknemo na gumb "Nova mapa" in program izdela imenik. Ne moremo pa v tem dialogu brisati datotek in imenikov.
+
+.construction
+.related hide reorder
+Seznam objektov
+
+Opis konstrukcije vsebuje seznam konstruiranih objektov. Iz tega seznama lahko izberemo dialog za nastavljanje lastnosti objekta in jih tam po želji spremenimo.
+
+.colors
+.related htmlexport
+Barve
+
+Barve lahko poljubno nastavljamo v dialogij za lastnosti objektov. Pri shranjevanju se ne zapišejo, v izvozu v HTML applet pa se ohranijo.
+
+Barve nastavimo v obièajnem RGB-sestavljalniku barv.
+
+Pri izvozu v HTML lahko nastavimo barvo za ozadje strai in barvo ozadja appleta.
+
+.settings
+.related restricted iconbar tips beginner
+Posebne nastavitve
+
+V tem dialogu najprej lahko izberemo, ali se velikost ali vrednost objeketa med premikanjem po risalni površini prikazuje ali ne. Ta možnost je marsikdaj uporabna, zaèetniku pa moteèa.
+
+Poleg tega je mogoèe izklopiti spraševanja, ali dialog za izbiro objektov v primeru, èe izbira objektov ni enolièno mogoèa. V tem primeru vedno izbere prvi objekt iz spiska.
+
+Izklop pregleda toèk je smiseln za zaèetnike, saj jih velikokrat samo pogled na toèke pripelje do napaènih konstrukcij. Sicer je pa pregled lahko v  veliko pomoè.
+
+Seznam ikon lahko postavimo tudi pod risalno površino.
+
+Izbira datotek je privzeto zamenjana s sprogramirano izbiro. Lahko pa uporabljamo tudi obièajno sistemsko izbiro.
+
+Èe je sistem prepoèasen izberemo poèasnejšo in skromnejšo grafiko.
+
+Privzeto uporablja program UTF-8 kodiranje za shranjevanje datotek. Èe nimamo na voljo ustreznega urejevalnika za urejanje takih datotek, pa bi radi urejali konstrukcijske datoteke, lahko to možnost izkljuèimo.
+
+Bitmap datoteke lahko shranimo z izbranim nastavljenim ozadjem, ali pa z belim (praznim). 
+
+Aktivna risalna površina nam pri prehodu preko objekta le-tega pokaže in tako ga le lažje dolohiti in izbrati.
+
+.reorder
+.related circle angle expressionsyntax
+Preurejanje vrstnega reda objektov
+
+V konstrukciji so objekti razporejeni v zaporedju konstruiranja. So pa tudi odvisni
+objekti. Èe je nek objekt odvisen od nekega drugega, mora ta birti konstruiran pred njim.. 
+
+Vèasih, pa po naknadni konstrukciji ugotovimo, da bi nek objekt moral nastopiti
+prej, preden ga uporabimo. Tedaj uporabimo orodje "spremeni vrstni red". Program
+po izbiri orodja in objketa predlaga, kam naj ga postavi. Izbere privzeto tisto mesto,
+na katerem se objekt (zaradi odvisnosti) najprej lahko pojavi.
+
+.tips
+.related online browser start move intersection expressionsyntax reorder
+Nasveti in PZV
+
+Nekaj nasvetov ob problemih, ki se najpogosteje pojavijo.
+
+Neveljavna konstrukcija: konstrukcijo lahko preverimo tako, da premaknemo 
+zaèetno toèko. Èe konstrukcija ni "ta prava", se bo to takoj videlo. Najveèkrat
+je to posledica nepravih preseèišh; namesto da bi uporabili preseèišèa, smo 
+ustvarili novo toèko.
+
+Napaèna preseèišèa: èe postane konstrukcija neveljavna, potem ko se je
+spremenila zaèetna orientacija toèk, je to najveèkrat zaradi napaènega
+izbora preseèišè. Najveè problemov rešijo avtomatske izbire programa.
+Vèasih pa le moramo posredovati roèno in to najveèkrat tako, da v
+lasnostih preseèišè izberemo gumb Razloèi od od ali Razlièno od in potem izberemo toèko, 
+od katere se mora preseèišèe razlikovati, oziroma, pri katerem mora toèka ležati.
+
+Ne morem najti objekta v izrazih: izrazi lahko uporabljajo le objekte, ki so 
+bili konstrurani pred njim. Sicer se pojavljajo povezane odvisnosti, kar je
+seveda napaka. Obstaja orodje "spreminjanje vrstnega reda", s katerim lahko 
+popravimo morebitne težave.
+
+.keyboard
+.related gui delete zoom mouse
+Tipkovnica
+
+Veèino ukazov je v programu mogoèe doseèi tudi preko tipkovnice. Ustrezne 
+oznake in imena tipk najdemo v spustnih menijih na koncu ukazov. 
+
+Seveda pa tu ukazi delujejo le, èe je izbrano okno programa. Èe ni, to storimo tako,
+da kjerkoli na risalni površini kliknemo z desnim gumbom miške.
+
+Pogosto uporabljamo +/- za poveèanje ali zmanjšanje izgleda konstrukcije 
+in smerniške tipke za premikanje konstrukcije.Prav tako je pomemben ukaz 
+za povrnitev nazadnje zbrisanega objekta. 
+F1 odpre pomoè, kar je v programih obièaj.
+
+Razen tega ESC tipka deluje kot obièajno v programih. Pri trenutnem orodju nas postavi na zaèetek. 
+
+Vèasih skupaj z miškinim klikom uporabljamo tipko Ctrl.
+
+Paziti je treba, kajti nekatere razlièice Jave uporabljajo preslednico kot potrditveno tipko za gumbe v dialogih, druge pa tipko Enter.

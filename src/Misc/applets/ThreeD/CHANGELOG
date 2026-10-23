@@ -1,0 +1,11 @@
+11/2011
+In order to uniform the build of generally used applets :
+moved sources from ~/src/Misc/applets/authors/jm.evers/applets to ~/src/Misc/applets/ThreeD
+
+ant's build.xml build creates:
+
+~/public_html/java/ThreeD/ThreeD.jar
+and symlink to ~/public_html/java/ThreeD.jar (backward compatibility)
+and symlink to ~/public_html/scripts/authors/jm.evers/applets/ThreeD.jar (backward compatibility) 
+
+The Makefile will -also...-- copy the ThreeD.jar into ~/public_html/java/ThreeD/ThreeD.jar

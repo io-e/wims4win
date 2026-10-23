@@ -1,0 +1,32 @@
+#! /bin/sh
+#
+# Fixes the uid of wrap..exec
+# Must be run as root.
+
+if [ ! "$(id -ru )" = 0 ]; then
+ echo
+ echo $0: Please run this script as root!
+ echo
+ exit 0
+fi
+
+cd `dirname $0`/..
+
+file=public_html/bin/wrap..exec
+group=`id -ng nobody`
+case "$group" in
+  nobody|nogroup);;
+  *) group=;;
+esac
+if [ -z "$group" ]; then
+  echo $0: Your wims installation is currently unsecure. Please create a group
+  echo 'nobody' or 'nogroup' containing user 'nobody', then re-run this script.
+  echo Aborting
+  exit 1
+fi
+
+if [ -f $file ]; then
+  chown nobody:$group $file
+  chmod 6755 $file
+fi
+rm -f log/unsecure

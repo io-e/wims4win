@@ -1,0 +1,18 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+lopt=-lm
+
+all: toascii
+
+clean:
+	rm -f *.o *.core *.stackdump toascii
+
+toascii: toascii.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o toascii toascii.c $(lopt)

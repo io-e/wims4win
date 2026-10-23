@@ -1,0 +1,18 @@
+Willkommen im Geometrieprogramm Z.u.L.!
+
+Die Homepage von Z.u.L., sowie meine aktuelle Mail-Adresse finden Sie
+auf
+
+http://www.z-u-l.de/
+
+Dort, oder in der installierten Dokumentation, finden Sie auch eine
+Übersicht über die Versionsänderungen.
+
+Es gibt ein Diskussionsforum auf Yahoo. Ich lade Sie dazu herzlich
+ein. Einen Link finden Sie in der Dokumentation von Z.u.L. Außerdem
+gibt es ein Wiki mit vielen nützlichen Informationen, in dem Sie
+sich selbst beteiligen können.
+
+Z.u.L. können Sie umsonst und frei verwenden. Das Programm und sein
+Quelltext stehen unter der Gnu GPL-Lizenz. Näheres finden Sie in der
+Dokumentation.

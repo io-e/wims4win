@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project name="Plot" default="jar" basedir=".">
+
+
+<description>
+Plot (Plot) project buildfile.
+</description>
+
+<property name="src.dir" value="./ptolemy"/>
+<property name="build.dir" value="./build"/>
+<property name="dist.dir" value="./dist"/>
+<property name="dest.dir" value="${build.dir}"/>
+<property name="img.dir" value="${build.dir}/ptolemy/plot/img"/>
+<property name="Plot.jar" value="${build.dir}/../dist/Plot.jar"/>
+<property name="Plot.tar" value="${build.dir}/../Plot.tgz"/>
+
+<presetdef name="javac">
+    <javac encoding="UTF-8" />
+</presetdef> 
+<!-- Sets up classpath reference -->
+<path id="Plot.classpath">
+  <pathelement path="${src.dir}"/>
+  <pathelement path="${dest.dir}"/>
+</path>
+
+
+<target  name="-init"  depends="-prepare">
+  <tstamp/>
+</target>
+
+
+<target  name="-prepare"  depends="-info">
+  <mkdir dir="${build.dir}"/>
+  <mkdir dir="${dest.dir}"/>
+  <mkdir dir="${dist.dir}"/>
+  <mkdir dir="${img.dir}"/>
+</target>
+
+
+<target name="-info">
+  <property name="name" value="Plot"/>
+  <property name="acronym" value="Plot"/>
+  <property name="version" value="local"/>
+  <property name="year" value="2008-03"/>
+  <echo message="compiling Plot"/>
+  <echo message=""/>
+</target>
+
+
+<target  name="compile"  description="Compiles Plot sources"  depends="-init">
+  <javac
+    target="1.4"
+     source="1.4"
+    verbose="verbose"
+    deprecation="true"
+    srcdir="${src.dir}"
+    classpathref="Plot.classpath"
+    excludes=""
+    destdir="${dest.dir}"/>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp ${src.dir}/plot/img/*.gif ${img.dir}'"/>
+    </exec> 
+</target>
+
+
+<target name="jar" description="Jar Plot" depends="compile" >
+  <jar destfile="${Plot.jar}" basedir="${dest.dir}" excludes="" >
+    <manifest>
+    </manifest>
+  </jar>
+</target>
+
+<target name="tar" description="Tars source distribution files" depends="clean, jar">
+  <tar longfile="gnu" destfile="${Plot.tar}" compression="gzip" >
+    <tarfileset dir="${basedir}"    excludes=" build/*Plot*.tgz" prefix="Plot"/>
+  </tar>
+</target>
+
+
+<target  name="clean" description="Cleans up" depends="-info">
+  <delete dir="${dist.dir}"/>
+  <delete dir="${build.dir}"/>
+    <delete>
+	<fileset dir="." includes="**/*~" />
+  </delete>
+</target>
+
+</project>

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export PATH=../src:$PATH
+
+if [ -f test.stuff ]; then
+    cat test.stuff | /usr/bin/perl chemreport.pl 
+fi
+if [ -f test.stuff.gz ]; then
+    zcat test.stuff.gz | /usr/bin/perl chemreport.pl 
+fi

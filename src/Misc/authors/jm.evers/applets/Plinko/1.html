@@ -1,0 +1,30 @@
+<html>
+<head></head>
+<body>
+    <script language="javascript" type="text/javascript">                                                                                      
+	function lees(){                                                                                                                           
+	    var input=document.applets[0].ReadApplet();                                                                                               
+	    alert(input);
+    	    document.applets[0].destroy();                                                                                                                             
+	}                                                                                                                                         
+    </script>                                                                                                                                  
+    <center>
+    <applet codebase="dist" archive="Plinko.jar"  code="Plinko.class" width=220 height=100>
+	<param name="wims_exercise" value="1">
+	<param name="xsize" value="640">
+	<param name="ysize" value="480">
+	<param name="fontsize" value="12">
+	<param name="bins" value="10">
+	<param name="binheight" value="50">
+	<param name="chance" value="0.5">
+	<param name="speed" value="10">
+	<param name="title" value="Applet by Dr. P. Little">
+	<param name="language" value="en">
+	<param name="balls" value="100">
+    </applet>
+    <input type="button" name=".....TEST......" value=".....TEST....." onclick="javascript:lees();">
+</body>
+</html>
+
+
+

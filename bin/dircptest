@@ -1,0 +1,17 @@
+# This script must be sourced.
+
+olddir=`pwd`
+[ -n "$WIMS_HOME" ] && cd $WIMS_HOME
+[ -n "$w_wims_home" ] && cd $w_wims_home
+
+# patch for "cp --no-dereference"
+echo test >tmp/cptest1
+if cp --no-dereference tmp/cptest1 tmp/cptest2 2>/dev/null; then
+ dircp="cp -Rp --no-dereference"
+else
+ dircp="cp -RpP"
+fi
+alias dircp="$dircp"
+rm -f tmp/cptest?
+cd $olddir
+

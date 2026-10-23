@@ -1,0 +1,337 @@
+Kommandotilstand
+
+I kommandotilstand foretages konstruktioner ikke med musen, men ved at
+indtaste udtryk på kommandolinjen. Følgende udtryk er gyldige:
+
+	A=P
+		(punkt, point)
+		Konstruerer et punkt et tilfældigt sted på skærmen.
+
+	A=P(0,1) 
+		Konstruerer et fast punkt i (0,1). 
+		
+	a=s(B,C) 
+		(linjestykke, segment)
+		Konstruerer linjestykket fra B til C 
+		
+	a=s(B,2) 
+		Konstruerer et linjestykke fra B mod højre med længden 2. Derved
+		konstrueres et nyt punkt. I stedet for 2 kan ethvert beregningsudtryk
+		bruges.
+		
+	a=l(B,C) 
+		(linje, line)
+		Konstruerer linjen gennem B og C. 
+		
+	a=h(B,C) 
+		(halvlinje, ray)
+		Konstruerer halvlinjen fra B gennem C. 
+		
+	c=c(A,B) 
+		(cirkel, circle)
+		Konstruerer cirklen gennem B med centrum i A. 
+		
+	c=c(A,2) 
+		Konstruerer en cirkel med fast radius 2. Igen kan der bruges ethvert
+		beregningsudtryk i stedet for 2. Et specialtilfælde er det, når der i
+		stedet for 2 bruges længden af et linjestykke.
+		
+	c=c(A,B,C) 
+		Konstruerer en cirkel med centrum A og radius |BC|. 
+		
+	A=S(l,l) 
+		(Skæring, intersection)
+		Konstruerer et skæringspunkt for to linjer. 
+		
+	A,B=S(c,c) 
+		Konstruerer begge snitpunkter for to cirkler eller for en cirkel
+		og et punkt. Hvis man nøjes med at angive et navn eller lader den ene
+		plads stå tom, konstrueres der kun et punkt. Hvis der slet ikke angives 
+		noget navn, navngives punkterne automatisk. 
+	
+	lang(A,P)
+		(Langtfra, away)
+		Indstiller skæringspunktet A så det ligger så langt fra P som muligt.
+	
+	hen(A,P)
+		(Hentil, close)
+		Indstiller skæringspunktet A så det kommer så tæt hen til P som muligt.
+	
+	M=M(A,B) 
+		(Midtpunkt, midpoint)
+		Konstruerer midtpunktet af AB. 
+		
+	l=p(l,A) 
+		(parallel, parallel)
+		Konstruerer linjen parallel med l gennem A. 
+		
+	l=n(l,A) 
+		(normal, plumb)
+		Konstruerer normalen til l gennem A. 
+		
+	a=v(A,B,C) 
+		(Vinkel, angle)
+		Markerer vinklen ABC med toppunkt i B. 
+		
+	a=v(A,B,90) 
+		Markerer en vinkel på 90° med toppunkt i B og det ene ben 
+		gennem A. I stedet for 90° kan som altid et hvilket som helst tal 
+		eller beregningsudtryk bruges.
+		
+	værdi(P,0,1) 
+		(værdi, value)
+		Sætter punktets koordinater til (0,1). 
+		
+	værdi(s,2) 
+		Sætter linjestykkets længde til 2. 
+		
+	værdi(c,2) 
+		Sætter cirklens radius til 2. 
+		
+	værdi(v,90) 
+		Sætter vinklens størrelse til 90°. 
+		
+	værdi(sand,o) 
+		Slår visningen af objektet o's s værdi til, og fra med værdi(falsk,o). 
+		"sand" kan udelades.
+		
+	værdi(sand)
+		Slår standardvisningen af værdier til, og fra med værdi(falsk).
+	
+	navn(o,p) 
+		(navn, name)
+		Omdøber objektet o til p. 
+		
+	navn(sand,o) 
+		Slår visningen af objektets navn til, og med navn(falsk,o) fra. 
+		"sand" kan udelades.
+		
+	navn(sand)
+		Slår standardvisningen af navne til, og med navn(falsk) fra.
+		
+	skjul(sand,o) 
+		(skjul, hide)
+		Skjuler objektet, ellerviser det igen med skjul(falsk,o). "sand" kan
+		udelades.
+	
+	værdi(sand)
+		Slår standardvisningen af værdier til, eller fra med udtrykket
+		værdi(falsk).
+		
+	farve(grøn,o) 
+		(farve, color)
+		Farver objektet med en af farverne sort, blå, grøn, brun, cyan eller 
+		rød (black, blue, green, brown, cyan, red). 
+		
+	farve(grøn) 
+		Gør farven til standardfarve for nye objekter. 
+		
+	bredde(bred,o) 
+		(bredde, thickness)
+		Tegner objektet med bredden normal, bred eller smal.
+		(thick, normal, thin) 
+		
+	bredde(bred) 
+		Indstiller standardbredden for nye objekter. 
+		
+	type(square,P) 
+		(type, type)
+		Tegner punktet P som kvadrat (square), ruder (diamond), 
+		cirkel (circle) eller prik (point).
+		
+	type(square) 
+		Indstiller standardvisningen for nye punkter. 
+		
+	delvis(sand,c) 
+		(delvis, partial)
+		eller delvis(falsk,c) slår delvis tegning af objektet k til og fra. 
+		I stedet for delvis kan også bruges "partiel". "sand" kan udelades. 
+		
+	delvis(sand) 
+		eller delvis(falsk) ændrer standardindstillingen for delvis tegning 
+		af objekter. 
+		
+	udfyldt(sand,o)
+		(udfyldt, fill)
+		Viser objektet udfyldt eller (med falsk) ikke udfyldt. Ordet "fyldt" 
+		kan også bruges. "sand" kan udelades. 
+	
+	tilbage(sand,o)
+		(tilbage, back)
+		Rykker objektet tilbage eller, med falsk, frem.
+		"sand" kan udelades. 
+		
+	vindue(0,0,5) 
+		(vindue, window)
+		Indstiller konstruktionsvinduet med centrum (0,0) og bredden 2 x 5. 
+	
+	stump(sand,v)
+		(Stumpf, obtuse)
+		Tillader at vinklen bliver over 180°, eller med falsk, forhindrer det.
+		"sand" kan udelades.
+	
+	spids(sand,v)
+		(spids, acute)
+		Holder vinklen spids.
+		"sand" kan udelades.
+
+		udsnit(k,A,B)
+		(udsnit, restrict)
+		Cirklen tegnes kun i udsnittet fra A til B.
+
+	De engelske udtryk kan anvendes overalt. Det gælder også udtrykkene true og 
+	false som kan anvendes i stedet for sand og falsk. Store og små bogstaver 
+	spiller kun en rolle i kortformerne.
+	
+	Derudover kan man bruge c(c1) som betegnelse for cirklen c1's midtpunkt og
+	a(l) og b(l) som betegnelse for de to punkter der definerer et linjestykke,
+	en linje eller en halvlinje. 
+	
+Makroer
+	
+	Makroer kan også bruges i kommandotilstand. I så fald bruger man makronavnet
+	som funktionsnavn. Man kan kun tildele navne til makroens målobjekter, og 
+	derfor er det en fordel at angive målobjekterne når man definerer en makro. 
+	
+	Ved makroer der spørger efter en størrelse til et objekt, kan denne størrelse
+	angives som ekstra parameter.
+	
+Beregningsudtryk
+
+	Mulige regnetegn er + - * / ^ 
+	Potensopløftning skrives ^ (eller **).
+	Beregningsudtryk følger den almindelige matematiske syntaks, herunder at
+	*/ går forud for +-, og de følger parenteser. 
+	Eksempel: 3.5*3+3/(4-5^2) 
+
+	Objektnavne på linjestykker, cirkler og vinkler kan bruges. I så fald
+	beregnes længden, henh. radius eller størrelse. Hvis navnet indeholder et
+	mellemrum, skal det skrives i "". 
+	Eksempel: AB/CD
+
+	Faste udtryk og indbyggede funktioner:
+	pi (konstanten pi)
+		
+	x,y
+	Funktionerne x(P) og y(P) beregner et punkts x- og y-koordinater. 
+	Eksempel: x(P),y(P) : P's x- og y-koordinater.
+		
+	d
+	d(P,Q) beregner afstanden mellem to punkter. 
+	Eksempel: d(P,Q) : Afstanden mellem punkterne P og Q
+		
+	a
+	a(A,B,C) beregner vinklen ABC. angle360 og angle180 omformer tallet til
+	intervallerne 0° til 360°, henh. -180° til 180°.
+	Eksempel: a(A,B,C) : størrelsen af vinkel ABC (med vinkelspids i B)
+	Eksempel: angle360(A,B,C) : størrelsen af vinkel ABC, 
+	angivet i intervallet fra 0° - 360°
+	Eksempel: a(A,B,C) : størrelsen af vinkel ABC 
+	angivet i intervallet fra -180° til 180°.
+
+	Matematiske funktioner:
+	Programmet kender funktionerne sin, cos, tan, arcsin, arccos,
+	arctan, sqrt, exp, log und abs. Derudover afrundingsfunktionerne 
+	round, ceil und floor. 
+	
+
+	I kommandotilstand kan beregningsudtryk bruges overalt hvor der kræves
+	konstanter. Derudover kan beregningsudtryk bruges til at tildele en værdi
+	til størrelser.
+
+Konstruktionsbeskrivelser i filer
+
+	Man kan gemme konstruktioner i den beskrivende form som fil. Filen
+	kan også indeholde makrodefinitioner, og beskrivelser og makroer kan
+	kalde hinanden. På denne måde opstår et simpelt programmeringssprog til 
+	konstruktioner. Nedenfor ses et eksempel.
+	Sådanne konstruktioner kan åbnes direkte (f.eks. hvis de er skrevet i en
+	editor), eller de kan bearbejdes før de åbnes.  
+
+	Konstruktionsbeskrivelserne ser ud som normale konstruktioner. De kan 
+	indeholde kommentarer. Kommentarer skal indledes med // og dette tegn 
+	gælder for resten af linjen. 
+	Det anvendte sprog er linjeorienteret. Hvert konstruktionsskridt optager
+	netop en linje.
+	
+	Derudover kan de indeholde makroer, som også kan kalde andre makroer. Et
+	typisk eksempel er
+	
+	Makro O 
+	// Cirkel gennem tre punkter
+		Parameter A=P // første punkt
+		Parameter B=P // andet punkt
+		Parameter C=P // tredje punkt
+		l1=MN(A,B)
+		l2=MN(A,C)
+		U=S(l1,l2)
+		Mål c=c(U,A)
+	Slut
+	
+	Indrykningerne er valgfri. Kommentarlinjen i starten bliver gemt som
+	makrokommentar. Parameterpunkterne bliver betegnet med nøgleordet Parameter
+	eller bare Param, og målene med nøgleordet Target eller Mål. Kommentaren
+	på samme linje som parameteren vises til brugeren når makroen køres.
+		
+	Makroen i eksemplet ovenfor kalder en anden makro, MN, som konstruerer
+	midtnormalen mellem to punkter. Denne makro kan f.eks. se sådan ud: 
+
+	Makro MN
+	// Midtnormal
+		Param A=punkt
+		Param B=punkt
+		delvis(sand)
+		c1=cirkel(A,B)
+		c2=cirkel(B,A)
+		delvis(falsk)
+		P1,P2=skæring(c1,c2)
+		Mål l=linje(P1,P2)
+	Slut
+	
+	Makroen MN har et målobjekt, nemlig midtnormalen, og derfor kan man tildele
+	den et navn ved at kalde makroen med l1=MN(A,B). 
+	Mål skal defineres hver for sig hvis der opstår mere end et objekt i en linje.
+	F.eks. konstruerer følgende makro kun det ene skæringspunkt
+
+		A,B=skæring(g,h)
+		Mål B
+	
+	En makro kan have flere mål, som så alle skal tildeles ved kaldet:
+	
+		A,B=test(...)
+	
+	Der kan også skrives beskeder til brugeren ved indtastning. Til det formål
+	bruges nøgleordet Prompt. Som ved normale makrodefinitioner bliver brugeren
+	spurgt efter værdien af dette objekt, eller i kommandotilstand indtaster
+	man den som en ekstra parameter. Værdier kan kun indtastes ved objekter 
+	med faste værdier.
+	
+	Vær opmærksom ved makrodefinitionen. Ved udførelsen bliver der kun 
+	konstrueret objekter der faktisk kan konstrueres ud fra parametrene. Andre
+	konstruktionsskridt udføres ikke.
+	
+	Hvis man bruger cirkler eller linjer som parameter, så skal de objekter de
+	stammer fra, være defineret først. På denne måde kan man definere midtnormalen
+	ud fra et linjestykke:
+	
+	Makro MN
+		// Midtnormal
+		A=punkt
+		B=punkt
+	  Parameter s=linjestykke(A,B)
+		delvis(sand)
+		c1=cirkel(A,B)
+		c2=cirkel(B,A)
+		delvis(falsk)
+		P1,P2=skæring(c1,c2)
+		Mål l=linje(P1,P2)
+	Slut
+	
+	Hvis cirkler bruges som parametre, kan man anvende en særlig syntaks
+	
+		A=Punkt
+		Parameter c=Cirkel(A)
+	
+	Denne form for cirkler giver kun mening som makroparametre. I alle
+	andre situationer skal radius angives, men den her viste form gør at
+	brugeren vælger radius under kørslen af makroen.

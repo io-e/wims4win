@@ -1,0 +1,83 @@
+#! /bin/sh
+#
+#	This script compiles all OEF exercises on the server.
+#	You don't need to run this under normal circumstances.
+#
+#	Type './oefcompile clean' if you want to clean up
+#	earlier-compiled exercises before recompiling.
+#
+
+# base directory.
+
+
+
+test=`dirname $0`
+if [ -z "$test" ]; then WIMS_HOME=..; else WIMS_HOME=$test/..; fi
+cd $WIMS_HOME
+WIMS_HOME=`pwd`
+PATH=$PATH:$WIMS_HOME/other/bin
+module_dir=$WIMS_HOME/public_html/modules
+WIMS_OEFTEST=$WIMS_HOME/wimstest/ALLOEF
+if [ "$1" = "test" ]; then
+  mkdir -p $WIMS_OEFTEST
+else
+  echo "This script must be used for test with argument test ; now obsolete. Blocked."
+  exit
+fi
+
+cd $module_dir
+if [ "$2" ]; then candidates="$2" ; else
+candidates=`find [A-Zlc]* -name src -type d | sed 's!/src$!!'`
+fi
+srctotal=0
+deftotal=0
+for d in $candidates
+do
+ if [ ! -f $d/INDEX ] || [ ! -d $d/def ] || [ ! -d $d/src ]; then continue; fi
+ srccnt=`ls $d/src/*.oef 2>/dev/null | grep -c '\.oef$'`
+ if [ $srccnt -eq 0 ]; then continue; fi
+ cd $d
+ if [ "$1" = "clean" ]; then
+  rm -f def/*.def 2>/dev/null
+ fi
+ if [ "$1" = "test" ]; then
+  rm -rf def.orig
+  cp -r def def.orig
+  rm -f def/*.def 2>/dev/null
+ fi
+ src2def >/dev/null 2>&1
+ defcnt=`ls def/*.def 2>/dev/null | grep -c '\.def$'`
+ if [ $defcnt -gt $srccnt ]; then defcnt=$srccnt; fi
+ failcnt=`expr $srccnt - $defcnt`
+ srctotal=`expr $srctotal + $srccnt`
+ deftotal=`expr $deftotal + $defcnt`
+ if [ $failcnt -gt 0 ]; then
+  echo $d: $srccnt sources, $defcnt compiled, $failcnt failure.
+ else
+  echo $d: $srccnt sources, OK.
+ fi
+ if [ "$1" = "test" ]; then
+     d1=`echo $d | sed "s,/,~,g"`
+     echo "$d1 .........\c"
+     rm -f "$WIMS_OEFTEST/$d1.diff"
+     for ii in def.orig/* ; do
+        jj=`basename $ii`; echo "Testing $jj... \c"
+         if ! cmp def/$jj def.orig/$jj ; then
+           echo "CHANGE in $d/$jj ...\c"
+           diff -c def/$jj def.orig/$jj >> $WIMS_OEFTEST/$d1.diff
+         fi
+      done
+      rm -rf def; mv def.orig def
+ fi
+ cd $module_dir
+done
+
+failtotal=`expr $srctotal - $deftotal`
+cat <<@
+
+Total: $srctotal sources, $deftotal compiled.
+Total failure: $failtotal
+
+@
+
+

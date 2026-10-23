@@ -1,0 +1,53 @@
+
+Sharp Tools Spreadsheet version 1.2
+===================================
+
+Copyright (C) 2000-2001, Hua Zhong <huaz@cs.columbia.edu>
+Copyright (C) 2000, Sharp Tools Team <sharp@cs.columbia.edu>
+				
+Sharp Tools spreadsheet was originally a Software Engineering course project
+finished in the fall of 2000 by five CS students at Columbia University. It
+is not a commecial product, nor is it meant to replace StarOffice, but it has
+all the basic functionality as a spreadsheet.  We also hope people can learn
+from the code. 
+
+This is a development version.  The documentation may be inaccurate.
+
+===================================
+Web sites
+===================================
+
+The official web site is http://www.cs.columbia.edu/sharptools/.
+
+It's also available at:
+
+SourceForge: http://sharptools.sourceforge.net/
+Freshmeat:   http://freshmeat.net/projects/sharptools/
+
+===================================
+Build and Run
+===================================
+
+If you want to build/run your own code, do the following (assuming Unix):
+
+$ cd src
+$ make
+$ jar cvf SharpTools.jar *.class
+$ mv SharpTools.jar ../bin
+$ cd ../bin
+$ ./SharpTools
+
+You have to do so if you check out the code from CVS.
+
+===================================
+Database
+===================================
+
+If you want to use the new database function, you need to download the JDBC
+driver(s) and put in CLASSPATH (edit SharpTools or SharpTools.bat).
+
+Below are some such websites:
+
+MySQL: http://www.worldserver.com/mm.mysql/
+HSQL: http://sourceforge.net/projects/hsqldb/
+

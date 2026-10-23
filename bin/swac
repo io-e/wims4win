@@ -1,0 +1,28 @@
+#! /bin/sh
+version=1.0
+
+##this script transfer swac-shtooka ressources at the good place
+##author Bernadette Perrin-Riou
+
+cd `dirname $0`/..
+wimshome=`pwd`
+adresse=`awk -F'=' '$1=="update_site" {print $2; exit}' $wimshome/public_html/bases/sys/publishcenter/wimsedu`
+
+swac=$wimshome/public_html/scripts/data/swac
+cd $swac;
+packs=`ls -d */`
+echo "$version" > version.tmp;
+for i in $packs; do
+  u=`basename $i`;
+  for ext in mp3 ogg; do
+    j=${u}_$ext;
+    wget $adresse/shtooka/$j.tar;
+    tar xf $j.tar;
+    mkdir -p $swac/$u; cp -r $swac/$j/* $swac/$u; rm $swac/$j.tar; rm -r $swac/$j;
+  done
+  echo "audio_exists=yes" > $swac/$u/version;
+  echo "$u" >> version.tmp;
+done;
+
+cd $swac; cp version.tmp version; rm version.tmp;
+./mkindex;

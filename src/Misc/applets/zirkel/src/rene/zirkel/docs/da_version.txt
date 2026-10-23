@@ -1,0 +1,19 @@
+Velkommen til geometriprogrammet JavaPasser!
+
+Enten har du ikke brugt dette program før, eller også er der installeret 
+en ny version.
+
+Hvis du ikke har brugt programmet før, så slå begyndermodus fra 
+når du efter et stykke tid er blevet vant til at bruge programmet.
+
+JavaPassers hjemmeside og forfatterens aktuelle mailadresse findes på 
+forfatterens hjemmeside
+
+http://www.rene-grothmann.de/
+
+
+Informationer om de seneste versioner
+(flere oplysninger på forfatterens hjemmeside)
+
+Den danske oversættelse er ændret, så udtrykket "spor" nu bruges i stedet 
+for "kurve".

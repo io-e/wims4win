@@ -1,0 +1,75 @@
+Remarques importantes:
+
+        Cette page rassemble quelques remarques importantes sur des points
+        particuliers qui ont déjà posé des problèmes à certains utilisateurs.
+
+Création de segments de longueur fixe, de cercles de rayon fixe, etc...
+
+        La première méthode est de créer un cercle ordinaire et d'éditer ses
+        propriétés. Dans la boîte de dialogue d'édition, il suffit de fixer
+        la longueur que l'on souhaite et de cocher la case "fixe".
+        On peut cependant aller plus vite en maintenant la touche Maj (shift)
+        enfoncée lors de la création du deuxième point. La boîte de dialogue
+        d'édition s'ouvre alors automatiquement, et la case "fixe" est cochée.
+        Il en va de même pour les cercles, les angles, et même les points
+        Une autre méthode consiste à utiliser les outils spécialement
+        définis à cet effet, c'est-à-dire les outils de création de segments
+        de longueur fixe, de cercles de rayon fixe, et d'angles de mesure fixe.
+        Les cercles de rayon fixes diffèrent des cercles ordinaires, en ce
+        qu'ils ne possèdent pas de point privilégié sur leur circonférence.
+        Il en va de même pour les angles, qui sont définis seulement par deux
+        points et une mesure (pas de troisième point).
+
+Cacher et montrer des objets:
+
+        La façon normale de procéder est d'utiliser l'outil correspondant:
+        on sélectionne l'outil "Cacher" et on clique sur les objets à cacher.
+        Pour les rendre à nouveau visibles, il faut activer l'outil
+        "Montrer les objets cachés", ou avoir recours à l'historique (F11).
+        On ne peut en effet pas sélectionner directement les objets cachés,
+        puisqu'on ne les voit pas.
+        Les objets peuvent également être cachés ou affichés via la boîte
+        de dialogue d'édition des objets.
+
+        Il y a aussi un outil permettant de cacher tous les objets
+        d'une couleur donnée.
+
+Intersections:
+
+        Les intersections doivent être construites, ce qui s'effectue
+        normalement à l'aide de l'outil correspondant.
+        On peut, soit cliquer sur le point d'intersection lui-même,
+        soit cliquer successivement sur chacun des deux objets dont on veut
+        prendre l'intersection. Si l'un de ces deux objets est un cercle,
+        on obtient naturellement deux points d'intersection. Il est bien sûr
+        toujours possible de cacher l'un de ces deux points.
+
+        Chaque fois que le programme attend un point comme donnée,
+        trois choses peuvent se produire: si on clique sur un emplacement vide,
+        un nouveau point est créé; si on clique sur un point existant, on
+        sélectionne ce point; si on clique sur une intersection
+        (qui n'est pas déjà construite) le programme crée cette intersection
+        après avoir demandé confirmation à l'utilisateur.
+        Une option spéciale permet dans ce cas de cacher automatiquement
+        le deuxième point d'intersection.
+
+        Il est parfois nécessaire de préciser lequel des deux points
+        d'intersection doit être retenu. On peut le faire en précisant que
+        c'est celui qui est différent d'un point donné.
+
+Erreur dans l'utilisation d'une macro
+
+        Cela se produit quand des paramètres secondaires (cercles ou segments)
+        ne vérifient pas les propriétés en vigueur lorsque la macro a été
+        définie. Par exemple, si deux segments sont des objets initiaux d'une
+        macro, et si l'un a pour origine l'extrémité de l'autre, cette propriété
+        doit être vérifiée chaque fois que la macro est appelée. Ou, si deux
+        cercles concentriques sont objets initiaux d'une macro, cette macro ne
+        peut être appliquée qu'à des cercles concentriques. Toute autre
+        possibilité ne ferait qu'introduire des confusions inextricables.
+
+        Ces problèmes ne peuvent en général se poser que pour des macros
+        ayant des segments ou des cercles comme objets initiaux.
+
+
+Mon adresse électronique est grothm@ku-eichstaett.de

@@ -1,0 +1,1908 @@
+.start
+.related online license gui tips localize
+Ajuda Contextual
+
+Esse ajuda lhe dará dicas sobre a ferramenta em uso, ou referente
+a sua última ação. Por exemplo, para obter ajuda sobre a ferramenta
+macro, clique na palavra macro que aparece no menu, escolha uma das opções e depois clique no botão I (que aparece em vermelho no canto direito da barra de ícones). 
+Se quiser ver a janela do R&C ao mesmo tempo que esta, mova-a.
+A posição e dimensões serão armazenadas para a próxima vez que usá-lo.
+
+Na parte superior da janela de ajuda, você vê uma lista "drop down" 
+de tópicos. Basta escolher uma para ler sobre o assunto.
+
+Você também pode pesquisar por palavras-chave. Buscar por "macro"
+encontrará "Macro", e outras palavras contendo "macro". Os resultados
+da busca também aparecerão na mesma lista "drop down". Um dos tópicos 
+encontrados será aberto automaticamente.
+
+Bom trabalho com Régua e Compasso.
+
+O autor
+René Grothmann
+
+N. do T.: Esse arquivo ajuda pode estar ligeiramente desatualizado em relação à versão do programa.
+Dúvidas, erros, sugestões, ...? Escreva para ntegti@zipmail.com.br
+
+.online
+.related start tips
+Ajuda Online
+
+Você encontra as páginas do R&C através da página pessoal
+do autor "www.rene-grothmann.de". As páginas em português
+encontram-se em  http://www.ntegravatai.relrs.g12.br/progr/ReC/
+ou em http://khemis.cjb.net
+Lá você encontrará as atualizações do programa e navegar por
+"demos" e exemplos.
+
+O autor abriu duas listas de discussão para o R&C no Yahoo groups.
+Um é em alemão e o outro é em inglês.
+Visite a página (no link "suporte" ou "suport") para obter os
+endereços da lista ou de e-mail para escrever para o autor.
+
+.license
+.related online start
+Licença do ReC.
+
+R&C é software livre conforme GPL (Gnu General Public License) e
+você é convidado a usar o programa como desejar. Se distribuí-lo,
+inclua pelo menos um link para as páginas do autor.
+
+O código-fonte do programa encontra-se nas páginas do R&C. Contudo, 
+essa fonte e todas as alterações que você ou outros fizerem deverão 
+ser abertas e mantê-la disponível para cópia junto com o programa. 
+Além disso, você deve indicar um link para o código-fonte original.
+
+A mesma licença vale para a documentação.
+
+Se desejar ganhar dinheiro com o programa, crie serviços adicionais, 
+tais como, livros, instruções, tutoriais, etc. 
+Você também pode incluir o programa em distribuições comerciais de 
+"software", por exemplo, em uma distribuição Linux. 
+O autor ficaria muito contente em saber disso e pede que lhe envie 
+uma amostra.
+
+.gui
+.related iconbar mouse zoom online keyboard
+Interface
+
+A área maior que você vê é a janela principal do R&C. Ela mostra a 
+construção. Com as setas de teclado, pode-se mover esta área além de
+ampliá-la ou reduzi-la com as teclas +/-. 
+
+Na parte superior está a barra de ícones. Se deixar o cursor sobre 
+um ícone por mais de dois segundos, aparecerá a descrição da 
+ferramenta. reduzir-se a uma linha apenas.
+A segunda barra contém as ferramentas de construção; a 
+primeira, as propriedades pré-definidas dos objetos.
+
+Na parte inferior está a linha de status, onde aparecem informações 
+sobre a construção. No modo descritivo ("não-visual"), esta linha 
+se converte em linha de entrada de comandos ("prompt").
+
+Os menus têm outras opções, como abrir e salvar arquivos.
+Também exibem as teclas de atalho para as ferramentas.
+
+.iconbar
+.related restricted gui settings
+Barra de Ícones
+
+Clique sobre um ícone para selecioná-lo. Deixe o cursor do mouse sobre 
+ele por alguns instantes e aparecerá uma pequena mensagem indicando 
+sua utilidade.
+
+Há quatro tipos diferentes de ícones.
+
+Ícones para usar com mouse: Exemplos são as ferramentas segmento, ponto,
+e "Definir Parâmetros de Macro".
+
+Ícones de configuração: Exemplos são as que alteram a cor padrão ou 
+o tipo de ponto.
+
+Ícones que alteram a aparência: Exemplos são os ícones "Exibir Grade" 
+e "Exibir Objetos Ocultos".
+
+Ícones de ação: Exemplos são o "Eliminar Último Objeto" ou "Exibir 
+Comentário".
+
+Para configurar a barra de ícones, vá ao menu Opções e selecione 
+"Editar Barra de Ícones". Ali poderá selecionar ou eliminar 
+qualquer ícone. Também pode decidir mostrar apenas uma linha de 
+ícones com ferramentas indispensáveis.
+
+A barra de ícones pode ser configurada para aparecer abaixo da área
+de construção (Veja Configurações Especiais).
+
+Ferramentas desmarcadas podem ainda assim serem usados via teclado 
+ou menu no modo normal.
+
+Para saber mais sobre ferramentas na barra de ícones, deixe o cursor 
+do mouse por algum tempo sobre o ícone que aparecerá uma mensagem.  
+Alguns ícones têm comportamento diferentes quando escolhidos com a  
+tecla CTRL pressionada. Da mesma forma, se deixar o cursor do mouse 
+sobre o ícone mantendo essa tecla pressionada, aparecerá a mensagem 
+pertinente.
+
+.restricted beginner
+.related iconbar
+Barra de Ícones Simples
+
+Há uma forma restrita da barra de ícones, a qual é salva com a 
+construção. O usuário verá essa barra ao carregar a construção.
+
+Para escolher essa barra, selecione esse item no menu Opções. 
+Você também pode editar essa barra, removendo as ferramentas 
+que julgar desnecessária ou que poderiam confundir o usuário 
+de usa construção.
+
+Uma vez desabilitada a barra de ícones simples, você terá a 
+barra de ícones completa ao carregar uma nova construção.
+
+Também há uma barra especial de ícones para iniciantes, sem 
+ferramentas que poderiam confundi-los. Selecione "Modo Novato".
+
+.mouse
+.related gui settings hide point circle move keyboard edit
+O mouse
+
+O botão esquerdo do mouse serve para criar objetos de acordo com
+a ferramenta selecionada. na linha de estado (status) aparecem instruções
+para a construção.
+
+Muitas ferramentas necessitam que o usuário selecione outros objetos.
+por exemplo, para desenhar uma reta é necessário marcar dois pontos. 
+Neste caso, o primeiro ponto fica vermelho até marcar o segundo ponto.
+Se necessitar selecionar um segmento ou uma reta, clique em qualquer
+parte do mesmo.
+
+Se no lugar selecionado houver mais de um objeto, aparecerá una lista
+de todos os objetos possíveis. Se pode selecionar o objeto desejado
+nessa lista com duplo clique sobre ele, ou selecionando-o e clicando
+em OK, ou com o teclado. 
+
+É importante saber que se o programa espera um ponto e o usuário clicar
+num  espaço vazio, o ponto será criado automaticamente. Além disso,
+se o usuário clicar sobre uma interseção, esta interseção será criada. 
+
+Se primir a tecla de maiúsculas (Shift) ao criar uma circunferência,
+um segmento ou um ângulo, o programa assume que o objeto terá tamanho
+definido e abrirá a janela de propriedades. Ali o usuário pode escrever o
+valor que define o tamanho do objeto, ou simplesmente fechar a janela.
+
+O botão direito do mouse serve para mover pontos (além da ferramenta
+mover) ou etiquetas de objetos e para abrir a janela de propriedades dos 
+objetos.
+
+Com a tecla ctrl pode ocultar-se um objeto sem usar a ferramenta
+ocultar. Ao primi-la em circunferências e retas, primeiro as trunca e 
+uma segunda vez as oculta.
+
+.background
+.related gui move htmlexport
+Imagens de Fundo
+
+ReC pode uma imagem por trás da construção. Essa imagem pode ser uma
+construção ou um arquivo de imagem.
+
+Um arquivo de imagem pode ser centralizada, ajustada ou colocada lado
+a lado na janela de construção. Também é possível que a janela do ReC
+seja ajustada automaticamente para ficar do mesmo tamanho da figura 
+carregada.
+
+Se a imagem se ajustar exatamente ao tamanho da janela, um será salvo 
+com no exportar para HTML. Nesse caso, o tamanho do applet será o mesmo
+da imagem. Você deverá publicar a imagem no mesmo diretório do applet.
+Se desejar publicar o arquivo HTML em um diretório diferente do diretório
+da imagem, será necessário editar o arquivo HTML manualmente.
+
+.properties
+.related edit colors hide mouse transparent point fixedangle replay animatebreak
+Propriedades de Objetos
+
+Abra o diálogo de propriedades de um objeto com o botão direito do mouse,
+ou na ferramenta Ações. Muitas configurações são comuns a todos os objetos:
+
+ - nome
+ - descrição
+ - unidade
+ - cor
+ - espessura
+ - ocultar objeto
+ - exibir nome
+ - exibir valor
+ - largura da fonte
+ - estado do fundo
+ - transparência
+ - ponto de parada
+
+Nomes podem conter quase todos os caracteres. Se contiver "~", só 
+exibirá a parte anterior ao til mantendo o mesmo nome exibido. Um 
+nome tem que ser exclusivo (único). Descrições são geradas de modo 
+automático, mas podem ser alterados. Se alterados, o usuário pode 
+reverter para a descrição automática esvaziando a linha.
+
+Alguns objetos possuem tamanho e unidades. Alterar um tamanho só 
+funciona em objetos definidos. "Unidade" é um texto inserido no 
+campo apropriado. Para ângulos, pode ser usado o símbolo "Â°".
+
+A espessura funciona distintamente para objetos diferentes. Por favor, 
+experimente para saber os efeitos. Objetos podem ser ocultos ou ocultos 
+completamente. Nesse último caso, só poderão ser acessados no modo 
+descritivo. 
+
+A exibição de nome e valor pode ser combinada como em "s=2". Se o nome 
+terminar com sublinhado como em "P_", o "_" será eliminado e não haverá 
+"=".
+
+Outros objetos permitem preenchimento. Além disso, pode-se optar por 
+torná-los transparentes ou não. Normalmente, somente objetos preenchidos 
+estão no fundo, mas qualquer objeto pode ser colocado no fundo.
+
+Pontos de parada são importantes para "replay" ou animações de pontos de 
+parada.
+
+Há outras configurações para objetos especiais, tais como tipo de ponto 
+estilo de linha.
+
+Observe os botões na parte inferior. Por exemplo, pontos apresentam 
+um botão para escolher seu tipo (quadrado, diamante,..); ângulos fixos 
+possuem um botão especial que permite copiar sua amplitude para outro.
+
+.transparent
+.related colors reorder properties
+Transparência
+
+É possível aplicar transparência a objetos se usar java 1.2 ou superior. 
+Além disso, EPS não suporta transparência.
+
+Além disso, objetos preenchidos são desenhados para que fiquem por trás. 
+Se desejar alterared basta alterar do diálogo de configuração de todos 
+os objetos. Assim, eles serão desenhados na ordem que foram construídos.
+
+Cada objeto pode ter sua transparência desativada (modifique na janela 
+diálogo das propriedades dos objetos).
+
+.point
+.related boundpoint intersection settings mouse properties
+Pontos
+
+Um ponto pode ser criado por meio de diversas ferramentas. 
+A ferramenta "ponto" normalmente cria um ponto livre e movível.
+
+Contudo, perderá a mobilidade, se criar uma intersecção com ele.
+Pontos de intersecção não são livres (movíveis), exceto, é claro, se 
+dependerem de dois objetos interseccionados.
+
+Um ponto fará parte de círculo ou linha ao tentar criá-lo sobre um 
+desses objetos. Uma janela de confirmação será exibida (a menos que 
+tenha sido desabilitada em Opções -> Configurações Especiais). 
+Além disso, o ponto será fixo se pressionar SHIFT ao criá-lo sobre 
+o objeto.
+
+Pontos podem ser definidos por expressões. Pressione a SHIFT ao 
+criar o ponto se desejar que ele seja fixo. 
+
+Pontos fixos podem ser movidos se a expressão referir-se a ele 
+mesmo. Nesse caso, a posição é recalculada através da expressão. 
+Isso é útil para restringir o movimentos de pontos.
+
+Assim como outros objetos, pontos livres podem ser arrastados após 
+serem criados. Ao fazer isso, a posição e o nome serão exibidos, a 
+menos que esse recurso esteja desabilitado.
+
+.boundedpoint
+.related point line mouse properties
+Pontos sobre Objetos
+
+Eles são pontos atrelados a uma linha ou círculo. Eles se
+moverão com o círculo continuamente, ao mover o círculo. Um ponto 
+pode ser liberado e relacionado a um novo objeto a qualquer momento 
+por meio de seu diálogo de propriedades.
+
+Pontos podem ser atrelados de dois modos. Ou o ponto é projetado a 
+cada vez que o objeto é movido, ou o ponto é mantido em sua posição 
+relativa no objeto. No primeiro, é aplicado mantendo SHIFT pressionado 
+ao selecionar o objeto (somente se o ponto for criado pela ferramenta 
+para pontos dependentes). Além disso, essa definição relativa pode ser 
+removida ou definida no editor do objeto. A definição relativa é o modo 
+padrão.
+
+Pontos relacionados não são livres. Contudo, se um segmento estiver 
+com os dois pontos extremos sobre uma linha e um deles for dependente 
+(à  linha), o segmento pode ser definido (fixo).
+
+.line ray
+.related point parallel properties segment
+Linhas e Semi-Retas
+
+Esses objetos dependem de dois pontos. Assim, você tem que escolher 
+dois pontos para a construção.
+
+As diferenças entre linhas concernem não somente à  aparência desses 
+objetos. Intersecções e linhas perpendiculares comportam-se de modo 
+diferente para esses objetos. I.e., intersecções com semi-retas são 
+inválidas, se o ponto de intersecção não estiver sobre a semi-reta. 
+Linhas perpendiculares à  semi-reta são inválidas, se a intersecção 
+com a linha não estiver no segmento. Para linhas perpendiculares, é 
+é possível desativar esse comportamento.
+
+Note que as ferramentas "linha perpendicular", "ângulo de amplitude 
+fixa" ou "paralela" também geram linhas.
+
+Veja: Segmentos
+
+.segment fixedsegment
+.related expressionsyntax point parallel properties line
+Segmentos
+
+O comprimento de uma segmento pode ser definido (fixado), se tiver um 
+ponto livre. Para criar esse segmento, escolha o segundo ponto enquanto 
+mantém pressionada a tecla SHIFT, ou use o ícone especial (nesse caso, 
+o segundo ponto sempre será criado).
+
+Segmentos podem ser exibidos como setas (vetores).
+
+Veja: Linhas e semi-retas
+
+.circle circle3
+.related properties point transparency fixedcircle
+Círculos
+
+Há 3 tipos de círculos. Círculos em torno de um ponto M passando por 
+um ponto A; em torno de um ponto M com raio AB; ou círculos fixos.
+Cada tipo possui seu próprio ícone. No primeiro tipo são esperados 2 
+pontos; no segundo, três pontos; no último, apenas um.
+
+O desenho de um círculo pode ser limitado entre dois pontos definidos,
+formando arco. Nesse caso, é possível manter um arco com menos de 180 
+graus (i.e., sempre o menor arco será representado a partir das duas 
+extremidades). Você seleciona os pontos extremos com um botão no diálogo 
+de propriedades do círculo.
+
+Veja: Círculos Fixos
+
+.fixedcircle
+.related reorder expressionsyntax properties point transparency
+Círculos Fixos
+
+Círculos Fixos não possuem ponto na borda. Para criá-los, pressione a 
+tecla SHIFT quando for clicar para definir o segundo ponto. Também dá 
+para fazer o mesmo escolhendo o ícone "Círculo com Raio Fixo". 
+Em ambos os casos, abrirá o diálogo de propriedades em que você poderá 
+inserir expressões e outras possibilidades. Se o círculo for arrastado 
+assim que tiver sido criado, o diálogo não abrirá e seu tamanho será 
+mantido.
+
+Círculos fixos podem ser dimensionados segundo a distância entre dois 
+pontos através de expressões. Use o botão "Definir tamanho..." para 
+isso no diálogo de propriedades. 
+
+.intersection
+.related point properties segment selectintersection
+Intersecções
+
+Cria intersecção entre linhas, círculos e entre uma linha e um círculo.
+Nas construções em papel, isso pode não ser nada além do qe algo a mais 
+para fazer. O computador não consegue computar todas as intersecções 
+possíveis. Além do mais, explicitar a construção de intersecções torna 
+os passos necessários mais claros. 
+
+Como atalho, as intersecções são criadas onde quer que o programa espere 
+um ponto e o usuário clique próximo a uma intersecção. A previsuallização 
+exibirá claramente os objetos interseccionados.
+
+A ferramenta intersecção está oculta por padrão, uma vez que a podemos 
+usar em seu lugar a ferramenta ponto na maioria dos casos.
+
+Veja: Seleção de Intersecções
+
+.selectintersection
+.related intersection point
+Seleção de Intersecções
+
+Note que círculos intersectam em 2 pontos. O ReC cria as duas 
+intersecções somente se os 2 círculos são selecionados como 
+parâmetros da ferramenta intersecção um após o outro. Se precisar de apenas um, 
+oculte o outro. Para criar intersecções automaticamente, a outra 
+intersecção não será criada.
+
+Há um problema sutil no modo como o ReC ordena as duas intersecções 
+de círculos (ou um círculo e uma linha). Ao contrário de outros 
+programas, isso é feito de um modo previsível. Para círculos, a ordem 
+mudará, se os círculos forem trocados. As intersecções entre um linha 
+e um círculo dependem da direção da linha (i.e., a ordem em que os foram 
+criados os pontos). Experimente mover a linha de modo a não mais 
+interseccionar o círculo, então mova-a de volta. A ordem das intersecções 
+permanecerá a mesma.
+
+Por vezes, a intersecção deve ser especificada. Isso pode ser feito 
+indicando um dos pontos da intersecção para ser diferente de um outro 
+certo ponto. Então, as intersecções serão ordenadas tal que a intersecção 
+escolhida será mais afastada do outro ponto. O diálogo para intersecções 
+contém uma linha de entrada (input) especial para especificar o outro 
+ponto, ou um botão para escolher o ponto interativamente.
+
+Note que esse tipo de intersecção é criada automaticamente, se o outro 
+ponto de intersecção for um ponto no perímetro de ambos os círculos, e 
+se esse ponto for visível. 
+
+Você também pode especificar a intersecção para ser mais próxima de um 
+dado ponto.
+
+.parallel plumb midpoint
+.related line point properties
+Linhas Paralelas e Perpendiculares, pontos médios
+
+São apenas atalhos para construções clássicas. A primeira das duas 
+ferramentas cria linhas. O ponto médio é um ponto, naturalmente.
+
+Linhas perpendiculares a segmentos se tornam inválidos sem uma 
+uma intersecção no segmento. Você pode desativar isso no diálogo 
+propriedades.
+
+.move
+.related circle angle background mouse
+Mover Objetos
+
+Usada para mover pontos, como altarnativa ao uso do botão direito do 
+mouse. Também pode arrastar círculos definidos e ângulos, a menos que 
+esses objetos estejam fixos. Nesse caso, pressione junto a tecla CTRL.
+
+Ao selecionar a ferramenta Mover Ponto ou ao reiniciá-la com a tecla 
+ESC, todos os pontos passíveis de serem movidos piscarão em vermelho 
+(ou na cor escolhida em Opções -> Modificar as Cores -> Escolher).
+
+Pode-se mover vários pontos de uma só vez pressionando SHIFT para 
+selecionar os pontos (solte a tecla após selecionar o último ponto).
+
+Se mover com a tecla CTRL pressionada, será mostrada a posição 
+inicial da construção até liberar o botão do mouse.
+
+.tracker objecttracker
+.related point animate background mouse
+Rastreio e rastreio automático
+
+Essas ferramentas desenham tracejados de pontos, ou geram curvas, 
+as quais possuem um conjunto de linhas como linhas tangentes.
+
+O rastreio simples funciona assim: o usuário move um ponto e o rastreio 
+de outro(s) ponto(s) é desenhado. Ou seja, escolhe-se um ponto a ser rastreado 
+e escolhe-se um outro ponto a ser movido com o botão esquerdo do mouse. 
+Pode-se rastrear mais de um ponto usando SHIFT para selecioná-los.
+
+Alternativamente, a ferramenta pode construir uma curva, a qual possui um 
+conjunto de linhas como tangentes, chamada linha de rastreio. Nesse caso, os primeiros 
+objetos a serem selecionados devem ser linhas, semi-retas ou segmentos. Você pode combinar 
+linhas e pontos de rastreio.
+
+O rastreio automático move autmoaticamente o ponto em um dado objeto. 
+Assim, indicam-se o(s) ponto(s) a ser(em) rastreado(s), o objeto 
+(círculo, segmento, linha), e o ponto a ser movido. O rastreio é 
+recomputado, se qualquer outro ponto for movido, mostrando a 
+dependência do rastreio a esses parâmetros. O rastreio (ou trilha) é animado 
+até que o usuário clique em algum lugar na construção. Mais de uma linha 
+ou ponto podem ser rastreados usando SHIFT durante a seleção.
+
+O rastreio automático tentar correr por toda a construção evitando 
+estados inválidos. Se o primeiro ponto (ou linha) rastreado tornar-se 
+inválido, o ponto em movimento retornará e intersecções inválidas serão 
+trocadas.
+
+A rapidez da animação pode ser alterada com a tecla SHIFT pressionada 
+junto com as setas "para esquerda" e "para direita" no teclado. Clique 
+na construção para poder usar o teclado.
+
+Os rastros são guardados com a construção por seus parâmetros. Se o rastreio 
+for animado, o rastreio começará automaticamente ao carregar o arquivo. 
+Contudo, rastreios não são objetos de construção. Eles são guardados 
+na construção e não se pode construir objetos a partir deles.
+
+O rastreio é eliminado ao escolher nova ferramenta.
+
+Rastreio automático pode ser incluído em uma construção pelo menu Ações. 
+Desse modo, é possível criar vários rastreios automáticos independentes. 
+É interassante notar que você pode ajustar parâmetros da curva 
+e ver as alterações imediatamente. Os rastreios são recriados um 
+tanto lentamente. Não é recomendável exagerar no número de rastreios.
+
+Também pode ser útil definir o rastreio como figura de fundo.
+
+.animate
+.related circle line
+Animação
+
+Animará um ponto que percorrerá um ou mais segmentos ou círculos. 
+Para iniciar a animação, selecione o ponto e depois a seqà¼ência 
+de segmentos ou círculos. Termine selecionando mais uma vez o ponto 
+ou qualquer um dos objetos.
+
+Para parar a animação, clique na construção. Para animar de trás 
+para diante em círculos, use SHIFT ao clicar sobre a construção.
+
+As animações são guardadas com o arquivo de construção. Em applets, a 
+animação evitará completamente a interação do usuário.
+
+.angle
+.related circle properties fixedangle
+ângulos
+
+ângulos normais são decorativos e não podem ser usados para construir algo.
+A ordem de entrada é A, B, C, onde B é o ponto do vértice.
+
+ângulos podem ser exibidos em 3 tamanhos diferentes. O maior mostrará 
+um arco circular que inicia em A.
+
+ângulos podem ter letras gregas no nome. Para obter um "alfa", escreva 
+\a, \A; para "beta", \b ou \B; etc. Você também pode usar caracteres Unicode com \0XXXX, 
+onde XXXX é qualquer número hexadecimal.
+ângulos de 90Â° ou com nome iniciado com "." serão rotulados com um 
+ponto, se o tamanho mostrado estiver ativo. ângulos podem ser preenchidos.
+
+Por padrão, ângulos nunca são maiores que 180 graus. A ordem de A e 
+C não importa. Contudo, isso pode ser desativado no diálogo de propriedades.
+
+Veja: ângulos Fixos
+
+.fixedangle
+.related circle reorder expressionsyntax properties angle
+Ângulos Fixos
+
+ângulos de amplitude fixa não possuem ponto C, mas um lado fixo. 
+Para criá-los, pressione SHIFT ao clicar no que seria o ponto C ou escolha a 
+ferramenta "ângulos de Amplitude Fixa". Em seguida, abrirá o diálogo de configuração para 
+entrar uma expressão para o lado do ângulo. Se o ângulo for arrastado imediatamente, 
+esse diálogo não aparecerá.
+
+ângulos fixos podem ser dimensionados com 3 pontos. Para isso, selecione 
+o botão "Definir tamanho..." no diálogo de configuração e selecionar 3 
+pontos A, B, C, onde B é o ponto do vértice. O ângulo terá o mesmo 
+tamanho do ângulo ABC. Note que somente ponto podem ser usados, os quais 
+devem ser construídos antes do ângulo.
+
+ângulos fixos podem se invertidos. Assim, não é preciso usar orientação 
+positiva. Além disso, se um ângulo fixo for restrito a 180Â° por padrão, e 
+se tal ângulo for construído de modo negativo (do ponto de vista matemático), 
+ele será invertido. Há um ícone no diálogo de configurações que controla a inversão.
+
+Veja: ângulos
+
+.area
+.related point properties background
+Polígonos Preenchidos
+
+Crie uma área limitada por segmentos com essa ferramenta. Entre cada 
+cada canto com um clique. Duplo clique para colocar o último ponto.
+
+Os segmentos são ocultos, quando a área tiver espessura mínima no 
+diálogo propriedades.
+
+.expression
+.related angles circles properties reorder expressionsyntax
+Expressões
+
+Você pode usar expressões aritméticas no ReC para
+
+ - definir coordenadas de pontos,
+ - comprimentos de segmentos,
+ - raio de círculos,
+ - e amplitude de ângulos.
+
+Além disso, você pode exibir valores de expressões em construções.
+Use a ferramenta expressão para exibir uma na tela. As expressões 
+podem ter um texto explicativo, serem arrastadas com o mouse (use 
+o botão direito) e podem ou não exibir os valores calculados.
+
+Veja: Sintaxe para Expressões
+
+.expressionsyntax
+.related fixedangles fixedcircles point properties reorder
+Sintaxe para Expressões
+
+Nome 
+ Exemplo 
+ Descrição 
+ 
++, -, *, /,^ or ** 
+ 3.5*3+3/(4-5^2) 
+ Matemática elementar.
+ 
+Nome do objeto 
+ AB/CD 
+ O nome de um segmento, círculo, ângulo e outra expressão. O objeto 
+pode ser definido antes de aplicar-lhe uma expressão. Nesse caso, use 
+a sintaxe @nome ou @"nome" (não funcionará em macros).
+ 
+Função 
+ sin(a) 
+ As funções abs, sign, sin, cos, tan, arcsin, arccos, arctan, sqrt,
+exp, log, round, ceil, floor, deg, rad, angle180 e angle360. Note
+que as funções trigonométricas são indicadas em graus. Use deg(x) 
+para converter de radianos para graus.
+ 
+Pi 
+ pi 
+ A constante Pi. 
+ 
+x,y 
+ x(P), y(P) 
+ Coordenadas x e y de um ponto. 
+ 
+d 
+ d(P,Q) 
+ Distância entre dois pontos.
+ 
+d 
+ d(x) 
+ Computa mudanças na expressão x. Se x é um ponto, ele computa 
+movimentos.
+ 
+sum
+ sum(x,f)
+ Soma até x. Se f for negativo ou inválido, devolverá 0.
+ 
+a 
+ a(P,Q,Z) 
+ Tamanho de um ângulo PQZ. 
+
+scale 
+ scale(x,a,b) 
+ A posição relativa de x em [a,b), se x estiver no intervalo. Do 
+contrário, a expressão torna-se inválida. 
+
+if 
+ if(e,e1,e2)
+ Devolve e1, se "e" for válido. Do contrário, devolve e2. 
+
+invalid
+ invalid devolve uma expressão inválida. 
+
+&&,||,! ! 
+ (x<4 && y<4) 
+ Expressões lógicas. 1 é verdadeiro, 0 é falso. 
+
+<, >, <=, >=, ==, ~= 
+ x<y 
+ Comparação de números. ~= significa "semelhante". 
+
+Note que as expressões podem ser usadas em objetos construídos antes deles. 
+Para alterar a ordem de sua construção, use a ferramenta de reordenação.
+
+.area
+.related properties point transparent
+Polígonos Prenchidos
+
+Preenche com uma cor a área definida por pontos. O preenchimento pode 
+ser em tom claro. Em Java 1.3, áreas preenchidas serão transparentes. 
+Para definir a área, seleciones os cantos. A definição é completada ao 
+clicar pela segunda vez em qualquer um dos pontos que constituem o polígono 
+(naturalmente, são necessários no mínimo 3 pontos para constituir o polígono).
+
+.text
+.related replay comment properties
+Texto
+
+Exibe um texto em múltiplas linhas na construção. Você pode editar o 
+texto com o editor interno. As propriedades do texto (cor, posição, 
+etc.) podem ser alteradas ao clicar no botão "Outras configurações" 
+que aparece no Editor. Você pode posicionar o texto usando expressões 
+aritméticas. Posições inválidas tornarão o texto invisível (um tanto 
+útil em alguns casos).
+
+Textos ocultos aparecem no "replay" no seu passo específico, o que 
+permite mostrar comentários contextualizados, e desaparecem em seguida.
+
+.quadric
+.related properties point transparent
+Secções Cà´nicas
+
+Secções cà´nicas são conjuntos de soluções de equações formadas por combinações 
+lineares de x^2, y^2, x, y, xy e 1 (funções quadráticas com duas 
+variáveis). Cà´onicas são determinadas por 5 pontos. Basta selecioná-los.
+
+Para editar as propriedades da curva, clique nela e use o diálogo de 
+propriedades. Se marcar a opção de "mostrar valores dos objetos", será 
+exibida a equação que define a cà´nica;
+
+.hide
+.related construction properties mouse
+Objetos Ocultos
+
+Esconde objetos. Para torná-lo visível novamente, habilite a opção para 
+exibir todos os objetos. Você também pode ocultar um objeto ao clicar  
+com o botão direito do mouse sobre ele enquanto mantém a tecla CTRL 
+pressionada.
+
+Se tentar ocultar um objeto enquanto pressiona a tecla SHIFT, ele será 
+completamente ocultado. Nesse caso, ele só poderá tornar-se visível 
+novamente usando a lista de objetos na descrição da construção (tecla 
+de atalho F11). Nessa lista, tais objetos aparecerão entre parênteses.
+
+É possível ocultar todos os objetos duplicados. Apenas aqueles objetos 
+mais recentes ficarão visíveis. Pressione CTRL ao escolher a ferramenta 
+ocultar e use o menu.
+
+.rename
+.related properties
+Renomear Alfabeticamente
+
+Você pode renomear linhas para a, b,c,...; pontos para A,B,C,..., 
+e ângulos para \a,\b,\c,... Basta clicar sobre o objeto e o ReC 
+renomeará com a primeira letra disponível.
+
+Se necessitar a letra "a" para dois objetos diferentes, use "a~1" e 
+"a~2": o til não é exibido, nem o que vem depois dele.
+
+Você pode forçar a ordem A, B, C pressionando a tecla SHIFT ao clicar 
+em um pontos. As letras serão substituídas, se já estiverem em uso na 
+construção. Para reiniciar a ordenação, aperte a tecla ESC.
+
+.delete undo back
+.related construction
+Eliminar Objetos
+
+Deleta (elimina) os objetos mais recentes e todos os objetos ocultos 
+anteriores. Desfazer restaura todos esses objetos de uma só vez.
+
+Há outra ferramenta que elimina qualquer objeto e todos aqueles que 
+dependerem dele.
+
+Desfazer restaura apenas uma dessas operações.
+
+.function
+.related expressionsyntax properties
+Funções e Curvas
+
+O ReC pode exibir funções e curvas paramétricas. Para criar um função 
+vá ao menu Ações ou selecione seu ícone. No diálogo, entre os valores de 
+início e fim da variável parâmetro e o tamanho do passo. Se desejar, você 
+pode usar qualquer "string" como nome de parâmetro ou usar o habitual "x".
+
+Uma função simples seria colocar "x" como valor para x, e "f(x)" como valor 
+de y. "f(x)" deve ser uma expressão válida, tais como: x+2, sin(x) [seno de x], 
+log(x+2), sqrt(x) [raiz quadrada de x], x^3 [x elevado ao cubo], etc.
+
+Para uma curva paramétrica, você precisa de 2 funções, uma para o valor de x e 
+outra para o valor de y.
+
+O programa incrementará a variável parâmetro do valor inicial ao final usando 
+o tamanho de passo dado. Se a função for válida entre 2 passos do parâmetro, 
+um segmento de linha será desenhado na construção usando as coordenadas 
+da construção.
+
+.defaults
+.related line angle colors
+Configurações-padrão
+
+Você pode definir a cor e aparência padrões e algumas propriedades de 
+objetos novos.
+
+ - cor de objetos
+ - espessura de objetos
+ - estilo dos pontos
+ - círculos parciais
+ - linhas parciais
+ - segmentos como setas (vetores)
+ - exibir nomes
+ - exibir valores
+ - usasr nomes longos
+ - fonte em negrito e maior
+ - ângulos maiores que 180 graus
+ - objetos sem transparência
+
+.edit
+.related mouse properties
+Editar Objetos
+
+Edita as propriedades de um ou mais objetos. Para selecionar vários objetos, 
+use SHIFT. O diálogo de edição de mais de um objeto possui 
+campos em um estado inválido. Somente os campos alterados serão 
+usados para atualizar os objetos.
+
+Se a tecla CTRL for pressionada ao escolher essa ferramenta, o último objeto será editado.
+
+Se a tecla CTRL for pressionada, ao selecionar o objeto com o 
+botão direito do mouse, será possível editar as condições para as  
+propriedades dos objetos.
+Para cores, espessura e outras propriedades, é possível definir 
+condições para ativá-las. Isso é útil para efeitos especiais.
+
+.show
+.related hide
+Ocultar por cor
+
+Exibe ou oculta objetos de acordo com a cor que apresenta. É usada 
+para tornar a construção mais clara, compreensível.
+
+.grid
+.related zoom move mouse
+Grade
+
+Aciona a exibição do sistema de coordenadas. Se a grade estiver ativa, ao criar 
+ou mover pontos com o botão direito do mouse, eles se ajustarão às linhas da 
+grade (ou ao centro de uma quadrícula).
+
+Se a grade estiver ativa ao guardar o arquivo de construção, ela também aparecerá 
+ao carregá-lo em outra oportunidade.
+
+Durante a repetição ("replay"), textos ocultos ficarão visíveis.
+
+.replay
+.related htmlexport text animatebreak
+Passear por Construções
+
+Essa ferramenta abre uma pequena janela com botões contendo os botões 
+clássicos para avançar, retroceder, etc. Adicionalmente, pode-se criar 
+pontos de parada. Pontos de parada são importantes, por exemplo, ao 
+exportar para HTML e o usuário poder ver os passos da construção.
+
+Uma vez definido um ponto de parada você pular até ele com um simples 
+clique.
+
+Para definir um ponto de parada, mantenha a tecla SHIFT pressionada. 
+Pontos de parada ocultos escondem todos objetos adiante deles até o 
+próximo ponto de parada. A construção será dividida em várias partes.
+
+Pontos de parada (ocultos ou não) podem ser definidos no diálogo de 
+propriedades.
+
+.animatebreak
+.related replay
+Animar Pontos de Parada
+
+Essa ferramenta automaticamente passa de um ponto de parada a outro.
+Para aumentar ou diminuir a rapidez, pressione shift e as setas para 
+direita e para esquerda no teclado.
+
+.draw
+.related mouse
+Desenhar com o mouse
+
+Você pode rabiscar com o mouse usando esse ícone. 
+Para apagar, pressione a tecla ESC ou "Apagar Rabisco" no menu "Ações".
+
+O desenho será salvo. Contudo, arquivos de construção com desenhos são 
+maiores.
+
+.zoom
+.related mouse grid
+Zoom com o mouse
+
+Afaste ou aproxime a região da construção arrastando o mouse. 
+Arraste a construção para o centro da área de visualização. 
+Em seguida, o ponteiro do mouse se modificará.
+
+Você também pode usar as teclas + (aproximar)  e - (afastar) e 
+mover o campo de visão com as setas para esquerda e para direita 
+no teclado.
+
+A construção será guardada como estiver sendo exibida.
+
+.parameter
+.related runmacro parametertypes target
+Parâmetros de Macro
+
+Macros são importantes para construções mais complicadas. Sem elas, 
+apenas construções simples seriam possíveis. Macros reúnem várias 
+etapas de construção em apenas uma. Elas se comportam como subrotinas 
+(comuns em linguagem de programação). Macros são como se fossem novas 
+ferramentas criadas pelo usuário.
+
+Uma macro requer objetos como parâmetros e como alvos, tais como a 
+ferramenta segmento requer dois pontos como parâmetros e tem o 
+segmento como alvo.
+
+Macros no ReC são fáceis de serem definidos. Você indica à  macro, 
+que parte de sua construção ela deve "aprender". Chamamos isso de "definição 
+de modelo". Para criar um modelo, construa alguns alvos iniciando com 
+alguns objetos como parâmetros! E.g., você poderia construir a linha 
+média perpendicular de um segmento entre 2 pontos iniciando por esses 
+2 pontos.
+
+Na primeira etapa, você mostra à  macro seus pontos iniciais. As macros 
+"aprenderão" que eles são os parâmetros de sua construção. Então, 
+pressione o ícone da ferramenta macro uma vez mais para definir os alvos. 
+Agora, clique no ícone da ferramenta macro pela terceira vez para dar um nome a 
+ela e um comentário. Quando quiser usar sua macro, basta clicar com o botão direito 
+do mouse sobre uma área vazia no ReC para escolher a macro na lista que se abrirá.
+
+Veja: "Alvos" e "Rodar uma Macro"
+
+.target
+.related parameter runmacro parametertypes
+Alvos
+
+Após selecionar seus parâmetros, pressione o ícone de macro uma vez 
+mais para selecionar os alvos. Você verá apenas os objetos que são 
+oonstruíveis com esses parâmetros naquele estado. E.g., você verá a 
+perpendicular média de 2 pontos, se você tiver selecionado esses 2 
+pontos como parâmetros. Você também verá todas as etapas intermediárias 
+da construção (a menos que você as tenha ocultado).
+
+Selecione os alvos agora. E.g., selecione a linha média perpendicular.
+
+Você deve sempre definir pelo menos um objeto como alvo. Se não o fizer, 
+todos os objetos visíveis serão construídos pela macro. Alvos terão as 
+cores e estilos padrões ao rodar a macro. Todos os outros objetos terão 
+o estilo do modelo, exceto objetos pretos que tomarem a cor padrão. 
+Todos os objetos ocultos também serão construídos ocultos. Contudo, há uma 
+opção para ocultar automaticamente todos os objetos que não sejam alvos 
+mesmo quando forem visíveis durante a cosntrução. Além do mais, se a 
+macro for usada no modo descritivo, o usuário pode atribuir nomes somente 
+a objetos-alvo. 
+
+Pressione novamente o ícone de macro para defini-la na janela que se 
+abrirá. 
+
+Veja: Definição de Macro
+
+.macro
+.related runmacro parametertypes parameter target expression fixedcircle fixedangle hintparameters
+Definição de Macro
+
+Após selecionar seus parâmetros e seus alvos, pressione novamente 
+no ícone da ferramenta macro para definir a macro em um diálogo.
+
+Você pode dar um nome, fazer um comentário e editar as entradas do 
+usuário para cada parâmetro. Comentários e entradas ("prompts") são 
+importantes, desde que o usuário não saiba o que a macro faz e o que 
+é necessário para que seja executada com sucesso. As entradas são 
+exibidas na linha de estado ("status"), enquanto houver parâmetros 
+solicitados pela macro.
+
+É possível fixar um parâmetro de um objeto A usnado "=A" para o prompt 
+de parâmetro. O parâmetro não será colocado. Um objeto "A" será usado no 
+lugar, se houver um e se for do tipo correto.
+
+Por padrão, macros ocultam todos os objetos que sejam duplicados de 
+objetos existentes. É possível desabilitar esse modo.
+
+Além do mais, é possível pedir um valor para o usuário tanto para um 
+círculo ou ângulo definidos, ou uma expressão, enquanto a macro estiver 
+rodando. Para isso, entre o nome do círculo, o ângulo ou a expressão 
+na caixa na última linha. O usuário será informado por um diálogo e poderá 
+entrar qualquer expressão aritmética. Use várias vírgulas para informar 
+ao usuário sobre distintos objetos.
+
+.hintparameters
+.related macro
+Parâmetros Indicativos
+
+Esse recurso oculta parâmetros. Se um ponto oculto for escolhido como um 
+parâmetro de macro ao criar a macro, e se esse ponto for associado a 
+um ponto criado ao selecionar o parâmetro no momento de executá-la, 
+esse novo ponto será oculto após a macro ter sido executada. Esse recurso 
+torna possível usar pontos como parâmetros indicativos. Um exemplo seria uma 
+macro que criasse um triângulo equilátero a partir de um segmento. A dica seria 
+um terceiro clique indicando também o tamanho do segmento. Nesse caso, uma 
+expressão seria usada por um dos ângulos de 60Â° que envolvem o terceiro 
+ponto. Algo como "60*sign(180-a(P,A,B))".
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters
+Rodar uma Macro
+
+Selecione a macro em uma lista. Se a tecla SHIFT for pressionada,
+a macro mais recente será automaticamente selecionada. Então o ReC 
+aguardará a entrada de cada parâmetro e exibirá o tipo de objeto pertinente.
+
+Macros também podem ser selecionadas com um clique no botão direito do mouse. Basta 
+escolher uma na lista que se abrirá.
+
+Se você ver "BARRA DE ESPAà‡O escolhe ...", você poderá escolher o objeto indicado 
+com um simples teclar na barra de espaço. ótimo para o caso de a macro ser usada 
+muitas vezes.
+
+Finalmente, a macro será executada. Se a macro precisar de um valor para um 
+círculo ou ângulo definido, será aplicada com uma caixa de diálogo. O usuário 
+pode inserir qualquer expressão aritmética para esse valor.
+
+Se estiver ativada a opção "Visualizar objetos criados" (menu Opções, Configurações Especiais), 
+você verá como ficará o resultado da operação antes mesmo de selecionar o último parâmetro.
+
+.defaultmacros
+.related runmacro save
+Macros Nativas
+
+Ao iniciar o ReC, ele procura pelo arquivo "default.mcr" (pt_default.mcr, 
+no caso de versão em português). Esse arquivo contém macros que serão carregadas 
+com o programa. 
+
+Essas macros são protegidas. Elas não são deletadas ao carregar um arquivo 
+nem são guardadas com as construções. Para deletar macros protegidas, use 
+o menu Macros -> Eliminar Macros. Abrirá um diálogo para escolher as macros 
+que desejar eliminar ("deletar").
+
+Você pode editar o arquivo pt_default.mcr (ou default.mcr) como 
+desejar.
+
+.localize
+.related defaultmacros
+Traduções
+
+ReC funciona em muitos idiomas. Contudo, se desejar sua própria versão, 
+você deverá traduzir:
+
+ - ZirkelProperties.properties
+ - info.txt
+
+O arquivo "properties" deve ser traduzido em uma representação Unicode 
+com uma ferramenta chamada "native2ascii". O autor também pode fazê-lo 
+por você. Basta enviar-lhe o arquivo.
+
+Este arquivo de ajuda não precisa desse recurso.
+
+.fixparameters
+.related runmacro parameter
+Parâmetros Fixos
+
+Você também pode fixar os parâmetros de uma macro ao pressionar SHIFT 
+durante a seleção. Isso criará uma cópia da macro, a qual é fixa a 
+esses parâmetros. Naturalmente, você não pode fixar todos os parâmetros.
+
+Um parâmetro pode ser fixo, enquanto a macro é definida. Para fazê-lo, 
+escreva "=A" como entrada ("prompt") do parâmetro. Esse parâmetro será 
+fixo ao objeto com o nome "A".
+
+.parametertypes
+.related parameter
+Tipos de Parâmetros
+
+É muito fácil usar pontos como parâmetros. Mas há outros possíveis de 
+serem usados.
+
+Círculos criam parâmetros secundários (o ponto central). Nas linhas, 
+semi-retas e segmentos são os dois pontos que os definem. Isso simplifica 
+o uso de macros, o usuário deve tomar cuidado para usar esses parâmetros 
+na mesma configuração. Dois círculos concêntricos devem ser concêntricos.
+Se os segmentos AB e BC são parâmetros de macro, então o usuário deve 
+escolher os segmentos EF e FG. Nesses casos, é melhor usar pontos como 
+parâmetros.
+
+Linhas e semi-retas são de 2 tipos: com 2 pontos a defini-las, ou com 
+apenas um ponto (e.g., linhas paralelas). Na macro, linhas, semi-retas, 
+e segmentos são armazenados como linhas sem pontos, se seus pontos de definição 
+não são usados na construção-alvo. O usuário pode escolher qualquer 
+linha como um parâmetro. Se um dos pontos de definição foi usado, o 
+usuário terá que escolher uma linha, semi-reta ou segmento do mesmo 
+tipo. Novamente, isso é complicado e, por isso, pode ser melhor usar 
+pontos.
+
+.htmlexport
+.related runningdemo save comment exportdialog jobexport
+Exportar para HTML
+
+ReC gera páginas HTML para suas construções, contendo um applet que 
+exibe a construção.
+
+Após preencher o diálogo, você deve escolher um arquivo (no menu arquivo) e, para exercícios 
+com páginas de solução, um outro arquivo com a solução. Então, você deverá 
+publicar:
+
+ - a página HTML recém gerada, 
+ - uma página de solução, se houver,
+ - folhas de estilo (CSS) se houver,
+ - o arquivo zirkel.jar,
+ - o arquivo de construção.
+
+Note que rastreios e animações são guardadas com a construção. Eles 
+reaparecerão nas construções a serem exibidas nos "applets". Nesse caso, 
+não há interação do usuário. Você deve escolher os estilos de applet "plano" 
+ou "borda".
+
+Note que rastreios são exibidos automaticamente, se estiverem ativos 
+ao guardar a construção.
+
+É recomendável ter apenas um applet em cada página HTML.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+Exportar HTML com Modelos
+
+Esse é um meio confortável de converte construções em arquivos HTML. O 
+ReC carrega um modelo ("template") com os campos já preenchidos para sua 
+página HTML. Uma vez que parte das informações já estão preenchidas no modelo, 
+o diálogo que se abre é bem menor.
+
+Você instalou a documentação "online" do ReC? Ela contém alguns modelos. 
+Arquivos de modelo usam a extensão "*.template". Eles podem ser editados 
+com qualquer editor HTML. Antes, desabilite o UTF-8 no diálogo do ReC, ou 
+então use algum editor que consiga lidar com códigos UTF (e.g., o editor 
+de textos JEm, e editores HTML como o do Mozilla ou Frontpage). 
+
+O seguintes campos de referência são reconhecidos:
+
+#title
+  É substituído pelo título da construção exibido no diálogo de exportação.
+
+#comment1,#comment2,...
+  São substituídos pela seção do comentário da construção de acordo com o 
+número correspondente. Seções de comentários são separados por linhas contendo 
+ "~". Cada parágrafo da seção do comentário será reservada entre as "tags" 
+<p>...</p>.
+
+#comment
+  Funciona como texto.
+
+#text1,#text2,...
+  Funciona como #comment1,... mas não gera parágrafos com "tags" 
+<p>...</p>. O usuário usar qualquer tag HTML que desejar.
+
+#text
+  Funciona como #text1,... mas não para seções de comentários.
+
+#parameter
+  Insere os parâmetros para o applet: arquivo ou trabalho, estilo, ferramentas e opções.
+
+#color
+  Insere os parâmetros de cor para o applet.
+
+#font
+  Insere os parâmetros de fonte e dígitos para o applet.
+
+#codebase
+  É o "codebase" (código base) do diálogo de exportação.
+
+Eis um um modelo ("template") simples de arquivo.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=#F0F0F0>
+  <H1>
+  #title
+  </H1>
+  <CENTER>
+  <P>
+  <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400" 
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+.exportdialog
+.related htmlexport jobexport
+Configurações de Exportação
+
+Applets podem assumir diversos estilos.
+
+- Plano: O applet não terá borda ("border"). O usuário poderá apenas mover pontos 
+e exibir elementos ocultos. Pode-se usar uma cor para página e para o 
+applet. 
+
+- Borda: O applet terá uma borda. 
+
+- Borda e ícones): O applet terá borda e ícones. Os ícones 
+permite que o usuário construa algo.
+
+- Borda, ícones e estado: O applet exibirá a linha de estado. 
+A linha de texto é exibida também na linha de estado do "browser" (navegador).
+
+- Borda, ícones e linha de entrada: A construção deve 
+ser feita no modo descriptivo (não-visual). 
+
+- Repetir com quebras (pontos de parada): Três botões são exibidos 
+para permitir a navegação entre um ponto de parada e outro. Para definir esses 
+pontos, use a ferramenta "Repetir Construção". 
+
+Título da Página: É o título de sua paina entre "tags" <H1>.
+
+Folha de estilo: Arquivos CSS ("Cascading Style Sheets") são úteis quando 
+se deseja dar o mesmo aspecto para diversas páginas. Use o caminho relativo para o arquivo do 
+programa. Se você não usa CSS, não preencha esse campo.
+
+Largura, Altura: Exibirá o applet com essas dimensões.
+
+Arquivo de Construção: O nome do arquivo da construção, geralmente, 
+no mesmo diretório do arquivo HTML. COntudo, os nomes de arquivo devem ser 
+relativo ao arquivo do ReC. URLs e caminhos absolutas não são permitidos.
+
+Arquivo Jar: É o arquivo do ReC. O caminho deve ser relativo à  página HTML.
+
+Cores: Escolha uma cor de fundo para sua página e 
+applet. A cor pode ser escolhida com o botão abaixo.
+
+Contudo, há marcadores para as cores definidas para os elementos 
+da construção e para o fundo da mesma. O fundo da construção pode 
+ser diferente do fundo do applet e do fundo da página.
+
+Com Algarismos: Se estiver marcado, guardará as configurações do núumero de algarismos.
+
+Com Comentários: Colocará o comentários logo abaixo do applet. Espera-se que o 
+navegador ("browser") esteja preparado para lidar com codificação UTF-8. Se não 
+for assim, modifique o ReC em "Configurações Especiais" no menu "Opções".
+
+Ferramentas: Escolha nessas duas barras de ícones aquelas ferramentas que você 
+deseja deixar disponivel para o usuário. Em qualquer caso, é interessante marcar a 
+ferramenta "Desfazer Últimas Remoções". 
+Os ícones podem ser definidos para serem exibidos em duas linhas de ferramentas. 
+O ícone que habilita essa possibilidade é um dos últimos na barra de baixo, logo acima 
+do botão "Cancela".
+
+O usuário só poderá definir macros, se você lhe fornecer a ferramenta macro. O 
+mesmo vale se você deseja que o usuário rode macros (note que "definir" e "rodar" 
+macros são ferramentas diferentes, com ícones diferentes).
+
+Os ícones com ponto de interrogação indicam diálogos que poderão ou não ser 
+exibidos (perguntar se deseja criar pontos sobre objetos ou intersecções).
+Por padrão, todos esses diálogos e questões estão desativados nos applets.
+
+No modo não-visual, os ícones ajudam o usuário a encontrar a sintaxe. 
+Nesse modo, todas as ferramentas de construção são funcionais.
+
+.jobexport
+.related htmlexport exportdialog
+Exportar Exercícios
+
+Exibir como Exercício: Deve ser marcado para guardar a construção como 
+um exercício.
+
+Arquivo Solução - Pular - Guardar - Link: Essas configurações permitem gerar 
+automaticamente a página de solução, a qual é gerada como página separada a exibir 
+a solução. Após o usuário terminar o exercício, o navegador ("browser") abrirá 
+diretamente para a página de solução. Também é possível definir um link para 
+essa página abaixo da construção.
+
+Comentário: Exporta o comentário do exercício, sim. O comentário da 
+construção só é exibido na página de solução.
+
+.runningdemo
+.related htmlexport online
+Crie um demo funcional
+
+É possível ter um applet que carregue uma série de construções e exibi-la 
+para o usuário a uma dada velocidade. A sintaxe do applet é um tanto 
+diferente e deve ser feito a mão (não há exportação automática).
+
+Um exemplo de código de applet seria assim:
+
+ <APPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+       WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+O arquivo "demo.xml" é um arquivo XML com uma sintaxe bem simples, como 
+por exemplo:
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <Demo delay="30">
+ <File name="Uhr.zir" delay="20">Clockwork</File>
+ <File name="Cindarella-Maschine.zir">Cindarella machine</File>
+   ...
+ </Demo>
+
+O parâmetro em "delay" ("demora") é em segundos.
+
+.visual
+.related expressionsyntax descriptivefiles runmacro
+Construções Descritivas
+
+Nesse modo, há uma linha de entrada abaixo da construção. Aplicam-se 
+as seguintes diferenças:
+
+ - Escolher uma ferramenta apenass exibirá a entrada padrão.
+ - Os parâmetros de construção devem ser fornecidos com nome. 
+ - O nome do objeto construído deve ser indicado à  esquerda do sinal "=".
+ - A construção é feita ao pressionar a tecla ENTER ("RETURN").
+
+A sintaxe para as entradas segue sempre a mesma regra:
+
+ nome=função(parãmetro,...)
+ nome1,nome2=função(parâmetro,...)
+
+A segunda linha se aplica a intersecção e macros com diversos 
+alvos.
+
+Se faltar o nome, o objeto receberá o nome padrão. 
+
+Eis uma descrição curta da sintaxe. Note que as expressões podem ser usadas 
+em todos os lugares, onde um valor é esperado. Parênteses em branco podem 
+ser omitidos.
+
+Sintaxe
+ por extenso
+ Descrição 
+ 
+A=P() 
+ponto
+Gera um ponto na posição aleatória. 
+
+A=P(0,1) 
+Um ponto definido.
+
+a=s(B,C) 
+segmento 
+Segmento de B até C. 
+
+a=s(B,2) 
+Segmento de comprimento definido e extremo B. 
+
+a=l(B,C) 
+reta 
+Reta que passa pelos pontos B e C. 
+
+a=r(B,C) 
+semi-reta 
+Semi-reta com extremo B que passa por C. 
+
+k=c(A,B) 
+círculo 
+Círculo de centro A que passa por B. 
+
+k=c(A,2) 
+Circunferência de centro A e raio definido. 
+
+k=c(A,B,C) 
+Circunferência de centro A e raio BC. 
+
+A=S(g,g) 
+interseção 
+Interseção de duas retas. 
+
+A,B=S(k,k) 
+Dos pontos de interseção entre circunferências ou retas e circunferências.
+
+M=M(A,B) 
+ponto médio 
+Ponto médio de AB. 
+
+g=p(g,A) 
+reta paralela 
+Paralela a g por A. 
+
+g=l(g,A) 
+perpendicular 
+Perpendicular a g por A. 
+
+a=w(A,B,C) 
+ângulo 
+ângulo ABC
+
+a=w(A,B,90) 
+ângulo de amplitude definida. 
+
+A=area(P1,P2,P3) 
+Polígono com esses vértices. 
+
+valor(P,0,1) 
+valor 
+Define as coordenadas do ponto P 
+
+valor(s,2) 
+Define o comprimento do segmento s. 
+
+valor(k,2) 
+Define o raio da circunferência k. 
+
+valor(w,90) 
+Define a amplitude do ângulo w. 
+
+valor(true,o) 
+Exibe o valor de o.
+Pode-se omitir "true".
+
+valor(true) 
+Define o valor pré-determinado dos valores. 
+
+nome(o,p) 
+nome 
+Muda o nome de o para p.. 
+
+nome(true,o) 
+Mostra o nome de o. 
+Pode omitir-se "true" (verdadeiro).
+
+nome(true) 
+Define o valor pré-determinado para os nomes. 
+
+hide(true,o) 
+oculta 
+Mostra/oculta o. 
+Pode omitir-se "true".
+
+hide(true) 
+Estabelece o estado pré-determinado dos objetos (oculto/visível). 
+
+col(green,o) 
+color 
+Define a cor de ou em vermelho, verde, azul ou café. 
+
+col(verde) 
+Seleciona a cor pré-determinada (verde, vermelho, preto, azul, ciano). 
+
+esp(espessura,o) 
+espessura
+Define a espessura de "o" (grosso, normal ou fino). 
+
+esp(thick) 
+Seleciona a espessura pré-determinada 
+
+tipo(quadrado,P) 
+tipo 
+Define o tipo de ponto (quadrado, círculo, diamante ou ponto). 
+
+tipo(diamante) 
+Seleciona o tipo pré-determinado de ponto. 
+
+parc(true,k) 
+parcial 
+define o objeto k como truncado. 
+"true" pode ser omitido.
+
+parc(true) 
+Define o estado padrão parcial. 
+
+cheio(true,o) 
+preencher 
+Define o objeto ou para estado preenchido.
+"true" pode ser omitido.
+
+back(true,o) 
+background (fundo) 
+Define o objeto ou para o fundo. 
+"true" pode ser omitido.
+    
+window(0,0,5) 
+janela 
+Define a janela para dimensão 2*5 e centro (0,0). 
+
+Em lugares onde são esperados pontos, c(k), a(s) e b(s) podem ser
+usados. c(k) é o centro do círculo k, a(s) e b(s) são os dois
+pontos de definição de um segmento, semi-reta ou linha.
+
+valid(o)
+valid(true,o)
+ Trata segmentos e semi-retas como linhas em intersecções e em 
+ linhas perpendiculares. "o" é a intersecção ou a perpendicular.
+
+obtuse(a)
+obtuse(true,a)
+ Define ângulos de modo que assumam valores maiores que 180 graus.
+
+solid(a)
+solid(true,a)
+ O objeto ficará não será transparente.
+
+restrict(c,A,B)
+ Restringe um círculo a ser um arco de A até BB.
+
+valid(o)
+valid(true,o)
+ Remove as restrições de linhas perpendiculares e intersecção. 
+ Esses objetos serão válidos, mesmo se a intersecção estiver fora 
+ de um segmento ou arco.
+
+rename(A,B)
+ Troca o nome (renomeia) do objeto A por B.
+ 
+Macros podem se usados no modo interativo também. Nomes à  esquerda do 
+= serão visados. Se houver muitos alvos, os nomes deverão ser 
+separados por vírgulas. Um parâmetro adicional pode ser usado 
+para apontar um valor para um objeto, o qual seria solicitado no 
+modo interativo.
+
+.descritivefiles run
+.related visual save
+Construções descritivas em arquivos
+
+Permite carregar construções de um arquivo, ou editar e então carregá-lo como 
+construções. 
+
+A sintaxe linear e usa os comandos descritos em "Construções Descritivas". 
+Comentários de linha começam com // e podem ser usadas. Os arquivos podem 
+conter macro tais como esse:
+
+ macro U 
+ // Constructs a circle through three points
+    parameter A=point // Selecione o primeiro ponto
+    parameter B=point // Selecione o segundo ponto
+    parameter C=point // Selecione o terceiro ponto
+    g1=MS(A,B)
+    g2=MS(A,C)
+    U=intersection(g1,g2)
+    target k=circle(U,A)
+ end
+
+A identação é opcional. Comentários nas linhas de parâmetros são usados nas 
+entradas ("prompts"), se a macro for usada interativamente. A macro a seguir chama a 
+macro MS com 2 parâmetros.
+
+ macro MS
+  param A=point
+  param B=point
+  partial(true)
+  k1=circle(A,B)
+  k2=circle(B,A)
+  partial(false)
+  P1,P2=intersection(k1,k2)
+  target g=line(P1,P2)
+ end
+
+Se uma linha construir dois objetos, o alvo deve ser definido 
+separadamente.
+
+ A,B=intersection(g,k)
+ target B
+
+Se um macro tiver mais de um alvo, todos os alvos devem ser atribuídos.
+
+ A,B=test(...)
+
+Entradas ("prompts") são definidos pela palavra-chave "prompt" seguido pelo nome do objeto.
+
+ k=circle(A,5)
+ prompt k
+
+Eis um exemplo de uma macro que usa um segmento com um parâmetro.
+
+ macro MS
+ // Mittelsenkrechte
+  A=point
+  B=point
+    parameter s=segment(A,B)
+    ...
+ end
+
+Ao usar círculos como parâmetros, temos uma sintaxe especial:
+
+ M=point
+ parameter circle(M)
+
+Esse tipo de círculo pode somente ser usado em parâmetros.
+
+O comando especial "showall" exibe todos os objetos intermediários.
+Do contrário, apenas os alvos serão visíveis. O comando "invisible" 
+"superoculta" todos os objetos que não são alvos.
+
+.assignments
+.related save restricted colors comment
+Exercícios
+
+Exercícios (ou trabalhos) são construções exibidas de forma inacabada, na qual o 
+usuário deverá completar. O computador apenas verificará pelo objeto 
+alvo construído, enquanto a construção mesma pode ser diferente. O 
+usuário receberá uma mensagem tão logo complete a construção.
+
+Exercícios são criados ao escolher o último objeto a ser mostrado ao 
+usuário. Além do mais, deve haver objetos alvo. Os objetos alvo serão mostrados 
+em cor suave, a menos que eles tenham sido ocultos antes de a 
+construção ter sido guardada.
+
+Alvos não são verificados para a solução, se tiverem sido criados com 
+SHIFT pressionado.
+
+Para testar o exercício, clique no menu Opções para isso. Ao contrário do 
+usuário final, você terá todas as ferramentas disponíveis. Você pode 
+usar o ícone de barras simples para guardar o exercício.
+
+Objetos de área como alvo seriam definidos pelo último conjunto de pontos 
+dos cantos (vértices). Os pontos adicionais criados pelo usuário 
+nos lados dos polígonos serão ignorados.
+
+.browser
+.related online
+Inicializar o ajuda no browser
+
+Para iniciar o ajuda em HTML (no navegador), você necessita configurá-lo. Entre a 
+linha de comando para o browser na caixa de diálogo. Se o caminho contiver espaços 
+em branco, coloque o nome do navegador ("browser") entre aspas.
+
+Além disso, indique o caminho para o arquivo index. Isso já deveria estar configurado. 
+Se nenhum ajuda for encontrado, a janela de configuração usará a página web.
+
+O navegador padrão é o "internet explorer" no Windows e o "netscape" nos 
+demais.
+
+.comment
+.related assignments parameter htmlexport
+Comentários
+
+Cada construção pode conter um comentário. O comentário será exibido 
+para o usuário assim que carregar ("abrir") a construção.
+Os comentários também são exportados para HTML.
+
+Exercícios terão um comentário especial que será exibido ao usuário ao 
+apresentá-los.
+
+Macros também podem (e devem) ter comentários.
+
+.fonts
+.related zoom save
+Fontes
+
+As fontes tanto podem ser configuradas globalmente como para cada objeto. 
+As configurações globais são preferenciais.
+
+Você pode usar fontes de 2 tamanhos. Contudo, fontes e pontos são proporcionais à  
+construção. Para janelas e applets pequenos, eles ficariam pequenos demais. 
+Assim, há um limite minímo.
+
+Você também pode usar negrito. Essa opção é recomendada para 
+bitmaps ("figuras") maiores.
+
+.save
+.related assignments parameter descriptivefiles print defaultmacros filedialog
+Guardar e carregar arquivos
+
+As construções são guardadas em arquivo no formato XML. Esse formato 
+é mais fácil de entendermos. Construções normais possuem extensão ".zir",
+e exercícios possuem a extensão ".job". Macros usam ".mcr".
+
+Construções podem conter macros. É possível determinar se as macros em 
+uso devem ou não serem salvas com as construções. Para evitar acúmulo de 
+macros originárias de diversas construções, pode ser uma boa idéia deletar 
+todas as macros antes de abrir uma nova construção. Também é possível 
+habilitar ou não essa sua escolha (sempre no menu Arquivo).
+
+Um arquivo será comprimido se adicionar "z" a sua extensão. Isso não é necessário, 
+a menos que deseje minimizar o tempo de cópia ("download") quando o arquivo 
+estiver em um servidor.
+
+No menu Arquivo você encontra as opções de carregar arquivos de  macros, 
+exercícios e construções descritivas.
+
+Veja: Diálogo Arquivo
+
+.filedialog
+.related save settings
+Diálogo Arquivo
+
+ReC implementa seu próprio diálogo de arquivo tendo em vista que os diálogos 
+do Windows e Linux apresentam alguns defeitos ao usar Java. Se preferir usar 
+o diálogo de arquivo do sistema operacional, desmarque "Substituir diálogo do 
+arquivo de sistema" no menu "Opções", "Configurações Especiais".
+
+O arquivo diálogo do ReC usa histórico para arquivos, diretórios e filtros. O 
+diretório do histórico é um menu especial do tipo "drop down", e o histórico 
+de arquivos e campos padrão aparecem com um clique de mouse ou com as setas 
+"para cima" e "para baixo" do teclado.
+
+Navegue para um diretório dando duplo clique no nome dele no painel da 
+esquerda. O botão "Voltar' abre o diretório anterior. Para escolher um 
+arquivo, você pode dar duplo clique sobre o seu nome no painel da direita, 
+ou selecioná-lo com um clique e depois clicar no botão "Abrir" que aparece 
+mais embaixo.
+
+Como você notará, é possível inserir vários padrões de arquivos separados por 
+espaços. Esses arquivos contêm um ou mais marcadores de posição: "?" para 
+letras isoladas e "*" para cadeias de caracteres ("strings").
+
+O botão abaixo cria um novo diretótio ("pasta"). Escreva o nome do diretório 
+no campo adequado. Não é possível apagar (deletar) diretórios ou arquivos 
+nesse diálogo.
+
+O botão "home" o leva para o diretório inicial do ReC, se tiver sido 
+instalado no diretório do usuário. O seu nome em inglês é "CaR Files" e 
+"Arquivos ReC" em português. Se ele não existir, esse botão o levará para 
+o diretório inicial do usuário ("Meus Documentos", no Windows; no Linux, o 
+diretório inicial do usuário localizado em "home"). Para definir um outro 
+diretório como padrão, basta clicar no botão "Home" enquanto pressiona SHIFT-CTRL. 
+O diretório que estiver aberto passará a ser o novo diretório "home" do ReC. Um 
+novo clique com essas teclas pressionadas restaurará as configurações originais.
+
+.print
+.related exportsettings print
+Imprimir e Exportar
+
+Há vários modos para exportar suas construções para outros programas ou 
+visualizá-los externamente.
+
+Antes de tudo, você pode imprimi-las. Há um opção que permite imprimir 
+com o tamanho exato (em que 1 corresponde exatamente a 1 cm).
+
+Você também pode exportar para vários formatos de gráfico e vetor. Para 
+processadores, o autor recomenda o formato EPS para gráfico vetorial e PNG 
+para formato bitmap. 
+
+Ao exportar como PNG, um diálogo abrirá permitindo que você defina um tamanho ou use 
+um fator proporcional ao tamanho da tela. Você também pode determinar o 
+tamanho pela largura e altura em cm e pela resolução. Se escolher "300 dpi", 
+você terá uma versão em escala (1 unidade = 1 cm) com resolução de 300 dpi.
+
+Uma vez que linhas, fontes e pontos podem ficar muito pequenos em imagens reduzidas, 
+você pode defini-los em cm. Há uma previsualização para conferir o efeito na tela.
+
+Ao exportar como PDF, você só pode definir as dimensões da imagem em cm. PDF permite 
+"escalonar" linhas, fontes e pontos.
+
+.construction
+.related hide reorder
+Lista de objetos
+
+Você pode ver a lista completa de objetos de sua construção ao selecionar 
+"Descrição" no menu Opções (ou a tecla de atalho F11). Essa lista também pode 
+ser usada para editar objetos ocultos. É o único jeito de editar passos de 
+construção que sejam completamente ocultos.
+
+As linhas são apresentadas na mesma cor dos objetos.  Objetos ocultos aparecem em 
+linhas cinzas, e os completamente ocultos, entre parênteses.
+
+.colors
+.related htmlexport
+Definir cores
+
+Você pode definir diversas cores para o ReC a seu gosto. Elas não 
+serão guardadas com a sua construção, porém serão exportadas para HTML.
+
+Cores são compostas no sistema RGB (combinações de vermelho, verde e azul). 
+As cores-padrão garante melhor compatibilidade.
+
+.settings
+.related restricted iconbar tips beginner
+Configurações Especiais
+
+Contém algumas configurações para usuários avançados. Algumas delas 
+são afetadas pelo modo "novato".
+
+Antes de tudo, você pode habilitar a exibição de rótulos dos objetos ao 
+movê-los. Essa opção pode ser inquietante mas é útil em alguns casos.
+
+Você pode ativar ou desativar algumas questões que o programa faz ao 
+executar certas ações.
+
+Se você desabilitar o diálogo para escolher objetos, o programa sempre selecionará 
+o primeiro objeto, se a seleção não puder ser determinada unicamente pela 
+posição do mouse.
+
+Você também pode desativar a previsualização, ou restringi-la a pontos. No modo 
+iniciante, somente pontos são exibidos na previsualização, uma vez que outros objetos 
+tendem a confundir o usuário.
+
+A barra de ícones pode ser posicionada na parte de baixo do janela, e as dicas de 
+ferramenta podem ser desabilitadas.
+
+Você pode desejar usar a janela de diálogo de seu sistema operacional. 
+As janelas do programa possuem recursos interessantes (porém não permitem renomear ou 
+deletar arquivos).
+
+Em micros mais lentos pode ser necessário marcar a opção "Sempre Usar Gráficos Simples".
+
+Devido a limitações na resolução da tela, pontos podem tanto ser desenhados 
+como retângulos exatos de mesmo tamanho, ou exatamente na região deesjada.
+Escolha sua preferência.
+
+Você pode escolher a codificação UTF-8 ou a que está em uso pelo seu sistema 
+operacional. Isso afeta os comentários e descrições em seus arquivos. Use 
+a codificação local somente se você precisar editar seu construção e não 
+tiver um editor UTF-8 (por exemplo, se quiser editar um arquivo HTML criado 
+pelo ReC).
+
+No modo smartboard mode, o ato de arrastar objetos tem comportamento diferente. 
+Por exemplo, quando ativado, ele não pode reportar os movimentos do mouse. 
+Você tem que clicar uma vez mais para cmpletar a construção. Isso só é importante 
+para as previsualizações.
+
+.exportsettings
+.related settings print
+Exportar imagens (Configurações)
+
+Normalmentes, pontos e fontes são escados. Para obter fontes maiores 
+em pequenas impressões, use o recurso disponível na janela que abre ao 
+clicar em Arquivo -> Exportar (Def. Especiais)...
+
+Imagens bitmaps normalmente são criadas com fundo branco. Nessa mesma janela 
+você pode informar ao programa para usar a cor de fundo em uso.
+
+.reorder
+.related circle angle expressionsyntax
+Reordenar pontos
+
+A construção é como uma cadeia de objetos. Objetos só podem depender 
+de objetos anteriores a eles. É impossível usar uma expressão que 
+contenha objetos posteriores à  ela ou ao objeto que a utiliza essa 
+expressão. Por exemplo, você pode definir um ângulo para o lado do 
+ângulo ABC somente se A, B e C já existirem.
+
+Contudo, é possível alterar a ordem da construção. Há uma ferramenta 
+especial para isso, e se você selecionar um objeto com ela, o programa 
+tentará mover esse objeto o mais afastado possível do início de sua 
+construção.
+
+.tips
+.related online browser start move intersection expression reorder
+Dicas
+
+Nessa seção, damos algumas dicas para resolver problemas comuns.
+
+Construções Inválidas. Para testar uma construção, mova um de seus pontos 
+básicos. A construção não mantémr-se válida em muitos casos porque você 
+não escolheu uma intersecção apropriadamente. Em vez disso, você definiu 
+uma linha que passa pelo ponto de intersecção apenas por acaso.
+
+Intersecção Errada. Se a construção se torna inválida, se a ordem dos 
+pontos básicos é alterada ou se um dos pontos é tocado para um outro 
+lado, você está diante desse problema. Então, se deseja uma construção 
+válida para todas as situações, certifique-se que escolheu todas as 
+intersecções apropriadmente. Se a seleção automática do ReC falhar, você 
+pode selecionar a intersecção manualmente. Abra suas propriedades e pressione 
+"Perto de" ou "Distante de". Então escolha um ponto que seria próximo ou 
+afastado do ponto de intersecção.
+
+Objeto não encontrado em Expressões. Em uma expressão, você pode usar apenas 
+objetos que tenham sido definidos antes da expressão. Do contrário, você criaria 
+dependências circulares. Para superar essa dificuldade, você pode alterar a 
+ordem da construção com a ferramenta de reordenação.
+
+.keyboard
+.related gui delete zoom mouse iconbar
+O teclado
+
+Todas as ferramentas têm combinações de teclas que aparecem 
+nos menus.
+
+Note que você pode precisar clicar em uma área vazia com o botão
+direito.
+
+Atalhos úteis são a tecla de espaço para eliminar a última ação,
+as teclas +/- para zoom, e as setas no teclado para mover a 
+construção. Além disso, F1 abre a ajuda contextual.
+
+A tecla ESC redefine a ferramenta em uso.
+
+Note que a tecla CTRL escolhe ferramentas modificadas na barra de 
+ícones. As teclas SHIFT- e CTRL modificam o comportamento de algumas
+ferramentas.
+
+A tecla ESPAÇO é usada por algumas versões de java para pressionar 
+botões, outras versões usam a tecla RETURN (ENTER).
+
+
+.image
+.related background
+Images
+
+Images can be added to the construction. One can either use two anchor
+points or three. In the first case the image is rotated and scaled, in
+the second case an affine transformation is used. If you want only two
+points, select the first a second point again.
+
+Images must be in the same directory as the construction.
+Images can also be used as background images.
+
+.language
+Mudar Idioma
+
+R&C normalmente inicia usando o mesmo idioma do sistema operacional.
+Você pode defini-lo para iniciar em outro idioma.
+Cada idioma é identificado por duas letras. Use-as conforme a tabela abaixo
+
+ Inglês - en
+ Alemão - de
+ Francês - fr
+ Holandês - nl
+ Italiano - it
+ Espanhol - es
+ Português - pt
+ Eslovaco - sl
+ Dinamarquês - da
+ Norueguês - no
+ Polonês - pl
+ Russo - ru
+
+Assim, se você desejar que o R&C rode, por exemplo, em espanhol, bastará ir ao menu Configurações e em "Mudar Idioma" 
+apagar a palavra "default" e escrever apenas "es" (sem as aspas).
+Se você inicia o R&C por linhas de comando, basta acrescentar ao final da linha "-l es" ("l" é de "linguagem", mas não esqueça do hífen antes da letra "ele").
+
+.selfreference
+.related macro point
+Self Reference
+
+É possível definir um ponto atrelado a parâmetros inteiros. Para isso,
+defina as coordenadas com a função floor(...). O usuário ainda poderá mover 
+esse ponto. Há uma regra que um ponto que se refira apenas a ele mesmo 
+(exceto as referências "@") é móvel. Nesse caso, o ponto se move 
+após o restante da construção.
+
+Tais pontos móveis podem ser criados também por macros too. Eles devem ser parâmetros 
+de macro, e o parâmetro deve ser selecionado com a tecla shift. Ao rodar a macro, 
+os pontos que foram escolhidos pelo parâmetro terão coordenadas definidas.

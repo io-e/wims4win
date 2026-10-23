@@ -1,0 +1,16 @@
+#! /bin/sh
+
+thisdir=`pwd`
+lastdir=$thisdir
+wims_home=$w_wims_home
+
+while [ -z "$wims_home" ] && [ "$lastdir" != "/" ]
+do
+ wims_home=`cat $lastdir/.wimshome 2>/dev/null`
+ lastdir=`dirname $lastdir`
+done
+
+if [ -z "$wims_home" ]; then exit; fi
+
+. $wims_home/public_html/scripts/oef/imgindex
+

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>units-filter 3.7 documentation</title>
+
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="None" href="index.html#document-index" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+
+  <div class="section" id="units-filter">
+<h1>Units-filter<a class="headerlink" href="#units-filter" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p><code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">[-s]</span>&#160; <span class="pre">[-o]</span>&#160; <span class="pre">[-l]</span></code></p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">units-filter</strong> is a basic standalone parser written in C language, flex
+and bison. It inputs strings like &#8220;1.5e3 nN.m.s^-1&#8221; (it could be the
+time growth ratio of a torque) and outputs the value in standard SI
+unit, followed by the physical dimension of this value.</p>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-units-filter-s">
+<code class="descname">-s</code><a class="headerlink" href="#cmdoption-units-filter-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <strong>S</strong>ignificant.</p>
+<p>Takes in account the number of significant digits. For example 1.0
+m contains 2 significant digits, while 0.00100 contains 3
+significant digits. It is possible to enforce the number of
+significant digits by using a special syntax : if units-filter
+parses the input &#8220;1.0m#6&#8221;, it interprets it as a value with exactly
+6 significant digits, like &#8220;1.00000 m&#8221;. The number following the #
+sign is the forced number of significant digits. The number of
+significant digits appears just before the last zero in the output
+of the command (this zero is a placeholder for future extensions).</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-units-filter-o">
+<code class="descname">-o</code><a class="headerlink" href="#cmdoption-units-filter-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <strong>O</strong>utput.</p>
+<p>Outputs a correct representation of the physical quantity with its
+physical unit in the International System notation. There may be
+some simplification with usual units. For example, a newton will be
+represented by the unit N in place of m.kg.s^-2. The value is
+expressed as a floating number with one digit before the decimal
+point, and as many digits in the mantissa as necessary to fit the
+desired number of significant digits (see an example below). It is
+possible to enforce the output unit : just add a colon and the
+desired unit at the end of the input. If this unit is homogeneous
+with the former one, it will be used to format the output.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-units-filter-l">
+<code class="descname">-l</code><a class="headerlink" href="#cmdoption-units-filter-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <strong>L</strong>aTeX.</p>
+<p>Outputs a correct representation of the physical quantity with its
+physical unit in the International System notation, in LaTeX
+language.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="supported-syntax">
+<h2>SUPPORTED SYNTAX<a class="headerlink" href="#supported-syntax" title="Permalink to this headline">¶</a></h2>
+<p>The simplest syntax for a physical quantity to be passed by <code class="code docutils literal"><span class="pre">units-filter</span></code>
+is: &lt;float number&gt; &lt;physical unit&gt;, for instance: &#8220;1e-3 m&#8221; stands for one
+millimeter.</p>
+<p>For compound units, the product of two base units is built with a dot &#8221;.&#8221;
+and each unit can be put at an integer power, with the symbol &#8220;^&#8221;.
+For instance, the velocity unit meter per second is &#8220;m.s^-1&#8221;, and the
+physical quantity &#8220;3e8 m.s^-1&#8221; stands for the velocity of light.</p>
+<p>One can use the star character &#8220;*&#8221; instead of the dot &#8221;.&#8221; to mean a
+multiplication.</p>
+<p>Instead of building compound units with dots and negative powers, one can
+also use &#8220;/&#8221; as a separator. For instance, &#8220;1 m/s&#8221; and &#8220;1 m.s^-1&#8221;,
+&#8220;1 m/s^2&#8221; and &#8220;1 m.s^-2&#8221; are synonyms.</p>
+<p>This simple syntax can be enriched by <strong>modifiers</strong>.</p>
+<div class="section" id="the-modifier">
+<h3>The modifier &#8220;#&#8221;<a class="headerlink" href="#the-modifier" title="Permalink to this headline">¶</a></h3>
+<p>This modifier allows one to specify the number of significant digits
+which apply to a physical quantity. For instance, &#8220;1e-3m #2&#8221; stands
+for 1.0 mm, i.e. one millimeter with two significant digits. The same can
+be achieved with the input &#8220;1.0 mm&#8221; or &#8220;0.0010 m&#8221;. This modifier is taken
+in account only if one calls <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-s</span></code> to activate the
+&#8220;Significant&#8221; option. It is also honoured when an output in ordinary text
+format or in LaTeX source format is requested (when one runs
+<code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-o</span></code> or <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-l</span></code>.</p>
+<p>The output of <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-s</span></code> provides the effective number of
+significant digits, as the ninth field, hence permitting to make some scripting
+around. All strings &#8220;1e-3m #2&#8221;, &#8220;1.0 mm&#8221; or &#8220;0.0010 m&#8221; will yield the
+same output when parsed by <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-s</span></code>.</p>
+<p>Please notice that this modifier allows one to artificially reduce the
+number of significant digits, hence forcing some rounding. For instance,
+the string &#8220;299792458m.s^-1#1&#8221;, when processed by <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-o</span></code>
+will yied <code class="code docutils literal"><span class="pre">3e8</span> <span class="pre">m.s^-1</span></code>, which is a less precise value of the speed
+of light.</p>
+<p>Much effort has been put in the rounding mechanism, in order to overcome
+limitations due to float numbers in base two. The calculations are internally
+carried as decimal numbers, so the general rule to round &lt;integer&gt;+0.5 to the
+integer immediately above is honoured. However, beware: if the value to be
+rounded <em>comes from an external program</em> which uses calculation with
+ordinary float numbers, a value 3/2 processed by an external program
+and later processed by <code class="code docutils literal"><span class="pre">units-filter</span></code>, with one single significative
+number, will not always be rounded to 2 as expected.</p>
+</div>
+<div class="section" id="id1">
+<h3>The modifier &#8220;~&#8221;<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This modifier allows one to express a given precision, as a percentage.
+For example, &#8220;1kV~2&#8221; stands for one kilovolt plus or minus two percent.
+This option is honoured wen one runs <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-o</span></code> or
+<code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-l</span></code>, that is, when one requests an output in ordinary
+text format or in LaTeX source format.</p>
+</div>
+<div class="section" id="id2">
+<h3>The modifier &#8221;:&#8221;<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>This modifier allows one to specify a non-standard unit for the text or
+LaTeX output. For instance, &#8220;1800C:A.h&#8221; will be rendered as half of an
+ampere.hour; This modifier is honoured when one runs <code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-o</span></code> or
+<code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-l</span></code>, that is, when one requests an output in ordinary
+text format or in LaTeX source format.</p>
+</div>
+</div>
+<div class="section" id="output">
+<h2>OUTPUT<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
+<p>When <code class="code docutils literal"><span class="pre">units-filter</span></code> is run with no option switch, it parses its
+standard input, and if the syntax is recognized, it prints one float number
+and nine integers. The meaning of this output is:</p>
+<div class="section" id="float-value">
+<h3>float value<a class="headerlink" href="#float-value" title="Permalink to this headline">¶</a></h3>
+<p>The physical quantity&#8217;s value, given in the basic International System unit.</p>
+</div>
+<div class="section" id="integers-1-to-7">
+<h3>integers #1 to #7<a class="headerlink" href="#integers-1-to-7" title="Permalink to this headline">¶</a></h3>
+<p>Those integers express the powers of the base units of International System used
+for the physical quantity&#8217;s unit.</p>
+</div>
+<div class="section" id="integer-8">
+<h3>integer #8<a class="headerlink" href="#integer-8" title="Permalink to this headline">¶</a></h3>
+<p>This integer is non-zero only when one calls <code class="code docutils literal"><span class="pre">units-filter</span></code> with the
+<code class="code docutils literal"><span class="pre">-s</span></code> option, to take in account significative numbers of the value,
+either given implicitly or given explicitly after a modifier (see
+<a class="reference internal" href="#the-modifier">The modifier &#8220;#&#8221;</a> above).</p>
+</div>
+<div class="section" id="integer-9">
+<h3>integer #9<a class="headerlink" href="#integer-9" title="Permalink to this headline">¶</a></h3>
+<p>Not used currently. May be used by future versions of <code class="code docutils literal"><span class="pre">units-filter</span></code>.</p>
+<p>When <code class="code docutils literal"><span class="pre">units-filter</span></code> is run with the switch <code class="code docutils literal"><span class="pre">-s</span></code>, the output
+is the same as when <code class="code docutils literal"><span class="pre">units-filter</span></code> is run with no option, except
+for the eighth integer, which is always positive and means the number of
+significant digits (hence the precision) of the value.</p>
+<p>When <code class="code docutils literal"><span class="pre">units-filter</span></code> is run with the switch <code class="code docutils literal"><span class="pre">-o</span></code>, the output is
+a physical quantity, written in a canonical format. One can notice that
+<code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-o</span></code> is <em>reentrant</em>, i.e. when called twice in a pipe,
+the output is the same than when it is called only once.</p>
+<p>When <code class="code docutils literal"><span class="pre">units-filter</span></code> is run with the switch <code class="code docutils literal"><span class="pre">-l</span></code>, the output is
+a physical quantity, written as LaTeX source code. In order to get
+something useful, one must embed the output inside a well-shaped LaTeX
+document and run a LaTeX compiler.</p>
+</div>
+<div class="section" id="compound-units">
+<h3>Compound units<a class="headerlink" href="#compound-units" title="Permalink to this headline">¶</a></h3>
+<p><code class="code docutils literal"><span class="pre">units-filter</span></code> can parse physical quantities like &#8220;1 h 1 min 1 s&#8221;, which
+yields the same as &#8220;3661 s&#8221;. This syntax is honored if and only if the units
+are compatible together, and given in order of decreasing importance.
+For example &#8220;1m 1mm&#8221; makes sense, whereas &#8220;1 C 1A.h&#8221; would trigger an
+error, and &#8220;1A.h 1C&#8221; would be accepted.</p>
+</div>
+</div>
+<div class="section" id="error-output">
+<h2>ERROR OUTPUT<a class="headerlink" href="#error-output" title="Permalink to this headline">¶</a></h2>
+<p>When the syntax of the input cannot be parsed properly by <code class="code docutils literal"><span class="pre">units-filter</span></code>,
+it sends a message like <code class="code docutils literal"><span class="pre">ERROR</span> <span class="pre">at</span> <span class="pre">xx</span> <span class="pre">:</span> <span class="pre">syntax</span> <span class="pre">error</span></code>, where <em>xx</em> is a
+column number, to the standard error stream. The number <em>xx</em> allows one to
+know how many characters of the input could be parsed successfully before
+the failure. Additionally, the return code of the program is non-zero.</p>
+</div>
+<div class="section" id="list-of-physical-units">
+<h2>LIST OF PHYSICAL UNITS<a class="headerlink" href="#list-of-physical-units" title="Permalink to this headline">¶</a></h2>
+<p>Here is the list of physical units which are automatically recognized
+by <code class="code docutils literal"><span class="pre">units-filter</span></code>:</p>
+<blockquote>
+<div><p><strong>h</strong>: one hour = 3600 s</p>
+<p><strong>min</strong>: one minute = 60 s</p>
+<p><strong>m</strong>:  meter</p>
+<p><strong>g</strong>:  one gram = 1e-3 kg</p>
+<p><strong>s</strong>: second</p>
+<p><strong>A</strong>: ampere</p>
+<p><strong>K</strong>: kelvin</p>
+<p><strong>mol</strong>: mole</p>
+<p><strong>cd</strong>: candela</p>
+<p><strong>Hz</strong>: one hertz = 1 s^-1</p>
+<p><strong>N</strong>: newton</p>
+<p><strong>Pa</strong>: pascal</p>
+<p><strong>J</strong>: joule</p>
+<p><strong>W</strong>: watt</p>
+<p><strong>C</strong>: coulomb</p>
+<p><strong>V</strong>: volt</p>
+<p><strong>ohm</strong>: ohm; variant: <strong>Ohm</strong></p>
+<p><strong>S</strong>: Siemens (the inverse of one ohm)</p>
+<p><strong>F</strong>: farad (the electric capacity unit, not the faraday)</p>
+<p><strong>T</strong>: tesla</p>
+<p><strong>Wb</strong>: weber</p>
+<p><strong>H</strong>: henry</p>
+<p><strong>lm</strong>: lumen (1 lumen = 1 lux)</p>
+<p><strong>lx</strong>: lux</p>
+<p><strong>Bq</strong>: becquerel (1 Bq = 1 Hz)</p>
+<p><strong>Gy</strong>: gray</p>
+<p><strong>Sv</strong>: sievert</p>
+<p><strong>rad</strong>: radian (1 rad = 1 no_unit, where no_unit has the units exponents { 0, 0, 0, 0, 0, 0, 0})</p>
+<p><strong>sr</strong>: steradian (1 sr = 1 no_unit)</p>
+<p><em>nothing</em>: no_unit; a number with no unit can be considered as written in radian for example</p>
+<p><strong>°</strong>: angular degree (1° = pi/180)</p>
+<p><strong>&#8216;</strong>: angular minute (1&#8217; = pi/10800)</p>
+<p><strong>&#8216;&#8217;</strong>: angular second (1&#8217;&#8217; = pi/648000)</p>
+<p><strong>tr</strong>: turn (1 tr = 2*pi)</p>
+<p><strong>rpm</strong>: revolution per minute (1 rpm = pi/30 Hz)</p>
+<p><strong>b</strong>: barn (1b = 1e-28 m^2)</p>
+<p><strong>a</strong>: are (1a = 100 m^2)</p>
+<p><strong>L</strong>: liter</p>
+<p><strong>t</strong>: ton (1 ton = 1e3 kg)</p>
+<p><strong>bar</strong>: bar (1 bar = 1e5 Pa)</p>
+<p><strong>eV</strong>: electron-volt (1eV = 1.60218e-19 J)</p>
+<p><strong>uma</strong>: atomic mass unit (1 uma = 1.66054e-27 kg)</p>
+<p><strong>°A</strong>: ångström (1 ångström = 1e-10 m)</p>
+</div></blockquote>
+</div>
+<div class="section" id="examples">
+<h2>EXAMPLES<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Establish the SI value and unit exponent of a quantity in the mksa
+system:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">1.5e3</span> <span class="pre">nN.m.s^-1</span> <span class="pre">|</span> <span class="pre">units-filter</span></code></p>
+<p><code class="code docutils literal"><span class="pre">1.5e-6</span> <span class="pre">2</span> <span class="pre">1</span> <span class="pre">-3</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span></code></p>
+<p>which means : 1.5e-6 (SI unit) m^2.kg.s^-3</p>
+<p>Compare different physical quantities:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">e1=$(echo</span> <span class="pre">&quot;1.2e-3</span> <span class="pre">V&quot;</span> <span class="pre">|</span> <span class="pre">units-filter)</span></code></p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">e2=$(echo</span> <span class="pre">&quot;1200e3</span> <span class="pre">nWb/s&quot;|</span> <span class="pre">units-filter</span></code></p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">if</span> <span class="pre">[</span> <span class="pre">&quot;$e1&quot;</span> <span class="pre">=</span> <span class="pre">&quot;$e2&quot;</span> <span class="pre">];</span> <span class="pre">then</span> <span class="pre">echo</span> <span class="pre">ok;</span> <span class="pre">else</span> <span class="pre">echo</span> <span class="pre">ko;</span> <span class="pre">fi</span></code></p>
+<p><code class="code docutils literal"><span class="pre">ok</span></code></p>
+<p>... which emphasizes that webers by time unit are the same as volts.</p>
+<p>Playing with the number of significant digits:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">&quot;0.00100m&quot;</span> <span class="pre">|</span> <span class="pre">src/units-filter</span> <span class="pre">-s</span></code></p>
+<p><code class="code docutils literal"><span class="pre">0.001</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">3</span> <span class="pre">0</span></code></p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">&quot;0.00100m</span> <span class="pre">#2&quot;</span> <span class="pre">|</span> <span class="pre">src/units-filter</span> <span class="pre">-s</span></code></p>
+<p><code class="code docutils literal"><span class="pre">0.001</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">2</span> <span class="pre">0</span></code></p>
+<p>Giving a value for the relative precision:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">&quot;1kV~2&quot;</span> <span class="pre">|</span> <span class="pre">units-filter</span> <span class="pre">-o</span></code></p>
+<p><code class="code docutils literal"><span class="pre">1e+03</span> <span class="pre">V</span> <span class="pre">+-2%</span></code></p>
+<p>Turning on the LaTeX output:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">&quot;1kohm+-2%&quot;</span> <span class="pre">|</span> <span class="pre">units-filter</span> <span class="pre">-l</span></code></p>
+<p><code class="code docutils literal"><span class="pre">1\times</span> <span class="pre">10^{+03}\,</span> <span class="pre">\Omega</span> <span class="pre">\pm</span> <span class="pre">2\,\%</span></code></p>
+<p>Turning on the output of a canonical physical notation:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">&quot;1.0</span> <span class="pre">m.kg.s^-2</span> <span class="pre">#7&quot;</span> <span class="pre">|</span> <span class="pre">units-filter</span> <span class="pre">-o</span></code></p>
+<p><code class="code docutils literal"><span class="pre">1.000000e+00N</span></code></p>
+<p>Choosing a non-standard unit for the output:</p>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">1800C:A.h|</span> <span class="pre">units-filter</span> <span class="pre">-o</span></code></p>
+<dl class="docutils">
+<dt><code class="code docutils literal"><span class="pre">5.000e-01</span> <span class="pre">A.h</span></code></dt>
+<dd>because 3600 coulomb is one ampere.hour</dd>
+</dl>
+<p><code class="code docutils literal"><span class="pre">~$</span> <span class="pre">echo</span> <span class="pre">1</span> <span class="pre">g:uma</span> <span class="pre">|</span> <span class="pre">units-filter</span> <span class="pre">-o</span></code></p>
+<dl class="docutils">
+<dt><code class="code docutils literal"><span class="pre">6e23</span> <span class="pre">uma</span></code></dt>
+<dd>This last result reminds that Avogadro&#8217;s constant is near 6e23
+mol^-1.</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="known-bugs">
+<h2>KNOWN BUGS<a class="headerlink" href="#known-bugs" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Few units out of the mksa system are successfully parsed.</p>
+<p>Compound units yield inconsistent results, when parsed by
+<code class="code docutils literal"><span class="pre">units-filter</span> <span class="pre">-o</span></code>, because this process will take the
+first mentioned unit as the unit wanted for the result, and consider
+that the first value gives the number of wanted significant digits.</p>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html#document-index">Documentation overview</a>
+  </li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2018, Georges Khaznadar
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU General Public License, Version 2 or (at
+your option) any later version published by the Free Software
+Foundation.
+
+On Debian systems, the complete text of the GNU General Public License
+can be found in /usr/share/common-licenses/GPL.
+.
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+
+    </div>
+
+  </body>
+</html>

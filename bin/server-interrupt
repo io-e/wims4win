@@ -1,0 +1,14 @@
+#! /bin/sh
+
+WIMS_HOME=`dirname $0`/..
+cd $WIMS_HOME/public_html
+if [ ! -f wims ]; then exit; fi
+ln -sf interrupt.cgi wims.cgi
+# rm -f $WIMS_HOME/tmp/log/wimslogd.pid
+
+# We must sleep in order to let all the running processes terminate.
+
+echo Waiting for running processes to terminate...
+sleep 10
+echo OK.
+

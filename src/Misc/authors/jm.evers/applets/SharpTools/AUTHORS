@@ -1,0 +1,37 @@
+
+==================================
+Author and Maintainer after v 1.1
+==================================	
+			
+Hua Zhong is the current Sharp Tools maintainer.
+
+You can send email to sharp@cs.columbia.edu	
+The official website is http://www.cs.columbia.edu/sharptools/
+			
+==================================================
+Original Authors of Sharp Tools Spreadsheet (v1.0)
+==================================================
+
+Hua Zhong (Team Leader) <huaz@cs.columbia.edu>
+- Architecture and UI Design; Formulas; Undo/Redo; Histogram; Function help;
+  Data exchange with Excel
+
+Ricky Chin
+- Table Model; Clipboard; Table insertion/deletion/sorting
+
+Daniel Goldberg
+- Initial UI; File open/save; Printing
+
+Daniel Medina
+- Documentation; Help browser
+
+Andrei Scudder
+- Some of the dialogs
+
+==================================
+Contribution
+==================================
+
+Shariz Kanga <skanga@bigfoot.com>
+- made Sharp Tools able to import tables from a database by JDBC
+  	

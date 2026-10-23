@@ -1,0 +1,1491 @@
+.start
+.related online license gui tips localize
+Guida attiva
+
+Questa guida fornisce suggerimenti sullo strumento in uso, o sull'ultima azione. Per esempio, per ottenere aiuto sullo strumento macro, sceglierlo e cliccare sul  pulsante con la "i" per avere istruzioni. Si può chiudere la finestra con lo stesso pulsante, oppure lasciarla aperta. Posizionare e ridimensionare la finestra a piacimento: C.a.r. memorizzerà posizione e dimensione. 
+
+Nella parte superiore di questa finestra di aiuto, è presente una lista a discesa con argomenti correlati a quello scelto.
+
+Si può eseguire la ricerca anche attraverso parole chiave (pulsante "Ricerca"). Cercando "macro" verrà trovato anche "Macro" e tutte le parole contenenti "macro". I risultati della ricerca si trovano  nella lista a discesa e uno di essi viene aperto.
+
+I migliori auguri per il tuo lavoro con C.a.R.
+
+L'autore
+René Grothmann
+
+.online
+.related start tips
+Guida in linea
+
+La homepage di C.a.R. si trova attraverso la mia homepage all'indirizzo
+"www.rene-grothmann.de". Sei il benvenuto per cercare nuove versioni, o per navigare attraverso esempi e demo.
+
+Ho aperto due gruppi di discussione su C.a.R. presso Yahoo groups. Uno è in Tedesco e l'atro in Inglese: nella homepage di C.a.R. si trova un link a quello Inglese.
+
+Naturalmente puoi contattarmi via email: anche il mio indirizzo si trova nella mia homepage.
+
+.license
+.related online start
+Licenza di C.a.R.
+
+C.a.R. è un software libero su licenza GPL (Gnu General Public License) e puoi utilizzarlo come vuoi. Se lo distribuisci, devi includere almeno un link alle mie pagine.
+
+I sorgenti si possono ottenere consultando la homepage di C.a.R. Tuttavia,
+questi sorgenti e tutti i cambiamenti devono rimanere aperti. Devono essere forniti i sorgenti e tutti i cambiamenti apportati al programma, oltre che un link ai sorgenti originali.
+
+La stessa licenza è applicata alla documentazione.
+
+Se vuoi ottenere un compenso in denaro con questo programma, puoi farlo fornendo servizi aggiuntivi come libri, istruzioni, tutorial e così via. Il programma può anche essere incluso in una distribuzione commerciale, per esempio una distribuzione Linux. Ti chiedo gentilmente di informarmi e di inviarmi una copia.
+
+.gui
+.related iconbar mouse zoom online keyboard
+Interfaccia Utente
+
+La maggior parte dello spazio è occupata dalla finestra principale di C.a.R. che mostra la costruzione. La vista può essere mossa con i tasti freccia, e ingrandita con +/-. Alternativamente c'è uno strumento per zoomare e trascinare la costruzione con il mouse. Oppure è possibile zoomare con la rotella del mouse e trascinare con il tasto destro.
+
+Sopra la costruzione si trova la barra delle icone. Se il puntatore del mouse si ferma per più di due secondi su un'icona, ne viene visualizzata la descrizione. Le icone possono essere visualizzate su una singola barra o su una barra con due righe. In quest'ultimo caso la riga inferiore contiene gli strumenti di costruzione e quella superiore gli strumenti standard e quelli per la visualizzazione.
+
+Sotto la costruzione si trova la riga di stato, che visualizza importanti informazioni. Nella modalità non visuale, la riga di stato viene rimpiazzata dalla riga di input.
+
+A sinistra della costruzione, si può visualizzare la lista degli oggetti (F11), che può essere configurata per visualizzare solo determinate categorie di oggetti. Cliccare con il tasto destro del mouse per vedere ulteriori opzioni per questa lista. Con un doppio clic sula riga di un oggetto si apre la finestra per la modifica delle sue proprietà; per modificare contemporaneamente le proprietà di più oggetti selezionarli tenendo premuto il tasto CTRL (oppure  SHIFT) e quindi cliccare due volte.
+
+La lista degli oggetti può essere dimensionata cliccando sul bordo a destra della barra di scorrimento e trascinando il mouse a destra o a sinistra.
+
+Il menù contiene ulteriori opzioni, come l'apertura e il salvataggio dei file. Esso mostra inoltre le scorciatoie da tastiera per gli strumenti.
+
+Vedere: Lista Oggetti, Mouse, Barra delle Icone, Tastiera.
+
+.iconbar
+.related restricted gui settings
+Barra delle Icone
+
+Per selezionare un'icona, cliccare su di essa. Per sapere a cosa si riferisce, lasciare pochi secondi il puntatore del mouse su di essa: apparirà una breve descrizione testuale dello strumento.
+
+Ci sono tipi differenti di icone.
+
+Icone che attendono l'input del mouse: un esempio sono gli strumenti punto o segmento, la selezione dei parametri di una macro o lo zoom.
+
+Icone che cambiano le impostazioni predefinite: un esempio sono il colore di default o lo stile del punto.
+
+Icone che cambiano la visualizzazione: un esempio sono l'icona griglia o l'icona per mostrare gli elementi nascosti.
+
+Icone che compiono delle azioni: un esempio sono le impostazioni del commento o la cancellazione dell'ultimo oggetto.
+
+Per personalizzare la Barra delle icone, avviare la finestra di dialogo con la corrispondente voce del menù Impostazioni. Si può selezionare o deselezionare ciascuna icona. Inoltre è possibile scegliere di mostrare gli strumenti in una singola riga, quindi la barra delle icone mostrerà solamente gli strumenti più utili.
+
+La barra delle icone può essere impostata in modo da apparire sotto la costruzione (vedere le impostazioni avanzate).
+
+Gli strumenti deselezionati dalla barra delle icone possono ancora essere usati attraverso la tastiera o la barra dei menù.
+
+Per sapere di più sugli strumenti della barra delle icone, lascia per pochi secondi il puntatore del mouse sull'icona. Apparirà una breve informazione. Alcune icone hanno un diverso comportamento se vengono selezionate tenendo premuto il tasto CTRL; queste icone mostrano un'informazione diversa quando è premuto il tasto CTRL.
+
+.restricted beginner
+.related iconbar
+Barra delle Icone Ristretta
+
+C'è una forma ristretta della barra delle icone che viene salvata con la costruzione. Essa appare all'utente quando questi apre la costruzione.
+
+Per impostare la barra delle icone ristretta, selezionare la corrispondente voce nel menù Impostazioni. Quindi modificare a piacimento la barra rimuovendo tutti gli strumenti non necessari che potrebbero confondere l'utente della costruzione.
+
+Se si disabilita la barra delle icone ristretta o se si carica una nuova costruzione, si ottiene nuovamente la barra delle icone completa.
+
+È disponibile anche una speciale barra delle icone per principianti nella quale mancano alcuni strumenti che potrebbero creare confusione. I principianti dovrebbero iniziare in questo modo.
+
+.mouse
+.related gui settings hide point circle move keyboard edit
+Il Mouse
+
+Il tasto sinistro del mouse viene usato per creare oggetti della costruzione corrispondenti allo strumento attivo.
+
+Molto strumenti prevedono che  l'utente scelga più di un oggetto. In questo caso, il primo punto diventa rosso, mentre lo strumento è in attesa del secondo punto. Se sono necessari un segmento o una retta, si può cliccare su un qualunque punto di essi.
+
+Al passaggio del mouse gli oggetti vengono evidenziati nel caso in cui possano essere usati con lo strumento attivo. Ciò facilita la selezione degli oggetti appropriati.
+
+Se la scelta non è univocamente determinata, il programma mostrerà una lista di possibili oggetti dalla quale è possibile scegliere l'oggetto desiderato con un doppio clic oppure selezionandolo e cliccando su "OK". I punto diventano neri, le rette rosse gli angoli (e altri oggetti) verdi e le circonferenze blu. La finestra di dialogo di selezione può essere disabilitata: in tal caso il programma selezionerà automaticamente l'oggetto più vicino al puntatore del mouse.
+
+Se si tiene premuto SHIFT costruendo una circonferenza, un segmento o un angolo, il programma assumerà che l'oggetto sia fissato e aprirà la finestra di dialogo dello stesso. Qui l'utente può inserire un valore per fissare l'oggetto, o semplicemente chiudere la finestra e usare il valore corrente.
+
+Il tasto destro del mouse muove gli oggetti (in alternativa allo strumento "Muovi") e le loro etichette e apre la finestra di dialogo per l'impostazione delle proprietà degli oggetti. Se si clicca col tasto destro su un'etichetta ma non la si trascina, essa torna nella sua posizione di default. Se, quando si seleziona un'etichetta, si tiene premuto il tasto SHIFT, questa può essere trascinata in qualunque punto della costruzione.
+
+Con il tasto CTRL più il tasto destro del mouse, si possono editare le condizioni per le proprietà degli oggetti.
+
+Con la combinazione di tasti CTRL+SHIFT e il tasto destro del mouse, si può nascondere un oggetto. Le circonferenze e le rette prima diventano parziali poi vengono nascoste.
+
+.background
+.related gui move htmlexport
+Immagini di sfondo
+
+C.a.R. può mostrare un'immagine sullo sfondo della costruzione corrente. Questa immagine può essere uno stato di costruzione o un'immagine caricata da un file.
+
+L'immagine da un file può essere affiancata, centrata o estesa per adattarsi alla finestra della costruzione oppure si può adattare la finestra del programma alle dimensioni dell'immagine caricata.
+
+Se l'immagine si adatta esattamente alle dimensioni della finestra, verrà salvato un link con l'esportazione HTML. In questo caso le dimensioni dell'applet corrisponderanno a quelle dell'immagine. Il file contenente l'immagine deve trovarsi nella stessa cartella dell'applet. Se si vuole salvare l'immagine in un'altra  cartella, si deve editare manualmente il file HTML.
+
+.properties
+.related edit colors hide mouse transparent point fixedangle replay animatebreak expressionsyntax latex
+Proprietà degli Oggetti
+
+La finestra delle proprietà di un oggetto può essere aperta con il tasto destro del mouse o con lo strumento "Edita". Molte impostazioni sono comuni a tutti gli oggetti.
+ - nome
+ - descrizione
+ - unità
+ - colore
+ - spessore
+ - stato nascosto
+ - mostra nome
+ - mostra valore
+ - carattere grande o grassetto
+ - stato di sfondo
+ - stato trasparente
+ - punto di interruzione
+
+I nomi possono contenere quasi tutti i caratteri. Se contengono il carattere "~", viene visualizzata solo la parte che lo precede, permettendo la visualizzazione di nomi uguali. Il nome deve essere unico. Le descrizioni sono generate automaticamente, ma possono essere cambiate. Se vengono cambiate l'utente può tornare alla descrizione automatica inserendo una riga vuota.
+
+Gli oggetti posso utilizzare un altro nome (un alias) da visualizzare al posto di quello interno.
+Questo è particolarmente utile se la visualizzazione dovesse contenere codice Latex.
+L'alias può contenere espressioni tra %...% che sono valutate al momento dell'esecuzione.
+Le stringhe della forma %=s% ritorneranno il nome dell'oggetto "s",
+e le stringhe della forma %~s% ritorneranno l'equazione di s.
+
+Alcuni oggetti hanno dimensione e unità. La variazione della dimensione funziona solo per oggetti fissati. L'unità può essere qualunque testo che esprime l'unità di misura: per gli angoli, usare il simbolo di grado "°".
+
+Lo spessore funziona in modi diversi per oggetti diversi. Provarlo per osservare gli effetti. Gli oggetti possono essere nascosti o completamente nascosti. In quest'ultimo caso ad essi si può accedere solamente attraverso la descrizione della costruzione (Opzioni>Mostra lista oggetti).
+
+Nome e valore se visualizzati compaiono con una scrittura del tipo "s=2". Se il nome termina con un carattere di sottolineatura come per esempio "P_", il "_" viene cancellato e non sarà visualizzato il carattere "=".
+
+Altri oggetti hanno uno stato "pieno": per questi oggetti può essere attivata o meno la trasparenza. Normalmente ha senso solo per gli oggetti pieni stare sullo sfondo, ma si può comunque impostare sullo sfondo qualunque oggetto.
+
+I punti di interruzione sono importanti per la riproduzione e per le animazioni con interruzioni.
+
+Ci sono altre impostazioni per particolari oggetti, come lo stile dei punti e delle linee.
+
+Infine, osservare i pulsanti nella parte inferiore. Per esempio i punti hanno un pulsante particolare per scegliere un oggetto a cui vincolarli, gli angoli fissati hanno un pulsante particolare per copiare le dimensioni da un altro angolo.
+
+.latex
+.related properties text
+Codice Latex
+
+C.a.R. usa HotEqn per visualizzare equazioni in forma Latex. Per usare codice Latex, includere il testo tra $. Il codice Latex può essere inserito nelle righe degli oggetti testo o nel nome degli oggetti. In quest'ultimo caso può servire per visualizzare i nomi in forma particolare, per esempio P1=$P_1$.
+
+HotEqn non può visualizzare tutto il codice Latex, ma abbastanza: di seguito lo riassumiamo brevemente. Sono supportati:
+lettere greche (\alpha, \beta, ...);
+molti simboli Latex specifici (\nabla); 
+pedici (x_n);
+apici (x^2);
+frazioni(\frac{1}{x});
+integrale e sommatoria (\int_a^b);
+limiti e infiniti(\lim_{x \to \infty});
+parentesi quadrate (\left[ and \right]);
+array (\begin{array}{cc}2&3\\3&4\end{array});
+coefficiente binomiale (choose);
+atop ({2 \atop 3}).
+
+.transparent
+.related colors reorder properties
+Trasparenza
+
+La trasparenza degli oggetti è supportata solo se si utilizza Java 1.2 o superiore. Inoltre il formato EPS non supporta la trasparenza.
+
+Gli oggetti pieni vengono disegnati sullo sfondo per impostazione predefinita. Tale stato può essere abilitato o meno per tutti gli oggetti (Opzioni>Impostazioni): gli oggetti saranno disegnati nell'ordine di costruzione.
+
+La trasparenza può essere abilitata o meno per ogni singolo oggetto nella sua finestra delle proprietà.
+
+.point
+.related boundedpoint intersection settings mouse properties selfreference
+Punti
+
+Un punto può essere creato con vari strumenti. Lo strumento punto genera un punto libero (che si può muovere). 
+
+Tuttavia, se si clicca su un'intersezione, viene creato un punto di intersezione dopo aver dato una conferma (che può anche essere disattivata). I punti di intersezione non sono liberi, ma dipendono ovviamente dagli oggetti intersecati.
+
+I punti saranno vincolati a circonferenze e rette o ad altri oggetti come tracce, coniche e funzioni, se si clicca su uno di questi oggetti per crearli.   Viene richiesta una conferma al vincolo, anche questa richiesta può essere disattivata. Il tasto SHIFT fissa la posizione del punto.
+
+I punti possono essere fissati con espressioni. Premendo SHIFT quando si crea il punto si apre la finestra delle proprietà per fissarlo relativamente all'oggetto. 
+
+I punti fissati possono essere mossi, se l'espressione si riferisce al punto stesso e non ad un altro oggetto(@-references don't count). In questo caso la posizione viene calcolata usando l'espressione. Questo è utile per restringere il movimento dei punti.
+
+Come altri oggetti, i punti liberi possono essere trascinati subito dopo essere stati creati. Durante il trascinamento compariranno il nome e il valore, a meno che questa impostazione non sia disabilitata (Impostazioni>Impostazioni avanzate). 
+
+Vedere: Auto Riferimento
+
+.boundedpoint
+.related point line mouse properties
+Punti e Oggetti
+
+Ci sono punti vincolati a una retta, a una circonferenza, a tracce automatiche,  a grafici di funzioni o a curve parametriche. Se l'oggetto viene mosso essi vengono spostati con continuità. Un punto può essere rilasciato e vincolato a un nuovo oggetto in ogni momento usando la sua finestra delle proprietà.
+
+I punti possono essere vincolati in due modi. Il punto può essere proiettato ogni volta che l'oggetto si muove, oppure può mantenere la sua posizione relativa all'oggetto. La prima modalità viene applicata premendo il tasto SHIFT mentre è selezionato l'oggetto (solo se il punto è generato dallo strumento punto). Inoltre il fissaggio relativo può essere rimosso o impostato nella  finestra delle proprietà dell'oggetto. Il fissaggio relativo è la modalità di default.
+
+I punti vincolati non sono liberi. Ma se un segmento giace con entrambi gli estremi su una retta, e uno di essi è un punto vincolato (alla retta), il segmento può essere fissato.
+
+.line ray
+.related point parallel properties segment
+Rette e semirette
+
+Questi oggetti dipendono da due punti: l'utente deve scegliere due punti per la costruzione.
+
+Le differenze tra rette e semirette non si limitano alla loro apparenza visuale. Le rette perpendicolari e le intersezioni si comportano in modo diverso per questi oggetti. Per esempio, l'intersezione tra semirette diventa non valida se il punto di intersezione giace sul prolungamento di una di esse. La perpendicolare ad una semiretta non è valida se il suo piede non cade all'interno della semiretta. Per le rette perpendicolari è possibile modificare questo comportamento disabilitando “Restrizione” nella finestra delle proprietà.
+
+Notare che anche gli strumenti perpendicolare, angolo di misura fissata e parallela generano rette.
+
+Vedere: Segmenti
+
+.segment fixedsegment
+.related expressionsyntax point parallel properties line
+Segmenti
+
+La lunghezza di un segmento può essere fissata se esso ha un estremo libero. Per generare un tale segmento, tenere premuto il tasto SHIFT mentre si seleziona il secondo estremo o usare l'icona specifica (in questo caso il secondo estremo viene sempre creato).
+
+I segmenti possono essere visualizzati come vettori.
+
+Vedere: Rette e semirette
+
+.circle circle3
+.related properties point transparency fixedcircle
+Circonferenze
+
+Ci sono tre tipi di circonferenze. Circonferenza di centro M e per un punto A, circonferenza di centro M e raggio AB, e circonferenza di raggio fissato.
+Ciascun tipo ha una propria icona. Il primo tipo richiede due punti, il secondo tre e l'ultimo uno solo.
+
+Il disegno di una circonferenza può essere ristretto tra due punti definiti che sottendono un arco circolare. In questo caso è possibile mantenere l'arco minore di 180 gradi (connettendo gli estremi dell'arco sarà sempre disegnato quello più piccolo). I punti estremi vengono selezionati utilizzando un apposito pulsante nella finestra delle proprietà della circonferenza.
+
+Vedere: Circonferenze di raggio fissato
+
+.fixedcircle
+.related reorder expressionsyntax properties point transparency
+Circonferenze di raggio fissato
+
+Le circonferenze di raggio fissato non hanno un secondo estremo del raggio. Per generare questo tipo di circonferenze tenere premuto il tasto SHIFT quando si definisce il secondo estremo del raggio o usare l'apposita icona. Si aprirà la finestra delle proprietà, dove può essere inserita una qualunque espressione per definire il raggio. Se la circonferenza viene trascinata immediatamente dopo essere stata generata, non si aprirà la finestra delle proprietà e verrà utilizzata la dimensione corrente.
+
+Le circonferenze di raggio fissato possono essere definite con la distanza tra due punti usando un'espressione. Per fare questo usare il pulsante "Imposta raggio" nella finestra delle proprietà. Notare che possono essere utilizzati solo i punti costruiti prima della circonferenza.
+
+.intersection
+.related point properties segment selectintersection
+Intersezioni
+
+Questo strumento genera intersezioni tra rette, circonferenze, grafici di funzioni, curve parametriche e tracce automatiche, se questi sono importati all'interno della costruzione come normali oggetti. Nelle costruzioni carta e matita questa non sembra essere una cosa in più da fare. Ma il computer non può calcolare tutte le possibili intersezioni. Anch'esso deve fare tutti i passi necessari tanto più chiaramente proprio perché deve costruire le intersezioni esplicitamente.
+
+È possibile anche creare intersezioni tra quadriche, tracce e coniche. Notare che può essere necessario del tempo per il calcolo di queste intersezioni. Creare troppe intersezioni ti tipo complesso renderà lenta la costruzione.
+
+Come scorciatoia il programma crea un'intersezione ogni volta che si aspetta un punto e l'utente clicca vicino a una intersezione. L'anteprima mostra chiaramente gli oggetti intersecati.
+
+Lo strumento intersezione è nascosto per default, dal momento che, nella maggior parte dei casi, può essere usato al suo posto lo strumento punto.
+
+Vedere: Selezionare Intersezioni
+
+.selectintersection
+.related intersection point
+Selezionare Intersezioni
+
+Le circonferenze si intersecano in due punti: il programma crea entrambe le intersezioni, solamente se le due circonferenze sono selezionate come parametri dello strumento intersezione una dopo l'altra. Se serve averne solo una, nascondere l'atra. Per le intersezioni create automaticamente, l'altra intersezione non viene generata.
+
+C'è un sottile problema nel modo in cui il programma ordina le intersezioni di due circonferenze (o di una circonferenza e una retta). Contrariamente agli altri  programmi, questo è fatto in modo prevedibile. Per le circonferenze l'ordine cambia se le circonferenze vengono scambiate. Le intersezioni tra una retta e una circonferenza dipendono dalla direzione della retta (cioè dall'ordine di creazione dei suoi punti). Provare a muovere la retta in modo che non intersechi la circonferenza, quindi farla tornare indietro. L'ordine delle intersezioni rimane lo stesso.
+
+Qualche volta le intersezioni devono essere specificate. Questo si ottiene dicendo a uno dei punti di intersezione di essere differente da un determinato punto. Le intersezioni saranno allora ordinate in modo tale che l'intersezione scelta sia il più lontano possibile dal punto. La finestra delle proprietà per le intersezioni contiene una speciale riga di input per specificare tale punto e anche un pulsante per sceglierlo interattivamente.
+
+Questo tipo di intersezione viene creato automaticamente, se l'altro punto di intersezione è un punto del perimetro di entrambi i cerchi e se questo punto è visibile. 
+
+Si può anche specificare se l'intersezione deve stare il più vicino possibile a un dato punto.
+
+.parallel plumb midpoint
+.related line point properties
+Rette Parallele e perpendicolari, punti medi
+
+Ci sono semplici scorciatoie per le costruzioni classiche. I primi due strumenti creano rette. Il punto medio naturalmente è un punto.
+
+Le perpendicolari ai segmenti diventano indefinite, se il piede è esterno al segmento. Si può disattivare questo comportamento nella finestra delle proprietà.
+
+.move
+.related circle angle background mouse
+Muovere Oggetti
+
+Questo strumento può essere usato per muovere punti, come un'alternativa al tasto destro del mouse. Esso può anche trascinare circonferenze di raggio fissato o angoli di misura fissata, a meno che questi oggetti non siano fissati. Per svincolarli, premere il tasto CTRL durante il movimento.
+
+Quando lo strumento muovi è selezionato, tutti gli oggetti che possono essere mossi lampeggiano in rosso.
+
+Si possono muovere più punti alla volta. Per fare ciò tenere premuto il tasto SHIFT mentre si selezionano i punti e rilasciarlo all'ultimo punto.
+
+Se, durante il movimento, si tiene premuto il tasto CTRL la vecchia costruzione rimane visibile sullo sfondo.
+
+.tracker
+.related point animate background mouse
+Tracciamento Manuale di Punti e Rette
+
+Questo strumento disegna tracce di punti o rette in movimento. Per un punto viene tracciata la sua traiettoria e per una retta viene generata la curva inviluppo.
+
+Prima di tutto devono essere selezionati il punto o la retta traccianti e quindi uno o più punti "guida" possono essere trascinati con il mouse con il tasto sinistro premuto per far muovere la selezione e creare la traccia. Per creare più di una traccia tenere premuto il tasto SHIFT quando si selezionano gli oggetti fino a quello finale. I colori usati per le tracce sono gli stessi degli oggetti che le generano e la traccia rimarrà visibile finché viene selezionato il prossimo strumento di costruzione.
+
+Le tracce di punti e linee possono essere mescolate, e tracce di linee possono essere prodotte da rette, segmenti o semirette.
+
+Per trasformare una traccia in un oggetto di costruzione permanente usare lo strumento per il tracciamento automatico. 
+
+Vedere: Tracciamento Automatico di Punti e Rette  
+
+.objecttracker
+.related tracker point animate
+Tracciamento Automatico di Punti e Rette
+
+Questo strumento disegna tracce di punti e rette (come lo strumento di tracciamento manuale) animando il movimento di un singolo punto "guida" su una retta o su una circonferenza, a una velocità che può essere controllata dalla tastiera. Se il primo punto tracciante diventa indefinito, il movimento del punto guida viene automaticamente invertito. Questo succede anche quando un punto guida raggiunge la fine di un segmento o di un arco al quale è vincolato. Nel caso in cui il primo punto tracciante diventi indefinito perché due circonferenze non si intersecano più l'altro punto di intersezione sarà scambiato quando il punto guida inverte il suo movimento.
+Così la costruzione spazia attraverso tutti gli stati possibili.
+
+Come per lo strumento di tracciamento manuale, possono essere disegnate simultaneamente tracce multiple tenendo premuto il tasto SHIFT selezionando tutti i punti traccianti eccetto l'ultimo.
+
+La velocità di animazione può essere ridotta o aumentata usando il tasto SHIFT e i tasti freccia destra o sinistra. Cliccando sul tasto sinistro del mouse si cicla attraverso tre modalità di visualizzazione: 
+animazione e traccia, animazione con traccia nascosta, traccia visibile senza animazione.
+Nell'ultima modalità il punto guida può essere trascinato con il tasto sinistro del mouse premuto.
+Altri punti possono essere trascinati con il tasto destro del mouse premuto in ogni momento ma, mentre si fa ciò, la traccia viene nascosta e viene fermata qualsiasi animazione.
+
+Se un file costruzione viene salvato con questo strumento attivo, esso sarà attivo anche quando il file viene nuovamente aperto.
+
+Per fermare l'animazione e pulire le tracce, selezionare un qualunque strumento di disegno.
+
+Tracce Permanenti
+
+Per rendere la prima traccia che viene disegnata un oggetto di costruzione permanente premere <SHIFT + ENTER>. Essa sarà ridisegnata usando il colore e lo spessore delle linee impostati nelle proprietà e può essere editata allo stesso modo di qualunque altro oggetto. 
+Ora sarà possibile creare l'intersezione tra la traccia e altri oggetti.      
+
+Le tracce salvate in questo modo vengono ricalcolate a ogni cambiamento della figura e ciò può rallentare il programma nei computer più obsoleti. In ogni caso è saggio limitare il numero di tracce visualizzate e restringere la loro lunghezza per ridurre il tempo di calcolo. È anche possibile abilitare o meno il ricalcolo di una traccia usando il checkbox "Fissato", nella sua finestra delle proprietà . 
+
+Vedere: Tracciamento Manuale di Punti e Rette
+
+.animate
+.related circle line
+Animazione
+
+Anima un singolo punto che si muove su uno o più segmenti o circonferenze. Per avviare l'animazione, selezionare un punto, quindi una sequenza di segmenti o circonferenze. Finire selezionando il punto o qualunque oggetto ancora una volta. 
+
+Per fermare l'animazione cliccare sulla costruzione. Per invertire l'animazione tenere premuto il tasto SHIFT.
+
+Le animazioni vengono salvate nel file della costruzione. Nelle applet, le
+animazioni impediscono completamente l'interazione dell'utente.
+
+Per andare avanti e indietro sui segmenti e sugli archi cliccare sulla costruzione tenendo premuto il tasto SHIFT. Ciò inverte anche la direzione nelle circonferenze.
+
+.angle
+.related circle properties fixedangle
+Angoli
+
+Gli angoli normali sono decorazioni e non possono essere usati per costruire niente. L'ordine di input è A, B, C, dove B è il vertice.
+
+Gli angoli possono essere visualizzati in tre dimensioni diverse. La più grande  mostra un arco circolare che inizia in A.
+
+Gli angoli possono contenere lettere greche nei loro nomi. Per ottenere alpha,
+digitare \a, \A etc. Si possono usare tutti i caratteri Unicode con \0XXXX, dove
+XXXX è un numero esadecimale.
+Gli angoli di 90° o che hanno un nome che inizia con "." sono contrassegnati con un punto, se la visualizzazione della misura è abilita. Gli angoli possono essere pieni.
+
+Per default, gli angoli non sono mai concavi. L'ordine di A e C non ha importanza, tuttavia può essere cambiato nella finestra delle proprietà.
+
+Vedere: Angoli di Misura Fissata
+
+.fixedangle
+.related circle reorder expressionsyntax properties angle
+Angoli di Misura Fissata
+
+Gli di misura fissata non hanno il punto C, ma una misura fissata. Essi sono generati tenendo premuto il tasto SHIFT mentre si clicca su C o con lo strumento apposito. Si aprirà la finestra delle proprietà, dove può essere inserita una qualunque espressione per definire la misura dell'angolo. Se l'angolo viene trascinato immediatamente dopo essere stato generato, non si aprirà la finestra delle proprietà e verrà utilizzata la dimensione corrente.
+
+Gli angoli fissati possono essere dimensionati usando tre punti dati. Per fare questo selezionare il pulsante "Imposta misura ..." nella finestra delle proprietà e selezionare tre punti A, B, C, dove B è il vertice. L'angolo avrà la stessa misura dell'angolo ABC. Notare che può essere usato qualsiasi punto costruito prima dell'angolo.
+
+Gli angoli fissati possono essere invertiti. Così non si è obbligati a usare una orientazione positiva. Inoltre, se un angolo fissato è ristretto a 180° per default, e se un tale angolo è costruito in modo tale da risultare matematicamente negativo esso può essere invertito. C'è un'icona nella finestra delle proprietà che controlla l'inversione.
+
+Vedere: Angoli
+
+.area
+.related point properties background
+Poligoni Pieni
+
+Con questo strumento si può generare un'area piena delimitata da segmenti. Inserire i vertici dell'area e fare doppio click sull'ultimo punto.
+
+I segmenti sono nascosti, quando l'area ha lo spessore sottile nella finestra delle proprietà.
+
+.expression
+.related angles circles properties reorder expressionsyntax
+Espressioni
+
+In C.a.R. si possono utilizzare espressioni aritmetiche per impostare
+
+ - coordinate di punti, 
+ - lunghezze di segmenti, 
+ - raggi di circonferenze,
+ - misure di angoli. 
+
+I valori delle espressioni possono essere visualizzati nelle costruzioni: usare lo strumento espressione per posizionare espressioni sullo schermo. Nella finestra delle proprietà deve essere inserita un'espressione valida. Le espressioni possono contenere un testo esplicativo e possono mostrare o meno il valore calcolato. Possono essere spostate come qualunque altro oggetto con il tasto destro del mouse.
+
+Il valore dell'espressione può essere visualizzato come uno slider. L'utente potrà variarne il valore facendo scorrere il punto a destra o a sinistra. Uno slider ha un valore minimo e uno massimo a cui può essere impostato.
+
+È possibile utilizzare codice LaTeX nelle espressioni: per farlo includere il testo tra simboli $.
+
+Vedere: Sintassi delle Espressioni
+
+.expressionsyntax
+.related fixedangles fixedcircles point properties reorder function
+Sintassi delle Espressioni
+
+Nome
+ Esempio
+ Descrizione
+ 
++, -, *, /,^ or ** 
+ 3.5*3+3/(4-5^2) 
+ Operatori matematici elementari.
+ 
+Nome di un oggetto 
+ AB/CD
+ Il nome di un segmento, di una circonferenza, di un angolo o di un'altra espressione. L'oggetto non deve dipendere da quello corrente. Per riferirsi agli oggetti utilizzando i nomi la sintassi è @name o @"name", ma questo non funziona nelle macro. Se l'oggetto non viene trovato, viene visualizzato un messaggio di errore.
+ 
+Funzione
+ sin(a) 
+ Le funzioni abs, sign, sin, cos, tan, arcsin, arccos, arctan, sqrt,
+exp, log, round, ceil, floor, deg, rad, sinhyp, coshyp, angle180 e angle360. Notare che le funzioni trigonometriche lavorano con i gradi. Per la conversione utilizzare deg(x), oppure le funzioni rsin, rcos, rtan, rarcsin, rarccos, rarctan.
+ 
+Funzioni Utente
+ f(a)
+ Valore di una funzione definita dall'utente nell'oggetto a. 
+
+Pi
+ pi 
+ La costante Pi-greco.
+ 
+x,y,z 
+ x(P), y(P) , z(P)
+ Coordinate x e y di un punto, o il valore z del punto.
+ 
+d 
+ d(P,Q) 
+ Distanza tra due punti.
+ 
+d 
+ d(x) 
+ Calcola le variazioni dell'espressione x. Se x è un punto, valuta lo spostamento.
+ 
+sum
+ sum(x,f)
+ Somma su x. Se f è negativo o indefinito, la somma viene impostata a 0.
+ 
+a 
+ a(P,Q,Z) 
+ Misura dell'angolo PQZ. 
+
+scale 
+ scale(x,a,b) 
+ Posizione relativa di x in [a,b), se x appartiene all'intervallo, altrimenti l'espressione non è valida.
+
+if 
+ if(e,e1,e2)
+ Ritorna e1, se e è vero, altrimenti e2. 
+
+invalid
+ invalid 
+ Ritorna una espressione indefinita. 
+
+&&,||,! ! 
+ (x<4 && y<4) 
+ Espressioni logiche. 1 è vero, 0 è falso. 
+
+<, >, <=, >=, ==, ~= 
+ x<y 
+ Operatori di confronto. ~= significa "circa uguale". 
+
+integrate
+ integrate(f,a,b)
+ integrate(f)
+ Integra la funzione f da a a b usando il metodo Romberg. f deve essere un oggetto funzione (probabilmente nascosto). Viene usata la parte y di f. Se f mostra punti solamente, viene calcolata la somma di Riemann. Se f è parametrica, l'area delimitata dalla curva è approssimata o la sua lunghezza, se non è piena.
+
+zero
+ zero(f,a,b)
+ Trova uno zero di f nell'intervallo a,b. f(a) e f(b) devono essere discordi. La procedura usa il metodo delle secanti o quello dicotomico.
+
+diff
+ diff(f,a)
+ Differenziale numerico di f in a: è l'usuale approssimazione(f(h)-f(-h))/(2h)
+
+min,max
+ min(f,a,b)
+ Calcola il minimo (massimo) di f tra a e b.
+
+this
+ x(this)
+ Si riferisce all'oggetto contenente l'espressione.
+ 
+windoww,windowh,windowcx,windowcy
+ Calcola le dimensioni e le coordinate del centro della schermata corrente.
+
+simulate
+ simulate(e,x,f)
+ Imposta l'espressione e al valore di x, ricalcola la costruzione con questo nuovo valore e ritorna il valore di f. Può essere attiva una sola simulazione alla volta! Per e possono essere usati un'espressione, un angolo di misura fissata o una circonferenza di raggio fissato.
+
+.area
+.related properties point transparent
+Poligoni Pieni
+
+Riempie l'area definita dai vertici con un colore. Il riempimento dovrebbe essere impostato come leggero. In Java 1.3, le aree piene sono trasparenti.
+Per definire l'area, selezionare i vertici. La definizione viene completata riselezionando ciascuno dei vertici precedentemente selezionati.
+
+.text
+.related replay comment properties latex
+Testo
+
+Visualizza un testo multilinea nella costruzione. Il testo può essere scritto usando un editor interno. Questo testo contiene un pulsante  per aprire la finestra delle proprietà dove si può fissare la posizione del testo usando un'espressione aritmetica. Notare se una posizione indefinita rende invisibile il testo, caratteristica che a volte può essere utile.
+
+Per creare una riga in grassetto o con caratteri grandi, o entrambi, far precedere la riga da *, **, o ***. Per usare comandi Latex, includere la riga tra $. Inoltre si possono usare espressioni incluse tra %..%. Queste espressioni vengono valutate e il testo ne mostrerà il risultato. Le stringhe nella forma %=s% ritornano il nome corrente dell'oggetto "s", e le stringhe della forma %~s% ritornano l'equazione di s.
+
+I testi nascosti appaiono in modalità riproduzione al passo specificato. Questo permette di visualizzare commenti locali ai passi della costruzione, che successivamente scompaiono.
+
+.quadric
+.related properties point transparent
+Coniche
+
+Le coniche sono insiemi di soluzioni di equazioni formate da combinazioni lineari di x^2, y^2, x, y, xy e 1 (funzioni quadratiche in due variabili). Le coniche sono determinate da  5 punti. Si devono semplicemente selezionare 5 punti.
+
+Per editare le proprietà della curva, cliccare su di essa e usare la finestra delle proprietà. Le coniche visualizzano come valore la loro equazione.
+
+.hide
+.related construction properties mouse
+Nascondere Oggetti
+
+Nasconde gli oggetti. Per rendere visibile un oggetto nascosto, abilitare l'opzione per visualizzare gli oggetto nascosti. Gli oggetti possono anche essere nascosti premendo il tasto CTRL e cliccando sull'oggetto con il tasto destro del mouse. In questo caso, circonferenze e rette prima passano allo stato parziale e poi vengono nascoste solo col secondo clic.
+
+Se si tiene premuto il tasto SHIFT, quando un oggetto viene selezionato per essere nascosto, l'oggetto sarà completamente nascosto. In questo caso, si può rendere ancora l'oggetto visibile solo usando la lista degli oggetti (Opzioni>Mostra lista oggetti).
+
+Tutti gli oggetti duplicati possono essere nascosti. Solo gli oggetti più recenti saranno visibili. Premere il tasto CTRL mentre si seleziona lo strumento per nascondere o usare il menù.
+
+.rename
+.related properties
+Rinomina Alfabeticamente
+
+Si possono rinominare le rette in a,b,c, i punti in A,B,C e gli angoli in \a,\b,\c usando questo strumento e cliccando con il mouse. Sarà usata la prima lettera libera.
+
+Se si deve utilizzare "a" per due oggetti differenti, usare "a~1" e "a~2". I nomi vengono visualizzati solo fino alla "~".
+
+Si può forzare l'ordine A, B, C premendo SHIFT quando si clicca su un punto. Se le lettere si trovano già nella costruzione, verranno scambiate. Per smettere premere ESC.
+
+.delete undo back
+.related construction
+Cancellare Oggetti
+
+Lo strumento cancella gli oggetti più recenti, anche se nascosti. Annulla cancella ripristina tutti questi oggetti in una sola volta.
+
+C'è un altro strumento che cancella un oggetto qualunque e tutti quelli da esso dipendenti.
+
+Annulla cancella ripristina solo una di queste operazioni.
+
+.function
+.related expressionsyntax properties
+Funzioni e Curve
+
+Il programma può visualizzare funzioni e curve parametriche. Per creare una funzione usare il comando da menù o cliccare sull'icona. Nella finestra delle proprietà digitare i valori iniziale e finale del parametro e la misura del passo. Se si desidera, si può usare una stringa qualunque come nome del parametro, ma si può anche usare semplicemente "x", che è il nome di default.
+
+Per una funzione esplicita lasciare vuoto il campo X e digitare "f(x)" nel campo Y. "f(x)" deve essere un'espressione valida.
+
+Per una curva parametrica, servono due funzioni, una per X e una per Y.
+
+Il programma incrementa il parametro dal valore iniziale a quello finale usando  la misura del passo. Se la funzione è definita tra due passi del parametro, viene disegnato un segmento usando le coordinate della costruzione.
+
+Le funzioni possono essere usate in altre funzioni. Sarà valutato il valore di Y.
+
+Le funzioni e le curve possono essere riempite. Per una curva parametrica, il centro è 0, ma può essere cambiato. Per farlo usare la finestra delle proprietà e  cliccare sul pulsante "Seleziona centro".
+
+f può essere ridotta a una sequenza di punti. Se poi la funzione è riempita sarà disegnato l'integrale di Riemann.
+
+.defaults
+.related line angle colors
+Impostazioni di Default
+
+Si possono impostare il colore e la visualizzazione di default e alcune proprietà dei nuovi oggetti.
+
+ - colore degli oggetti
+ - spessore degli oggetti
+ - stile dei punti
+ - circonferenze parziali
+ - rette parziali
+ - segmenti come vettori
+ - mostra nome
+ - mostra valore
+ - usa nomi estesi
+ - carattere grassetto e grande
+ - angoli concavi
+ - oggetti non-trasparenti
+
+.edit
+.related mouse properties
+Editare Oggetti
+
+Edita le proprietà di uno o più oggetti. Per selezionare più oggetti tenere premuto il tasto SHIFT. La finestra delle proprietà per più di un oggetto presenta dei campi non attivi. Solo quelli attivi potranno essere utilizzati per aggiornare gli oggetti.
+
+Se si tiene premuto il tasto CTRL con lo strumento selezionato sarà editato l'ultimo oggetto.
+
+Se si tiene premuto il tasto CTRL e si seleziona un oggetto con il tasto destro del mouse si possono editare condizioni per le proprietà degli oggetti. Per i colori, lo spessore e altre proprietà è possibile definire condizioni per attivare queste proprietà. Ciò è utile per ottenere effetti particolari quando le condizioni sono verificate, ossia assumono un qualunque valore diverso da zero.
+
+Una condizione speciale è il valore z-buffer. Esso determina l'ordine di creazione. Gli oggetti con un z-buffer più grande vengono disegnati prima.
+Gli oggetti con un valore z-buffer sono disegnati dopo gli oggetti di sfondo, ma prima di ogni altro oggetto.
+
+Si possono impostare le proprietà di diversi oggetti insieme. All'oggetto corrente ci si può riferire con il nome "this".
+
+.show
+.related hide
+Nascondere per colore
+
+Mostra o nasconde oggetti di uno specifico colore: è usato per rendere più chiara la costruzione.
+
+.grid
+.related zoom move mouse
+Griglia
+
+Attiva la visualizzazione del sistema di coordinate. Se la griglia è attiva, i nuovi punti e i punti spostati con il tasto destro del mouse si agganciano ai punti della griglia. Tuttavia è possibile agganciare con lo strumento muovi e il tasto sinistro del mouse. Questo può essere utile per la costruzione di pagine Web con griglie.
+
+Se la griglia è attiva quando si salva la costruzione essa sarà attiva quando si riapre la costruzione stessa.
+
+.replay
+.related htmlexport text animatebreak
+Muoversi attraverso la costruzione
+
+Questo strumento apre una piccola finestra con gli usuali pulsanti per la riproduzione. Inoltre con questo strumento possono essere impostati i punti di interruzione. Questi ultimi sono importanti per l'esportazione HTML nello stile riproduzione. 
+
+Una volta impostato un punto di interruzione, si può saltare ad esso con un semplice clic.
+
+Per impostare punti di interruzione nascosti tenere premuto il tasto SHIFT mentre si imposta il punto di interruzione. Nel nascondere i punti di interruzione si nascondono anche tutti gli oggetti che li precedono fino al precedente punto di interruzione. La costruzione verrà divisa in diverse parti.
+
+I punti di interruzione e i punti di interruzione nascosti possono anche essere impostati nella finestra delle proprietà.
+
+Durante la riproduzione i testi nascosti sono visibili.
+
+.animatebreak
+.related replay
+Anima i punti di interruzione
+
+Questo strumento va automaticamente da un punto di interruzione all'altro. Per aumentare o diminuire la velocità, premere SHIFT+tasto freccia destra/sinistra.
+
+.draw
+.related mouse
+Disegnare con il mouse
+
+Usando questa icona si possono disegnare schizzi con il mouse nel colore corrente. Per cancellare il disegno premere ESC o usare il corrispondente comando da menù. Il disegno viene salvato ma in questo caso il file di costruzione diventa piuttosto pesante.
+
+.zoom
+.related mouse grid
+Zoom con il mouse
+
+Zooma trascinando il mouse nella regione esterna alla costruzione.
+Muove la costruzione  trascinando il mouse nella regione interna alla costruzione.
+Nel secondo caso il puntatore del mouse assume una forma differente.
+
+Si può zoomare anche con i tasti +/- e muovere con i tasti freccia.
+
+La vista corrente viene salvata con il file della costruzione.
+
+.parameter
+.related runmacro parametertypes target macro
+Oggetti iniziali Macro
+
+La macro sono un importante strumento per costruzioni più complicate.
+Senza macro, sarebbero possibili solo semplici costruzioni. Esse memorizzano molti passi di costruzione in uno solo. Si comportano come sottoprogrammi in un linguaggio di programmazione. Le macro sono come un nuovo strumento definito dall'utente.
+
+Una macro necessita di oggetti iniziali (parametri) e di oggetti finali (risultati), proprio come lo strumento segmento richiede due punti come parametri e ha un segmento come risultato.
+
+Le macro in C.a.R. si definiscono in modo semplice. La macro deve vedere quale parte della costruzione apprendere: chiamiamo questo "definizione del modello". Per creare il modello, costruire alcuni oggetti (risultati) a partire da alcuni oggetti dati come parametri. Per esempio si può costruire l'asse di un segmento partendo dai due estremi.
+
+Nel primo passo si mostrano alla macro i punti di partenza. La macro capirà che questi sono i parametri della costruzione. Quindi premere lo strumento macro ancora una volta per definire i risultati.
+
+Vedere: Oggetti finali
+
+.target
+.related parameter runmacro parametertypes macro
+Oggetti finali
+
+Dopo aver selezionato gli oggetti iniziali, cliccare ancora una volta sullo strumento macro per scegliere gli oggetti finali (risultati). In questo stadio si vedranno solo quegli oggetti che sono costruibili a partire dagli oggetti iniziali. Per esempio si vedrà l'asse di due punti se sono stati scelti due punti come oggetti iniziali. Si vedranno anche tutti i passi intermedi della costruzione, anche se non sono stati nascosti.
+
+Ora selezionare gli oggetti finali. Per esempio, selezionare l'asse.
+
+Si dovrebbe sempre definire almeno un oggetto finale, altrimenti la macro costruirà tutti gli oggetti visibili. Gli oggetti finali assumeranno colore e stili di default nel momento in cui la macro viene eseguita. Tutti gli altri oggetti assumeranno lo stile del modello definito, con l'eccezione degli oggetti neri che avranno il colore di default. In particolare, tutti gli oggetti nascosti saranno costruiti nascosti. Tuttavia c'è un'opzione che nasconde automaticamente tutti gli oggetti che non siano quelli finali. Inoltre, se la macro viene usata in modalità descrittiva l'utente può assegnare i nomi solo agli oggetti finali.
+
+Un altro clic sullo strumento macro permette di definire la macro attraverso una finestra di dialogo.
+
+Vedere: Definizione Macro
+
+.macro
+.related runmacro parametertypes parameter target expression fixedcircle fixedangle hintparameters selfreference defaultmacros macroerror
+Definizione Macro
+
+Dopo aver selezionato gli oggetti iniziali e quelli finali, un altro clic sullo strumento macro permette di definire la macro attraverso una finestra di dialogo.
+
+Qui si può inserire il nome, un commento, e si può editare il prompt dell'utente per ogni parametro. I commenti e i prompt dell'utente sono importanti, affinché l'utente possa capire cosa fa la macro e come deve essere eseguita. I prompt vengono visualizzati sulla riga di stato mentre la macro è in attesa dei parametri.
+
+È possibile impostare un parametro a un oggetto A usando "=A" per il
+parametro prompt. Il parametro non sarà richiesto al prompt, ma sarà invece usato l'oggetto "A", se esiste e se è del tipo corretto.
+
+Per default, le macro nascondono tutti gli oggetti che sono duplicati da oggetti esistenti. Qui si può disattivare questa caratteristica.
+
+Inoltre si può chiedere all'utente un valore per una circonferenza di raggio fissato o per un angolo di misura fissata o per una espressione mentre la macro è in esecuzione. Per fare questo inserire il nome della circonferenza, dell'angolo o dell'espressione nell'ultima riga della finestra. All'utente comparirà una finestra di dialogo e potrà inserire qualsiasi espressione aritmetica. Al prompt dell'utente possono essere inviati anche diversi oggetti separati da virgole.
+
+Vedere: Parametri Suggerimento, Self reference
+
+.hintparameters
+.related macro
+Parametri Suggerimento
+
+Una speciale caratteristica nasconde i punti iniziali. Se, mentre si genera una macro, un punto nascosto viene scelto come parametro di una macro e se, mentre la macro è in esecuzione, tale punto è associato a un punto generato durante la selezione dei parametri, questo nuovo punto sarà nascosto al termine dell'esecuzione.
+Questa caratteristica permette di usare punti come parametri suggerimento. Un esempio potrebbe essere una macro, che genera un triangolo equilatero a partire da un segmento. Il suggerimento dovrebbe essere un terzo click che indica una o l'altra parte del segmento. In questo caso deve essere usata una espressione per uno degli angoli di 60° che comprendono il terzo punto, qualcosa del tipo "60*sign(180-a(P,A,B))".
+
+.selectmacro
+.related runmacro macro
+Finestra di Dialogo Selezione Macro
+
+La finestra di dialogo per la selezione di una macro contiene una lista di tutte le macro. Le macro possono essere organizzate in sottomenù. Per passare a un sottomenù fare un doppio clic su di esso. Per tornare alla cartella superiore, fare doppio clic su "..". Per mettere una in una sottocartella rinominarla tipo "sottocartella/nomemacro".
+Le macro di default sono visualizzate in rosso.
+
+Se la finestra di dialogo permette selezioni multiple, le sottocartelle possono essere selezionate.
+In questo caso, tutte le macro in tutte le sottocartelle di questa sottocartella saranno selezionate in una volta.
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters selectmacro
+Eseguire Macro
+
+Se il tasto SHIFT è premuto quando lo strumento macro è selezionato, le macro usate precedentemente saranno selezionate automaticamente. Altrimenti, e se c'è più di una macro, si aprirà la finestra di dialogo per la selezione della macro. Dopo che l'utente ha scelto una macro il programma richiederà al prompt ciascun parametro e visualizzerà il tipo di oggetto atteso.
+
+Le macro possono anche esser selezionate con il tasto destro del mouse: scegliere la macro dalla lista del menù popup.
+
+Se si vede "SPACE seleziona ...", l'oggetto indicato può essere scelto semplicemente premendo la barra spaziatrice. Ciò si rivela utile se la macro viene usata parecchie volte.
+
+Infine la macro sarà eseguita. Se la macro necessita di un valore per una circonferenza di raggio fissato o per un angolo di misura fissata lo richiederà con una finestra di dialogo. L'utente può inserire per questo valore qualunque espressione aritmetica.
+
+Se l'anteprima completa è attivata si vedrà il risultato dell'operazione
+prima che l'ultimo punto iniziale sia selezionato.
+
+Vedere: Finestra di Dialogo Selezione Macro, Definizione Macro
+
+.defaultmacros
+.related runmacro save
+Macro di default
+
+All'avvio, C.a.R. cerca un file di nome ".default.mcr" nella cartella corrente. Se lo trova, le macro contenute in esso vengono caricate.
+
+Queste macro di default sono protette. Non vengono cancellate quando viene caricato un nuovo file e non vengono salvate con le costruzioni. Per cancellare le macro protette usare la voce relativa nel menù macro e selezionare tutte le macro.
+
+Si possono creare proprie macro di default. Basta salvare un file
+".default.mcr" nella cartella corrente. Se si necessita di una versione per la lingua salvare il file come ".la_default.mcr", dove "la" è la scorciatoia per la lingua, oppure semplicemente sovrascrivere ".default.mcr".
+
+.macroerror
+.related macro
+Oggetto in uso, ma non nella macro
+
+Si ha questo avvertimento se un oggetto della macro si riferisce ad un oggetto che non è contenuto nella macro.
+Di solito deriva dal fatto che in una espressione c'è un riferimento @..., forse nella formattazione condizionale dell'oggetto.
+Questi riferimenti non rendono gli oggetti dipendenti dagli oggetti riferiti e quindi sono ancora costruibili. Tuttavia potrebbero non funzionare come ci si aspetta oppure, se usati, riferirsi anche a oggetti sbagliati.
+
+Un altro tipo di riferimento sono i limiti degli archi circolari. Per eliminare dipendenze circolari, dal momento che questi limiti dipendono dalla circonferenza la maggior parte delle volte, l'arco circolare non può dipendere da essi.
+Se si ignora l'avvertimento l'arco sarà determinato da oggetti con lo stesso nome o diventerà una circonferenza.
+
+Una terza ragione può essere una intersezione tra circonferenze. Per scegliere l'intersezione essa si deve mantenere differente da un dato punto. Ciò può essere fatto automaticamente se l'altra intersezione esiste già. Se si ignora l'avvertimento questa intersezione sarà mantenuta distante da un punto con lo stesso nome o diventerà un'intersezione non ristretta.
+
+Per evitare l'avvertimento, aggiungere l'oggetto mancante ai parametri, in modo che venga incluso nella macro.
+
+.localize
+.related defaultmacros
+Guida attiva
+
+C.a.R. È disponibile già in molte lingue. Tuttavia se vuoi provvedere la tua versione dovresti tradurre
+
+ - ZirkelProperties.properties
+ - info.txt
+
+Il file properties deve essere tradotto in Unicode attraverso uno strumento chiamato "native2ascii": lascia che lo faccia io per te. Mandami semplicemente il file.
+
+Il file guida deve rispettare la codifica locale.
+
+.fixparameters
+.related runmacro parameter
+Parametri fissati
+
+Si può anche fissare la selezione di oggetti iniziali di una macro premendo il tasto SHIFT durante la selezione. Questo creerà una copia della macro, che è fissata da questi oggetti iniziali. Naturalmente non possono essere fissati tutti quanti gli oggetti iniziali.
+
+Un parametro può essere fissato durante la definizione della macro. Per fare questo inserire "=A" come prompt del parametro. Questo parametro sarà fissato all'oggetto di nome "A".
+
+.parametertypes
+.related parameter
+Tipi di oggetti iniziali
+
+È più facile usare punti come parametri. Ma è possibile usare anche altri tipi di oggetti.
+
+Rette, semirette, segmenti, e circonferenze generano parametri secondari poiché a loro volta chiamano i due punti iniziali, o il centro rispettivamente. Questo semplifica l'uso delle macro. Tuttavia l'utente deve fare attenzione a usare questi parametri in una stessa configurazione. Due circonferenze concentriche devono essere concentriche. Se i segmenti AB e BC sono parametri di una macro allora l'utente deve scegliere segmenti EF e FG. In questi casi, è meglio usare punti come parametri.
+
+Rette e semirette sono di due tipi: con due punti definenti e con un punto definente (per esempio le rette parallele). Nelle macro, rette, semirette,
+e segmenti sono memorizzati come linee senza punti, se i loro punti definenti non sono usati come punti finali della costruzione o se hanno solo un punto definente. L'utente allora può scegliere qualunque linea come parametro. Se viene usato solo uno dei due punti definenti, l'utente dovrà scegliere una retta, semiretta o segmento, dello stesso tipo. Insistiamo: ciò è complicato e così sarebbe meglio usare punti.
+
+.htmlexport
+.related runningdemo save comment exportdialog jobexport
+Esportazione HTML
+
+C.a.R. può generare pagine HTML con le costruzioni, contenenti un'applet che le visualizza.
+
+Dopo aver compilato la finestra di dialogo, si deve scegliere un file nella finestra di dialogo file e, per i problemi con pagine di soluzioni, un altro per la soluzione.
+Quindi si devono pubblicare
+
+ - la pagina HTML appena generata, 
+ - una pagina soluzione, se presente,
+ - fogli di stile, se presenti, 
+ - l'archivio applet zirkel.jar,
+ - il file costruzione.
+
+Notare che le tracce e le animazioni vengono salvate con la costruzione. Esse riappaiono automaticamente nelle costruzioni che sono visualizzate nelle applet. In questo caso, non c'è interazione con l'utente. Così si dovrebbe usare lo stile piano o il bordo per queste applet.
+
+Notare che le tracce sono visualizzate automaticamente, se erano visualizzate quando la costruzione è stata salvata.
+
+È meglio avere solo un'applet per ogni pagina HTML.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+Esportazione HTML con Modelli
+
+Questo è un modo comodo per esportare una costruzione in HTML. Il
+programma carica un modello per la pagina HTML e compila le informazioni necessarie riempendo i segnaposto del modello. La finestra di dialogo è molto più corta, poiché la maggior parte delle informazioni deve essere contenuta nel file modello, incluse le dimensioni dell'applet, i colori dell'applet e della pagina, i fogli di stile e la posizione dell'archivio.
+
+La documentazione contiene alcuni modelli. I file modello usano l'estensione "*.template". Questo tipo di file può essere editato con un comune editor di testo o con un editor HTML. Gli utenti di lingua straniera dovrebbero disabilitare UTF-8 nelle impostazioni, oppure usare un editor che supporta UTF(per esempio JE, l'editor HTML di Mozilla, oppure MS Frontpage). Si possono basare i propri modelli su quelli contenuti nella documentazione.
+
+Sono riconosciuti i seguenti segnaposto.
+
+#title
+  Rimpiazzato dal titolo della costruzione come mostrato nella finestra di dialogo di esportazione.
+
+#comment1,#comment2,...
+  Rimpiazzato dalla sezione del commento alla costruzione con il numero corrispondente. Le sezioni commento sono separate da linee consistenti in "~". Ciascun paragrafo della sezione commento sarà delimitato da <p>...</p>.
+
+#comment
+  Funziona come testo, ma non cerca sezioni commento.
+
+#text1,#text2,...
+  Funziona come #comment1,... ma non genera paragrafi <p>...</p>. L'utente può utilizzare qualunque tag HTML voglia.
+
+#text
+  Funziona come #text1,... ma non cerca sezioni commento.
+
+#parameter
+  Inserisce i parametri dell'applet: file o job, stile, strumenti e opzioni.
+
+#color
+  Inserisce i parametri dell'applet per i colori.
+
+#font
+  Inserisce i parametri dell'applet per i caratteri e le cifre.
+
+#codebase
+  Il codebase dalla finestra di dialogo di esportazione.
+
+Ecco un file modello molto semplice.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=#F0F0F0>
+  <H1>
+  #title
+  </H1>
+  <CENTER>
+  <P>
+  <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400" 
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+.exportdialog
+.related htmlexport jobexport
+Impostazioni di Esportazione
+
+Le applet possono avere diversi stili.
+
+- Piatto: l'applet non ha bordo. L'utente può solo mostrare elementi nascosti e muovere punti. In questo caso si dovrebbe usare il colore per la pagina e per l'applet.
+
+- Bordo: l'applet ha un bordo. 
+
+- Bordo e Icone: l'applet ha un bordo e le icone. L'utente può costruire oggetti.
+
+- Bordo, Icone e Stato: l'applet ha una riga di statuo. Il testo di stato viene visualizzato anche nelle riga di stato del browser.
+
+- Bordo, Icone e riga di Input: la costruzione deve essere fatta in modalità descrittiva (non-visuale).
+
+- Riproduci con punti di interruzione: sono visualizzati tre pulsanti per abilitare la navigazione tra punti di interruzione. Per impostare i punti di interruzione, usare lo strumento riproduzione.
+
+Titolo della pagina: è il titolo della pagina nello stile <H1>.
+
+File di stile CSS: i Cascading Style Sheets sono utili per dare un aspetto comune a pagine diverse. Se non vengono usati, lasciare vuoto input. Usare un percorso relativo all'archivio del programma.
+
+Larghezza, Altezza: le dimensioni dell'applet.
+
+File costruzione: il nome del file contenente la costruzione, di solito nella stessa cartella del file HTML. Tuttavia il nome del file deve essere relativo all'archivio del programma. URL assoluti e percorsi non sono permessi.
+
+File Jar: questo è l'archivio del programma. Il percorso deve essere relativo alla pagina HTML.
+
+Colori: si può scegliere un colore per lo sfondo della pagina e per quello dell'applet. Il colore può essere scelto con il pulsante sottostante.
+
+Tuttavia, ci sono scelte per salvare i colori definiti per gli elementi e per lo sfondo. Lo sfondo della costruzione può essere diverso da quello dell'applet e da quello della pagina.
+
+Salva cifre: salva le impostazioni per il numero di cifre. Dovrebbe essere abilitato.
+
+Mostra Commento: il commento sarà messo sotto l'applet. Tutti i browser dovrebbero essere in grado di gestire al codifica di default UTF-8. Altrimenti  scegliere nelle impostazioni avanzate la codifica Windows.
+
+Strumenti: queste due barre di icone permettono di scegliere gli strumenti, che dovrebbero essere mostrati all'utente. In ogni caso, si dovrebbe provvedere lo strumento cancella ultimo oggetto. Con la speciale icona per due righe l'utente ottiene due righe di strumenti.
+
+L'utente può definire macro solo se gli viene fornito lo strumento relativo, e può eseguire macro solo se questo strumento è disponibile.
+
+Le icone con il punto di domanda sono scelte per la finestra di dialogo per la selezione, la domanda per punti su oggetti e per intersezioni.
+Di default, tutte queste finestre di dialogo e domande sono disabilitate nelle applet.
+
+Nella modalità non-visuale, le icone aiutano l'utente a trovare la sintassi.
+In questa modalità funzionano tutti gli strumenti di costruzione.
+
+.jobexport
+.related htmlexport exportdialog
+Esportazione di Problemi
+
+Mostra come problema: deve essere scelto per salvare la costruzione come un problema.
+
+File soluzione - Salta – Salva - Collega: queste impostazioni permettono la generazione automatica di una pagina soluzione, che è una pagina separata per mostrare la soluzione. Dopo che l'utente ha risolto il problema, il browser può saltare direttamente alla pagina soluzione. Si può anche impostare un link a questa pagina sotto la costruzione.
+
+Commento: esporta il commento al problema. Il commento alla soluzione viene mostrato solo nella pagina soluzione.
+
+.runningdemo
+.related htmlexport online
+Creare una demo eseguibile
+
+È possibile ottenere un'applet per caricare una serie di costruzioni e mostrarle all'utente in sequenza. La sintassi dell'applet è abbastanza diversa e non c'è esportazione automatica.
+
+Un esempio di codice per l'applet è tipo questo.
+
+ <APPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+       WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+Il file "demo.xml" contiene il file list. Esso è un file XML file con una semplice sintassi. Ecco un esempio.
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <Demo delay="30">
+ <File name="Uhr.zir" delay="20">Clockwork</File>
+ <File name="Cindarella-Maschine.zir">Cindarella machine</File>
+   ...
+ </Demo>
+
+I parametri delay sono in secondi.
+
+.visual
+.related expressionsyntax descriptivefiles runmacro
+Costruzioni Descrittive
+
+In questa modalità, c'è una riga di input sotto la costruzione. Si applicano le seguenti differenze.
+
+ - La scelta di uno strumento mostra solo un modello di input. 
+ - I parametri necessari alla costruzione devono essere forniti per nome. 
+ - Il nome dell'oggetto costruito deve essere dato a sinistra di un uguale =.
+ - La costruzione si conclude premendo Return. 
+
+C'è una sintassi fissata per l'input.
+
+ nome=function(parametro,...)
+ nome1,nome2=function(parametro,...)
+
+La seconda riga si applica all'intersezione e a macro con diversi punti finali.
+
+Se il nome viene omesso l'oggetto prenderà il nome di default. 
+
+Segue una breve descrizione della sintassi. Notare, che le espressioni possono essere usate in tutti i posti dove è previsto un valore. Le parentesi vuote possono essere omesse.
+
+Sintassi
+ Comando esteso 
+ Descrizione 
+ 
+A=P() 
+ punto 
+ Genera un punto in una posizione casuale. 
+ 
+A=P(0,1) 
+  Un punto fissato. 
+ 
+a=s(B,C) 
+ segmento
+ Un segmento da B a C. 
+ 
+a=s(B,2) 
+  Un segmento di lunghezza fissata. 
+ 
+a=l(B,C) 
+ retta 
+ Una retta tra B e C. 
+ 
+a=r(B,C) 
+ semiretta 
+ Una semiretta da B a C. 
+ 
+k=c(A,B) 
+ circonferenza 
+ Una circonferenza di centro A per B. 
+ 
+k=c(A,2)
+  Una circonferenza di raggio fissato. 
+ 
+k=c(A,B,C)
+  Una circonferenza di centro A di raggio BC. 
+ 
+A=I(g,g)
+ intersezione
+ Una intersezione tra due rette. 
+ 
+A,B=I(k,k)
+ Entrambe le intersezioni tra due circonferenze, o tra una circonferenza e una  retta. 
+ 
+lontano(A,P)
+ lontano  
+ Mantiene l'intersezione A distante dal punto P. 
+ 
+M=M(A,B)
+ medio 
+ Il punto medio di AB. 
+ 
+g=pl(g,A) 
+ parallela
+ La parallela per A a g. 
+ 
+g=p(g,A) 
+ perpendicolare
+ La perpendicolare per A a g. 
+ 
+a=a(A,B,C) 
+ angolo 
+ L'angolo A,B,C 
+ 
+a=a(A,B,90) 
+  Un angolo di misura fissata. 
+ 
+A=pol(P1,P2,P3) 
+ poligono
+ Crea un poligono con questi vertici. 
+
+Q=conica(P1,P2,P3,P4,P5)
+ Crea la conica per questi punti.
+
+F=f(a,b,d,t,xt,yt)
+ function
+ Crea una funzione su [a,b] con passo d, che disegna xt,yt,
+ che sono espressioni dipendenti dalla variabile t.
+
+valore(P,0,1) 
+ valore
+ Fissa the coordinate del punto. 
+ 
+valore(s,2) 
+  Fissa la lunghezza di un segmento. 
+ 
+valore(k,2) 
+  Fissa il raggio di una circonferenza.
+ 
+valore(w,90) 
+  Fissa la misura di un angolo. 
+ 
+valore(true,o) 
+  Imposta la visualizzazione del valore di o. 
+ 
+valore(o) 
+  Imposta la visualizzazione del valore di o a on. 
+ 
+valore(true) 
+  Imposta la visualizzazione dei valore di default. 
+ 
+nome(o,p) 
+ nome 
+ Imposta il nome di o a p. 
+ 
+nome(true,o) 
+  Imposta la visualizzazione del nome di o. 
+ 
+nome(o) 
+  Imposta la visualizzazione del nome di o a on. 
+ 
+nome(true) 
+  Imposta la visualizzazione dei nomi. 
+ 
+nascondi(true,o) 
+ nascondi 
+ Nasconde o mostra o. 
+ 
+nascondi(o) 
+  Nasconde o. 
+ 
+nascondi(true) 
+  Imposta di default lo stato nascosto per gli oggetti.
+ 
+col(verde,o) 
+ colore
+ Imposta il colore di o a rosso, verde, blu o marrone. 
+ 
+col(verde) 
+  Imposta il colore di default. 
+ 
+sp(spesso,o) 
+ spessore
+ Imposta lo spessore di o a spesso, normale o sottile. 
+ 
+sp(spesso) 
+  Imposta lo spessore di default.
+ 
+stile(quadrato,P) 
+ stile 
+ Imposta il tipo di punto a quadrato, circolo, rombo o punto. 
+ 
+stile(quadrato) 
+  Imposta il tipo di punto di default. 
+ 
+parz(k) 
+parz(true,k) 
+ parziale
+ Imposta la visualizzazione parziale o completa dell'oggetto k. 
+ 
+parz(true) 
+  Imposta lo stato parziale per default. 
+ 
+pieno(o) 
+pieno(true,o) 
+ pieno 
+ Imposta l'oggetto o allo stato pieno o vuoto. 
+ 
+sfondo(o) 
+sfondo(true,o) 
+ sfondo 
+ Imposta o meno l'oggetto o sullo sfondo. 
+ 
+finestra(0,0,5) 
+ finestra
+ Imposta la finestra alla larghezza 2*5 e centro (0,0). 
+
+concavo(true,a)
+ Imposta gli angoli in modo che possano essere concavi.
+
+solido(a)
+solido(true,a)
+ Imposta l'oggetto allo stato non trasparente.
+
+arco(c,A,B)
+ arco
+ Restringe una circonferenza a diventare un arco da A a B.
+
+rinomina(A,B)
+ Rinomina un oggetto A in B.
+ 
+Possono essere usate anche le macro. I nomi a sinistra del = saranno assegnati agli oggetti finali.
+Se ci sono diversi oggetti finali, i nomi devono essere separati da virgole.
+Un parametro addizionale può essere usato per assegnare un valore per un oggetto, da inserire in modo interattivo.
+
+.descritivefiles run
+.related visual save
+Costruzioni descrittive nei file
+
+Si possono aprire costruzioni da un file, o editarle e poi aprirle. 
+
+La sintassi è in righe e usa i comandi descritti sopra.
+Possono essere usate righe di commento iniziandole con //. I file possono contenere macro come questa
+
+ macro U 
+ // Costruisce una circonferenza per tre punti
+    parameter A=point // Seleziona il primo punto
+    parameter B=point // Seleziona il secondo punto
+    parameter C=point // Seleziona il terzo punto
+    g1=MS(A,B)
+    g2=MS(A,C)
+    U=intersection(g1,g2)
+    target k=circle(U,A)
+ end
+
+Le identazioni sono opzionali. I commenti nelle righe parametro sono usati come prompt, se la macro è usata interattivamente. Questa macro chiama le macro MS con due parametri.
+
+ macro MS
+  param A=point
+  param B=point
+  partial(true)
+  k1=circle(A,B)
+  k2=circle(B,A)
+  partial(false)
+  P1,P2=intersection(k1,k2)
+  target g=line(P1,P2)
+ end
+
+Se una riga costruisce due oggetti, il risultato deve essere definito separatamente.
+
+ A,B=intersection(g,k)
+ target B
+
+Se una macro ha più di un risultato, ciascuno deve essere assegnato.
+
+ A,B=test(...)
+
+I prompt sono definiti dalla parola chiave “prompt” di fronte al nome di un oggetto.
+
+ k=circle(A,5)
+ prompt k
+
+Segue un esempio di macro che usa un segmento come parametro.
+
+ macro MS
+ // Mittelsenkrechte
+  A=point
+  B=point
+    parameter s=segment(A,B)
+    ...
+ end
+
+Se le circonferenze vengono usate come parametri, c'è una speciale sintassi
+
+ M=point
+ parameter circle(M)
+
+Questo tipo di circonferenza può essere usata solo come parametro.
+
+Lo speciale comando “Mostra tutto” mostra tutti gli oggetti intermedi.
+Altrimenti saranno visibili solo i risultati. Il comando "invisibile" nasconde completamente tutti gli oggetti che non sono risultati.
+
+.assignments
+.related save restricted colors comment
+Problemi
+
+I problemi (o job) sono costruzioni mostrate parzialmente, che si chiede all'utente di completare. Il computer controlla solo il risultato finale, mentre la costruzione di per sé può essere diversa. L'utente riceverà un messaggio non appena avrà completato la costruzione.
+
+I problemi vengono generati scegliendo l'ultimo oggetto della figura data che deve essere mostrato all'utente. Inoltre ci devono essere gli oggetti finali, obiettivo della costruzione. Gli oggetti da costruire saranno visualizzati in un colore leggero, senza essere nascosti prima che la costruzione sia salvata.
+
+Gli oggetti finali non vengono controllati nella soluzione, se vengono generati premendo il tasto  SHIFT.
+
+Per testare il problema, cliccare sul corrispondente comando nel menù Speciale. Al contrario dell'utente, si ha a disposizione l'insieme completo degli strumenti. Si può utilizzare la barra delle icone ristretta per salvare il problema.
+
+Gli oggetti area impostati come oggetti da costruire dovrebbero essere definiti col minimo numero di vertici. Se l'utente che dà la soluzione crea punti in più sui lati dei poligoni, questi punti saranno omessi.
+
+.browser
+.related online
+Avviare il browser della guida
+
+Per avviare la guida HTML nel browser, bisogna configurarlo. Inserire la riga di comando del browser nella finestra di dialogo. Se il percorso contiene spazi, includere la stringa tra virgolette doppie.
+
+Inoltre aggiungere il percorso del file indice della guida. Questo dovrebbe già essere configurato. Se non viene trovata alcuna guida la finestra di configurazione userà la pagina web.
+
+Il browser predefinito è Explorer sui sistemi Windows, e Netscape sugli altri.
+
+.comment
+.related assignments parameter htmlexport
+Commenti
+
+Ciascuna costruzione può avere un commento. Il commento sarà visualizzato all'utente all'apertura della costruzione. I commenti possono essere esportati in HTML.
+
+I problemi hanno uno speciale commento, mostrato all'utente quando viene presentato il problema.
+
+Anche le Macro possono e dovrebbero aver commenti.
+
+.fonts
+.related zoom save
+Caratteri
+
+I caratteri possono essere impostati globalmente o per ciascun oggetto. Le impostazioni globali hanno la preferenza.
+
+Si possono utilizzare caratteri di due dimensioni, tuttavia i caratteri e i punti vengono scalati con la costruzione. Per finestre piccole o applet, ciò dovrebbe comportare caratteri e punti molto piccoli. Perciò c'è una dimensione minima per i punti e per i caratteri.
+
+Inoltre si possono usare caratteri in grassetto. Questa opzione è raccomandata per grandi bitmap.
+
+.sizes
+Dimensioni
+
+In questa finestra di dialogo possono essere impostati lo spessore minimo delle linee, le dimensioni minime di punti e caratteri.
+Per mantenere una certa omogeneità nella visualizzazione questi item sono proporzionati ma si possono comunque impostare a piacere.
+
+Inoltre si può impostare la dimensione delle frecce dei vettori e la dimensione della selezione per la selezione degli oggetti col cursore.
+
+Notare che per le esportazioni grafiche, si dovrebbero impostare esattamente questi valori, indipendentemente dalla dimensione dell'output.
+
+Queste dimensioni possono essere esportate nelle applet.
+
+.save
+.related assignments parameter descriptivefiles print defaultmacros filedialog
+Salvare e aprire file
+
+Le costruzioni sono salvate nel formato XML. Questo formato è "umanamente" leggibile. Normali costruzioni hanno l'estensione ".zir",
+e i problemi hanno l'estensione ".job". Le macro usano ".mcr".
+
+Le costruzioni possono contenere macro. C'è un'opzione nel menù file per determinare, se le macro correnti debbano essere salvate insieme alle costruzioni o meno. Per evitare l'accumulo di macro nelle costruzioni, sarebbe una buona idea cancellare tutte le macro prima di aprire una nuova costruzione. C'è un'opzione per fare questo.
+
+I file possono essere compressi aggiungendo "z" alla loro estensione. Non c'è bisogno di fare questo a meno che non si voglia minimizzare il tempo di scaricamento, qualora il file si trovi su un server.
+
+Ci sono particolari voci del menù per aprire i problemi, le macro e le costruzioni descrittive.
+
+Vedere: Finestra di Dialogo File
+
+.filedialog
+.related save settings
+Finestra di Dialogo File
+
+C.a.R. implementa una propria finestra di dialogo file poiché quelle di Windows
+e Linux hanno alcuni difetti se usate con Java. Se si vuole usare la finestra di dialogo di sistema si può configurare la relativa impostazione avanzata.
+
+La finestra di dialogo file di C.a.R. utilizza history per file, cartelle e filtri. La history delle cartelle si presenta in una speciale lista di selezione a discesa e quella dei file e dei tipi di file appare quando vengono premuti i tasti freccia su/giù con il cursore posizionato sui relativi campi.
+
+La navigazione tra le cartelle si ottiene con un doppio clic sul nome della cartella nel pannello sinistro. Il pulsante "Indietro" apre le cartelle precedenti. Per scegliere un file, si può fare doppio clic sul suo nome nel pannello destro o selezionarlo e poi cliccare sul pulsante "Apri".
+
+Come si può notare è possibile inserire diversi tipi di file separati da spazi. I tipi di file contengono segnaposto, "?" per singoli caratteri e "*" per le stringhe.
+
+Il pulsante omonimo crea una nuova cartella. Inserire il nome della cartella nell'apposito campo. In questa finestra di dialogo non si possono cancellare né file né cartelle.
+
+Il pulsante home porta alla cartella home di C.a.R., se questo è installato nella cartella home dell'utente. Il nome inglese è "CaR Files". Se tale cartella non c'è, il pulsante porta alla cartella  dell'utente: in Windows, è "Documenti" e in Linux è la cartella home . Questa cartella può essere cambiata premendo il pulsante home con SHIFT-CTRL. La cartella corrente diventerà la nuova cartella home per C.a.R. Un nuovo clic con questi tasti ripristina le impostazioni originali.
+
+.print
+.related exportsettings print
+Stampare ed Esportare Costruzioni
+
+Ci sono diversi modi per esportare le costruzioni in altri programmi o visualizzarle esternamente.
+
+Innanzitutto si possono stampare le costruzioni. C'è un'opzione per stampare in dimensione esatta, in modo che l'unità corrisponda esattamente 1 cm.
+
+Inoltre si può esportare in vari formati grafici e vettoriali. Per i word processor, si raccomanda di utilizzare PNG, che è opportunamente scalato per l'output corretto della larghezza.
+
+Per l'esportazione PNG si apre una finestra di dialogo dove si può impostare la dimensione  o usare un fattore relativo alla dimensione dello schermo. Si può anche determinare la dimensione attraverso larghezza e altezza in cm e risoluzione dei grafici. C'è una lista di selezione a discesa per i diversi formati. Se si usa "scala 1:1", si ottiene una versione scalata(1 unità = 1 cm) con una risoluzione di 300 dpi. Assicurarsi che l'output stia sul foglio.
+
+Dal momento che linee, caratteri e punti possono diventare sempre più piccoli, si può scalare in cm. C'è un'anteprima per osservare l'effetto sullo schermo.
+
+Per l'uso con LaTeX, si può generare una coppia di file, il file contenitore e un file per disegnare l'immagine. Quest'ultimo ha lo stesso nome del file PNG ma estensione "ztx" (zirkel tex). È possibile permettere a LaTeX di fare i disegni delle stringhe e delle equazioni nella costruzione. Nella finestra di dialogo selezionare i tipi di stringhe che dovrebbero essere prodotti da LaTeX. L'esportazione grafica genera i comandi LaTeX necessari. Questo tipo di esportazione LaTeX funziona con pdflatex and latex. Nel sorgente LaTeX bisogna importare il pacchetto "graphicx", e caricare il file immagine con un comando input, come segue
+
+ \begin{figure}
+ \centering
+ \input{image.ztx}
+ \end{figure}
+
+I grafici possono anche essere copiati negli appunti. Viene applicata la stessa scalatura dell'esportazione PNG. Se si vuole una esportazione da schermo della costruzione usare "scala relativa allo schermo" nella finestra di dialogo.
+
+Per l'esportazione PDF impostare solo le dimensioni dell'immagine in cm. PDF può scalare anche linee, caratteri e punti.
+
+.construction
+.related hide reorder
+Lista Oggetti
+
+Si può ottenere la lista degli oggetti della costruzione con il corrispondente comando nel menù Impostazioni. Questa lista può essere usata per editare oggetti invisibili ed è l'unico modo per accedere ai passi completamente nascosti della costruzione. Le righe della lista hanno lo stesso colore dell'oggetto a cui si riferiscono. Gli oggetti completamente nascosti sono tra parentesi.
+
+La visualizzazione può essere ristretta a determinati tipi di oggetti con la lista di scelta a discesa nella prima riga della finestra. Gli oggetti completamente nascosti sono visibili solo nello stato "Tutti gli oggetti".
+
+La lista può essere disposta o nell'ordine in cui gli oggetti cono stati costruiti o nell'ordine in cui sono stati memorizzati. Notare che il programma può cambiare l'ordine degli oggetti per assicurarsi che nessun oggetto si riferisca a un altro oggetto costruito successivamente.
+
+.colors
+.related htmlexport
+Impostare i colori
+
+In C.a.R. si possono impostare a piacimento diversi colori. I colori non vengono salvati con la costruzione ma vengono esportati in HTML.
+
+I colori sono composti nel modello rosso, verde,blu. Per una migliore compatibilità mantenere i colori di default.
+
+.settings
+.related restricted iconbar tips beginner
+Impostazioni Avanzate
+
+Questa finestra di dialogo contiene alcune impostazioni per utenti esperti. Tuttavia alcune di queste informazioni riguardano la modalità principiante.
+
+Prima di tutto, si può abilitare la visualizzazione delle etichette degli oggetti durante il trascinamento. Questa opzione può essere di disturbo ma è abbastanza utile in alcuni casi. Essa può essere anche ristretta solo agli oggetti fissati.
+
+Poi si può abilitare o meno la visualizzazione di alcune domande che il programma pone prima di azioni critiche.
+
+Se si disabilita la finestra di dialogo per la scelta di oggetti, il programma selezionerà sempre il primo oggetto, anche se la selezione non può essere determinata univocamente dalla posizione del mouse.
+
+Si può anche disabilitare l'anteprima o restringerla ai punti. Nella modalità principiante, nell'anteprima vengono mostrati solo i punti poiché altri oggetti tendono a confondere l'utente.
+
+La barra delle icone può essere posizionata nella parte inferiore della finestra e le descrizioni degli strumenti possono essere disabilitate.
+
+Si può voler usare la finestra di dialogo file di sistema: io preferisco la mia e effettivamente questo offre alcuni vantaggi. Tuttavia con questa non si possono cancellare o rinominare i file.
+
+Si dovrebbe sempre usare la codifica UTF-8, ma si può anche scegliere di usare la propria codifica locale per i file costruzione. Questa scelta influenza commenti e descrizioni nei file. Usare le impostazioni locali solo se si producono costruzioni da usare in locale e se non si ha un editor UTF-8.
+
+In modalità smartboard, il trascinamento si comporta in maniera differente. Smartboard non può riportare i movimenti del mouse, così questi vengono rimpiazzati dal trascinamento; si deve cliccare ancora una volta per completare la costruzione. Questo è importante solo per l'anteprima.
+
+Per default, il programma scrive backup dei file prima di sovrascriverli. Se si verifica che ciò non serve, disabilitare la caratteristica backup.
+
+La finestra di dialogo per le macro può essere chiamata con un clic singolo oppure doppio del tasto destro del mouse.
+
+Su un sistema lento, si può voler disabilitare la grafica ben definita con anti-aliasing.
+
+A causa delle limitazioni nella risoluzione dello schermo, i punti possono essere disegnati come esatti rettangoli o esattamente nel posto giusto, ma non sempre come esatti quadrati. Si può determinare qui la propria preferenza.
+
+.exportsettings
+.related settings print
+Impostazioni per l'Esportazione dei Grafici
+
+Normalmente punti e caratteri sono scalati.  Ma le dimensioni minime sono rispettate se si abilita la relativa opzione in questa finestra. Per ottenere caratteri grandi in stampe piccole, usare la scalatura nell'esportazione grafica.
+
+Le bitmaps sono normalmente generate su uno sfondo bianco. Si può dire al programma di usare i propri colori di sfondo.
+
+.reorder
+.related circle angle expressionsyntax
+Riordinare punti
+
+È possibile cambiare l'ordine della costruzione manualmente. C'è uno speciale strumento per fare questo e, se si seleziona un oggetto con questo strumento, il programma cercherà di muovere questo oggetto il più lontano possibile dall'inizio della costruzione. Questo può essere utile per controllare la sequenza degli oggetti disegnati.
+
+.tips
+.related online browser start move intersection expression reorder
+Suggerimenti
+
+In questa sezione della guida, si danno alcuni suggerimenti per risolvere i problemi più comuni.
+
+Costruzioni non valide. Per testare una costruzione, muovere uno dei punti base. Se la costruzione non resta valida, la ragione più comune è che non sia stata scelta propriamente un'intersezione: si è invece definita una retta che passa attraverso il punto di intersezione solo per caso.
+
+Intersezione sbagliata. Se una costruzione diventa non valida, nel caso in cui  l'ordine dei punti base venga cambiato o un punto venga portato da un altro lato, si è di fronte a questo problema. Così, se si vuole che la costruzione resti valida in tutte le situazioni, assicurarsi di aver scelto propriamente tutte le intersezioni. Se la selezione automatica di C.a.R. fallisce, si può selezionare manualmente l'intersezione. Aprire la sua finestra delle proprietà e premere “Vicino a” o “Lontano da”. Quindi scegliere un punto che dovrebbe stare più vicino o più lontano dal punto di intersezione.
+
+.keyboard
+.related gui delete zoom mouse iconbar
+Usare la Tastiera
+
+La maggior parte dei comandi in C.a.R. ha una scorciatoia da tastiera. Guardare nei menù per trovare la scorciatoia per ciascun comando. Le scorciatoie sono differenti per le diverse lingue.
+
+Notare che qualche volta bisogna dare alla costruzione il focus della tastiera: basta cliccare su uno spazio vuoto con il tasto destro del mouse.
+
+Le scorciatoie sono il tasto backspace per cancellare l'ultimo oggetto costuito, i tasti +/- per zoomare, e i tasti freccia per muovere la costruzione. Inoltre F1 apre la guida attiva.
+
+Il tasto ESC resetta lo strumento corrente.
+
+Notare che il tasto CTRL premuto modifica alcuni strumenti. Anche la pressione di  SHIFT cambia il comportamento di alcuni strumenti.
+
+La barra spaziatrice è usata da alcune versioni di Java per premere i pulsanti. Altre versioni usano il tasto INVIO.
+
+.image
+.related background
+Immagini
+
+Le immagini possono essere aggiunte alla costruzione. Si possono usare due o tre punti di ancoraggio. Nel primo caso l'immagine viene ruotata e scalata, nel secondo caso viene usata una trasformazione affine. Se si vogliono solo due punti, selezionare ancora il primo e il secondo punto.
+
+Le immagini devono trovarsi nella stessa cartella della costruzione.
+Le immagini possono anche essere usate come immagini di sfondo.
+
+.language
+Impostare la Lingua
+
+C.a.R. Normalmente si avvia con la lingua del sistema su cui sta girando ma può essere impostato in modo da avviarsi in una qualunque delle lingue implementate. Usare le seguenti abbreviazioni per le lingue attualmente disponibili
+
+ Inglese - en
+ Tedesco - de
+ Francese - fr
+ Olandese - nl
+ Italiano - it
+ Spagnolo - es
+ Portoghese - pt
+ Brasiliano - br
+ Sloveno - sl
+ Danese - da
+ Norvegese - no
+ Polacco - pl
+ Russo - ru
+
+Si può usare il comando da menù per impostare la lingua o inserire da linea di comando il parametro ("-l de" per il Tedesco).
+
+.selfreference
+.related macro point
+Riferimento circolare
+
+È possibile definire un punto che fissa parametri interi. Per fare questo fissare le coordinate usando la funzione floor(...). Un tale punto fissato potrà ancora essere mosso all'utente. C'è una regola per cui un punto che si riferisce solo a se stesso a (@-references do not count) si può muovere. In questo caso, prima si muove il resto della costruzione e poi il punto.
+
+Questo tipo di punti fissati può essere creato anche con le macro. Essi devono essere i punti iniziali della macro e devono essere selezionati con il tasto SHIFT. Quando viene eseguita la macro, i punti scelti come parametri diventano  a coordinate fisse.

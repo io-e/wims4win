@@ -1,0 +1,30 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall @STATIC_LIB@
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+defines=@DEFINES@
+
+all: whirlgif
+
+whirlgif: whirlgif.o gifencod.o gifdecod.o
+	$(cc) $(cflags) $(LDFLAGS) -o whirlgif whirlgif.o gifencod.o gifdecod.o
+
+clean:
+	rm -f whirlgif *.o
+
+distclean: clean
+	rm -f $(wims_home)/other/bin/whirlgif
+	rm -f Makefile
+
+# DEPENDECIES FOLLOW:
+gifdecod.o:	 whirlgif.h	gifdecod.c
+	$(cc) $(cflags) $(CPPFLAGS) -c gifdecod.c
+
+gifencod.o:	 whirlgif.h	gifencod.c
+	$(cc) $(cflags) $(CPPFLAGS) -c gifencod.c
+
+whirlgif.o:	 whirlgif.h	whirlgif.c
+	$(cc) $(cflags) $(CPPFLAGS) -c whirlgif.c

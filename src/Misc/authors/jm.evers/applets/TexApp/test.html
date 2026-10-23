@@ -1,0 +1,81 @@
+<html>
+    <body bgcolor=#0000ff onload="javascript:setTimeout('SetSize(\'TexApp\')',2000);">
+        <script type="text/javascript">                                                 
+	function remove(t){
+	    document.getElementById(t).width = 1;
+	    document.getElementById(t).height = 1;	
+	}
+	                                                       
+    	function SetSize(t){                         
+	    var xsize,ysize;
+	    try{
+		xsize = document.getElementById(t).getPrefferedWidth();
+		ysize = document.getElementById(t).getPrefferedHeight();
+		document.getElementById(t).width = xsize;
+		document.getElementById(t).height = ysize;
+		document.getElementById('showme').innerHTML='<hr><font color=red><b>preffered height = '+xsize+'<br>preffered width = '+ysize+'</b></font>';
+	    }
+	    catch(e){
+	    	document.getElementById('showme').innerHTML='<hr><font color=red><b>Your browser does not support automatic resizing...</b></font>';
+	    }    
+    	
+	} 
+    	function ReadApplet(t){                         
+	    var reply = document.getElementById(t).ReadApplet();
+	    document.getElementById('showme').innerHTML='<hr><font color=red><b>'+reply+'</b></font>';
+        } 
+	</script>
+	<div id="showme"></div>
+	<table ><tr valign=middle ><th>
+	<font color=red>
+	this is some text...
+	</font>
+	</th>
+	<th>
+	<applet id="TexApp" codebase="dist" archive="TexApp.jar" code="TexApp.class" width="1" height="1"><!-- automatic resizing -->
+            <param name="latex0" value="#ffffff,\frac{4}{7} \cdot,#a0c0f0, \frac{3}{4} \: =\:,input,\:\approx\:,input">
+	    <param name="latex1" value="vspace"><!-- a blanc line : 50% of inputheight -->
+	    <param name="latex2" value="#00ccff"><!-- change latex fgcolor -->
+            <param name="latex3" value="\left[ \begin{array}{l} x = \frac{3}{4}=\\ y = \frac{5}{6}\end{array}\right. \rightarrow \frac{x}{y} = ,input">
+	    <param name="latex4" value="#00af0f">
+            <param name="latex5" value="#ff00ff,\left\{ \begin{array}{l} x = \frac{3}{4} \\ y = \frac{5}{6} \\ z = \frac{\pi}{\sqrt{2}}\end{array}\right \rightarrow \frac{x}{y} = ,input,\rightarrow,#ffffff, z \cdot \frac{x}{y} = ,input">
+	    <!-- optional -->
+	    <param name="status" value="waiting"><!-- string : wims variable $status  done/waiting -->
+	    <param name="latex_bgcolor" value="0,0,255"><!-- rgb or #ffffff default white -->
+	    <param name="latex_fgcolor" value="255,0,0"><!-- rgb or #ffffff  default black -->
+	    <param name="latex_fontsize" value="18"><!-- rgb  or #ffffff  default black -->
+	    <param name="inputfield_width" value="120,340,120,30"><!-- int : first inputfield 120,second 230...default 60 : width in px of inputfield-->
+	    <param name="inputfield_height" value="40"><!-- optional int : default fontsize in px : height in px of inputfield-->
+	    <param name="inputfield_fontsize" value ="26"><!-- int : default 10 -->
+	    <param name="inputfield_bgcolor" value="0,0,255"><!-- rgb or #ffffff  default white -->
+	    <param name="inputfield_fgcolor" value="255,0,0"><!-- rgb or #ffffff  default black -->
+	    <param name="inputfield_editable" value="1,0,1"><!-- field 1 is editable, field 2 is not_editable... default all editable -->
+	    <param name="inputfield_values" value="12,44,"><!--  optional for correct answers: field 1 = "12", field 2 = "44" field3= "" field4 = "22" -->
+	    NO JAVA
+	</applet>
+	</th>
+	<th>
+	<font color=red>
+	and this is the rest...</font>
+	</th></tr>
+	</table>
+	<p>
+	<font color=white>
+	For applet autoscaling, the applet_tag "width" should be less than 10 : width="1"<br>
+	The autoscaling SetSize() javascript_function could be called from the htmlpage "body onload".<br>
+	Or in WIMS:<br>
+	!set wims_html_onload=javascript:SetSize('TexApp');
+	<br>
+	This will probably not work for Opera browsers...
+	<br>
+	Safari on Windows will incorrectly scale the applet...
+	<br>
+	If the applet has a width &gt; 10 , no autoscaling is performed.
+	</font>
+	<br>
+	<input type="button" name="ReadApplet()" value="ReadApplet()" onclick="javascript:ReadApplet('TexApp');">
+	<input type="button" name="SetSize()" value="SetSize()" onclick="javascript:SetSize('TexApp');">
+	<input type="button" name="remove()" value="remove()" onclick="javascript:remove('TexApp');">
+    </body>
+</html>
+

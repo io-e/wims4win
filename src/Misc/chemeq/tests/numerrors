@@ -1,0 +1,5 @@
+#! /bin/bash
+
+# this should print "0", for zero error report lines.
+
+bash chemtest| grep -v "^#"| grep -v "^OK"| wc -l

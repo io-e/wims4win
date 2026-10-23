@@ -1,0 +1,20 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+
+all:checkmol
+
+checkmolc.o: checkmolc.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -c checkmolc.c
+
+checkmol: checkmolc.o
+	$(cc) $(LDFLAGS) $(cflags) -o checkmol checkmolc.o -lm
+
+clean::
+	rm -f checkmol checkmolc.o

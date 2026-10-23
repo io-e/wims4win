@@ -1,0 +1,17 @@
+#! /bin/sh
+# Automatic daily module update
+
+cd `dirname $0`/..
+scripttest=yes
+QUERY_STRING=
+export scripttest
+bin/server-interrupt
+bin/modupdate mail
+bin/server-resume
+
+# Module indexing if necessary
+if [ -f log/modupdate ]; then
+ bin/mkindex
+ rm -f log/modupdate
+fi
+

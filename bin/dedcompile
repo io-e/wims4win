@@ -1,0 +1,58 @@
+#! /bin/sh
+#
+#	This script compiles all Deductio exercises on the server.
+#	You don't need to run this under normal circumstances.
+#
+#	Type './dedcompile clean' if you want to clean up
+#	earlier-compiled exercises before recompiling.
+#
+
+# base directory.
+
+echo "This script is now obsolete. Blocked."
+exit
+
+test=`dirname $0`
+if [ -z "$test" ]; then WIMS_HOME=..; else WIMS_HOME=$test/..; fi
+cd $WIMS_HOME
+WIMS_HOME=`pwd`
+PATH=$PATH:$WIMS_HOME/other/bin
+module_dir=$WIMS_HOME/public_html/modules
+
+cd $module_dir
+
+candidates=`find [A-Zlc]* -name proc -type l | sed 's!/proc$!!'`
+
+srctotal=0
+deftotal=0
+for d in $candidates
+do
+ if [ ! -f $d/INDEX ] || [ ! -d $d/def ] || [ ! -d $d/src ]; then continue; fi
+ srccnt=`ls $d/src/*.ded 2>/dev/null | grep -c '\.ded$'`
+ if [ $srccnt -eq 0 ]; then continue; fi
+ cd $d
+ if [ "$1" = "clean" ]; then
+  rm -f def/*.def 2>/dev/null
+ fi
+ src2def >/dev/null 2>&1
+ defcnt=`ls def/*.def 2>/dev/null | grep -c '\.def$'`
+ if [ $defcnt -gt $srccnt ]; then defcnt=$srccnt; fi
+ failcnt=`expr $srccnt - $defcnt`
+ srctotal=`expr $srctotal + $srccnt`
+ deftotal=`expr $deftotal + $defcnt`
+ if [ $failcnt -gt 0 ]; then
+  echo $d: $srccnt sources, $defcnt compiled, $failcnt failure.
+ else
+  echo $d: $srccnt sources, OK.
+ fi
+ cd $module_dir
+done
+
+failtotal=`expr $srctotal - $deftotal`
+cat <<@
+
+Total: $srctotal sources, $deftotal compiled.
+Total failure: $failtotal
+
+@
+

@@ -1,0 +1,165 @@
+#! /bin/sh
+
+# Change file permissions
+# used to prepare a new version of wims from svn repository
+# and at the end of installation of a new version.
+
+cd `dirname $0`/..
+wimshome=`pwd`
+
+
+cd $wimshome
+dir=`pwd`
+echo "Change file permissions in " $wimshome
+
+noread="bin sessions s2 src log log/classes log/forums log/.developers\
+ backup tmp/log\
+ public_html/bin public_html/msg\
+ public_html/bases/dic public_html/bases/sheet\
+ public_html/bases/site public_html/bases/sys\
+ public_html/bases/doc\
+ public_html/scripts/adm\
+ public_html/modules/home public_html/modules/adm"
+
+nowrite="public_html README README_rpm HEADER.html download other\
+ compile localwims chroot/bin chroot/usr chroot/etc chroot/sbin chroot/lib"
+
+nowrite2="tmp tmp/sessions chroot chroot/tmp/sessions"
+
+noexec="public_html/modules"
+
+users="bin public_html chroot/*"
+
+wexec="other other/lib other/share tmp tmp/forall tmp/sessions -maxdepth 0"
+
+wexec2="other/bin"
+
+# noread : 
+echo "****************************  noread ****************************"
+
+for f in $noread
+do
+# permission multiple de 4x16=64 ? (i.e. aucune perm pour group et other)
+ test=`stat -Lt $f | cut -d' ' -f4 | grep '..[048c]0'`
+ if [ -e $f ] && [ -z "$test" ]; then
+ test1=`stat -Lt $f | cut -d' ' -f4`
+  echo "bad permission " $test1 "for " $dir/$f 
+ chmod og-rwx $f
+ fi
+done
+
+
+
+
+# nowrite : 
+echo "
+
+
+****************************  nowrite nowrite2 ****************************"
+cd $wimshome
+
+test=`find $nowrite -perm /22 \! -type l 2>/dev/null | head -20000`
+# Attention, j'ai remplacé w_nowrite2 par nowrite2
+test2=`find $nowrite2 -maxdepth 0 -perm /22 \! -type l 2>/dev/null | head -20000`
+if [ ! -z "$test$test2" ]; then 
+ chmod og-w $test $test2 
+echo "$test
+$test2" | head -10
+echo "........... "
+echo "$test
+$test2" | tail -10
+fi
+NF=`echo "$test$test2" | wc -l`
+echo "
+Number of nowrite files changed : " $NF
+
+echo "
+
+
+****************************  noexec noexec2 ****************************"
+cd $wimshome
+test=`find $noexec -perm /11 -type f 2>/dev/null | head -20000`
+if [ ! -z "$test" ]; then 
+echo "noexec noexec2"
+chmod og-x $test 
+echo "$test" | head -10
+echo "........... "
+echo "$test" | tail -10
+fi
+NF=`echo "$test" | wc -l`
+echo "
+Number of noexec files changed : " $NF
+
+echo "
+
+
+**************************** users ****************************"
+cd $wimshome
+i=`id -un`
+echo "File which don't belong to wims : "
+find $users \! -user $i | head -60 | grep -v '^chroot/usr/bin/\[$'
+
+
+echo "
+
+
+**************************** wexec wexec2 ****************************"
+cd $wimshome
+testd=`find $wexec -follow -type d \! -perm -11 2>/dev/null | head -20000`
+testf=`find $wexec2 -follow -type f \! -perm -11 2>/dev/null | head -20000`
+test="$testd $testf"
+if [ ! -z "$testd$testf" ]; then 
+chmod a+rx $test; 
+echo "$test" | head -10
+echo "........... "
+echo "$test" | tail -10
+fi
+NF=`echo "$test" | wc -l`
+echo "
+Number of wexec files changed : " $NF
+
+echo "
+************* file permissions changes **************"
+cd $wimshome/public_html; for f in \
+     scripts/js/editor/scripts_1/prototype.js \
+     gifs/editor/t1.gif \
+     scripts/js/editor/names_nl.js \
+     html/css/editor/style.css \
+     scripts/js/editor/scripts_1/bd_js/latex.js \
+     scripts/js/editor/names_en.js \
+     scripts/js/editor/names_fr.js \
+     scripts/js/editor/scripts_2/control.textarea.2.0.0.RC1.js \
+     gifs/editor/t2.gif \
+     gifs/editor/markdown_icons.gif \
+     gifs/editor/markdown_icons.png \
+     gifs/editor/t5.gif \
+     scripts/js/editor/scripts_2/jalonJavascriptLibMootools.js \
+     gifs/editor/t3.gif \
+     scripts/js/editor/names_cn.js \
+     scripts/js/editor/scripts_2/gfcursor.js \
+     gifs/editor/hud_element_fond.gif \
+     gifs/editor/t4.gif \
+     scripts/js/editor/scripts_2/fonctions_IE.js \
+     scripts/js/editor/scripts_2/control.textarea.markdown.js \
+     scripts/js/editor/scripts_2/fonctions_generiques.js \
+     html/css/editor/infobulle.css \
+     scripts/js/editor/scripts_1/Redimensionne.js \
+     scripts/js/editor/scripts_2/jalonJavascriptUtils.js \
+     scripts/js/editor/scripts_2/fonctions_Mozilla.js \
+     scripts/js/editor/scripts_2/jalonJavascriptHUD.js \
+     scripts/js/editor/JSeditor.js \
+     html/css/editor/jalonStylesHUD.css \
+     scripts/js/editor/scripts_2/javascript_002.js \
+     gifs/themes/wimsedu/rss_new.png \
+     gifs/themes/wimsedu/rss_modif.png \
+     java/geogebra3/essai.html \
+     java/geogebra3/essai.ggb \
+     scripts/js/wz_tooltip.js \
+     scripts/js/speck/speck.css \
+     scripts/js/speck/speck.gif \
+     scripts/js/speck/editstyle.css \
+     scripts/js/speck/speck.js \
+     scripts/js/speck/index.htm; do \
+    chmod -x $f; done
+
+echo "end of changing file permissions in " $wimshome

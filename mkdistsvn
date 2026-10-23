@@ -1,0 +1,137 @@
+#! /bin/sh
+
+# Make distribution tgz packages
+
+version=`cat version`
+target=$HOME/transfer_wims
+echo  "About to create release tarball wims-$version in $target."
+echo  "Did you check your wims package (by hand, checkwims or test suite...)"
+echo  "and agree to continue this script ? (y/n)? [n] "
+read ans
+if [ "$ans" != "y" ] && [ "$ans" != "Y" ]; then
+  exit
+fi
+
+cd `dirname $0`
+
+echo  "WIMS must be compiled to make a fully functional distribution."
+echo  "Do you want to compile now ? (y/n)? [y] "
+read ans
+if [ "$ans" = "n" ] || [ "$ans" = "N" ]; then
+  echo "** Continuing without compilation. Assume you did it already.."
+else
+  ./compile
+fi
+
+wims_dir=`pwd`
+echo "** Create or Clean $target..."
+mkdir -p $target
+rm -Rf $target/*
+
+echo "** Export repo in $target/wims"
+cd `dirname $0`
+svn export . $target/wims
+echo "** copy src/configure"
+cp src/configure $target/wims/src
+
+cd $target/wims
+# git clone --depth 1 your_repo_url
+# rm -rf .git
+
+# disable "maintainer-only" extensions in the exported version : don't run
+# autoconf / autoheader
+rm -f .wims_maintainer_mode
+
+# call script for permissions
+bin/changepermissions
+
+echo "** Insert current version number in README.template"
+
+sed -e "s/WIMS_VERSION/$version/" $target/wims/README.template > $target/wims/README
+rm -f $target/wims/README.template
+cp $target/wims/README $target/wims/public_html/README
+
+#echo "** Create configure file using autoconf"
+#cd $target/wims/src; autoconf; autoheader
+echo "** Remove temporary files and wimstest directory"
+rm -Rf *.cache *.log 2>/dev/null
+rm $target/wims/mkdistsvn
+rm -rf $target/wims/wimstest
+rm -rf $target/wims/public_html/modules/moduletest
+find $target/wims -name .DS_Store -exec rm '{}' \;
+find $target/wims -name .git* -exec rm '{}' \;
+find $target/wims -name \._* -exec rm '{}' \;
+rm -rf $target/wims/dfsg
+
+echo "** Copy mathfonts..."
+cd $wims_dir
+for a in `ls -d public_html/mathfonts/*/` ;  do
+  cp $a/* $target/wims/$a
+done
+
+echo "** Copy pieces (in scripts/data/photo) ..."
+cd $wims_dir
+data=public_html/scripts/data
+for a in qpuzzle spuzzle ; do
+  cp -r $data/$a/pieces $target/wims/$data/$a
+  cp -r $data/$a/photindex $target/wims/$data/$a/photindex
+done
+
+# Wee copy all generated files (*.min.css and generated icons)
+echo "** Copy icones and icone.min.css (in gifs/themes) ..."
+cd $wims_dir
+data=public_html/gifs/themes
+for a in default wimsedu wimsedu1 wimsedu2 Font_Awesome ; do
+  cp -r $wims_dir/$data/$a $target/wims/$data/
+done
+
+echo "** Copy circuits symbols (in gifs/symbols) ..."
+cd $wims_dir
+data=public_html/gifs/symbols
+cp -r $wims_dir/$data/* $target/wims/$data/
+
+echo "** Copy *.jar (in java/) ..."
+cd $wims_dir
+javadir=public_html/java
+for a in Clicktile WIMSchem zirkel ThreeD Input Lattice ; do
+  cp -r $javadir/$a/*.jar $target/wims/$javadir/$a/
+done
+
+##should be in compile - bin/mkindex  ???
+##cp src/Misc/applets/WIMSchem/src/images/*.png public_html/gifs/WIMSchem/
+
+javadir=public_html/scripts/authors/jm.evers/applets
+for a in `ls $javadir/*.jar` ; do
+  cp -r $a $target/wims/$javadir/
+done
+
+echo "** Copy *.pdf (in doc/1028/) ..."
+cd $wims_dir
+data=public_html/bases/doc/1028/files/tikz
+cp -r $wims_dir/$data/*.pdf $target/wims/$data
+
+echo "** copy canvadraw documentation... "
+#cd $wims_dir/src/Misc/canvasdraw
+#sh canvasinfo.sh 2>/dev/null
+cd $wims_dir
+canvasdraw_dir=public_html/scripts/help
+cp -r $canvasdraw_dir/canvas_examples $target/wims/$canvasdraw_dir
+cp $canvasdraw_dir/en/canvasdraw.phtml $target/wims/$canvasdraw_dir/en
+
+echo "** Copy themes/css.css and delete the css compressor..."
+compressor=yuicompressor-2.4.8.jar
+compressorlink=yuicompressor
+themes="standard default Nikaia"
+cd $wims_dir
+css_dir=public_html/themes
+for a in $themes ; do
+  cp -r $css_dir/$a/css.css $target/wims/$css_dir/$a
+done
+##no more useful ??
+cp $css_dir/icon $target/wims/$css_dir
+rm $target/wims/$css_dir/$compressor ; rm $target/wims/$css_dir/$compressorlink
+rm -rf $target/wims/$css_dir/_packages
+rm -f $target/wims/.gitignore
+
+echo "** Archiving WIMS package..."
+cd $target/wims ; tar -c --no-xattrs -z -f ../wims-$version.tgz .

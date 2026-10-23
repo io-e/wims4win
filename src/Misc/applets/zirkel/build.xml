@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project name="ZuL" default="jar" basedir=".">
+
+<description>
+Zirkel (ZuL) project buildfile.
+</description>
+
+<property name="src.dir" value="./src"/>
+<property name="build.dir" value="./build"/>
+<property name="dest.dir" value="${build.dir}"/>
+<property name="dist.dir" value="./dist"/>
+<property name="zirkel.jar" value="${dist.dir}/zirkel.jar"/>
+<property name="zirkel.tar" value="${build.dir}/zirkel.tgz"/>
+
+
+<!-- Sets up classpath reference -->
+<path id="zirkel.classpath">
+    <pathelement path="${src.dir}"/>
+    <pathelement path="${dest.dir}"/>
+</path>
+
+
+<target  name="-init"  depends="-prepare">
+    <tstamp/>
+</target>
+
+
+<target  name="-prepare"  depends="-info">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${dest.dir}"/>
+</target>
+
+
+<target name="-info">
+    <property name="name" value="zirkel"/>
+    <property name="acronym" value="ZuL"/>
+    <property name="version" value="local"/>
+    <property name="year" value="2008-03"/>
+    <echo message="compiling ZuL"/>
+    <echo message=""/>
+</target>
+
+
+<target  name="compile"  description="Compiles ZuL sources"  depends="-init">
+  <javac
+    target="1.6"
+     source="1.6"
+    verbose="verbose"
+    deprecation="true"
+    srcdir="${src.dir}"
+    classpathref="zirkel.classpath"
+    excludes=""
+    destdir="${dest.dir}"/>
+    
+    <mkdir dir="${build.dir}/rene/zirkel/newicons"/>
+    <mkdir dir="${build.dir}/rene/zirkel/docs"/>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp -rv ${src.dir}/atp/*.gif ${build.dir}/atp'"/>
+    </exec>
+    <mkdir dir="${dist.dir}"/>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp -rv ${src.dir}/rene/zirkel/newicons/*.png ${build.dir}/rene/zirkel/newicons/'"/>
+    </exec>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp -rv ${src.dir}/rene/zirkel/*.png ${build.dir}/rene/zirkel/'"/>
+    </exec>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp -rv ${src.dir}/rene/zirkel/*.gif ${build.dir}/rene/zirkel/'"/>
+    </exec>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp -rv ${src.dir}/rene/zirkel/docs/*.properties ${build.dir}/rene/zirkel/docs'"/>
+    </exec>
+    <exec executable="/bin/sh">
+	<arg line="-c 'cp -rv ${src.dir}/rene/zirkel/docs/*.txt ${build.dir}/rene/zirkel/docs'"/>
+    </exec>
+</target>
+
+
+<target name="jar" description="Jar zirkel" depends="compile" >
+    <jar destfile="${zirkel.jar}" basedir="${dest.dir}" excludes="" >
+	<manifest>
+    	    <attribute name="Main-Class" value="rene.zirkel.Zirkel"/>
+	</manifest>
+    </jar>
+</target>
+
+<target name="tar" description="Tars source distribution files" depends="clean, jar">
+    <tar longfile="gnu" destfile="${zirkel.tar}" compression="gzip" >
+	<tarfileset dir="${basedir}"    excludes=" build/*zirkel*.tgz" prefix="zirkel"/>
+    </tar>
+</target>
+
+
+<target  name="clean" description="Cleans up" depends="-info">
+    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
+    <delete>
+	<fileset dir="." includes="**/*~" />
+    </delete>
+</target>
+
+</project>

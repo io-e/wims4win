@@ -1,0 +1,31 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall @STATIC_LIB@
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+defines=@DEFINES@
+lopt=-lm
+
+C=edgelist.c geometry.c heap.c main.c memory.c output.c voronoi.c 
+O=edgelist.o geometry.o heap.o main.o memory.o output.o voronoi.o
+
+all: voronoi
+
+tt: voronoi t
+	voronoi -t <t >tt
+voronoi: $O
+	$(cc) $(cflags) $(LDFLAGS) -o voronoi $O -lm
+
+%.o: %.c
+	$(cc) $(cflags) $(CPPFLAGS) -o $@ -c $<
+
+$O:vdefs.h
+
+clean:
+	rm -f *.o voronoi
+
+distclean: clean
+	rm -f $(wims_home)/public_html/bin/voronoi
+	rm -f Makefile

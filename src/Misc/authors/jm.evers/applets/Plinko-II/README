@@ -1,0 +1,154 @@
+This Applet is written by:
+David Little [© 2004 David P. Little]
+
+Mathematics Department
+Penn State University
+Eberly College of Science
+University Park, PA 16802
+Office: 403 McAllister
+Phone: (814) 865-3329
+Fax: (814) 865-3735
+e-mail:dlittle@psu.edu
+
+See:
+http://www.math.psu.edu/dlittle/java/probability
+
+
+
+
+----- INFO ---------
+
+Plinko and the Negative Binomial Distribution
+A Bernoulli trial is an experiment that results in a success with probability p
+and a failure with probability 1-p.
+A random variable is said to have a Negative Binomial Distribution with 
+parameter r if it is the result of recording the number of successes before 
+the rth failure in repeated Bernoulli trials. The Geometric Distribution is 
+the special case of a Negative Binomial Distribution with r=1.
+
+In the Applet below, we have represented repeated independent Bernoulli trials 
+by a single ball falling through an array of pins. 
+Each time a ball falls onto a pin, it will bounce to the right (i.e. a success)
+with probability p or to the left (i.e. a failure) with probability 1-p. 
+After the ball falls through the array, it lands in a bin labeled by 
+the corresponding number of successes.
+
+Click on a bin to see its corresponding total and probability. 
+Alternatively, use the left and right arrow buttons to scroll through the bins. 
+Also displayed is a confidence interval centered on the theoretical expected bin. 
+Bins that are included in this confidence interval are highlighted in green
+
+----- USAGE ---------
+
+© 2004 David P. Little
+Download this applet for off-line viewing (includes source code)
+
+
+© 2004-2006 David P. Little
+Unless otherwise stated, 
+the above applets were written by David Little. 
+They may be used without permission from the author for home and/or educational (non-profit) purposes only.
+Any other use must be approved by the author.
+
+----- asking approval by email
+
+Dear Mr. D. Little,
+In search of a suitable GALTON board applet for usage in Highschool mathteaching, I "stumbled" across Your very nice PLINKO applet.
+My question is: am I allowed use Your applet for teaching ?
+[e.g. incorporating it in "interactive math-teaching modules" of a WIMS server http://wims.math.leidenuniv.nl/wims/wims.cgi?lang=en ]
+Kind regards,
+J.M. Evers
+Highschool Mathteacher
+The Netherlands 
+
+----- reply by Dr. D. Little
+
+Absolutely!  I would be very happy for you to use the applet for teaching.
+If you plan to include it on a webpage, I only ask that you include a
+reference to me being the author (e.g., include a link back to my
+webpage).  Enjoy!
+
+Best,
+David
+
+------ WIMS USAGE -------
+
+2/2009 J.M. Evers:
+
+To use the applet as part of an interactive WIMS exercise, 
+the source code had to be slightly modified.
+
+see http://wims.math.leidenuniv.nl/wims/wims.cgi?lang=en&module=H4/stat/stat-1.nl&cmd=intro
+
+Changes:
+
+1) Introducing a few applet params to tailor the behaviour of the applet 
+by dynamic wims_variables and reading the generated data 
+from the applet with a javascript function.
+
+These statistical data will be send to the wims-server for evaluation and
+grading.
+
+If the "wims_exercise" applet parameter is not set [ or "no" or "0" ] , 
+the applet is identical to the original applet ! And all other params are "silently ignored".
+
+
+2) Furthermore some text is translated to Dutch [nl] ,German [de] and French [fr] to be able 
+use the applet in multi-language exercises.
+If no language param is set or not nl,de,fr : the language is English
+
+3) And a "Close" button is added to the frame [to close the popup-window]
+
+4) Bin numbering starts with "1" instead of "0" , if the applet <param name="wims_exercise" value="1">
+
+5) All balls that fall to the right of the last bin will be collected/summed in the last item if the "applet reply"
+a typical applet reply: 23,45,23,12,47
+meaning: 
+bin 1: 23
+bin 2: 45
+bin 3: 23
+bin 4: 12
+rest : 47
+----------- +
+total balls = 150 
+
+------ Credits to the author
+
+Credits to the author are available in Schaersvoorde WIMS exercises:
+1) in the applet info 
+2) in the specific wims-exercises using the applet
+3) a link to the website of the author is available in the exercise [js:onmouseover()]
+
+
+Example:
+<html>
+    <body>
+	<script language="javascript" type="text/javascript">
+	    function getdata(){
+		var input=document.getElementById("plinko-II").ReadApplet();
+	        alert("data to send:"+input);
+		document.getElementById("plinko-II").stop();
+	    }                                                                                                                                         
+	</script>                                                                                                                                  
+	<applet  id="plinko-II" code="PlinkoNegativeBinomial.class" code="Plinko.class" width="260" height="100"> 
+	    <param name="wims_exercise" value="yes">
+	    <!-- if wims_exercise = 0 , the applet will show it's original configuation and behaviour -->
+	    <param name="R" value="1">
+	    <!-- R is the number of Pin rows --> 
+	    <param name="xsize" value="800">
+	    <param name="ysize" value="600">
+	    <param name="fontsize" value="16">
+	    <param name="bins" value="6">
+	    <!-- bins is the number of baskets -->
+	    <param name="chance" value="0.5">
+	    <param name="speed" value="1">
+	    <param name="title" value="Applet by Dr. P. Little">
+	    <param name="language" value="fr">
+	    <!-- en , nl , de ,fr -->
+	    <param name="balls" value="100">
+	    <!-- after this amount of balls the applet will stop : however if the window is changed/moved this will not work :) -->
+	</applet>
+	<p>
+	<input type="button" name="READ" value="READ" onclick="javascript:getdata();"> 
+    </body>
+</html>    

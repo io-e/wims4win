@@ -1,0 +1,2922 @@
+.index
+.related start license online gui
+Z.u.L. Dokumentation
+
+//image images/ZuL-Logo.png
+
+Die __Dokumentation__ von Z.u.L., die Sie hier lesen, kann im Programm
+kontextsensitiv aufgerufen werden und stellt dann Hilfe zum gerade
+verwendeten Werkzeug zur Verfügung. 
+
+Sie finden auf diesen Webseiten auch ein Verzeichnis von Stichwörtern,
+sowie eine Liste der verfügbaren Hilfeseiten. Nutzen Sie auch die
+__Suchfunktion__, die sowohl im Programm, als auch auf den Webseiten
+zur Verfügung steht!
+
+Um das Programm kennen zu lernen, sehen Sie sich die Anwendungen, die
+Demos, die Tutorien oder die Flash-Einführung an. Es gibt außerdem
+eine Diskussionsgruppe auf Yahoo, sowie ein Wiki. Es gibt sogar ein
+mehrsprachiges Magazin CarZine über das Programm. Eine Suche im
+Internet wird sicher weitere Informationsquellen und
+Anwendungsbeispiele finden. Der Englische Name des Programms ist
+übrigens C.a.R.
+
+Viel Erfolg mit Z.u.L. wünscht Ihnen der Autor
+
+René Grothmann
+
+.start
+.related online license gui
+Kontextsensitive Hilfe
+
+//image images/Hilfe.jpg
+
+Das __Hilfe__system von Z.u.L. arbeitet __kontextsensitiv__. D.h. es
+stellt immer gerade die __Hilfeseite__ ein, die zum aktuellen
+__Werkzeug__ gehört. Man kann das Fenster offen lassen und zum
+Beispiel neben das Konstruktionsfenster verschieben. Es bleibt immer
+im Vordergrund.
+
+Am oberen Rand des __Hilfefenster__s befindet eine Auswahlliste, mit
+der man zu verwandten Themen springen kann. Mit den Knopf unten kann
+man in der Hilfedatei suchen. Die Suchergebnisse werden in der Liste
+am oberen Rand des Dialogs angezeigt.
+
+Nach einem Sprung zu einem anderen Thema kann man mit dem Zurück-Knopf
+wieder auf die vorige Seite gelangen.
+
+.online
+.related start online
+Hilfe im Browser
+
+//image images/Browser.jpg
+
+Die __Homepage__ von Z.u.L.ist "http://www.z-u-l.de". Dort finden sich
+Hinweise auf neue __Versionen__, Links auf Downloads, Demos, Tutorien
+und viele andere Informationen. Es gibt überdies eine
+__Diskussionsgruppe§auf§Yahoo__. Ein Link befindet sich auf der
+Homepage von Z.u.L. Es gibt auch ein __Wiki__, zu dem ich alle
+Benutzer herzlich einlade. 
+
+Natürlich bin ich per __EMail__ zu erreichen. Meine EMail-Adresse
+finden Sie auf meiner Homepage "http://www.rene.grothmann.de".
+
+.license
+.related online start
+Lizenz von Z.u.L.
+
+Z.u.L. ist __freie§Software__ unter der GPL (Gnu General Public
+License). Man kann das Programm beliebig nutzen. Wenn das Programm
+verbreitet wird, so muss mindestens sein Link auf die Homepage von
+Z.u.L. weitergegeben werden.
+
+Der __Quelltext__ ist ebenfalls erhältlich. Alle geänderten Quelltexte
+müssen offen erhältlich bleiben. Außerdem muss stets
+zumindest ein Link auf die Originalquellen mitgegeben werden. Teile
+der Source dürfen in anderen Programmen verwendet werden, wenn diese
+unter derselben Lizenz stehen.
+
+Die gleiche __Lizenz__ gilt auch für die Dokumentation.
+
+Selbstverständlich darf mit Z.u.L. auch Geld verdient werden, etwa in
+Form von Handbüchern, Tutorien, Kursen und ähnlichen Materialien.
+
+.gui
+.related iconbar macrobar mouse zoom online keyboard
+Programmoberfläche
+
+//image images/Gui.jpg
+
+Die große __Fensterfläche__ zeigt natürlich die Konstruktion. Der
+gezeigte Ausschnitt kann mit den __Pfeiltasten__ verschoben werden und
+mit der __+/-__-Taste vergrößert bzw. verkleinert werden. Es gibt
+außerdem ein __Zoom-Werkzeug__, das den Ausschnitt mit der Maus
+verändert. Das __Mausrad__ kann ebenfalls zum Vergrößern und
+Verkleinern verwendet werden. Die __rechte§Maustaste__ verschiebt
+die Konstruktion.
+
+Oberhalb der Konstruktion befindet sich die __Werkzeugleiste__. Die
+Icons zeigen so genannte __Tooltips__, wenn die Maus eine Weile über
+ihnen stehen bleibt. Dadurch kann man sich die Funktion der Icons in
+Erinnerung rufen. Die untere Zeile enthält die Icons, die
+Konstruktionsschritte erzeugen oder modifizieren, und die obere Zeile
+enthält hauptsächlich Icons, die Konstruktionsoptionen und
+Default-Einstellungen ändern.
+
+Eventuell wird in der Werkzeugleiste eine dritte Zeile angezeigt, die
+die zur Verfügung stehenden Makros enthält (siehe:
+__Makrozeile__).
+
+Unter der Konstruktion befindet sich die __Statuszeile__, die für
+Textausgaben benutzt wird. Dort wird der nächste erwartete Schritt
+angezeigt. Die Leiste wird durch eine Eingabezeile ersetzt wenn mit
+Konstruktionsbeschreibungen konstruiert wird
+(__nicht-visueller§Modus__).
+
+Links neben der Konstruktion kann die __Objektliste__ eingeblendet
+werden. Die Art der Objekte, die angezeigt werden sollen, kann aus
+einem Menü ausgewählt werden. Mit der linken Maustaste werden Objekte
+ausgewählt, mit der __Strg-Taste__ und der __Umschalt-Taste__ können
+mehrere Objekte ausgewählt werden. Mit einem __Doppelklick__ werden
+die ausgewählten Objekte ediert. Weitere Optionen für diese Liste
+stehen über einen Klick mit der rechten Maustaste zur Verfügung.
+
+Die Objektliste kann in der Breite verändert werden. Klicken Sie dazu
+auf den schmalen Rand rechts, und ziehen Sie die Maus nach rechts oder
+links.
+
+Z.u.L. hat auch ein wohlbekanntes __Menü__, in dem sich die Werkzeuge
+nochmals finden. Außerdem finden sich dort weitere Optionen, wie etwa
+das Speichern und Laden von Dateien. Im Menü findet man auch die
+__Tastenkombinationen__, die die Werkzeuge auswählen.
+
+.iconbar
+.related restricted gui settings
+Werkzeugleiste
+
+//image images/Iconbar.jpg
+
+Es gibt verschiedene __Typen§von§Werkzeugen__.
+
+Werkzeuge, die Mausaktionen erwarten: Beispiele sind das
+Punktwerkzeug, die Auswahl von Makroparametern oder auch das
+Zoom-Werkzeug.
+
+Werkzeuge, die Einstellungen für neue Objekte ändern: Beispiele sind
+die Farbe oder der Punkttyp.
+
+Werkzeuge, die die Darstellung ändern: Beispiele sind der Schalter für
+das Gitter oder die Darstellung versteckter Objekte.
+
+Werkzeuge, die eine Aktion auslösen: Beispiele sind das Löschen des
+letzten Objektes oder das Setzen des Kommentars.
+
+Für die __Konfiguration§der§Werkzeugleiste__ steht ein Menüpunkt
+zur Verfügung. Im angezeigten Dialog können alle Werkzeuge an- und
+abgewählt werden. Die abgewählten Werkzeuge können im normalen Modus
+trotzdem über die Tastatur und über das Menü aufgerufen werden.
+
+Die __Werkzeugleiste__ kann so eingestellt werden, dass sie unter der
+Konstruktion erscheint.
+
+Die Leiste kann ein- oder zweizeilig sein. Falls die Leiste einzeilig
+eingestellt wird, so werden nur die nötigsten Werkzeuge eingeblendet,
+aber nur dann, wenn sie im Einstellungsdialog angewählt sind.
+
+Die Werkzeuge zeigen eine kurze Information (__Tooltips__), wenn die
+Maus über Ihnen verweilt. Wird dabei die __Strg-Taste__ gedrückt, so
+erscheint bei den Werkzeugen, die mit Strg-Taste anders funktionieren,
+eine andere Information.
+
+.restricted beginner
+.related iconbar
+Eingeschränkte Werkzeugleiste
+
+Es gibt zwei Einstellungen für die Werkzeugleiste, eingeschränkt und
+nicht eingeschränkt. Wenn auf die __eingeschränkte§Werkzeugleiste__
+gewechselt wird, wird diese Leiste mit der Konstruktion abgespeichert
+und beim Laden dem Anwender präsentiert. Man sollte diese Leiste also
+so konfigurieren, dass sie diejenigen Werkzeuge enthält, die man zur
+Verfügung stellen will.
+
+Es gibt einen __Anfängermodus__, der eine spezielle Werkzeugleiste
+wählt, die viele Werkzeuge nicht enthält. Außerdem wird die Vorschau
+auf Punkte eingeschränkt, damit der Anfänger nicht in die Irre geführt
+wird.
+
+Nicht zu verwechseln ist das mit dem __Schulmodus__, bei dem die
+Konfigurationsmöglichkeiten entfernt wurden.
+
+.mouse
+.related gui settings hide point circle move keyboard edit
+Verwendung der Maus
+
+Die __linke§Maustaste__ wird dazu benutzt, Objekte im
+Konstruktionsfenster auszuwählen. Die ausgewählten Objekte werden rot
+angezeigt, bis die Konstruktion komplett ist. Geraden und Kreise
+werden ausgewählt, indem man irgendwo auf die gezeichnete Linie
+klickt. Aus__gefüllt__e Objekte können irgendwo auf ihrer Fläche
+angeklickt werden, wenn dort kein anderes Objekt im Wege ist.
+
+Wenn die entsprechende Funktion nicht abgeschaltet ist, werden
+Objekte, die für den nächsten Konstruktionsschritt verwendet werden
+könn, hervorgehoben, wenn die Maus über die Konstruktion fährt. Dies
+erleichtert die Auswahl erheblich. Punkte, die dabei auf Objekten oder
+als __Schnittpunkte__ erzeugt würden, werden ebenfalls angezeigt.
+
+Falls die __Objektauswahl__ nicht eindeutig ist, so erscheint eine
+Liste von möglichen Objekten. Aus dieser Liste kann ein Objekt durch
+Doppelklick, oder durch Einfachklick und nachfolgenden Knopfdruck,
+ausgewählt werden. In der Liste erscheinen Punkte schwarz, Geraden
+rot, Kreise blau und Winkel und andere Objekte grün.
+
+Die __rechte§Maustaste__ dient zum __Bewegen__ von Punkten, von
+Labels und zum Einstellen von Objekt-Eigenschaften. Ein verschiebbares
+Objekt kann alternativ bewegt werden, indem die __rechte Maustaste__
+verwendet wird. Wird er mit der rechten Maustaste angeklickt, ohne
+dass er verschoben wurde, so erscheint der Dialog zum Einstellen der
+__Objekteigenschaften__.
+
+Die __Objektnamen__ können ebenfalls mit der rechten Maustaste
+verschoben werden. Wenn ein __Label__ mit der rechten Maustaste
+angeklickt wird, aber nicht verschoben wird, so springt es an den
+Punkt zurück, an dem es normalerweise liegen würde. Wenn die
+__Umschalt-Taste__ gedrückt ist, kann der Name irgendwohin verschoben
+werden. Sonst bleibt er in der Nähe des Objektes.
+
+Wird die Strg-Taste und die Umschalttaste mit der rechten Maustaste 
+verwendet, so wird das angeklickte Objekt versteckt. Ist das Werkzeug 
+zum __Verstecken__ aktiv, so versteckt die Umschalttaste und die
+Strg-Taste das Objekt vollständig.
+
+Ein Klick mit der Strg-Taste und der rechten Maustaste auf ein Objekt
+zeigt den Dialog für die __bedingte§Formatierung__ eines Objekts an.
+
+Die Strg-Taste bewirkt bei manchen Werkzeugen in der Werkzeugleiste
+auch eine Änderung des Verhaltens des Werkzeugs.
+
+Die __rechte§Maustaste__ kann auch verwendet werden, um den
+Tastaturfokus auf das Konstruktionsfenster zu legen, falls dies nicht
+der Fall sein sollte. Dazu klickt man mit der rechten Maustaste auf
+eine leere Stelle in der Konstruktion und dann eventuell auf die
+oberste Zeile der __Makroliste__, die möglicherweise in diesem Fall
+erscheint.
+
+.background
+.related gui move htmlexport
+Hintergrundbilder
+
+//image images/Gaertner.jpg
+
+Eine Option ist die Darstellung eines Bildes als Hintergrund. Ein
+__Hintergrundbild__ wird entweder aus der aktuellen Konstruktion
+erzeugt, oder es wird von einer Datei geladen. In diesem Fall kann das
+Hintergrundbild gekachelt, zentriert oder gestreckt dargestellt
+werden. Gekachelte Hintergrundbilder dienen als Verzierung, um etwa
+Papierstrukturen nachzuahmen. Sie werden beim Anlegen neuer
+Konstruktionen nicht gelöscht und auch nicht mit der Konstruktion
+abgespeichert.
+
+Man kann auch __Bilder§auf§Applets__ als Hintergrund verwenden, um
+auf Ihnen Konstruktionen oder Animationen darzustellen. In diesem Fall
+verwendet auch der __HTML-Export__ das Bild als Hintergrund, und die
+Größe des Applets wird gleich der Bildgröße gewählt. Das Bild muss in
+das Verzeichnis, in dem sich "zirkel.jar" befindet, publiziert
+werden.
+
+.properties
+.related edit conditions colors hide mouse transparent point fixedangle animatebreak expressionsyntax latex replay
+Objekteigenschaften
+
+//image images/Punkt.jpg
+
+Der Dialog zur Einstellung von __Objekteigenschaften__ öffnet sich
+nach einem Klick mit der rechten Maustaste auf das Objekt.
+
+Alle Objekte haben folgende Eigenschaften.
+
+ - __Name__
+ - __Alias__
+ - __Beschreibung__
+ - __Einheit__
+ - __Farbe__
+ - __Dicke__
+ - Versteckt oder nicht versteckt
+ - Namensanzeige
+ - Wertanzeige
+ - Großer Font oder fetter Font
+ - __Hintergrund__ oder Vordergrund
+ - __Transparenz__
+ - __Haltepunkt__
+ 
+Zum Namen ist zu sagen, dass nur die Zeichen vor einer "~" in der
+Konstruktion angezeigt werden, was doppelte Namensanzeigen ermöglicht.
+Außerdem können die __griechischen§Buchstaben__ als \a, \A etc. im
+Namen verwendet werden. Der Name darf fast beliebige Zeichen
+enthalten. Man kann beliebige Unicodezeichen mit \0XXXX kodieren,
+wobei XXXX eine hexadezimale Zahl ist. Für diese Sonderformatierungen,
+sowie für Indizes, ist es aber besser, eine Alias zu verwenden.
+
+Der im Display dargestellte Namen (__Alias__) muss nicht der interne
+Namen sein. Dies ist vor allem nützlich, wenn der angezeigt Name
+Latexcode enthält. In diesem Fall kann man LaTeX-Ausdrücke verwenden
+oder auch Ausdrücke, die durch %...% eingeschlossen sind und zur
+Darstellung ausgewertet werden. Ausdrücke der Form %=s% ergeben den
+aktuellen Namen von s, und Ausdrücke der Form %#s% geben die Gleichung
+von s. %+...% erzwingt das __Vorzeichen__.
+
+Die Beschreibung wird normalerweise automatisch erzeugt. Sie kann aber
+geändert werden. Wir sie vom Benutzer geändert, so bleibt sie fest,
+bis der Benutzer eine leere Beschreibungszeile eingibt.
+
+Einige Objekte haben eine Größe und ein Feld für eine __Einheit__. Die
+Einheit wird hinter der Größe ausgegeben und kann aus irgendeinem Text
+bestehen. Für Winkel verwendet man das __Gradsymbol__ °. Namens- und
+Wertanzeige kann kombiniert werden, was z.B. zur Anzeige "s=3" führt.
+Falls der Name mit "_" endet, wird dieses "_" entfernt und das "="
+entfällt.
+
+Die __Farbe__ und __Dicke__ eines Objekts betreffen die Darstellung.
+Die Dicke wirkt allerdings verschieden je nach Objekt. Man probiert
+die Wirkung am besten aus. Die weiß dargestellte Dicke bedeutet, dass
+das Objekt nicht gezeichnet wird.
+
+Objekte können versteckt oder auch __vollständig§versteckt__ werden.
+In diesem Fall erreicht man den Einstellungsdialog nur noch über die
+__Objektliste__. Objekte können im __Hintergrund__ sein oder nicht.
+Gefüllte Objekte werden normalerweise in den Hintergrund geschoben.
+Die __Transparenz__ eines Objekts kann an- und abgeschaltet werden.
+
+Ein __Haltepunkt__ ist für den Wiedergabemodus wichtig und für die
+__Animation§von§Haltepunkte__n. Versteckende Haltepunkte werden mit
+der Umschalttaste gesetzt.
+
+Der __Stil§von§Punkten__ bestimmt die Darstellung als Kreis oder
+Quadrat etc. Strecken können als __Vektoren__ dargestellt werden.
+Dabei ist die Richtung der Strecke zu beachten.
+
+Man beachte auch die Knöpfe auf der unteren Leiste des Objektdialogs.
+Punkte haben dort z.B. einen Schalter, mit dem sie sich an ein Objekt
+binden lassen. Feste Kreise und Winkel haben einen Schalter, mit dem
+sich Objekte zur Größenfestlegung auswählen lassen.
+
+-> Siehe: Bedingte Formatierung
+
+.point
+.related boundedpoint intersection settings mouse properties selfreference
+Punkte
+
+//image- images/point.png
+__Punkte__ können in Z.u.L. auf verschiedene Weisen entstehen. Mit
+dem Punkt-Werkzeug erzeugt man meist verschiebbare, freie Punkte, die
+__Basisobjekte__ der Konstruktion sind (__freier Punkt__). Der Punkt
+wird einfach durch Klicken auf die Konstruktion erzeugt. 
+
+Trifft man dabei __Schnittpunkte__ von zwei Kreisen oder Geraden,
+so wird dieser Schnittpunkt erzeugt. Trifft man eine Gerade, eine
+Strecke, einen Strahl oder einen Kreis, so wird ein Punkt erzeugt, der
+an dieses Objekt gebunden ist (__gebundener§Punkt__). In beiden Fällen
+erscheinen möglicherweise Rückfragen, die sich aber abstellen lassen.
+In der Vorschau ist erkennbar, welche Art von Punkt erzeugt wird.
+
+Verschiebbare Punkte können am aktuellen Ort fixiert werden (__feste
+Punkte__). Im Eigenschaftsdialog für Punkte existiert ein
+entsprechendes Häkchen. Beide Koordinaten können durch
+__arithmetische§Ausdrücke__ festgelegt werden. Wird beim
+Erzeugen des Punktes die __Umschalttaste__ gedrückt, so wird der Punkt
+fixiert. Wählt man mit gedrückter Umschalttaste einen Punkt aus, so
+wird ein neuer fixierter Punkt genau an dieser Stelle erzeugt. Dies
+kann zum __Markieren§von§Positionen__ genutzt werden.
+
+Punkte können auf einem __Gitter__ gehalten werden, indem man eine
+__Gitterweite__ größer als 0 im Dialog eingibt. Für ein ganzzahliges
+Gitter verwendet man zum Beispiel 1.
+
+Punkte können verschoben werden, obwohl sie durch Ausdrücke fixiert
+sind, wenn die Ausdrücke sich auf den Punkt selbst beziehen
+(__Selbstreferenz__) und auf sonst kein anderes Objekt (__@-Bezüge__
+zählen hier nicht). In diesen Fall wird nach dem Verschieben die
+Position des Punktes neu berechnet und korrigiert. Die Neuberechnung
+erfolgt einmalig. Eine Iteration ist nicht vorgesehen. Mit diesem
+Trick kann man die Bewegung von Punkten auf sehr subtile Weise
+einschränken. Man beachte aber, dass Punkte sehr leicht in Vielecken
+fixiert werden können, und auch auf einem Gitter gehalten werden
+können. Daher ist der Trick mit dem Selbstbezug nur in Ausnahmefällen
+notwendig.
+
+Punkte können wie andere Objekte auch, direkt beim Erzeugen verschoben
+werden. Dabei wird der Name und der Ort des Punktes kurzzeitig
+angezeigt, wenn diese Option nicht abgeschaltet ist.
+
+-> Siehe: Selbstreferenz
+
+.boundedpoint
+.related point line mouse properties
+Gebundene Punkte
+
+//image- images/boundedpoint.png
+__Gebundene Punkte__ sind an eine Gerade, eine Strecke, einen Strahl,
+einen Kreis, ein Polygon, einen Winkel, eine Funktion oder eine
+automatische Ortslinie gebunden. Das bedeutet, dass der Punkt beim
+Verschieben immer auf dem Objekt bleibt. Es gibt ein spezielles
+Werkzeug zur Erzeugung von gebundenen Punkten. Man kann aber einfach
+das Punktwerkzeug verwenden und auf einen Kreis oder eine Gerade
+klicken.
+
+Punkte können vom Objekt gelöst werden, oder nachträglich an ein
+Objekt gebunden werden. Dazu verwendet man den __Eigenschaftsdialog__
+von Punkten. Falls der Knopf "Binden" lautet, so wird der Dialog
+geschlossen, und es wird die Auswahl eines Objektes gefordert.
+
+Punkte können __auf§dem§Rand__ oder __im§Innern__ eines Objektes
+gebunden sein, wenn das Objekt ein Polygon, ein Kreis oder ein Winkel
+ist. Darüber entscheidet ein Schalter im Eigenschaftendialog.
+Alternativ kann man die Strg-Taste festhalten, wenn man einen Punkt an
+das Objekt bindet.
+
+Die Bindung kann auf zweierlei Arten erfolgen. Der Punkt wird
+entweder jedes Mal neu auf das Objekt projiziert, oder er
+wird in seiner relativen Lage auf dem Objekt festgehalten (__relative
+Fixierung__). Die erste Option wird durch Drücken der Umschalttaste
+bei der Auswahl des Kreises oder der Geraden aktiviert, oder durch
+Entfernung der Fixierung im Eigenschaftsdialog.
+
+Ein Punkt auf einem Objekt ist kein __freier Punkt__. Strecken mit
+solchen Endpunkten können nur in der Länge fixiert werden, wenn beide
+Endpunkte auf der Strecke liegen.
+
+Auch hier wird eine Strecke nicht wie eine Gerade behandelt. Der Punkt
+liegt immer innerhalb der Strecke.
+
+.line ray
+.related point parallel properties
+Geraden und Strahlen
+
+//image- images/line.png
+__Geraden__ und __Strahlen__ hängen von zwei Punkten ab. Bei
+der Konstruktion müssen daher zwei Punkte ausgewählt werden. 
+
+Die Unterschiede zwischen diesen Objekten beziehen sich nicht nur auf
+die Darstellung. Auch die Auswahl mit der Maus ist nur auf dem
+gezeichneten Teil möglich. Darüber hinaus werden zum Beispiel
+__Lote__ auf einen Strahl ungültig, wenn er den Strahl nicht mehr
+trifft. Auch __Schnittpunkte__ mit Strahlen sind nur gültig, wenn sie
+tatsächlich auf den Strahl fallen. Der Strahl wird also nicht als
+Gerade behandelt.
+
+Geraden können nur in den relevanten Teilen dargestellt werden
+(__partielle Darstellung__). In diesem Fall werden sie nur zwischen
+den Definitionspunkten, eventuellen Schnittpunkten und ein wenig
+darüber hinaus gezeichnet.
+
+-> Siehe: Strecken
+
+.segment fixedsegment
+.related point parallel properties
+Strecken
+
+//image- images/segment.png
+Die Länge von __Strecken__ lässt sich fixieren, wenn zumindest einer
+der Endpunkte ein freier Punkt ist. Dieser Punkt wird dann
+längs der Strecke so verschoben, dass die gewünschte Länge angenommen
+wird. Die Länge kann ein beliebiger berechneter Ausdruck sein. Das
+spezielle Werkzeug für __Strecken§mit§fester§Länge__ erzeugt beim
+zweiten Klick immer einen freien Punkt.
+
+Das Werkzeug für feste Strecken ist per Default ausgeblendet, da feste
+Strecken auch über normale Strecken erzeugt werden können, die
+nachträglich fixiert werden, oder bei denen die Umschalttaste beim
+erzeugen des zweiten Punktes gedrückt wird. Außerdem ist es meist
+besser, Kreise mit fixiertem Radius zu verwenden.
+
+Strecken können die Länge Null haben. Allerdings werden dann Lote und
+Parallelen zur Strecke ungültig.
+
+-> Siehe: Geraden und Strahlen
+
+.circle circle3
+.related reorder expressionsyntax properties point transparent fixedcircle 
+Kreise
+
+//image- images/circle.png
+__Kreise__ entsprechen einem Konstruktionsschritt mit dem Zirkel.
+Dabei gibt es den einfachen Fall, bei dem der Zirkel in einem
+Mittelpunkt eingestochen wird, und der Kreis durch einen zweiten Punkt
+geht. Dieses Werkzeug erwartet demnach auch die Auswahl von zwei
+Punkten.
+
+//image- images/circle3.png
+Der andere Kreis entspricht einem Zirkel, der seine Größe behält, wenn
+er vom Zeichenblatt entfernt wird (nicht __kollabierender Zirkel__).
+In diesem Fall kann man den Radius zwischen zwei Punkten messen und
+dann den Kreis um einen anderen Punkt mit diesem Radius zeichnen, also
+eine __Strecke&abtragen__.
+
+//image images/Kreis.jpg
+
+Kreise können auch nur in den wesentlichen Teilen sichtbar sein
+(__partielle Darstellung__), was die Übersichtlichkeit der
+Konstruktion beträchtlich erhöht. Kreise können __gefüllt__
+gezeichnet werden. Außerdem können sie als __Kreisbögen__ zwischen
+zwei gegebenen Punkten dargestellt werden. Die beiden Punkte werden
+mit der Maus ausgewählt, nachdem der Knopf "Setze Zeichengrenzen" im
+Eigenschaftsdialog des Kreises gewählt wurde.
+
+-> Siehe auch: Kreise mit festem Radius
+
+.fixedcircle
+.related reorder expressionsyntax properties point transparent
+Kreise mit festem Radius
+
+//image- images/fixedcircle.png
+Es gibt __Kreise§mit§festem§Radius__, die keine Radiuspunkte haben.
+Man erzeugt diese Form von Kreisen, indem man beim Festlegen des
+Radiuspunktes die __Umschalttaste__ drückt oder das Werkzeug für feste
+Kreise wählt. Der zweite angeklickte Ort dient als Ausgangsgröße des
+Kreises. Es öffnet sich der Eigenschaftsdialog und man kann einen
+Ausdruck als gewünschte Größe eingeben (__arithmetische&Ausdrücke__).
+Der feste Kreis kann direkt beim Erzeugen mit der Maus in der Größe
+verzogen werden. In diesem Fall öffnet sich der Eigenschaftsdialog
+nicht. Außerdem kann der Kreis in diesem Fall später durch Ziehen mit
+der Maus in der Größe verändert werden.
+
+Der Radius von Kreisen mit festem Radius kann durch Auswahl von zwei
+Punkten, oder durch Auswahl eines Ausdrucks festgelegt werden
+(__Größe§abtragen__). Dazu wählt man im Eigenschaftsdialog den Knopf
+"Größe festlegen ..." und klickt zwei Punkte A und B an. Der Radius
+wird dann gleich dem Abstand von A und B. Es ist zu beachten, dass nur
+Punkte verwendet werden können, die vor dem Kreis konstruiert wurden.
+
+.intersection
+.related point properties selectintersection
+Schnitte
+
+//image- images/intersection.png
+Das __Schnittwerkzeug__ erzeugt __Schnitte__ zwischen Geraden,
+zwischen Kreisen, sowie zwischen Funktionen, Polygonen und
+automatischen Ortslinen. Schnitte können auch automatisch mit
+erzeugt werden (evtl. nach Rückfrage), wenn die Eingabe eines Punktes
+von einem anderen Werkzeug verlangt wird. Die Vorschau zeigt dabei die
+beiden geschnittenen Objekte an.
+
+Es ist zu beachten, dass mit dem Schnittwerkzeug beide
+__Schnittpunkte__ zwischen Kreisen und Kreisen und Geraden simultan
+erzeugt werden. Bei Funktionen, Ortslinien etc. wird jeweils nur ein
+Schnitt erzeugt, selbst wenn es mehrere gibt. Der Schnittpunkt lässt
+sich in diesem Fall an einen anderen Schnittpunkt ziehen.
+
+Das Schnittwerkzeug ist normalerweise ausgeblendet, da es sich ja
+durch das Punktwerkzeug ersetzen lässt.
+
+Was Schnitte angeht, so werden eine Strecke und ein Strahl nicht
+gleich einer Geraden behandelt. Ein Schnittpunkt mit einer Strecke ist
+nur gültig, wenn er auf der Strecke liegt.
+
+-> Siehe: Schnittauswahl
+
+.selectintersection
+.related intersection objecttracker
+Schnittauswahl
+
+//image images/Intersection.jpg
+
+__Schnitte__, die zwei Punkte erzeugen, haben das Problem, dass
+möglicherweise zur weiteren Konstruktion nur einer der beiden Punkte
+tauglich ist. Die Reihenfolge der __Schnittpunkte__ hängt zwar per
+Default vorhersagbar von den Ausgangsobjekten ab und springt nicht hin
+und her, aber dennoch sind manche Konstruktionen nur lösbar, wenn man
+einen der beiden Punkte durch die zusätzliche Eigenschaft auszeichnen
+kann, verschieden von einem vorgegebenen Punkt oder näher bei einem
+gegeben Punkt zu sein (__Schnittauswahl__). Als Anwendung ist es auch
+möglich, Schnitte nahe zu sich selbst zu wählen. In diesem Fall
+verhält sich die Schnittauswahl stetig mit der Bewegung.
+
+//image images/Schnitt.jpg
+
+Dazu kann man den Namen des Punktes im Eigenschaftsdialog von
+Schnitten eintragen, der weg vom Schnittpunkt sein soll oder in der
+nähe des Schnittpunkts liegen soll. Im Eigenschaftsdialog von
+Schnitten findet man einen Knopf, mit dem sich der Bezugspunkt für die
+Auswahl in der Konstruktion wählen lässt.
+
+Außerdem ist es möglich, den Schnittpunkt immer zu wechseln, wenn er
+ungültig ist. Genau wie beim automatischen Ortslinienobjekt durchläuft
+die Konstruktion dann alle möglichen Zustände.
+
+Falls der andere Schnittpunkt zweier Kreise schon existiert, so
+erzeugt Z.u.L. automatisch einen Schnittpunkt, der immer vom
+existierenden verschieden ist. Dies löst viele Probleme automatisch.
+
+-> Siehe: Schnitte
+
+.parallel plumb midpoint
+.related line point properties
+Parallelen, Lote und Mitten
+
+__Parallelen__, __Lote__ und __Mitten__ sind Werkzeuge zur
+Abkürzungen von den komplizierteren Konstruktionen, die auch allein
+mit Zirkel und Lineal möglich wären. Parallelen und Lote sind Geraden,
+Mitten sind Punkte.
+
+Man beachte, dass Lote für __Strahlen__ und __Strecken__ ungültig
+werden, wenn der Lotfußpunkt nicht auf dem Zielobjekt liegt. Dies kann
+durch einen Schalter im Eigenschafsdialog des Lots verhindert werden.
+
+.move
+.related circle angle background mouse
+Objekte Bewegen
+
+//image- images/move.png
+Das __Bewegewerkzeug__ kann alternativ zur rechten Maustaste benutzt
+werden, um ein Objekt zu verschieben. Es muss dann natürlich die linke
+Maustaste zum Verschieben verwendet werden. Falls die Objektauswahl
+zum Bewegen nicht eindeutig war, erscheint ein __Auswahldialog__. Im
+nächsten Versuch wird dann das gewählte Objekt benutzt.
+
+Beim Auswählen dieses Werkzeugs oder beim Zurücksetzen mit der
+ESC-Taste blinken kurz alle beweglichen Objekte der Konstruktion auf.
+
+Mit der __Umschalttaste__ können mehrere Punkt gleichzeitig bewegt
+werden. Dazu lässt man bei der Auswahl des letzten Punktes die
+Umschalttaste los.
+
+Objekte, wie zum Beispiel __Geraden__, die nur mit beweglichen Puntken
+definiert wurden, können ebenfalls verschoben werden.
+
+Wenn beim Bewegen die __Umschalttaste__ gehalten wird, wird die
+Bewegung eingeschränkt, wenn ein Schnitt ungültig wird. In Applets
+kann dies durch den Parameter "restrictedmove" per Default aktiviert
+werden.
+
+Hält man während des Bewegens die __Strg-Taste__ gedrückt, so bleibt
+der anfängliche Zustand der Konstruktion während der Bewegung sichtbar.
+
+Außerdem kann mit der Strg-Taste die Fixierung von festen Kreisen und
+Winkeln aufgehoben werden.
+
+.tracker
+.related point animate mouse objecttracker
+Ortslinien und Einhüllende
+
+//image- images/tracker.png
+Dieses wichtige Werkzeug erzeugt Spuren von berechneten Punkten. Man
+wählt für einfache __Ortslinien__ zunächst einen Punkt aus,
+dessen Ortslinie zu zeichnen ist, und kann dann einen beliebigen
+verschiebbaren Punkt oder ein anderes verschiebbares Objekt mit der
+linken Maustaste bewegen.
+
+Es können auch mehrere Punkte ausgewählt werden, indem die
+Umschalttaste beim ersten Punkt festgehalten wird. Dann werden auch
+mehrere Ortslinien gleichzeitig gezeichnet.
+
+Die Ortslinie wird nur so lange gezeichnet, bis ein neues Werkzeug
+ausgewählt wird, oder das Ortslinienwerkzeug erneut ausgewählt wird.
+
+Wird statt eines Punktes eine Gerade ausgewählt, so entsteht eine
+__Hüllkurve__ (__Polare__). Das ist eine Kurve, zu der alle Geraden
+Tangenten sind, die bei der Bewegung entstehen. Auch hier können
+mehrere Objekte gleichzeitig verfolgt werden, auch Punkte und Geraden
+gemeinsam.
+
+//image images/Ortslinie.jpg
+
+-> Siehe: Automatische Ortslinien
+
+.objecttracker
+.related point animate mouse tracker
+Automatische Ortslinien
+
+//image- images/objecttracker.png
+Bei der automatischen Ortslinie wird der bewegte Punkt auf einem
+Kreis, einer Geraden, einer Strecke oder einem Strahl automatisch
+bewegt. Also ist zusätzlich zu den Eingaben für eine normale
+Ortslinie die Eingabe eines solchen Objektes notwendig. Zu beachten ist,
+dass das Objekt, auf dem der Punkt bewegt wird, nicht von ihm abhängen
+darf. Statt eines Objekts und des Punkts, der darauf laufen soll, kann
+auch gleich ein Punkt gewählt werden, der auf einem Objekt gebunden
+ist, oder ein Schieberegler für Ausdrücke.
+
+Auch hier können mehrere Punkte verfolgt werden. Allerdings steuert
+der erste Punkt die Erzeugung der Ortslinie.
+
+__Automatische§Ortslinien__ versuchen, alle Zustände der Konstruktion
+zu durchlaufen. Dazu macht der bewegte Punkt kehrt, wenn er ungültig
+wird. __Schnitte__ wechseln dabei ihre Orientierung.
+
+Die automatische Ortslinie wird neu berechnet, wenn ein Ausgangspunkt
+verschoben wurde. Dazu verschiebt man den Ausgangspunkt mit der
+rechten Maustaste.
+
+Automatische Ortslinien werden zunächst animiert. Nach einem Klick
+läuft die __Animation__ ohne Ortslinie ab, und nach einem
+weiteren Klick wird die Ortslinie ohne Animation gezeichnet. Die
+Animation lässt sich durch Drücken der __Umschalttaste__ zusammen mit
+den Cursortasten links oder rechts __beschleunigen__ oder
+__verlangsamen__.
+
+Ortslinien werden abgespeichert. Beim Laden einer Konstruktion
+wird die Ortslinie automatisch wieder angezeigt. Falls sie animiert
+war, wird sie wieder animiert sein, sonst nicht. Die Ortslinie ist
+allerdings kein Konstruktionsobjekt, sondern wird separat im
+Konstruktionskopf gespeichert.
+
+__Ortslinien§als§Objekte__
+
+Automatische Ortslinien können auch als Objekte in die Konstruktion
+übernommen werden. Dazu gibt es einen speziellen Menüpunkt. Man muss
+wissen, dass das Neuzeichnen erheblich verzögert wird, wenn die
+Konstruktion viele Ortslinien enthält, da diese Ortslinien immer neu
+berechnet werden müssen.
+
+Diese Art von Orslinien haben einen eigenen Einstellungsdialog und
+erben nicht einfach die Eigenschaftes des erzeugenden Punktes.
+Automatische Ortslinien können außerdem __gefüllt__ werden.
+
+Automatische Ortslinien in Konstruktionen können mit anderen Objekten
+geschnitten werden und man kann Punkte auf Ihnen fixieren. Wenn
+mehrere __Schnitte__ existieren, wird allerdings immer nur einer
+erzeugt. Durch Ziehen kann der Schnittpunkt gewechselt werden.
+
+Automatische Ortslinien können fixiert werden. Dann werden sie nur neu
+berechnet, wenn ihr Objektdialog aufgerufen wurde. Das spart enorm
+Rechenzeit.
+
+-> Siehe: Ortslinien und Einhüllende
+
+.animate
+.related circle line
+Animation
+
+//image- images/animate.png
+Mit dem Werkzeug für __Animation__ lassen sich Punkte bewegen, so
+dass sie Strecken oder Kreisen folgen. Man wählt zuerst den zu
+animierenden Punkt aus, dann die Strecken oder Kreise, auf denen er
+wandern soll. Die Auswahl wird dadurch abgeschlossen, dass man eine
+schon gewählte Strecke erneut eingibt. Die Animation läuft dann, bis
+man ein Werkzeug wählt oder auf eine leere Stelle klickt. Mit er
+__Umschalttaste__ und der Rechts- oder Links-Taste lääst sich die
+Animation __beschleunigen__ oder verlangsamen__.
+
+Die __Laufrichtung__ auf Kreisen ist normalerweise gegen
+Uhrzeigersinn. Sie kann aber durch Klicken mit der __Umschalttaste__
+gedreht werden. Dies führt auch dazu, dass der animierte Punkt auf
+Kreissegmenten und auf Strecken hin- und zurückläuft.
+
+Animationen werden gespeichert und beim Laden automatisch ausgeführt.
+
+.angle
+.related circle properties defaults fixedangle
+Winkel
+
+//image- images/angle.png
+Einfache __Winkel__ sind meist lediglich Verzierungen, bzw. Messungen.
+Mit ihnen kann nichts konstruiert werden. Winkel werden durch drei
+Punkte ABC bestimmt, wobei B wie üblich den Scheitel des Winkels
+bezeichnet. Allerdings können __Punkte__ in den Winkelbereich gebunden
+werden.
+
+Winkel sind normalerweise immer kleiner als __180§Grad__. Die
+Eingabereihenfolge der Schenkelpunkte spielt keine Rolle. Dieses
+Verhalten kann für jeden Winkel im Eigenschaftsdialog oder
+global als Voreinstellung geändert werden.
+
+Winkel können den Namen, die Größe oder beides anzeigen. Da im kleinen
+Winkelraum relativ wenig Platz ist, ist es möglich, den Winkel in drei
+verschiedenen Größen zu zeichnen. Die dritte Größe erlaubt es,
+__Kreisbögen__ zu zeichnen, weil der Winkelbogen in diesem Fall
+immer beim Schenkelpunkt A gezeichnet wird. Man kann allerdings mit
+diesen Kreisbögen nicht konstruieren.
+
+Für Winkel sind die griechischen Namen \a, \b etc. sinnvoll, die als
+__griechische§Buchstaben__ dargestellt werden.
+
+-> Siehe: Feste Winkel
+
+.fixedangle
+.related circle reorder expressionsyntax properties defaults angle
+Feste Winkel
+
+//image- images/fixedangle.png
+__Feste§Winkel__ haben keinen zweiten Schenkelpunkt, sondern statt
+dessen eine fixierte Größe. Der Winkel verhält sich dann wie ein
+Strahl. Mit diesem Strahl kann weiter konstruiert werden. Man erzeugt
+solche Winkel durch Festhalten der __Umschalttaste__ beim zweiten
+Schenkelpunkt, oder mit Hilfe des Werkzeugs für feste Winkel. Es
+öffnet sich der Eigenschaftsdialog, und man kann einen Ausdruck für
+den gewünschten Winkel eingeben.
+
+Die Größe von festen Winkeln kann auch durch Anklicken dreier Punkte,
+oder eines anderen Ausdrucks festgelegt werden. Dazu wählt man im
+Eigenschaftsdialog des Winkels den Knopf "Winkel festlegen ..." und
+klicken drei Punkte A, B und C an. Der Winkel wird dann so groß wie
+der Winkel ABC.
+
+Feste Winkel können im Einstellungsdialog invertiert werden. Beim
+Erzeugen werden Winkel, die durch die Voreinstellung auf __180§Grad__
+begrenzt sind, automatisch invertiert, wenn dies notwendig ist. Also
+muss beim Erzeugen nicht auf mathematisch positive Orientierung
+geachtet werden.
+
+-> Siehe: Winkel
+
+.area
+.related point properties background
+Gefüllte Polygone
+
+//image- images/area.png
+Mit diesem Werkzeug kann man aus__gefüllt__e Flächen
+(__Polygone__) erzeugen, die durch Streckenzüge begrenzt sind. Verlangt
+wird die Eingabe einer Reihe von Punkten. Zum Abschluss gibt man den
+letzten Punkt erneut ein. Man kann __Punkte__ in Polygonen oder
+am Rand von Polygonen halten.
+
+Die Randstrecken werden versteckt, wenn das Polygon in dünner
+Darstellung angezeigt wird.
+
+Der Wert eines Polygons in Ausdrücken ist seine Fläche, mit dem
+Vorzeichen gemäß der __Orientierung__ des Polygons. 
+
+.expression
+.related expressionsyntax fixedangle fixedcircle point properties
+Berechnete Ausdrücke
+
+Z.u.L. bietet die Möglichkeit über normale Konstruktionen hinaus
+__berechnete§Konstruktionen__ zu erzeugen. Dazu werden
+__arithmetische§Ausdrücke__ verwendet, die im Prinzip überall erlaubt
+sind, wo die Eingabe einer Größe erforderlich ist. Es lassen sich
+damit Koordinaten von Punkten setzen, Längen von Strecken, Radien von
+Kreisen und Winkel festlegen. 
+
+//image- images/expression.png
+Außerdem können die Ausdrücke zur Anzeige von berechneten Größen in
+der Konstruktion dienen. Dazu dient das Werkzeug für Ausdrücke. Nach
+der Wahl eines Platzes, an dem der Ausdruck stehen soll, wird
+automatisch der Einstellungsdialog angezeigt. Man muss dort nur noch
+den gewünschten Ausdruck eingeben.
+
+Ausdrücke können mit einer Erklärung versehen werden. Im
+Eigenschaftsdialog lässt sich die Anzeige der Erklärung anschalten.
+
+//image images/Schieber.jpg
+
+Ausdrücke können mit einem __Schieber__ verstellt werden. Der Benutzer
+kann damit leicht Werte für den Ausdruck einstellen. Schieber haben
+minimale und maximale Werte, die sie im Eigenschaftsdialog einstellen
+können.
+
+Angezeigte Ausdrücke können wie üblich mit der rechten Maustaste an
+einen anderen Platz verschoben werden. Zum Verstellen des Schiebers
+kann ebenfalls die __rechte Maustaste__ verwendet werden.
+
+Man kann auch __LaTeX-Code__ zur Ausgabe von Ausdrücken verwenden.
+Dazu umgibt man den Text mit $-Zeichen.
+
+//image images/Expression.jpg
+
+.expressionsyntax
+.related expression reorder point fixedcircle fixedangle
+Syntax für Ausdrücke
+
+Im folgenden wird die __Syntax§für§Ausdrücke__ erklärt. Im allgemeinen
+wird die normale mathematische Notation verwendet, angereichert durch
+spezielle Funktionen.
+
++, -, *, /,^ 
+ 3.5*3+3/(4-5^2) 
+ Elementarer arithmetischer Ausdruck. ^ steht für die Potenz. 
+ 
+Objektname 
+ AB/CD 
+ Der Name von Strecken, Kreisen und Winkeln berechnet deren Länge, Radius bzw. Größe. 
+Enthält der Name ein Leerzeichen, muss er in "" eingeschlossen werden. 
+Es können auch andere Ausdrücke verwendet werden. Das aktuelle Objekt darf nicht
+von einem im Ausdruck verwendeten Objekt abhängen.
+Man kann für Spezialzwecke ein @ vor den Namen hängen. Dann wird das Objekt immer mit
+seien Namen gesucht. In diesem Fall funktioniert der Ausdruck nicht
+in Makros.
+Falls das Objekt nicht gefunden wird, gibt es eine Fehlermeldung.
+ 
+Funktion 
+ sin(a) 
+ Diverse mathematische Funktionen (siehe unten) 
+
+Benutzerfunktion
+  f(a)
+  Auswertung einer Benutzerfunktion an der Stelle a
+ 
+Pi 
+ pi 
+ Die Konstante Pi. 
+ 
+x,y 
+ x(P),y(P),z(P)
+ X- und y-Koordinaten von Punkten, oder Z-Wert.
+ 
+d 
+ d(P,Q) 
+ Abstand der Punkte P und Q.
+ 
+d 
+ d(x) 
+ Änderungen von x, bei Punkten Bewegung und bei Winkeln Größenänderung.
+ 
+if
+ if(e,e1,e2)
+ Gibt e1 zurück, wenn e gültig ist, sonst e2. Wenn allerdings e ein logischer Ausdruck ist, so wird e1 zurückgegeben, wenn e wahr ist, sonst e2. 
+
+sum
+ sum(x,e)
+ Summiert x auf. Die Summe wird zurückgesetzt, wenn e negativ oder ungültig ist.
+ 
+a 
+ a(A,B,C) 
+ Größe des Winkels ABC (Scheitel in B). 
+ 
+scale
+ scale(x,a,b)
+ Gibt die relative Lage von x in [a,b) zurück, wenn x in diesem Intervall liegt. 
+Sonst wird der Ausdruck ungültig.
+
+valid,invalid 
+ valid,invalid 
+ Konstanten, die einfach 0 bzw. ungültige Ausdrücke zurück geben. 
+
+&& 
+ x<3 && y<3 
+ Logisches Und. Die logischen Funktionen geben 0 zurück, wenn sie
+nicht wahr sind, sonst 1. 
+ 
+|| 
+ x<3 || y<3 
+ Logisches Oder. 
+
+! 
+ ! (x<3 && y<3) 
+ Logisches Nicht. 
+
+>, >=, <, <=, ==, §= 
+ x<3 
+ Vergleiche. "§=" bedeutet "ungefähr gleich", d.h. gleich bis auf 10^(-10). 
+
+__integrate__
+ integrate(f,a,b)
+ integrate(f)
+ Integral der Funktion f von a bis b mit der Rombergmethode.
+f muss ein Funktionsobjekt (evtl. versteckt) sein. 
+Benutzt wird die y-Koordinate von f. integrate(f) berechnet
+die Riemann-Summe für punktweise Kurven, die Trapezregel
+für andere Funktionen und die überstrichene Fläche für
+parametrisierte Kurven. integrate(f) funktioniert auch für
+automatische Ortslinien in der Konstruktion.
+
+__length__
+ length(f)
+ Berechnet die __Länge§einer§parametrisisierten§Kurve__ oder einer
+automatischen Orslinie in der Konstruktion.
+
+__zero__
+ zero(f,a,b)
+ Sucht die __Nullstelle__ von f zwischen a und b. f(a) und f(b) müssen
+verschiedene Vorzeichen haben. Verwendet wird die Sekantenmethode oder eine
+Intervallschachtelung.
+
+__diff__
+ diff(f,x)
+ Berechnet eine Approximation der Ableitung von f in x.
+
+__min__,__max__
+ min(f,a,b)
+ Berechnet den Punkt, in dem das __Minimum__ (__Maximum__) von f
+zwischen a und b angenommen wird. min(a,b) oder max(a,b) berechnet
+das Minimum bzw. Maximum von a und b.
+
+__this__
+ x(this)
+ Bezeichnet das Objekt, das den Ausdruck enthält.
+
+__windoww__,_windowh__,__windowcx__,__windowcy__
+ Berechnet die Größe und das Zentrum des dargestellten Bereiches.
+ 
+__pixel__
+ Gibt die Pixel pro Koordinateneinheit zurück. Nicht für
+Grafikexport geeignet.
+ 
+__simulate__
+ simulate(e,x,f)
+ Setzt den Ausdruck e gleich x, berechnet die Konstrukion neu und gibt den Wert von
+f zurück. Jeweils nur eine dieser __Simulationen__ kann zur selben
+Zeit aktiv sein! Für e kann ein Ausdruck, ein fester Winkel oder ein
+fester Kreis eingesetzte werden.
+
+__inside__
+ inside(P,A)
+ Testet, ob der Punkte P innerhalb von A liegt. Falls P am Rand von A
+liegt, dann wird 0.5 zurück gegeben. A kann ein Polygon, ein Kreis,
+oder ein Winkel sein.
+
+Es können die üblichen mathematischen Funktionen abs,
+sign, sin, cos, tan, arcsin, arccos, arctan, sqrt, exp und log
+verwendet werden. Darüber hinaus gibt es round, ceil und floor zum
+Runden auf ganze Zahlen. angle180 und angle360 sind Spezialfunktionen,
+die Winkel so umrechnen, dass sie zwischen 0 und 180 bzw. 360 liegen.
+Die Funktionen sin und cos arbeiten mit Grad. Zum Umrechnen verwendet
+man deg(x) und rad(x).
+
+.latex
+.related text properties
+Latex-Code
+
+__Latex-Code__ kann in Textobjekten und in Namen von Objekten
+vorkommen. Dazu wird der Code in $ eingeschlossen. Zur Darstellung
+verwendet Z.u.L. HotEqn. Wir können hier nur einen Überblick über die
+Syntax geben. Eine genaue Definition des unterstützten Latex-Codes
+finden Sie in der HTML-Dokumentation.
+
+Zunächst werden griechische Buchstaben (\alpha,\beta) unterstützt.
+Dann natürlich Hoch- und Tiefstellung (x^y, x_n) und Brüche
+(\frac{1}{x} oder auch \dfrac). Außerdem Summen, Integrale und Limiten
+(\sum_{n=1}^\infty, \int_a^b). Wichtig sind vielleicht auch Akzente
+(\hat{x},\overline{x}). Speziell sind \dollar und \percent definiert.
+
+__Matrizen__ werden auch unterstützt
+(\begin{array}{cc}3&4\\5&6\end{array}). Dabei sind dann auch große
+Klammern nützlich (\left[ \right]).
+
+.text
+.related replay comment properties latex
+Text
+
+//image- images/text.png
+Damit kann ein beliebiger mehrzeiliger __Text__ in die Konstruktion
+eingefügt werden. Bei der Definition wird ein Fenster geöffnet, in dem
+der Text eingegeben werden kann. In diesem Fenster ist ein Schalter
+enthalten, mit dem man den normalen Eigenschaftsdialog erreicht. Dort
+lassen sich Texte an eine Position fixieren.
+
+Texte können formatiert werden. Und zwar können ganze Zeilen fett
+oder groß oder beides dargestellt werden. Dazu stellt man der Zeile
+*, ** oder *** voran. Außerdem können Zeilen __Latex-Code__ enthalten.
+Der Code wird in $ eingeschlossen. Text kann auch
+__arithmetische§Ausdrücke__ enthalten, die in % eingeschlossen werden.
+Diese Ausdrücke werden ausgewertet und statt dessen wird das Resultat
+dargestellt. Ausdrücke der Form %=s% ergeben den aktuellen Namen von
+s, und Ausdrücke der Form %§s% geben die Gleichung von s. %+...%
+erzwingt das Vorzeichen.
+
+__Versteckte§Texte__ werden während der __Wiedergabe__ mit dem
+Rekorder angezeigt. Damit ist es möglich einzelne
+Konstruktionsschritte zu kommentieren. Die Kommentare erscheinen nur
+an der Stelle, an der sie definiert sind. Beim Verwenden von
+Unterbrechungspunkten ist es nützlich, diese Punkte hinter den
+versteckten Texte zu erzeugen.
+
+.quadric
+.related properties point transparent
+Kegelschnitte
+
+//image- images/quadric.png
+__Kegelschnitte__ (__Quadriken__) sind Nullstellenlinien von
+Gleichungen zweiten Grades in zwei Variablen x und y. Da es sechs
+unabhängige quadratische Funktionen (x^2, y^2, x*y, x, y, 1) gibt,
+genügen fünf Punkte, einen Kegelschnitt zu definieren, der durch diese
+Punkte verläuft. Das Programm kann Kegelschnitte berechnen und
+anzeigen.
+
+//image images/Ellipse.jpg
+
+Zur Eingabe von Quadriken ist einfach die Auswahl von 5 Punkten nötig.
+Auf Quadriken können Punkte fixiert werden, und das Programm kann
+Schnitte mit Quadriken berechnen.
+
+.hide
+.related construction properties mouse
+Versteckte Objekte
+
+//image- images/hide.png
+Mit dem Werkzeug zum __Verstecken__ und __Anzeigen__ lässt sich der
+Status von Objekten von angezeigt auf versteckt und umgekehrt ändern.
+Man kann versteckte Objekte natürlich nur dann anwählen, wenn man die
+Option angeschaltet hat, die alle versteckten Objekte sichtbar macht.
+
+Es ist auch möglich, für ein einzelnes Objekt den
+Status zum Verstecken in seinem Eigenschaftsdialog einzustellen.
+
+Außerdem kann durch Anklicken mit der rechten Maustaste bei gehaltener
+__Strg-Taste__ und __Umschalttaste__ das Objekt angezeigt oder
+versteckt werden, auch wenn ein anderes Werkzeug ausgewählt ist.
+
+Wenn beim Verstecken eines Objektes die __Umschalttaste__ gedrückt
+ist, so wird dieses Objekt komplett verborgen. Es kann nur dadurch
+wieder sichtbar gemacht werden, dass sein Eigenschaftsdialog über die
+Konstruktionsbeschreibung aufgerufen wird, und dort die Sichtbarkeit
+eingeschaltet wird.
+
+Man kann auch alle __Duplikate__ von Objekten mit einem Schlag
+verstecken. Dazu hält man die __Strg-Taste__ fest, während man das
+Werkzeug zum Verstecken anklickt, oder man benutzt den entsprechenden
+Menüpunkt. Es ist dann nur das jeweils letzte Duplikat sichtbar.
+
+.rename
+.related properties
+Alphabetisch Umbenennen
+
+//image- images/rename.png
+Mit diesem Werkzeug werden Strecken automatisch __alphabetisch__, also
+in a,b,c, Punkte in A,B,C und Winkel in \a,\b,\c umbenannt, sofern
+diese __Namen__ in der Konstruktion noch nicht vergeben wurden. Es
+wird immer der erste freie Buchstabe verwendet.
+
+//image images/Umkreis.jpg
+
+Benötigen Sie den Namen a doppelt, so können Sie "a~1" als Namen
+für ein Objekt verwenden, was als "a" angezeigt wird. Generell werden
+alle Zeichen ab einer "~" nicht angezeigt.
+
+Mann kann auch erzwingen, dass die angeklickten Punkte A, B, C genannt
+werden, obwohl diese Buchstaben schon einmal vergeben wurden, indem
+man die __Umschalttaste__ festhält. In diesem Fall wird der Buchstabe
+ausgetauscht, wenn er in der Konstruktion schon einmal vorhanden war.
+Um von vorne zu beginnen, muss man das Werkzeug erneut auswählen, oder
+die Esc-Taste drücken.
+
+.delete undo back
+.related construction
+Objekte Löschen
+
+//image- images/back.png
+Mit Hilfe des Schalters zum __Löschen§von§Objekten__ ist es möglich,
+das letzte konstruierte Objekt zu löschen. Dabei werden zusätzlich
+alle versteckten Objekte gelöscht, so dass das vorletzte nicht
+versteckte Objekt das letzte Objekt wird. Falls allerdings die Option
+zum Anzeigen aller versteckten Objekte eingeschaltet ist, wird nur das
+letzte Objekt gelöscht.
+
+//image- images/delete.png
+Es gibt auch ein Werkzeug, mit dem ein beliebiges, Objekt gelöscht
+werden kann. Dies löscht dann auch alle davon abhängigen Objekte. 
+
+//image- images/undo.png
+Die __Undo-Taste__ restauriert alle auf diese Art gelöschten Objekte.
+Allerdings gilt dies nur solange, bis nicht ein neues Objekt
+konstruiert wurde. Derzeit beherrscht das Programm kein vollständiges
+Undo.
+
+.function
+.related expressionsyntax properties
+Funktionen und Kurven
+
+Das Programm nutzt __Funktionen__ zum Darstellen von Kurven oder als
+__benutzerdefinierte§Funktionen__ zur Verwendung in Ausdrücken.
+
+//image- images/function.png
+Zunächst gibt es __Funktionen__ und __Kurven__, die gezeichnet werden
+sollen. Dazu existiert ein Menüeintrag und ein Werkzeug. Es erscheint
+ein Dialog, in den man einen Bereich für den Parameter eingeben muss
+und eine __Schrittweite__. Normalerweise belässt man den Namen des
+__Parameter__ beim vorgegebenen "x".
+
+Bei Funktionen lässt man den Ausdruck für X leer und setzt für
+den Y-Wert einen gültigen Ausdruck in x ein, wie zum Beispiel
+"sin(deg(x))".
+
+Bei Kurven brauch man zwei Funktionen, eine für den x-Wert und eine
+für den y-Wert.
+
+Das Programm zeichnet die Funktion in die Konstruktion, wobei die
+Konstruktionskoordinaten verwendet werden. Das sind die Koordinaten,
+wie man sie bei eingeschaltetem Gitter sieht. Ungültige
+Funktionsstellen werden übersprungen.
+
+Funktionen können auch für __arithmetischen§Ausdrücke__ verwendet
+werden. Dabei wird der Y-Wert ausgewertet.
+
+Man kann auch __Schnitte__ von Funktionsgraphen und parametrischen
+Kurven mit anderen Funktionen und anderen Objekten erzeugen.
+Außerdem kann man einen Punkt auf dem Graphen fixieren und dort
+gleiten lassen.
+
+Funktionen und Kurven können __gefüllt__ dargestellt werden. Bei
+Kurven ist das __Füllzentrum__ normalerweise 0, aber man kann dies
+ändern. Im Eigenschaftsdialog gibt es einen Knopf, mit dem man das
+Zentrum auswählen kann.
+
+//image images/Funktion.jpg
+
+Man kann einstellen, dass nur Punkte gezeichnet werden. Falls die Funktion
+gefüllt wird, wird eine __Treppenfunktion__ gezeichnet, und zwar von
+den linken Intervall-Enden aus, es sei denn, die Intervallgrenzen sind
+vertauscht. 
+
+Als weiteren Typ von Funktionen gibt es
+__benutzerdefinierte§Funktionen__, die nur dazu gedacht sind, in
+Ausdrücken verwendet zu werden. Diese Funktionen können von mehreren
+Variablen abhängen. Sie zeichnen keinen Graphen, sondern stellen ihre
+Definitionsformal dar, wenn sie nicht versteckt werden. Mit Hilfe der
+__Strg-Taste__ beim Klick auf das Funktionenwerkzeug öffnet sich ein
+einfacherer Dialog, in dem alle Variablen, durch Leerzeichen getrennt,
+deklariert werden müssen. Außerdem muss ein Ausdruck für die
+Funktion angegeben werden, der von diesen Variablen abhängen kann. Die
+Funktion kann dann in anderen Ausdrücken verwendet werden.
+
+.defaults
+.related line angle colors iconbar
+Einstellungen
+
+Man kann mehrere __Default-Einstellungen__ für neue Objekte festlegen.
+
+ - Farbe
+ - Dicke
+ - Stil von Punkten
+ - Kreise partiell angezeigt oder nicht
+ - Geraden partiell oder nicht
+ - Strecken als Vektoren
+ - Namensanzeige
+ - Wertanzeige
+ - Lange Namen
+ - Große und fette Schrift
+ - Winkel größer als __180§Grad__
+ - Nicht-transparente Objekte
+
+Dafür gibt es Werkzeuge im Menü, die alle in der oberen Reihe der
+Werkzeugleiste angezeigt werden können.
+
+.edit
+.related conditions mouse properties expression
+Bearbeiten von Objekten
+
+//image- images/edit.png
+Mit dem Werkzeug zum __Bearbeiten§von§Objekten__ wird der
+Eigenschaftsdialog von einem oder mehreren Objekten aufgerufen.
+Solange die __Umschalttaste__ gehalten wird, werden die Objekte
+selektiert, und können dann auf einmal bearbeitet werden. Der
+Eigenschaftsdialog für mehrere Objekte enthält deaktivierte
+Einstellungen. Nur die aktivierten, geänderten Einstellungen werden
+bei allen Objekten verändert.
+
+Hält man beim Anklicken des Werkzeugs die __Strg-Taste__ fest, so wird
+automatisch das letzte Objekt bearbeitet. Wird diese Taste bei der
+Auswahl des Objektes festgehalten, so wird der Dialog für die
+__bedingte§Formatierung__ geöffnet.
+
+-> Siehe: Bedingte Formatierung
+
+.conditions
+.related edit properties
+Bedingte Formatierung
+
+//image images/Bedingt.jpg
+
+Um den Dialog zum Einstellen für __Bedingte§Formatierung__ zu
+erreichen, wählt man das Objekt mit Strg-Taste und der rechten
+Maustaste aus. Alternative kann man im normalen Eigenschaftendialog
+den OK-Knopf mit der Strg-Taste drücken. In den speziellen
+Eingeschaften kann man auch einstellen, dass ein separater Knopf dort
+erscheint ("__Mehr__").
+
+Für viele Objekteigenschaften, wie Farbe und Dicke, kann man
+Bedingungen einstellen, unter denen diese Eigenschaften aktiviert
+werden. Damit sind spezielle Effekte möglich.
+
+Die einzelnen Bedingungen werden der Reihe nach abgearbeitet. Die
+erste zutreffende Bedingung für eine Farbe bestimmt zum Beispiel die
+Farbe. Man muss also eventeull darauf achten, dass sich die Bedingungen
+nicht widersprechen.
+
+Der __Z-Wert__ bestimmt die Zeichenreihenfolge. Die Objekte mit dem
+größeren Z-Wert werden zuerst gezeichnet, aber erst nach den
+Hintergrundobjekten.
+
+Wenn man die Bedingungen mehrerer Objekt ändert, so kann das
+aktuelle Objekt mit "__this__" bezeichnet werden.
+
+.show
+.related hide
+Verstecken nach Farben
+
+//image- images/showcolor.png
+Dieses Icon wählt selektiv Objekte bestimmter __Farben__ zur Anzeige
+aus. Wenn die Konstruktion geschickt gestaltet ist, kann man damit
+sehr gut eine Übersicht über die Konstruktionsschritte bekommen. Die
+Farbe Schwarz wird allerdings immer angezeigt. Das Icon ändert sich
+nach jedem Klick.
+
+.grid
+.related zoom mouse zoom
+Gitteranzeige
+
+//image- images/grid.png
+Dieses Icon stellt die Anzeige der __Koordinatenachen__ und das
+__Gitter__ ein und aus. Wenn das Gitter eingeschaltet ist, so
+schnappen neue Punkte und mit der rechten Maustaste bewegte Punkte bei
+Gitterpunkten ein. Das Werkzeug zum Bewegen ist davon nicht betroffen.
+Man kann allerdings umgekehrt einstellen, dass Punkte nur beim Bewegen
+mit der linken Maustaste und dem Werkzeug zum Bewegen
+__einschnappen__.
+
+Beim erneuten Klick auf das Gitterwerkzeug wird das Gitter mit Achsen
+und Gitterpunkten angezeigt. Außerdem existiert ein Einstellungsdialog
+für das Gitter, in dem die Farbe, die Dicke und der __Font__ der
+Labels eingestellt werden kann.
+
+//image images/Funktion.jpg
+
+Das Einschalten des Gitters wird mit der Konstruktion abgespeichert,
+so dass beim Laden der Konstruktion das Gitter automatisch wieder
+eingeschaltet wird. Auch die Einstellungen des Gitters werden in der
+Konstruktion abgespeichert.
+
+.replay
+.related htmlexport text animatebreak
+Schrittweise Wiedergabe
+
+//image images/Replay.jpg
+
+//image- images/replay.png
+Mit dieser Funktion kann man schrittweise durch eine Konstruktion
+gehen. Es erscheint ein Menü mit Tasten, ähnlich wie auf einem
+Kassettenabspielgerät. Die __Wiedergabe__funktion steht in Applets mit
+Hilfe der rechten Maustaste zur Verfügung.
+
+Es besteht die Möglichkeit, während des Abspielens mit der Taste 
+__Haltepunkte__ zu setzen. Diese Haltepunkte können dann einfach mit
+einer Taste angesprungen werden. Beim Export in eine HTML-Datei kann
+dann der Stil "__Wiedergabe§mit§Haltepunkten__" gewählt werden, der
+dem Benutzer die Möglichkeit gibt, von Haltepunkt zu Haltepunkt zu
+springen. 
+
+Bei der Wiedergabe werden __versteckte§Texte__ angezeigt, mit
+Haltepunkten allerdings nur, wenn der versteckte Text auf dem
+Haltepunkt steht.
+
+__Versteckende§Haltepunkte__ werden mit der __Umschalttaste__ gesetzt.
+Solche Haltepunkte verstecken alle Objekte vor ihnen bis zum vorigen
+Haltepunkt. Die Konstruktion zerfällt damit in eine Folge von
+Teilen.
+
+.animatebreak
+.related replay
+Animiere Haltepunkte
+
+Damit wird eine Konstruktion automatisch von Haltepunkt zu Haltepunkt
+wiedergegeben. Die Geschwindigkeit der Darstellung kann mit der
+Umschalttaste und den Pfeiltasten Links und Rechts gesteuert werden.
+
+Die __Animation&der§Haltepunkte__ wird mit der Konstruktion gespeichert
+und beim Laden der Konstruktion automatisch gestartet.
+
+.draw
+.related mouse
+Mit der Maus Zeichnen
+
+//image- images/draw.png
+Mit diesem Werkzeug kann man auf dem Bildschirm __zeichnen__.
+Verwendet wird die aktuelle Farbe. Die Zeichnungen werden
+abgespeichert. Sie blähen allerdings die Konstruktionsdatei auf.
+
+.zoom
+.related mouse grid
+Mit der Maus Zoomen und Verschieben
+
+//image- images/zoom.png
+Man kann mit Hilfe des __Zoomwerkzeugs__ mit der Maus den Ausschnitt
+der Konstruktion verändern. Beim Ziehen am Rand wird die Konstruktion
+vergrößert und verkleinert. Im Zentrum wird die Konstruktion
+verschoben. Dabei nimmt die Maus eine andere Gestalt an.
+
+Allerdings kann auch ohne das Zoomwerkzeug mit dem __Mausrad__ gezoomt
+werden, und mit der rechten Maustaste kann die Konstruktion verschoben
+werden, wenn ein leerer Platz verschoben wird.
+
+Der eingestellte __Konstruktionsausschnitt__ wird abgespeichert. Bei
+Laden wird die Konstruktion so angepasst, dass dieser Ausschnitt in
+der Breite ins Bild passt.
+
+.macro
+.related macrobar parameter target definition defaultmacros macroerrors hintparameter
+Makros
+
+__Makros__ sind ein wichtiges Werkzeug, um den Überblick in
+komplizierteren Konstruktionen zu behalten. Ohne Makros sind
+eigentlich nur einfache Konstruktionen möglich. Makros sammeln mehrere
+Konstruktionsschritte in einem Schritt. Sie verhalten sich wie
+__Unterprogramme__ in einer Programmiersprache.
+
+//image- images/macro0.png
+In Z.u.L. ist die Definition von Makros sehr einfach. Man definiert
+eine "__Musterkonstruktion__" und erzeugt ein Makro, das diese
+Musterkonstruktion nachmachen kann. Die Musterkonstruktion hat, genau
+wie das spätere Makro, gewisse Ausgangsobjekte, die zu
+__Makroparameter__ werden, und gewisse Zielobjekte, die __Makroziele__
+werden. Z.B. hat die Mittelsenkrechte zwei Punkte als Parameter und
+eine Gerade als Ziel.
+
+Beim Makroaufruf wählt der Benutzer Objekte für die Parameter des
+Makros. Die Musterkonstruktion wird dann mit diesen neuen Parametern
+ausgeführt. Selbstverständlich müssen die ausgewählten Objekte zu den
+Parametern des Makros passen.
+
+Makros können auch verwendet werden, um komplette Konstruktionen zu
+koperieren. Man muss dazu alle Ausgangsobjekte als Parameter wählen.
+Zielobjekte braucht man nicht auszuwählen, da das Programm dann alle
+konstruierbaren Objekte als Ziel nimmt. Zum Kopieren muss das Makro
+dann mit den neuen Parameterobjekten laufen.
+
+Siehe: Makroparameter
+
+.parameter
+.related target runmacro parametertypes macro hintparameter
+Makroparameter
+
+//image- images/macro1.png
+Um Makros zu definieren, setzt man zunächst die Parameter fest. Dies
+geschieht mit dem entsprechenden Menüpunkt, oder mit dem
+Makrowerkzeug in der oberen Werkzeugleiste. Die Parameter werden wie
+üblich mit der Maus ausgewählt. Zum Zeichen, dass die Ausgangsobjekte
+einzugeben sind, sind die Punkte links vom Pfeil im Makrowerkzeug
+rot.
+
+-> Siehe: Makroziele
+
+.target
+.related runmacro parameter definition
+Makroziele
+
+//image- images/macro2.png
+Nach der Eingabe der __Makroparameter__ kann man optional Zielobjekte
+auswählen. Dazu drückt man das Makrowerkzeug nochmals, wonach die
+Punkte rechts vom Pfeil rot gefärbt werden. 
+
+Es ist zu beachten, dass in diesem Zustand nur Objekte angezeigt
+werden, die aus den Parametern __konstruierbar__ sind. Werden keine
+Ziele angegeben, so besteht das Makro aus allen konstruierbaren
+Objekten. Sonst besteht es nur aus denjenigen Objekten, die notwendig
+sind, um das Ziel aus den Parametern zu konstruieren.
+
+Wenn Ziele definiert wurde, können alle Zwischenobjekte
+automatisch __versteckt__ werden. Sonst werden nämlich alle Objekte
+angezeigt, die auch in der Definitionskonstruktion sichtbar waren.
+Soll das Makro im beschreibenden Modus verwendet werden, so ist es
+ebenfalls ratsam, Zielobjekte anzugeben. Der Benutzer kann dann
+nämlich den Zielobjekten beim Makroaufruf Namen zuordnen. 
+
+-> Siehe: Makrodefinition
+
+.definition
+.related  macrobar runmacro target parameter selfreference
+Makrodefinition
+
+Beim dritten Druck auf das __Makrowerkzeug__ wird das Makro erzeugt.
+Es hat stets einen Namen, der im folgenden Dialog festzulegen ist.
+In diesem Dialog ist es auch möglich, einen beschreibenden Kommentar
+anzugeben. Der Kommentar kann vom Benutzer aus der Auswahlbox für
+__Makros__ heraus angezeigt werden. Natürlich sollte sich der
+Kommentar auf die bei den Prompts verwendeten Bezeichnungen beziehen.
+
+//image images/Makrodefinition.jpg
+
+Endet der Makroname mit einem Text in Klammern, so kann das Makro ein
+Icon in der Zeile für Makroicons anzeigen (Siehe: __Makrozeile__).
+
+Die folgenden Eingabefelder (eines für jeden Parameter) nehmen Texte
+auf, die dem Benutzer des Makros angezeigt werden, wenn die Eingabe
+der Parameter erwartet wird (__Makroprompts__).
+
+Man kann Parameter auf bestimmte Objekte fixieren, indem man "=Name"
+als Prompt eingibt (__Fixierte Parameter__). Wenn ein Objekt "Name"
+existiert und den richtigen Typ hat, dann wird der Parameter beim
+Ablauf des Makros nicht abgefragt, sondern auf das Objekt gesetzt.
+
+Weiter kann man festlegen, ob die Konstruktionsdetails beim Ablauf des
+Makros __versteckt__ werden sollen, oder ob sie sogar vollständig
+versteckt werden sollen.
+
+Makros verstecken normalerweise Objekte, die Duplikate von schon
+vorhandenen Objekten sind. Dieses Verhalten kann man allerdings
+abschalten.
+
+Schließlich ist es noch möglich, während des Aufrufs von Makros vom
+Benutzer einen Wert abzufragen (__Werteparameter__). Dieser
+Wert kann als Größe eines festen Kreises, als Größe eines festen
+Winkels oder als Wert für einen Ausdruck verwendet werden. Dazu gibt
+man bei der Definition im Dialog den Namen, den der feste Kreis oder
+Winkel in der Konstruktion hat, an.
+
+Beim Aufruf wird eine Dialogbox erscheinen, in der der Benutzer einen
+Wert eingeben kann. Der Kreis, der Winkel oder der Ausdruck wird dann
+mit diesem Wert erzeugt. Der eingegebene Wert kann ein beliebiger
+arithmetischer Ausdruck sein. Als Eingabeprompt wird der Name des
+Objekts verwendet. Es können auch mehrere Eingaben gefordert werden.
+Die Namen der entsprechenden Objekte werden durch Komma getrennt.
+
+Makros können in __Unterordner__ organisiert werden. Dazu stellt man
+dem Namen den Unterordner wie in "Unterordner/Name" voran. Die
+Unterordner können geschachtelt werden.
+
+-> Siehe: Selbstreferenz, Versteckte Parameter, Makrozeile
+
+.macrobar
+.related macro
+Makrozeile
+
+Auf Wunsch kann eine Zeile mit Icons für Makros angezeigt werden.
+Dafür gibt es einen Schalter im Menü des Programms, und in __Applets__
+wird die Zeile durch den Parameter "macrobar" in "options"
+angeschaltet. Im Programm kann eingestellt werden, ob die
+__Defaultmakros__ in der Makrozeile angezeigt werden sollen oder
+nicht.
+
+Makros werden nur mit einem Icon versehen, wenn ihr Name mit einem
+Text in Klammern endet. In diesem Fall wird der Text als Beschriftung
+des Icons verwendet, oder, wenn vorhanden, wird eine PNG-Datei mit
+diesem Namen geladen. Die Datei muss sich in dem Unterordner "icons"
+des Startordners befinden. Die Grafik sollte 32x32 Punkte groß sein.
+Wenn sie einen transparenten Hintergrund hat, sollte das Antialiasing
+für einen dunkelgrauen Hintergrund optimiert werden.
+
+Im Dateiarchiv von Z.u.L. befinden sich eine Reihe von nützlichen
+Icons, die für Makros verwendet werden können. Sie werden einfach
+durch eine Zahl in Klammern am Ende des Makronamens angesprochen.
+
+//image- icons/1.png
+1 - Mittelsenkrechte
+
+//image- icons/2.png
+2 - Lot
+
+//image- icons/3.png
+3 - Inkreis
+
+//image- icons/4.png
+4 - Umkreis
+
+//image- icons/5.png
+5 - Geradenspiegelung
+
+//image- icons/6.png
+6 - Spiegelung am Kreis
+
+//image- icons/7.png
+7 - Spiegelung am Punkt
+
+//image- icons/8.png
+8 - Winkelhalbierende
+
+//image- icons/9.png
+9 - Winkelhalbierende als Strahl
+
+//image- icons/10.png
+10 - Drehung
+
+//image- icons/11.png
+11 - Drehung um Winkel
+
+//image- icons/12.png
+12 - Verschiebung
+
+//image- icons/13.png
+13 - Punkt
+
+//image- icons/14.png
+14 - Winkel
+
+//image- icons/15.png
+15 - Polygon
+
+//image- icons/16.png
+16 - Vektor
+
+//image- icons/17.png
+17 - Punkt auf Gerade
+
+//image- icons/18.png
+18 - Bogen
+
+//image- icons/19.png
+19 - Kreis
+
+//image- icons/20.png
+20 - Kreis abtragen
+
+//image- icons/21.png
+21 - Fester Winkel
+
+//image- icons/22.png
+22 - Fester Kreis
+
+//image- icons/23.png
+23 - Feste Strecke
+
+//image- icons/24.png
+24 - Funktion
+
+//image- icons/25.png
+25 - Koordiantenachsen
+
+//image- icons/26.png
+26 - Schnitt
+
+//image- icons/27.png
+27 - Gerade
+
+//image- icons/28.png
+28 - Mitte
+
+//image- icons/29.png
+29 - Parallele
+
+//image- icons/30.png
+30 - Kegelschnitt
+
+//image- icons/31.png
+31 - Strahl
+
+//image- icons/32.png
+32 - Strecke
+
+//image- icons/32.png
+33 - Lot
+
+.hintparameter
+.related definition parameter
+Versteckte Parameter
+
+Damit auch Punkte als __Makroparameter__ eingegeben werden können, die
+nur zur Orientierung dienen, ist es möglich, Punkte, die während des
+Ablaufs des Makros bei der Parameterauswahl neu erzeugt wurden, sofort
+wieder zu verstecken. Dazu muss bei der Definition des Makros der
+entsprechende Parameter den versteckten Status haben
+(__versteckte§Parameter__).
+
+Damit kann man __Hinweispunkte__ setzen lassen. Ein Beispiel wäre ein
+Makro, das ein gleichseitiges Dreieck auf einer Strecke erzeugen soll,
+und zwar auf derjenigen Seite der Strecke, die der Benutzer anklickt.
+Für die Definition des Winkels muss dann ein Ausdruck der Form
+"if(a>0,60,-60)" verwendet werden.
+
+.selectmacro
+.related runmacro macro
+Makroauswahl
+
+//image- images/runmacro.png
+Makros erscheinen in diesem Dialog in einer Liste (__Makroliste__).
+Ein einzelnes Makro kann durch Doppelklick ausgewählt werden. Falls
+der Dialog die Auswahl mehrere Makros erlaubt, so markiert man mehrere
+Makros und bestätigt die Auswahl. Makros können auch aufgerufen
+werden, indem mit der rechten Maustaste auf einer leeren Stelle der
+Konstruktion die Makroliste aufgerufen wird.
+
+//image images/Makroauswahl.jpg
+
+Makros können in Unterordner organisiert sein. In diesem Fall werden
+die Unterordner durch Doppelklick ausgewählt. Um zum Oberordner zurück
+zu kehren, klickt man auf "..". Die Auswahl eines Unterordners wählt
+alle Makros in diesem Ordner und seien Unterordnern aus.
+
+Um ein Makro in einen __Unterordner__ zu verschieben, benennt man es
+um. Der Unterordner wird wie in "Unterordner/Makro" dem Makronamen
+voran gestellt.
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters selectmacro
+Makros Aufrufen
+
+//image- images/runmacro.png
+Makros werden mit dem __Makrowerkzeug__ gestartet. Das Makro muss aus
+der Liste der vorhanden Makros ausgewählt werden. Wird beim Starten
+des Werkzeugs die __Umschalttaste__ gedrückt, so wird einfach das
+vorherige Makro nochmals gestartet. Außerdem können Makros mit der
+rechten Maustaste an einer leeren Stelle aufgerufen werden. Es
+erscheint ein Popup-Menü mit einer Liste der vorhandenen Makros.
+
+Nach dem Start des Makros erscheint in der __Statuszeile__ der
+festgelegte Text für jeden Parameter hinter dem Makronamen, dem Typ
+des Parameters und seiner Nummer.
+
+Falls in Klammern "Leertaste wählt ..." steht, so kann man für diesen
+Parameter mit der __Leertaste__ denselben Punkt auswählen, wie bei dem
+letzten Makroaufruf. Dies vereinfacht den mehrfachen Aufruf von Makros
+mit vielen Parametern erheblich.
+
+Wenn alle Parameter ausgewählt sind, so wird das Makro ausgeführt.
+Falls das Makro einen __Werteparameter__ hat, so erscheint eine
+Dialogbox, die diesen Wert abfragt. Es kann dann jeder gültige
+arithmetische Ausdruck verwendet werden.
+
+.fixparameters
+.related runmacro parameter
+Fixierte Parameter
+
+Beim Ablauf des __Makros__ besteht die Möglichkeit, eine Kopie des
+Makros zu erzeugen, bei der aber gewisse Parameter immer automatisch
+gewählt werden. Dazu drückt man die Umschalttaste während der Wahl
+eines Parameters. Nach dem Beenden der Parameterauswahl erzeugt das
+Programm ein weiteres Makro, bei dem die entsprechenden Parameter fest
+aus der Konstruktion entnommen werden.
+
+Werden solche Makros in Konstruktionen verwendet, in denen die
+entsprechenden Objekte nicht existieren, oder werden die Objekte
+gelöscht, so wird wieder zur Eingabe der nicht existierenden Parameter
+aufgefordert. Ihre Bindung wird sofort aufgelöst.
+
+Übrigens können __fixierte Parameter__ auch gleich bei der
+Makrodefinition erzeugt werden, indem als Prompt "=Objektname"
+eingegeben wird.
+
+.parametertypes
+.related parameter
+Typen von Parametern
+
+Im allgemeinen ist es am günstigsten, __Punkte§als§Parameter__
+auszuwählen. Allerdings sind auch Kreise und Geraden möglich. Bei
+Strecken, Geraden aus zwei Punkten (also nicht Parallelen, festen
+Winkeln und Senkrechten) werden die Endpunkte der Strecke zu
+sekundären Parametern, wenn sie zur Konstruktion der Zielobjekte
+notwendig sind. Falls dies der Fall ist, muss der Benutzer dann auch
+beim Makroaufruf ein Objekt gleichen Typs wählen. Falls die Gerade
+ohne ihre Definitionspunkte verwendet wird, so kann er beliebige
+Geraden wählen. Bei Kreisen wird immer der Mittelpunkt sekundärer
+Parameter.
+
+__Sekundärparameter__ werden natürlich dann auch beim Lauf des Makros
+zugeordnet. Es ist dabei wichtig zu beachten, dass die
+Sekundärparameter in der gleichen Konfiguration vorliegen müssen, wenn
+das Makro aufgerufen wird. So müssen etwa konzentrische Kreise als
+Parameter wieder konzentrisch sein. Falls die Strecken AB und BC als
+Parameter verwendet werden, müssen beim Aufruf Strecken EF und FG
+angeben werden. Wegen dieser Komplikationen sollte man in diesem Fall
+eher Punkte als Parameter nehmen.
+
+Als Beispiel kann man eine Mittelsenkrechte in Abhängigkeit von einer
+Strecke durch ein Makro konstruieren lassen.
+
+.defaultmacros
+.related runmacro save
+Defaultmakros
+
+Beim Start lädt Z.u.L. alle Makros aus der Datei ".de_default.mcr",
+wenn diese Datei im aktuellen Verzeichnis gefunden wird
+(_Defaultmakros__). Die geladenen Makros sind geschützt. D.h., sie
+werden nicht mit Konstruktionen abgespeichert und auch nicht beim
+Laden von Konstruktionen gelöscht.
+
+Um Defaultmakros zu löschen, muss man den Menüpunkte aus dem
+Makromenü wählen und dort alle Makros auswählen.
+
+Wenn man die Datei mit den Defaultmakros erweitern will, so speichert
+man die Defaultmakros in eine Datei ".de_default.mcr" ins
+Startverzeichnis von Z.u.L. Normalerweise ist diese Datei im
+Programmarchiv eingebunden, eine existierende Datei wird aber
+vorgezogen.
+
+.macroerrors
+.related macro
+Objekt wird benutzt, ist aber nicht im Makro
+
+Diese Warnung erscheint, wenn ein Objekt, das im Makro enthalten ist,
+sich auf ein Objekt bezieht, das nicht im Makro enthalten ist. Die
+häufigste Ursache sind __Namensreferenzen__ vom Typ __@...__ in
+Ausdrücken, zum Beispiel für die __bedingte Formatierung__. Die
+Objekte sind trotz dieses Bezugs konstuierbar. Ignoriert man die
+Warnung, so beziehen sich die Objekte, die beim Makroaufruf erzeugt
+werden, auf Objekte mit gleichem Namen, sofern solche Objekte in der
+Konstruktion vorhanden sind.
+
+Ein anderer loser Bezug sind die Grenzen von Kreisbögen. Da diese
+Grenzen meist vom Kreis abhängen, hängt der Kreisbogen nicht von seinen
+Grenzen ab, um Verwirrung zu vermeiden. Ein drittes Beispiel ist das
+Zentrum von __gefüllt__en Polygonen.
+
+Um die Warnung zu vermeiden, muss man lediglich die Objekte als
+__Makroparameter__ in das Makro aufnehmen.
+
+.htmlexport
+.related save runningdemo comment exportdialog exportjob
+HTML-Export
+
+Konstruktionen oder Aufgaben lassen sich als Applet in eine HTML-Seite
+einbinden. Damit man den HTML-Code für dieses Applet nicht selbst
+eingeben muss, gibt es die Möglichkeit, diese Seite automatisch von
+Z.u.L. erzeugen zu lassen. Vor dem __HTML-Export__ muss man die
+Konstruktion in eine Datei speichern.
+
+//image images/HTMLExport
+
+__Ortslinien__ und __Animationen__ werden im Applet nach dem Laden der
+Konstruktion automatisch erzeugt, wenn sie zur Zeit des Abspeicherns
+der Konstruktion sichtbar waren (genau wie sonst beim Laden einer
+Konstruktion).
+
+Nach dem Bearbeiten des Dialogs wird eine Dateiauswahl angezeigt
+mit der man die HTML-Datei erstellen kann. Falls eine __Lösungsseite__
+für eine Aufgabe erstellt werden soll, so wird eine zweite
+Dateiauswahl angezeigt.
+
+Nachdem die HTML-Dateien erstellt wurden und lokal getestet sind,
+müssen folgende Dateien auf den __Web-Server__ publiziert werden:
+
+- Die HTML Datei, die das Applet enthält. 
+- Eine eventuell vorhandene HTML-Lösungsdatei. 
+- Eventuell Style-Sheets, falls CSS-Dateien verwendet werden. 
+- Das Applet-Archiv __zirkel.jar__. 
+- Die Konstruktion, bzw. die Aufgabe. 
+- Eventuell das Hintergrundbild.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+HTML Export mit Vorlagen
+
+Mit Hilfe von __Vorlagen__ lassen sich beim __HTML-Export__ auf
+einfache Weise persönlich angepasste Webseiten mit Konstruktionen
+erzeugen. Die Vorlage enthält alle nötigen Informationen,
+einschließlich Appletgröße, Seitenfarben und Appletfarben, CSS-Dateien
+und Applet-Archiv. Daher ist der Dialog zur Erzeugung wesentlich
+kürzer.
+
+//image images/HTMLTemplate
+
+Im Exportdialog ist für Codebase der Pfad von der HTML-Datei zu
+zirkel.jar einzusetzen, also "..", wenn die Datei im Verzeichnis
+darüber liegt. Die Konstruktionsdatei muss relativ zu zirkel.jar
+angegeben werden, also etwa "verzeichnis/datei.zir".
+
+Einige Vorlagen sind in der Dokumentation enthalten. Der Benutzer kann
+aus diesen Dateien leicht eigene Vorlagen erstellen. Vorlagen sind im
+Prinzip HTML-Dateien mit Platzhaltern. Alle Platzhalter beginnen mit
+"§". Vorlagendateien sollten die Erweiterung "*.template" bekommen.
+
+Mance Vorlagen verlangen mehrere Abschnitte in der
+Konstruktionsbeschreibung. Die Abschnitte werden durch eine Zeile "~"
+voneinander getrennt.
+
+Besonderes Augenmerk muss auf die Umlaute der deutschen Sprache in
+HTML-Dateien gerichtet werden. Es gibt hier mehrere Möglichkeiten.
+Das Programm unterstützt UTF-8 und exportiert auch Webseiten in diesem
+Encoding. Solche Vorlagen lassen sich im HTML-Editor von Mozilla oder
+in Frontpage öffnen und bearbeiten, oder auch in einen UTF-8 Editor
+wie JE (vom selben Autor wie Z.u.L.). Alternativ kann UTF-8
+in den speziellen Einstellungen abgestellt werden. Man sollte dann
+allerdings Umlaute mit &auml; etc. kodieren. Dies gilt auch für den
+Konstruktionskommentar, wenn er in die HTML-Seite exportiert werden
+soll.
+
+Die folgenden Platzhalter sind implementiert.
+
+#title
+  Wird durch den Titel aus dem Exportdialog ersetzt.
+
+#comment1,#comment2,...
+  Wird durch den entsprechenden Abschnitt des Konstruktionskommentars
+ersetzt. Der Konstruktionskommentar wird durch Zeilen mit "~" in
+Abschnitte unterteilt. Jeder Paragraph eines Abschnittes wird in
+<p>...</p> eingeschlossen.
+  
+#comment
+  Wie #comment1,... Jedoch wird immer der ganze Kommentar verwendet.
+
+#text1,#text2,...
+  Wie #comment1,... Jedoch wird kein <p>...</p> erzeugt. Diese und
+alle anderen HTML-Kommandos müssen in die Konstruktionsbeschreibung
+eingegeben werden.
+
+#text
+  Wie #texte1,... aber ohne Abschnitte.
+
+#parameter
+  Fügt die nötigen Parameter für Applets ein.
+
+#color
+  Fügt zusätzlich Parameter für eventuell geänderte Farben ein.
+
+#font
+  Fügt zusätzlich Parameter für Fonts ein.
+
+#codebase
+  Fügt die Codebase aus dem Exportdialog ein.
+
+Hier ist ein sehr einfaches Beispiel für eine Vorlage.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" 
+  CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=§F0F0F0>
+  <H1>
+  §title
+  </H1>
+  <CENTER>
+  <P>
+  <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400"
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+.exportdialog
+.related htmlexport exportjob
+Exporteinstellungen
+
+Seitentitel: Dies ist die Überschrift, die die Seite bekommt. Die
+Überschrift wird im HTML-Stil <H1> über das Applet gesetzt. Das Applet
+befindet sich zentriert darunter.
+
+CSS Stil-Datei: CSS (Cascading Style Sheets) sind nützlich, um
+mehreren Internet-Seiten dasselbe Aussehen zu geben. Wenn man keine
+CSS-Datei verwendet, lässt man das Feld einfach offen.
+
+Die CSS-Datei muss relativ zu der HMTL-Datei angegeben werden, wobei
+das Unix-Format mit der Verzeichnistrennung "/" verwendet werden muss.
+Wenn sich die Datei im übergeordneten Verzeichnis befindet, kann man
+einen Pfad relativ zur HTML-Seite verwenden.
+
+Breite, Höhe: Betrifft die Breite und Höhe des Applets.
+
+Konstruktionsdatei: Der Name der Datei, in der die Konstruktion
+gespeichert ist. Im Allgemeinen wird diese Datei im selben Verzeichnis
+liegen wie die HTML-Datei. Es ist aber auch möglich, relative Pfade im
+UNIX-Stil anzugeben (etwa "../test.zir"), allerdings keine absoluten
+URLs. Die Konstruktionsdatei muss relativ zur Datei zirkel.jar
+angegeben werden.
+
+Zirkel-Archiv: Das Programmarchiv. Es findet sich in der
+Z.u.L.-Installation. Die Datei heißt zirkel.jar und wird am
+einfachsten in dasselbe Verzeichnis gestellt wie die HTML-Datei. Es
+ist aber auch möglich, relative Pfade anzugeben. 
+
+Farbe - Für Hintergrund - Für Applet: Das Feld zeigt eine Farbe an,
+die man mit dem Knopf "Farbe Wählen" einstellen kann. Es kann gewählt
+werden, ob diese Farbe auch als __Hintergrund__ für die HTML-Seite
+eingestellt werden soll. Außerdem kann gewählt werden, ob diese Farbe
+als Hintergrund für die Konstruktion, die Icons und die Statuszeile
+verwendet werden soll.
+
+Falls Ihr Applet keinen Rand hat (eingebetteter Stil), so sollte
+natürlich die gleich Farbe für Hintergrund und Applet gewählt werden.
+
+Bildhintergrund: Falls die Konstruktion vor einem __Hintergrundbild__
+dargestellt wird, der von einer Datei geladen wurde, und falls dieser
+Hintergrund der Fenstergröße entspricht, so wird ein Verweis auf das
+Bild gespeichert. Außerdem ist die Applet-Größe auf die Bildgröße
+fixiert.
+
+Man publiziert in diesem Fall das Bild an die Stelle, wo sich
+das Archiv "__zirkel.jar__" befindet, oder ändert den Verweis zum Bild
+im HTML-Text. 
+
+__Applet-Stil__: Hier hat man folgende Auswahl
+
+- Eingebettet: Das bedeutet, dass das Applet ohne Rand in die Seite
+eingebettet wird. Dazu sollte man die Seitenfarbe gleich der
+Applet-Farbe wählen. Man kann nichts konstruieren, sondern nur die
+versteckten Objekte anzeigen (rechte Maustaste). 
+
+- Rand: In diesem Falle enthält man einen dreidimensionalen
+Effektrahmen, der die Konstruktion umgibt. 
+
+- Rand und Icons: Dies ist schon für Konstruktionen geeignet. Es wird
+über dem Konstruktionsfenster eine Icon-Zeile angezeigt, wobei die
+angezeigten Icons einstellbar sind. 
+
+- Rand, Icons und Status: Dann erscheint zusätzlich eine Statuszeile
+unter der Konstruktion. Verzichtet man darauf, so erscheint der Text
+immer noch in der Statuszeile des Browsers. 
+
+- Wiedergabe mit Haltepunkten: Dies zeigt unter der Konstruktion Tasten
+an. Der Benutzer kann damit durch die Konstruktion von Haltepunkt zu
+Haltepunkt navigieren. Es müssen dazu natürlich Haltepunkte definiert
+sein. 
+ 
+Zeige __Kommentar__: Wenn dieses Kästchen aktiviert ist, wird der
+Kommentar der Konstruktion unter dem Applet angezeigt.
+
+Falls hierbei deutsche Umlaute verwendet werden, so wird auch das
+funktionieren. Dies liegt daran, dass der Kommentar in der
+internationalen Kodierung (__UTF-8__) oder in der Windows-Kodierung
+gespeichert wird, und die jeweilige Kodierung korrekt in der
+HTML-Seite eingestellt ist. Einige HTML-Editoren
+kommen mit UTF-8 nicht zurecht. Wenn man die Seite also in
+einem solchen Editor nachbearbeiten will, so empfiehlt es sich, die
+Windows-Kodierung ISO-8869-1 einzustellen, indem UTF in den
+"speziellen Optionen" abgeschaltet wird. Alle Browser sollten diese
+genormte Kodierung korrekt darstellen können.
+
+__Farben__: Falls eigene Farben definiert wurden
+(Konstruktionselemente und Hintergrund), so kann ausgewählt werden, ob
+das Applet diese ebenfalls verwenden soll. Die Hintergrundfarbe
+betrifft nur den Hintergrund der Konstruktion, der damit verschieden
+vom Hintergrund der übrigen Teile des Applets und von dem Hintergrund
+der Seite sein kann.
+
+__Kommentar__: Es kann außerdem eingestellt werden, ob der Kommentar
+in die Seite eingebettet werden soll, oder nicht.
+
+__Popup__: Damit wird das Popupfenster verhindert.
+
+__Zoom__: Damit wird eingestellt, ob der Benutzer mit der Maus das
+Fenster bewegen, oder mit dem Mausrad zoomen kann.
+
+__Eingeschränkte Bewegung__: Eine Spezialoption, die verhindert, dass
+Puntke beim Bewegen ungültig werden. Das funktioniert so ähnlich wie
+beim automatischen Ortslinienwerkzeug. Sollte normalerweise
+ausgeschaltet sein.
+
+Werkzeugauswahl und Optionsauswahl: Hier werden für Applets mit
+__Werkzeugleiste__ die Icons ausgewählt, die erscheinen sollen. Im
+Allgemeinen will man für einfache Konstruktionen nicht den vollen Satz
+an Werkzeugen zur Verfügung stellen. In jedem Fall sollte man aber das
+Rückschritt-Icon vorsehen, damit der Benutzer nicht darauf angewiesen
+ist, das Tastaturkürzel zu erraten. Auch die Farbauswahl erleichtert
+ihm die Übersicht über die Konstruktion.
+
+Der Benutzer kann immer nur diejenigen Werkzeuge verwenden, die ihm zur
+Verfügung gestellt werden.
+
+Für Spezialfälle ist es sinnvoll, nur das __Makrowerkzeug__ zur
+Verfügung zu stellen, oder das Makrowerkzeug mit einem Editor in der
+HTML-Datei an die erste Stelle der Werkzeuge zu verschieben. Wenn dann
+nur ein Makro in der Konstruktion enthalten ist, wird dieses Makro zu
+Beginn als Werkzeug ausgewählt. Die __Defaultmakros__ werden in
+Applets nicht geladen.
+
+Im beschreibenden Modus helfen die Icons dem Benutzer bei der Syntax
+der Eingabe. Man sollte daher diejenigen Konstruktionswerkzeuge
+vorsehen, die der Benutzer brauchen wird. Allerdings funktionieren in
+diesem Modus auch alle anderen Konstruktionswerkzeuge.
+
+Man beachte auch, dass bei einer Konstruktion die __versteckt__en
+Objekte am Anfang angezeigt werden, wenn dies im Moment des
+Exportierens auch schon im Z.u.L.-Programm der Fall war.
+
+.exportjob
+.related htmlexport exportdialog comment
+Aufgaben Exportieren
+
+Aufgabe: Dies dient dazu, __Aufgaben__ als normale Konstruktionen zu
+speichern. Bei echten Aufgaben muss dieses Feld aktiviert sein.
+
+__Lösungsdatei__ - Springe zur Lösung - Lösungsdatei Speichern - Link
+zur Lösung: Diese drei Einstellungen automatisieren das Erstellen
+einer Lösungsdatei. Die Lösungsdatei ist eine HTML-Datei, auf der die
+Lösung dargestellt sein sollte. Sie kann angesprungen werden, sobald
+der Benutzer die Aufgabe gelöst hat. Alternativ oder zugleich kann ein
+Link unter das Applet gesetzt werden, der auf die Lösungsseite
+verweist.
+
+Der HTML-Export kann die Lösungsseite automatisch erzeugen
+(Lösungsseite Speichern). Dabei wird die Aufgabe als normale
+Konstruktion verwendet. Es wird eine zweite HTML-Seite erzeugt mit dem
+angegebenen Namen. Die Lösung wird immer in dem Applet-Stil "Rand",
+also ohne Konstruktionswerkzeuge, dargestellt.
+
+__Kommentar__: In diesem Fall wird der Aufgabenkommentar, der
+normalerweise die gestellte Aufgabe beschreibt, verwendet. Auf der
+Lösungsseite wird der normale Kommentar verwendet, falls diese Seite
+erstellt wird.
+
+.runningdemo
+.related htmlexport online
+Laufende Demo
+
+Es ist möglich eine Folge von Konstruktionen auf einer Webseite in
+einem vorgegebenen Rhythmus abzuspielen (__laufende Demo__). Ein
+Beispiel findet man auf den Demo-Seiten. Einen automatischen Export
+gibt es hier nicht.
+
+Der Code für das Applet sieht in diesem Fall so aus.
+
+ <APPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+Die Datei "demo.xml" enthält die Liste der Konstruktionen und deren
+Beschreibung, wie sie in der Statuszeile des Applets auftaucht. Ein
+Beispiel für die einfache Syntax ist
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <Demo delay="30">
+ <File name="Uhr.zir" delay="20">Uhrwerk</File>
+ <File name="Cindarella-Maschine.zir">Cindarella-Maschine</File>
+   ...
+ </Demo>
+ 
+.visual
+.related expressionsyntax descriptivefiles runmacro
+Beschreibende Konstruktionen
+
+//image- images/visual.png
+In diesem Modus werden die Konstruktionsschritte in einer Eingabezeile
+unterhalb des Konstruktionsfensters eingegeben (__nicht-visueller
+Modus__). Die Werkzeugleiste bleibt zwar erhalten, aber die Werkzeuge
+funktionieren anders.
+
+Das Anklicken eines Werkzeugs führt jetzt dazu, dass eine Vorgabe in
+die Eingabezeile geschrieben wird, die allerdings noch bearbeitet
+werden muss. Außerdem können die notwendigen
+__Konstruktionsparameter__ nicht mehr am Schirm ausgewählt werden,
+sondern müssen per Namen in die Parameter des Konstruktionsschrittes
+eingetragen werden. Der Name des Konstruktionsergebnisses kann in der
+Eingabezeile festgelegt werden. Die Konstruktion kommt dadurch
+zustande, dass in der Eingabezeile die Eingabetaste (Return) gedrückt
+wird. Natürlich ist es nun notwendig, eine gewisse Syntax einzuhalten.
+Die allgemeine Form eines Konstruktionsschrittes ist.
+
+ name=function(parameter,...)
+ name1,name2=function(parameter,...)
+
+Diese __Syntax__ wird durchgängig eingehalten. Der Name kann fehlen.
+Dann wird ein Name vom Programm vergeben. Übrigens werden im
+nicht-visuellen Modus normalerweise alle konstruierten Objekte mit
+Namen angezeigt.
+
+Die folgende Liste gibt einen Überblick über die recht einfache Syntax
+der Funktionen. Anstatt der deutschen Lang- oder Kurzform kann auch
+die englische Alternative verwendet werden. Bei den Langformen spielt
+Groß- oder Kleinschreibung keine Rolle.
+
+Wenn in den Beispielen eine feste Größe verlangt wird, kann ein
+beliebiger Ausdruck verwendet werden. 
+
+Wenn ein Punkt verlangt wird, so können auch die Funktionen c(k),
+a(s), b(s) verwendet werden. Dabei steht c(k) für den Mittelpunkt
+eines Kreises, a(s) und b(s) für die beiden Punkte, die Strecken,
+Geraden und Strahlen definieren. 
+
+Beispiel 
+ Langform 
+ Alternative 
+ Beschreibung 
+ 
+A=P() 
+ Punkt 
+ point 
+ Erzeugt einen Punkt, der zufällig irgendwo am Bildschirm erscheint. 
+ 
+A=P(0,1) 
+ Punkt 
+ Erzeugt einen Punkt, der in (0,1) fixiert ist. 
+ 
+a=s(B,C) 
+ Strecke 
+ segment 
+ Erzeugt die Strecke von B nach C. 
+ 
+a=s(B,2) 
+ Erzeugt eine Strecke von B nach rechts, die auf die Länge 2 fixiert
+ist. Dabei entsteht ein weiterer Punkt. 
+ 
+a=g(B,C) 
+ Gerade 
+ line 
+ Erzeugt die Gerade durch B und C. 
+ 
+a=r(B,C) 
+ Strahl 
+ ray 
+ Erzeugt den Strahl von B aus durch C. 
+ 
+k=k(A,B) 
+ Kreis 
+ circle 
+ Erzeugt den Kreis um A durch B. 
+ 
+k=k(A,2) 
+ Erzeugt einen Kreis, dessen Radius auf 2 fixiert ist. Wieder kann 2
+irgend ein Ausdruck sein. Ein Spezialfall ist es, wenn statt 2 die
+Länge einer Strecke verwendet wird. 
+ 
+k=k(A,B,C) 
+ Erzeugt einen Kreis um A mit Radius BC. 
+ 
+A=S(g,g) 
+ Schnitt 
+ intersection 
+ Erzeugt den Schnitt zweier Geraden. 
+ 
+A,B=S(k,k) 
+ Erzeugt die beiden Schnitte von Kreisen, oder von Kreisen mit
+Geraden. Es kann auch nur ein oder kein Name angegeben werden. 
+ 
+versch(A,P) 
+ Verschieden 
+ away 
+ Der Schnitt A soll verschieden vom Punkt P sein. 
+ 
+nahe(A,P) 
+ Nahe 
+ close 
+ Der Schnitt A soll möglichst nahe beim Punkt P sein. 
+ 
+M=M(A,B) 
+ Mitte 
+ midpoint 
+ Erzeugt den Mittelpunkt von AB. 
+ 
+g=p(g,A) 
+ Parallele 
+ parallel 
+ Erzeugt die Parallele zu g durch A. 
+ 
+g=l(g,A) 
+ Lot 
+ plumb 
+ Erzeugt das Lot zu g durch A. 
+ 
+a=w(A,B,C) 
+ Winkel 
+ angle 
+ Erzeugt den Winkel ABC (Scheitel in B). 
+ 
+a=w(A,B,90) 
+ Erzeugt einen 90-Grad Winkel an ABC. Statt 90 kann wie immer jeder
+Ausdruck verwendet werden. 
+ 
+A=A(A,B,C) 
+ Polygon 
+ polygon 
+ Erzeugt ein gefülltes Vieleck mit diesen Ecken. 
+ 
+wert(P,0,1) 
+ Wert 
+ value 
+ Fixiert den Punkt nach (0,1). 
+ 
+wert(s,2) 
+   Fixiert die Strecke auf die Länge 2. 
+ 
+wert(k,2) 
+   Fixiert den Radius des Kreises auf 2. 
+ 
+wert(w,90) 
+   Fixiert den Winkel auf 90 Grad. 
+ 
+wert(o) 
+wert(wahr,o) 
+   Stellt die Wertanzeige für das Objekt an und aus. 
+ 
+wert(wahr) 
+   Stellt die Defaultanzeige für Werte ein und aus. 
+ 
+name(o,p) 
+ Name 
+ name 
+ Setzt den Namen des Objektes o auf p. 
+ 
+name(o) 
+name(wahr,o) 
+ Stellt die Namensanzeige für das Objekt an und aus. 
+ 
+name(wahr) 
+ Stellt die Defaultanzeige für Namen ein und aus. 
+ 
+v(o) 
+v(wahr,o) 
+ Verstecken 
+ hide 
+ Versteckt das Objekt und zeigt es wieder an. 
+ 
+v(wahr) 
+ Stellt den Defaultwert für das Verstecken von Objekten ein und aus. 
+ 
+farbe(grün,o) 
+ Farbe 
+ color 
+ Färbt das Objekt mit einer der Farben Schwarz, Blau, Grün, Braun (black, blue, green, brown) 
+ 
+farbe(grün) 
+ Stellt die Farbe als Defaultfarbe ein. 
+ 
+dicke(dick,o) 
+ Dicke 
+ thickness 
+ Stellt die Darstellung des Objekts auf Dick, Normal oder Dünn (thick, normal, thin) 
+ 
+dicke(dick) 
+   Stellt die Defaultdicke ein. 
+ 
+typ(quadrat,P) 
+ Typ 
+ type 
+ Stellt die Darstellung des Punktes P auf Quadrat, Raute, Kreis oder Punkt (square, diamond, circle, point) 
+ 
+typ(quadrat) 
+ Stellt die Defaultpunktdarstellung ein. 
+ 
+partiell(k) 
+partiell(wahr,k) 
+ Partiell 
+ partial 
+ Stellt die partielle Darstellung des Objekts k an oder aus. 
+ 
+partiell(wahr) 
+ Stellt die Defaultdarstellung um. 
+ 
+voll(o) 
+voll(true,o) 
+ Voll 
+ fill 
+ Stellt das Objekt o auf __gefüllt__e oder nicht gefüllte Darstellung.
+ 
+zur(o) 
+zur(true,o) 
+ Zurück 
+ back 
+ Stellt das Objekt in den Hintergrund oder nicht. 
+ 
+fenster(0,0,5) 
+ Fenster 
+ window 
+ Stellt das Sichtfenster auf das Zentrum (0,0) und die Breite 2*5. 
+
+stumpf(a)
+stumpf(true,a)
+ obtuse
+ Stellt für Winkel ein, dass sie größer als 180 Grad werden können.
+
+solid(a)
+solid(true,a)
+ Solid
+ Macht das Objekt undurchsuchtig.
+
+Beschränkt(c,A,B)
+ restrict
+ Schränkt die Darstellung des Kreises c auf den Bogen AB ein.
+
+gültig(o)
+gültig(true,o)
+ valid
+ Entfernt die Einschränkungen von Loten und Schnitten, damit sie nicht
+ ungültig werden, wenn sie außerhalb von Strecken und Bögen liegen.
+
+name(A,B)
+ rename
+ Nenne das Objekt A in B um.
+
+Auch __Makros__ können verwendet werden. Der Funktionsname ist in
+diesem Fall der Makroname. Namen können nur an die angegebene
+Makro-Zielobjekte vergeben werden. Es ist deswegen günstig, bei der
+Definition von Makros immer die wesentlichen Ziele anzugeben.
+
+Bei Makros, die einen Prompt zur Größeneinstellung eines Objektes
+enthalten, kann diese Größe als __zusätzlicher Parameter__ angegeben
+werden.
+
+.descriptivefiles run
+.related visual save
+Beschreibende Konstruktionen in Dateien
+
+Damit ist es möglich, Konstruktionen in der __beschreibend__en Form in
+eine Datei zu schreiben. Außerdem kann die Datei __Makrodefinition__en
+enthalten, die sich auch gegenseitig aufrufen dürfen. Damit entsteht
+eine einfache Programmiersprache für Konstruktionen. Solche
+Konstruktionen lassen sich direkt laden (wenn sie etwa in einem
+externen Editor erstellt wurden), oder vor dem Laden bearbeiten.
+
+Diese __Konstruktionsbeschreibungen__ sehen wie normale Konstruktionen
+aus. Sie können Kommentare enthalten die mit "//" eingeleitet werden
+und für den Rest der Zeile gelten. Die verwendete Sprache ist
+zeilenorientiert. Jeder Konstruktionsschritt nimmt genau eine Zeile
+ein.
+
+Außerdem können sie Makros enthalten, die auch andere Makros aufrufen
+können. Ein typisches Beispiel ist
+
+ Makro U 
+ // Kreis durch drei Punkte
+    Parameter A=P // Erster Punkt
+    Parameter B=P // Zweiter Punkt
+    Parameter C=P // Dritter Punkt
+    g1=MS(A,B)
+    g2=MS(A,C)
+    U=S(g1,g2)
+    Ziel k=k(U,A)
+ Ende
+
+Die Einrückungen sind hier optional. Die Kommentarzeilen am Anfang
+werden als Makrokommentar gespeichert. Parameterpunkte sind mit dem
+Schlüsselwort Parameter (oder Param) gekennzeichnet, und Ziele mit dem
+Schlüsselwort Target (oder Ziel). Der Prompt für diese Parameter ist
+der evtl. vorhandene Einzeilenkommentar nach dem Parameter.
+
+Das Makro im obigen Beispiel ruft das Makro MS auf, das die
+Mittelsenkrechte zwischen zwei Punkte konstruiert. Das Makro könnte
+etwa so aussehen.
+
+ Makro MS
+ // Mittelsenkrechte
+	Param A=punkt
+	Param B=punkt
+	partiell(wahr)
+	k1=kreis(A,B)
+	k2=kreis(B,A)
+	partiell(falsch)
+	P1,P2=schnitt(k1,k2)
+	Ziel g=gerade(P1,P2)
+ Ende
+
+Da MS ein Zielobjekt hat (die Mittelsenkrechte), kann im Aufruf
+g1=MS(A,B) diesem Ziel ein Name zugewiesen werden. Ziele müssen
+separat definiert werden, wenn in einer Zeile mehr als ein Objekt
+entsteht.
+
+ A,B=schnitt(g,h)
+ Ziel B
+
+Ein Makro kann mehrere Ziele haben, die dann aber auch alle beim
+Aufruf zugewiesen werden müssen.
+
+ A,B=test(...)
+
+Prompts sind ebenfalls möglich. Dazu wird das Schlüsselwort __Prompt__
+verwendet. Wie bei der normalen Definition von Makros wird der
+Benutzer beim Aufruf des Makros nach dem Wert dieses Objekts gefragt,
+oder beim beschreibenden Aufruf wird der Wert von einem zusätzlichen
+Parameter gelesen. Das Objekt muss ein fixiertes Objekt sein.
+
+Man beachte bei Makrodefinitionen, dass nur diejenigen Objekte
+konstruiert werden, die tatsächlich aus den Parametern konstruierbar
+sind. Andere Konstruktionsschritte werden nicht ausgeführt.
+
+Verwendet man Kreise oder Geraden als Parameter, so müssen die
+Elternobjekte vorher definiert sein. Die Mittelsenkrechte könnte dann
+auch von einer Strecke abhängen.
+
+ Makro MS
+ // Mittelsenkrechte
+	A=punkt
+	B=punkt
+    Parameter s=strecke(A,B)
+	partiell(wahr)
+	k1=kreis(A,B)
+	k2=kreis(B,A)
+	partiell(falsch)
+	P1,P2=schnitt(k1,k2)
+	Ziel g=gerade(P1,P2)
+ Ende
+
+Falls __Kreise__ als Parameter verwendet werden, so kann man die
+spezielle Syntax
+
+ A=Punkt
+ Parameter k=Kreis(A)
+ 
+verwenden. Diese Art von Kreisen macht nur als Parameter in Makros Sinn. 
+
+Es gibt das spezielle Kommando "sichtbar" (showall), das alle
+Zwischenobjekte des Makros sichtbar macht. Im Gegensatz dazu versteckt
+"unsichtbar" (invisible) alle Zwischenobjekte vollständig.
+
+.assignments
+.related save restricted colors comment
+Aufgaben
+
+//image images/Aufgabe.jpg
+
+__Aufgaben__ sind Konstruktionsaufgaben, die der Benutzer lösen soll.
+Dem Benutzer werden die Ausgangsobjekte angezeigt und das Zielobjekt
+in schwächerer Darstellung. Beachten Sie, dass man in einem Applet die
+möglichen Werkzeuge einschränken kann.
+
+Sobald der Benutzer die Aufgabe gelöst hat, wird dies in einem 
+Dialogfenster angezeigt. Alternativ kann man, wenn die Aufgabe 
+in einem __Applet__ gestellt wird, zu einer __Lösungsseite__ springen.
+
+Aufgaben werden erzeugt, indem man das letzte anzuzeigende Objekt
+auswählt und die __Zielobjekte__. Dazu existiert ein spezielles
+Werkzeug im Menü. Das letzte darzustellende Objekt ist das letzte der
+Ausgangsobjekte, auf die der Benutzer vollen Zugriff hat. Objekte nach
+diesem Objekt werden nur dann dargestellt, wenn Sie Zielobjekte der
+Aufgabe sind. Allerdings kann der Benutzer auf Zielobjekte natürlich
+nicht zugreifen. Mit Hilfe der __Umschalttaste__ können sekundäre
+Zielobjekte ausgewählt werden, die nicht überprüft werden sollen. Sie
+dienen nur als zusätzliche Orientierung. Wird ein Zielobjekt vor dem
+Abspeichern der Aufgabe versteckt, so ist es nicht sichtbar. In diesem
+Fall sollte die Erklärung der geforderten Aufgabe eindeutig sein.
+
+Im Normalfall wird man eine Aufgabe lösen, bevor man sie stellt. In
+diesem Fall ist die Lösungsdatei, zu der das Applet springen kann,
+identisch mit der Aufgabendatei. Man wählt als letztes darzustellende
+Objekt das letzte der Ausgangsobjekte und die Zielobjekte befinden
+sich hinter diesem Objekt, weil sie ja von den Ausgangsobjekten
+abhängen. Allerdings ist es auch möglich, Aufgaben zu stellen, die man
+nicht gelöst hat. In diesem Fall befinden sich die Zielobjekte
+durchaus auch vor den Ausgangsobjekten. Man muss dann sicher stellen,
+dass alle Objekte, die der Benutzer nicht verwenden können soll,
+sekundäre Zielobjekte sind.
+
+Außerdem kann noch für die Aufgabe ein eigener __Kommentar__
+festgelegt werden, der die Aufgabe beschreiben sollte. Die Aufgabe
+kann getestet werden. Dies zeigt die Aufgabe aus der Sicht des
+Benutzers, allerdings mit dem vollen Werkzeugsatz.
+
+Bei __Polygone__n sollte man nur die notwendigen Eckpunkte als Ziele
+vorgeben. Falls der Lösende unnötige Zwischenpunkte eingibt, also
+Punkte auf den Seiten des gesuchten Polygons, so wird dies erkannt.
+Gibt man selbst solche Zwischenpunkte ein, so müssen diese
+Zwischenpunkte auch in Lösung vorhanden sein.
+
+.browser
+.related online
+Hilfe im Browser
+
+Die Hilfe im __Browser__ muss evtl. konfiguriert werden. Auf
+Windows-System nimmt Z.u.L. den Internet-Explorer als Browser,
+sonst Netscape an. Das Programm versucht auch, den Pfad zur Hilfedatei
+zu finden. Falls keine Datei gefunden wird, wird ein Link zur
+Hilfeseite im Web angenommen.
+
+//image images/Explorer.jpg
+
+Falls die Hilfe nicht funktioniert, so muss man den Browser selbst
+konfigurieren. Dazu gibt man ein
+
+Pfad_zum_Browser Pfad_zur_HTML_Hilfedatei
+
+Pfade mit Leerzeichen müssen in "..." eingeschlossen werden.
+
+.comment
+.related assignments parameter htmlexport
+Kommentare
+
+//image- images/comment.png
+Konstruktionen können kommentiert werden. __Kommentare__ werden beim
+Laden der Konstruktion angezeigt. Außerdem können Kommentare in die
+HTML-Datei exportiert werden.
+
+Wichtig sind Kommentare von Aufgaben. Sie sollen die Aufgabenstellung
+enthalten.
+
+Auch __Makros__ können und sollten Kommentare haben, die erklären, was
+das Makro leistet.
+
+.fonts
+.related zoom save properties
+Fonts
+
+__Font__s werden entweder pro Objekt oder global eingestellt. Die
+globalen Einstellungen haben Vorrang.
+
+Z.u.L. verwendet Fonts in zwei Größenstufen. Die Fonts werden mit dem
+Konstruktionsfenster skaliert, genau wie die Größe von Punkten. Da
+dies bei kleinen Fenstern zu kleinen Objekten führt, kann man eine
+__Minimalgröße__ einstellen.
+
+Es kann auch global ein fetter Font gewählt werden. Dies empfiehlt sich
+insbesondere für den __Grafikexport__, falls nicht die genauere
+Skalierung der Fonts im Exportdialog verwendet wird.
+
+.sizes
+Größeneinstellungen
+
+//image images/Sizes.jpg
+
+In diesem Dialog kann man die __Minimalgröße__n für Punkte, Linien und
+Schriften einstellen. Diese Größen werden normalerweise mit der
+Fenstergröße skaliert. Allerdings wird dabei die hier eingestellte
+Minimalröße eingehalten.
+
+Man beachte, dass man beim __Grafikexport__ die exakte Größen wählen
+kann, die unabhängig von der Größe des Exports sind.
+
+Außerdem kann man die __Vektorgröße__ und die Größe des Bereichs
+für die Auswahl von Objekten einstellen.
+
+Die __Minimalgröße__n können beim HTML-Export exportiert werden.
+
+.save
+.related assignments parameter descriptivefiles print defaultmacros filedialog print
+Speichern und Laden
+
+Konstruktionen werden im __XML-Format__ in Dateien gespeichert. Das
+Format ist für Menschen lesbar. Normale Konstruktionen haben die
+Erweiterung "__.zir__", Aufgaben die Erweiterung "__.job__" und Makros
+die Erweiterung "__.mcr__". Dies gilt für alle __Sprachen__, in denen
+Z.u.L. läuft.
+
+Konstruktionen können __Makros__ enthalten oder nicht. Man wählt
+mit einem Schalter, ob Makros mit der Konstruktion abgespeichert
+werden sollen oder nicht. Damit sich Makros nicht in Konstruktionen
+aufhäufen, gibt es einen Schalter, mit dem Makros beim
+Laden einer Konstruktion automatisch gelöscht werden. Dies gilt nicht
+für Defaultmakros.
+
+Dateien können __komprimiert__ werden. Dies geschieht automatisch,
+wenn die Erweiterung um "z" ergänzt wird.
+
+.print
+.related exportsettings
+Druck und Export von Grafik
+
+Es gibt verschiedene __Exportformate__ für Grafiken. Für
+__Vektorgrafiken__ ist __EPS__ am gebräuchlichsten und für Bitmaps
+empfehle ich __PNG__. Beide Formate lassen sich in einer
+__Textverarbeitung__ importieren. PNG ist wegen der schöneren Grafik
+vorzuziehen, wobei man allerdings die Grafik __skalieren__ muss, so
+dass die Qualität ausreichend ist.
+
+//image image/Export.jpg
+
+Beim PNG-Export erscheint daher ein Dialog, in dem an die Größe der
+exportierten Grafik angeben kann, eventuell auch mit einem
+Faktor relativ zum aktuellen Bildschirm. Es ist aber auch möglich,
+die Größe durch die gewünschte Druckgröße und Auflösung einzustellen.
+
+Es gibt eine Reihe Voreinstellungen, die sich in einer Auswahlbox
+wählen lassen. Neben den Bildschirmauflösungen existieren
+Voreinstellungen für den Druck in bestimmten Größen. Mit der Auswahl
+"__1:1__ bei 300 __DPI__" wird sicher gestellt, dass die Auflösung
+hoch genug ist, um die Grafik skaliert (1 Einheit = 1 cm) mit 300 dpi
+auszudrucken.
+
+Da beim Verkleinern Schriften, Linien und Punkte zu klein werden,
+können diese Objekte auf eine bestimmte Größe skaliert werden. Es gibt
+eine Vorschau, die den Effekt am Schirm vorführt. Die Größenangaben
+sind normalerweise in cm. Es können aber auch die Einheiten mm, '', in
+oder __pt__ angegeben werden.
+
+Eine sinnvolle Vorgehensweise ist, die Vorschau mit der
+gewünschten Durckgröße einzuschalten. Danach sollte die Konstruktion
+noch einmal durchgesehen und ausgerichtet werden.
+
+Für __LaTeX__ gibt es einen speziellen Export, der zwei weitere
+Dateien erstellt. Die erste enthält Informationen über die Bildgröße
+und hat die Endung "bb". Die zweite enthält den __LaTeX-Code__, um das
+Bild einzufügen. Sie hat die Endung "ztx". Dabei ist es möglich, die
+Zeichenketten in der Konstruktion von LaTeX exakt positioniert
+zeichnen zu lassen. In einem weiteren Dialog kann man auswählen,
+welche Typen der Zeichenketten von LateX übernommen werden sollen. Im
+LaTeX-Quelltext bindet man das Paket "__graphicx__" ein. Die
+Bildausgabe erfolgt mit einem input-Befehl aud der Datei "bild.ztx".
+Dieser Befehl sollte zentriert in einer figure-Umgebung stehen, also
+zum Beispiel
+
+ \begin{figure}
+ \centering
+ \input{bild.ztx}
+ \end{figure}
+
+Zum Export von Graphiken für das Web wählt man normalerweise die Voreinstellung
+"Fenstergröße". Die Schriften brauchen dabei nicht skaliert zu werden.
+Es ist auch möglich nur einen gewissen Bereich im Zentrum zu exportieren.
+In diesem Fall erscheint in der Vorschau ein Rahmen, der natürlich nur
+sichtbar ist, wenn der Bereich kleiner als das Fenster ist.
+
+Der Dialog zu Skalieren erscheint auch, wenn Grafiken auf die Zwischenablage
+exportiert werden. Falls Sie eine Kopie des Konstruktionsfensters wollen,
+so wählen Sie bitte "Fenstergröße" in diesem Dialog.
+
+Beim PDF-Export ist es sinnvoll, die gewünschte Bildbreite in cm
+anzugeben. Dort können die Schriften, Linien und Punkte ebenfalls
+skaliert werden, wenn die Ausgabe zu klein wird.
+
+Konstruktionen können einfach direkt auf einem Drucker gedruckt werden. 
+Im Menü kann man einstellen, dass die Länge 1 genau 
+auf 1 cm gedruckt wird. Natürlich muss man dann darauf achten, dass
+der Druck auf das Papier passt.
+
+.filedialog
+.related save settings
+Dateiauswahldialog
+
+//image images/Filedialog.jpg
+
+Z.u.L. benutzt zur __Dateiauswahl__ einen speziellen Dialog. Man kann
+allerdings auch den normalen Systemdialog benutzen
+(__spezielle§Einstellungen__).
+
+Die Eingabefelder für den __Dateinamen__, das Verzeichnis und die
+__Dateimuster__ merken sich vorherige Eingaben. Drücken Sie dazu die
+Pfeiltaste nach oben oder unten. Die alten Verzeichnisse findet man
+zusätzlich in einer Auswahlliste.
+
+Verzeichnisse werden durch Doppelklick in der rechten Liste
+ausgewählt, Dateien durch Doppelklick rechts oder mit dem
+Aktionsknopf "Speichern" oder "Laden". Es gibt einen "Zurück"-Knopf,
+der in das vorherige Verzeichnis springt. Der Knopf funktioniert auch
+nach dem Schließen und erneuten Öffnen des Dialogs.
+
+Der Knopf "__Eigene Dateien__" springt in das Z.u.L.-Verzeichnis,
+falls dies bei der Installation angelegt wurde. Es heißt "ZuL Dateien"
+und befindet sich in Windows in "Eigene Dateien". Falls dieses
+Verzeichnis nicht gefunden wurde, so springt der Dialog in das
+__Hauptverzeichnis__ des Benutzers, unter Windows in "Eigene Dateien",
+unter Linux in das home Verzeichnis. Hält man die Umschalt- und die
+Strg-Taste während eines Drucks auf "Eigene" fest, so wird das
+aktuelle Verzeichnis neues Z.u.L.-Verzeichnis. Ein erneuter Klick mit
+diesen Tasten stellt wieder den alten Zustand her.
+
+Um ein neues Verzeichnis anzulegen, wird der Name in das
+Verzeichnisfeld eingetragen und der Knopf "Neues Verzeichnis"
+gedrückt. Mit diesem Dialog kann man keine Dateien oder Verzeichnisse
+löschen.
+
+.construction
+.related hide reorder
+Liste von Objekten
+
+//image images/Gui.jpg
+
+Die __Objektliste__ enthält eine Liste ausgewählter Objekte der
+Konstruktion. Von hier aus kann man den Einstellungsdialog der Objekte
+öffnen und damit zum Beispiel auch vollständig versteckte Objekte
+wieder sichtbar machen. Die Farben der Linien entsprechen den
+Objektfarben. Vollständig versteckte Objekte stehen in Klammern.
+Grundobjekte sind mit einem ">" versehen.
+
+Im Auswahlmenü in der ersten Zeile kann die Darstellung auf bestimmte
+Objekte reduziert werden. "Sichtbare Objekte" zeigt alle in der
+Konstruktion sichtbaren Objekte, also auch versteckte, wenn der
+Modus zum Anzeigen versteckter Objekte angeschaltet ist. Vollständig
+versteckte Objekte sind nur sichtbar, wenn "Alle Objekte" ausgewählt
+wird.
+
+.colors
+.related htmlexport
+Farben
+
+//image images/Farben.jpg
+
+Alle __Farben__ können beliebig eingestellt werden. Die Farben werden
+nicht mit der Konstruktion gespeichert. Jedoch werden sie beim
+__HTML-Export__ in das Applet geschrieben. Die Farben werden im
+üblichen RGB-Modell eingestellt.
+
+Beim Export in Applets kann zusätzlich eine Farbe für den
+__Seitenhintergrund__ und für den __Hintergrund__ des Applets
+eingestellt werden.
+
+.settings
+.related restricted iconbar tips restricted exportsettings beginner
+Spezielle Einstellungen
+
+//image images/Spezielle.jpg
+
+In dem Dialog für __spezielle§Einstellungen__ kann man zunächst
+einstellen, ob Objekte beim Ziehen mit ihrer Position oder Größe
+angezeigt werden sollen. Dies ist in vielen Fällen nützlich, am Anfang
+aber eher verwirrend. Die Anzeige kann auf fixierte Objekte beschränkt
+werden.
+
+Außerdem können einige __Nachfragen__ abgeschaltet werden, sowie der
+Dialog zur __Objektauswahl__, wenn die Auswahl mit der Maus nicht
+eindeutig war. In diesem Fall wird immer das erste Objekt verwendet.
+
+Die __Vorschau__ abzuschalten, ist durchaus sinnvoll. Gerade Anfänger
+werden durch die Vorschau zu ungültigen Konstruktionen verführt. Die
+Vorschau von erzeugten Punkten ist hier nicht kritisch und sehr
+hilfreich.
+
+Die __Werkzeugleiste__ kann an den unteren Bildrand verbannt werden.
+
+Die __Dateiauswahl__ des Systems wird normalerweise durch eine eigene
+ersetzt.
+
+Normalerweise verwendet Z.u.L. __UTF-8_ für Dateien. Dies sollte man
+nur ändern, wenn Konstruktionen per Hand ediert werden und kein
+UTF-8-Editor benutzt wird.
+
+Auf langsamen System kann man die verbesserte __Grafik__ abschalten.
+
+Der __Smartboard-Modus__ nimmt darauf Rücksicht, dass Smartboards
+keine Ereignisse beim Bewegen von Objekten erzeugen, so dass keine
+Vorschau möglich ist.
+
+__Makros__ werden normalerweise mit einem einfachen Klick der rechten
+Maus aufgerufen. Man kann hier einstellen, dass ein Doppelklick
+benötigt wird.
+
+.exportsettings
+.related settings print
+Einstellungen für den Grafikexport
+
+//image images/ExportSpezielle.jpg
+
+Hier kann engestellt werden, dass sich das Programm beim Verkleinern
+nicht an die __Minimalgröße__ für Punkte oder Schriften halten
+soll. Dies ist notwendig, wenn der Schirm auf ein relativ kleines Bild
+getreu skaliert sein muss.
+
+Bitmapgrafiken können mit dem eingestellten __Hintergrund__ oder mit
+weißem Hintergrund gespeichert werden.
+
+.reorder
+.related circle angle expressionsyntax
+Umordnen von Objekten
+
+Man kann zu spät konstruierte Objekte mit dem
+Werkzeug "Änderung der __Reihenfolge__" nach vorne legen. Das Programm
+macht nach der Auswahl eines Objektes einen Vorschlag, den man
+annehmen sollte. Es wird immer die frühest mögliche Position
+vorgeschlagen. Dies ist im Wesentlichen für die Reihenfolge
+des Zeichnens nützlich.
+
+.tips
+.related online browser start move intersection expressionsyntax reorder
+Tipps und FAQ
+
+Hier findet man einige Hinweise auf Probleme, die häufig auftreten.
+
+Ungültige Konstruktionen: Man kann eine Konstruktion dadurch
+überprüfen, dass man einen Ausgangspunkt verschiebt. Wenn die
+Konstruktion dabei ungültig wird, so liegt das meist an
+__Schnitten__. Anstatt einen Schnitt zu verwenden, wurde ein neuer
+Punkt erzeugt.
+
+Falsche Schnitte: Wird die Konstruktion ungültig, sobald die
+Ausgangspunkte ihre gegenseitige Orientierung ändern, so liegt das
+meist an der Auswahl eines __Schnittpunkte__s. Die meisten Probleme
+erledigt die Automatik des Programms. Gelegentlich sollte man jedoch
+Hand anlegen, indem man im Eigenschaftsdialog des Schnittpunktes "Weg
+von" oder "Hin zu" anklickt und einen Punkt auswählt, von dem der
+Schnittpunkt verschieden sein soll, bzw. bei dem der Schnittpunkt
+liegen soll.
+
+.keyboard
+.related gui delete zoom mouse
+Tastatur
+
+Die meisten Kommandos in Z.u.L. können mit der __Tastatur__ ausgewählt
+werden. Die entsprechenden Tasten sind im Menü jeweils hinter dem
+Werkzeug aufgelistet.
+
+Allerdings muss dazu Z.u.L. den Tastaturfokus haben. Ein Klick mit
+der rechten Maustaste an einer leeren Stelle in die Konstruktion gibt
+dem Programm den Fokus.
+
+Häufig verwendet werden __+/-__ zum Vergrößern und Verkleinern und die
+__Pfeiltasten__ zum Verschieben der Konstruktion. Wichtig ist auch die
+__Rückschrittaste__ zum Löschen des letzten Objekts. __F1__ öffnet wie
+üblich die Hilfe.
+
+Außerdem setzt die __ESC-Taste__ das aktuelle Werkzeug auf den
+Ausgangszustand zurück.
+
+Die Strg-Taste wird manchmal zusammen mit der Maus verwendet.
+
+Man beachte auch, dass manche Java-Versionen die __Leertaste__ als
+Bestätigungstaste für Dialogknöpfe verwenden, andere die
+Eingeabetaste.
+
+.image
+.related background
+Bilder
+
+//image images/Spiegelung.jpg
+
+__Bilder__ können in die Konstruktion aufgenommen werden. Verwendet
+man drei Ankerpunkte, so wird das Bild affin skaliert, verwendet man
+zwei, so wird es gedreht und gestreckt. Wollen Sie nur zwei Punkte
+verwenden, so wählen sie den ersten oder zweiten Punkt erneut aus.
+
+Bilder müssen sich im gleichen Verzeichnis wie die Konstruktion befinden.
+Bilder können auch als __Hintergrund__bild verwendet werden.
+
+.language
+Sprache
+
+Normalerweise startet Z.u.L. in der __Sprache__ des Systems, in dem es
+läuft. Sie können die Sprache aber auch wechseln. Verwenden Sie die
+folgenden Abkürzungen.
+
+ Englisch - en
+ Deutsch - de
+ Französich - fr
+ Hollandisch - nl
+ Italienisch - it
+ Spanisch - es
+ Portugiesisch - pt
+ Brasilianisch - br
+ Slowenisch - sl
+ Dänisch - da
+ Norwegisch - no
+ Polnisch - pl
+ Russisch - ru
+
+Die Sprache kann über einen Menüpunkt eingestellt werden, oder mit einem
+__Kommandozeile__nargument wie "-l en" für Englisch.
+
+.selfreference
+Objekte mit Selbstbezügen
+
+Es ist möglich, einen Punkt zu definieren, dessen Koordinaten beim Verschieben
+bestimmte Werte annehmen. Dies erreicht man dadurch, dass die
+Koordinaten des Punktes mit einem Ausdruck fixiert werden.
+Der Punkt ist unter Umständen trotzdem vom Benutzer verschiebbar. Es
+gilt nämlich die Regel, dass Objekte, die sich nur auf sich selbst
+beziehen (__@-Bezüge__ zählen hier nicht), bewegbar sind
+(__Selbstreferenz__). In diesem Fall wird zunächst der Rest der
+Konstruktion bewegt, dann der Punkt fixiert. Auf diese Art kann man
+auch Punkte definieren, die innerhalb von bestimmten Gebieten gehalten
+werden.
+
+Solche fixierten, beweglichen Punkte lassen sich auch per Makro erzeugen. Sie
+müssen dazu ein Makroparameter sein, der mit der __Umschalttaste__
+angewählt wurde. Beim Ablauf des Makros erhalten die für den Parameter
+gewählten Punkte diese Fixierung.
+
+Das gleiche gilt auch für durch Makros erzeugte Punkte, die eine
+__bedingte Formatierung__ haben, die zum Beispiel von ihrer Lage
+abhängt.
+
+.transparent
+.related properties
+Transparente Objekte
+
+Ab Java 1.2 kann Z.u.L. __Transparenz__ für das Zeichnen von Objekten
+verwenden. Dadurch werden gefüllte Objekte möglich, die den
+Hintergrund durchscheinen lassen. Falls Objekte dick gezeichnet
+werden, wird die Transparenz nicht verwendet.
+
+Die Transparenz lässt sich für einzelne Objekte an- und abschalten.
+Sie lässt sich auch in den __Defaulteinstellungen__ für alle neuen
+Objekte abschalten.

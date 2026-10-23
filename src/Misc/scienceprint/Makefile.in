@@ -1,0 +1,22 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+ifneq ($(wildcard ../katex),)
+cflags=@CFLAGS@ -Wall -DKATEX_INSTALLED
+else
+cflags=@CFLAGS@ -Wall
+endif
+
+defines=@DEFINES@
+lopt=-lm
+
+all: scienceprint
+
+clean:
+	rm -f *.o *.core *.stackdump scienceprint
+
+scienceprint: scienceprint.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(LDFLAGS) -o scienceprint scienceprint.c $(lopt)

@@ -1,0 +1,15 @@
+Welcome to C.a.R.!
+
+You will find the homepage of C.a.R. and my current mail address at
+
+http://www.z-u-l.de/
+
+The homepage of C.a.R. also contains a version history documenting
+recent changes.
+
+There is a forum on Yahoo groups. You will find a link in the
+documentation. Moreover, there is a user Wiki with lots of
+information and news about C.a.R.
+
+Thanks for using this program! The program is free to use and
+distribute under the Gnu GPL License.

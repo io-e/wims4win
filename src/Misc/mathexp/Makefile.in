@@ -1,0 +1,29 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall @STATIC_LIB@
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+defines=@DEFINES@
+STRIP=@STRIP@
+lopt=-L$(wims_home)/lib -lwims -lm $(rpath)
+O=tables.o basic.o extract.o type.o not.o mathexp.o
+H=../../Lib/libwims.h ../../config.h ../../includes.h ../../wimsdef.h
+all:: mathexp
+
+%.o: %.c $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean::
+	rm -f *.o mathexp
+
+distclean:
+	rm -f mathexp
+	cd $(wims_home)/public_html/bin; rm -f mathexp 2>/dev/null; cd ../../src/Misc/mathexp
+	rm -f Makefile
+
+mathexp: $(O)
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) $(O) $(lopt) -o mathexp
+	$(STRIP) $@
+	cp $@ $(wims_home)/public_html/bin

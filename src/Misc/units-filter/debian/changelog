@@ -1,0 +1,325 @@
+units-filter (3.9-1) unstable; urgency=medium
+
+  * new upstream release : more units recognized.
+  * dropped the build-dependency on sphinx stuff since the documentation
+    is build by upstream.
+
+ -- Georges Khaznadar <georgesk@debian.org>  Fri, 20 Apr 2018 17:41:25 +0200
+
+units-filter (3.8-1) unstable; urgency=medium
+
+  * new upstream release, which changes the source of the documentation:
+    sphinx is used to generate both man pages and html docs.
+  * removed build-dependencies for xsltproc, added others for sphinx
+
+ -- Georges Khaznadar <georgesk@debian.org>  Fri, 20 Apr 2018 15:50:46 +0200
+
+units-filter (3.7-4) unstable; urgency=medium
+
+  * added VCS stuff
+  * upgraded Standards-Version to 4.1.4, dh and compat to 10.
+
+ -- Georges Khaznadar <georgesk@debian.org>  Fri, 20 Apr 2018 15:17:28 +0200
+
+units-filter (3.7-3) unstable; urgency=medium
+
+  * added a build-dependency on libfl-dev; Closes: #846453
+
+ -- Georges Khaznadar <georgesk@debian.org>  Fri, 02 Dec 2016 20:14:23 +0100
+
+units-filter (3.7-2) unstable; urgency=medium
+
+  * dropped the dependency on hardening-wrapper. Closes: #836659
+  * upgraded Standards-Version to 3.9.8
+
+ -- Georges Khaznadar <georgesk@debian.org>  Wed, 14 Sep 2016 15:50:13 +0200
+
+units-filter (3.7-1) unstable; urgency=medium
+
+  * rewrote the code to depend no longer on libmpfrc++-dev. 
+    + Created a Decimal class implementing few operations, based on libgmp
+    + Restored the dependency on libgmp-dev
+
+ -- Georges Khaznadar <georgesk@debian.org>  Fri, 22 Aug 2014 16:22:10 +0200
+
+units-filter (3.6-1) unstable; urgency=medium
+
+  * improved the comments in src/unites.y; translated every comment in English.
+  * rewrote the code to use libmpfrc++ instead of libgmp3
+  * changed the build-dependencies accordingly
+  * upgraded Standards-Version to 3.9.5
+
+ -- Georges Khaznadar <georgesk@debian.org>  Sat, 05 Apr 2014 18:23:09 +0200
+
+units-filter (3.5-3) unstable; urgency=low
+
+  * Modified my DEBEMAIL
+  * fixed a conversion not allowed by the last version of gcc. Closes:#707460
+  * updated Standards-Version and compat level
+  * fixed the Suggests: field in control file
+  * introduced hardening-wrapper in the rules and build-dependencies
+  * fixed src/unites.y: added a format string for printf
+  * fixed src/Makefile to take in account fortifying options in CXXFLAGS
+
+ -- Georges Khaznadar <georgesk@debian.org>  Sun, 12 May 2013 19:52:37 +0200
+
+units-filter (3.5-2) unstable; urgency=low
+
+  * fixed typos in the manpage, thanks to A. Costa's patch.
+    Closes: #649228
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sat, 19 Nov 2011 14:00:30 +0100
+
+units-filter (3.5-1) unstable; urgency=low
+
+  * fixed a bug which appeared with data containing too much digits.
+  * added unitary tests for this feature
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sat, 27 Aug 2011 20:46:11 +0200
+
+units-filter (3.4-1) unstable; urgency=low
+
+  * fixed a bug about significative digit guessing when the option -s
+    is active and no explicite number of significatif digits is entered.
+  * added unitary tests for this feature
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Thu, 25 Aug 2011 15:38:18 +0200
+
+units-filter (3.3-3) unstable; urgency=low
+
+  * added missing ";" in unites.y, thanks to Bernadette RIOU's bugreport
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Thu, 18 Aug 2011 18:31:36 +0200
+
+units-filter (3.3-2) unstable; urgency=low
+
+  * modified src/Makefile, thanks to Ilya Barygin's patch.
+    Closes: #632567
+  * simplified the file debian/rules.
+  * switched to source format 3.0 (quilt).
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 03 Jul 2011 21:30:09 +0200
+
+units-filter (3.3-1) unstable; urgency=low
+
+  * introduced the type "decimal" which differs from "double" to get rid of
+    the false digitalization for non-integers. Removed any use of functions
+    which are based on the type "double". This should definitely close the
+    bugs related to significative digits.
+  * updated Standards-Version: 3.9.1 -> 3.9.2
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Fri, 24 Jun 2011 18:04:54 +0200
+
+units-filter (3.2-1) unstable; urgency=low
+
+  * added as a possibilty to replace the symbol "e" or "E" by "*10^" in
+    float representation of input numbers.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Wed, 02 Mar 2011 21:54:58 +0100
+
+units-filter (3.1-2) unstable; urgency=low
+
+  * modified the Makefile, now the invokation of flex can be used even with
+    older versions of flex.
+  * upgraded Standards-Version to 3.9.1
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 15 Aug 2010 20:19:50 +0200
+
+units-filter (3.1-1) unstable; urgency=low
+
+  * fixed a bug about the output with negative numbers
+  * fixed a bug about the output with zero numbers
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Thu, 10 Dec 2009 18:48:32 +0100
+
+units-filter (3.0-3) unstable; urgency=low
+
+  * updated lintian and fixed the warning about standards-version
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Thu, 29 Oct 2009 14:11:08 +0100
+
+units-filter (3.0-2) unstable; urgency=low
+
+  * fixed a bug which was not detected by the test suite: the written
+    output for numbers lesser than 1 was false. Integrated one new test
+    in the suite.
+  * modified the routine used to round the numbers. As many examples
+    made by teachers use integer data, and divisions by 2, rounding
+    numbers whose mantissa should be 0.5 is not unfrequent. 
+    Unfortunately computations with floats (for example with the
+    interpreter of Wims) often yelds unprecise results. This may cause
+    troublesome behaviors, when a mantissa which should be 0.5 is actually
+    0.4999999999999998 or so. Therefore, the routine used to round numbers
+    adds the fraction 1000000001/2000000000 before making a 
+    trucation.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 06 Sep 2009 16:30:16 +0200
+
+units-filter (3.0-1) unstable; urgency=low
+
+  * introduced multiprecision calculus, in order to avoid errors when 
+    doing truncations (for exemple when specifying the number of 
+    significant digits)
+  * recoded sources from latin1 to utf8
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Mon, 31 Aug 2009 11:31:43 +0200
+
+units-filter (2.9-7) unstable; urgency=low
+
+  * added a dependency on docbook-xsl, thanks to José L. Redrejo 
+    Rodríguez
+  * replaced some spaces by unbreakable spaces in debian/control
+    to get rid of a lintian warning about redundancy of the zeros.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Tue, 30 Jun 2009 11:40:29 +0200
+
+units-filter (2.9-6) unstable; urgency=low
+
+  * updated the compat level, fixed a typo in the file debian/control,
+    rewritten the manpage with docbook (xml)
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 28 Jun 2009 22:59:33 +0200
+
+units-filter (2.9-5) unstable; urgency=low
+
+  * modified unites.y and Makefile so it is possible to suppress the
+    support for UTF8.
+  * added the profiles of the functions trunc and round to avoid a 
+    warning from gcc and have these functione properly managed.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 15 Jun 2008 23:49:41 +0200
+
+units-filter (2.9-4) unstable; urgency=low
+
+  * fixed a segfault bug when the environment variable LC_ALL was not 
+    set.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 16 Dec 2007 20:18:00 +0100
+
+units-filter (2.9-3) unstable; urgency=low
+
+  * fixed the definition of eV : it is now a unit of energy (=1.6e-19 J)
+  * modified the routine to simplify the output of floating numbers.
+  * now the default behavior with the option -o is to display the unit
+    given in the input (if it exists).
+  * modified the test suite accordingly.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 16 Dec 2007 19:43:27 +0100
+
+units-filter (2.9-2) unstable; urgency=low
+
+  * fixed a nasty bug which made a segfault when some units were used
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Fri, 14 Dec 2007 11:24:07 +0100
+
+units-filter (2.9-1) unstable; urgency=low
+
+  * Modified the package to make it non-native, as it can be used
+    outside Debian.
+  * Added some code to take in account the necessary recoding of some
+    units for non-ASCII environments, like UTF-8
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Wed, 05 Dec 2007 21:54:55 +0100
+
+units-filter (2.8) unstable; urgency=low
+
+  * removed the option --strip from the Makefile.
+    Closes: 438234
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Fri, 24 Aug 2007 17:17:34 +0200
+
+units-filter (2.7) unstable; urgency=low
+
+  * modified the behavior with the option -o: when then output string 
+    contains e+00, the substring e+00 is erased.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 27 May 2007 17:03:57 +0200
+
+units-filter (2.6-1) unstable; urgency=low
+
+  * added a new feature, to consider physical quantities with a given
+    rate of relative precision: syntax <quantity>~percent, to mean a
+    physical quantity plus or minus percent % tolerance. The syntax
+    <quantity>+-percent% is also allowed, which adds some rentrance.
+  * added a new option switch, -l, to have an output in LaTeX language.
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Tue, 17 Oct 2006 19:41:28 +0200
+
+units-filter (2.5-1) unstable; urgency=low
+
+  * repackaged as a non-native package
+    Closes: #230993
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun, 25 Jun 2006 12:59:02 +0200
+
+units-filter (2.5) unstable; urgency=low
+
+  * allowed some spaces in the representation of real numbers. 
+  * fixed some issues with strncat in unites.y
+  * added a syntax for wanted units in the output string
+  * fixed a bug with non-SI units at a negative power
+  * fixed a bug with the unit h
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Thu, 15 Jun 2006 09:30:26 +0200
+
+units-filter (2.4) unstable; urgency=low
+
+  * recompiled with the new version of flex, see 
+    http://www.debian.org/security/2006/dsa-1020)
+
+ -- Georges Khaznadar <georgesk@ofset.org>  Sun,  2 Apr 2006 16:49:55 +0200
+
+units-filter (2.3) unstable; urgency=low
+
+  * fixed the canonical output when some significative number of digits is
+    expected: an automatic rounding is made.
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sun,  5 Dec 2004 23:49:26 +0100
+
+units-filter (2.2) unstable; urgency=low
+
+  * added the possibility to pass an option via the environment as suggested
+    by Gang XIAO. 
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Mon, 29 Nov 2004 00:42:30 +0100
+
+units-filter (2.1) unstable; urgency=low
+
+  * added an option to output a simple canonical expression with basic units
+    of the International System.
+  * added support for usual units as N, J, W, etc.
+  * fixed a bug about numbers beginning with a '+' or '-' sign.
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sun, 21 Nov 2004 16:58:42 +0100
+
+units-filter (2.0) unstable; urgency=low
+
+  * added a syntax to express significative numbers : suffix "#n"
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sat, 20 Nov 2004 22:36:53 +0100
+
+units-filter (1.0-3) unstable; urgency=low
+
+  * removed hard dependance on libc6 without release number
+    Closes: #215949
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sun, 25 Jan 2004 19:23:07 +0100
+
+units-filter (1.0-2) unstable; urgency=low
+
+  * fixed a bug in debian/control : non-ascii character "Mu" is no more used. 
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Sun, 21 Sep 2003 01:54:38 +0200
+
+units-filter (1.0-1) unstable; urgency=low
+
+  * strcpy,strcat => strncpy, strncat : buffers should be secure.
+  * added "a" (are) unity (1 are = 100 m^2).
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Tue, 23 Jul 2002 19:30:05 +0200
+units-filter (0.9.7-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Georges Khaznadar <gekhajofour@netinfo.fr>  Tue, 30 Apr 2002 19:41:41 +0200
+

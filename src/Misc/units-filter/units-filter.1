@@ -1,0 +1,384 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "UNITS-FILTER" "1" "Apr 20, 2018" "3.7" "units-filter"
+.SH NAME
+units-filter \- a parser for physical and chemical quantities
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.SH SYNOPSIS
+.sp
+\fBunits\-filter [\-s]  [\-o]  [\-l]\fP
+.SH DESCRIPTION
+.sp
+\fBunits\-filter\fP is a basic standalone parser written in C language, flex
+and bison. It inputs strings like "1.5e3 nN.m.s^\-1" (it could be the
+time growth ratio of a torque) and outputs the value in standard SI
+unit, followed by the physical dimension of this value.
+.SH OPTIONS
+.INDENT 0.0
+.TP
+.B \-s
+Like \fBS\fPignificant.
+.sp
+Takes in account the number of significant digits. For example 1.0
+m contains 2 significant digits, while 0.00100 contains 3
+significant digits. It is possible to enforce the number of
+significant digits by using a special syntax : if units\-filter
+parses the input "1.0m#6", it interprets it as a value with exactly
+6 significant digits, like "1.00000 m". The number following the #
+sign is the forced number of significant digits. The number of
+significant digits appears just before the last zero in the output
+of the command (this zero is a placeholder for future extensions).
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-o
+Like \fBO\fPutput.
+.sp
+Outputs a correct representation of the physical quantity with its
+physical unit in the International System notation. There may be
+some simplification with usual units. For example, a newton will be
+represented by the unit N in place of m.kg.s^\-2. The value is
+expressed as a floating number with one digit before the decimal
+point, and as many digits in the mantissa as necessary to fit the
+desired number of significant digits (see an example below). It is
+possible to enforce the output unit : just add a colon and the
+desired unit at the end of the input. If this unit is homogeneous
+with the former one, it will be used to format the output.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-l
+Like \fBL\fPaTeX.
+.sp
+Outputs a correct representation of the physical quantity with its
+physical unit in the International System notation, in LaTeX
+language.
+.UNINDENT
+.SH SUPPORTED SYNTAX
+.sp
+The simplest syntax for a physical quantity to be passed by \fBunits\-filter\fP
+is: <float number> <physical unit>, for instance: "1e\-3 m" stands for one
+millimeter.
+.sp
+For compound units, the product of two base units is built with a dot "."
+and each unit can be put at an integer power, with the symbol "^".
+For instance, the velocity unit meter per second is "m.s^\-1", and the
+physical quantity "3e8 m.s^\-1" stands for the velocity of light.
+.sp
+One can use the star character "*" instead of the dot "." to mean a
+multiplication.
+.sp
+Instead of building compound units with dots and negative powers, one can
+also use "/" as a separator. For instance, "1 m/s" and "1 m.s^\-1",
+"1 m/s^2" and "1 m.s^\-2" are synonyms.
+.sp
+This simple syntax can be enriched by \fBmodifiers\fP\&.
+.SS The modifier "#"
+.sp
+This modifier allows one to specify the number of significant digits
+which apply to a physical quantity. For instance, "1e\-3m #2" stands
+for 1.0 mm, i.e. one millimeter with two significant digits. The same can
+be achieved with the input "1.0 mm" or "0.0010 m". This modifier is taken
+in account only if one calls \fBunits\-filter \-s\fP to activate the
+"Significant" option. It is also honoured when an output in ordinary text
+format or in LaTeX source format is requested (when one runs
+\fBunits\-filter \-o\fP or \fBunits\-filter \-l\fP\&.
+.sp
+The output of \fBunits\-filter \-s\fP provides the effective number of
+significant digits, as the ninth field, hence permitting to make some scripting
+around. All strings "1e\-3m #2", "1.0 mm" or "0.0010 m" will yield the
+same output when parsed by \fBunits\-filter \-s\fP\&.
+.sp
+Please notice that this modifier allows one to artificially reduce the
+number of significant digits, hence forcing some rounding. For instance,
+the string "299792458m.s^\-1#1", when processed by \fBunits\-filter \-o\fP
+will yied \fB3e8 m.s^\-1\fP, which is a less precise value of the speed
+of light.
+.sp
+Much effort has been put in the rounding mechanism, in order to overcome
+limitations due to float numbers in base two. The calculations are internally
+carried as decimal numbers, so the general rule to round <integer>+0.5 to the
+integer immediately above is honoured. However, beware: if the value to be
+rounded \fIcomes from an external program\fP which uses calculation with
+ordinary float numbers, a value 3/2 processed by an external program
+and later processed by \fBunits\-filter\fP, with one single significative
+number, will not always be rounded to 2 as expected.
+.SS The modifier "~"
+.sp
+This modifier allows one to express a given precision, as a percentage.
+For example, "1kV~2" stands for one kilovolt plus or minus two percent.
+This option is honoured wen one runs \fBunits\-filter \-o\fP or
+\fBunits\-filter \-l\fP, that is, when one requests an output in ordinary
+text format or in LaTeX source format.
+.SS The modifier ":"
+.sp
+This modifier allows one to specify a non\-standard unit for the text or
+LaTeX output. For instance, "1800C:A.h" will be rendered as half of an
+ampere.hour; This modifier is honoured when one runs \fBunits\-filter \-o\fP or
+\fBunits\-filter \-l\fP, that is, when one requests an output in ordinary
+text format or in LaTeX source format.
+.SH OUTPUT
+.sp
+When \fBunits\-filter\fP is run with no option switch, it parses its
+standard input, and if the syntax is recognized, it prints one float number
+and nine integers. The meaning of this output is:
+.SS float value
+.sp
+The physical quantity\(aqs value, given in the basic International System unit.
+.SS integers #1 to #7
+.sp
+Those integers express the powers of the base units of International System used
+for the physical quantity\(aqs unit.
+.SS integer #8
+.sp
+This integer is non\-zero only when one calls \fBunits\-filter\fP with the
+\fB\-s\fP option, to take in account significative numbers of the value,
+either given implicitly or given explicitly after a modifier (see
+\fI\%The modifier "#"\fP above).
+.SS integer #9
+.sp
+Not used currently. May be used by future versions of \fBunits\-filter\fP\&.
+.sp
+When \fBunits\-filter\fP is run with the switch \fB\-s\fP, the output
+is the same as when \fBunits\-filter\fP is run with no option, except
+for the eighth integer, which is always positive and means the number of
+significant digits (hence the precision) of the value.
+.sp
+When \fBunits\-filter\fP is run with the switch \fB\-o\fP, the output is
+a physical quantity, written in a canonical format. One can notice that
+\fBunits\-filter \-o\fP is \fIreentrant\fP, i.e. when called twice in a pipe,
+the output is the same than when it is called only once.
+.sp
+When \fBunits\-filter\fP is run with the switch \fB\-l\fP, the output is
+a physical quantity, written as LaTeX source code. In order to get
+something useful, one must embed the output inside a well\-shaped LaTeX
+document and run a LaTeX compiler.
+.SS Compound units
+.sp
+\fBunits\-filter\fP can parse physical quantities like "1 h 1 min 1 s", which
+yields the same as "3661 s". This syntax is honored if and only if the units
+are compatible together, and given in order of decreasing importance.
+For example "1m 1mm" makes sense, whereas "1 C 1A.h" would trigger an
+error, and "1A.h 1C" would be accepted.
+.SH ERROR OUTPUT
+.sp
+When the syntax of the input cannot be parsed properly by \fBunits\-filter\fP,
+it sends a message like \fBERROR at xx : syntax error\fP, where \fIxx\fP is a
+column number, to the standard error stream. The number \fIxx\fP allows one to
+know how many characters of the input could be parsed successfully before
+the failure. Additionally, the return code of the program is non\-zero.
+.SH LIST OF PHYSICAL UNITS
+.sp
+Here is the list of physical units which are automatically recognized
+by \fBunits\-filter\fP:
+.INDENT 0.0
+.INDENT 3.5
+\fBh\fP: one hour = 3600 s
+.sp
+\fBmin\fP: one minute = 60 s
+.sp
+\fBm\fP:  meter
+.sp
+\fBg\fP:  one gram = 1e\-3 kg
+.sp
+\fBs\fP: second
+.sp
+\fBA\fP: ampere
+.sp
+\fBK\fP: kelvin
+.sp
+\fBmol\fP: mole
+.sp
+\fBcd\fP: candela
+.sp
+\fBHz\fP: one hertz = 1 s^\-1
+.sp
+\fBN\fP: newton
+.sp
+\fBPa\fP: pascal
+.sp
+\fBJ\fP: joule
+.sp
+\fBW\fP: watt
+.sp
+\fBC\fP: coulomb
+.sp
+\fBV\fP: volt
+.sp
+\fBohm\fP: ohm; variant: \fBOhm\fP
+.sp
+\fBS\fP: Siemens (the inverse of one ohm)
+.sp
+\fBF\fP: farad (the electric capacity unit, not the faraday)
+.sp
+\fBT\fP: tesla
+.sp
+\fBWb\fP: weber
+.sp
+\fBH\fP: henry
+.sp
+\fBlm\fP: lumen (1 lumen = 1 lux)
+.sp
+\fBlx\fP: lux
+.sp
+\fBBq\fP: becquerel (1 Bq = 1 Hz)
+.sp
+\fBGy\fP: gray
+.sp
+\fBSv\fP: sievert
+.sp
+\fBrad\fP: radian (1 rad = 1 no_unit, where no_unit has the units exponents { 0, 0, 0, 0, 0, 0, 0})
+.sp
+\fBsr\fP: steradian (1 sr = 1 no_unit)
+.sp
+\fInothing\fP: no_unit; a number with no unit can be considered as written in radian for example
+.sp
+\fB°\fP: angular degree (1° = pi/180)
+.sp
+\fB\(aq\fP: angular minute (1\(aq = pi/10800)
+.sp
+\fB\(aq\(aq\fP: angular second (1\(aq\(aq = pi/648000)
+.sp
+\fBtr\fP: turn (1 tr = 2*pi)
+.sp
+\fBrpm\fP: revolution per minute (1 rpm = pi/30 Hz)
+.sp
+\fBb\fP: barn (1b = 1e\-28 m^2)
+.sp
+\fBa\fP: are (1a = 100 m^2)
+.sp
+\fBL\fP: liter
+.sp
+\fBt\fP: ton (1 ton = 1e3 kg)
+.sp
+\fBbar\fP: bar (1 bar = 1e5 Pa)
+.sp
+\fBeV\fP: electron\-volt (1eV = 1.60218e\-19 J)
+.sp
+\fBuma\fP: atomic mass unit (1 uma = 1.66054e\-27 kg)
+.sp
+\fB°A\fP: ångström (1 ångström = 1e\-10 m)
+.UNINDENT
+.UNINDENT
+.SH EXAMPLES
+.INDENT 0.0
+.INDENT 3.5
+Establish the SI value and unit exponent of a quantity in the mksa
+system:
+.sp
+\fB~$ echo 1.5e3 nN.m.s^\-1 | units\-filter\fP
+.sp
+\fB1.5e\-6 2 1 \-3 0 0 0 0\fP
+.sp
+which means : 1.5e\-6 (SI unit) m^2.kg.s^\-3
+.sp
+Compare different physical quantities:
+.sp
+\fB~$ e1=$(echo "1.2e\-3 V" | units\-filter)\fP
+.sp
+\fB~$ e2=$(echo "1200e3 nWb/s"| units\-filter\fP
+.sp
+\fB~$ if [ "$e1" = "$e2" ]; then echo ok; else echo ko; fi\fP
+.sp
+\fBok\fP
+.sp
+\&... which emphasizes that webers by time unit are the same as volts.
+.sp
+Playing with the number of significant digits:
+.sp
+\fB~$ echo "0.00100m" | src/units\-filter \-s\fP
+.sp
+\fB0.001 1 0 0 0 0 0 0 3 0\fP
+.sp
+\fB~$ echo "0.00100m #2" | src/units\-filter \-s\fP
+.sp
+\fB0.001 1 0 0 0 0 0 0 2 0\fP
+.sp
+Giving a value for the relative precision:
+.sp
+\fB~$ echo "1kV~2" | units\-filter \-o\fP
+.sp
+\fB1e+03 V +\-2%\fP
+.sp
+Turning on the LaTeX output:
+.sp
+\fB~$ echo "1kohm+\-2%" | units\-filter \-l\fP
+.sp
+\fB1\etimes 10^{+03}\e, \eOmega \epm 2\e,\e%\fP
+.sp
+Turning on the output of a canonical physical notation:
+.sp
+\fB~$ echo "1.0 m.kg.s^\-2 #7" | units\-filter \-o\fP
+.sp
+\fB1.000000e+00N\fP
+.sp
+Choosing a non\-standard unit for the output:
+.sp
+\fB~$ echo 1800C:A.h| units\-filter \-o\fP
+.INDENT 0.0
+.TP
+.B \fB5.000e\-01 A.h\fP
+because 3600 coulomb is one ampere.hour
+.UNINDENT
+.sp
+\fB~$ echo 1 g:uma | units\-filter \-o\fP
+.INDENT 0.0
+.TP
+.B \fB6e23 uma\fP
+This last result reminds that Avogadro\(aqs constant is near 6e23
+mol^\-1.
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SH KNOWN BUGS
+.INDENT 0.0
+.INDENT 3.5
+Few units out of the mksa system are successfully parsed.
+.sp
+Compound units yield inconsistent results, when parsed by
+\fBunits\-filter \-o\fP, because this process will take the
+first mentioned unit as the unit wanted for the result, and consider
+that the first value gives the number of wanted significant digits.
+.UNINDENT
+.UNINDENT
+.SH AUTHOR
+Georges Khaznadar <georgesk@debian.org>
+.SH COPYRIGHT
+2009-2018, Georges Khaznadar
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU General Public License, Version 2 or (at
+your option) any later version published by the Free Software
+Foundation.
+
+On Debian systems, the complete text of the GNU General Public License
+can be found in /usr/share/common-licenses/GPL.
+
+.\" Generated by docutils manpage writer.
+.

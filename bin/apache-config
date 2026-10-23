@@ -1,0 +1,220 @@
+#! /bin/sh
+#
+#	This script adds WIMS-related definitions to Apache config.
+#	It must be run as root.
+#
+#	If you want to prohibit the action of this script,
+#	insert the following word to httpd.conf (in a commented line):
+#	manually_configured_for_wims
+#
+echo
+echo  " ## This script adds WIMS-related definitions to Apache config. ##"
+echo ;
+
+if [ ! "$(id -ru )" = 0 ]; then
+ echo
+ echo It must be run as root.
+ echo
+ echo su to root before running this script!
+ echo
+ echo
+ exit
+fi
+
+distro=default
+[ -f /etc/debian_version ] && distro=debian
+
+PATH=$PATH:/usr/sbin:/sbin
+export PATH
+
+echo "Detecting which HTTP server to execute...";
+apache2 -v >/dev/null && httpdname=apache2
+if [ -z "$httpdname" ]; then apache -v >/dev/null && httpdname=apache; fi
+if [ -z "$httpdname" ]; then httpd2 -v >/dev/null && httpdname=httpd2; fi
+if [ -z "$httpdname" ]; then httpd -v >/dev/null && httpdname=httpd; fi
+if [ -z "$httpdname" ]; then
+ cat <<@
+
+Apache is not found on your system.
+WIMS requires a running web server Apache.
+Please first install Apache (>=1.3).
+
+@
+ exit
+fi
+[ -f /etc/apache2/envvars ] && . /etc/apache2/envvars
+
+echo " => HTTP server detected as $httpdname";
+
+echo "Searching $httpdname conf file...";
+conffile=`$httpdname -V | grep SERVER_CONFIG_FILE | awk -F'=' '{print $2}'  | tr -d ' "'`
+confdir=`dirname $conffile`
+if [ -z "$confdir" ]; then
+ cat <<@
+
+Unknown web server. Version too early?
+Please first update your web server to Apache >=1.3.
+
+@
+ exit
+fi
+
+echo " # Linux Type: $distro";
+if [ "$distro" = "debian" ];then
+  lsb_release=`lsb_release -c | cut -f2`
+  echo " # Release : $lsb_release";
+    case $lsb_release in
+    *)                      conffile=$confdir/conf-enabled/wims.conf;;
+    squeeze|wheezy|precise) conffile=$confdir/conf.d/wims.conf;;
+    esac
+fi
+
+echo " => HTTPd conf file : $conffile";
+
+cd `dirname $0`/..
+wimshome=`pwd`
+
+if [ ! -e public_html/wims.cgi ] || [ ! -e bin/apache-config ]; then
+ echo Error: wrong directory. File wims.cgi not found.
+ echo
+ exit
+fi
+
+echo "Searching HTTPd root..."
+httpdroot=`$httpdname -V | grep HTTPD_ROOT | awk -F'=' '{print $2}' \
+ | tr -d ' "'`
+if [ ! -z "$httpdroot" ]; then cd $httpdroot; fi
+
+echo " => HTTPd root found : $httpdroot"
+
+tmpfile=/tmp/wims-apache.conf
+vtest=`$httpdname -v | grep Apache`
+if [ -z "$vtest" ]; then
+ echo
+ echo You are not running Apache web server!
+ echo
+ echo You must configure manually your web server, this script cannot be used.
+ echo
+ exit
+fi
+
+echo "Config test..."
+conftest=`grep -i manually_configured_for_wims $conffile`
+if [ ! -z "$conftest" ]; then
+ echo Manually configured $conffile not modified.
+ exit
+fi
+
+# The next two definitions should NEVER be changed.
+startl="WIMS definitions start. Do not alter this line"
+  endl="WIMS definitions end. Do not alter this line"
+
+case $distro in
+ debian) rm -f $tmpfile
+ ;;
+ *) awk 'BEGIN {a=1};
+	/'"$startl"'/ {a=0};
+	a==1 {print};
+	/'"$endl"'/ {a=1};' $conffile >$tmpfile
+ ;;
+esac
+
+if [ "$1" = "uninstall" ]; then
+ case $distro in
+  debian) rm -f $conffile $tmpfile
+  ;;
+  *) mv $tmpfile $conffile
+  ;;
+ esac
+ killall -HUP $httpdname
+ exit
+fi
+
+cat >>$tmpfile <<@
+###### $startl! ######
+#
+# If you manually add things concerning WIMS into this configuration file,
+# add them BEFORE the 'WIMS definition start' line.
+# Otherwise the addition will be erased in next update.
+#
+  AddHandler cgi-script .cgi
+@
+
+# $vtest looks like "Server version: Apache/X.Y.Z (Unix)"
+# $vmajor will be XY
+echo "Searching HTTPd major version..."
+vmajor=`echo $vtest | grep 'pache' | perl -pe 's/.*pache\/([\d]+).([\d]+).*/$1$2/'`
+
+echo " => HTTPd major version found : $vmajor"
+
+# Apache version == 1.2
+if [ "$vmajor" = "12" ]; then
+  cat >>$tmpfile <<@
+  ScriptAlias /wims/wims.cgi "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.html "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/index.html "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.gif "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.png "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.jpeg "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.jpg "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.mp3 "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/wims.ogg "$wimshome/public_html/wims.cgi"
+@
+# newer versions of Apache
+else
+  cat >>$tmpfile <<@
+  ScriptAliasMatch ^/~wims/wims\.(.*) "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/wims/wims\.(.*) "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/~wims/index\.(.*) "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/wims/index\.(.*) "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/~wims/.._(.*).html "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/wims/.._(.*).html "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/~wims/getfile/(.*) "$wimshome/public_html/wims.cgi"
+  ScriptAliasMatch ^/wims/getfile/(.*) "$wimshome/public_html/wims.cgi"
+  ScriptAlias /wims/....\.cgi "$wimshome/public_html/wims.cgi"
+@
+fi
+
+# Apache version >= 2.4
+if [ "$vmajor" -ge "24" ]; then
+  require_line="Require all granted"
+# Older Apache versions
+else
+  require_line="allow from all"
+fi
+
+cat >>$tmpfile <<@
+  Alias /wims "$wimshome/public_html"
+  Alias /~wims "$wimshome/public_html"
+
+  <Directory "$wimshome/public_html">
+    Options +FollowSymLinks +ExecCGI -Indexes
+    AllowOverride All
+    $require_line
+  </Directory>
+  <Directory "$wimshome/public_html/modules">
+    Options FollowSymLinks
+    AllowOverride Limit
+  </Directory>
+
+###### $endl! ######
+@
+
+mv $tmpfile $conffile
+
+echo  "## WIMS Configuration added to your HTTPd server conf. ##"
+
+initdir=/etc/init.d
+[ -d $initdir ] || initdir=/etc/rc.d/init.d
+initscript=$initdir/httpd
+[ -f $initscript ] || initscript=$initdir/apache
+if [ -f $initscript ]; then
+ $initscript restart
+else
+  echo
+  echo Now you must restart your httpd to make the new configuration
+  echo take effect.
+  echo If you don\'t know how to do so: just shut down the system then
+  echo restart it.
+  echo
+fi

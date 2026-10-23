@@ -1,0 +1,7 @@
+
+all : 
+	(cd src; make chemeq)
+
+clean :
+	rm -f *~ *.gz semantic.cache
+	(cd src; make clean)

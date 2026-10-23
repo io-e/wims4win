@@ -1,0 +1,42 @@
+8/3/2012
+- corrected inputfield width ; a single value for param "inputfield_width" will become the default for all other inputfields
+
+7/11/2011
+- different inputfield widths may be declared:<param name="inputfield_width" value="120,340,120,30"> default width for all fields :60px
+
+4/3/2011
+- Rewrite, changed param_syntax and improved usability (see test.html).
+- Use of a "," as tokenizer : do not use "\," , a half space in latexcode !!
+- Embeded input_textarea's though keyword "input" : <param name="latex3" value="4 \cdot \frac{3}{5} = ,input, = ,input">
+
+- Modify latex_fgcolor per 'line' : <param name="latex4" value="#00ff00">
+- Modify latex_fgcolor per 'item' (only when using "input") : <param name="latex5" value="#00ff00,\frac{4}{2x}=,#ff0000,\frac{2}{x}">
+- The latex_fgcolor will not be reset to the default; e.g. will be #ff0000 until changed by another color. 
+
+- Changed latex_font from "Helvetica" to "Ariel" (if available on platform)
+- Changed return format of resize function : now returns int and not int[] (this gives problems on Safari Windows)
+- Automated resizing will not work at all for Opera (known bug).
+- Add timout 2000ms for first-start on slow systems of java virtual machine
+- Works for WinXP/Win7 IE-6/7/8 , Firefox-3/4 , GoogleChrome , Safari.
+- Works for Linux/FreeBSD Firefox-3/4 , Seamonkey , GoogleChrome.
+
+
+20/12/2010
+- Ant build.
+
+15/5/2010
+
+- This is an "inline latex" viewer with input/reply option.
+- Using the ATP library for fast latex_image generation for a "usable" amount of latex syntax.
+- Added  applet_auto_scaling.
+- Added euro symbol \euro
+- For applet autoscaling, the applet_tag "width" should be less than 10 : width="1"
+- The autoscaling SetSize() javascript_function from the test.html adresses 
+  the applets public function "getPrefferedSize();".
+  It could/should be called from the htmlpage "body onload".
+  Or in WIMS:
+  !set wims_html_onload=javascript:SetSize('TexApp');
+  If the applet has a width > 10 , no autoscaling is performed.
+- The number of inputfields can be "user_controlled": see test.html
+  The fontsize is adapted to the inputfield height [more or less].
+ 

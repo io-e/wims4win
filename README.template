@@ -1,0 +1,143 @@
+
+         Distribution version WIMS_VERSION of WIMS
+	  (WWW Interactive Multipurpose Server)
+
+
+Please be aware that WIMS is a sophisticated software, not a simple set of
+web pages. You have to compile and install it if you want to run it locally
+on your computer.
+
+WIMS is copyrighted under the GNU General Public License (GPL). See the file
+COPYING for licensing conditions.
+
+This software is reported to work on several Linux distributions, including
+Red Hat, Debian, and LinuxPPC. It is also reported to work on Mac OS-X and
+should work on any modern Unix-like system after minimal porting efforts.
+
+You may compile the system on your machine. You can use a chroot for the third party
+support softwares or use the locally installed ones.
+
+#######################
+
+Here are the steps for a first installation with locally installed third party
+support softwares:
+
+0. Install third party support softwares:
+ -- LaTeX distribution
+ -- Pari 2.17 or up (http://pari.math.u-bordeaux.fr/).
+ -- Maxima 5.20 or up (http://sourceforge.net/projects/maxima/) (check that maxima-share
+    is installed).
+ -- Libgd 2.1 or up (http://libgd.bitbucket.org/).
+ -- Make sure that the server is able to send mail.
+ -- Check that you have the gnu utilities tac, date (with option -d), stat (with option -c)
+   (http://ftp.gnu.org/gnu/coreutils)
+
+1. Create a user, say `wims', with home directory, say, /var/wims ($HOME).
+
+2. Login as wims, and copy the tar file wims-WIMS_VERSION.tgz into $HOME.
+   This tarball now contains the base system. It does not contains "pedagogical modules".
+
+3. Decompress and untar the .tgz file.
+
+4. (For a first installation only).
+ Compile the server as user wims : type './compile --mathjax --jmol --modules --swac --geogebra'
+It takes a long time as there are many pedagogical modules.
+ (For an update of the installation), do not use the option --modules
+  './compile' --mathjax --jmol --swac'
+
+--modules : load all the pedagogical modules (use it only at the first installation)
+--jmol : load/upgrade jsmol (used in some chemical modules) (http://jmol.org/index.php/JSmol)
+--swac : load some audios (take a long time. do it only at the first installation). (http://shtooka.net)
+--geogebra : load/upgrade geogebraweb (https://www.geogebra.org/)
+
+ In case of compilation difficulty, you can try to change the line
+ ./configure || exit
+in the file compile by
+ ./configure CFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib || exit
+or some suitable path.
+
+At the end, you will be asking about the IP address from which the webmaster will
+be able to configure the preferences, his password and the wims email address.
+Then execute the script ./bin/setwrapexec as root. It is important
+for security reasons.
+
+5. Get and install optional support software. Omitting some of them will simply
+ prevent your server from running some of the exercises / activities.
+
+ -- GNU Octave 3.0.4 or up (http://www.octave.org/).        ( 20% importance)
+ -- Yacas 1.0.52 or up (http://yacas.sourceforge.net/).     ( 10% importance)
+ -- GAP 4 or up (http://www-gap.dcs.st-and.ac.uk/~gap).     ( 10% importance)
+ -- Povray (http://www.povray.org/).                        (  5% importance)
+ -- Graphviz (http://www.graphviz.org/).                    (  5% importance)
+ -- Macaulay (1.1 or up)                                    (~ 0% importance)
+ -- fortune and strfile
+ -- openbabel (openbabel.org)
+
+6. You may run WIMS single-user by executing the script $HOME/localwims
+   if you would prefer something else. In this case, you must run first the
+   script ./bin/setwimsd as root. It is important for security reasons.
+
+   The default browser used is mozilla, call 'localwims another_browser'
+   if you would prefer something else. **untested now**
+   You should see your favorite browser pop up and display the WIMS home page,
+   including a link allowing you to do online site maintenance. Click on it
+   and follow instructions there to configure and check your installation.
+
+   In particular, modules must be selected and installed from that online
+   maintenance page.
+
+7. If you want to use Apache httpd with WIMS, run $HOME/bin/apache-config
+   as root. In this case, wims can be accessed from the address
+
+	  http://localhost/wims/
+	or
+	  http://localhost/wims/wims.cgi
+
+9. You can make more configuration (from the WIMS home page, follow the link maintenance).
+
+10. To be able to use the W3C validation, install the perl package
+WebService-Validator-HTML-W3C
+
+For a further installation, execute the script bin/server-interrupt,
+go to steps 2, 3 and 4. and execute the script bin/server-resume
+
+#######################
+
+If you want to use a safe execution environment on 64bit Linux
+(using a chroot-directory : build on gcc version 6.1.1 20160707)
+containing all essential software, follow the next steps :
+
+1. Create a user, say `wims', with home directory, say, /var/wims ($HOME).
+
+2. Login as wims, and copy the tar file wims-WIMS_VERSION.tgz into $HOME.
+   This tarball now contains the base system. It does not contains "pedagogical modules".
+
+3. Decompress and untar the .tgz file.
+
+4. (For a first installation only). Get and execute the script wims_modules.pl
+(need Perl and webget). It takes a long time as there are many pedagogical modules.
+
+5. Download for 64bit linux the complete chroot archive
+https://wims.univ-cotedazur.fr/download/wims/chroot/wims-4.12.chroot64.linux.tar.bz2
+Decompress and untar as user wims (in $HOME).
+
+6. Compile the server as user wims : type './compile --build-chroot'.
+At the end, you will be asking about the IP address from which the webmaster will
+configure the preferences, the password he will have and the wims email address.
+Then execute the script './bin/setchroot' as root.
+
+7. Run $HOME/bin/apache-config as root. In this case, wims can be accessed from the address
+http://localhost/wims/
+ or
+http://localhost/wims/wims.cgi
+
+8. You can make more configuration (from the WIMS home page, follow the link maintenance).
+
+For a further installation, you have only to do the step 2, 3 and 6.
+
+Good luck, and enjoy!
+
+If you run into difficulties: have a look at WIMSEDU forum (http://wimsedu.info/).
+
+Home site of wims: https://wims.univ-cotedazur.fr/
+Source: https://sourcesup.renater.fr/frs/?group_id=379

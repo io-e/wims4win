@@ -1,0 +1,296 @@
+C.a.R: les outils.
+
+        Nous allons maintenant décrire les différents outils et options
+        disponibles sur la barre d'icônes de C.a.R.
+        Si la souris reste plus de deux secondes sur une icône,
+        une bulle d'aide s'affiche, qui donne un aperçu de sa fonction.
+        Il est bon de jeter un coup d'oeil également à la ligne d'état,
+        située en-dessous de la figure, où sont indiqués les objets ou les choix
+        requis par l'outil sélectionné.
+
+        Les outils servent à construire des objets. Les propriétés suivantes
+        sont communes à tous les objets. Ces propriétés peuvent être fixées
+        soit à leurs valeurs par défaut, soit dans la boîte de dialogue relative
+        à l'objet. Les valeurs par défaut peuvent être modifiées en utilisant
+        les boutons de la barre d'icônes ou les menus. Une boîte de dialogue
+        permettant d'éditer les propriétés d'un objet s'ouvre quand on clique
+        avec le bouton droit de la souris sur cet objet.
+
+Objets fixes.
+
+       On peut fixer la position d'un point, la longueur d'un segment,
+       le rayon d'un cercle ou la mesure d'un angle. Pour fixer la valeur
+       d'un objet, on peut utiliser n'importe quelle expression; le plus simple
+       est bien sûr d'utiliser un nombre.
+
+       Par exemple, pour créer un segment de longueur fixe, on peut soit
+       commencer par créer ce segment et ensuite ouvrir une boîte de dialogue
+       pour fixer sa longueur, soit maintenir la touche Maj (Shift) enfoncée
+       lors de la création du deuxième point, ce qui ouvre automatiquement une
+       boîte de dialogue. Pour les cercles et les angles, cela crée une forme
+       un peu particulière de ces objets, qui est expliquée plus en détail plus
+       bas.
+
+Dépendances.
+
+        Les objets sont stockés dans une liste, et leurs propriétés dépendent
+        souvent des objets qui les précèdent dans cette liste.
+        L'ordre des objets dans la liste détermine quel objet est dessiné
+        en premier. Il existe un menu qui permet de faire remonter un objet
+        dans la liste; un objet ne peut bien entendu pas être remonté plus
+        haut qu'un objet dont il dépend.
+
+        Les polygones pleins et d'autres objets peuvent être dessinés en
+        arrière-plan, en utilisant le bouton correspondant de la boîte de
+        dialogue d'édition de l'objet.
+
+
+Point:
+        Un point peut être créé par divers outils. L'outil point crée
+        normalement un point libre, que l'on peut déplacer. Cependant,
+        si on clique au voisinage d'une intersection, le programme propose
+        à l'utilisateur de créer le point à cette intersection. Les points
+        d'intersection ne sont pas libres, puisqu'ils dépendent des objets
+        dont on prend l'intersection.
+        Les points peuvent être fixés. Si la touche Maj est maintenue enfoncée
+        lors de la création du point, une boîte de dialogue s'ouvre
+        automatiquement et permet d'éditer le point.
+
+        La boîte de dialogue d'édition des points est étudiée
+        plus en détail sur une autre page de l'aide.
+
+
+Droites, segments, demi-droites fixes.
+
+        Ces objets dépendent de deux points; l'utilisateur doit donc 
+        sélectionner deux points pour les construire. La différence entre les
+        droites, les segments et les demi-droites n'est pas seulement visuelle:
+        les intersections et les constructions de perpendiculaires se comportent
+        également de manière différente. Par exemple l'intersection de deux
+        segments n'est définie que si ces deux segments se coupent. La
+        perpendiculaire à un segment n'est pas construite si le pied de cette
+        perpendiculaire n'appartient pas au segment. Pour les perpendiculaires,
+        il est néanmoins possible de changer ce comportement. Il est à noter que
+        les outils de construction de perpendiculaires, d'angles ou de
+        parallèles construisent des droites dans tous les cas.
+        La longueur d'un segment peut être fixée si une de ses extrémités est
+        libre. Pour créer un tel segment, on peut soit maintenir la touche Maj
+        enfoncée lors de la création de sa deuxième extrémité, soit utiliser
+        l'outil approprié (dans ce cas, la seconde extrémité est toujours créée
+        comme point libre).
+
+Cercle - cercle défini par rayon et centre (compas) - cercle de rayon fixe.
+
+         La différence entre ces deux outils est que le premier crée un cercle
+         de centre le premier point sélectionné et passant par le second point,
+         tandis que le second outil crée un cercle ayant un rayon égal à la
+         distance entre les deux premiers points choisis, et dont le centre est
+         le troisième point (il faut bien sûr sélectionner 3 points pour définir
+         un tel cercle).
+         On peut fixer la longueur du rayon d'un cercle du premier type, si
+         le deuxième point choisi est libre.
+         Il y a un troisième type de cercles, sur la circonférence duquel aucun
+         point n'est spécifié. Ce type de cercles peut être utile quand on
+         définit une macro. Pour créer un tel cercle, il suffit de maintenir la
+         touche Maj enfoncée lors du choix du second point, ou d'utiliser
+         l'outil approprié. Aucun point n'est alors créé sur le cercle, mais une
+         boîte de dialogue s'ouvre et on peut y entrer n'importe quelle
+         expression pour le rayon.
+
+Intersections:
+
+        Cet outil construit l'intersection de deux droites, de deux cercles, ou
+        d'une droite et d'un cercle. Quand on dessine une figure sur le papier,
+        la construction de cette intersection ne nécessite aucune opération
+        particulière; mais l'ordinateur ne travaille pas ainsi (ainsi, il
+        est possible avec C.a.R. de construire des coniques, mais pas, pour l'
+        instant, de prendre l'intersection de deux coniques). Cela met aussi en
+        évidence la nature des points ainsi construits. Le programme créée 
+        automatiquement une intersection chaque fois qu'un outil attend un point
+        et que l'utilisateur clique à proximité de intersection de deux objets.
+        De même, pour créer une intersection, on peut soit cliquer
+        successivement sur les deux objets, soit cliquer directement sur le
+        point alors que l'outil intersection est actif.
+
+        Les cercles se coupent en deux points. Normalement, le programme crée
+        les deux points d'intersection. Si on n'en veut qu'un, il suffit de
+        cacher l'autre. Si l'intersection est créée automatiquement, le second
+        point n'est pas créé.
+
+        Il faut remarquer aussi qu'un segment n'est pas une droite:
+        l'intersection de deux segments est à distinguer de l'intersection des
+        deux droites qui les portent.
+
+        Il y a un problème un peu subtil pour ordonner les deux points
+        d'intersection de deux cercles (ou d'un cercle et d'une droite).
+        Contrairement à d'autres programmes, C.a.R. le fait d'une manière
+        continue et prévisible. Pour les cercles, par exemple, l'ordre est
+        inversé si les deux cercles sont échangés. L'ordre des points
+        d'intersection d'un cercle et d'une droite dépend de l'orientation de la
+        droite (c'est-à-dire de l'ordre dans lequel les deux points qui la
+        définissent ont été entrés). Essayez de déplacer la droite de manière à
+        ce qu'elle ne coupe plus le cercle, puis ramenez-la à sa position
+        initiale; vous verrez que l'ordre des points d'intersection n'a pas
+        changé.
+
+        Il est parfois nécessaire de choisir un des deux points d'intersection.
+        On le fait en imposant à l'un de ces points de se tenir loin d'un
+        point donné. Les points d'intersection sont alors ordonnés de manière à
+        ce que le point choisi soit le plus éloigné de ce point, ce qui permet
+        de choisir de manière continue le point d'intersection. La boîte de
+        dialogue pour les intersections contient une entrée spécifique à cet
+        effet.
+        Ce type d'intersection est créé automatiquement si l'autre point d'
+        intersection est un point commun aux deux cercles déjà visible sur la
+        figure.
+
+Parallèles - perpendiculaires:
+
+        L'utilisation de ces outils est claire. Ils créent toujours des droites.
+
+Milieu:
+
+       Crée le milieu du segment formé par les deux points.
+
+Angle - Angles de mesure fixe:
+
+        Les angles sont des objets décoratifs et ne peuvent servir à effectuer
+        des constructions. Pour définir un angle, il faut choisir 3 points; le
+        deuxième est le sommet.
+        Les angles de mesure fixe sont définis par 2 points et une mesure. On
+        les construit soit en maintenant la touche Maj enfoncée lors de la
+        création du troisième point, soit avec l'outil approprié. Cela a pour
+        effet non pas de créer un point, mais d'ouvrir une boîte de dialogue
+        dans laquelle on pourra entrer n'importe quelle expression pour la
+        mesure de l'angle.
+        Les angles peuvent être représentés en trois tailles; la plus grande
+        consiste en un arc de cercle, dont l'origine est le premier point ayant
+        servi à définir l'angle.
+        Les noms des angles peuvent comporter des lettres grecques. Par exemple,
+        pour écrire un alpha, il suffit de taper \a. Les angles de 90° et ceux
+        dont le nom commence par "." s'affichent avec un point, si on demande
+        d'afficher leur mesure ou leur nom. Les angles peuvent aussi être
+        représentés comme des arcs pleins.
+
+
+Point sur un objet:
+
+        Il s'agit d'un point qui est lié à une droite ou à un cercle. Il se
+        déplacera de manière continue avec l'objet auquel il est lié si cet
+        objet se déplace.
+        Un point peut à tout moment être détaché de l'objet auquel il est lié
+        ou lié à un autre objet à l'aide de la boîte de dialogue d'édition du
+        point. S'il n'est pas situé sur l'objet, il est alors automatiquement
+        remplacé par le point le plus proche situé sur l'objet.
+        Ces points ne sont pas libres. Néanmoins si les deux extrémités d'un
+        segment sont sur une droite et si l'une d'elles est liée à cette droite,
+        la longueur du segment peut quand même être fixée (voir plus bas).
+
+Outil de déplacement:
+
+         Cet outil peut être utilisé pour déplacer les points; on peut aussi
+         utiliser pour cela le bouton droit de la souris.
+
+Trace - trace automatique:
+
+        Ces outils importants dessinent la trace des points.
+
+        La trace simple fonctionne ainsi: l'utilisateur déplace un point,
+        et la trace des autres points sélectionnés est dessinée. Il faut donc
+        commencer par indiquer un point (ou plusieurs: maintenir la touche Maj
+        enfoncée): celui (ou ceux) dont on veut dessiner la trace, puis un autre
+        point dont le premier (ou les premiers) dépend; on déplace ensuite ce
+        dernier point avec le bouton gauche de la souris, et la trace des points
+        précédents est dessinée.
+        L'outil de trace automatique déplace automatiquement le point sur un
+        objet. Il faut donc entrer deux points (celui dont on veut dessiner la
+        trace et celui qu'on veut déplacer) et un objet (le cercle, la droite ou
+        le segment sur lequel le deuxième point se déplacera). Cette trace est
+        recalculée chaque fois que d'autres points sont déplacés, ce qui montre
+        la façon dont la trace dépend des autres points de la figure. La trace
+        est active jusqu'à ce que l'utilisateur clique quelque part dans la
+        figure.
+        Les traces sont enregistrées en même temps que la figure. Si la trace
+        est active, elle est enregistrée sous cette forme: si on ouvre de
+        nouveau la figure, l'animation commencera.
+        La trace est effacée chaque fois qu'un autre outil est activé ou que l'
+        outil trace est de nouveau sélectionné.
+
+Animation:
+
+        Cet outil permet d'animer un point qui se déplace le long de segments ou
+        de cercles. Pour commencer l'animation, on choisit un point, puis une
+        suite de segments ou de cercles; on termine en sélectionnant de nouveau
+        le point ou n'importe lequel des objets déjà sélectionnés. On arrête l'
+        animation en cliquant de nouveau sur la figure.
+        Les animations sont enregistrées en même temps que la figure. Dans les
+        applets, la présence d'une animation interdit complètement toute
+        intervention de l' utilisateur.
+
+Expressions arithmétiques:
+
+        On peut afficher dans la figure la valeur d'expressions arithmétiques.
+        L'expression peut également être accompagnée d'un texte, qui en explique
+        le sens et comporte ou non sa valeur.
+
+Polygones pleins:
+        Cet outil remplit un polygone défini par ses sommets.
+        Si la version de Java utilisée est postérieure à la version 1.3,
+        la couleur est par défaut transparente. Pour définir le polygone,
+        il suffit de cliquer sur chacun des sommets, dans l'ordre voulu.
+        La définition s'achève en cliquant une seconde fois sur un sommet déjà
+        choisi, ce qui ferme le polygone. On peut superposer des polygones,
+        et choisir d'en dessiner certains en arrière-plan, en utilisant la boîte
+        de dialogue d'édition du polygone.
+
+Texte:
+
+        Cet outil affiche un texte, éventuellement, de plusieurs lignes, à
+        l'intérieur de la figure.
+
+Exécution et définition de macros:
+
+        Voir la rubrique d'aide spécialisée.
+
+Cacher et montrer des objets:
+
+        Permet de cacher des objets. Pour rendre visible un objet caché, il faut
+        d'abord choisir de montrer tous les objets cachés. On peut aussi cacher
+        des objets en maintenant les touches Ctrl et Maj simultanément enfoncées
+        et en cliquant sur l'objet. Dans ce cas, les cercles et les droites
+        commencent par être dessinés sous forme partielle, et sont complètement
+        cachés au clic suivant.
+
+Supprimer le dernier objet créé:
+
+        Cet outil permet de supprimer le dernier objet visible créé.
+
+
+Couleur - apparence - style des points - cercles partiels - droites partielles
+- vecteurs
+
+        Choisit les options par défaut pour les nouveaux objets créés.
+
+Afficher les noms - afficher les valeurs - noms longs
+
+         Autres valeurs par défaut.
+
+Montrer les couleurs:
+
+        Permet de ne montrer que les objets d'une certaine couleur (les objets
+        noirs sont toujours affichés).
+
+Montrer les objets cachés:
+
+        Permet d'afficher ou non les objets cachés.
+
+Grille:
+
+        Affichage ou non de la grille. Si la grille est affichée, les nouveaux
+        points et ceux qu'on déplace avec le bouton droit de la souris collent
+        aux points de la grille.
+
+Commentaire, exercice:
+
+        Affiche le commentaire, ou, si la touche Maj est enfoncée, le texte de
+        l'exercice.

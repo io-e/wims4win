@@ -1,0 +1,89 @@
+<html>
+<head></head>
+    <body>
+	Data processed via param "dataurl" (datafile)<p>
+	<applet width = "640" height = "480" codebase=".." archive="Plot.jar" code="ptolemy.plot.PlotApplet"> 
+	    <param name = "progressbar" value = "true">
+            <param name = "scriptable" value = "false">
+	    <param name = "background" value = "#ffffff"> 
+	    <param name = "name" value = "PlotApplet">
+	    <param name = "dataurl" value="bargraph.txt">
+	</applet> 
+TitleText: Software Downloads<br>
+XRange: 0,10<br>
+YRange: 0,10000<br>
+# Manually specify X ticks<br>
+# Note that the 0 and 10 point result in clipping of the rectangles.<br>
+XTicks: 1993 0, 1994 1, 1995 2, 1996 3, 1997 4, 1998 5, 1999 6, 2000 7, 2001 8, 2002 9, 2003 10<br>
+XLabel: Year<br>
+YLabel: Downloads<br>
+Marks: none<br>
+Lines: off<br>
+# Width and offset of bars<br>
+Bars: 0.5, 0.2<br>
+NumSets: 3<br>
+<br>
+DataSet: program a<br>
+0, 100<br>
+1, 300<br>
+2, 600<br>
+3, 1000<br>
+4, 4000<br>
+5, 6000<br>
+6, 3000<br>
+7, 1000<br>
+8, 400<br>
+9, 0<br>
+10, 0<br>
+<br>
+DataSet: program b<br>
+0, 0<br>
+1, 0<br>
+2, 50<br>
+3, 100<br>
+4, 800<br>
+5, 400<br>
+6, 1000<br>
+7, 5000<br>
+8, 2000<br>
+9, 300<br>
+10, 0<br>
+<br>
+DataSet: program c<br>
+0, 0<br>
+1, 0<br>
+2, 0<br>
+3, 10<br>
+4, 100<br>
+5, 400<br>
+6, 2000<br>
+7, 5000<br>
+8, 9000<br>
+9, 7000<br>
+10, 1000<br>
+
+    </body>
+</html>
+
+<!--
+<param name="background" value="hexcolor value">
+<param name="foreground" value="hexcolor value">
+<param name="dataurl" value="url">
+<param name="height" value="integer">
+<param name="width" value="integer">
+<param name="function" value="String1,String2,String3...">
+<param name="smooth" value="0/1"">
+<param name="names" value="names function1,name function2 ... or left blank ">
+<param name="xmin" value="minimum x-value or left blank for auto detection"> 
+<param name="xmax" value="maximum x-value or left blank for auto detection"> 
+<param name="ymin" value="minimum y-value or left blank for auto detection"> 
+<param name="ymax" value="maximum y-value or left blank for auto detection"> 
+<param name="xlog" value="x-axis is log-scale: 0 or 1: default 0">
+<param name="ylog" value="y-axis is log-scale: 0 or 1: default 0"> 
+<param name="color" value="0 or 1 :default 1">
+<param name="xtics" value=" zero 0, one 1, two 2, pi 3.1428, four "jan 2008", five 5.... or left blank ">
+<param name="ytics" value="thing1 0, thing2 1, thing3 2, three 3, four 4, five 5...or left blank ">
+<param name="xlabel" value="label of the x-axis: default x-axis"> 
+<param name="ylabel" value="label of the y-axis: default y-axis" >
+<param name="title" value="title of the plot" >
+-->

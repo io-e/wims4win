@@ -1,0 +1,40 @@
+<html>
+<head></head>
+    <body>
+	Data processed via param "file" : value=http://localhost/data.txt<p>
+	<applet width = "640" height = "480" codebase=".." archive="Plot.jar" code="ptolemy.plot.PlotApplet"> 
+	    <param name = "progressbar" value = "true">
+            <param name = "scriptable" value = "false">
+	    <param name = "background" value = "#ffffff"> 
+	    <param name = "name" value = "PlotApplet">
+	    <param name = "file" value="http://localhost/data.txt">
+	</applet> 
+<br>
+data.txt:<br>
+"TitleText: Software Downloads;XRange: 0,10;YRange: 0,10000;# Manually specify X ticks;# Note that the 0 and 10 point result in clipping of the rectangles.;XTicks: 1993 0, 1994 1, 1995 2, 1996 3, 1997 4, 1998 5, 1999 6, 2000 7, 2001 8, 2002 9, 2003 10;XLabel: Year;YLabel: Downloads;Marks: none;Lines: off;# Width and offset of bars;Bars: 0.5, 0.2;NumSets: 3;;DataSet: program a;0, 100;1, 300;2, 600;3, 1000;4, 4000;5, 6000;6, 3000;7, 1000;8, 400;9, 0;10, 0;;DataSet: program b;0, 0;1, 0;2, 50;3, 100;4, 800;5, 400;6, 1000;7, 5000;8, 2000;9, 300;10, 0;;DataSet: program c;0, 0;1, 0;2, 0;3, 10;4, 100;5, 400;6, 2000;7, 5000;8, 9000;9, 7000;10, 1000"
+
+    </body>
+</html>
+
+<!--
+<param name="background" value="hexcolor value">
+<param name="foreground" value="hexcolor value">
+<param name="dataurl" value="url">
+<param name="height" value="integer">
+<param name="width" value="integer">
+<param name="function" value="String1,String2,String3...">
+<param name="smooth" value="0/1"">
+<param name="names" value="names function1,name function2 ... or left blank ">
+<param name="xmin" value="minimum x-value or left blank for auto detection"> 
+<param name="xmax" value="maximum x-value or left blank for auto detection"> 
+<param name="ymin" value="minimum y-value or left blank for auto detection"> 
+<param name="ymax" value="maximum y-value or left blank for auto detection"> 
+<param name="xlog" value="x-axis is log-scale: 0 or 1: default 0">
+<param name="ylog" value="y-axis is log-scale: 0 or 1: default 0"> 
+<param name="color" value="0 or 1 :default 1">
+<param name="xtics" value=" zero 0, one 1, two 2, pi 3.1428, four "jan 2008", five 5.... or left blank ">
+<param name="ytics" value="thing1 0, thing2 1, thing3 2, three 3, four 4, five 5...or left blank ">
+<param name="xlabel" value="label of the x-axis: default x-axis"> 
+<param name="ylabel" value="label of the y-axis: default y-axis" >
+<param name="title" value="title of the plot" >
+-->

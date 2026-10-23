@@ -1,0 +1,43 @@
+DESTDIR =
+PACKAGES   = $(shell ls -Fd *| grep /| tr -d /)
+HOME_WIMS  = ../../../../..
+APPLET_DIR = public_html/scripts/authors/jm.evers/applets
+
+ifdef DESTDIR
+INSTALL_DIR = $(DESTDIR)
+else
+INSTALL_DIR = $(HOME_WIMS)/$(APPLET_DIR)
+endif
+
+LOGFILE = $(shell pwd)/log.txt
+
+all:
+	@echo "Build date: $$(date)" > $(LOGFILE)
+	@echo "+--------------------------------+"
+	@echo "| Compiling applets. See log.txt |"
+	@echo "+--------------------------------+"
+	@for d in $(PACKAGES) ; do ( \
+	  echo "============== $$d ==============" | tee -a $(LOGFILE);  \
+	  cd $$d; \
+	  ant -v >> $(LOGFILE);  \
+	  j=`find dist -iname "*.jar" 2>/dev/null`;  \
+	  if [ $$j ] ; then  \
+	    echo "OK: compiled $$d/$$j" | tee -a $(LOGFILE);  \
+	  else  \
+	    echo "NOK for package $$d" | tee -a $(LOGFILE);  \
+	  fi; ); \
+	done
+
+clean:
+	rm -rf */dist */build log.txt *~
+
+install:
+	install -d $(INSTALL_DIR)
+	for d in $(PACKAGES) ; do \
+	  j=`find $$d/dist -iname "*.jar" 2>/dev/null`; \
+	  if [ $$j ] ; then  \
+	    install -m 644 $$j  $(INSTALL_DIR); \
+	  fi; \
+	done
+
+.PHONY: all clean install

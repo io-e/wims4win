@@ -1,0 +1,110 @@
+Hovedvinduet
+
+	Her ser du JavaPasser's hovedvindue. Det viste udsnit indeholder naturligvis 
+	konstruktionen, og dette udsnit kan rykkes med piltasterne. Det kan
+	forstørres og formindskes med +/- - tasterne.
+
+	Ovenover konstruktionen er værktøjslisten. Ikonernes viser såkaldte 
+	værktøjstips når markøren står stille over dem et øjeblik. På den måde kan du 
+	let se ikonernes funktion. Til venstre er de ikoner som frembringer eller 
+	ændrer konstruktionen, og til højre ikoner som ændrer indstillinger, 
+	konstruktionsvalg eller standarder.
+
+	Under konstruktionen er statuslinjen. Her kommer der meddelelser fra 
+	programmet,f.eks. om hvad brugeren forventes at gøre som næste skridt. 
+	Hvis "Indstillinger, Konstruktion med mus" er slået fra, er der i stedet en 
+	indtastningslinje. Her kan du konstruere figurer ved hjælp af kommandoer.
+
+	JavaPasser har også en menulinje. Menuerne indeholder hvor de samme
+	funktioner som kan udføres ved tryk på ikonerne, men derudover også
+	andre valgmuligheder, blandt andet gemme og åbne filer.
+
+Konfiguration af værktøjspalet
+
+	Værktøjslisten kan konfigureres ved hjælp at menupunktet Indstillinger, 
+	Rediger værktøjspalet. Dialogboksen giver mulighed for at fjerne ikonerne 
+	for alle værktøjer fra værktøjslinjen. De fravalgte værktøjer kan stadig 
+	bruges via menuer eller tastaturgenveje.
+	
+	Værktøjspanelet kan indstilles så det ses under konstruktionen. Panelet kan 
+	fylde en eller to linjer. Hvis det indstilles til at fylde en linje, bliver 
+	kun de nødvendigste værktøjer vist, og kun hvis de er valgt i menupunktet 
+	Rediger værktøjspalet. 
+		
+Enkle indstillinger til skolebrug
+	
+	Hvis dette punkt er valgt under Indstillinger, Programindstillinger, kan man
+	kun udføre de konstruktioner der vises på værktøjspaletten. Andre 
+	konstruktioner kan ikke udføres, vises ikke ved valget "Vis skjulte objekter", 
+	og kan heller ikke indgå i makroer eller i beskrivende konstruktioner.
+	
+	Denne indstilling har først virkning fra næste programstart. Ud over menuen 
+	kan den vælges ved en kommandolinjeparameter (-r). 
+	
+Brug af musen
+	
+	Venstre musetast vælger koordinater eller objekter i konstruktionsvinduet.
+	På værktøjspanelet viser en nedtrykket knap hvilket værktøj der er i brug. I 
+	statuslinjen gentages denne. Derudover kan bruges se hvilke handlinger der 
+	forventes for at gennemføre den ønskede konstruktion. For at konstruere et 
+	punkt skal man for eksempel trykke på knappen punkt, og statuslinjen fortæller 
+	brugeren at der skal afsættes et punkt. Det gøres med venstre musetast.
+	
+	Andre værktøjer forventer flere objekter. For at konstruere en linje skal man
+	vælge to punkter som allerede findes i konstruktionen. Det gøres også med
+	venstre musetast, og de valgte objekter vises med rødt indtil konstruktionen 
+	er færdig. Linjer og cirkler vælges ved at man klikker på dem.
+	
+	Hvis flere objekter ligger meget tæt sammen, kommer der en liste over valg-
+	muligheder frem. På denne liste kan man vælge ved dobbeltklik eller ved
+	at markere og derefter trykke OK. På listen er objekter vist med deres farve; 
+	svagt, hvis de er skjulte. Det er naturligvis hensigtsmæssigt hvis lange 
+	objektnavne er aktiveret. De korte navne som objekterne automatisk får, 
+	adskiller sig kun ved bogstaver eller tal. 
+	
+	Når man vælger et punkt, skal man lægge mærke til at der automatisk afsættes
+	et punkt når der klikkes på et tomt sted i konstruktionen. Det kan give pro-
+	blemer hvis man ikke rammer det ønskede punkt præcist, men når man har vænnet
+	sig til det er det meget praktisk. Også skæringspunkter bliver konstrueret 
+	automatisk,	men programmet spørger først. Normalt skal skæringspunkter 
+	konstrueres ved brug af skæringsværktøjet.   
+
+	Hvis man trykker på skift når man skal vælge sidste punkt til konstruktionen
+	af et linjestykke, en cirkel eller en vinkel, så åbnes en dialog hvor der kan
+	vælges faste størrelser. Man behøver kun at indtaste længden/radius/vinklen. 
+	På tilsvarende måde får et punkt faste koordinater, når det bliver afsat med 
+	skift-tasten trykket ned. 
+	
+	Højre musetast har to betydninger. Den kan bruges i stedet for flytteværktøjet
+	til at flytte punkter og labels, og den kan bruges i stedet for egenskabs-
+	værktøjet til at indstille egenskaberne for et objekt. Et punkt der kan 
+	flyttes, bliver flyttet når man trækker det med højre museknap trykket ned. 
+	Højreklik åbner egenskabsdialogen, både for punkter og for andre objekter.
+	
+	Også objektnavne (labels) kan flyttes med højre musetast. Hvis man 
+	højreklikker på en label uden at trække, springer den tilbage hvor den normalt 
+	ville ligge.
+	
+	Højre musetast kan også bruges til at flytte tastaturfokus til konstruktions-
+	vinduet hvis fokus ligger et andet sted. Man højreklikker bare på et tomt sted
+	i konstruktionen.
+	
+	Hvis man trykker på CTRL-tasten mens man klikker på et objekt, bliver det 
+	skjult uden at man behøver at bruge skjul/vis-værktøjet.
+
+Tastaturet	
+	
+	Alle værktøjer har en genvejstast, enten et bogstav, et tegn eller et tal. Du 
+	kan se dem i menuerne ved siden af det tilsvarende værktøj. Læg mærke til at 
+	der skal bruges små bogstaver, så hverken Skift eller Caps Lock skal trykkes 
+	ned.
+	
+	Også Indstillinger og andre menupunkter har genvejstaster, ofte 
+	tastekombinationer hvor der indgår en funktionstast. 
+	
+	Piltasterne flytter konstruktionen i forhold til vinduet, og +/- forstørrer 
+	eller formindsker billedet. Slettetasten (backspace, baglæns pil) sletter det
+	sidste konstruktionsskridt.
+	
+	Når programmet fungerer som applet i en webside, kan man kun bruge tastatur-
+	genveje til de værktøjer der er vist i menulinjen.

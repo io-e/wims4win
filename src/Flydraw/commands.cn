@@ -1,0 +1,269 @@
+:affine a,b,c,d,tx,ty
+
+ 对后接对象作仿射变换: (x;y) -> [a,b;c,d](x;y)+(tx;ty).
+ Make an affine transformation for the subsequent objects: (x;y) -> [a,b;c,d](x;y)+(tx;ty).
+:alt texte
+
+This command is only available for WIMS OEF and doc and MUST appear on the first line. It gives the attribut alt="text" to the image.
+:animate fra,del,rep
+
+ 此命令只能用在WIMS OEF及doc, 而且必须出现在第一行. 建立含 fra 帧的动画, 帧与帧间隔 del 秒, 重复 rep 遍(rep=0 意为无穷次重复).<br> 通过两个变量对帧控制: <tt>animstep</tt> (整数)取值从 1 到帧数, <tt>s</tt> 取值 0 至 1.
+:animstep n
+
+ 设置供任意赋值调用的整数. 供动画使用. 避免在WIMS下直接使用此命令.
+:arc x,y,w,h,a1,a2,[色彩]
+
+ 中心在 (x,y), 宽为 w 高为 h 的椭圆弧, 角度从 a1 至 a2 (度).
+:arrow x1,y1,x2,y2,l,[色彩]
+
+ 箭头 (x1,y1)--->(x2,y2), 其中 l 是头部的长度 (单位是像素).
+:arrow2 x1,y1,x2,y2,l,[色彩]
+
+ 双头箭头 (x1,y1)<--->(x2,y2), 其中 l 是头部的长度 (单位是像素).
+:circle x,y,d,[色彩]
+
+ 中心为 (x,y), 直径 d (像素)的圆周.
+:comment
+
+ 什么也不做.
+:copy x,y,x1,y1,x2,y2,[文件名]
+ insert
+ 把指定文件的从 (x1,y1) 到 (x2,y2)(像素)的区域插入到 (x,y). 如果 x1=y1=x2=y2=-1, 则复制整个文件. [文件名] 是指从目录 wims/public_html/gifs 或从 OEF 模块的目录 common_images 开始找寻的文件地址
+:copyresized x1,y1,x2,y2,dx1,dy1,dx2,dy2,[文 件 名]
+
+ 把指定文件的从 (x1,y1) 到 (x2,y2)(像素)的区域插入到从 (dx1,dy1) 到 (dx2,dy2) 的区域, 必要时作缩放. 如 x1=y1=x2=y2=-1, 则复制且缩放整个文件.
+:crosshair x1,y1,[color]
+
+ draw a crosshair point at (x1,y1)
+:crosshairs [color], x1,y1,x2,y2,...
+
+ draw multiple crosshair points at given coordinates (x1,y1), (x2,y2), ...
+:crosshairsize w
+
+ Set crosshair size to w (in pixels).
+
+:darrow x1,y1,x2,y2,l,[色彩]
+ dasharrow dashedarrow
+ 虚线箭头 (x1,y1)- - ->(x2,y2), 其中 l 是头部的长度 (单位是像素).
+:darrow2 x1,y1,x2,y2,l,[色彩]
+dasharrow2 dashedarrow2
+ 双头虚线箭头 (x1,y1)<- - ->(x2,y2), 其中 l 是头部的长度 (单位是像素).
+:dhline x,y,[色彩]
+dashedhorizontalline dashhorizontalline hdline horizontaldashedline
+ 通过 (x,y) 的水平虚线.
+:diamondfill x,y,nx,ny,[色彩]
+ diafill
+ 用指定颜色的水平和竖直的平行线填充 (x,y) 所在的区域, (nx,ny) 分别是相邻水平线或竖直线的间隔(单位为像素).
+:dpolyline [色彩],x1,y1,x2,y2,x3,y3...
+
+ n 条虚线段 (x1,y1)---(x2,y2)---(x3,y3)...
+:dotfill x,y,nx,ny,[色彩]
+ pointfill diskfill
+ 用指定颜色的圆点填充 (x,y) 所在的区域, 圆点间距为 (nx,ny) 像素.
+:dsegment x1,y1,x2,y2,[color]
+ dashsegment
+ Dashed line segment (x1,y1)---(x2,y2).
+:dvline x,y,[色彩]
+dashedverticaline dashverticalline vdline verticaldashedline
+ 通过 (x,y) 的竖直虚线.
+:ellipse x,y,w,h,[色彩]
+
+ 中心在 (x,y), 宽为 w 高为 h 的椭圆.
+:fcircle x,y,d,[色彩]
+ ball disk filledcircle
+ 中心在 (x,y), 直径为 d (像素)的实心圆.
+:fellipse x,y,w,h,[色彩]
+filledellipse
+ 中心在 (x,y), 宽为 w 高为 h 的实心椭圆.
+:fill x,y,[色彩]
+flood floodfill
+ 用指定颜色填充 (x,y) 所在的区域.
+:filltoborder x,y,[色彩1],[色彩2]
+
+ 用色彩1填充 (x,y) 所在的区域, 用色彩2画边界.
+:fpoly [色彩],x1,y1,x2,y2,x3,y3...
+ filledpoly filledpolygon fpolygon
+ 实心多边形 (x1,y1)-(x2,y2)-(x3,y3)...
+:frect x1,y1,x2,y2,[色彩]
+ filledrect fillecrectangle frectangle
+ 对顶点为 (x1,y1) 与 (x2,y2) 的实心矩形.
+:fsquare x,y,s,[色彩]
+filledsquare
+ 起点在 (x,y) 边长是 s (像素)的实心正方形.
+:ftriangle x1,y1,x2,y2,x3,y3,[色彩]
+ filledtriangle
+ 顶点为 (x1,y1),(x2,y2),(x3,y3) 的实心三角形.
+:gridfill x,y,nx,ny,[色彩]
+
+ 用指定颜色的水平和竖直格线填充 (x,y) 所在的区域, 格线的间距为 (nx,ny) (像素).
+:hatchfill x,y,nx,ny,[色彩]
+
+ 用指定颜色的水平和竖直格线填充 (x,y) 所在的区域, 格线的间距为 (nx,ny) (像素).
+:hline x,y,[色彩]
+horizontalline
+ 通过 (x,y) 的水平线.
+:interlace
+
+ 设置隔行显示的图像.
+:killaffine
+
+ 重置仿射变换为恒等变换.
+:killbrush
+
+ 划线时关闭画笔选择.
+:killlinear
+killrotation killrotate
+ 重置线性变换为恒等变换.
+:killtile
+
+ 填充时关闭铺垫方式的选择.
+:killtranslation
+killtranslate
+ 重置平移变换为恒等变换.
+:lattice x0,y0,x1,y1,x2,y2,n1,n2,[色彩]
+
+ 从 (x0,y0) 开始含 n1xn2 个点的格子, 其中 n1 行的方向是 (x1,y1), n2 行的方向是 (x2,y2).
+:levelcurve [色彩],表达式,l1,l2,...
+
+ 画出给定表达式的等高线, 水平为 l1, l2,...
+:levelstep n
+
+ 设置画等高线时的像素步长数. 从 1 到 16 之间, 默认 4.
+:linear a,b,c,d
+
+ 对后接的对象作线性变换: (x;y) -> [a,b;c,d](x;y).
+:polyline [色彩],x1,y1,x2,y2,x3,y3...
+brokenline
+ n 条线段 (x1,y1)---(x2,y2)---(x3,y3)...
+:linewidth w
+
+ 设置画线的宽度为 w (像素).
+:multicopy n1,n2,...,nk, [文件名]
+
+ 把此文件的图像复制到平行四边形内, 此四边形由(带有变形)的平行四边形命令给出, 且施行变换 n_1, ..., n_k (直至 19). 如果不给出 n1 ..., 则施行所有的变换. 因此必须预先定义 setparallelogram 以及某些 setvector 或 setmatrix 或 settransform.
+:new x,y
+
+ 建立大小为 x,y 的图像.
+:output [文件名]
+
+ 把当前图像输出到指定文件名.
+:parallel x1,y1,x2,y2,xv,yv,n,[色彩]
+
+ 从 (x1,y1)---(x2,y2) 开始的 n 条平行线, 位移是 (xv,yv).
+:pixels [色彩],x1,y1,x2,y2,...
+
+ 在 (x1,y1), (x2,y2), ... 画直径为 1 的点.
+:plot [色彩],[公式]
+ curve
+ 按给定公式画出曲线, 公式或者是 x 的函数, 或是两个关于 t 的参数方程.
+:plotjump j
+
+ 划曲线时使两个相邻的点相距 j 个像素. 用于画不连续的函数. 默认值: 200.
+:plotstep n
+ plotsteps tstep tsteps
+ 设定画曲线时计算的点数. 默认为 100.
+:point x,y,[色彩]
+
+ 在 (x,y) 画一圆点, 其直径等于线宽.
+:points [色彩],x1,y1,x2,y2,...
+
+ 在 (x1,y1), (x2,y2), ..., 画圆点, 其直径等于线宽.
+:polygon [色彩],x1,y1,x2,y2,x3,y3...
+ poly
+ 多边形 (x1,y1)-(x2,y2)-(x3,y3)...
+ :polyline [color],x1,y1,x2,y2,x3,y3...
+brokenline
+ n line segments (x1,y1)---(x2,y2)---(x3,y3)...
+:range x1,x2,y1,y2
+
+ 设置绘图区域, 水平方向为 [x1,x2], 竖直方向为 [y1,y2]. 注意默认的水平区域是 [0,xsize-1], 竖直区域是 [ysize-1,0].
+:rays [色彩],x0,y0,x1,y1,x2,y2...
+
+ 线段 (x0,y0)---(x1,y1), (x0,y0)---(x2,y2), ...
+:rect x1,y1,x2,y2,[色彩]
+ rectangle
+ 对顶点为 (x1,y1) 与 (x2,y2) 的矩形.
+:resetmatrix n
+
+ 把第 n 个线性或仿射变换重置为恒等变换.
+:resetparallelogram
+
+ 取消 setparallelogram
+:resetvector n
+
+ 把第 n 个平移重置为恒等变换.
+:resettransform n
+
+ 把第 n 个线性或仿射变换和第 n 个平移重置为初始值(恒等变换或零向量).
+:rotation d
+ rotate
+ 对接在后面的对象作旋转, 以 (0,0) 为中心, 逆时针旋转 d 度.
+:segment x1,y1,x2,y2,[色彩]
+seg
+ 线段 (x1,y1)---(x2,y2).
+:segments [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Line segments (x1; y1)---(x2; y2), (x3; y3)---(x4; y4), ...
+:setbrush [文件名]
+
+ 画线条时都以给定文件的图像作为画笔.
+:setmatrix n,a,b,c,d
+
+ 为 multicopy 的对象设置第 n 个线性变换: (x;y) -> [a,b;c,d](x;y).
+:setparallelogram xs,ys,xu,yu,xv,yv
+
+ 为 multicopy 设定图像位置(数学坐标): xs,ys 是起点的坐标, xu,yu 是图像的“水平线”的数学坐标, xv,yv 是图像的“竖直线”的数学坐标.
+:setpixel x,y,[色彩]
+
+ 直径为 1 个像素的点 (x,y).
+:setstyle [色彩1],[色彩2],...
+
+ 设置线条的格式为色彩1, 色彩2, ...
+:settile [文件名]
+
+ 在所有铺垫命令中以指定文件的图像作为砌块.
+:settransform n,a,b,c,d,tx,ty
+
+ 为 multicopy 的对象设置第 n 个仿射变换: (x;y) -> [a,b;c,d](x;y) + (tx;ty). (settransform n,a,b,c,d,tx,ty 等价于 setmatrix n,a,b,c,d 加上 setvector n,tx,ty, 因此当 n 相同时, 它取代了原有的定义 setmatrix n,a,b,c,d.
+:setvector n,tx,ty
+
+ 为 multicopy 的对象设置第 n 个平移: (x;y) -> (tx,ty).
+:size x,y
+
+ 设定图像大小为水平 x 像素, 竖直 y 像素.
+:square x,y,s,[色彩]
+
+ 起始点为 (x,y), 边长为 s 像素的正方形.
+:text [色彩],x,y,[字体],[串]
+ print string write
+ 把给定字符串写在 (x,y) 处, 字体=small,medium,large 或 giant.
+:textup [色彩],x,y,[字体],[串]
+ stringup writeup
+ 把给定字符串按向上方向写在 (x,y) 处, 字体=small,medium,large 或 giant.
+:trange t1,t2
+ ranget
+ 设置画参数曲线的 t 的范围为 [t1,t2]. 默认 [0,1].
+:translation tx,ty
+ translate
+ 对后接的对象作平移: (x;y) -> (x;y)+(tx;ty).
+:transparent [色彩]
+
+ 使指定色彩成为透明.
+:triangle x1,y1,x2,y2,x3,y3,[色彩]
+
+ 顶点在 (x1,y1),(x2,y2),(x3,y3) 的三角形.
+:vimg n
+
+ 允许 (1) 或不允许 (0) 矢量图像的输出.
+:vimgfile [文件名]
+
+ 直接把矢量图像(目前只是 DXF) 输出到指定文件.
+:vline x,y,[色彩]
+verticalline
+ 通过 (x,y) 的竖直线.
+:xrange x1,x2
+ rangex
+ 设置横向绘图范围为 [x1,x2]. 默认 [0,xsize-1].
+:yrange y1,y2
+ rangey
+ 设置纵向绘图范围为 [y1,y2]. 默认 [ysize-1,0].

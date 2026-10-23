@@ -1,0 +1,26 @@
+Z.u.L. fuer Java
+C.a.R. for Java
+Version 3.1
+
+This program will automatically
+run in English, German and some
+other languages. The installation 
+is in English.
+
+C.a.R. is a program to simulate
+school constructions in plane geometry.
+The program is free under GPL license.
+For more information see the homepage
+or the documentation, which will be
+installed with this installer.
+
+Z.u.L. ist ein Programm zur Simulation
+von Konstruktionen aus der
+Schulgeometrie. Das Programm is Freeware
+unter der GPL. Fuer genauere Information
+sehen Sie bitte auf der Homepage des
+Programms nach, die in der Online-Hilfe
+aufgefuehrt ist.
+
+Autor, Author: René Grothmann
+http://www.rene-grothmann.de

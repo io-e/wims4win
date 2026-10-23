@@ -1,0 +1,96 @@
+La fenêtre principale:
+
+        Vous avez sous les yeux la fenêtre principale de CaR.
+        La figure s'affiche sur le panneau principal. On peut la faire défiler
+        dans toutes les directions au moyen des touches flèches du clavier
+        (flèches de déplacement); les touches +/- servent à zoomer. On peut
+        aussi utiliser le menu à cet effet (menu Options).
+        Au-dessus de la figure, se trouve la barre d'icônes.
+        Des bulles d'aide sont associées aux icônes; elles s'affichent
+        automatiquement si la souris reste plus de deux secondes au-dessus
+        de l'icône. On peut, si on le souhaite, réorganiser les icônes
+        sur une seule ligne. La barre inférieure contient les outils de
+        construction, tandis que la barre supérieure permet de régler les
+        valeurs par défaut et les paramètres d'affichage.
+
+        Sous la figure, se trouve la ligne d'état, où sont affichées diverses
+        informations (objet attendu par une construction...). Si le mode visuel
+        n'est pas activé, cette ligne est remplacée par une ligne de commande
+        permettant l'entrée des données.
+
+        D'autres actions, telles que l'enregistrement de la figure et son
+        exportation sous différents formats graphiques, sont accessibles
+        uniquement par les menus.
+
+Personnalisation de la barre d'icônes:
+
+        Pour personnaliser la barre d'icônes, il suffit d'ouvrir la boîte de
+        dialogue au moyen du menu (Options); on peut alors ajouter ou supprimer
+        des icônes. On peut aussi choisir de n'afficher les icônes que sur une
+        seule ligne; seules les plus importantes sont alors retenues.
+        On peut également afficher la barre d'icônes sous la figure
+        (voir le menu Options/Préférences).
+        Les outils n'apparaissant pas sur la barre d'icônes restent de toute
+        façon accessibles au moyen des raccourcis clavier ou des menus.
+
+Mode élève:
+
+        Dans ce mode, l'utilisateur ne peut se servir que des outils présents
+        sur la barre d'icônes. Ceci s'applique aussi à d'autres fonctionnalités
+        (passage en mode visuel, affichage ou non des objets, macros,...).
+        Ce mode ne prend effet qu'au redémarrage du programme.
+
+
+La souris:
+
+        Le bouton gauche de la souris sert à créer les objets, en utilisant
+        l'outil actuellement sélectionné. Par exemple, si l'outil Point est
+        sélectionné, le texte de la ligne d'état indique à l'utilisateur
+        que le programme attend un point; il lui suffit de cliquer à l'endroit
+        où il veut le placer pour que ce point soit créé.
+
+        Beaucoup d'outils attendent de l'utilisateur qu'il sélectionne un objet:
+        par exemple, on peut créer une droite en sélectionnant deux points. Dans
+        ce cas, la premier point sélectionné s'affiche en rouge tant que le
+        second n'est pas choisi. Pour sélectionner une droite ou un segment,
+        on peut cliquer sur n'importe quel point de cette droite ou de ce
+        segment.
+
+        Si le choix est ambigu, le programme affiche une liste d'objets
+        possibles. On peut choisir un objet dans cette liste en double-cliquant
+        dessus, ou en le sélectionnant et en pressant le bouton de la boîte de
+        dialogue, ou encore en le sélectionnant et en appuyant sur la touche
+        Entrée. Les points s'affichent en noir, les droites en rouge, les angles
+        et les autres types d'objets en vert, les cercles en bleu. Si on utilise
+        les noms d'objets longs, le type de l'objet est immédiatement
+        identifiable. Les noms courts commencent simplement par une lettre
+        différente pour chaque type d'objet (P pour les points,...).
+
+        Si le programme attend un point et qu'on clique sur un emplacement
+        libre, un point est automatiquement créé à cet endroit. De même, un
+        point d'intersection est automatiquement créé si l'on clique sur
+        l'intersection de deux objets. Une option spéciale (utilisée par défaut)
+        permet dans ce cas de cacher le second point d'intersection s'il y en a
+        deux (intersection droite-cercle ou cercle-cercle).
+
+        Si la touche Maj (Shift) est maintenue enfoncée lors de la création d'un
+        objet, le programme comprend que cet objet doit être fixe et ouvre
+        automatiquement une boîte de dialogue pour éditer l'objet. On peut alors
+        indiquer une valeur fixe pour l'objet, ou simplement fermer la boïte de
+        dialogue, ce qui fixe la valeur de l'objet à sa valeur actuelle.
+
+        Le bouton droit de la souris permet de déplacer les points (on peut
+        aussi pour cela utiliser l'outil approprié), les noms des objets, et
+        d'ouvrir les boîtes de dialogue pour l'édition des objets. Si on fait
+        simplement un clic droit sur un nom d'objet sans le déplacer, il revient
+        automatiquement à sa position par défaut.
+
+        En maintenant enfoncées simultanément les touches Maj (Shift) et Ctrl,
+        on peut cacher les objets sans avoir recours à l'outil correspondant.
+        Les cercles et les droites commencent par s'afficher partiellement,
+        puis disparaissent complètement au clic suivant.
+
+Le clavier:
+
+        Tous les outils possèdent des raccourcis-clavier, qui sont indiqués
+        entre parenthèses dans le menu.

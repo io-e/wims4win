@@ -1,0 +1,77 @@
+#! /bin/sh
+#
+#	Make backup copies of the local data of a WIMS server.
+#	It is now automatically called by wimslogd.
+#	Use wims configuration parameter to setup.
+#
+
+# Abort if not called from wimslogd.
+if [ -z "$wimslogd" ]; then exit; fi
+
+# base directory.
+if [ -f /cdrom/knowims-hd-install ]; then
+ cd /var/lib/wims
+ list="log w"
+else
+ cd `dirname $0`/..
+ list="log
+ public_html/bases/doc/[0-9]?????* public_html/bases/doc/open.*
+ public_html/modules/devel public_html/modules/local
+ public_html/modules/adm/local
+ public_html/modules/local/data
+ public_html/themes/*/local.phtml
+ public_html/themes/*/lang/*
+ public_html/html/rgpd.phtml.local"
+fi
+
+WIMS_HOME=`pwd`
+
+mkdir -p backup
+date=`date '+%Y%m%d:%H:%M'`
+olddate=`cat backup/backdate 2>/dev/null | awk '{print substr($1,1,8)}' `
+date1=`date '+%Y%m%d'`
+
+# Only one backup every day.
+if [ "$date1" = "$olddate" ]; then exit; fi
+echo $date1 >backup/backdate
+
+for o in 2
+do
+  n=`expr $o + 1`
+  if [ -f backup/WIMSdata-daily$o.tgz ]; then
+   mv backup/WIMSdata-daily$o.tgz backup/WIMSdata-daily$n.tgz
+  fi
+done
+if [ -f backup/WIMSdata.tgz ]; then
+  mv backup/WIMSdata.tgz backup/WIMSdata-daily2.tgz
+fi
+
+tar --exclude=*.bin -czf backup/WIMSdata.tgz $list
+
+wkday=`date '+%w'`
+if [ $wkday = 0 ]; then
+ if [ -f backup/WIMSdata-weekly.tgz ]; then
+  mv backup/WIMSdata-weekly.tgz backup/WIMSdata-weekly2.tgz
+ fi
+ cp backup/WIMSdata.tgz backup/WIMSdata-weekly.tgz
+fi
+mday=`date '+%d'`
+if [ "$mday" = "01" ]; then
+ for o in 3 2
+ do
+  n=`expr $o + 1`
+  if [ -f backup/WIMSdata-monthly$o.tgz ]; then
+   mv backup/WIMSdata-monthly$o.tgz backup/WIMSdata-monthly$n.tgz
+  fi
+ done
+ if [ -f backup/WIMSdata-monthly.tgz ]; then
+  mv backup/WIMSdata-monthly.tgz backup/WIMSdata-monthly2.tgz
+ fi
+ cp backup/WIMSdata.tgz backup/WIMSdata-monthly.tgz
+fi
+
+# backup2: can be mounted from another hard disk, for redundant backup.
+if [ -d backup2 ]; then
+ cp -pPR backup/* backup2
+fi
+

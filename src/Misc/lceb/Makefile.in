@@ -1,0 +1,33 @@
+# @configure_input@
+
+wims_home=../../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+lopt=-lm
+
+all: lceb_dynopt lceb_dyn lceb_rec lceb_bigsum lceb_easiest
+
+clean:
+	rm -f *.o *.core *.stackdump lceb_dynopt lceb_dyn lceb_rec random lceb_bigsum lceb_easiest
+
+lceb_dynopt: lceb_dynopt.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o lceb_dynopt lceb_dynopt.c
+
+lceb_dyn: lceb_dyn.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o lceb_dyn lceb_dyn.c
+
+lceb_rec: lceb_rec.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o lceb_rec lceb_rec.c
+
+random: random.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o random random.c
+
+lceb_bigsum: lceb_bigsum.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o lceb_bigsum lceb_bigsum.c
+
+lceb_easiest: lceb_easiest.c
+	$(cc) $(cflags) $(CPPFLAGS) $(LDFLAGS) -o lceb_easiest lceb_easiest.c

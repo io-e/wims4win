@@ -1,0 +1,65 @@
+Het "PeL" Constructieprogramma
+
+Dit is de Java versie van het P.e.L. (Passer en Liniaal) programma.
+Vroeger bestond dit programma enkel in een Windows-versie. Deze versie
+is volledig hermaakt in Java. Het bewaart constructiebestanden in
+XML formaat. De thuispagina is
+
+http://mathsrv.ku-eichstaett.de/MGF/homes/grothmann/java/zirkel
+
+Het programma heeft als doel meetkundige constructies met passer en
+lineaal te simuleren. Een groot voordeel boven constructies op papier
+is dat je de startpunten kan verplaatsen als de constructie klaar is.
+Zo krijg je meer inzicht in de constructie als je merkt hoe ze
+afhankelijk is van deze startpunten. Je kan ook meetkundige plaatsen
+van punten laten tekenen.
+
+Het programma is freeware (Gnu GPL-licensie). Op de reeds vermelde
+thuispagina vind je links naar pagina's die details geven over deze
+specifieke licensie. Het belangrijkste is dat de broncode vrij blijft,
+zelfs als je ze aanpast of verwerkt in een eigen programma. De Nederlandse
+vertaling die je in handen hebt, is een gevolg van de aanpasbaarheid
+van het programma.
+
+Het programma heeft meer mogelijkheden dan wat er zichtbaar is in
+het menu. Een volledige documentatie vind je op de thuispagina. Je
+kan deze documentatie trouwens ook downloaden en bekijken met een
+browser naar keuze. Het installeerprogramma voor de windowsversie
+installeert de documentatie standaard. Er is ook een tutorial 
+beschikbaar. Hiervoor heb je een browser nodig die java ondersteunt.
+
+Wie al veel ervaring heeft met alternatieve programma's voor interactieve
+meetkunde (Cabri,...) zal snel met C.e.L. overweg kunnen. Hou rekening
+met volgende tips:
+
+-	Het programma maakt gebruik van de rechtermuisknop. Als je geen 
+	rechtermuisknop hebt kan je de meta-toets gebruiken (bvb. bij
+	Mac wordt dit de 'Appeltje'-toets). Deze rechtermuisknop wordt
+	gebruikt om
+	-	voorwerpeigenschappen te wijzigen
+	- 	punten te bewegen
+	-	labels van voorwerpen te verplaatsen
+	
+-	'Shift'-klikken maakt punten vast. Je kan het ook gebruiken om
+	de lengte van lijnstukken vast te maken als je het gebruikt bij
+	het aanklikken van het eindpunt van het lijnstuk.
+	
+-	'Control'-klikken is een snelle manier om voorwerpen te verbergen
+
+-	Het programma heeft sneltoetsen. Je vindt ze in het menu, telkens
+	na de naam van de functie. Meestal is het de eerste letter van 
+	de Nederlandse benaming van de functie ('r' voor rechte, 'p' voor
+	punt, 'c' voor cirkel, 'l' voor lijnstuk, 'i' voor intersectie,...).
+	Het kan zijn dat je eerst rechts moet klikken in het constructie-
+	venster (zodat de toetsenbord 'focus' bij de constructie is).
+
+-	De statusbalk onderaan toont wat het programma verwacht als invoer
+	van de gebruiker.
+
+
+Veel plezier met dit programma!
+
+Priv.-Doz. Dr. R. Grothmann
+grothm@ku-eichstaett.de (or mga010@gmx.de)
+Nederlandse vertaling: Jan Van Hee (Signaleer AUB fouten, onduidelijkheden,
+... in de vertaling aan jan.van.hee@khleuven.be). 

@@ -1,0 +1,118 @@
+/* CSS rules to display Mendeleiev's table of elements  */
+
+/************
+ * SETTINGS *
+ ************
+ * DIV for each element
+ **********************
+ * width
+ *    div_width = {{ div_width }}
+ * height
+ *    div_height = {{ div_height }}
+ *
+ * Symbol
+ ********
+ * vertical position
+ *    symbol_top = {{ symbol_top }}
+ * font size
+ *    symbol_font_size = {{ symbol_font_size }}
+ *
+ * Z (atomic number)
+ *******************
+ * vertical position
+ *    Z_top = {{ Z_top }}
+ * horizontal position
+ *    Z_left = {{ Z_left }}
+ * font size
+ * Z_font_size = {{ Z_font_size }}
+ *
+ * Molar mass
+ ************
+ * vertical position
+ *    mass_top = {{ mass_top }}
+ * font size
+ *    mass_font_size = {{ mass_font_size }}
+ *
+ * Electronic structure
+ **********************
+ * displaying
+ *    struct_display = {{ struct_display }}
+ * vertical position
+ *    struct_top = {{ struct_top }}
+ * horizontal position
+ *    struct_left = {{ struct_left }}
+ * font size
+ *    struct_font_size = {{ struct_font_size }}
+ * line height
+ *    struct_line_height = {{ struct_line_height }}
+ *
+ * ROWS
+ ******
+ * enumeration of positions [{"i": <int>, "top": <int>}, ...]
+ *    row_enum = {{ row_enum }}
+ *
+ * COLUMNS
+ *********
+ * enumeration of positions [{"i": <int>, "left": <int>}, ...]
+ *    col_enum = {{ col_enum }}
+ **/
+
+div.element {
+    display: inline-block;
+    position: absolute;
+    width: {{ div_width }}px;
+    height: {{ div_height }}px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background: lightyellow;
+}
+
+p.symbol {
+    position: absolute;
+    top: {{ symbol_top }}px;
+    width: {{ div_width }}px;
+    text-align: center;
+    font-size: {{ symbol_font_size }}px;
+}
+
+p.Z {
+    position: absolute;
+    top: {{ Z_top }}px;
+    left: {{ Z_left }}px;
+    font-size: {{ Z_font_size }}px;
+}
+
+p.mass {
+    position: absolute;
+    top: {{ mass_top }}px;
+    width: {{ div_width }}px;
+    text-align: center;
+    font-size: {{ mass_font_size }}px;
+}
+
+/* electronic structures */
+
+p.str0 {
+    display: {{ struct_display }};
+    position: absolute;
+    top: {{ struct_top }}px;
+    left: {{ struct_left }}px;
+    font-size: {{ struct_font_size }}px;
+    line-height: {{ struct_line_height }}px;
+}
+
+/* ROWS */
+
+{% for re in row_enum %}
+div.r{{ re.i }} {
+    top: {{ re.top }}px
+}
+{% endfor %}
+
+/* COLUMNS */
+
+{% for ce in col_enum %}
+div.c{{ ce.i }} {
+    left: {{ ce.left }}px;
+}
+{% endfor %}

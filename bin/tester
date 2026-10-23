@@ -1,0 +1,31 @@
+#! /bin/sh
+
+clear
+cat <<@
+
+This script tests the main program wims.cgi.
+When you press Ctrl-D, you should see the home page of the server scroll
+on the screen, in raw HTML code.
+
+If this is not the case, then there is a problem in your compilation.
+
+Now please press Ctrl-D.
+
+----------------------------------------------------------------------------
+############################################################################
+----------------------------------------------------------------------------
+
+@
+
+cd `dirname $0`
+cd ../public_html
+
+HTTP_USER_AGENT=Mozilla
+HTTP_HOST=localhost
+REMOTE_ADDR=127.0.0.1
+REMOTE_HOST=localhost
+QUERY_STRING=$1
+export HTTP_USER_AGENT HTTP_HOST REMOTE_ADDR REMOTE_HOST QUERY_STRING
+
+./wims.cgi
+

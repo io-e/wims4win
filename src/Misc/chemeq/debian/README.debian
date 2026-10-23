@@ -1,0 +1,10 @@
+Running the test suite for chemeq :
+
+$ cd /usr/share/doc/chemeq/tests
+$ sh chemtest
+$ sh chemreport
+
+chemtest should report several OK statements
+
+chemreport should output a DVI file. chemreport relies on LaTeX 
+being installed.

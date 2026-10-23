@@ -1,0 +1,33 @@
+# @configure_input@
+
+wims_home=../..
+cc=@CC@
+cflags=@CFLAGS@ -Wall
+LDFLAGS=@LDFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+defines=@DEFINES@
+STRIP=@STRIP@
+lopt=-L../../lib -lwims -lm
+
+O=cache.o cleaning.o cmd.o files.o fork.o homedir.o housekeep.o log.o options.o socket.o wimslogdlines.o wimslogdscore.o wimslogd.o
+H=../Lib/libwims.h ../config.h ../includes.h ../wimsdef.h
+
+all: wimslogd
+
+%.o: %.c $(H)
+	$(cc) -o $@ $(cflags) $(CPPFLAGS) $(defines) -c $<
+
+clean:
+	rm -f *.o wimslogd
+
+distclean:
+	make clean
+	rm -f $(wims_home)/bin/wimslogd
+	rm -f Makefile
+
+wimslogd: $(O)
+	$(cc) $(LDFLAGS) $(cflags) $(defines) $(O) $(lopt) -o wimslogd
+	$(STRIP) wimslogd
+	rm -f $(wims_home)/tmp/log/wimslogd.pid $(wims_home)/sessions/.wimslogd
+	cp wimslogd $(wims_home)/tmp/log/wimslogd.new

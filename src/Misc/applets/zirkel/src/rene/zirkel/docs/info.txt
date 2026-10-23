@@ -1,0 +1,2610 @@
+// Help file syntax
+// This is the help file for C.a.R., used inside the program
+// for context sensitive help, and also to extract HTML
+// pages using the Translator program contained in C.a.R.
+// Refer to the Wiki for more information.
+
+.index
+.related start online license gui
+C.a.R.
+
+//image images/ZuL-Logo.png
+
+C.a.R. contains a __context§sensitive§help__ than can be called while
+using the program. it provides help on the currently active tool. You
+are reading web pages extracted from this help. On these web pages,
+you will also find a list of __keywords__ and a list of help topics.
+Moreover, there is a search function both in the web and in the help
+system of the program. 
+
+For more information about C.a.R., have a look at the applications,
+demos, tutorials, or the Flash introduction. There is also a
+discussion forum on Yahoo, and a Wiki on C.a.R. There is even a
+multilingual magazine CarZine about C.a.R. Searching the Web will
+reveal many other sources of information about this program.
+
+Much success with C.a.R. wishes you the author
+
+Rene Grothmann
+
+.start
+.related online license gui tips localize language
+Context sensitive Help
+
+//image images/Help.jpg
+
+//image- images/info.png
+This __help__ system provides tips about the current tool, or about
+your last action. E.g., to get help about the macro tool, choose the
+macro tool and press the __Info-button__ to learn more about it. You
+can close the window with the same button, or just leave it open.
+Place the window beside the C.a.R. window to be able to see both. The
+window will remember its position and size.
+
+In the upper part of this help window, you see a drop down list with
+related __topics__.
+
+You can also search for __keywords__, or any other word in the file.
+Searching for "macro" will also find "Macro", and words containing
+"macro". The search results are presented in the drop down list. The
+first of the found topics will be opened, if there was a match.
+
+Best wishes for your work with C.a.R.!
+
+René Grothmann
+
+.online
+.related start tips license
+Online Help
+
+You find the __homepage__ of C.a.R. via "www.z-u-l.de". You are
+welcome to look for new versions there, or to browse through the
+examples and demos. If you installed the documentation, you will find
+a link on your computer, and C.a.R. may open the documentation with
+the menu link. Otherwise, C.a.R. opens the documentaiton on my web
+page. You can also configure the browser command in the help menu.
+
+I opened two discussion groups about C.a.R. on Yahoo groups. One is in
+German and the other in English. You find the English discussion
+version via the support link on the homepage of C.a.R. There is also
+a Wiki for C.a.R., where you can participate at the development of
+the program.
+
+Of course, you can reach me by __email__. You find my email address on
+my homepage via the C.a.R. homepage "http//www.z-u-l.de".
+
+.license
+.related online start
+__License__ for C.a.R.
+
+C.a.R. is __free§software__ under the GPL (Gnu General Public
+License), and you are welcome to use the program as you like. If you
+distribute it, you must include at least a link to my pages. 
+
+You may also download the sources via the homepage of C.a.R. However,
+these sources and all changes you or others do must remain open. You
+are enforced to provide the sources and all changes along with the
+program. Moreover, you must provide a link to the original sources.
+Make sure this part of the documentation is passed along with your
+distributed files.
+
+The same license also applies to the documentation.
+
+If you want to make money with this program, you can do that by
+providing additional services like books, instructions, tutorials and
+such. You can also include the program into a commercial distribution
+of software, e.g., in a __Linux__ distribution. I kindly ask to get a
+notice, if you that, and a sample if possible, please.
+
+.gui
+.related iconbar macrobar mouse zoom online keyboard
+User Interface
+
+//images image/Gui.jpg
+
+The larger area you see is the main window of C.a.R. It displays the
+construction. The view can be moved with the __arrow§keys__, and
+enlarged with __+/-__. Alternatively, there is a tool to __zoom__ and
+drag the construction with the mouse. Or it is possible to zoom with
+the __mouse§wheel__, and to drag with the __right§mouse§button__ on
+some empty position.
+
+Above the construction you find the __icon§bar__. The icons show
+__tool§tips__, if the mouse remains over them for more than two
+seconds. The icon display may also be concentrated into a single bar.
+In a two line icon bar, the lower bar contains the construction tools.
+The upper bar contains default settings, and settings for the
+display.
+
+The iconbar can include a __macro&bar__.
+
+Below the construction, there is a __status§line__, which displays
+important text information. In the __non-visual§mode__, this line is
+replaced by an input line.
+
+On the left side of the construction display, there may be an optional
+__list§of§objects__. It can be configured to display categories of
+objects only. Click on the display with the __right§mouse§button__ to
+see further options for this list. A double click on a line with
+an object, will edit this object. To edit several objects, select
+the objects with the __Ctrl-key__ or __Shift-key__ as usual.
+
+The objekt list can be sized by clicking on the small gap on the right
+of the scrollbar and dragging the mouse left or right, then releasing
+it at the intended position of the bar.
+
+The menu contains many other commands and options, like loading and
+saving of files. It also displays the __keyboard§shortcuts__ for the
+tools.
+
+-> See: Object List, Mouse, Iconbar, Keyboard
+
+.iconbar
+.related restricted gui settings
+Iconbar
+
+To select an icon of the __icon§bar__, left click on it. To learn more
+about an icon, hold the mouse over it for a while. A small window will
+appear with some text explaining the tool (__tool§tip__).
+
+There are different types of tools.
+
+Icons expecting mouse input: Examples are the point or segment tools,
+the macro parameter selection or the zooming.
+
+Icons to change default settings: Examples are the default color or
+the point type.
+
+Icons changing the look: Examples are the grid icon or the icon to
+show hidden elements.
+
+Icons that do an action: Examples are the editing of the comment or
+deleting the last object.
+
+//image images/Configure.jpg
+
+To __configure§the§icon§bar__, start the dialog with the corresponding
+menu entry. You can select and deselect any icon. Moreover, you can
+choose to display the tools in a single row. Then the icon bar will
+only show the most urgent tools. Deselected tools can still be used in
+the normal mode using the keyboard or the menu.
+
+The icon bar can be set to appear under the construction (see the
+__special§settings__).
+
+.restricted beginner
+.related iconbar
+Restricted Iconbar
+
+There is a restricted form of the icon bar, which is saved with the
+construction. The user will see this __restricted§icon§bar__, when the
+construction is loaded.
+
+Select the restricted icon bar in the options menu. Then you may edit
+this icon bar. Remove all unnecessary tools, or all tools that could
+confuse the user of your construction.
+
+Disable the restricted icon bar or load a new construction, to get
+back your full icon bar.
+
+Moreover, there is a special __icon§bar§for§beginners__. Some tools
+that could be confusing are missing here. Beginners should start in
+this mode.
+
+.mouse
+.related gui settings hide point circle move keyboard edit
+The Mouse
+
+The __left§mouse§button__ creates construction objects according to
+the current active tool. 
+
+Many tools expect that the user chooses more than one object. In this
+case, the first point is highlighted in red, while the tool is
+waiting for the second point. 
+
+Objects under the mouse will be highlighted in yellow, if they could
+be used in the current construction step. This makes it easier to
+select the proper objects. 
+
+//image images/Select.jpg
+
+If the choice of the object is not uniquely determined, the program
+will display a list of possible objects. Select an object from this
+list by double clicking on it, or by selecting it and pressing the OK
+button, or with the keyboard. Points will be black, lines red, angles
+(and other objects) green, and circles blue. The selection dialog can
+be disabled in the __special§settings__. The program will then select
+the closest of the objects automatically.
+
+An important feature is, that __points__ will be automatically
+created, if the program expects the user to select a point, and the
+user clicks on free space. Moreover, __intersections__ will be
+created, if the user clicks on an intersection. Also, points will be
+bound to lines, circles and other line objects if the user clicks on
+that object.
+
+If the __Shift-key__ is pressed, when a circle, a segment or an angle
+is constructed, the program will assume that the object is to be fixed
+and will display the object dialog. In this dialog, the user can enter
+a value to fix the object, or simply close the dialog and use the
+current value.
+
+The __right§mouse§button__ moves points, labels of objects, and it
+opens the settings dialog for objects  (this is a quick alternative to
+the __move__ tool). If a label is right-clicked but not moved, it
+jumps to its default position. If the Shift-key is down, when the
+label is selected, the label can be moved to any place in the
+construction. Otherwise, it is fixed near the object.
+
+With the __Ctrl-key__ plus the __right§mouse§button__, one can edit
+the conditions for object properties.
+
+With the __Ctrl-key__ and the __Shift-key__ plus the right mouse
+button, an object can be hidden. Circles and lines will first become
+partial, then hidden.
+
+.background
+.related gui move htmlexport
+Background Pictures
+
+C.a.R. can display a picture behind the current construction. This
+picture can be a construction state or a picture loaded from a file.
+
+//image images/Background.jpg
+
+A picture from a file can be tiled, centered or stretched to fit the
+construction window. There is a special switch to resize the program
+window to the size of the loaded picture, when it is loaded.
+
+If the picture fits the window size exactly, a link will be saved
+along with the HTML export. The applet size will be the picture size
+in this case. The picture must be published in the applet directory.
+
+.properties
+.related edit conditions colors hide mouse transparent point fixedangle replay animatebreak expressionsyntax latex
+Object Properties
+
+//image images/PointDialog.jpg
+
+Open the __properties__ dialog of an object with a right click, or
+with the edit tool. Most settings are common to all objects.
+
+ - name
+ - description
+ - unit
+ - color
+ - thickness
+ - hiding state
+ - show name
+ - show value
+ - large of fat font
+ - background state
+ - transparent state
+ - breakpoint
+
+Names can contain almost all characters. If they contain "~", the
+display will only show the part before the tilde, allowing the same
+displayed name for more than one object. The name must be unique.
+DEscriptions are generated automatically, but can be changed. If they
+are changed, the user can revert to the automatic description by
+entering an empty line.
+
+Objects can use another name (an __alias__) for display than the
+internal name. This is useful, if the display contains LaTeX code
+enclosed in $...$. The alias may contain expressions in %...% which
+are evaluated at run time. Strings of the form %=s% will return the
+current name of object "s", and strings of the form %~s% will return
+the equation of s.
+
+Some objects have a size and units. Changing the size works only for
+fixed objects. Units can be any text after the size. For angles, use
+the degree symbol.
+
+The thickness works differently for different objects. The
+white thickness makes the object invisible, but not its label. Objects
+can be hidden or completely hidden. In the latter case, they can only
+be accessed through the construction description. 
+
+Name and value display can be combined as in "s=2". If the name ends
+with an underscore as in "P_", the "_" will be deleted and there will
+be no "=".
+
+//image- images/filled.png
+Some objects have a filled state, like circles and angles. Moreover,
+transparency can be switched on and off for these objects. Normally,
+only filled objects are in the background, but other objects can be
+set into the background too. Note, that using
+__conditional§formatting__ a specific order of the objects in the
+background can be achieved.
+
+//image- images/animatebreak.png
+Breakpoints are important for __replay__ and for the animation of 
+breakpoints. Breakpoints can either be set in the replay dialog, or in
+the properties dialog of the object. For hiding breakpoints press the
+shift key.
+
+Also, have a look at the buttons on the lower side of the properties
+dialog. E.g., points have a special button to choose an object to
+bind to (__bound§points__), __fixed§angles__ and __fixed§circles__
+have a special button to set the __size__. The dialog will close and
+the user has to select the objects or sizes from the construction.
+
+.latex
+.related properties text
+LaTeX Code
+
+C.a.R. uses HotEqn to display equations in __LaTeX__ form. To use
+LaTeX code, enclose the text in $...$ signs. LaTeX code can be used in
+lines of text objects, expression labels or for names of objects. It
+is useful to use a specific display name (an __alias__) like $P_1$ in
+this case. 
+
+HotEqn cannot display all LaTeX code, but quite a lot. First of all
+the Greek letters are supported (\alpha, \beta, ...), as well as many
+specific LaTeX symbols (\nabla). Also supported is \percent and
+\dollar, which is not in the normal LaTeX. Of course subscripts (x_n)
+and superscripts (x^2) are supported and fractions (\frac{1}{x} or
+\dfrac). The big operators, like integration and summation are
+supported (\int_a^b), as well as limits and suprema (\lim_{x \to
+\infty}).
+
+Moreover, big brackets are useful, like (\left[ and \right]). Arrays
+are also supported (\begin{array}{cc}2&3\\3&4\end{array}). The
+binomial fraction is expressed with choose, and there is also atop ({2
+\atop 3}).
+
+For more information, refer to the HTML documentation.
+
+.transparent
+.related colors reorder properties
+Transparency
+
+Transparent objects are possible, if Java 1.2 or better is used. On
+older Java systems, objects will never appear transparent.
+Moreover, neither __EPS__ nor __PDF__ export does not support
+__transparency__.
+
+Filled objects are drawn at first to get in the background. This can
+be switched on and off in the settings dialog of all objects. Then the
+object will be drawn in the order of construction.
+
+Transparency can be switched off for individual objects in their
+__properties__ dialog.
+
+.point
+.related boundedpoint intersection settings mouse properties selfreference
+Points
+
+//image- images/point.png
+A point can be generated by various tools. The point tool will
+normally generate a __free§point__. If the __Shift-key__ is
+pressed, the point can be fixed with an expression in the point
+properties dialog. A point will fix to the position of another point,
+if this point is shift clicked with the point tool.
+
+If an intersection of two circles or similar objects is clicked, the
+intersection is automatically created. A __confirmation__ for this
+automatism to generate __intersections__ is turned off by default.
+Also by default, a __preview__ of the intersected objects and the
+intersection is shown. Of course, intersection points are not free,
+but depend on the two intersected objects.
+
+Points can be bound to circles and lines and other objects like
+tracks, conic sections and functions (__bound§points__). To generate
+such a point, click on the object with the point tool. A
+__confirmation__ for this can be turned on.
+
+Fixed points can still be moved, if the expression refers to the point
+itself and to no other object (__selfreference__). Here,
+__@-references__ do not count. In this case, the position is
+recomputed using the expression. This is useful to restrict the
+movement of points.
+
+Points can be kept on a __grid__ by using a grid increment in the
+dialog, which is larger then 0. For an integer grid, use 1.
+Alternatively, there are more advanced methods of self referring
+objects to keep the point on certain sets. Note that points can easily
+be kept in __polygons__, since they can be bound to these objects.
+
+Like other objects, free points can be dragged immediately after
+generation. During the drag, the size and name will display, unless
+this option is turned off.
+
+-> See: Self Reference, Intersections, Points on Objects
+
+.boundedpoint
+.related point line mouse properties
+Points on Objects
+
+These are points, which are bound to a line, a circle, automatic
+tracks, polygons, function graphs or parametric curves
+(__bound§points__). They will move in a continuous way, if the
+containing object is moved. A point can be __release__d, and bound to
+a new object at any time using its __properties__ dialog.
+
+Points can be bound on the perimeter of objects, or on the __inside__
+of objects, if the object is a circle, an angle or a polygon. To
+create a point inside an object, simply create an object on its
+boundary, and edit the properties of the object, switching the
+"inside" flag on. Alternatively, use the "bind to" button in the
+dialog of any free point and press the __ctrl-key__ when selecting the
+object.
+
+Bounded points are either created with the point tool by clicking on a
+line or a similar object, or by a special tool. Moreover, any point
+can be bound to an object later on using its __properties__ dialog.
+Exit the dialog with the button to bind the point, and then select the
+object.
+
+Points can be bound in two ways. Either the point is projected every
+time the object moves, or the point is kept in its relative position
+on the object. The __relative§fix__ can be removed or set in the
+object editor. The relative fix is the default.
+
+Bound points are not free. If however, a segment lies with both
+endpoints on a line, and one of them is a bound point (to the line),
+the segment can be fixed.
+
+.line ray
+.related point parallel properties segment
+Lines and Rays
+
+Lines can be __lines__ through two points, __parallels__ or
+__perpendiculars__, or the ray of a __fixed§angle__. Rays are
+parts of lines on one side of the first point through the second
+point.
+
+The differences between lines and rays is not only restricted to the
+visual appearance of these objects. Intersections and
+perpendicular lines behave differently for these objects. I.e.,
+__intersections__ with rays become invalid, if the intersection point
+is not on the ray. Perpendicular lines to ray will be invalid, if the
+intersection with the line is not on the segment. It is possible to
+change this behavior in the __properties__ dialog of the
+perpendicular.
+
+-> See: Segments
+
+.segment fixedsegment
+.related expressionsyntax point parallel properties line
+Segments
+
+__Segments__ are parts of lines between two points. Note that by
+default __intersections__ with segments are valid only, if the
+intersection lies between the endpoints.
+
+The length of a segment can be fixed, if it has one free endpoint
+(__fixed§segment__). To generate such a segment, hold the shift key
+while selecting the second point, or use the special icon (in this
+case, the second point will always be created as a free point), or fix
+the segment in its __properties__ dialog.
+
+//image images/SegmentDialog.jpg
+
+Segments can be displayed as arrows.
+
+-> See: Lines and Rays
+
+.circle circle3
+.related properties point transparent fixedcircle
+Circles
+
+//image- images/circle.png
+There are three types of circles. Circles around a point M and through
+a point A, circles around a point M with radius AB, and fixed circles.
+Each type has an own tool. The first kind expects two points, the
+second three, and the last only one.
+
+Drawing a circle can be restricted between two defining points,
+yielding circular arcs. In this case, it is possible to keep the arc
+less than 180 degrees (i.e., always the shorter arc will be drawn
+connecting the ends of the arc). You select the end points using a
+button in the property dialogs of the circle.
+
+Circles can be filled. Arcs can be filled in two ways, either as a
+chord section of a circle, or as a pie.
+
+Circles can be restricted to their necessary parts. These partial
+circles are only drawn in little arcs through all points related to
+them.
+
+-> See: Fixed Circles
+
+.fixedcircle
+.related circle reorder expressionsyntax properties point transparent
+Fixed Circles
+
+//image- images/fixedcircle.png
+Fixed circles have no radius point. To generate such a circle, hold
+the shift key when defining the radius point, or use the special tool
+for this. This will open the settings dialog, where you can enter any
+expression for the radius. If the circle is dragged immediately after
+the generation, the settings dialog will not open, but the current
+size will be used.
+
+Fixed circles can be sized to the distance of two points using any
+expression. Instead of writing the expression in the
+__properties__dialog, the value can be taken from the construction.
+Either use another expression, or two points, or another circle. for
+this, use the button "Set size ..." in the settings dialog.
+
+//image images/CircleDialog.jpg
+
+The size of fixed circles can be dragged with the mouse, if the fixed
+state is released in the __properties__ dialog. If the fixed state is
+set and the center of the circle is free, the center will be dragged
+instead.
+
+.intersection
+.related point properties segment selectintersection
+Intersections
+
+//image- images/intersection.png
+__Intersections__ can either be created by the point tool, clicking on
+an intersection point, or with a special intersection tool. The
+intersection tool is hidden by default, since the point tool can be
+used instead in most cases.
+
+The program can compute intersections between lines, circles, function
+graphs, parametric curves and automatic tracks. In paper constructions,
+intersections might not be thought of as an extra step to do. But the
+computer won't compute all possible intersections. Also it makes the
+necessary steps much clearer, if the user has to construct
+intersections explicitly. 
+
+It is possible to create intersection between __conic§sections__,
+__tracks__, and __functions__ too. Note, that these intersections may
+need some time to compute. Creating very many intersections of the
+complicated kind will slow down your construction. Moreover, only one
+of the intersection points is computed and updated in a continuous
+way. The user can drag the intersection to other intersection points.
+
+-> See: Selecting Intersections
+
+.selectintersection
+.related intersection point
+Selecting Intersections
+
+Circles intersect in two points. The program creates both
+__intersections__ at once, if the two circles are selected as
+parameters of the intersection tool. If you need only one, hide the
+other. For automatically created intersections, the other intersection
+will not be generated.
+
+//image images/Intersections.jpg
+
+There is a subtle problem with the way the program selects the two
+intersections of circles (or a circle and a line). In contrast to
+other programs, this is done in a predictable way. For circles, the
+order will change, if the circles are switched. The intersections
+between a line and a circle depend on the direction of the line (i.e.
+the order of its creating points). Try moving the line so that it does
+no longer intersect the circle, then move it back. The 
+intersection will be the same.
+
+Sometimes the intersection must be specified. This can be done by
+telling one of the intersection points to be __different§from__ a
+certain other point. The intersections will then be selected such that
+the chosen intersection is furthest away from the other point. The
+dialog for intersections contains a special field to specify the other
+point, or a button to select the point interactively. 
+
+Note that this type is intersection is created automatically, if the
+other intersection point is a point on the perimeter of both circles,
+and if this point is visible. 
+
+You an also specify that the intersection should be the one that is
+__close§to__ a given point.
+
+Selections with circles can be set to switch automatically whenever
+they become invalid. As with automatic tracks, the construction
+will then run through all states.
+
+.parallel plumb midpoint
+.related line point properties
+Parallel and Perpendicular Lines, Midpoints
+
+//image- images/parallel.png
+These are simply shortcuts for classical constructions. The first
+two tools create lines. The midpoint is a point, of course. These
+tools could be replaced by standard circle and ruler constructions, or
+by macros.
+
+Perpendicular lines to segments become invalid, if the intersection
+is not within the segment. You can switch that off in the properties
+dialog.
+
+.move
+.related circle angle background mouse
+Move Objects
+
+//image- images/move.png
+This tool moves points (an alternative to the right mouse button). It
+can also drag the size fixed circles and angles, unless these objects
+are fixed for dragging. To unfix those objects, hold down the
+__Ctrl-key__ while moving.
+
+If lines, circles, polygons, or conic sections are generated by free
+points only, they can be dragged too.
+
+When the move tool is selected or when it is reset with the Esc
+key, all moveable objects blink in red. This helps to identify the
+__free§points__. Moreover, free objects are also marked in the
+__object§list__ by ">".
+
+It is possible to move several points at once. To do this, hold down
+the __Shift-key__ while selecting the points, and release it for the
+last point.
+
+When the shift key is hold during the movement, the movement will be
+restricted, to the point where an intersection becomes invalid. For
+applets, this behaviour can be made the default by the
+"restrictedmove" applet parameter.
+
+If the __ctrl§key__ is hold while moveing, the old construction will
+be visible in the background during the movement.
+
+.tracker
+.related point animate background mouse objecttracker
+Manual Point and Line Tracking
+
+//image- images/tracker.png
+This tool draws ___tracks__ of moving points or lines. For a point its
+position is tracked, and for a line, a curve is generated with the
+tracked lines as tangent lines (a __polar§set__).
+
+//image images/Track.jpg
+
+First one or more point or line to be tracked have to be selected. To
+select more than one object to be tracked, hold down the __Shift-key__
+when selecting objects. Then some point, slider or other moveable
+object can be dragged with the left mouse button. This moves the
+selected object and creates the track. 
+
+The color of the track is the same as of the tracked objects, and
+the track will remain visible until another construction tool is
+selected, or the track tool is reset with the __Esc§key__.
+
+Point and line tracks can be mixed. Line tracks can be produced
+from lines, rays or segments.
+
+To turn a track into a permanent construction object, you have to use
+the automatic tracking tool.
+
+-> See: Automatic Point and Line Tracking  
+
+.objecttracker
+.related tracker point animate
+Automatic Point and Line Tracking
+
+//image- images/objecttracker.png
+This tool draws point and line __tracks__ (as the manual tracking
+tool) by animating the movement of a single point along a line or
+circle. First select one or more points or lines to be tracked. Hold
+down the __Shift-key__, if more than one object should to be tracked.
+Then select a point on a line or on a circle, a slider or an
+expression, or a line or circe. In the latter case, you need to select
+the point to move on this line or circle too. The point will be
+moved, or the slider or expression be changed, creating the tracks of
+the selected objects.
+
+Should the first tracked object become invalid due to an invalid
+intersection, the movement is automatically reversed. In case the
+first track point becomes invalid because two circles no longer
+intersect, the other intersection point will be chosen when the moving
+point reverses its movement. Thus the construction runs through all
+possible __states__.
+
+The __animation§speed__ can be reduced or increased with the shift key
+and the left or right __arrow§keys__. Repeated left mouse button
+clicks cycle the animation through 3 modes: animation and track,
+animation and hidden track, track with no animation. In the last mode
+the moving point can be dragged with the left mouse button. Other
+points can be dragged with the right mouse button at any time, but
+while this is done, the track will be hidden and any animation
+paused.
+
+If a construction file is saved with this tool as active tool, it will
+become active when the file is loaded.   
+
+To stop the animation and clear the tracks, select any tool., or press
+Esc.
+
+__Permanent§Tracks__
+
+To make the first track a permanent construction object, press shift
+and enter, or select the automatic track tool with the control key. A
+new object will be created using the currently selected color and
+weight properties. The track can be edited in the same way as any
+other object. It is possible to create __intersections__ between the
+track and other objects, and to put points on the track.
+
+Tracks saved this way are calculated at every change in the figure,
+which may slow down the program on older computers. It is therefore
+wise to limit the number of tracks, and to restrict their lengths to
+reduce the calculation load. Moreover, it is possible to turn the
+calculation of a track off or on by using the fixed checkbox in
+its __properties__ dialogue.  
+
+-> See Manual Point and Line Tracking
+
+.animate
+.related circle line
+Animation
+
+//image- images/animate.png
+This will animate a single point, moving along one or several
+segments or circles. To start the animation, select a point, then a
+sequence of segments or circles. Finish by selecting the last point
+with a double click.
+
+To stop the __animation__, click on the construction. To reverse the
+animation shift click. shift and right or left __arrow§keys__ changes
+the speed of the animation.
+
+Animations are saved to the construction file. In applets, the
+animation will prevent user interaction completely.
+
+To go back and forth on line segments or on arcs, __shift§click__ into
+the construction. This will also reverse the direction in circles.
+
+.angle
+.related circle properties fixedangle
+Angles
+
+//image- images/angle.png
+Normal Angles are decoration and cannot be used to construct anything.
+The exception is that it is possible to __bind__ points into the angle
+area. The order of input for such angles is A, B, C, where B is the
+corner point.
+
+Angles can be displayed in three different sizes. The largest size
+will display a circular arc, which starts in A.
+
+Angles can have Greek letters in their name. To achieve an alpha,
+enter \a, \A etc. You can use all Unicode letters with \0XXXX, where
+XXXX is any hexadecimal digit. Angles, which are 90° or have a name
+starting with "." will be labeled with a dot, if the size display is
+switched on. Angles may be filled. It is probably better to use an
+__alias__ for angles to achieve this.
+
+By default, angles are never larger than __180§degrees__. The order of
+A and C does not matter. However, this can be switched off in the
+properties dialog of the angle.
+
+As with other objects, the invisible thickness shows the label, but
+not the angle.
+
+-> See: Fixed Angles
+
+.fixedangle
+.related circle reorder expressionsyntax properties angle
+Fixed angles
+
+//image- images/fixedangle.png
+Fixed angles have no third point, but a fixed size. This type of angle
+behaves more like a ray than like an angle. It is possible to
+intersect with the ray or place points on it.
+
+__Fixed§angles__ are generated by holding down the __Shift-key__,
+while clicking for the third point, or with the special tool for fixed
+angles. This will open the settings dialog, where the user can enter
+any expression for the size of the angle. If the angle is dragged
+immediately, the settings dialog will not open.
+
+Fixed angles can be sized using three given points, or any other
+expression or angle. To do this select the button "set size ..." in
+the settings dialog. Then e.g., select three points A, B, C, where B
+is the corner point. The angle will be the same size as the angle ABC.
+You can also use any other expression or angle to size the angle.
+
+Fixed angles can be __inverted__. Thus one does not have to use
+positive orientation. Furthermore, if a fixed angle is restricted to
+180° (which is the default), and if such an angle is constructed in a
+mathematical negative way, it will be inverted. There is an icon in
+the settings dialog, which controls the inversion.
+
+-> See: Angles
+
+.area
+.related point properties background
+Filled Polygons
+
+//image- images/area.png
+This tool generates filled __polygons__ with given corners. Select
+the corners of the area, and __double§click__ the last point. The
+sides are hidden, when the polygon has thin thickness in the
+properties dialog.
+
+The value of the filled polygon is its area. The sign of the value
+depends on the orientation of the corners.
+
+.expression
+.related angle circle properties reorder expressionsyntax
+Expressions
+
+You can use arithmetic expression in C.a.R. to
+
+ - set coordinates of points, 
+ - lengths of segments, 
+ - radii of circles,
+ - and sizes of angles. 
+
+//image- images/expression.png
+Furthermore, you can display values of expressions in constructions.
+Use the expression tool to place expressions on the screen (and the
+right mouse button to move them). You need to enter a valid expression
+into the dialog. Expressions may have an explaining text, and may or
+may not display their computed value. They are moved like any other
+object with the right mouse button. The explain text may contain
+__LaTeX__ code.
+
+Hidden expressions are useful to compute values, and use these values
+later in the construction.
+
+The value of an expression can be set with a __slider__. The user will
+then be able to set the expression by moving the dot to the right or
+left. A slider has a minimal and a maximal value it can reach.
+
+-> See: Syntax for Expressions
+
+.expressionsyntax
+.related fixedangle fixedcircle point properties reorder function
+Syntax for Expressions
+
+Name 
+ Example 
+ DEscription 
+ 
++, -, *, /,^ or ** 
+ 3.5*3+3/(4-5^2) 
+ Elementary math. 
+ 
+Name of object 
+ AB/CD 
+ The name of a segment, circle, angle and other expression. The object
+must not depend on the current object. To refer to objects
+by name there is the syntax @name or @"name". This will not work in
+macros, however. If the object is not found, an error will occur.
+ 
+Function
+ sin(a) 
+ The functions abs, sign, sin, cos, tan, arcsin, arccos, arctan, sqrt,
+exp, log, round, ceil, floor, deg, rad, sinhyp, coshyp, angle180 and angle360. Note
+that the trigonometric functions work with degrees. To convert, use
+deg(x), or the functions rsin, rcos, rtan, rarcsin, rarccos, rarctan.
+ 
+User __Functions__
+ f(a)
+ Evaluation of a user defined function object at a. 
+
+__Pi __
+ pi 
+ The constant Pi. 
+ 
+__x__,__y__,__z__ 
+ x(P), y(P) , z(P)
+ x- and y-coordinates of a point, or the z-value of the point.
+ 
+__d__
+ d(P,Q) 
+ Distance of two points. 
+ 
+__d__ 
+ d(x) 
+ Computes changes of the expression x. If x is a point, it computes
+movements.
+ 
+__sum__
+ sum(x,f)
+ Sums up x. If f is negative or invalid, the sum is reset to 0.
+ 
+__a__
+ a(P,Q,Z) 
+ Size of angle PQZ. 
+
+__scale__
+ scale(x,a,b) 
+ The relative position of x in [a,b), if x is in that interval. Else
+the expression becomes invalid. 
+
+__if __
+ if(e,e1,e2)
+ Returns e1, if e is valid, else e2. 
+
+__invalid__
+ invalid Returns an invalid expression. 
+
+&&,||,! ! 
+ (x<4 && y<4) 
+ Logical expressions. 1 is true, 0 is false. 
+
+<, >, <=, >=, ==, ~= 
+ x<y 
+ Comparing numbers. ~= means "circa equal". 
+
+__integrate__
+ integrate(f,a,b)
+ integrate(f)
+ Integrates the function f from a to b using the Romberg method. f
+must be a function object (probably hidden). The y-part of f is
+used. If f shows points only, the Riemann sum is computed. If f
+is parametric, the area inside the curve is approximated or
+its length, if it is not filled.
+
+__zero__
+ zero(f,a,b)
+ Find a zero of the function f in the interval a,b. The sign of f
+in a and b must be different. The procedure uses the secant method
+or interval bisection.
+
+__diff__
+ diff(f,a)
+ Numerically differentiate f at a. This is the usual approximation
+(f(h)-f(-h))/(2h)
+
+__min__,__max__
+ min(f,a,b)
+ Computes the point of the minimum (maximum) of f between a and b.
+min(a,b) and max(a,b) compute the minimum or maximum of a and b.
+
+__this__
+ x(this)
+ Refers to the object containing the expression.
+ 
+__windoww__,__windowh__,__windowcx__,__windowcy__
+ Returns the dimensions and center coordinates of the current screen.
+ 
+__pixel__
+ Returns the pixel per coordinate unit. Not to be used in print.
+ 
+__simulate__
+ simulate(e,x,f)
+ Sets the expression e to to the value x, recomputes the construction with
+this new value and returns the value of f. Only one simulation can be
+computed at any time, so simulations can not be nested. An expression,
+a fixed angle or a fixed circle can be used for e.
+
+__inside__
+ inside(P,A)
+ Tests, if the point P is inside the object A. Returns 1/2, if it is
+on the boundary if A. A can be a polygon, a circle or an angle.
+
+.text
+.related replay comment properties latex
+Text
+
+//image- images/text.png
+This displays a multiline __text__ in the construction. The text can
+be changed using an internal editor. This editor contains a button to
+reach the normal dialog for object __properties__. 
+
+To create a __bold__ or __large__ line, or both, precede the line with
+*, **, or ***. To use __LaTeX__ commands, enclose the line or parts of
+it in $...$ signs. Moreover, expressions can be used enclosed in %..%.
+These expressions will be evaluated, and the text will display the
+result. Strings of the form %=s% will return the current name of
+object "s", and strings of the form %~s% will return the equation of
+s.
+
+__Hidden§texts__ appear in replay mode. This allows to show local
+comments of constructions steps that disappear later.
+
+.quadric
+.related properties point transparent
+Conic sections
+
+//image- images/quadric.png
+__Conic§sections__ are sets of solutions of equations formed by linear
+combinations of x^2, y^2, x, y, xy and 1 (quadratic functions in two
+variables). It is well know, that conics are determined by 5 points.
+Simply select the 5 points to create a conic section.
+
+To edit the __properties__ of the curve, click on it and use the
+normal properties dialog. Conics will display the defining formula as
+their value.
+
+It is possible to __bind__ points on conic sections, and to create
+__intersections__ of conic sections with other objects.
+
+.hide
+.related construction properties mouse
+Hiding Objects
+
+//image- images/hide.png
+This will __hide__ objects, or make hidden objects __visible__. To
+make a hidden object visible, you will of course need to enable the
+icon to show all hidden objects. Hiding objects can also be achieved
+by holding the __Ctrl-key__ and clicking on the object with the right
+mouse button. In this case, circles and lines go to the partial state
+first, and hide at the second click.
+
+If the __Shift-key__ is held, when an object is selected for hiding,
+the object will be completely hidden. In this case, one can make the
+object visible again only by using the __object§list__.
+
+With a special menu item it is possible to hide all
+__duplicate&objects__. Only the most recent objects will be visible.
+Altgernatively, press the __Ctrl-key__ while selecting the hide tool.
+
+.rename
+.related properties
+Rename alphabetically
+
+//image- images/rename.png
+This tool __rename__s lines to a,b,c, points to A,B,C and angles to
+\a,\b,\c with mouse clicks using this tool. The first unused letter
+will be used.
+
+Force A, B, C by pressing the shift key when you click on a point.
+Letters will then be switched, if they were already in the
+construction. To start over, press Escape.
+
+By the way, if you need the letter "a" for two different objects, use
+"a~1" and "a~2". Names show only up to "~". Alternatively, use an
+__alias__.
+
+.delete undo back
+.related construction
+Deleting Objects
+
+//image- images/back.png
+This tool deletes the most recently constructed object, and all hidden
+objects before it. Alternatively, use the __backspace§key__.
+
+//image- images/delete.png
+There is another tool that deletes any object and all objects depending
+on it. Of course, doing so may have unwanted side effects, especially,
+if objects use complicated dependencies.
+
+//image- images/undo.png
+Undo restores all recently deleted objects.
+
+.function
+.related expressionsyntax properties
+Functions and Curves
+
+//image- images/function.png
+The program can display __functions__ and parametric __curves__ in
+the construction, or use __user&defined&functions__ of one or more
+parameters in other expressions. 
+
+First, we describe the type of functions for display in the
+construction window. In the dialog, enter the start and stop
+value of the parameter variable and the step size. If you wish, you
+can use any string not containing blanks as a parameter name. The
+default is "x".
+
+//image images/Function.jpg
+
+For a function, leave the X-value empty or set it to "x", and enter
+an expression dependong on "x" for the Y-value. For a parametric
+curve, one needs two expressions, one for the X-value and one for the
+Y-value.
+
+The program will increment the parameter variable from start to end
+using the given step size. If the function is valid between two
+parameter steps, a line segment is drawn in the construction
+using the construction coordinates.
+
+This type of functions can be used in other functions. The Y-value
+will be evaluated then.
+
+Functions and curves can be filled. For a parametric curve, the center is
+0, but can be changed. To do that use the __properties__ dialog and
+press the "Select Center" button. Functions can be reduced to a
+sequence of points. If a function is filled additionally, a Riemann
+step function will be drawn.
+
+Display functions or curves can intersect with other objects, and
+points can be fixed on the function graph. Geometrically these
+functions behave like a curve.
+
+User defined functions of several variables cannot be plotted. Their
+purpose is to be used in other expressions. Consequently, there is a
+much simpler dialog for these functions, which can be called by
+holding the __ctrl-key__ while pressing the function icon. One has to
+declare all variables, separated by blanks, in this dialog. The
+variables may then be used in the expression. There is only one
+expression, of course. The function will display its definition,
+unless it is hidden, of course. The display can be moved as usual.
+
+.defaults
+.related line angle colors
+Default settings
+
+You can set the __defaults__ for color and appearance and some other
+properties of new objects.
+
+ - color of objects
+ - thickness of objects
+ - style of points
+ - partial circles
+ - partial lines
+ - segments as arrows
+ - show name
+ - show value
+ - use long names
+ - large and bold font
+ - angles larger than 180 degrees
+ - non-transparent objects
+
+These default settings are available in the menu and as tool bar
+icons.
+
+.edit
+.related mouse properties conditions
+Edit Objects
+
+//image- images/edit.png
+This tool edits the properties of one or more objects. To select
+several objects, hold the __Shift-key___. The edit dialog for more
+than one objects has fields in an invalid state. Only the changed
+fields will be used to update the objects.
+
+If the __Ctrl-key__ is pressed when the tool is selected, the last
+object will be edited.
+
+-> See: Conditional formatting
+
+.conditions
+.related edit properties
+Conditional Formatting
+
+If the __Ctrl-key__ is pressed, when an object is selected with the
+right mouse button, an editor for the __conditional§formating__ of
+objects opens. The dialog is also accessible from the normal
+__properties__ dialog by holding the __Ctrl-key__ for OK, or with a
+separate button, if this option is enabled in the
+__special§settings__.
+
+//image images/Conditions.jpg
+
+For colors, thickness and other properties, it is possible to define
+conditions to activate these properties. This is useful for special
+effects. Each property can have a condition and it will be enabled
+when this condition evaluates to true, which is any value other then
+0.
+
+A special condition is the z-buffer value. It determines the order
+of painting. The objects with the largest z-buffer are painted first.
+All objects that have a z-buffer value are painted after the background
+objects, but before any other objects.
+
+One can set the properties of several objects at once. The current
+object can be referred to by the name "this".
+
+.show
+.related hide
+Hide by Color
+
+//image- images/showcolor.png
+Show or hide objects with specific colors. This is used to make the
+construction clearer.
+
+.grid
+.related zoom move mouse
+Grid
+
+//image- images/grid.png
+This tool toggles the display of the coordinate system, the coordinate
+system with axes, and no coordinate system. There is a dialog to set
+the __color__ and __thickness__ of the coordinate system, and the
+__font__ of the labels.
+
+If the grid is on, new points and points moved by the right mouse
+button __snap__ to grid points. However, it is possible to snap with
+the move tool and the __left§mouse§button__ instead, changing an
+__special§setting__. This may be useful for constructions on Web pages
+with grids.
+
+If the grid is on while the construction is saved, it will be switched
+on, when the construction is loaded. The grid settings are also saved
+in the construction file.
+
+.replay
+.related htmlexport text animatebreak
+Walk through constructions
+
+//image- images/replay.png
+This tool opens a small dialog with navigation buttons containing
+buttons for forward, back, fast forward, fast rewind etc. Additionally,
+__breakpoints__ can be set with this tool. There is a button to jump
+to the next breakpoint. Moreover, breakpoints are important for HTML
+export in replay style.
+
+//image images/Replay.jpg
+
+To set a __hiding§breakpoint__ hold the shift key while setting the
+breakpoint. Hiding breakpoints hide all previous objects up to the
+previous breakpoint. The construction will be split into several
+parts.
+
+Breakpoints and hiding breakpoints can also be set in the properties
+dialog.
+
+During the replay, hidden texts will be visible.
+
+.animatebreak
+.related replay
+Animate breakpoints
+
+This tool automatically goes from breakpoint to breakpoint. To increase
+or decrease the speed, press __Shift-key__ plus the right or left
+__arrow&keys__.
+
+.draw
+.related mouse
+Paint with the Mouse
+
+//image- images/draw.png
+This tool paints sketches above the current construction with the
+mouse in the current __color__. To erase the sketch, press __Esc§key__
+or use the menu entry. The sketch will be saved with the
+construction.
+
+.zoom
+.related mouse grid
+Zoom with the mouse
+
+//image- images/zoom.png
+With this tool it is poosible to zoom in and out by dragging in the
+outer region of the construction, and to move the construction by
+dragging the inner region of the construction.
+
+Note that it is possible to zoom the construction at any time with a
+__mouse§wheel__, and to move the construction with the
+__right§mouse§button__, dragging some empty spot.
+
+One can also zoom with the __+/-§keys__, and move with the
+__arrow§keys__.
+
+The current viewing window is saved in the construction file, and the
+same view will be used when the construction is loaded.
+
+.parameter
+.related runmacro parametertypes target macro
+Macro Parameters
+
+//image- images/macro.png
+__Macros__ are an important tool for more complicated constructions.
+Without macros, only more or less simple constructions can be done.
+Macros collect many constructions steps into one construction step.
+They behave like subroutines in a programming language. Macros are
+like new, user defined tools.
+
+A macro needs parameter objects and target objects, just like the
+segment tool takes two points as __parameters__ and has a segment as
+its __target__.
+
+Macros in Z.u.L. are easily defined. Show the macro, which part of
+your construction it should learn. This part is called the "pattern
+construction". To create the pattern, construct some targets starting
+with some given parameter objects. E.g., you could construct the
+middle perpendicular line of a segment between two points, starting
+with the two points.
+
+//image- images/macro1.png
+In the first step of macro creation, the macro needs to learn your
+starting points. In the next step, you press the macro tool once more
+and define the targets. In the final step, the macro dialog appears
+and the macro definition is finished.
+
+Continue with: Targets
+
+.target
+.related parameter runmacro parametertypes macro
+Targets
+
+//image- images/macro2.png
+After the macro parameters have been selected, another click on the
+macro tool starts the selection of the __targets__. Here, only those
+objects are __visible__ that are constructible from the parameters.
+E.g., the middle perpendicular of two points is visible, if the two
+points have been selected as parameters. All intermediate construction
+steps are visible too unless they are hidden.
+
+Select the targets now. In the example mentíoned above, select the
+middle perpendicular line.
+
+At least one target object should always be defined. Otherwise, all
+visible objects will be constructed by the macro. Moreover, targets
+will get the default __color__ and styles when the macro is used. All
+other objects get the style in the definition pattern, with the
+exception that black objects get the default color. Especially, all
+__hidden__ objects will be constructed in the hidden state. However,
+there is an option to hide all objects that are no targets
+automatically, even if they were visible in the construction.
+Moreover, if the macro is used in the descriptive mode, the user can
+assign names only to target objects.
+
+Another click on the macro tool finished the definition of the macro
+using a dialog. 
+
+Continue with: Macro Definition
+
+.macro
+.related runmacro parametertypes parameter target expression fixedcircle fixedangle hintparameters selfreference defaultmacros macroerror
+Macro Definition
+
+//image images/DefineMacro.jpg
+
+After all __parameters__ and __targets__ have been selected, another
+click on the macro tool defines the macro using a dialog. 
+
+Here, the name of the macro and a __comment__ can be set. It is
+possible to definie the user __prompts__ for each parameter. Comments
+and user prompts are important, since the user might not know, what
+the macro does and what it needs. The prompts are displayed in the
+status line, while the macro waits for parameters.
+
+It is possible to __fix§a§parameter__ to an object A by using "=A" for
+the parameter prompt. The parameter will not be prompted, but instead
+an object "A" will be used, if there is one, and if it has the correct
+type.
+
+Be default, macros hide all objects that are __duplicates__ from
+existing objects. This behaviour can be changed here.
+
+Moreover, it is possible to ask the user for a value for either a
+fixed circle, a fixed angle or an expression while the macro is
+running (__value§prompt__). To do this, enter the name of the circle,
+the angle or the expression into the box in the last line. The user
+will be prompted with a dialog and can enter any arithmetic
+expression. Several comma separated objects can be prompted from the
+user.
+
+-> See also: Hint Parameters, Self reference
+
+.macrobar
+.related macro
+The Macro Bar
+
+On request, a line for macro icons can be used. In the program, select
+this line with a menu option. Also select, if you want to see the
+default icons in that line. In applets, include the parameter
+"macrobar" into the "options" parameter.
+
+Macros are only displayed, if the macro name ends with a text in
+brackets. The program and the applet will try to load an icon with
+that name from a subdirectory named "icons". If no icon is found, the
+text will displayed. Icons should be 32x32 in PNG with transparent
+background, and the aliasing should be optimized for light gray.
+
+The program archive contains the following useful icons.
+
+//image- icons/1.png
+1 - Middle Perpendicular
+
+//image- icons/2.png
+2 - Orthogonal Projection
+
+//image- icons/3.png
+3 - Inscribed Circle
+
+//image- icons/4.png
+4 - Circumcircle
+
+//image- icons/5.png
+5 - Reflection at a Line
+
+//image- icons/6.png
+6 - Reflection at a Circle
+
+//image- icons/7.png
+7 - Reflection at a Point
+
+//image- icons/8.png
+8 - Angle Bisector
+
+//image- icons/9.png
+9 - Angle Bisector as Ray
+
+//image- icons/10.png
+10 - Rotation, given 5 points
+
+//image- icons/11.png
+11 - Rotation, given an angle and 2 points
+
+//image- icons/12.png
+12 - Translation
+
+//image- icons/13.png
+13 - Point
+
+//image- icons/14.png
+14 - Angle
+
+//image- icons/15.png
+15 - Polygon
+
+//image- icons/16.png
+16 - Vector
+
+//image- icons/17.png
+17 - Point on a Line
+
+//image- icons/18.png
+18 - Arc
+
+//image- icons/19.png
+19 - Circle
+
+//image- icons/20.png
+20 - Circle, given three points
+
+//image- icons/21.png
+21 - Fixed Angle
+
+//image- icons/22.png
+22 - Fixed Circle
+
+//image- icons/23.png
+23 - Fixed Segment
+
+//image- icons/24.png
+24 - Function
+
+//image- icons/25.png
+25 - Axes
+
+//image- icons/26.png
+26 - Intersection
+
+//image- icons/27.png
+27 - Line
+
+//image- icons/28.png
+28 - Midpoint, given 2 points
+
+//image- icons/29.png
+29 - Parallel
+
+//image- icons/30.png
+30 - Conic Section
+
+//image- icons/31.png
+31 - Ray
+
+//image- icons/32.png
+32 - Line Segment
+
+//image- icons/33.png
+33 - Perpendicular
+
+.hintparameters
+.related macro
+Hint Parameters
+
+A special feature __hide__s parameters. If a hidden point is chosen as
+a macro parameter during the generation of the macro, and if that
+point is associated to a point generated during the parameter
+selection when the macro is used, this new point will be hidden after
+the macro has been run. 
+
+This feature makes it possible to use points as __hint§parameters__.
+An example would be a macro, which generates an equilateral triangle
+on a segment. The hint would be a third click indicating either side
+of the segment. In this case, an expression must be used for one of
+the 60 degree angles involving the third point, something like
+"60*sign(180-a(P,A,B))".
+
+.selectmacro
+.related runmacro macro
+The Macro Selection Dialog
+
+//image images/MacroSelection.jpg
+
+The macro selection dialog contains a list of all __macros__. Macros
+may be organized in __macro§folders__. To switch to a folder, double
+click on it. To revert to the parent directory, double click on "..".
+To put the macro into a subfolder, rename it like
+"subdir/macroname". __Default§macros__ are displayed in red.
+
+If the dialog allows multiple selections, subdirectories can be selected.
+In this case, all macros in all subdirectories of this subdirectory will
+be selected at once.
+
+.runmacro
+.related parameter parametertypes mouse expressionsyntax fixparameters selectmacro
+Running a Macro
+
+//image- images/runmacro.png
+If the __Shift-key__ is pressed when the macro run tool is selected,
+the previously used macro will be selected automatically. If not,
+and there is more than one macro, the macro selection dialog will
+open. After the user has chosen a macro, the program will __prompt__
+for each parameter, and the expected object type and the prompt will
+be displayed in the __status§line__.
+
+Macros can also be selected with the __right§mouse§button__. Choose
+the macro from the list in the popup menu.
+
+If "Space selects ..." appears in the status line, this parameter
+object can be selected by pressing the __space§key__. This feature is
+useful, if the macro is used several times.
+
+At the end, the macro will be executed. If the macro needs a value for
+a fixed circle or angle (__value§prompt__), it will prompt for this
+value with a dialog box. The user can enter any arithmetic expression
+here.
+
+If the full __preview__ is turned on, the result of the macro
+operation can be seen before the last parameter point is selected.
+
+-> See: Macro Selection Dialog, Macro Definition
+
+.defaultmacros
+.related runmacro save
+Default Macros
+
+When starting, C.a.R. looks for a file named ".default.mcr" in the
+current directory. If there is such a file, the macros contained in
+this file are loaded as __default§macros__. Note, that there is a a
+default macro file in the program archive, which is used, if the
+program does not find another file.
+
+The default macros are protected. They are not deleted when a new
+file is loaded and they are not saved with constructions. To delete
+protected macros, use the menu entry in the macro menu, and select all
+macros. 
+
+You can create default macros yourself. Simply save a file
+".default.mcr" into the current directory. If you need a special
+language version, save the file as ".la_default.mcr", where "la"
+is your language shortcut, of simply overwrite ".default.mcr". the
+language shortcut can be found in the "about" dialog (__languages__).
+
+.macroerror
+.related macro
+Warning: "Object is used, but not in Macro"
+
+This warning occurs if an object in the macro refers to an object not
+contained in the macro. Usually, the reason is a __@...__ reference in
+an expression, maybe in the conditional formatting of objects. Those
+references do not make objects depend on the referred object, and thus
+the objects are still constructable. However, they might not work as
+expected, or might even refer to wrong objects when used.
+
+Another type of references are the bounds of __arcs__. Since those
+bounds depend on the circle most of the time, the circle arc cannot
+depend on the bounds to avoid circular dependencies. If you ignore the
+warning, the arc will be determined by objects with the same name.
+
+A third reason may be the __intersections__ with circles. To choose the
+intersection, the intersection may be kept __away§from__ a given
+point. This might happen automatically, if the other intersection
+already exists. If you ignore the warning, this intersection will be
+kept away from a point with the same name, or will become an
+unrestricted intersection.
+
+To avoid the warning, add the missing object to the parameters, so that
+it is included in the macro.
+
+.localize
+.related defaultmacros
+Localized Help
+
+C.a.R. already runs in many __languages__. However, if you want to
+provide your own version, you should translate
+
+ - ZirkelProperties.properties
+ - info.txt
+
+The __properties__ file needs to be translated into an internal
+Unicode representation by a tool named "native2ascii". It is wise to
+let me do that for you. Simply send me the file. I will also include
+your translation into the current distribution.
+
+The help file should be in your local __encoding__. But is is possible
+to specify any encoding in the properties file.
+
+.fixparameters
+.related runmacro parameter
+Fixed Parameters
+
+You can also fix the selection of macro __parameters__ by pressing the
+__Shift-key__ during the selection. This will create a copy of the
+macro, which is fixed in these parameters. You cannot fix all
+parameters of course.
+
+A parameter can be fixed, while the macro is defined. To do that,
+"=A" is used as the prompt of the parameter. The parameter
+will then be fixed to the object with name "A".
+
+.parametertypes
+.related parameter
+Types of Parameters
+
+Macro should use __points__ as __parameters__. This makes dependencies
+easier to understand and avoids many problems. But other types of
+parameters are possible too.
+
+Lines, rays, segments, and circles generate __secondary§parameters__,
+namely the two end points, or the center respectively. This simplifies
+macro usage. However, the user must take care to use these parameters
+in the same configuration. Two concentric circles must be concentric.
+If the segments AB and BC are macro parameters, then the user must
+choose segments EF and FG. In these cases, it might be better to use
+points as parameters.
+
+Lines and rays are of two types: with two defining points, and with
+one defining point (e.g., parallel lines). In the macro, lines, rays,
+and segments are stored as pointless lines, if their defining points
+are not used in the target construction, or if they have only one
+defining point. The user can then choose any line as a parameter. If
+one of the two defining points is used, the user will have to choose a
+line, ray or segment of the same type. Again, this is complicated, and
+it may be best to use points.
+
+.htmlexport
+.related runningdemo save comment exportdialog jobexport
+HTML Export
+
+C.a.R. can generate __HTML__ pages for your constructions. These HTML
+pages contain an __applet__ that displays the construction. In the
+dialog for HTML export the appearance of the page and the applet can
+be set.
+
+To set up a HTML page, a construction file has to be created, and,
+for assignments with solution pages, another one for the solution.
+One needs to publish
+
+ - the HTML page just generated, 
+ - a solution page, if present,
+ - style sheets, if present, 
+ - the applet archive zirkel.jar,
+ - the construction file. 
+
+Note that __tracks__ and __animations__ are saved with the
+construction. They will automatically reload in constructions, which
+are displayed in applets. In this case, there is no user interaction.
+So you should use the plain or border style for these applets.
+
+It is best to have only one applet on each HTML page.
+
+-> See also: HTML Export dialg.
+
+.htmlexporttemplate
+.related htmlexport save comment settings
+HTML Export with Templates
+
+__Templates__ are a comfortable way to export your construction to
+__HTML__. The program loads a template for the HTML page, and fills in
+the necessary information replacing all placeholders on the template
+page. The dialog is much shorter, since most information is
+continained in the template file, including __applet__ size, applet
+and page colors, style sheets and archive position.
+
+The __documentation__ of C.a.R. contains some templates to start with.
+Template files use the extension "*.template". You can edit these
+template files with any file or HTML editor. Foreign language users
+should disable __UTF-8__ in the settings dialog, or they must use an
+editor, capable of handling UTF properly (e.g my text editor JE, the
+HTML editors of Mozilla, or Frontpage by MS, and many others). You can
+base your template on the template files that come with the
+documentation.
+
+The following placeholders are recognized in template files.
+
+#title
+  Replaced by the construction title as shown in the export dialog.
+
+#comment1,#comment2,...
+  This will be replaced by the section of the construction comment
+with the corresponding number. Comment sections are separated by lines
+consisting of "~". Each paragraph of the comment section will be
+bracketed by <p>...</p>.
+
+#comment
+  Works like text, but does not look for comment sections.
+
+#text1,#text2,...
+  Works like #comment1,... but does not generate paragraphs
+<p>...</p>. The user can provide any HTML-tags he likes.
+
+#text
+  Works like #text1,... but does not look for comment sections.
+
+#parameter
+  Inserts the applet parameters: file or job, style, tools and options.
+
+#color
+  Inserts the applet parameters for colors.
+
+#font
+  Inserts the applet parameter for fonts and digits.
+
+#codebase
+  The codebase from the export dialog.
+
+Here is a very simple template file.
+
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+  <HTML>
+  <HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+  <TITLE>
+  #title
+  </TITLE>
+  </HEAD>
+  <BODY BGCOLOR=#F0F0F0>
+  <H1>
+  #title
+  </H1>
+  <CENTER>
+  <P>
+  <APPLET CODE="rene.zirkel.ZirkelApplet.class" #codebase WIDTH="400" 
+  HEIGHT="400" ALIGN="CENTER">
+  <PARAM NAME="color" VALUE="240,240,240">
+  #parameter
+  </APPLET>
+  </P>
+  </CENTER>
+  #comment
+  </BODY>
+  </HTML>
+
+-> See also: Export Dialog
+
+.exportdialog
+.related htmlexport jobexport
+Export Dialog
+
+//image images/Export.jpg
+
+Applets can have several styles.
+
+- Plain: The __applet__ has no border. The user can only display
+hidden elements and move points. One should use the same color for the
+page and the applet in this case. 
+
+- Border: The applet gets a border. 
+
+- Border and Icons: The applet gets a border and icons. The user can
+construct things. 
+
+- Border, Icons and Status: The applet gets a status line. The status
+text is displayed in the browser status line too. 
+
+- Border, Icons and Input Line: The construction must be done in
+descriptive (non-visual) mode. 
+
+- Replay with Breakpoints: Three buttons are displayed to enable
+navigation from breakpoint to breakpoint. To set the breakpoints, use
+the replay tool. 
+
+Title of Page: This is the title of your page in <H1> style.
+
+CSS Style-Files: Cascading Style Sheets are useful to give several
+pages a common appearance. If you do not use them, leave the input
+empty. Use a path relative to the program archive.
+
+Width, Height: The dimensions of the applet display.
+
+Construction File: The name of the file containing the construction,
+usually in the same directory as the HTML file. However, the file
+names must be relative to the program archive. Absolute URLs and paths
+are not allowed here.
+
+Jar File: This is the program archive. The path must be relative to
+the HTML page.
+
+Colors: You can choose a color for the page background and for the
+applet background. The color can be chosen with the button below.
+
+Save Digits: Will save the settings for the number of digits. Should
+be enabled.
+
+Show Comment: This will put the __comment__ below the applet. All
+browsers should be able to handle the default __UTF-8__ encoding. If
+not switch to the Windows encoding in the special settings.
+
+Moreover, there are switches to save the defined colors for the
+construction elements and for the construction background. The
+background of the construction can be different from the background of
+the applet and the background of the page.
+
+Popup Menu: You can prevent the popup menu to appear.
+
+Zoom with Mouse: You can enable the zoom and pan with the mouse button
+and wheel.
+
+Restricted Movement: This allows only movements, such that no points
+get invalid. It works like the automatic track tool.
+
+Tools: These two icon bars let you choose the __tools__, which should
+be displayed to the user. In any case, one should provide the undo
+tool. With the special icon for two lines the user gets two lines of
+tools.
+
+The user can only define macros, if you give him the macro tool. And
+he can run only macros only, if this tool is available.
+
+The icons with the question mark are switches for the object selection
+dialog, the question for points on objects and for intersections.
+By default, all these dialogs and questions are turned off in applets.
+
+In the non-__visual§mode__, the icons help the user to find the
+syntax. In this mode, all construction tools work.
+
+.jobexport
+.related htmlexport exportdialog
+Export Assignments
+
+The export dialog has some additional features for __assignments__.
+
+Display as Assignment: Needs to be checked to save the
+construction as an assignment.
+
+Solution File - Jump - Save - Link: These settings allow the automatic
+generation of a solution page, which is a separate page to display the
+solution. After the user finishes the assignment, the browser can jump
+directly to the solution page. One can also set a link to this page
+below the construction.
+
+Comment: Exports the assignment comment, of course. The construction
+comment is only shown on the solution page.
+
+.runningdemo
+.related htmlexport online
+Creating a running demo
+
+It is possible to create an __applet__ to load a series of
+constructions and display them to the user at a given rate
+(__demo§show__). The applet syntax is quite different and there is no
+automatic export.
+
+An example of the applet code looks like this.
+
+ <APPLET ARCHIVE="zirkel.jar" CODE="rene.zirkel.ZirkelApplet.class" 
+       WIDTH="500" HEIGHT="565" ALIGN="center">
+ <PARAM NAME="demo" VALUE="demo.xml">
+ <PARAM NAME="color" VALUE="244,244,242">
+ </APPLET>
+
+The file "demo.xml" contains the file list. It is an XML file with a
+straightforward syntax. Here is a sample.
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <Demo delay="30">
+ <File name="Uhr.zir" delay="20">Clockwork</File>
+ <File name="Cindarella-Maschine.zir">Cindarella machine</File>
+   ...
+ </Demo>
+
+The delay parameters are in seconds.
+
+.visual
+.related expressionsyntax runmacro
+Descriptive Constructions
+
+In this non-__visual§mode__, there is an input line below the
+construction. The following differences apply.
+
+ - Choosing a tool will only display an input pattern. 
+ - The necessary construction parameters must be supplied by name. 
+ - The name of the constructed object may be given left of an equality sign =.
+ - The construction is carried out be pressing Return. 
+
+There is a fixed __syntax__ for the input.
+
+ name=function(parameter,...)
+ name1,name2=function(parameter,...)
+
+The second line applies to intersection and macros with several
+targets.
+
+If the name is missing, the new object will get the default name. 
+
+Here is a short Description of the syntax. Note, that __expressions__
+may be used in all places, where a value is expected. Empty brackets
+can be omitted.
+
+Syntax 
+ Long 
+ DEscription 
+ 
+A=P() 
+ point 
+ Generates a point at random position. 
+ 
+A=P(0,1) 
+  A fixed point. 
+ 
+a=s(B,C) 
+ segment 
+ A segment from B to C. 
+ 
+a=s(B,2) 
+  A segment of fixed length. 
+ 
+a=g(B,C) 
+ line 
+ A line through B and C. 
+ 
+a=r(B,C) 
+ ray 
+ A ray from B to C. 
+ 
+k=k(A,B) 
+ circle 
+ A circle around A trough B. 
+ 
+k=k(A,2) 
+  A circle with fixed radius. 
+ 
+k=k(A,B,C) 
+  A circle around A with radius BC. 
+ 
+A=S(g,g) 
+ intersection 
+ An intersection between two lines. 
+ 
+A,B=S(k,k) 
+ Both intersections between circles, or circles and lines. 
+ 
+away(A,P) 
+ away 
+ Keeps the intersection A away from the point P. 
+ 
+M=M(A,B) 
+ middle 
+ The midpoint of AB. 
+ 
+g=pl(g,A) 
+ parallel 
+ The parallel through A to g. 
+ 
+g=p(g,A) 
+ plumb 
+ The perpendicular through A to g. 
+ 
+a=w(A,B,C) 
+ angle 
+ The angle A,B,C 
+ 
+a=w(A,B,90) 
+  An angle of fixed size. 
+ 
+A=area(P1,P2,P3) 
+ area 
+ Creates an area with these corners. 
+
+Q=quadric(P1,P2,P3,P4,P5)
+ Creates a conic section through these points.
+
+F=function(a,b,d,t,xt,yt)
+ Creates a function on [a,b] with step size d, plotting xt,yt,
+ which are expressions depending on the variable t.
+
+value(P,0,1) 
+ value 
+ Fixes the coordinates of the point 
+ 
+value(s,2) 
+  Fixes the length of the segment. 
+ 
+value(k,2) 
+  Fixes the radius of a circle. 
+ 
+value(w,90) 
+  Fixes the size of an angle. 
+ 
+value(true,o) 
+  Sets the display of the value for o. 
+ 
+value(o) 
+  Sets the display of the value for o to on. 
+ 
+value(true) 
+  Sets the default display of values. 
+ 
+name(o,p) 
+ name 
+ Sets the name of o to p. 
+ 
+name(true,o) 
+  Sets the display of the name for o. 
+ 
+name(o) 
+  Sets the display of the name for o to on. 
+ 
+name(true) 
+  Sets the default display of names. 
+ 
+hide(true,o) 
+ hide 
+ Hides or un-hides o. 
+ 
+hide(o) 
+  Hides o. 
+ 
+hide(true) 
+  Sets the default hidden state for objects. 
+ 
+col(green,o) 
+ color 
+ Sets the color of o to red, green, blue or brown. 
+ 
+col(green) 
+  Sets the default color. 
+ 
+th(thick,o) 
+ thickness 
+ Sets the thickness of o to thick, normal or thin. 
+ 
+th(thick) 
+  Sets the default thickness 
+ 
+type(square,P) 
+ type 
+ Sets the point type to square, circle, diamond or point. 
+ 
+type(square) 
+  Sets the default point type. 
+ 
+part(k) 
+part(true,k) 
+ partial 
+ Sets the object k to partial display or full display. 
+ 
+part(true) 
+  Sets the default partial state. 
+ 
+fill(o) 
+fill(true,o) 
+ fill 
+ Sets the object o to filled state or outline state. 
+ 
+back(o) 
+back(true,o) 
+ background 
+ Sets the object o to the background or not. 
+ 
+window(0,0,5) 
+ window 
+ Sets the view window to width 2*5 and center (0,0). 
+
+valid(o)
+valid(true,o)
+ Treat segments and rays as lines in intersections and in
+ perpendicular lines. o is the intersection or the perpendicular.
+
+obtuse(a)
+obtuse(true,a)
+ Set angles so that they can become greater then 180 degrees.
+
+solid(a)
+solid(true,a)
+ Set the object to the nontransparent state.
+
+restrict(c,A,B)
+ Restrict a circle to become an arc from A to B.
+
+valid(o)
+valid(true,o)
+ Remove the restrictions from perpendicular lines and intersection.
+ These objects will be valid, even if the intersection is outside a
+ segment or an arc.
+
+rename(A,B)
+ Rename the object A to B.
+ 
+__Macros__ can be used too. Names left of = will be assigned to
+targets. If there are several targets, the names must be separated by
+commas. One additional parameter may be used to assign a value for an
+object, which would be prompted in interactive mode.
+
+.descritivefiles run
+.related visual save
+Descriptive constructions in files
+
+__Descriptive§constructions__ can be loaded from a file. Alternatively
+edit the description and then load the construction. 
+
+The syntax is line oriented and uses the commands described above.
+Line comments //... may be used. The files may contain __macros__ in
+the following format.
+
+ macro U 
+ // Constructs a circle through three points
+    parameter A=point // Select first point
+    parameter B=point // Select second Point
+    parameter C=point // Select third point
+    g1=MS(A,B)
+    g2=MS(A,C)
+    U=intersection(g1,g2)
+    target k=circle(U,A)
+ end
+
+The indents are optional. __Comments__ in the parameter lines are used
+as prompts, if the macro is used interactively. This macro calls the
+macro MS with two parameters.
+
+ macro MS
+  param A=point
+  param B=point
+  partial(true)
+  k1=circle(A,B)
+  k2=circle(B,A)
+  partial(false)
+  P1,P2=intersection(k1,k2)
+  target g=line(P1,P2)
+ end
+
+If the command constructing the target constructs two objects, the
+target can be defined separately.
+
+ A,B=intersection(g,k)
+ target B
+
+If a macro has more than one target, all targets must be assigned.
+
+ A,B=test(...)
+
+Prompts are defined by the keyword prompt in front of an object name.
+
+ k=circle(A,5)
+ prompt k
+
+Here is an example of a macro using a segment as a parameter.
+
+ macro MS
+ // Mittelsenkrechte
+  A=point
+  B=point
+    parameter s=segment(A,B)
+    ...
+ end
+
+If circles are used as a parameter, there is the special syntax
+
+ M=point
+ parameter circle(M)
+
+This kind of circle can only be used in parameters.
+
+The special command "showall" shows all intermediate objects.
+Otherwise, only targets will be visible. The command "invisible"
+superhides all objects that are no targets.
+
+.assignments
+.related save restricted colors comment
+Assignments
+
+Assignments (or jobs) are incompletely displayed constructions, which
+the user is supposed to finish. The computer will only check for the
+constructed target object, and the solution itself might be different
+than the give one. The user will receive a message, as soon as he has
+completed the construction. The target objects will be displayed in a
+light color, unless they are hidden before the construction is saved.
+
+Assignments are generated by choosing the last object to be displayed
+to the user. Furthermore, there must be target objects. Targets are
+not checked for the solution, if they are generated pressing the shift
+key.
+
+To test the assignment, click on the menu entry for this. In contrast
+to the user, you will have the complete set of tools available,
+however. You can use the restricted icon bar to save the assignment.
+
+Area objects as targets should be defined by the least set of corner
+points. If the solving user creates additional points on the sides of
+the polygons those points will be skipped.
+
+.browser
+.related online
+Starting the help browser
+
+To start the __HTML__ help in the __browser__, you need to configure
+it. Enter the command line to the browser in the dialog. If the path
+contains blanks, include the browser in double quotes.
+
+Moreover, add the path to the help index.html file. This should be
+preconfigured already. If no help is found, the configuration dialog
+will use the web page.
+
+The default browser is the Explorer on Windows systems, and Netscape
+elsewhere.
+
+.comment
+.related assignments parameter htmlexport
+Comments
+
+//image- images/comment.png
+Every construction can have a comment. __Comments__ will be displayed
+when the user loads the construction. Moreover, comments can be
+exported to __HTML__.
+
+Assignments may have a special comment, displayed to the user, when
+the assignment is presented. This comment should explain what to do in
+the assignment.
+
+__Macros__ should have a comment too, explaining their usage
+and purpose. The macro comment is displayed in the macro selection
+dialog.
+
+.fonts
+.related zoom save sizes
+Fonts
+
+__Fonts__ can either be set globally or for each object. Global
+settings take precedence. Fonts are scaled with the screen height.
+However, there is a minimum for this scaling.
+
+C.a.R. uses fonts in two sizes and strokes. Fonts and points are
+scaled with the construction, however. For small windows or applets,
+this would lead to very small fonts and points. Thus there is a
+minimal point size. Bold fonts are recommended for small screen sizes
+and high resolutions.
+
+Note, that fonts for the __graphics§export__ can be scaled to an exact
+size. The screen preview for the graphics export scales the fonts to
+get the same visual appearance of the construction. This overrides the
+global setting for the font size and the minimal font size.
+
+.sizes
+.related fonts
+Sizes
+
+In this dialog, one can set the minimal line, point and font sizes.
+To keep the same look on all screen sizes, these items are
+scaled with the screen height. But one can set __minimal§sizes__ here.
+
+Moreover, one can set the arrow size, and the selection size for
+cursor selection of objects.
+
+Note that for graphics exports, one may set the these values exactly,
+independent of the size of the output. This overrides any other
+settings.
+
+The minimal sizes can be exported to __applets__.
+
+.save
+.related assignments parameter visual print defaultmacros filedialog
+Saving and loading files
+
+Constructions are saved in __XML__-format to computer files. This
+format is human readable. Normal constructions have the extension
+".zir", and assignments have the extension ".job". Macros use ".mcr".
+
+Constructions may contain __macros__. There is a switch, if the
+currently defined macros (besides the __default§macros__) should be
+saved along with the constructions or not. To avoid accumulating
+macros from several constructions, it might be a good idea to delete
+all macros before a new construction is loaded. There is a switch to
+do this by default.
+
+Files can be __compressed__ by adding "z" to their extension. There is
+no need to do this, unless you want to minimize download time, when
+the file comes from a server.
+
+There are special menu items to load __assignments__, to load
+__macros__, and to load __descriptive§constructions__ in files.
+
+-> See: File Dialog
+
+.filedialog
+.related save settings
+The File Dialog
+
+C.a.R. implements an own __file§dialog__, since the file dialogs of
+Windows and Linux have some defects when used from Java. If you want
+to use the normal system file dialog, however, you can switch to it in
+the __special§settings__.
+
+//image images/FileDialog.jpg
+
+The file dialog of C.a.R. uses a __history__ for files, directories
+and filters. The directory and file history has a special drop down
+choice menu, and the history of the file and pattern fields show when
+the cursor up or down __arrow§keys__ are pressed in these fields.
+
+Navigate in the directories with a __double§click__ on the directory
+name in the left panel. The "Back" button opens previous directories.
+To choose a file, you can double click on its name in the right panel,
+or select it and use the action button.
+
+It is possible to enter several __file§patterns__ separated by spaces.
+File patterns can contain one or more place holders, "?" for single
+letters and "*" for strings.
+
+A new directory can be created. Enter the name of the directory into
+the directory field, then press the button. Files or directories
+cannot be deleted in this dialog.
+
+The home button brings you to the __home§directory__ of C.a.R., if
+installed in the home directory of the user. The English name is "CaR
+Files". If there is no such directory, the button brings you to the
+user home directory. In Windows, the English name is "My Documents".
+In __Linux__, the home button brings you into your home directory. It
+is possible to change the home directory by pressing the home button
+with the __shift-Ctrl-key__. The current directory will become the new
+home directory for C.a.R. Another click with these keys restores the
+old settings.
+
+.print
+.related exportsettings print
+Print and Export Constructions
+
+There are several ways to __export§constructions__ to other
+programs or view them externally. 
+
+First of all, you can __print__ your constructions. There is an option
+to print in __exact§scaling__, so that units of 1 are 1 cm exactly.
+Make sure, the construction window fits on the paper for this option.
+
+Moreover, you can export in various graphics and vector formats
+(__graphics§export__). For word processors, I recommend using __PNG__,
+properly scaled for the exact output width. There is not much sense in
+using PDF or PS for print, since the line widths, the fonts and the
+point sizes have to be scaled for the exact output size.
+
+For PNG output, a dialog will open, where the output size is set.
+Alternatively, use a factor relative to the screen size. It is also
+possible to determine the size using the graphics width and height in
+cm and the resolution in __dpi__. There is a drop down selection box
+for various formats. If "1:1 scaled" is used, a scaled version (1 unit
+= 1 cm) with a 300 dpi resolution is used. Make sure, the output fits
+on your paper.
+
+Since lines, fonts and points may become too small in small pictures,
+it is possible to __scale__ these sizes in cm. Use the __preview__ to
+see the effect on the screen.
+
+For use with the typesetting program __LaTeX__, C.a.R. can generate
+two accompanying files, the bounding box file, and a file to draw the
+image. The latter has the same name as the PNG file, but an extension
+"ztx" (zirkel tex). It is possible to let LaTeX do the drawing of the
+strings and equations in the construction. In the dialog, select the
+type of strings that should be done by LaTeX. The graphics export will
+generate the necessary LaTeX commands. This type of LaTeX export will
+work with pdflatex and latex. In the LaTeX source, it is necessary to
+import the "__graphicx__" package, and to load the image file with an
+input command, like in
+
+ \begin{figure}
+ \centering
+ \input{image.ztx}
+ \end{figure}
+
+C.a.R. can also copy graphics to the __clipboard__. The same scaling
+will apply as in the PNG output. If a screen dump of the construction
+is needed, use "screen size" in the scaling dialog.
+
+For __PDF__ output, only set the picture sizes in cm. PDF can also
+scale lines, fonts and points. Of course, you will then have to set
+the intended print width of the PDF output.
+
+.construction
+.related hide reorder
+List of objects
+
+//image images/Gui.jpg
+
+C.a.R can display an __object§list__ of your construction with the
+corresponding menu entry. By default, the list is turned on. This list
+can be used to edit invisible objects. In fact, it is the only way to
+access completely hidden construction steps. The lines in the list
+have the same colors as the objects. Completely hidden objects are in
+brackets.
+
+Press the question mark or the right mouse button to access the popup
+menu with more options.
+
+To select objects click on them. To select or deselect more objects
+click with the __Ctrl-key__. To select a range of objects use the
+__Shift-key__.
+
+It is possible to restrict the display to certain types of objects
+with the drop down menu in the line above the object list. 
+
+The view is either sorted in the order the objects were constructed,
+or in the order the objects are stored. Note that the program may
+change the order of the objects to make sure no object refers to
+another object, which is defined later.
+
+Objects can display the description, the value or the formula besides
+the name of the object. Moreover, there are special display styles for
+hidden objects, completely hidden objects, invalid objects and basic
+(__moveable__) objects.
+
+The object list can be copied to the __clipboard__.
+
+.colors
+.related htmlexport
+Set colors
+
+Set the various colors of C.a.R. to your liking. Colors will not be
+saved with your construction, but are exported to HTML.
+
+Colors are composed in the red, green and blue color model. Switch
+back to default colors for best compatibility.
+
+.settings
+.related restricted iconbar tips beginner
+Special Settings
+
+This dialog contains some __special§settings__ for advanced users.
+Some of these settings are affected by the beginner mode, however.
+
+First of all, there is a switch for the display of object labels while
+the object is moved. This option may be disturbing, but it is quite
+useful in some cases. C.a.R. can restrict that to fixed objects only.
+
+Then, there are switchs for some questions the program asks before
+critical actions.
+
+If the dialog to choose objects is disabled, the program will always
+select the first object, even if the selection cannot be determined
+uniquely from the mouse position.
+
+It is also possible to turn off the construction preview, or restrict
+it to points. By default, most tools show a preview of the result
+before the last parameter point is selected. In the beginner mode, only
+points are shown in preview, since other objects tend to mislead the
+users.
+
+The icon bar can be placed to the lower edge of the window, and
+tooltips can be disabled.
+
+Some users want to use the system __file§dialog__. I prefer mine, and
+it does indeed have some advantages. However, it cannot delete or
+rename files. It can create directories, however.
+
+One should use __UTF-8__ encoding all the time, but C.a.R can also
+choose to use the local encoding for construction files. This affects
+comments and descriptions in the files. Use the local setting only, if
+you want to edit the construction yourself, and if you do not have a
+UTF-8 editor.
+
+In the __smartboard__ mode, dragging will behave differently. A
+smartboard cannot report mouse movements, so they are replaced by
+drags. You have to click once more to complete the construction. This
+is only important for the preview of construction steps.
+
+By default, the program writes __backups__ of the files before
+overwriting. If you find you do not need these, disable the backup
+feature.
+
+The user can choose to call the macro popup dialog with a single
+or a __double§click__ of the right mouse button.
+
+On a slow system, one may want to disable the smooth graphics with
+__anti-aliasing__.
+
+.exportsettings
+.related settings print
+Settings for Graphics Export
+
+Normally, points and fonts are scaled. But the minimal sizes are 
+respected, if this is enabled, since fonts would become to small
+otherwise. To get large fonts in small prints, use the scaling feature
+in the __graphics§export__.
+
+Bitmaps are normally generated on a white __background__. You can tell
+the program to use your background color.
+
+.reorder
+.related circle angle expressionsyntax
+Reorder points
+
+It is possible to change the __order__ of the construction manually.
+There is a special tool for this, and if you select an object with
+this tool, the program will try to move this object as far to the
+start of the construction as possible. This may be useful to control
+the sequence the objects are drawn.
+
+However, reordering is obsolete now. C.a.R. reorders the cosntruction
+chain itself, if objects refer to later objects. Moreover, it is
+possible to control the sequence of drawing using
+__conditional§formatting__.
+
+.tips
+.related online browser start move intersection expression reorder
+Tips
+
+In this help section, we give some tips to solve common problems.
+
+Invalid Constructions. To test a construction, move one of the basic
+points. If the construction does not remain valid, the most common
+reason is that you did not choose an intersection properly. Instead,
+you may have defined a line that goes through the intersection point
+only by chance.
+
+Wrong Intersection. If a construction becomes invalid, whenever the
+order of the basic points is changed or if one point is flipped to
+another side, you are facing the problem to choose the right
+intersection point. So, if you want your construction to be valid for
+all situations, make sure, you choose all intersections properly. If
+the automatic selection of C.a.R. fails, you can select the
+intersection by hand. Open its properties and press "Close to" or
+"Away from". Then choose a point that should be nearer to or further
+away from the intersection point. You can also set intersection close
+to itself. In this case, the intersection will behave continously.
+
+.keyboard
+.related gui delete zoom mouse iconbar
+Using the Keyboard
+
+Most commands in C.a.R. have __keyboard§shortcuts__. Have a look into
+the menu to find the shortcut for each command. Shortcuts depend on
+the language.
+
+Note, that you need to give your construction the keyboard focus if
+it looses the focus. Click on an empty spot with the right mouse
+button.
+
+Useful shortcuts are the __backspace§key__ to delete the last action,
+the __+/-__ key to zoom in and out, and the arrow keys to move the
+construction. Moreover, __F1__ will open the context sensitive help.
+
+The important __Esc§key__ resets the current tool.
+
+Note that the __Ctrl-key__  and the __Shift-key__ change the behavior
+of some tools.
+
+The __Space§key__ is used by Java and Windows versions to press
+buttons. Some systems use the __Return§key__ instead.
+
+.image
+.related background
+Images
+
+__Images__ can be added to the construction as objects. Images use
+either two __anchor§point__s or three. In the first case, the image is
+rotated and scaled, in the second case, an affine transformation is
+used. If you want only two points, double click the second point.
+
+These images must be in the same directory as the construction.
+
+-> See also: Background Images
+
+.language
+Set Language
+
+By default, C.a.R. starts with the language of the system it is running
+on. It can be commanded to start in any other of the implemented
+__languages__. Use the following shortcuts for the current languages:
+
+ English - en
+ German - de
+ French - fr
+ Netherlands - nl
+ Italian - it
+ Spanish - es
+ Portuguese - pt
+ Brazilian - br
+ Slovenian - sl
+ Danish - da
+ Norway - no
+ Poland - pl
+ Russian - ru
+ Korean - co
+
+Either use the menu item to set the language or set the command line parameter
+like "-l de" for the German language.
+
+.selfreference
+.related macro point
+Self Reference
+
+A point may contain references to itself to fix its coordinates, or to
+set the appearance in the __conditional§formatting__. If a point
+refers to itself only (__@-references__ do not count), it is called a
+__self§referring__ object. It will then be moveable by the user.
+First, the rest of construction will be updated, then the point.
+
+This feature allows to give the point to a special behavior, when it
+is moved. E.g., one could restrict the movements of the point this
+way. Note, that this is only necessary in very special situations,
+since points can __bind__ to the inside of angles, polygons and
+circles, and of course to the boundary of many other objects.
+Moreover, there is a __grid__ setting for points, which keeps it on an
+integer grid. All these points are moveable, but fixed points.
+
+Such moveable fixed points can also be created by __macros__. The
+point must be a macro parameter, and this parameter must be selected
+with the shift key, when the macro is created. When the macro runs,
+the points chosen for the parameter gets the coordinate fixes.

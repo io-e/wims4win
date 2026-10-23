@@ -1,0 +1,67 @@
+Geometrieprogrammet "JavaPasser"
+
+	Dette er en dansk oversættelse af Java-versionen af mit program 
+	Z.u.L. (Zirkel und Lineal) som oprindelig kun kørte under Windows.
+	Her er der tale om en fuldstændig omprogrammering med et ændret 
+	filformat som bygger på  Web-standarden XML. 
+
+	Programmet skal simulere geometriske konstruktioner på computeren,
+	sådanne konstruktioner som er almindelige i skolen. Til forskel 
+	fra konstruktioner på papir kan udgangspunkterne bagefter flyttes,
+	så man kan opnå yderligere indsigt i konstruktionen.
+	Desuden er det muligt at tegne spor (stedlinjer og indhyldingskurver)
+	og at definere og bruge konstruktions-makroer. 
+	
+	Programmet er Freeware under Gnu GPL (General Public License). 
+	På hjemmesiden ovenfor findes detaljerede oplysninger om licensen. 
+	Det væsentligste punkt er at kildekoden også i forandrede versioner
+	skal forblive frit tilgængelig.
+	
+	JavaPasser fungerer i det væsentlige som ethvert andet program med en
+	intuitiv brugerflade. På hjemmesiden findes en fuldstændig 
+	dokumentation som også kan installeres lokalt hvis den ikke allerede
+	er tilstede. Denne dokumentation findes dog endnu ikke på dansk.
+
+	Dokumentationen er skrevet i HTML og kan ses med enhver browser.
+	Der er også en vejledning på hjemmesiden, og for at gennemarbejde 
+	den skal man bruge en moderne browser der kan køre Java-Appletter. 
+
+	Man lærer hurtigt at bruge programmet, bare man er opmærksom på:
+	
+	-	JavaPasser bruger højre musetast. ((I systemer uden højre 
+		musetast må man bruge en tastkombination). 
+		Højre musetast bruges til at
+		-	ændre objektegenskaber
+		-	flytte udgangspunkter for konstruktionen
+		-	flytte labels som angiver objektnavne.
+	
+	-	Programmet har tastaturgenveje som er anført i parentes ved 
+		de enkelte menupunkter. For at de virker, skal tastaturfokus 
+		ligge i konstruktionsområdet. Hvis det ikke er tilfældet, 
+		højreklikker man på et tomt sted i området. 
+	
+	-	Skift-klik og Control-Klik har en særlig betydning: 
+		
+			Skift-klik bruges under konstruktion med musen til at 
+			give objekter en fast værdi (et punkts koordinater, 
+			et linjestykkes længde, en cirkels radius 
+			eller en vinkels størrelse). 
+			
+			Skift-klik bruges også når der vælges flere objekter 
+			på en gang, f.eks. ved tegning af polygoner. 
+			Der klikkes med skift-klik indtil det sidste objekt, 
+			og når skift-tasten slippes er programmet klar over 
+			at der ikke skal vælges yderligere objekter.
+		
+			Control-klik skjuler objekter. 
+	
+	-	I statuslinjen under konstruktionsområdet bliver der med ord 
+		beskrevet hvilken handling programmet venter. 
+
+	
+Forfatteren ønsker god fornøjelse!
+
+Priv.-Doz. Dr. R. Grothmann
+http://www.rene-grothmann.de/
+
+Dansk oversættelse: Niels Johnsen, niels.johnsen1@skolekom.dk

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+
+	This is the Ant build script for MathView.jar.
+	to build ,type:
+	ant -v 
+	to clean , type
+	ant -v clean
+	
+-->
+
+
+<project name="MathView" default="jar" basedir=".">
+
+	<description>MathView build file</description>
+	<!-- Set global properties for this build. -->
+	<property name="version"          value="0.1"/>
+	<property name="source-dir"       location="src"/>
+	<property name="build"        location="build"/>
+	<property name="dist"         location="dist"/>
+	<property name="debug"            value="false"/>
+	<property name="debuglevel"       value="lines,var,source"/>
+	<property name="java-level"       value="1.6"/>
+	
+	<!-- Compiles the classes.  -->
+	<target name="compile" description="Compile the source">
+		<delete includeEmptyDirs="true" quiet="true" dir="${build}"/>
+		<mkdir dir="${build}"/>
+		<javac srcdir="${source-dir}" destdir="${build}"
+		    deprecation="yes" debug="${debug}" debuglevel="${debuglevel}"
+		    source="${java-level}" target="${java-level}"/>
+
+	</target>
+	
+	<presetdef name="javac">
+	    <javac encoding="UTF-8" />
+	</presetdef>
+
+	<!-- Creates the jar file. -->
+
+	<target name="jar" depends="compile" description="Create MathView jar">
+<exec executable="/bin/sh">
+    <arg line="-c 'mkdir -p ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/alphabet'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'mkdir -p ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/relation'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'mkdir -p ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/rsets'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'mkdir -p ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/symbols'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv  ${source-dir}/fr/ove/openmath/jome/ctrlview/bidim/images/alphabet/*.gif ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/alphabet/'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv  ${source-dir}/fr/ove/openmath/jome/ctrlview/bidim/images/relation/*.gif ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/relation/'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv ${source-dir}/fr/ove/openmath/jome/ctrlview/bidim/images/sets/*.gif ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/rsets/'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv ${source-dir}/fr/ove/openmath/jome/ctrlview/bidim/images/symbols/*.gif ${build}/fr/ove/openmath/jome/ctrlview/bidim/images/symbols/'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv ${source-dir}/fr/ove/openmath/jome/model/*.properties ${build}/fr/ove/openmath/jome/model'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv ${source-dir}/fr/ove/openmath/jome/ctrlview/bidim/*.properties ${build}/fr/ove/openmath/jome/ctrlview/bidim'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv ${source-dir}/fr/ove/openmath/jome/ctrl/linear/*.properties ${build}/fr/ove/openmath/jome/ctrl/linear'"/>
+</exec>
+<exec executable="/bin/sh">
+    <arg line="-c 'cp -rv ${source-dir}/fr/ove/openmath/jome/ctrlview/bidim/images/*.properties ${build}/fr/ove/openmath/jome/ctrlview/bidim/images'"/>
+</exec>
+		<mkdir dir="${dist}"/>	
+		<jar destfile="${dist}/MathView.jar">
+			<fileset dir="${build}"/>
+			<manifest>
+				<attribute name="Specification-Title" value="MathView"/>
+				<attribute name="Specification-Version" value="${version}"/>
+				<attribute name="Implementation-Title" value="MathView"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+				<section name="MathView">
+					<attribute name="Specification-Title" value="MathView"/>
+					<attribute name="Specification-Version" value="${version}"/>
+					<attribute name="Implementation-Title" value="MathView"/>
+					<attribute name="Implementation-Version" value="${version}"/>
+				</section>
+			</manifest>
+
+		</jar>
+	</target>
+	<target name="clean" description="clean up">
+	<!-- Delete the ${build} and ${dist} directory trees -->
+	    <delete dir="./build"/>
+	    <delete dir="./dist"/>
+	</target>
+
+
+</project>

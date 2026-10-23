@@ -1,0 +1,23 @@
+Witaj w programie C.a.R. (Compasses and Ruler)!
+
+Albo nigdy wczeœniej nie u¿ywa³eœ tego programu, albo zainstalowa³eœ jego now¹
+wersjê. Ten plik poinformuje Ciê o nowych mo¿liwoœciach, poprawkach b³êdów
+i innych ostatnich zmianach.
+
+Uwaga: Aby nie wprawiæ siê w zak³opotanie, pocz¹tkuj¹cy mog¹ w³¹czyæ na pewien
+czas tryb dla nich przeznaczony w menu Opcje.
+
+Stronê domow¹ programu C.a.R. i adres e-mail autora znajdziesz pod adresem:
+
+http://www.rene-grothmann.de/
+
+Tam te¿ jest dostêpna historia wersji programu wraz z opisem zmian.
+
+W serwisie Yahoo! Groups pojawi³a siê lista dyskusyjna dotycz¹ca tego programu.
+Odsy³acz do niej mo¿na znaleŸæ w dokumentacji.
+
+Dziêkujemy za korzystanie z tego programu! Mo¿esz go swobodnie u¿ywaæ
+i rozpowszechniaæ na warunkach licencji GNU General Public License.
+
+Uwagi na temat polskiego t³umaczenia programu mo¿na przesy³aæ na adres
+ajank@staszic.waw.pl.

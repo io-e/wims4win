@@ -1,0 +1,35 @@
+<html>
+<body>
+<script language="javascript" type="text/javascript">
+function lees(){
+ var input=document.applets[0].getLinear(); 
+ alert("we send to WIMS :\n "+input);
+ }
+</script>
+	<applet id="MathView" code="MathView.class" codebase="dist" archive="MathView.jar" width="640" height="480">
+	    <param name="bgcolor" value="0xffff96">
+	    <param name="bgcolor" value="#ffffff">
+	    <param name="largefont" value="26">
+	    <param name="smallfont" value="14">
+	    <param name="oldreply" value="">
+	    <param name="wimsvars" value="x">
+	    <param name="special_fraction" value="0">
+	    <param name="my_panel" value="module_title:->:sqrt[3]():sqrt[4]():sqrt[5]():sqrt[6]()">
+	    <param name="helptext" value="234/32=">
+	</applet>
+	<p>
+	<input type="button" name=".....TEST......" value=".....TEST....." onclick="javascript:lees();">
+</body>
+</html>
+
+<!--	    <param name=bgcolor value="0xffff50">
+	    <param name="bgcolor" value="0xffff96">
+	    <param name="bgcolor" value="#ffffff">
+	    <param name="largefont" value="26">
+	    <param name="smallfont" value="14">
+	    <param name="oldreply" value="x_1 = -(sqrt(61)+1)/(6) and x_2 = sqrt[12345](1/(4x))">
+	    <param name="wimsvars" value="x">
+	    <param name="special_fraction" value="yes">
+	    <param name="my_panel" value="module_title:->:sqrt[3]():sqrt[4]():sqrt[5]():sqrt[6]()">
+	    <param name="helptext" value="{vlist(f(x)=4*x^2-6*x,.,g(x)=x^2-7*x+5)}->">
+-->

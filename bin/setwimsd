@@ -1,0 +1,33 @@
+#! /bin/sh
+#
+# Fixes the uid of wimsd
+# Must be run as root.
+
+if [ ! "$(id -ru )" = 0 ]; then
+ echo
+ echo $0: Please run this script as root!
+ echo
+ exit 0
+fi
+
+cd `dirname $0`/..
+
+file=public_html/bin/wimsd
+group=`id -ng nobody`
+case "$group" in
+  nobody|nogroup);;
+  *) group=;;
+esac
+if [ -z "$group" ]; then
+  echo $0: your wimsd daemon  is currently unsecure. This is a debugging utility
+  echo used to emulate a simple webserver. If you need this optional
+  echo functionality, please create a group 'nobody' or 'nogroup' containing
+  echo user 'nobody', then re-run this script.
+  echo Aborting
+  exit 1
+fi
+
+if [ -f $file ]; then
+  chown nobody:$group $file
+  chmod 6755 $file
+fi

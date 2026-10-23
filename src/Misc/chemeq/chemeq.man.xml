@@ -1,0 +1,358 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl"
+	href="http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+	"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+
+<!-- Process this file with an XSLT processor, e.g. xsltproc:    -->
+<!-- `xsltproc \
+      -''-nonet \
+      -''-param man.charmap.use.subset "0" \
+      -''-param make.year.ranges "1" \
+      -''-param make.single.year.ranges "1" \
+      manpage.xml'                                               -->
+
+  <!-- Fill in your name for FIRSTNAME and SURNAME.              -->
+  <!ENTITY dhfirstname "Georges">
+  <!ENTITY dhsurname   "Kaznadar">
+  <!ENTITY dhemail     "georgesk@debian.org">
+  <!-- dhusername could also be set to "&firstname; &surname;".  -->
+  <!ENTITY dhusername  "&dhfirstname; &dhsurname;">
+
+  <!-- The version information can also be suppressed (just      -->
+  <!-- remove it or comment it out.                              -->
+  <!ENTITY dhrelease   "2.10">
+
+  <!-- TITLE should be something like "User commands",           -->
+  <!-- "&dhpackage; command-line reference" or similar (see e.g. -->
+  <!-- http://www.tldp.org/HOWTO/Man-Page/q2.html). But limit    -->
+  <!-- the length to 30 chars.                                   -->
+  <!ENTITY dhtitle     "User Manuals">
+  
+  <!-- This is the application/package name.                     -->
+  <!ENTITY dhucpackage "CHEMEQ">
+  <!ENTITY dhpackage   "chemeq">
+
+  <!-- If the application e.g. belongs to a package like X.org,  -->
+  <!-- this should be set to the package/suite name instead of   -->
+  <!-- dhpackage.                                                -->
+  <!ENTITY dhproduct   "&dhpackage;">
+
+  <!-- SECTION should be 1-8, maybe w/ subsection other          -->
+  <!-- parameters are allowed: see man(7), man(1) and            -->
+  <!-- http://www.tldp.org/HOWTO/Man-Page/q2.html.               -->
+  <!ENTITY dhsection   "1">
+
+]>
+
+<refentry>
+	<refentryinfo>
+		<title>&dhtitle;</title>
+		<!-- Better put a suite name instead of &dhpackage; into productname -->
+		<productname>&dhproduct;</productname>
+		<releaseinfo role="version">&dhrelease;</releaseinfo>
+		<authorgroup>
+			<author>
+				<firstname>Georges</firstname>
+				<surname>Khaznadar</surname>
+				<contrib>Wrote this manpage.</contrib>
+				<address>
+					<email>georgesk@debian.org</email>
+				</address>
+			</author>
+		<copyright>
+			<year>2000-2013</year>
+			<holder>Georges Khaznadar</holder>
+		</copyright>
+		<legalnotice>
+			<para>Redistribution and use of this manpage in source and binary forms, with or without modification, are permitted under the terms of the GNU General Public Licenses, version 2</para>
+			<para>THIS SOFTWARE IS PROVIDED BY THE AUTHOR &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</para>
+		</legalnotice>
+		</authorgroup>
+	</refentryinfo>
+	<refmeta>
+		<refentrytitle>&dhucpackage;</refentrytitle>
+		<manvolnum>&dhsection;</manvolnum>
+	</refmeta>
+	<refnamediv>
+		<refname>&dhpackage;</refname>
+		<refpurpose>Chemical Equation Parser and Renderer</refpurpose>
+	</refnamediv>
+	<refsynopsisdiv>
+		<cmdsynopsis>
+			<command>&dhpackage;</command>
+			<arg choice="opt"><option>-M</option></arg>
+			<arg choice="opt"><option>-m</option></arg>
+			<arg choice="opt"><option>-l</option></arg>
+			<arg choice="opt"><option>-c</option></arg>
+			<arg choice="opt"><option>-w</option></arg>
+			<arg choice="opt"><option>-C</option></arg>
+			<arg choice="opt"><option>-e</option></arg>
+			<arg choice="opt"><option>-s</option></arg>
+			<arg choice="opt"><option>-n</option></arg>
+			<arg choice="opt"><option>-W</option></arg>
+		</cmdsynopsis>
+		<cmdsynopsis>
+			<command>&dhpackage;</command>
+			<arg choice="opt"><option>-h</option></arg>
+			<arg choice="opt"><option>-v</option></arg>
+		</cmdsynopsis>
+	</refsynopsisdiv>
+	<refsect1 id="description">
+		<title>DESCRIPTION</title>
+		<para><command>&dhpackage;</command>
+		is a chemical equation analyzer. It is a fast lexical
+		and syntaxic analyser which helps to find out chemical
+informations embedded in source chemical equations. Data can be output
+in various sophisticated formats, depending on options.  'chemeq'
+defaults to 'chemeq -mlcwCn'. </para>
+	</refsect1>
+	<refsect1 id="options">
+		<title>OPTIONS</title>
+		<variablelist>
+			<varlistentry>
+				<term><option>-M</option></term>
+				<listitem>
+					<para>
+Outputs al list of space separated molecular weights.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-m</option></term>
+				<listitem>
+					<para>
+Outputs a <option>m</option>inimal output. It allows  chemeq  to  be  idempotent,
+i.e. the command 'chemeq | chemeq' is equivalent to 'chemeq'.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-l</option></term>
+				<listitem>
+					<para>
+Outputs a <option>L</option>aTeX string representing the chemical equation.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-c</option></term>
+				<listitem>
+					<para>
+Outputs  a message giving informations about the Conservation of
+              elements and charges in the equation. 'OK' means that both
+	      elements and electric charges are balanced.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-w</option></term>
+				<listitem>
+					<para>
+Outputs the LaTeX string representing the
+Gulder-<option>W</option>aage equation related to the input chemical
+equation, or the Nernst equation, if the input equation is a redox
+semi-equation.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-C</option></term>
+				<listitem>
+					<para>
+Outputs a detailed <option>C</option>ount of the molecules and atoms
+contained in each member of the chemical equation.  For example for
+the equation "H2_g + 1/2 O2_g --> H2O" it outputs: "H2_g|H:1*2, 1/2
+O2_g|O:1/2*2; H2O|H:1*2 O:1*1"</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-e</option></term>
+				<listitem>
+					<para>
+Outputs a detailed count of the <option>E</option>lectrical charges.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-s</option></term>
+				<listitem>
+					<para>
+Outputs a list of the chemical <option>S</option>pecies.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-n</option></term>
+				<listitem>
+					<para>
+Outputs a <option>N</option>ormalized string accounting for the input
+equation.  Two chemical equations having the same normalized string
+are chemically equivalent, even if the molecules are scrambled around
+and the coefficient are not equal but proportionnal.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-W</option></term>
+				<listitem>
+					<para>
+Changes the behavior of the renderer for some versions of 
+<option>W</option>ims : works around a bug whith the macro \rightarrow.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-h</option></term>
+				<listitem>
+					<para>
+Displays <option>H</option>elp.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-v</option></term>
+				<listitem>
+					<para>
+Displays the <option>V</option>ersion number</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsect1>
+	<refsect1 id="environment">
+		<title>ENVIRONMENT</title>
+		<variablelist>
+			<varlistentry>
+			<term><envar>chemeq_input</envar></term>
+				<listitem>
+					<para>
+if set, this variables's value overrides the standard input. If this
+variable is not set, the variable w_chemeq_input is taken in account
+(useful for the WIMS server).</para>
+				</listitem>
+			<term><envar>w_chemeq_input</envar></term>
+				<listitem>
+					<para>
+See above (useful for the WIMS server).</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+			<term><envar>chemeq_option</envar></term>
+				<listitem>
+					<para>
+if set, this variable's value overrides the options.If this variable
+is not set, the variable w_chemeq_option is taken in account (useful
+for the WIMS server).</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+			<term><envar>w_chemeq_option</envar></term>
+				<listitem>
+					<para>
+See above (useful for the WIMS server).</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsect1>
+	<refsect1 id="examples">
+		<title>EXAMPLES</title>
+		<variablelist>
+		  <varlistentry>
+		    <term><option>echo "1/2 Cu^2+ + OH- ->  1/2Cu(OH)2s" | chemeq</option></term>
+		    <listitem><para>
+will display informations about the reaction of hydroxyde and Cu
+II ions.</para>
+		    </listitem>
+		  </varlistentry>
+		  <varlistentry>
+		    <term><option>echo "MnO4^- + 8H3O^+ + 5e- --> Mn^2+ + 12 H2O" | chemeq</option></term>
+		    <listitem><para>
+will display informations about the  reaction  of  reduction  of
+              permanganate ions in an acid environment.</para>
+		    </listitem>
+		  </varlistentry>
+		  <varlistentry>
+		    <term><option>echo "MnO4^- + 8H3O^+ + 5e- --> Mn^2+ + 12 H2O" | chemeq -w</option></term>
+		    <listitem><para>
+will  display the LaTeX format for the Nernst law related to the
+              reduction of permanganate ions in an acid environment.</para>
+		    </listitem>
+		  </varlistentry>
+		  <varlistentry>
+		    <term><option>echo "MnO4^- + 8H3O^+ + 5e- --> Mn^2+ + 8 H2O" | chemeq -c</option></term>
+		    <listitem><para>
+will highlight the lack of conservation  of  elements  H  and  O
+              (water molecules are not well balanced).</para>
+		    </listitem>
+		  </varlistentry>
+		</variablelist>
+	</refsect1>
+	<refsect1 id="notes">
+		<title>NOTES</title>
+		<variablelist>
+		  <varlistentry>
+		    <term><option>syntax of ions</option></term>
+		    <listitem><para>
+allthough in some cases, shorter expressions are sucessfully parsed, it
+       is safer to consider that an "up arrow" (^)  must  be  put  before  the
+       charge symbols of an ion.  Examples : H3O^+, Fe(CN)6^4-, OH^-</para>
+		    </listitem>
+		  </varlistentry>
+		  <varlistentry>
+		    <term><option>Composing chemical equations</option></term>
+		    <listitem><para>
+       Two  operators are defined, # as an additive oprator and ~ (tilde) as a
+       substractive operator: they allow to compose several chemical equations
+     </para>
+     <para><option>
+       echo "MnO4^- + 8H3O^+ + 5e- --> Mn^2+ + 8 H2O ~ 5Fe^3+ + 5e- -> 5Fe^2+"
+       | chemeq</option>
+       </para>
+       <para>
+              will  display  the  pure redox equation from the first equation,
+              minus the second one. Electrons are simplified. So  it  will  be
+              equivalent to:
+       </para>
+       <para><option>
+       echo "MnO4^- + 8H3O^+ + 5Fe^2+--> Mn^2+ + 8 H2O + 5Fe^3+" | chemeq
+       </option>
+              which is their combination.</para>
+		    </listitem>
+		  </varlistentry>
+		  <varlistentry>
+		    <term><option>Mutiplying a chemical equation by one coefficient</option></term>
+		    <listitem><para>
+The  operator * permits to multiply a whole equation by one coefficient
+       which may be a fraction. Here is an example:
+</para><para><option>
+       echo "5 * Fe^3+ + e- -> Fe^2+" | chemeq
+</option></para><para>            will be equivalent to
+</para><para><option>
+       echo "5Fe^3+ + 5e- -> 5Fe^2+" | chemeq</option></para>
+		    </listitem>
+		  </varlistentry>
+		  <varlistentry>
+		    <term><option>Combining chemical equations, with coefficients</option></term>
+		    <listitem><para>
+The two previous techniques can be used at the same time, which enables
+       you to make more comlicated combinations, like this one:
+</para><para><option>
+       echo  "Fe^3+  +  e^-  ->  Fe^2+  (0.77 V) # Fe^2+ + 6CN^- -> Fe(CN)6^4-
+       (Kfa=1e24) ~ Fe^3+ + 6CN^- -> Fe(CN)6^3- (Kfb=1e31)" | chemeq
+</option></para><para>
+              which will work as expected, and yeld a good value for the stan‐
+              dard  potential  of  the redox couple of hexacyanoferrate II and
+              III ions.</para>
+		    </listitem>
+		  </varlistentry>
+		</variablelist>
+	</refsect1>
+	<refsect1 id="bugs">
+	  <title>KNOWN BUGS</title>
+	  <para>
+       When not specified, chemical entities coming from  the  standard  input
+       are believed to be in aqueous solutions. Water is considered by default
+       as the main solvent. Only one liquid (aqueous) phase is currently taken
+       in  account.   All  solid  chemical entities are considered as parts of
+       separated phases.  Suffixes _s, _g and _aq can be used to  enforce  the
+       type of some chemical entities.
+
+       There may be problemes when you write a standard potential with no 
+       decimal dot. For example, the entry <option>Mn^2+ + 2e^-  ->  Mn_s  (-1  V)</option>  would
+       trigger  an error. Then write <option>Mn^2+ + 2e^- -> Mn_s (-1.0 V)</option> or the more
+       accurate value <option>Mn^2+ + 2e^- -> Mn_s (-1.18 V)</option>  and  there  will  be  no
+       error.
+	  </para>
+	</refsect1>
+</refentry>
+

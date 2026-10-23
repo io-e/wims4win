@@ -1,0 +1,362 @@
+:affine a,b,c,d,tx,ty
+
+Applique la transformation affine (x;y) -> [a,b;c,d](x;y)+(tx;ty) aux objets définis ultérieurement.
+:alt texte
+
+Cette commande est seulement valable pour les exercices OEF et les documents. Elle doit apparaître sur la première ligne de commande. L'image aura alors l'attribut alt="text"
+:animate fra,del,rep
+
+Cette commande est seulement valable pour les exercices OEF et les documents. Elle doit apparaître sur la première ligne de commande ou après la commande alt. Il s'agit d'une animation de l'image de fra plans, d'intervalle de del secondes, rep fois; si rep=0, répétition en boucle infinie.
+:animstep n
+
+Set up an integer which can be called in any evaluation. Used for animation. Direct use of this command must be avoided under WIMS.
+:arc x,y,w,h,a1,a2,[color]
+
+Arc de l'ellipse de largeur w et de hauteur h centrée en (x,y) (coordonnées mathématiques) de l'angle a1 vers l'angle a2 en degrés dans le sens trigonométrique. Il est conseillé de prendre a1&lt;a2&lt;a1+360 pour assurer la compatibilité avec canvasdraw.
+:arrow x1,y1,x2,y2,l,[color]
+
+Flèche allant du point (x1;y1) vers le point (x2;y2) et dont la tête est de longueur l pixels.
+:arrow2 x1,y1,x2,y2,l,[color]
+
+Flèches entre les points (x1;y1) et (x2;y2) ayant deux têtes de longueur l pixels.
+:arrows [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+Flèches allant du point (x1;y1) vers le point (x2;y2), du point (x3;y3) vers le point (x4;y4) et dont la tête est de longueur l pixels.
+:arrows2 [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+Flèches entre les points (x1;y1) et (x2;y2), (x3;y3) et (x4;y4) ayant deux têtes de longueur l pixels.
+:circle x,y,r,[color]
+
+Cercle de centre (x;y) et de rayon r pixels.
+:circles [color],x1,y1,r1,x2,y2,r2 ...
+
+Cercles de centre (x1;y1) et de rayon r1 (selon xrange)...
+:comment
+
+Ligne de commentaire.
+:copy x,y,x1,y1,x2,y2,[filename]
+ insert
+Insère le rectangle de diagonale (x1;y1) et (x2;y2) (dans le repère en pixels) du fichier filename au point (x;y) : l'extrémité en haut à gauche de l'image est au point (x;y). Si x1=y1=x2=y2=-1, tout le fichier est copié. [filename] est l'adresse du fichier à partir du répertoire wims/public_html/gifs ou du répertoire indiqué dans common_images pour les modules OEF.
+:copyresized x1,y1,x2,y2,dx1,dy1,dx2,dy2,[filename]
+
+Insère le rectangle de diagonale (x1;y1) et (x2;y2) du fichier filename dans le rectangle de diagonale (dx1;dy1) et (dx2;dy2) (remise à la taille réalisée). si x1=y1=x2=y2=-1, tout le fichier filename est copié
+:crosshair x1,y1,[color]
+
+Dessine une croix au point (x1,y1)
+:crosshairs [color], x1,y1,x2,y2,...
+
+Dessine des croix aux points de coordonnées (x1,y1), (x2,y2), ...
+:crosshairsize w
+
+Règle la taille des croix à w (en pixels).
+:dashed
+
+Keyword: Indique que la commande suivante est en pointillés si cette possibilité existe pour cette commande.
+:dashhalfline x1,y1,x2,y2,[color]
+
+Demi-droite en pointillés de (x1;y1) passant par (x2;y2).
+:darrow x1,y1,x2,y2,l,[color]
+ dasharrow dashedarrow
+ Flèche en pointillés allant du point (x1;y1) vers le point (x2;y2) dont la tête est de longueur l pixels.
+:darrow2 x1,y1,x2,y2,l,[color]
+dasharrow2 dashedarrow2
+Flèche en pointillés entre les points (x1;y1) et (x2;y2) et à deux têtes de longueur l pixels.
+:darrows [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+Flèches en pointillés allant du point (x1;y1) vers le point (x2;y2), du point (x3;y3) vers le point (x4;y4) et dont la tête est de longueur l pixels.
+:darrows2 [color],l,x1,y1,x2,y2,x3,y3,x4,y4,...
+
+Flèches en pointillés entre les points (x1;y1) et (x2;y2), (x3;y3) et (x4;y4) ayant deux têtes de longueur l pixels.
+:dashhalfline x1,y1,x2,y2,[color]
+
+Demi-droite en pointillés partant de (x1;y1) et passant par (x2;y2) de couleur color
+:dhline x,y,[color]
+dashedhorizontalline dashhorizontalline hdline horizontaldashedline
+Droite horizontale en pointillés passant par le point (x;y).
+:diamondfill x,y,nx,ny,[color]
+ diafill
+Remplit la région contenant le point (x;y) avec des lignes de couleur color (quadrillage oblique). (nx;ny) est la distance verticale et horizontale (en pixels) entre deux lignes.
+:dline x1,y1,x2,y2,[color]
+ dashedline dashline
+Droite en pointillés passant par les points de coordonnées (x1;y1) et (x2;y2).
+:dlines [color],x1,y1,x2,y2,x3,y3...
+ dashedlines dashlines
+Droites en pointillés passant par les points de coordonnées (x1;y1) et (x2;y2), (x3;y3) et (x4;y4) etc.
+:dpolyline [color],x1,y1,x2,y2,x3,y3...
+
+Ligne polygonale en pointillés joignant les points (x1;y1), (x2;y2), (x3;y3) ...
+:dotfill x,y,nx,ny,[color]
+ pointfill diskfill
+Remplit la région contenant le point (x;y) avec des gros points de couleur color. (nx;ny) est la distance verticale et horizontale entre deux points.
+:dsegment x1,y1,x2,y2,[color]
+ dashsegment
+Segment en pointillés (x1,y1)---(x2,y2).
+:dvline x,y,[color]
+dashedverticaline dashverticalline vdline verticaldashedline
+Droite verticale en pointillés passant par le point (x;y).
+:ellipse x,y,w,h,[color]
+
+Ellipse de largeur w et de hauteur h centrée en (x,y).
+:ellipses [color],x1,y1,w1,h1,x2,y2,w2,h2,...
+
+Ellipse de largeur w1 et de hauteur h1 centrée en (x1,y1), etc.
+:fcircle x,y,d,[color]
+ ball disk filledcircle
+Disque de centre (x;y) et de diamètre d pixels.
+:fcircles [color],x1,y1,r1,x2,y2,r2 ...
+
+Disques coloriés de centre (x1;y1) et rayon r1 (selon xrange) ...
+:fellipse x,y,w,h,[color]
+filledellipse
+Ellipse de largeur w et de hauteur h centrée en (x,y) et remplie avec la couleur color.
+:fhypcircles [color],x1,y1,r2,x2,y2,r2,...
+
+Disques coloriés de centre hyperbolique (x1;y1) et de rayon hyperbolique r1 (selon xrange) ...
+:fhyppolygon [color],x1,y1,x2,y2,x3,y3,...
+
+Polygone hyperbolique colorié dans le disque de Poincaré de sommets (x1; y1), (x2; y2), (x3; y3),... (géométrie hyperbolique) et rempli avec la couleur color.
+:fhyptriangle x1,y1,x2,y2,x3,y3,[color]
+
+Triangle dans le disque de Poincaré de sommets (x1;y1), (x2;y2), (x3;y3) (géométrie hyperbolique) et rempli avec la couleur color.
+:fill x,y,[color]
+flood floodfill
+Colorie la région contenant le point (x;y) avec la couleur color
+:filled
+
+Keyword: indique que l'objet suivant sera colorié si pertinent
+:filltoborder x,y,[color1],[color2]
+
+Colorie avec la couleur color2 la région contenant (x;y) et délimitée par la couleur color1.
+:fpoly [color],x1,y1,x2,y2,x3,y3...
+ filledpoly filledpolygon fpolygon
+Polygone de sommets (x1;y1), (x2;y2), (x3;y3) ... et rempli avec la couleur color
+:frect x1,y1,x2,y2,[color]
+ filledrect fillecrectangle frectangle
+Rectangle de diagonale (x1;y1) et (x2;y2) et rempli avec la couleur color.
+:fsquare x,y,s,[color]
+filledsquare
+Carré de coin supérieur gauche (x;y) et de côté de longueur s, rempli avec la couleur color.
+:ftriangle x1,y1,x2,y2,x3,y3,[color]
+filledtriangle
+Triangle de sommets (x1;y1), (x2;y2), (x3;y3) et rempli avec la couleur color.
+:ftriangles [color], x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,...
+
+Triangles de sommets (x1,y1),(x2,y2),(x3,y3), then (x4,y4),(x5,y5),(x6,y6),... remplis avec la couleur color.
+:gridfill x,y,nx,ny,[color]
+
+Remplit la région contenant le point (x;y) avec des lignes de couleur color (quadrillage droit) . (nx;ny) est la distance verticale et horizontale entre deux lignes.
+:halfline x1,y1,x2,y2,[color]
+
+Demi-droite partant de (x1;y1) et passant par (x2;y2) de couleur color
+:hatchfill x,y,nx,ny,[color]
+
+Remplit la région contenant le point (x;y) avec des lignes (simples) de couleur color. (nx;ny) est la distance verticale et horizontale entre deux lignes.
+:hline x,y,[color]
+horizontalline
+Droite horizontale passant par le point (x;y).
+:hlines [color],x1,y1,x2,y2,...
+
+Droites horizontales passant par les points (x1,y1), (x2,y2), ...
+:hypcircles [color],x1,y1,r2,x2,y2,r2,...
+
+Cercles hyperboliques de centre hyperbolique (x1;y1) et rayon hyperbolique r1 (according to xrange) ...
+
+:hyplines [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Géodésiques hyperboliques dans le disque de Poincaré passant par les points de coordonnées (x1;y1) et (x2;y2), (x3;y3) et (x4;y4), etc
+:hyppolygon [color],x1,y1,x2,y2,x3,y3,...
+
+Polygone hyperbolique dans le disque de Poincaré (x1,y1)-(x2,y2)-(x3,y3)...
+:hyprays [color],x0,y0,x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Segments hyperboliques joignant (x0,y0) et (x1,y1), (x0,y0) et (x2,y2), ...
+:hypsegments [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Géodésiques hyperboliques dans le disque de Poincaré entre les points de coordonnées (x1;y1) et (x2;y2), (x3;y3) et (x4;y4), etc
+:hyptriangle x1,y1,x2,y2,x3,y3,[color]
+
+Triangle hyperbolique dans le disque de Poincaré de sommets (x1;y1), (x2;y2), (x3;y3) (géométrie hyperbolique)
+:interlace
+
+Set interlaced image
+:killaffine
+
+Réinitialise la transformation affine à l'identité.
+:killbrush
+
+Turns off brush selection for line drawing.
+:killlinear
+killrotation killrotate
+Réinitialise la transformation linéaire à l'identité.
+:killmoebius
+
+Réinitialise la tranformation de Moebius à l'identité.
+:killtile
+
+Désactive la sélection de pavage pour le remplissage.
+:killtranslation
+killtranslate
+Réinitialise la translation au vecteur nul.
+:lattice x0,y0,x1,y1,x2,y2,n1,n2,[color]
+
+Réseau de n1xn2 points partant de (x0,y0), avec n1 lignes dans la direction de (x1,y1) et n2 colonnes dans la direction de( x2,y2).
+:levelcurve [color],[expression],l1,l2,...
+
+Dessine des courbes de niveau de la surface décrite par une expression de niveaux l1, l2,...
+:levelstep n
+
+Règle le nombre d'étapes en pixels utilisé pour le dessin des courbes de niveau. Entre 1 and 16, defaut : 4.
+:lines [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Droites passant par les points de coordonnées (x1;y1) et (x2;y2), (x3;y3) et (x4;y4), etc
+:linear a,b,c,d
+
+Applique la transformation linéaire (x;y) -> [a,b;c,d](x;y) aux objets définis ultérieurement..
+:linewidth w
+
+Épaisseur des traits à w pixels.
+:moebius a,b,theta
+
+Applique la transformation de Moebius dans le disque de Poincare aux objets définis ultérieurement, en coordonnées complexes: z -> exp(i \pi/180*theta)(z+m)/(conj(m)z+1) avec m=a+i b de module < 1; theta en degree.
+:multicopy n1,n2,...,nk, [filename]
+
+Copie l'image [filename] dans le parallélogramme donné par la commande setparallelogram et applique à l'image les transformations n1, ..., nk (au maximum 19). Si n1 ... ne sont pas donnés, toutes les transformations définies précédemment sont appliquées. Attention, setparallelogram et au moins un setvector ou setmatrix ou settransform doivent d'abord avoir été définis.
+:new x,y
+
+Fait une nouvelle image de taille x,y (en pixels).
+:noreset
+
+Keyword: if it is followed by dashed or filled, the following commands are dashed or filled, up to the command reset
+:output [filename]
+
+Sauve l'image dans le fichier [filename].
+:parallel x1,y1,x2,y2,xv,yv,n,[color]
+
+n segments parallèles partant du segment d'extrémités (x1;y1) et (x2;y2) avec le déplacement de vecteur (xv;yv).
+:pixels [color],x1,y1,x2,y2,...
+
+Points de diamètre 1 aux coordonnées (x1;y1), (x2;y2), ...
+:plot [color],[formula]
+curve
+Courbe représentative de formula qui peut être soit une fonction explicite en x, soit une paire de fonctions paramétriques en t.
+:plotjump j
+
+Saut de la courbe tracée si deux points consécutifs ont une distance de plus de j pixels. Utile afin d'éviter de dessiner des fonctions discontinues comme des fonctions continues. Valeur par défaut : 200.
+:plotstep n
+plotsteps tstep tsteps
+Nombre de points calculés dans le tracé de courbes. Valeur par défaut : 100.
+:point x,y,[color]
+
+Point de coordonnées (x;y) et de diamètre l'épaisseur de trait.
+:points [color],x1,y1,x2,y2,...
+
+Points de coordonnées (x1;y1), (x2;y2), ... et de diamètre l'épaisseur de trait.
+:polygon [color],x1,y1,x2,y2,x3,y3...
+poly
+Polygone de sommets (x1;y1), (x2;y2), (x3;y3)...
+:polyline [color],x1,y1,x2,y2,x3,y3...
+brokenline
+Ligne polygonale joignant les points (x1;y1), (x2;y2), (x3;y3) ...
+:range x1,x2,y1,y2
+
+Détermine les coordonnées des bords de l'image.
+:rays [color],x0,y0,x1,y1,x2,y2...
+
+Segments joignant (x0;y0) et (x1;y1), (x0;y0) et (x2;y2), ...
+:rect x1,y1,x2,y2,[color]
+ rectangle
+Rectangle de diagonale (x1;y1) et (x2;y2).
+:reset
+
+Keyword: Réinitialise la commande "noreset"
+:resetmatrix n
+
+Réinitialise la n-ième transformation linéaire à l'identité.
+:resetparallelogram
+
+Réinitialise setparallelogram
+:resetvector n
+
+Réinitialise la n-ième translation à l'identité.
+:resettransform n
+
+Réinitialise la n-ième transformation linéaire ou affine ou la n-ième translation aux valeurs initiales (identité ou vector nul).
+:rotation d
+ rotate
+Rotation des objets définis ultérieurement de d degrés dans le sens inverse des aiguilles d'une montre, de centre (0;0)
+:segment x1,y1,x2,y2,[color]
+ seg
+Segment entre les points de coordonnées (x1;y1) et (x2;y2).
+:segments [color],x1,y1,x2,y2,x3,y3,x4,y4, ...
+
+Segments entre les points de coordonnées (x1;y1) et (x2;y2), (x3;y3) et (x4;y4), etc
+:setbrush [filename]
+
+Utilise l'image [filename] comme "brush" pour tous les dessins de ligne.
+:setmatrix n,a,b,c,d
+
+Définit la transformation linéaire pour les objets de multicopy (x;y) -> [a,b;c,d](x;y).
+:setparallelogram xs,ys,xu,yu,xv,yv
+
+Prépare l'endroit où l'image sera copiée par multicopy (coordonnées mathématiques) : xs,ys coordonnées mathématiques de l'origine, xu,yu coordonnées mathématique de la "ligne horizontale de l'image" à copier, xv,yv coordonnées mathématique de la "ligne verticale de l'image" à copier.
+:setpixel x,y,[color]
+
+Point de coordonnées (x;y) et de diamètre 1.
+:setstyle [color1],[color2],...
+
+Définit la couleur des lignes the line style comme color1,color2,...
+:settile [filename]
+
+Utilise l'image [filename] comme modèle pour toutes les commandes de remplissages.
+:settransform n,a,b,c,d,tx,ty
+
+Définit la n-ième transformation linéaire pour les objets de multicopy (x;y) -> [a,b;c,d](x;y) + (tx;ty).
+:setvector n,tx,ty
+
+Définit la n-ième translation transformation linéaire pour les objets de multicopy: (x;y) -> (tx,ty).
+:size x,y
+
+ Set the image size to x pixels horizontally and y pixels vertically.
+:square x,y,s,[color]
+
+Carré de coin supérieur gauche (x;y) et de côté s (en pixels).
+:text [color],x,y,[font],[string]
+print string write
+Écrit string au point de coordonnées (x;y) avec la police font=small,medium,large ou giant.
+:textup [color],x,y,[font],[string]
+stringup writeup
+Écrit string de bas en haut au point de coordonnées (x;y) avec la police font=small,medium,large ou giant.
+:trange t1,t2
+ ranget
+Intervalle du paramètre pour le tracé des courbes paramétriques (par défaut 0 et 1).
+:translation tx,ty
+translate
+Applique la translation (x;y) -> (x;y)+(tx;ty) aux objets définis ultérieurement.
+:transparent [color]
+
+Définit la couleur color comme transparente.
+:triangle x1,y1,x2,y2,x3,y3,[color]
+
+Triangle de sommets (x1;y1), (x2;y2), (x3;y3).
+:triangles [color], x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6,...
+
+ Triangles de sommets (x1,y1),(x2,y2),(x3,y3), puis (x4,y4),(x5,y5),(x6,y6),...
+:vimg n
+
+Active (1) ou désactive (0) la sortie en graphique vectorielle (défaut 0)
+:vimgfile [filename]
+
+ Sortie en graphique vectorielle (pour l'instant seulement DXF) dans le fichier [filename].
+:vline x,y,[color]
+verticalline
+Droite verticale passant par le point (x;y).
+:vlines [color],x1,y1,x2,y2,...
+
+Droites verticales passant par les points (x1,y1), (x2,y2), ...
+
+:xrange x1,x2
+ rangex
+Détermine les coordonnées horizontales mathématiques des bords de l'image.
+:yrange y1,y2
+ rangey
+Détermine les coordonnées verticales mathématiques des bords de l'image.

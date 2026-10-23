@@ -1,0 +1,5 @@
+== !leveldata ==
+ f=sin(sqrt(x^2+y^2)/100)
+ foo=!leveldata size 400,400 ranges 1,1,399,399 function $f levels 0
+----
+foo == should be coordinates of points

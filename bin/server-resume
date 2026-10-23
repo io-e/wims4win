@@ -1,0 +1,7 @@
+#! /bin/sh
+
+WIMS_HOME=`dirname $0`/..
+cd $WIMS_HOME/public_html
+if [ ! -f wims ]; then exit; fi
+ln -sf wims wims.cgi
+

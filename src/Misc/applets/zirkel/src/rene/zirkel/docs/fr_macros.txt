@@ -1,0 +1,130 @@
+Macros:
+
+        Les macros permettent d'enregistrer les étapes de certaines
+        constructions, et d'ensuite les répéter, comme les procédures ou les
+        subroutines de certains langages de programmation.
+        Pour définir une macro, l'utilisateur construit un ou plusieurs objets
+        (les objets finaux) à partir de certains objets déjà construits
+        (les objets initiaux) et apprend ensuite à la macro ce qu'elle doit
+        faire. Par exemple, on peut définir une macro qui construit le cercle
+        circonscrit à un triangle: les objets initiaux sont dans ce cas les
+        sommets du triangle, et l'objet final est le cercle circonscrit.
+        On peut également définir des macros dans des fichiers de constructions
+        (programmes, ou constructions descriptives): pour plus de détails,
+        voir la rubrique spécifique.
+
+Définition des macros:
+
+        Pour définir des macros, on utilise l'outil de définition de macros.
+        L'icône de cet outil présente trois aspects différents suivant la phase
+        dans laquelle on se trouve. Le premier état correspond à la phase de
+        choix des objets initiaux: on sélectionne les objets initiaux les uns
+        après les autres avec la souris. Quand on a terminé, on clique sur
+        l'icône de l'outil, qui change alors d'aspect. Seuls les objets qu'on
+        peut construire à partir des objets initiaux sélectionnés restent
+        visbles sur la figure. On sélectionne alors ceux qu'on veut, les uns
+        après les autres (si on n'en sélectionne pas, tous les objets visibles
+        sur l'écran seront considérés comme objets finaux). Les objets finaux
+        prendront lors de l'exécution de la macro le style et la couleur par
+        défaut; tous les autres objets apparaîtront avec le même style que lors
+        de la définition de la macro, à l'exception des objets noirs qui
+        prendront la couleur par défaut. En particulier, les objets cachés
+        seront cachés lors de l'exécution de la macro. Une option
+        supplémentaire permet de cacher automatiquement tous les objets qui ne
+        sont pas des objets finaux, même s'ils sont visibles lors de l'
+        enregistrement de la macro.
+
+        Si la macro est utilisée en mode descriptif, on peut seulement assigner
+        des noms aux objets finaux. Il faut toujours, dans ce cas, définir au
+        moins un objet final.
+
+        Après avoir défini les objets initiaux et les objets finaux, un autre
+        clic sur l'outil macros permet de définir la macro: il suffit d'entrer
+        son nom, un commentaire si on le souhaite; on peut aussi éditer le texte
+        qui apparaitra dans la ligne d'état lors du choix des objets initiaux.
+        On peut aussi choisir de cacher les constructions intermédiaires pour
+        ne laisser apparaître que les objets finaux lors de l'exécution de la 
+        macro.
+
+        On peut enfin demander à l'utilisateur de fournir une valeur soit
+        pour un cercle de rayon fixe, soit pour un angle de mesure fixe lors de
+        l'exécution de la macro. Il suffit pour cela d'entrer le nom du cercle
+        ou de l'angle dans la dernière ligne de la boîte de dialogue. Une boîte
+        de dialogue s'ouvrira alors à l'exécution de la macro où l'utilisateur
+        pourra entrer n'importe quelle expression arithmétique pour ce
+        paramètre.
+
+
+Enregistrement et chargement d'une macro:
+
+        Les macros peuvent être chargées et enregistrées en même temps que
+        la figure ou séparément. Le format de fichier utilisé pour l'
+        enregistrement des macros est identique au format utilisé pour l'
+        enregistrement des figures, mais ces fichiers ne doivent contenir que
+        des macros et pas de figures.
+        Si l'option "Inclure toutes les macros" est choisie, toutes les macros
+        seront enregistrées en même temps que la figure. Quand de tels fichiers
+        sont ouverts, le programme demande à l'utilisateur s'il doit écraser les
+        macros déjà existantes qui porteraient le même nom.
+
+        Pour l'exportation sous forme de page HTML, il est nécessaire d'inclure
+        les macros dans la figure.
+
+
+Exécution d'une macro:
+
+        Il y a un outil approprié à cet effet. La macro est choisie dans la
+        liste des macros disponibles. Si la touche Maj est maintenue enfoncée,
+        la dernière macro utilisée est automatiquement sélectionnée. Le
+        programme demande alors à l'utilisateur de sélectionner les objets
+        initiaux et affiche le résultat de l'exécution de la macro.
+
+        On peut aussi démarrer une macro avec le bouton droit de la souris: il
+        suffit de cliquer sur un emplacement vide; la liste des macros
+        disponibles s'affiche, et il suffit de choisir celle qu'on veut dans
+        le menu.
+
+        Si la ligne d'état affiche "la barre d'espace choisit ...",
+        on peut choisir l'objet proposé comme objet initial simplement en
+        appuyant sur la barre d'espace; cela est particulièrement utile si on
+        applique plusieurs fois la macro avec de mêmes objets initiaux.
+
+        Si la macro a besoin d'une valeur pour un cercle ou un angle fixe,
+        une boîte de dialogue s'ouvre pour la demander. On peut y entrer
+        n'importe quelle expression arithmétique.
+
+Types d'objets utilisables comme objets initiaux:
+
+        Le plus simple est d'utiliser des points comme objets initiaux.
+        Mais il est également possible d'utiliser d'autres types d'objets.
+
+        Les droites, les demi-droites, les segments possèdent des objets
+        secondaires qui leur sont associés (les points qui ont servi à les 
+        définir, ou le centre pour un cercle). Cela peut simplifier
+        l'utilisation de la macro. Mais il faut bien faire attention à ce que
+        les objets initiaux auxquels on applique la macro vérifient les mêmes
+        propriétés que les objets qui ont servi à la définir: par exemple, deux
+        cercles qui étaient concentriques lors de la définition de la macro
+        doivent l'être aussi lorsqu'on l'exécute. De même, si deux segments AB
+        et BC étaient des objets initiaux de la macro lors de sa définition, on
+        ne peut l'appliquer qu'à des segments EF et FG qui ont une extrémité
+        commune.
+
+        Il y a deux types de droites et de demi-droites: celles qui sont
+        définies par deux points, et celles qui ne sont définies que par un seul
+        (les parallèles, par exemple). Dans la macro, les droites, les demi-
+        droites et les segments ne sont pas affectés de points particuliers
+        si ces points n'ont pas été sélectionnés comme objets initiaux de la
+        macro, ou s'ils n'ont qu'un seul point de définition. L'utilisateur peut
+        alors choisir n'importe quelle droite comme objet initial. Si l'un des
+        deux points servant à définir l'objet est utilisé, il faudra lors de l'
+        exécution de la macro choisir un objet du même type.
+
+
+Utilisation d'expressions dans les macros:
+
+        Si on utilise des expressions dans les macros, les objets initiaux,
+        qui peuvent être utilisés dans l'expression, seront correctement
+        remplacés. Il vaut pourtant mieux éviter d'avoir recours à ce genre de
+        construction, qui risque de poser des problèmes.
+

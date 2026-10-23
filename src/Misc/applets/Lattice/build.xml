@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+
+	This is the Ant build script for Lattice.jar.
+	to build ,type:
+	ant -v 
+	to clean , type
+	ant -v clean
+	
+-->
+
+
+<project name="Lattice" default="jar" basedir=".">
+
+	<description>Lattice build file</description>
+	<!-- Set global properties for this build. -->
+	<property name="version"          value="1.0"/>
+	<property name="source-dir"       location="src"/>
+	<property name="build"        location="build"/>
+	<property name="dist"         location="dist"/>
+	<property name="java-level"       value="1.4"/>
+	<property name="wims_old_classes_dir"       location="../../../../public_html/java/Lattice"/>
+	
+	<!-- Compiles the classes.  -->
+	<target name="compile" description="Compile the source">
+		<delete includeEmptyDirs="true" quiet="true" dir="${build}"/>
+		<mkdir dir="${build}"/>
+		<javac srcdir="${source-dir}" destdir="${build}" source="${java-level}" target="${java-level}"/>
+	</target>
+
+
+	<!-- Creates the jar file. -->
+
+	<target name="jar" depends="compile" description="Create Lattice jar">
+		<mkdir dir="${dist}"/>	
+		<jar destfile="${dist}/Lattice.jar">
+			<fileset dir="${build}"/>
+			<manifest>
+				<attribute name="Specification-Title" value="Lattice"/>
+				<attribute name="Specification-Version" value="${version}"/>
+				<attribute name="Implementation-Title" value="Lattice"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+				<section name="Lattice">
+					<attribute name="Specification-Title" value="Lattice"/>
+					<attribute name="Specification-Version" value="${version}"/>
+					<attribute name="Implementation-Title" value="Lattice"/>
+					<attribute name="Implementation-Version" value="${version}"/>
+				</section>
+			</manifest>
+		</jar>
+	</target>
+	<target name="clean" description="clean up">
+	<!-- Delete the ${build} and ${dist} directory trees -->
+	    <delete dir="./build"/>
+	    <delete dir="./dist"/>
+	</target>
+
+
+</project>

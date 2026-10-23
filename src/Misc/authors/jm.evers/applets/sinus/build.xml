@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project name="sinus" default="build" basedir=".">
+
+<description>
+sinus project buildfile.
+</description>
+
+<property name="src.dir" value="./sinus"/>
+<property name="build.dir" value="./build"/>
+<property name="dist.dir" value="./dist"/>
+<property name="sinus.jar" value="./dist/sinus.jar"/>
+<property name="sinus.tar" value="./sinus.tar.gz"/>
+
+
+<!-- Sets up classpath reference -->
+<path id="sinus.classpath">
+  <pathelement path="${src.dir}"/>
+</path>
+
+<presetdef name="javac">
+  <javac encoding="UTF-8" />
+</presetdef>
+
+<target  name="-init"  depends="-prepare">
+  <tstamp/>
+</target>
+
+
+<target  name="-prepare"  depends="-info">
+  <mkdir dir="${build.dir}"/>
+  <mkdir dir="${dist.dir}"/>
+</target>
+
+
+<target name="-info">
+  <property name="name" value="sinus"/>
+  <property name="acronym" value="sinus"/>
+  <property name="version" value="local"/>
+  <property name="year" value="2008-03"/>
+  <echo message="compiling sinus"/>
+  <echo message=""/>
+</target>
+
+
+<target  name="compile"  description="Compiles sinus sources"  depends="-init">
+  <javac
+    target="1.6"
+     source="1.6"
+    verbose="verbose"
+    deprecation="true"
+    srcdir="${src.dir}"
+    classpathref="sinus.classpath"
+    excludes=""
+    destdir="${build.dir}"/>
+</target>
+
+
+<target name="build" description="Jar sinus" depends="compile" >
+  <jar destfile="${sinus.jar}" basedir="./build" excludes="" >
+    <manifest>
+    </manifest>
+  </jar>
+</target>
+
+<target  name="clean" description="Cleans up" depends="-info">
+  <delete dir="${build.dir}"/>
+  <delete dir="${dist.dir}"/>
+    <delete>
+	<fileset dir="." includes="**/*~" />
+  </delete>
+</target>
+
+</project>

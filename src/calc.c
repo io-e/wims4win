@@ -19,6 +19,9 @@
  * This file does computations and output.
  */
 #include "wims.h"
+#if defined(_WIN32) || defined(WIMS_MX_PLATFORM)
+#include "Platform/wims_platform.h"
+#endif
 
 int _sort_numeric, _sort_nocase;
 typedef struct SORT_STRUCT {char *str; double val; int serial;} SORT_STRUCT;
@@ -226,6 +229,31 @@ void calc_exec(char *p)
   mkfname(varfname,"%s/exec.var",tmp_dir);
   unlink(varfname);
   if(!trusted_module()) setenv("untrust","yes",1); else unsetenv("untrust");
+#if defined(_WIN32) || defined(WIMS_MX_PLATFORM)
+  /* multiexec through the platform layer (wp_mx.c). The historical loop
+   * below has a timeout bug (calc.c:241, see wp_mx.c); it is reproduced
+   * unless WIMS_MX_FIX_TIMEOUT is defined. */
+  if(strcmp(parm,"about")!=0 && multiexec(namebuf,abuf)) {
+    wp_chan mxc;
+#ifdef WIMS_MX_FIX_TIMEOUT
+    const int mxfixed=1;
+#else
+    const int mxfixed=0;
+#endif
+    memset(&mxc,0,sizeof(mxc));
+    /* Win32: mxtab (lines.c multiexec(), still fork-based) must become a
+     * table of wp_chan/wp_pid in phase 3; this block is already written
+     * against the platform API. */
+    mxc.in_w=mxtab[multiexec_index].pipe_stdin[1];
+    mxc.out_r=mxtab[multiexec_index].pipe_stdout[0];
+    mxc.in_r=mxc.out_w=WP_FD_INVALID;
+    (void)wp_mx_exchange(&mxc,parm,multiexec_random,p,MAX_LINELEN,mxfixed);
+    if(wp_fd_readable(mxtab[multiexec_index].pipe_stderr[0],0))
+      _get_exec_error(NULL,namebuf);
+    strip_trailing_spaces(p);
+    return;
+  }
+#else
   if(strcmp(parm,"about")!=0 && multiexec(namebuf,abuf)) {
     fd_set rset;
     struct timeval t;
@@ -257,6 +285,7 @@ void calc_exec(char *p)
     strip_trailing_spaces(p);
     return;
   }
+#endif
   exportall(); setenv("wims_exec_parm",parm,1);
   execredirected(cmdstr,NULL,outfname,errorfname,abuf);
   if(open_working_file(&wf,varfname)==0) {

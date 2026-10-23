@@ -7,7 +7,11 @@ binary, marker = sys.argv[1], sys.argv[2]
 reqs = sys.argv[3:]
 env = {"PATH": "/usr/bin:/bin", "tmp_dir": os.getcwd(),
        "wims_exec_parm": marker, "multiexec_random": marker}
-p = subprocess.Popen([binary], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+# MXDRV_WRAP=wine: run a Windows build; wine's own variables are passed through
+wrap = os.environ.get("MXDRV_WRAP", "").split()
+for k in ("HOME", "WINEPREFIX", "WINEDEBUG", "WINEPATH", "pari_command"):
+    if wrap and k in os.environ: env[k] = os.environ[k]
+p = subprocess.Popen(wrap + [binary], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                      stderr=subprocess.PIPE, env=env)
 for r in reqs:
     p.stdin.write((r + marker).encode()); p.stdin.flush()

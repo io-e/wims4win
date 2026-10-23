@@ -5,13 +5,22 @@
 #include <windows.h>
 #include "wp_ipc.h"
 
-/* Map historical sock path to a local named pipe. */
+/* Map historical sock path to a local named pipe.
+ * The pipe namespace is machine-global, so the name carries a hash of the
+ * absolute sock path: two WIMS trees (e.g. tests-win and wims-runtime) each
+ * get their own wimslogd instead of silently sharing the first one started. */
 static void pipe_name(char *out, size_t cap, const char *path)
 {
-  const char *base=path; const char *p;
+  const char *base=path; const char *p; char full[MAX_PATH]; unsigned h=2166136261u;
+  DWORD l=GetFullPathNameA(path,sizeof(full),full,NULL);
+  if(l==0 || l>=sizeof(full)) snprintf(full,sizeof(full),"%s",path);
+  for(p=full; *p; p++) {
+    char c=*p; if(c=='\\') c='/'; if(c>='A' && c<='Z') c+=32;
+    h=(h^(unsigned char)c)*16777619u;
+  }
   for(p=path; *p; p++) if(*p=='/'||*p=='\\') base=p+1;
   if(!*base) base="wims-logd";
-  snprintf(out,cap,"\\\\.\\pipe\\wims-%s",base[0]=='.'?base+1:base);
+  snprintf(out,cap,"\\\\.\\pipe\\wims-%s-%08x",base[0]=='.'?base+1:base,h);
 }
 
 static int write_all(HANDLE h, const char *buf, int n)
@@ -149,11 +158,16 @@ int wp_daemon_spawn(char *const argv[], const char *pidfile)
   }
   cmd[n]=0;
   memset(&si,0,sizeof(si)); si.cb=sizeof(si);
-  si.dwFlags=STARTF_USESTDHANDLES;
-  si.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
-  si.hStdOutput=GetStdHandle(STD_OUTPUT_HANDLE);
-  si.hStdError=GetStdHandle(STD_ERROR_HANDLE);
-  ok=CreateProcessA(NULL,cmd,NULL,NULL,TRUE,CREATE_NO_WINDOW|DETACHED_PROCESS,NULL,NULL,&si,&pi);
+  /* No handle inheritance: as a CGI, our stdout is the httpd pipe; a daemon
+   * holding it would keep the response open (Apache waits for EOF) for as
+   * long as wimslogd lives. wimslogd reopens its own stdout/stderr files.
+   * Break away from the httpd's job, if any, so the daemon survives the
+   * request; fall back to a plain detached process if not allowed. */
+  ok=CreateProcessA(NULL,cmd,NULL,NULL,FALSE,
+       CREATE_NO_WINDOW|DETACHED_PROCESS|CREATE_BREAKAWAY_FROM_JOB|CREATE_NEW_PROCESS_GROUP,
+       NULL,NULL,&si,&pi);
+  if(!ok) ok=CreateProcessA(NULL,cmd,NULL,NULL,FALSE,
+       CREATE_NO_WINDOW|DETACHED_PROCESS|CREATE_NEW_PROCESS_GROUP,NULL,NULL,&si,&pi);
   if(!ok) return -1;
   if(pidfile){
     char b[32]; FILE *f; snprintf(b,sizeof(b),"%lu",(unsigned long)pi.dwProcessId);

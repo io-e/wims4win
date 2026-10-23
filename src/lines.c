@@ -27,6 +27,9 @@
 #endif
 
 #include "wims.h"
+#ifdef _WIN32
+#include "Platform/wp_ipc.h"
+#endif
 
 int is_class_module=0;
 
@@ -1404,6 +1407,10 @@ struct sockaddr_un sun;
 
 int kerneld(char *p, int bufsize)
 {
+#ifdef _WIN32
+  return wp_ipc_transact(ksockfile, p, bufsize);
+#else
+
   int sock, s, t, t1, l, *ip;
   struct timeval tv;
   fd_set rset;
@@ -1427,6 +1434,7 @@ int kerneld(char *p, int bufsize)
   p[l+sizeof(int)]=0;
   close(sock);
   return l+sizeof(int);
+#endif
 }
 
 void _daemoncmd(char *p)

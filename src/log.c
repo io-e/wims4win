@@ -18,6 +18,9 @@
 #ifndef _WIN32
 #include <sys/socket.h>
 #endif
+#ifdef _WIN32
+#include "Platform/wp_ipc.h"
+#endif
 #ifndef _WIN32
 #include <sys/un.h>
 #endif
@@ -437,6 +440,20 @@ void refuse_log(int th)
 
 void bringuplogd(void)
 {
+#ifdef _WIN32
+  char *arg[]={"../bin/wimslogd.exe",NULL};
+  char envbuf[256];
+  mkdirs("../tmp/log");
+  snprintf(envbuf,sizeof(envbuf),"%u %u %u %u %u %u %d %d %d %d",
+      idle_time,idle_time2,idle_time3,
+      OLD_LOG_FILES,GEN_LOG_LIMIT,
+      MODULE_LOG_LIMIT,backup_hour,site_accounting,
+      examlog_limit,LOG_DELETE);
+  setenv("wimslogd",envbuf,1);
+  if(wp_daemon_spawn(arg, logdpid)!=0)
+    fprintf(stderr,"Unable to execute wimslogd.exe\n");
+  return;
+#else
   char *arg[]={"../bin/wimslogd",NULL};
   struct stat st;
   pid_t pid;
@@ -468,14 +485,17 @@ void bringuplogd(void)
   execve(arg[0],arg,environ);
   fprintf(stderr,"Unable to execute wimslogd: %s\n",strerror(errno));
   exit(1);
+#endif
 }
 
 void checklogd(void)
 {
   int i,t;
   char *p1, *p2, *p, buf[MAX_LINELEN+1];
+#ifndef _WIN32
   sun.sun_family=PF_UNIX;
   snprintf(sun.sun_path,sizeof(sun.sun_path),"%s",ksockfile);
+#endif
   p=getenv("REMOTE_ADDR"); if(p==NULL) p="";
   snprintf(buf+sizeof(int),sizeof(buf)-sizeof(int),"ping %s",p);
   t=kerneld(buf,sizeof(buf)); if(t<0) {

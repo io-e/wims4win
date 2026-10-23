@@ -30,20 +30,96 @@ int mathml(char *p, int option ){
   }
 //singlespace(p); // needed for check unbalanced \left\right in wims_mathml.cc --> insmath.c
   singlespace(p);
+
+#ifdef _WIN32
+  /* N3: run wims_mathml through wp_spawn (CREATE_SUSPENDED + Job), no fork. */
+  {
+    char mml_buffer[MAX_LINELEN+1];
+    char mathml_tex_size[64];
+    int texsize_list[]={20,30,50,70,90,100,120,130,150,180,220,300};
+    int idx = 5;
+    int use_js_zoom = 0;
+    char zoom[2];
+    wp_chan chan;
+    wp_pid pid;
+    char *av[10];
+    char buffer[MAX_LINELEN+1];
+    long n, tot=0;
+    int st=0, got_err=0;
+    sprintf(mml_buffer, "%d", MAX_LINELEN);
+    if(getvar("useropts") != NULL || getvar("wims_useropts") != NULL){
+      char *u = getvar("useropts");
+      if(u == NULL || *u == 0) u=getvar("wims_useropts");
+      if(u != NULL && *u != 0){
+        if(myisdigit(u[0])){
+          idx = u[0] - '0';
+          if(idx < 0 || idx > 11) idx = 5;
+        }
+        if(myisdigit(u[2]) && u[2]!=0){
+          use_js_zoom = u[2] - '0';
+          if(use_js_zoom > 1 || use_js_zoom < 0) use_js_zoom = 0;
+        }
+      }
+    }
+    else {
+      idx = atoi(getvar("wims_texbasesize"));
+      if(idx < 0 || idx > 11) idx = 5;
+    }
+    if(getvar("disable_zoom") && strcmp(getvar("disable_zoom"),"yes")==0) use_js_zoom = 0;
+    snprintf(mathml_tex_size,sizeof(mathml_tex_size),"%d%%",texsize_list[idx]);
+    if(strlen(mathml_tex_size) == 0) sprintf(mathml_tex_size,"%s","100%");
+    snprintf(zoom, sizeof(zoom), "%d", use_js_zoom);
+    av[0]="../bin/wims_mathml.exe";
+    av[1]="--use-zoom"; av[2]=zoom;
+    av[3]="--tex-size"; av[4]=mathml_tex_size;
+    av[5]="--max-mml-size"; av[6]=mml_buffer;
+    av[7]="--tex-string"; av[8]=p; av[9]=NULL;
+    if(wp_chan_open(&chan)!=WP_OK){ mathalign_base=1; return 0; }
+    if(wp_spawn(&chan,av,"NUL",NULL,"NUL",WP_ISO_NONE,"wims_mathml",&pid)!=WP_OK){
+      /* retry with bare name (PATH / cwd); reopen channel after failed spawn */
+      if(chan.in_w && chan.in_w!=INVALID_HANDLE_VALUE) CloseHandle(chan.in_w);
+      if(chan.in_r && chan.in_r!=INVALID_HANDLE_VALUE) CloseHandle(chan.in_r);
+      if(chan.out_w && chan.out_w!=INVALID_HANDLE_VALUE) CloseHandle(chan.out_w);
+      if(chan.out_r && chan.out_r!=INVALID_HANDLE_VALUE) CloseHandle(chan.out_r);
+      if(chan.wov.hEvent) CloseHandle(chan.wov.hEvent);
+      av[0]="wims_mathml.exe";
+      if(wp_chan_open(&chan)!=WP_OK){ mathalign_base=1; return 0; }
+      if(wp_spawn(&chan,av,"NUL",NULL,"NUL",WP_ISO_NONE,"wims_mathml",&pid)!=WP_OK){
+        if(chan.in_w && chan.in_w!=INVALID_HANDLE_VALUE) CloseHandle(chan.in_w);
+        if(chan.in_r && chan.in_r!=INVALID_HANDLE_VALUE) CloseHandle(chan.in_r);
+        if(chan.out_w && chan.out_w!=INVALID_HANDLE_VALUE) CloseHandle(chan.out_w);
+        if(chan.out_r && chan.out_r!=INVALID_HANDLE_VALUE) CloseHandle(chan.out_r);
+        if(chan.wov.hEvent) CloseHandle(chan.wov.hEvent);
+        mathalign_base=1; return 0;
+      }
+    }
+    CloseHandle(chan.out_w); chan.out_w=INVALID_HANDLE_VALUE;
+    wp_chan_close_parent_write(&chan);
+    CloseHandle(chan.in_r); chan.in_r=INVALID_HANDLE_VALUE;
+    memset(buffer,0,sizeof(buffer));
+    if(option==1) *p=0;
+    while((n=wp_read(&chan, buffer+tot, (long)(sizeof(buffer)-1-tot)))>0){
+      tot+=n; buffer[tot]=0;
+      if(tot >= (long)sizeof(buffer)-1) break;
+    }
+    wp_strip_cr(buffer, tot);
+    if(strstr(buffer,"ERROR")!=NULL) got_err=1;
+    else if(option==1) mystrncpy(p, buffer, MAX_LINELEN-1);
+    else if(tot>0) output("%s", buffer);
+    CloseHandle(chan.out_r);
+    if(chan.wov.hEvent) CloseHandle(chan.wov.hEvent);
+    wp_wait(&pid,&st);
+    if(got_err){ mathalign_base=1; return 0; }
+    return 1;
+  }
+#else
   int my_pipe[2];
   pid_t pid;
-  if(
-#ifdef _WIN32
-     1 /* MathML fork/exec pipeline not yet ported: fall back to GIF */
-#else
-     pipe(my_pipe)
-#endif
-    ){// pipe could not be opened...
+  if(pipe(my_pipe)){// pipe could not be opened...
     internal_error("mathml(): pipe() failure.\n");
     mathalign_base = 1;
     return 0; // go to insmath with gifs
   }
-#ifndef _WIN32
   else
   {
     pid = fork();

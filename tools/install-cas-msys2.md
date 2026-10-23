@@ -32,3 +32,23 @@ Octave `.pkg.tar.zst` downloaded on the box (~20 MB + deps); full DLL closure no
 | GAP | **not installed** (no winget package) | `gap.exe` ready | — |
 
 Environment for interfaces: set `tmp_dir`, `{cas}_command`, `wims_exec_parm`.
+
+
+## GAP 4.16.1 (PC, 23/10/2026 ~19:55 heure de Paris)
+
+Installateur officiel Cygwin-based sous :
+`C:\Users\Shadow\AppData\Local\GAP-4.16.1\`
+
+- Exécutable direct (pas de `.bat`) :
+  `...\runtime\opt\gap-4.16.1\gap.exe`
+- Dépendances DLL Cygwin : ajouter `...\runtime\bin` au `PATH`
+  (`cygwin1.dll`, …).
+- `gap_command` sans espaces : junction
+  `tests-win\cas\gap` → dossier d'install, puis
+  `gap_command=<tests-win>\cas\gap\runtime\opt\gap-4.16.1\gap.exe -T -n`
+- Smoke : `Print(2+3,"\n");` → `5` ; interface `gap.exe` → `5`.
+- Suite `tests/interfaces/run_equiv_pc.ps1` : **24/24** (gap/maxima/octave ×
+  calc, factor, large/fsizelim, illegal, about, timeout, absent, multiexec).
+
+Maxima Windows : lanceur `C:\maxima-5.49.0\bin\maxima.bat` (SBCL) — pas
+d'image `.exe` autonome ; `MAXIMA_PREFIX` / `SBCL_HOME` requis pour multiexec.

@@ -32,11 +32,18 @@ int mathml(char *p, int option ){
   singlespace(p);
   int my_pipe[2];
   pid_t pid;
-  if(pipe(my_pipe)){// pipe could not be opened...
+  if(
+#ifdef _WIN32
+     1 /* MathML fork/exec pipeline not yet ported: fall back to GIF */
+#else
+     pipe(my_pipe)
+#endif
+    ){// pipe could not be opened...
     internal_error("mathml(): pipe() failure.\n");
     mathalign_base = 1;
     return 0; // go to insmath with gifs
   }
+#ifndef _WIN32
   else
   {
     pid = fork();
@@ -185,5 +192,6 @@ http://wimsedu.info/?topic=unites-de-mesure-et-mathml/#post-3105
       }
     }
   }
+#endif /* !_WIN32 */
   return 1;
 }

@@ -18,10 +18,9 @@
 #define lstat stat
 #define mkdir(p,m) _mkdir(p)
 
-int wp_setenv(const char *name, const char *value, int overwrite);
-int wp_unsetenv(const char *name);
-#define setenv   wp_setenv
-#define unsetenv wp_unsetenv
+/* Implemented in wp_compat.c (HAVE_SETENV=1 in win32/config.h). */
+int setenv(const char *name, const char *value, int overwrite);
+int unsetenv(const char *name);
 #ifdef _MSC_VER
 struct timezone;
 int wp_gettimeofday(struct timeval *tv, void *tz);

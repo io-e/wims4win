@@ -17,6 +17,7 @@
 #define HAVE_MKDIR 1
 #define HAVE_POW 1
 #define HAVE_PUTENV 1
+#define HAVE_SETENV 1
 #define HAVE_REALLOC 1
 #define HAVE_RINT 1
 #define HAVE_RMDIR 1

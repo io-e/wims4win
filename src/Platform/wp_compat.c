@@ -4,7 +4,7 @@
 #include "wp_compat.h"
 #include <windows.h>
 
-int wp_setenv(const char *name, const char *value, int overwrite)
+int setenv(const char *name, const char *value, int overwrite)
 {
   if(name==NULL || *name==0 || strchr(name,'=')) return -1;
   if(!overwrite && getenv(name)!=NULL) return 0;
@@ -16,7 +16,7 @@ int wp_setenv(const char *name, const char *value, int overwrite)
   return _putenv_s(name,value)==0?0:-1;
 }
 
-int wp_unsetenv(const char *name)
+int unsetenv(const char *name)
 {
   if(name==NULL || *name==0) return -1;
   return _putenv_s(name,"")==0?0:-1;

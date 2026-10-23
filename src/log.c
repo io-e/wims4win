@@ -15,8 +15,12 @@
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 /* Routines to write log files. */
+#ifndef _WIN32
 #include <sys/socket.h>
+#endif
+#ifndef _WIN32
 #include <sys/un.h>
+#endif
 
 #include "wims.h"
 

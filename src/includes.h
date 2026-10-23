@@ -81,6 +81,7 @@
 
 #ifdef _WIN32
 # include "Platform/wp_compat.h"
+# include "Platform/win32/posix_shim.h"
 #else
 # include <sys/resource.h>
 #endif

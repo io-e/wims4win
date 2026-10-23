@@ -19,8 +19,12 @@
  * and error routines
  */
 #include <utime.h>
+#ifndef _WIN32
 #include <sys/socket.h>
+#endif
+#ifndef _WIN32
 #include <sys/un.h>
+#endif
 
 #include "wims.h"
 
@@ -909,6 +913,32 @@ void create_pid(void)
 struct mxtab mxtab[MAX_MULTIEXEC];
 int mxno=0;
 
+#if defined(_WIN32) || defined(WIMS_MX_PLATFORM)
+int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
+{
+  wp_chan c; wp_pid pid; int st=0; wp_isolation iso;
+  (void)cmdf;
+  if(robot_access) return 0;
+  if(time(0)>=limtimex) {
+    if(errf!=NULL)
+      accessfile("No time left to execute subprograms.\n","w","%s",errf);
+    return -100;
+  }
+  if(is_multiexec) { wrapexec=0; return 0; }
+  lastdatafile[0]=lastftest[0]=0;
+  iso=(wrapexec==-1)?WP_ISO_DROP_PRIV:WP_ISO_NONE;
+  if(wp_chan_open(&c)!=WP_OK) return -1;
+  if(wp_spawn(&c,arg,inf,outf,errf,iso,NULL,&pid)!=WP_OK) {
+    wrapexec=0; return -1;
+  }
+  wrapexec=0;
+  if(exec_wait) {
+    killpid=(int)pid.id; forkalarm();
+    (void)wp_wait(&pid,&st); killpid=0; finalalarm();
+  }
+  return st;
+}
+#else
 int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
 {
   pid_t pid;
@@ -979,6 +1009,7 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
     return WEXITSTATUS(status);
   }
 }
+#endif
 
 /* preparation for resident execution.
  * Returns 1 if already up, otherwise 0.

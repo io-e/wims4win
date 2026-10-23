@@ -31,6 +31,7 @@ jobs:
       - name: Cross-build Win32 interfaces
         run: |
           bash tools/build-win32.sh
+          bash tools/build-wims-win32.sh
           ls -la build/win32/*.exe
       - name: Build Platform test (mingw)
         run: |

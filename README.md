@@ -84,7 +84,7 @@ dédié (hors dépôt) ; voir `tests/interfaces/run_equiv_pc.ps1` et
 ## Limites restantes
 
 - wimslogd Windows : ping/loadavg seulement (scores / housekeeping à porter).
-- Maxima Windows encore lancé via `maxima.bat` (SBCL) ; GAP via `gap.exe` +
+- Maxima Windows lancé directement via `sbcl.exe --core` (sans .bat ni cmd.exe) ; GAP via `gap.exe` +
   runtime Cygwin dans le `PATH`.
 - Arborescence `public_html` / modules non livrée dans ce dépôt.
 - Tag amont 4.32 vs trunk 4.33a à clarifier pour la recette.

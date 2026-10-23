@@ -63,8 +63,12 @@ static HANDLE make_job(void)
   li.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
                                      |JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
   if(job_cpu>0) {
-    li.BasicLimitInformation.LimitFlags|=JOB_OBJECT_LIMIT_PROCESS_TIME;
-    li.BasicLimitInformation.PerProcessUserTimeLimit.QuadPart=(LONGLONG)job_cpu*10000000;
+    /* Both PROCESS_TIME and JOB_TIME: some Windows builds have been observed
+     * not to enforce PROCESS_TIME alone on a single busy child (G4 probe). */
+    li.BasicLimitInformation.LimitFlags|=JOB_OBJECT_LIMIT_PROCESS_TIME
+                                        |JOB_OBJECT_LIMIT_JOB_TIME;
+    li.BasicLimitInformation.PerProcessUserTimeLimit.QuadPart=(LONGLONG)job_cpu*10000000LL;
+    li.BasicLimitInformation.PerJobUserTimeLimit.QuadPart=(LONGLONG)job_cpu*10000000LL;
   }
   if(job_mem>0) {
     li.BasicLimitInformation.LimitFlags|=JOB_OBJECT_LIMIT_PROCESS_MEMORY;

@@ -116,6 +116,18 @@ long wp_mx_exchange(wp_chan *c, const char *parm, const char *marker,
 /* 1 if fd has data (or EOF) within timeout_usec, 0 otherwise */
 int  wp_fd_readable(wp_fd fd, long timeout_usec);
 
+/* Resident (multiexec) spawn: child stdin/stdout = channel, stderr = err_w
+ * (write end of a wp_pipe_open pipe). lowprio: nice(10) / BELOW_NORMAL. */
+int  wp_spawn_mx(wp_chan *c, char *const argv[], wp_fd err_w, wp_isolation iso,
+                 int lowprio, const char *progname, wp_pid *pid);
+/* plain one-way pipe; the read end is not inherited by children */
+int  wp_pipe_open(wp_fd *r, wp_fd *w);
+long wp_fd_read(wp_fd fd, char *buf, long cap);
+#ifdef _WIN32
+/* 1 if the sandbox wrapper (ch..root.exe) is present and passes --selftest */
+int  wp_sandbox_available(const char *wrapper);
+#endif
+
 /* platform name, for diagnostics */
 const char *wp_platform_name(void);
 

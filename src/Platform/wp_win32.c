@@ -14,7 +14,9 @@
  *      exec". Windows has no setuid; the child inherits our token. Accepted
  *      only when that token is NOT elevated (nothing to drop); refused when
  *      running elevated (administrator) -> WP_E_NOISOLATION.
- *    WP_ISO_WRAPPER (ch..root sandbox): no Win32 sandbox yet -> refused.
+ *    WP_ISO_WRAPPER (ch..root sandbox): argv[0] is the wrapper; accepted
+ *      only if <argv[0]>.exe exists and "ch..root.exe --selftest" succeeds
+ *      (AppContainer available); otherwise refused (WP_E_NOISOLATION).
  */
 #ifdef _WIN32
 #include <stdio.h>
@@ -74,6 +76,7 @@ static HANDLE make_job(void)
   return j;
 }
 
+int wp_sandbox_available(const char *wrapper);
 static int token_elevated(void)
 {
   HANDLE t; TOKEN_ELEVATION e; DWORD n=0; int r=1; /* unknown = elevated (refuse) */
@@ -152,17 +155,16 @@ static HANDLE open_redirect(const char *f, int write)
                      write?CREATE_ALWAYS:OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 }
 
-int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
-             const char *outf, const char *errf, wp_isolation iso,
-             const char *progname, wp_pid *pid)
+/* Common Win32 spawn on explicit handles (owned by the caller). */
+static int spawn_core(char *const argv[], HANDLE hin, HANDLE hout, HANDLE herr,
+                      wp_isolation iso, int lowprio, const char *progname,
+                      wp_pid *pid)
 {
-  char cmd[32768]; size_t n=0; int i, ok;
-  HANDLE hin, hout, herr, list[3];
+  char cmd[32768]; size_t n=0; int i, ok, nl;
+  HANDLE list[3], job;
   STARTUPINFOEXA si; PROCESS_INFORMATION pi; SIZE_T asz=0;
-  (void)progname;
   if(argv==NULL || argv[0]==NULL || pid==NULL) return WP_E_ARG;
-  HANDLE job;
-  if(iso==WP_ISO_WRAPPER) return WP_E_NOISOLATION;          /* no sandbox yet */
+  if(iso==WP_ISO_WRAPPER && !wp_sandbox_available(argv[0])) return WP_E_NOISOLATION;
   if(iso==WP_ISO_DROP_PRIV && token_elevated()) return WP_E_NOISOLATION;
   for(i=0;argv[i];i++) {
     if(i) { if(n+1<sizeof(cmd)) cmd[n]=' '; n++; }
@@ -170,12 +172,11 @@ int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
   }
   if(n>=sizeof(cmd)) return WP_E_ARG;
   cmd[n]=0;
-  hin = inf ? open_redirect(inf,0) : c->in_r;
-  hout= outf? open_redirect(outf,1): c->out_w;
-  herr= errf? open_redirect(errf,1): GetStdHandle(STD_ERROR_HANDLE);
   if(hin==INVALID_HANDLE_VALUE || hout==INVALID_HANDLE_VALUE
      || herr==INVALID_HANDLE_VALUE) return WP_E_SYS;
-  list[0]=hin; list[1]=hout; list[2]=herr;
+  nl=0; list[nl++]=hin;
+  if(hout!=hin) list[nl++]=hout;
+  if(herr!=hin && herr!=hout) list[nl++]=herr;
   memset(&si,0,sizeof(si)); si.StartupInfo.cb=sizeof(si);
   si.StartupInfo.dwFlags=STARTF_USESTDHANDLES;
   si.StartupInfo.hStdInput=hin; si.StartupInfo.hStdOutput=hout;
@@ -185,10 +186,11 @@ int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
   if(!si.lpAttributeList) return WP_E_SYS;
   InitializeProcThreadAttributeList(si.lpAttributeList,1,0,&asz);
   UpdateProcThreadAttribute(si.lpAttributeList,0,PROC_THREAD_ATTRIBUTE_HANDLE_LIST,
-                            list,(herr==hout?2:3)*sizeof(HANDLE),NULL,NULL);
+                            list,nl*sizeof(HANDLE),NULL,NULL);
   job=make_job();
   ok=job!=NULL && CreateProcessA(NULL,cmd,NULL,NULL,TRUE,
-                    CREATE_NO_WINDOW|EXTENDED_STARTUPINFO_PRESENT|CREATE_SUSPENDED,
+                    CREATE_NO_WINDOW|EXTENDED_STARTUPINFO_PRESENT|CREATE_SUSPENDED
+                    |(lowprio?BELOW_NORMAL_PRIORITY_CLASS:0),
                     NULL,NULL,&si.StartupInfo,&pi);
   if(ok && !AssignProcessToJobObject(job,pi.hProcess)) {
     /* never run a CAS outside its job (no limits, no cleanup) */
@@ -196,9 +198,6 @@ int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
     CloseHandle(pi.hProcess); ok=0;
   }
   DeleteProcThreadAttributeList(si.lpAttributeList); free(si.lpAttributeList);
-  if(inf) CloseHandle(hin);
-  if(outf) CloseHandle(hout);
-  if(errf) CloseHandle(herr);
   if(!ok) {
     if(job) CloseHandle(job);
     /* historical behaviour of the forked child when exec fails */
@@ -208,6 +207,68 @@ int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
   ResumeThread(pi.hThread); CloseHandle(pi.hThread);
   pid->h=pi.hProcess; pid->id=pi.dwProcessId; pid->job=job;
   return WP_OK;
+}
+
+int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
+             const char *outf, const char *errf, wp_isolation iso,
+             const char *progname, wp_pid *pid)
+{
+  HANDLE hin, hout, herr; int r;
+  if(argv==NULL || argv[0]==NULL || pid==NULL) return WP_E_ARG;
+  hin = inf ? open_redirect(inf,0) : c->in_r;
+  hout= outf? open_redirect(outf,1): c->out_w;
+  herr= errf? open_redirect(errf,1): GetStdHandle(STD_ERROR_HANDLE);
+  r=spawn_core(argv,hin,hout,herr,iso,0,progname,pid);
+  if(inf && hin!=INVALID_HANDLE_VALUE) CloseHandle(hin);
+  if(outf && hout!=INVALID_HANDLE_VALUE) CloseHandle(hout);
+  if(errf && herr!=INVALID_HANDLE_VALUE) CloseHandle(herr);
+  return r;
+}
+
+int wp_spawn_mx(wp_chan *c, char *const argv[], wp_fd err_w, wp_isolation iso,
+                int lowprio, const char *progname, wp_pid *pid)
+{
+  return spawn_core(argv,c->in_r,c->out_w,err_w,iso,lowprio,progname,pid);
+}
+
+int wp_pipe_open(wp_fd *r, wp_fd *w)
+{
+  SECURITY_ATTRIBUTES sa;
+  sa.nLength=sizeof(sa); sa.lpSecurityDescriptor=NULL; sa.bInheritHandle=TRUE;
+  if(!CreatePipe(r,w,&sa,0)) return WP_E_SYS;
+  SetHandleInformation(*r,HANDLE_FLAG_INHERIT,0);
+  return WP_OK;
+}
+
+long wp_fd_read(wp_fd fd, char *buf, long cap)
+{
+  DWORD got=0;
+  if(cap<=0) return 0;
+  if(!ReadFile(fd,buf,(DWORD)cap,&got,NULL))
+    return GetLastError()==ERROR_BROKEN_PIPE?0:-1;
+  return (long)got;
+}
+
+/* Sandbox wrapper (ch..root.exe) is usable iff it exists and its self-test
+ * (AppContainer creation + restricted launch) succeeds on this machine. */
+int wp_sandbox_available(const char *wrapper)
+{
+  static int cached=-1; char cmd[1024]; STARTUPINFOA si; PROCESS_INFORMATION pi;
+  DWORD code=1; char path[MAX_PATH]; size_t l;
+  if(cached>=0) return cached;
+  cached=0;
+  if(wrapper==NULL) return 0;
+  snprintf(path,sizeof(path),"%s",wrapper); l=strlen(path);
+  if(l<4 || _stricmp(path+l-4,".exe")!=0) snprintf(path+l,sizeof(path)-l,".exe");
+  if(GetFileAttributesA(path)==INVALID_FILE_ATTRIBUTES) return 0;
+  snprintf(cmd,sizeof(cmd),"\"%s\" --selftest",path);
+  memset(&si,0,sizeof(si)); si.cb=sizeof(si);
+  if(!CreateProcessA(NULL,cmd,NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,NULL,&si,&pi)) return 0;
+  if(WaitForSingleObject(pi.hProcess,15000)==WAIT_OBJECT_0) GetExitCodeProcess(pi.hProcess,&code);
+  else TerminateProcess(pi.hProcess,1);
+  CloseHandle(pi.hThread); CloseHandle(pi.hProcess);
+  cached=(code==0);
+  return cached;
 }
 
 int wp_wait(wp_pid *pid, int *status)

@@ -103,4 +103,39 @@ int wp_fd_readable(wp_fd fd, long timeout_usec)
   t.tv_sec=timeout_usec/1000000; t.tv_usec=timeout_usec%1000000;
   return select(fd+1,&r,NULL,NULL,&t)>0;
 }
+int wp_spawn_mx(wp_chan *c, char *const argv[], wp_fd err_w, wp_isolation iso,
+                int lowprio, const char *progname, wp_pid *pid)
+{
+  pid_t p;
+  if(argv==NULL || argv[0]==NULL || pid==NULL) return WP_E_ARG;
+  fflush(NULL);
+  p=fork(); if(p==-1) return WP_E_SYS;
+  if(p==0) {
+    if(lowprio) (void)nice(10);
+    dup2(c->in_r,0); dup2(c->out_w,1); dup2(err_w,2);
+    if(iso==WP_ISO_DROP_PRIV) {
+      if(setreuid(getuid(),getuid()) || setregid(getgid(),getgid())) _exit(127);
+    }
+    if(strchr(argv[0],'/')) execv(argv[0],argv);
+    else execvp(argv[0],argv);
+    fprintf(stderr,"%s not_INStalled",progname?progname:"");
+    exit(127);
+  }
+  pid->id=p;
+  return WP_OK;
+}
+
+int wp_pipe_open(wp_fd *r, wp_fd *w)
+{
+  int f[2];
+  if(pipe(f)<0) return WP_E_SYS;
+  *r=f[0]; *w=f[1];
+  return WP_OK;
+}
+
+long wp_fd_read(wp_fd fd, char *buf, long cap)
+{
+  if(cap<=0) return 0;
+  return (long)read(fd,buf,(size_t)cap);
+}
 #endif

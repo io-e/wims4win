@@ -187,3 +187,12 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 2. ~~N3 MathML~~ résolu (`4b2d4eb`).
 3. wimslogd complet (scores, housekeeping) au-delà du min-ping.
 4. ~~N5 CPU~~ résolu par watchdog + limites au spawn (`5f5523b`).
+
+---
+
+## GitHub — projet **wims4win** (23/10/2026 ~20:30 heure de Paris)
+
+- Dépôt privé : https://github.com/io-e/wims4win (renommé depuis `io-e/wims-port`).
+- Commits scaffolding : `16c0232` LICENSE/gitignore, `39af5bc` docs/, `021d9e5` README, `9324e26` CI, `197acab` rename wims4win.
+- Issues `port-windows` #1–#9 (travaux restants).
+- Remote `origin` = `https://github.com/io-e/wims4win.git` (box + copie PC).

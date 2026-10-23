@@ -20,3 +20,15 @@ No MSYS2 package. Use the official GAP Windows build; `gap_command=gap.exe` (alr
 
 ## Gap in this phase
 Octave `.pkg.tar.zst` downloaded on the box (~20 MB + deps); full DLL closure not completed under wine. Install on the PC via pacman as above.
+
+
+## Validated on PC (23/10/2026, heure de Paris)
+
+| CAS | Source | Interface | Smoke |
+|-----|--------|-----------|-------|
+| PARI/GP 2.19.0 | MSYS2 ucrt64 extract → `tests-win/cas/pari/gp.exe` | `pari.exe` | `2+3` → 5 ; `factor(10!)` OK |
+| Maxima 5.49.0 | `winget install MaximaTeam.Maxima` → `C:\maxima-5.49.0\bin\maxima.bat` | `maxima.exe` | `2+3` → 5 ; `factor(x^2-1)` OK |
+| Octave 11.3.0 | `winget install GNU.Octave` → `...\Octave-11.3.0\mingw64\bin\octave-cli.exe` | `octave.exe` | `1+1` → 2 |
+| GAP | **not installed** (no winget package) | `gap.exe` ready | — |
+
+Environment for interfaces: set `tmp_dir`, `{cas}_command`, `wims_exec_parm`.

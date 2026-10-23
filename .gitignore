@@ -1,1 +1,39 @@
+# Build outputs
 build/
+tmp/
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.obj
+*.lib
+*.pdb
+*.ilk
+*.exp
+
+# Generated / local
+exec.pid
+*.log
+*.bundle
+docs-export.tgz
+
+# Mathml generated (rebuild with flex/bison)
+src/Mathml/lex.yy.c
+src/Mathml/y.tab.c
+src/Mathml/y.tab.h
+src/Mathml/y.output
+src/Mathml/*.o
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Wine / local CAS extracts (not part of the port sources)
+gpwin/
+octwin/
+cas/

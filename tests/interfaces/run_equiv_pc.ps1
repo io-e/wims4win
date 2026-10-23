@@ -53,20 +53,11 @@ if(-not (Test-Path $gapExe)){ throw "GAP missing: $gapExe" }
 $env:PATH = "$gapBin;" + $env:PATH
 $gapCmd = "$gapExe -T -n"
 
-# Maxima: prefer direct binary under clisp tree if present; else maxima.bat (launcher)
-$maxCand=@(
-  'C:\maxima-5.49.0\bin\maxima.exe',
-  'C:\maxima-5.49.0\lib\maxima\5.49.0\binary-sbcl\maxima.exe',
-  'C:\maxima-5.49.0\bin\maxima.bat'
-)
-$maxCmd=$null
-foreach($c in $maxCand){ if(Test-Path $c){ $maxCmd=$c; break } }
-Get-ChildItem 'C:\maxima-5.49.0' -Recurse -Filter 'maxima.exe' -ErrorAction SilentlyContinue |
-  Select-Object -First 3 FullName | ForEach-Object { Write-Host "found $($_.FullName)" }
-if(-not $maxCmd){
-  $m=Get-ChildItem 'C:\maxima-5.49.0' -Recurse -Filter 'maxima.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
-  if($m){ $maxCmd=$m.FullName } else { $maxCmd='C:\maxima-5.49.0\bin\maxima.bat' }
-}
+# Maxima: sbcl.exe direct with the Maxima core (no .bat, no cmd.exe).
+# maxima.exe derives MAXIMA_PREFIX / SBCL_HOME from this path.
+$maxPrefix='C:\maxima-5.49.0'
+$maxCore=Join-Path $maxPrefix 'lib\maxima\5.49.0\binary-sbcl\maxima.core'
+$maxCmd="$maxPrefix\bin\sbcl.exe --core $maxCore --noinform --dynamic-space-size 2000 --end-runtime-options --eval '(cl-user::run)' --end-toplevel-options"
 
 $oct='C:\Users\Shadow\AppData\Local\Programs\GNU Octave\Octave-11.3.0\mingw64\bin\octave-cli.exe'
 $octCmd="$oct -Hf --no-line-editing"
@@ -140,10 +131,6 @@ function RunMx($cas,$exe,$cmdKey,$cmd,$reqs,$needle){
   $saved=[Environment]::GetEnvironmentVariable($cmdKey,'Process')
   [Environment]::SetEnvironmentVariable($cmdKey,$cmd,'Process')
   [Environment]::SetEnvironmentVariable('PATH', "$gapBin;" + [Environment]::GetEnvironmentVariable('PATH','Process'), 'Process')
-  if($cas -eq 'maxima'){
-    [Environment]::SetEnvironmentVariable('MAXIMA_PREFIX','C:/maxima-5.49.0','Process')
-    [Environment]::SetEnvironmentVariable('SBCL_HOME','C:/maxima-5.49.0/bin','Process')
-  }
   $out = & $py.Source $drv (Join-Path $here $exe) 'MXRND42' @reqs 2>&1 | Out-String
   $out = Norm $out
   [Environment]::SetEnvironmentVariable($cmdKey,$saved,'Process')

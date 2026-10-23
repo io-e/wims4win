@@ -215,8 +215,34 @@ char *dynsetup(char *ptr, char *end)
     return ptr;
 }
 
+
+#ifdef _WIN32
+/* sbcl.exe launched directly (no maxima.bat): derive MAXIMA_PREFIX and
+ * SBCL_HOME from maxima_command (<prefix>/bin/sbcl.exe) unless already set.
+ * The child inherits the full Windows environment. */
+static void maxima_win_env(void)
+{
+    char buf[1024], *c=getenv("maxima_command"), *e, *b;
+    if(c==NULL) return;
+    while(*c==' ') c++;
+    snprintf(buf,sizeof(buf),"%s",c);
+    e=strchr(buf,' '); if(e) *e=0;
+    for(e=buf;*e;e++) if(*e=='\\') *e='/';
+    b=strrchr(buf,'/');
+    if(b==NULL || _stricmp(b+1,"sbcl.exe")!=0) return;
+    *b=0;                                   /* buf = <prefix>/bin */
+    if(getenv("SBCL_HOME")==NULL) setenv("SBCL_HOME",buf,1);
+    b=strrchr(buf,'/'); if(b==NULL) return;
+    *b=0;                                   /* buf = <prefix> */
+    if(getenv("MAXIMA_PREFIX")==NULL) setenv("MAXIMA_PREFIX",buf,1);
+}
+#endif
+
 int main(int argc,char *argv[])
 {
+#ifdef _WIN32
+    maxima_win_env();
+#endif
     prepare1();
     run();
     return 0;

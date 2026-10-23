@@ -33,5 +33,7 @@ int wp_gettimeofday(struct timeval *tv, void *tz);
 #endif
 /* stdin/stdout must be binary, otherwise the CRT turns \n into \r\n */
 void wp_stdio_binary(void);
+void wp_cgi_prepare(void);
+void wp_path_slashes(char *s);
 #endif
 #endif

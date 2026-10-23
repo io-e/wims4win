@@ -518,7 +518,12 @@ void checklogd(void)
   p1=find_word_end(p2); if(*p1) *p1++=0;
 
   p=getenv("SERVER_ADDR");
+#ifdef _WIN32
+  /* SERVER_ADDR may be unset (CLI/CGI smoke test): never memcmp(NULL). */
+  if(*p2!=0 && (p==NULL || memcmp(p,"10.",3)==0)) p=p2;
+#else
   if(*p2!=0 && memcmp(p,"10.",3)==0) p=p2;
+#endif
   if(p!=NULL) {
     i=strlen(cookieheader);
     snprintf(cookieheader+i, sizeof(cookieheader)-i,"%s/",p);

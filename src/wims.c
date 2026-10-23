@@ -1188,6 +1188,9 @@ int main(int argc, char *argv[], char *envp[])
         return 0;
       }
     }
+#ifdef _WIN32
+    wp_cgi_prepare();
+#endif
     p=getenv("SERVER_SOFTWARE"); if(p!=NULL && strcasecmp(p,"WIMS")==0)
       httpd_type=httpd_wims;
     p=getenv("REMOTE_ADDR"); if(p!=NULL) remote_addr=p;

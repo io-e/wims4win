@@ -5,9 +5,10 @@
  *   wp_poll reports writability when it completed); child stdout = anonymous
  *   pipe read after PeekNamedPipe. Parent ends are never inherited.
  * - CreateProcess(CREATE_SUSPENDED) + STARTUPINFOEX/HANDLE_LIST (only the 3
- *   std handles are inherited), child assigned to a Job Object
- *   (KILL_ON_JOB_CLOSE, optional CPU / memory limits, optional name so that
- *   wims can kill a whole session: replaces exec.pid), then resumed.
+ *   std handles are inherited), AssignProcessToJobObject (CPU limit always
+ *   set: PROCESS_TIME+JOB_TIME from wp_set_job or default 20s = rlimit_cpu),
+ *   then ResumeThread. A watchdog thread polls job accounting (user+kernel)
+ *   and wall-clock as a safety net (TerminateJobObject).
  * - wp_kill terminates the whole job (CAS + its own children).
  * - isolation:
  *    WP_ISO_DROP_PRIV: the POSIX meaning is "drop the setuid identity before
@@ -54,22 +55,32 @@ int wp_job_kill(const char *name)
   return 1;
 }
 
+/* Default matches wims.c: rlimit_cpu=20 when the caller did not set a limit. */
+#ifndef WP_DEFAULT_CPU_SEC
+# define WP_DEFAULT_CPU_SEC 20
+#endif
+
+static long effective_cpu_sec(void)
+{
+  return job_cpu>0 ? job_cpu : (long)WP_DEFAULT_CPU_SEC;
+}
+
 static HANDLE make_job(void)
 {
   JOBOBJECT_EXTENDED_LIMIT_INFORMATION li;
   HANDLE j=CreateJobObjectA(NULL,job_named?job_name:NULL);
+  long cpu=effective_cpu_sec();
   if(j==NULL) return NULL;
   memset(&li,0,sizeof(li));
+  /* Always apply a CPU limit at job creation (RLIMIT_CPU counterpart).
+   * Order of use by the caller: CreateProcess(CREATE_SUSPENDED) ->
+   * AssignProcessToJobObject -> ResumeThread (see spawn_core). */
   li.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
-                                     |JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
-  if(job_cpu>0) {
-    /* Both PROCESS_TIME and JOB_TIME: some Windows builds have been observed
-     * not to enforce PROCESS_TIME alone on a single busy child (G4 probe). */
-    li.BasicLimitInformation.LimitFlags|=JOB_OBJECT_LIMIT_PROCESS_TIME
-                                        |JOB_OBJECT_LIMIT_JOB_TIME;
-    li.BasicLimitInformation.PerProcessUserTimeLimit.QuadPart=(LONGLONG)job_cpu*10000000LL;
-    li.BasicLimitInformation.PerJobUserTimeLimit.QuadPart=(LONGLONG)job_cpu*10000000LL;
-  }
+                                     |JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION
+                                     |JOB_OBJECT_LIMIT_PROCESS_TIME
+                                     |JOB_OBJECT_LIMIT_JOB_TIME;
+  li.BasicLimitInformation.PerProcessUserTimeLimit.QuadPart=(LONGLONG)cpu*10000000LL;
+  li.BasicLimitInformation.PerJobUserTimeLimit.QuadPart=(LONGLONG)cpu*10000000LL;
   if(job_mem>0) {
     li.BasicLimitInformation.LimitFlags|=JOB_OBJECT_LIMIT_PROCESS_MEMORY;
     li.ProcessMemoryLimit=(SIZE_T)job_mem*1024*1024;
@@ -78,6 +89,54 @@ static HANDLE make_job(void)
     CloseHandle(j); return NULL;
   }
   return j;
+}
+
+/* Watchdog: poll JOBOBJECT_BASIC_ACCOUNTING_INFORMATION (user+kernel).
+ * If the sum exceeds the CPU budget, TerminateJobObject. Also kill on
+ * wall-clock overrun (2x budget) when accounting stays at 0 (observed on
+ * some Win11 hosts for tight busy loops). */
+typedef struct {
+  HANDLE job; HANDLE proc; long cpu_sec; HANDLE thread;
+} wp_watch_arg;
+
+static DWORD WINAPI wp_cpu_watch(LPVOID arg)
+{
+  wp_watch_arg *a=(wp_watch_arg*)arg;
+  LONGLONG budget=(LONGLONG)a->cpu_sec*10000000LL;
+  DWORD t0=GetTickCount(), wall_ms=(DWORD)a->cpu_sec*2000; /* 2x wall grace */
+  JOBOBJECT_BASIC_ACCOUNTING_INFORMATION ai;
+  for(;;){
+    if(WaitForSingleObject(a->proc,200)==WAIT_OBJECT_0) break;
+    memset(&ai,0,sizeof(ai));
+    if(QueryInformationJobObject(a->job,JobObjectBasicAccountingInformation,
+                                 &ai,sizeof(ai),NULL)){
+      LONGLONG used=ai.TotalUserTime.QuadPart+ai.TotalKernelTime.QuadPart;
+      if(used>=budget){ TerminateJobObject(a->job,137); break; }
+    }
+    if(GetTickCount()-t0>=wall_ms){ TerminateJobObject(a->job,137); break; }
+  }
+  CloseHandle(a->proc); CloseHandle(a->job); free(a);
+  return 0;
+}
+
+static void start_cpu_watch(HANDLE job, HANDLE proc, long cpu_sec)
+{
+  wp_watch_arg *a; HANDLE th; DWORD id;
+  if(!job || !proc || cpu_sec<=0) return;
+  a=(wp_watch_arg*)malloc(sizeof(*a)); if(!a) return;
+  a->job=NULL; a->proc=NULL; a->cpu_sec=cpu_sec;
+  if(!DuplicateHandle(GetCurrentProcess(),job,GetCurrentProcess(),&a->job,
+                      0,FALSE,DUPLICATE_SAME_ACCESS) ||
+     !DuplicateHandle(GetCurrentProcess(),proc,GetCurrentProcess(),&a->proc,
+                      0,FALSE,DUPLICATE_SAME_ACCESS)){
+    if(a->job) CloseHandle(a->job);
+    if(a->proc) CloseHandle(a->proc);
+    free(a); return;
+  }
+  a->cpu_sec=cpu_sec;
+  th=CreateThread(NULL,0,wp_cpu_watch,a,0,&id);
+  if(th) CloseHandle(th); /* thread frees a and duplicated handles */
+  else { CloseHandle(a->job); CloseHandle(a->proc); free(a); }
 }
 
 int wp_sandbox_available(const char *wrapper);
@@ -208,7 +267,9 @@ static int spawn_core(char *const argv[], HANDLE hin, HANDLE hout, HANDLE herr,
     if(progname) { fprintf(stderr,"%s not_INStalled",progname); fflush(stderr); }
     return WP_E_SYS;
   }
+  /* Limits are already on the job; child was suspended until Assign. */
   ResumeThread(pi.hThread); CloseHandle(pi.hThread);
+  start_cpu_watch(job, pi.hProcess, effective_cpu_sec());
   pid->h=pi.hProcess; pid->id=pi.dwProcessId; pid->job=job;
   return WP_OK;
 }

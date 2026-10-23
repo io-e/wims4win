@@ -167,8 +167,8 @@ int main(int argc, char **argv)
     wp_chan_open(&c);
     wp_spawn(&c,av_busy,NULL,NULL,NULL,WP_ISO_NONE,"t",&p);
     i=WaitForSingleObject(p.h,6000)==WAIT_OBJECT_0;
-    printf("cpu-limited busy child ended by the job within 6 s: %s\n", i?"yes":"NO (limit not enforced by this Windows/wine)");
-    T("win32: CPU-limit job accepted", 1);
+    printf("cpu-limited busy child ended by job/watchdog within 6 s: %s\n", i?"yes":"NO");
+    T("win32: CPU-limit kills busy child (PROCESS_TIME/JOB_TIME + watchdog)", i);
     if(!i) { wp_kill(&p); }
     wp_wait(&p,&st); wp_set_job(NULL,0,0);
   }

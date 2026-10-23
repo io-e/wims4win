@@ -22,6 +22,9 @@
  */
 
 #include "wims.h"
+#ifdef _WIN32
+#include "Platform/wims_platform.h"
+#endif
 /* variables shared with wimslog.c */
 #include "commun.h"
 
@@ -512,6 +515,14 @@ void set_rlimits(void)
       initalarm();
     }
   }
+#ifdef _WIN32
+  /* Job Object budget for CAS children (interfaces read these). */
+  { char b[32]; snprintf(b,sizeof(b),"%d",rlimit_cpu); setenv("wims_rlimit_cpu",b,1);
+    setvar("wims_cpu_limit",b); }
+  { char b[32]; snprintf(b,sizeof(b),"%d",rlimit_as>0?(int)(rlimit_as/(1024*1024)):0);
+    if(atoi(b)>0) setenv("wims_rlimit_mem",b,1); }
+  wp_set_job(tmp_dir, rlimit_cpu>0?rlimit_cpu:20, 0);
+#endif
 }
 
 struct {

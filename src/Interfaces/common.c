@@ -355,7 +355,8 @@ void prepare1(void)
 #ifdef _WIN32
     { /* RLIMIT_CPU / RLIMIT_AS equivalents, exported by wims on Windows */
       char *c=getenv("wims_rlimit_cpu"), *m=getenv("wims_rlimit_mem");
-      wp_set_job(tmp_dir, c?atol(c):0, m?atol(m):0);
+      /* default 20s = wims.c rlimit_cpu when parent did not export a limit */
+      wp_set_job(tmp_dir, c&&*c?atol(c):20, m&&*m?atol(m):0);
     }
 #endif
     setenv("TMPDIR",tmp_dir,1);

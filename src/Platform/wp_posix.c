@@ -89,4 +89,18 @@ int wp_poll(wp_chan *c, int want_read, int want_write, long timeout_usec,
 
 long wp_read(wp_chan *c, char *buf, long cap) { return read(c->out_r,buf,cap); }
 long wp_write(wp_chan *c, const char *buf, long len) { return write(c->in_w,buf,len); }
+
+/* Job objects do not exist on POSIX: limits are inherited from wims'
+ * setrlimit() and cleanup goes through exec.pid (see common.c addpid). */
+void wp_set_job(const char *name, long cpu_sec, long mem_mb)
+{ (void)name; (void)cpu_sec; (void)mem_mb; }
+int wp_job_kill(const char *name) { (void)name; return WP_E_ARG; }
+
+int wp_fd_readable(wp_fd fd, long timeout_usec)
+{
+  fd_set r; struct timeval t;
+  FD_ZERO(&r); FD_SET(fd,&r);
+  t.tv_sec=timeout_usec/1000000; t.tv_usec=timeout_usec%1000000;
+  return select(fd+1,&r,NULL,NULL,&t)>0;
+}
 #endif

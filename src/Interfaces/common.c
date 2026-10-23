@@ -90,6 +90,7 @@ char *find_matching2(char *p, char c)
     return pp;
 }
 
+#ifndef _WIN32 /* only used by the exec.pid bookkeeping */
 /* Read/write to a file with variable parms to print filename */
 /* same in Misc/ccsum.c and wlogdaccessfile */
 static
@@ -124,6 +125,7 @@ void accessfile(char *content, char *type, char *s,...)
     }
     fclose(f);
 }
+#endif
 
 void getstdin(void)
 {
@@ -140,6 +142,12 @@ void getstdin(void)
     while(k>0);
 }
 
+#ifdef _WIN32
+/* Win32: no exec.pid. Every CAS runs in the Job Object named after tmp_dir
+ * (wp_set_job in prepare1); wims kills a session with wp_job_kill(). */
+void addpid(int pid) { (void)pid; }
+void rmpid(int pid) { (void)pid; }
+#else
 /* add a pid to the list of running childs */
 void addpid(int pid)
 {
@@ -166,6 +174,7 @@ void rmpid(int pid)
       accessfile(buf,"w",pidfname);
     }
 }
+#endif
 
 int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *args)
 {
@@ -321,6 +330,9 @@ void prepare1(void)
     unsigned int r[4];
     struct timeval t;
 
+#ifdef _WIN32
+    wp_stdio_binary();
+#endif
     parm=getenv("wims_exec_parm");
 /* nothing to do if no calling parameter */
     if(parm==NULL || *parm==0) exit(0);
@@ -340,6 +352,12 @@ void prepare1(void)
     i=fcntl(pipe_out[0],F_GETFL); if(i>=0) fcntl(pipe_out[0],F_SETFL,i|O_NONBLOCK);
 */
     tmp_dir=getenv("tmp_dir"); if(tmp_dir==NULL || *tmp_dir==0) tmp_dir=tmpdir;
+#ifdef _WIN32
+    { /* RLIMIT_CPU / RLIMIT_AS equivalents, exported by wims on Windows */
+      char *c=getenv("wims_rlimit_cpu"), *m=getenv("wims_rlimit_mem");
+      wp_set_job(tmp_dir, c?atol(c):0, m?atol(m):0);
+    }
+#endif
     setenv("TMPDIR",tmp_dir,1);
     wseed=getenv("tmp_seed");
     mypid=getpid();

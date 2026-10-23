@@ -23,7 +23,8 @@
 #ifdef _WIN32
 #  include <windows.h>
 typedef HANDLE wp_fd;
-typedef struct { HANDLE h; DWORD id; } wp_pid;
+/* job: Job Object owning the child and all its descendants */
+typedef struct { HANDLE h; DWORD id; HANDLE job; } wp_pid;
 #  define WP_FD_INVALID INVALID_HANDLE_VALUE
 #  define WP_STRIP_CR_DEFAULT 1   /* Windows CAS write CRLF */
 #else
@@ -52,6 +53,13 @@ typedef enum {
 typedef struct {
   wp_fd in_r, in_w;
   wp_fd out_r, out_w;
+#ifdef _WIN32
+  /* in_w is the server end of a named pipe opened FILE_FLAG_OVERLAPPED:
+   * one write may be in flight, its bytes are owned by wbuf. */
+  OVERLAPPED wov;
+  char *wbuf;
+  int wpending;
+#endif
 } wp_chan;
 
 int  wp_chan_open(wp_chan *c);
@@ -89,6 +97,24 @@ long wp_write(wp_chan *c, const char *buf, long len);
 /* Remove every '\r' from buf[0..len) in place, keep a terminating 0.
  * Returns the new length. */
 long wp_strip_cr(char *buf, long len);
+
+/* Execution job (Win32). Subsequent wp_spawn() put the child in a Job Object
+ * named Local\\wims-job-<name> (name sanitised; NULL = anonymous job) with
+ * KILL_ON_JOB_CLOSE and, if >0, a per-process CPU limit (seconds) and a
+ * per-process memory limit (MB): the Windows counterpart of the RLIMIT_CPU /
+ * RLIMIT_AS inherited from wims on POSIX.
+ * POSIX: no-op (limits come from setrlimit in wims, cleanup from exec.pid). */
+void wp_set_job(const char *name, long cpu_sec, long mem_mb);
+/* Kill every process of the named job (replaces "kill pids of exec.pid").
+ * Returns number of jobs terminated (0/1), WP_E_ARG on POSIX. */
+int  wp_job_kill(const char *name);
+
+/* wims side of multiexec, see wp_mx.c (fixed=0: historical behaviour of
+ * calc.c:229-258 including its timeout bug; fixed=1: corrected). */
+long wp_mx_exchange(wp_chan *c, const char *parm, const char *marker,
+                    char *p, long cap, int fixed);
+/* 1 if fd has data (or EOF) within timeout_usec, 0 otherwise */
+int  wp_fd_readable(wp_fd fd, long timeout_usec);
 
 /* platform name, for diagnostics */
 const char *wp_platform_name(void);

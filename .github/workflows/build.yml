@@ -1,0 +1,46 @@
+name: build
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+jobs:
+  linux-platform:
+    name: Linux Platform unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run test_platform
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq build-essential
+          make -C tests/platform clean test
+
+  mingw-cross:
+    name: mingw-w64 cross-build (interfaces)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install mingw-w64
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq mingw-w64
+      - name: Cross-build Win32 interfaces
+        run: |
+          bash tools/build-win32.sh
+          ls -la build/win32/*.exe
+      - name: Build Platform test (mingw)
+        run: |
+          make -C tests/platform test_platform.exe
+          file tests/platform/test_platform.exe
+      - name: Upload Win32 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win32-interfaces
+          path: |
+            build/win32/*.exe
+            tests/platform/test_platform.exe
+          if-no-files-found: error

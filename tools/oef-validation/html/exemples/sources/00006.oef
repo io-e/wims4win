@@ -1,0 +1,78 @@
+\language{it}
+\author{Marina, Cazzola}
+\email{marina.cazzola@unimib.it}
+text{lang=slib(oef/env lang)}
+\text{lang=it}
+\title{Tangente}
+
+\computeanswer{yes}
+
+\text{txthelp=\(\tan(a)=\frac{y}{x}\)}
+
+\text{griglia=25,17}
+\text{size=20}
+\text{delta=1.1}
+\text{pointsize=0.3}
+\text{dimdisegno=(\griglia[1]+2*\delta)*\size,(\griglia[2]+2*\delta)*\size}
+\text{dimdisegno=wims(values x for x in \dimdisegno)}
+\text{disegno=
+xrange -\delta,\griglia[1]+\delta
+yrange -\delta,\griglia[2]+\delta
+linewidth 2
+parallel -1,-1,-1,\griglia[2]+1,1,0,\griglia[1]+3,grey
+parallel -1,-1,\griglia[1]+1,-1,0,1,\griglia[2]+3,grey
+}
+
+qui disegno del triangolo
+\integer{a=random(2..10)}
+\integer{b=random(2..10)}
+\real{risp=\b/\a}
+piazzamento della lettera
+\real{xa= \risp<= 0.5 ? 2 : 1}
+\real{xa= \risp< 0.4 ? 3 : \xa}
+\real{xa= \risp>=1  ? 0.7 : \xa}
+\real{xa= \risp>2  ? 0.3 : \xa}
+\real{ya=0.8}
+\text{disegno=\disegno
+translate 10,7
+poly black , 0,0 , \a,0 , \a,\b
+text black,\xa,\ya,medium,a
+killtranslate
+}
+
+\text{disegno_url=draw(\dimdisegno
+\disegno)}
+
+\text{dis_help=
+xrange -\delta,\a+\delta
+yrange -\delta,\b+\delta
+linewidth 2
+poly black , 0,0 , \a,0 , \a,\b
+text black,\xa,\ya,medium,a
+text black,\a+0.2,\b/2,medium,y
+text black,\a/2,-0.2,medium,x
+}
+\text{dimdishelp=(\a+2*\delta)*\size,(\b+2*\delta)*\size}
+\text{dimdishelp=wims(values x for x in \dimdishelp)}
+\text{url_help=draw(\dimdishelp
+\dis_help)}
+
+\real{angolorad=atan(\risp)}
+\real{angolo=(\angolorad*180)/PI}
+
+approssimo a due cifre decimali (pure troppe...)
+\real{angolo=(rint(100*\angolo))/100}
+\real{angolorad=(rint(100*\angolorad))/100}
+
+\statement{
+Quanto vale la tangente dell'angolo \(a\)
+<div class="wimscenter">
+<img src="\disegno_url">
+</div>
+}
+
+\answer{Valore della tangente di \(a\)}{\risp}{option=absolute}
+
+\feedback{\reply1=\risp}{L'informazione che abbiamo trovato (tan(a)=\reply1) ci permette di concludere che l'angolo \(a\) misura circa \angolo gradi (pari a circa \angolorad radianti).}
+
+\hint{<div>\txthelp</div><div class="wimscenter"><img src="\url_help"></div>}

@@ -1,0 +1,51 @@
+%% Généré par xml2oef 1.0.0 à partir de 3821.xml ‹Eleda, id 3821, format source json›
+%% Nom Eleda : Signification de la formule du vecteur vitesse
+
+\title{Signification de la formule du vecteur vitesse}
+\language{fr}
+\author{4a07334fd8119cbb9cdddd28857c3e010d4f79b1e107e4b5ffec34e17bc7113e8dfbfd61183583f0aaef33a122a981c7362f359d618c626e923f38ecaa6601e1}
+%% Eleda : max_attempts=3, default_feedback=false ‹pas d'équivalent direct en OEF›
+
+\text{x2o2=}
+%% x2o versions Eleda : 1=label1 | 2=label2 | 3=label3 ; DEFAULT=-1
+\integer{x2oversion=randint(1..3)}
+%% x2o approximation ‹versions, ligne XML 155› : versions : DEFAULT=-1 hors 1..3, version tirée au hasard
+\ifval{\x2oversion == 1}{
+  \text{x2o1=la distance entre}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o2=\x2o2où \(M_{i-1}M_{i+1}\) représente \reply1 les points \(M_{i-1}\) et \(M_{i+1}\) en mètre.<br><br>}
+  \text{x2o3=la durée}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o2=\x2o2où \(t_{i+1}-t_{i-1}\) représente \reply2 séparant les instants \(t_{i-1}\) et \(t_{i+1}\) en seconde.<br><br>}
+  \text{x2o4=de la vitesse au point Mi}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o2=\x2o2et où \(v_i\) représente la valeur \reply3 en \(m.s^{-1}\).<br>}
+}
+\ifval{\x2oversion == 2}{
+  \text{x2o5=déplacement}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o2=\x2o2Le vecteur \(\overrightarrow{M_{i-1}M_{i+1}}\) correspond au vecteur \reply4 entre les deux points \(M_{i-1}\) et \(M_{i+1}\).<br>}
+}
+\ifval{\x2oversion == 3}{
+  \text{x2o2=\x2o2Le vecteur \(\overrightarrow{v_i}\) a les caractéristiques suivantes :}
+  \text{x2o6=Parallèle au segment}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o7=mouvement}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o8=Mi}
+  \text{x2o2=\x2o2<div class="x2o_q"> </div>}
+  \text{x2o2=\x2o2<b>Direction :</b> \reply5\(M_{i-1}M_{i+1}\)<br><b>Sens :</b> Dans le sens du\reply6<br><b>Point d'application :</b> \reply7}
+}
+
+\statement{Voici la formule permettant de calculer le vecteur \( \overrightarrow{v_{i}}\) au point \(M_{i}\).
+<div style="text-align:center"><span style="font-size:x-large">\(\overrightarrow{v_{i}} = \frac{\overrightarrow{M_{i-1}M_{i+1}}}{t_{i+1}-t_{i-1}}\)</span></div>
+<br>
+\x2o2}
+
+\answer{Réponse 1}{\x2o1}{type=case}
+\answer{Réponse 2}{\x2o3}{type=case}
+\answer{Réponse 3}{\x2o4}{type=case}
+\answer{Réponse 4}{\x2o5}{type=case}
+\answer{Réponse 5}{\x2o6}{type=case}
+\answer{Réponse 6}{\x2o7}{type=case}
+\answer{Réponse 7}{\x2o8}{type=case}

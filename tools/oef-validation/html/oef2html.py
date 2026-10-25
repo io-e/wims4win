@@ -233,6 +233,41 @@ def parse_answers(analysis):
     return [(r[0], r[1] if r[1] is not None else r[3]) for r in parse_rows(analysis)
             if r[1] is not None or r[2]]
 
+def _get_good_feedback(w, name, seed, lang, fields, answers):
+    """Submit correct answers to WIMS and return the feedback HTML for a good reply."""
+    from urllib.parse import quote as urlquote
+    good_fields = {}
+    reply_names = sorted(n for n in fields if n.startswith("reply"))
+    choice_names = sorted(n for n in fields if n.startswith("choice"))
+    ordered_names = reply_names + choice_names
+    for i, (rname, rval) in enumerate(answers):
+        plain = strip_tags(rval)
+        matched = False
+        for fname in ordered_names:
+            num = re.sub(r'\D', '', fname)
+            rnum = re.sub(r'\D', '', rname)
+            if num and rnum and num == rnum:
+                good_fields[fname] = [plain]
+                matched = True
+                break
+        if not matched and i < len(ordered_names):
+            good_fields[ordered_names[i]] = [plain]
+    for fname, fval in fields.items():
+        if fname not in good_fields:
+            good_fields[fname] = fval if fval is not None else ["0"]
+    w.set_seed(seed)
+    pg = w.run("module=%s&cmd=new&exo=%s&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=%s" % (MODULE, name, lang))
+    sm = re.search(r'name="session" value="([^"]+)"', pg)
+    if not sm:
+        return ""
+    q = "session=%s&cmd=reply&module=%s" % (sm.group(1), MODULE)
+    for n, v in good_fields.items():
+        for x in v:
+            q += "&%s=%s" % (n, urlquote(x if x else "0"))
+    resp = w.run(q)
+    fb = find_div(resp, "oef_feedbacks")
+    return clean(w.inline_resources(fb[2])) if fb else ""
+
 def process(w, name, deftext, seed, lang):
     w.install(name, deftext)
     w.set_seed(seed)
@@ -299,7 +334,16 @@ def process(w, name, deftext, seed, lang):
                 break
     res["answers"] = [(r[0], r[1] if r[1] is not None else r[3]) for r in rows if r[1] is not None or r[2]]
     fb = find_div(ans, "oef_feedbacks")
-    res["feedback"] = clean(w.inline_resources(fb[2])) if fb else ""
+    fb_wrong = clean(w.inline_resources(fb[2])) if fb else ""
+    fb_good = ""
+    if res["answers"]:
+        fb_good = _get_good_feedback(w, name, seed, lang, fields, res["answers"])
+    parts = []
+    if fb_good:
+        parts.append('<div class="feedback_good"><h4>Retour (bonne réponse)</h4>%s</div>' % fb_good)
+    if fb_wrong:
+        parts.append('<div class="feedback_wrong"><h4>Retour (mauvaise réponse)</h4>%s</div>' % fb_wrong)
+    res["feedback"] = "\n".join(parts)
     sol = ""
     for m in re.finditer(r'<div class="wims_widget_box clearall">', ans):
         box = find_div(ans, "wims_widget_box", m.start())

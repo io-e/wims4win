@@ -16,8 +16,11 @@ table.answers{border-collapse:collapse;margin:.3em 0}
 table.answers th,table.answers td{border:1px solid #bbb;padding:.3em .7em;text-align:left;vertical-align:top}
 table.answers th{background:#eef5ee}
 .solution{border-left:4px solid #2e7d32;padding:.3em .8em;background:#f6fbf6}
-.feedback:not(:empty){margin-top:.8em;border-left:4px solid #e0a000;padding:.3em .8em;background:#fffaf0}
-.feedback:not(:empty)::before{content:"Feedback (pour la réponse test envoyée)";display:block;font-weight:bold;color:#a06d00}
+.feedback:not(:empty){margin-top:.8em}
+.feedback_good{border-left:4px solid #2e7d32;padding:.3em .8em;background:#f6fbf6;margin-bottom:.5em}
+.feedback_good h4{color:#2e7d32;margin:0 0 .3em}
+.feedback_wrong{border-left:4px solid #e0a000;padding:.3em .8em;background:#fffaf0}
+.feedback_wrong h4{color:#a06d00;margin:0 0 .3em}
 .muted{color:#888;font-style:italic}
 .hidden{display:none}
 .wims_mathml{display:inline}

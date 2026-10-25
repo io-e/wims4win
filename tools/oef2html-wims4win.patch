@@ -1,0 +1,55 @@
+--- /workspace/oefc/dist/html/oef2html.py	2026-10-25 09:50:40.828093165 +0100
++++ html/oef2html.py	2026-10-25 10:26:18.995961910 +0100
+@@ -66,10 +66,13 @@
+ 
+ # ---------------------------------------------------------------- moteur WIMS
+ class Wims:
+-    def __init__(self, home, lang="fr"):
++    def __init__(self, home, lang="fr", cgi=None, cgi_prefix=None):
+         self.home = Path(home).resolve()
+         self.ph = self.home / "public_html"
+-        self.cgi = self.ph / ("wims.exe" if os.name == "nt" else "wims.cgi")
++        # [wims4win] --cgi : moteur explicite (ex. wims.cgi.exe Windows) ;
++        # --cgi-prefix : lanceur (ex. "wine" pour tester l'exe Windows sur la box)
++        self.cgi = Path(cgi).resolve() if cgi else self.ph / ("wims.exe" if os.name == "nt" else "wims.cgi")
++        self.prefix = cgi_prefix.split() if cgi_prefix else []
+         if not self.cgi.exists():
+             sys.exit("wims.cgi introuvable : %s (option --wims-home)" % self.cgi)
+         self.lang = lang
+@@ -139,7 +142,7 @@
+                    SCRIPT_NAME="/wims/wims.cgi", HTTP_HOST="localhost",
+                    HTTP_ACCEPT_LANGUAGE=self.lang, HTTP_USER_AGENT="oef2html")
+         t0 = time.time()
+-        p = subprocess.run([str(self.cgi)], cwd=str(self.ph), env=env,
++        p = subprocess.run(self.prefix + [str(self.cgi)], cwd=str(self.ph), env=env,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=120)
+         raw = p.stdout
+         m = re.search(rb'charset=([\w-]+)', raw[:600])
+@@ -148,6 +151,10 @@
+         self.trace.append({"query": query, "rc": p.returncode, "bytes": len(raw),
+                            "s": round(time.time() - t0, 3),
+                            "stderr": p.stderr.decode("utf-8", "replace")[-500:]})
++        dd = os.environ.get("OEF2HTML_DUMP")  # [wims4win] debug : pages brutes
++        if dd:
++            os.makedirs(dd, exist_ok=True)
++            open(os.path.join(dd, "%03d.html" % len(self.trace)), "w", encoding="utf-8").write(query + "\n" + txt)
+         return txt
+ 
+ # ---------------------------------------------------------------- un exercice
+@@ -337,13 +344,15 @@
+     ap.add_argument("--variants", type=int, default=1, help="nombre de tirages (graines seed..seed+n-1)")
+     ap.add_argument("--out", default="html_out", help="dossier de sortie")
+     ap.add_argument("--lang", default="fr")
++    ap.add_argument("--cgi", default=None, help="[wims4win] chemin du moteur (wims.cgi.exe)")
++    ap.add_argument("--cgi-prefix", default=None, help="[wims4win] lanceur, ex. wine")
+     ap.add_argument("--no-solution", action="store_true", help="enonce seul (sans correction)")
+     ap.add_argument("--mathjax", choices=["on", "off"], default="on",
+                     help="charger MathJax (rendu du MathML pour les navigateurs anciens)")
+     ap.add_argument("--json", action="store_true", help="ecrire aussi les fragments en .json")
+     a = ap.parse_args()
+ 
+-    w = Wims(a.wims_home, a.lang)
++    w = Wims(a.wims_home, a.lang, cgi=a.cgi, cgi_prefix=a.cgi_prefix)
+     o2w = a.oef2wims or str(w.home / "bin" / "oef2wims")
+     for cand in (w.home / "src" / "OefMsg2wims" / "oef2wims", HERE / "oef2wims",
+                  Path(shutil.which("oef2wims") or "/nonexistent")):

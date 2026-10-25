@@ -13,6 +13,8 @@
 #include <string.h>
 #include <windows.h>
 #include <direct.h>
+#include <fcntl.h>
+#include <io.h>
 #include "wp_compat.h"
 
 void wp_path_slashes(char *s)
@@ -43,7 +45,13 @@ void wp_cgi_prepare(void)
     "modules/home","themes",NULL};
   static const char *files[]={"../bin/wimslogd.exe","../log",NULL};
   char exe[MAX_PATH], missing[2048], *p; int i, n=0;
-  DWORD l=GetModuleFileNameA(NULL,exe,sizeof(exe));
+  DWORD l;
+  /* All WIMS files are LF text and readfile() checks read()==st_size:
+   * the CRT default text mode wrote CRLF (var.stat, var, logs...) and then
+   * refused to read them back (sessions lost: cmd=reply became cmd=new). */
+  _set_fmode(_O_BINARY);
+  _setmode(0,_O_BINARY); _setmode(1,_O_BINARY); _setmode(2,_O_BINARY);
+  l=GetModuleFileNameA(NULL,exe,sizeof(exe));
 
   if(l>0 && l<sizeof(exe)) {
     wp_path_slashes(exe);

@@ -249,7 +249,9 @@ static int run_one(const wchar_t *oef,const wchar_t *def,const wchar_t *logp,res
   int vran=0,vrej=0; buf_t VO={0},VE={0}; DWORD vrc=0;
   if(g_validator&&have){ wchar_t *c3=calloc(32768,sizeof(wchar_t)); quote(c3,g_python); memmove(c3,c3+1,wcslen(c3)*sizeof(wchar_t)); quote(c3,g_validator); quote(c3,full);
     wchar_t pyexe[MAX_PATH*2]; if(!SearchPathW(0,g_python,wcschr(g_python,L'.')?0:L".exe",MAX_PATH*2,pyexe,0)) wcscpy(pyexe,g_python);
+    SetEnvironmentVariableW(L"PYTHONIOENCODING",L"utf-8");
     vran=run_proc(pyexe,c3,&VO,&VE,0,&vrc,0); free(c3);
+    SetEnvironmentVariableW(L"PYTHONIOENCODING",0);
     if(!vran) add(&I,INFO,"validateur","VALID",0,0,xs("Validateur non lancé (python introuvable : %s).",a=u8(g_python)),0,"Installez Python 3 ou indiquez --python C:\\chemin\\python.exe.",0,0);
     else { buf_t all={0}; bput(&all,VO.p,VO.n); bput(&all,"\n",1); bput(&all,VE.p,VE.n);
       for(char *ln=all.p,*nx;ln&&*ln;ln=nx){ nx=strchr(ln,'\n'); if(nx) *nx++=0; int sev=-1; char *k=strstr(ln,": erreur: "); if(k) sev=ERR; else if((k=strstr(ln,": avertissement: "))) sev=AVERT; if(sev<0) continue;

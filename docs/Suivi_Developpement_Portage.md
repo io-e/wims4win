@@ -211,3 +211,10 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Smoke PC (Process .NET, stdout lu jusqu'à EOF, comme Apache) : accueil fr 200 OK 26 803 o `</html>` présent (634 ms, wimslogd démarré à la volée) ; `lang=en` 200 OK ; arbre vide → 500 explicite. Linux : objets identiques (wims.c, log.c, lines.c).
 - Config Apache/Laragon proposée (non appliquée) : `docs/apache-laragon-wims-runtime.conf`.
 - Limites : arbre 4.32 + binaire 4.33a ; modules hors distribution (ex. tool/algebra/factor.fr → 450 « module absent ») à installer via modupdate/wimsget ; Shtooka absent ; mot de passe webmaster vide (log/.wimspass) à définir.
+
+## 2026-10-25 — Reprise OEF_VALIDATION : évaluation wims4win pour oef2html
+- oef2html.py (copie + patch `--cgi`) tourne nativement sur le PC avec wims.cgi.exe (runtime `wims-runtime-oef`) : 4/5 pages identiques à Linux 4.31b, la 5e diffère par une image insdraw.
+- Formule absente = `default_texposition=2` manquant (voie GIF/flydraw inopérante sous Windows) ; correction absente = bug CRLF (mode texte CRT) corrigé : binaire global.
+- Écart 4.31b→4.33a moteur ≈110 lignes ; rebasage : 1 hunk en conflit / ~100 ; 1–2 j.
+- too_many_gotos : boucles de rejet sans re-tirage (procédures récursives non traduites par xml2oef), grands entiers en notation e+NN.
+- Détails : docs/Evaluation_OEF_wims4win.md.

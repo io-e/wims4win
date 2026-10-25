@@ -26,7 +26,7 @@ mkdir -p "$WD/src"; cd "$WD/src"
   bin/mkindex > "$WD/mkindex.log" 2>&1 || true
 }
 # Windows executables
-for s in build-win32 build-wims-win32 build-wimslogd-win32 build-chroot-win32 build-wims-mathml-win32; do
+for s in build-win32 build-wims-win32 build-wimslogd-win32 build-chroot-win32 build-wims-mathml-win32 build-flydraw-win32; do
   bash "$ROOT/tools/$s.sh" >/dev/null
 done
 OUT=$WD/wims-runtime; rm -rf "$OUT"; mkdir -p "$OUT"
@@ -44,6 +44,16 @@ cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.cgi.exe"
 cp "$ROOT/build/wims-win/wimslogd.exe" "$OUT/bin/"
 cp "$ROOT/build/wims-win/bin/wims_mathml.exe" "$OUT/bin/"
 cp "$ROOT/build/tests-win/ch..root.exe" "$OUT/public_html/bin/"
+# drawing: flydraw.exe + native insdraw processor (replaces the sh script)
+mkdir -p "$OUT/other/bin"
+cp "$ROOT/build/wims-win/other/bin/flydraw.exe" "$OUT/other/bin/"
+${MINGW:-x86_64-w64-mingw32-gcc} -O2 -Wall -static -o "$OUT/public_html/bin/insdraw..processor.exe" \
+   "$ROOT/src/Platform/tools/insdraw_win.c"
+rm -f "$OUT/public_html/bin/insdraw..processor"
+# site configuration (persistent): MathML formulas, wims4win settings
+grep -q '^default_texposition=' "$OUT/log/wims.conf" 2>/dev/null || \
+  printf 'default_texposition=2\n' >> "$OUT/log/wims.conf"
+cp "$ROOT/docs/wims4win.yaml" "$OUT/log/wims4win.yaml"
 for i in gap maxima octave pari m2 scilab yacas; do
   [ -f "$ROOT/build/win32/$i.exe" ] && cp "$ROOT/build/win32/$i.exe" "$OUT/public_html/bin/"
 done

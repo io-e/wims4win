@@ -17,6 +17,45 @@
  */
 #include "wims.h"
 int disable_mathml;
+
+/* wims4win: formula size from ../log/wims4win.yaml (same on Linux and
+ * Windows). Accessibility (DYS): large formulas by default.
+ *   formula:
+ *     size: 200%        # mathsize given to wims_mathml, 50%..400%
+ * Upstream computed a size from useropts/wims_texbasesize but, on Linux,
+ * passed "--tex-size 100%" as a single argv word, so wims_mathml ignored it
+ * and used its own default 110%; the Win32 port passed it correctly (120%).
+ * The YAML value now wins on both platforms; WIMS4WIN_FORMULA_SIZE is the
+ * default when the file or the key is absent. */
+#define WIMS4WIN_FORMULA_SIZE "200%"
+static const char *wims4win_formula_size(void)
+{
+  static char size[16]; static int done=0;
+  char line[256], *p, *q; int insec=0, v; FILE *f;
+  if(done) return size;
+  done=1; snprintf(size,sizeof(size),"%s",WIMS4WIN_FORMULA_SIZE);
+  f=fopen("../log/wims4win.yaml","r"); if(f==NULL) return size;
+  while(fgets(line,sizeof(line),f)) {
+    if((p=strchr(line,'#'))!=NULL) *p=0;
+    for(p=line+strlen(line); p>line && isspace((unsigned char)p[-1]); ) *--p=0;
+    if(line[0]==0) continue;
+    if(!isspace((unsigned char)line[0])) {      /* top-level key */
+      insec=(strncmp(line,"formula:",8)==0 && line[8]==0);
+      if(strncmp(line,"formula_size:",13)==0) { p=line+13; goto val; }
+      continue;
+    }
+    if(!insec) continue;
+    for(p=line; isspace((unsigned char)*p); p++);
+    if(strncmp(p,"size:",5)!=0) continue;
+    p+=5;
+    val:
+    while(isspace((unsigned char)*p) || *p=='"' || *p=='\'') p++;
+    v=(int)strtol(p,&q,10);
+    if(q>p && v>=50 && v<=400) snprintf(size,sizeof(size),"%d%%",v);
+  }
+  fclose(f);
+  return size;
+}
 int mathml(char *p, int option ){
   if (strlen(p)==0) return 1 ;
   if( mathalign_base <= 1){
@@ -68,6 +107,7 @@ int mathml(char *p, int option ){
     if(getvar("disable_zoom") && strcmp(getvar("disable_zoom"),"yes")==0) use_js_zoom = 0;
     snprintf(mathml_tex_size,sizeof(mathml_tex_size),"%d%%",texsize_list[idx]);
     if(strlen(mathml_tex_size) == 0) sprintf(mathml_tex_size,"%s","100%");
+    snprintf(mathml_tex_size,sizeof(mathml_tex_size),"%s",wims4win_formula_size());
     snprintf(zoom, sizeof(zoom), "%d", use_js_zoom);
     av[0]="../bin/wims_mathml.exe";
     av[1]="--use-zoom"; av[2]=zoom;
@@ -206,7 +246,8 @@ see forum post of Eric Reyssat
 http://wimsedu.info/?topic=unites-de-mesure-et-mathml/#post-3105
 
 */
-      char *argv[]={"wims_mathml","--use-zoom",zoom,"--tex-size 100%","--max-mml-size",mml_buffer,"--tex-string",p,NULL};
+      snprintf(mathml_tex_size,sizeof(mathml_tex_size),"%s",wims4win_formula_size());
+      char *argv[]={"wims_mathml","--use-zoom",zoom,"--tex-size",mathml_tex_size,"--max-mml-size",mml_buffer,"--tex-string",p,NULL};
   /* This is the child process. Close other end first. */
       close(my_pipe[0]);
       dup2(my_pipe[1], 1);  /* send stdout to the pipe */

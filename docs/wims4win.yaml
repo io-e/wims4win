@@ -1,0 +1,10 @@
+# wims4win.yaml -- réglages wims4win, lus par wims (Linux et Windows).
+# Emplacement : <racine WIMS>/log/wims4win.yaml (à côté de wims.conf).
+# Format : YAML simple (clé: valeur, 2 espaces d'indentation, # = commentaire).
+
+formula:
+  # Taille des formules MathML (attribut mathsize transmis à wims_mathml).
+  # Accessibilité DYS : grande par défaut. Valeurs : 50% à 400%.
+  # Sans ce fichier (ou sans la clé), wims utilise 200%.
+  # Référence : WIMS amont = 110% (défaut interne de wims_mathml).
+  size: 200%

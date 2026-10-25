@@ -24,3 +24,26 @@
 - 00347 (graine 1) : nombres jusqu'à 10^12 en `\integer` ; WIMS les affiche `3.9810717e+09` (8 chiffres significatifs) ; le découpage en chiffres compte e, +, . et perd les zéros → la condition « ≥ p % de zéros » n'est presque jamais satisfaite. (`!randint 3981071705,999999999999` produit même une valeur invalide.)
 - Classement heuristique des 58 : ~33 procédure récursive non traduite dans le `\while` (pas de re-tirage) ; ~11 autre bloc non traduit dans le `\while` ; ~8 grands entiers > 1e8 ; ~7 tirage de rejet trop improbable / à examiner (00498, 00608, 00690, 01009, 01116…).
 - Correction côté xml2oef : traduire l'appel récursif en re-tirage dans le corps du `\while` ; manipuler les grands entiers en texte (ou via pari) ; borne d'itérations.
+
+## 4. Suite (décisions d'Arnaud, 2026-10-25)
+- Pas de rebasage sur 4.31b : wims4win reste en 4.33a. Le commit 8bf7078 de Claude est seulement une doc (`Guide_CGI_Laragon_WIMS_CLAUDE_V1_1.md`) : le vhost Laragon sert notre `wims-runtime`, il n'y a rien à intégrer.
+- **PARI/GP** : `gp.exe` présent (`Reprise_Wims_Grok\tests-win\cas\pari`). `log/wims.conf` de `wims-runtime` et `wims-runtime-oef` : `pari_command=D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/tests-win/cas/pari/gp.exe -f -q -p 150000`. 00403 est OK et **identique à Linux** ; 00509 donne too_many_gotos (comme Linux).
+- **flydraw** : `flydraw.exe` est construit par `tools/build-libgd-mingw.sh` (libgd 2.3.3 statique, GIF) puis `tools/build-flydraw-win32.sh`. `insdraw..processor.exe` est natif (`src/Platform/tools/insdraw_win.c`). Corrections moteur :
+  - les helpers sans extension sont résolus en `.exe` ;
+  - `mv`/`rm` sont exécutés en interne ;
+  - `wims_home` et PATH sont corrigés.
+  
+  00001 est **identique à Linux**, image GIF comprise (sha256 identique).
+- Échantillon PC (10 fichiers, graine 1, natif, 22 s) : les 6 pages produites sont identiques à Linux (00001 00006 00013 00076 00403 00726). Les échecs sont les mêmes que sous Linux : 00347, 00352 et 00509 en too_many_gotos, 01012 en bad_index.
+- Limites d'insdraw : les animations ne gardent que la 1re image. Il n'y a pas de conversion de format, donc un GIF est livré sous le nom demandé. Il n'y a pas non plus de rendu de texte TTF/freetype.
+
+## 5. Taille des formules (DYS) : `log/wims4win.yaml`
+```yaml
+formula:
+  size: 200%     # 50% à 400%. 200% par défaut ; WIMS amont : 110%
+```
+- Le fichier est lu par `wims` (mathml.c) avec le chemin relatif `../log/wims4win.yaml`. La forme à plat `formula_size: 200%` est aussi acceptée. En l'absence du fichier ou si la valeur est invalide, la taille est 200 %. Le comportement est le même sous Linux et sous Windows.
+- **Origine de l'écart 110 % / 120 %** :
+  - Sous Linux, WIMS amont passait `"--tex-size 100%"` comme **un seul** mot argv. wims_mathml ignorait donc l'option et utilisait son défaut interne de 110 %.
+  - Le portage Win32 calculait `texsize_list[6]`, soit 120 %, et le passait correctement.
+  - Les deux versions passent maintenant `--tex-size <valeur YAML>` en deux mots. Seul ce point change délibérément le binaire Linux, à la demande d'Arnaud.

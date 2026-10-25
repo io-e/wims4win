@@ -232,3 +232,18 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
   - texte freetype dans flydraw ;
   - autres CAS ;
   - Laragon/Apache arrêté sur le PC au moment du test (CGI validé en direct : 200).
+
+## 2026-10-25 — Outils OEF dans le dépôt et handoff pour Claude
+- Ajout de `tools/oef-validation/`, chaîne de test issue d'OEF_VALIDATION :
+  - oef2wims 4.31b (Linux + mingw) ;
+  - log, trace, v2 ;
+  - correcteur LLM ;
+  - oef2html avec `--cgi` appliqué ;
+  - `corpus.map`, sha256 et script de reconstruction.
+- Chemins paramétrés. Chemins, modèles et ports personnels neutralisés.
+- Non inclus : `.exe`, zip, tarball, wims-runtime, dossiers de travail, `__pycache__`, `oef_validate.py` et corpus Eleda.
+- Vérifié depuis le dépôt : parités Linux/Windows, v2 et trace à 1438/1438 ; build Linux identique à celui d'origine ; oef2html identique à Linux (Linux 3/3, wine 2/2).
+- Le corpus se reconstruit depuis le tarball : 338/338 fichiers (333 upstream + 5 cas d'erreur), et 1438/1438 si l'on fournit le dossier Eleda.
+- CI : nouveau job `oef-validation` (`ci.sh`, 37 OEF de référence).
+- Handoff pour Claude : `docs/HANDOFF_Claude_OEF_Python.md`, avec une copie dans `Reprise_Wims_Grok`.
+- Laragon (vhost `wims_paris_saclay_fr.test`, qui sert `wims-runtime`) : `wims.cgi` répond 200.

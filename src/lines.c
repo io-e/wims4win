@@ -929,6 +929,9 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
   }
   if(is_multiexec) { wrapexec=0; return 0; }
   lastdatafile[0]=lastftest[0]=0;
+#ifdef _WIN32
+  if(wp_builtin(arg,&st)) { wrapexec=0; return st; }
+#endif
   iso=(wrapexec==-1)?WP_ISO_DROP_PRIV:WP_ISO_NONE;
   if(wp_chan_open(&c)!=WP_OK) return -1;
   if(wp_spawn(&c,arg,inf,outf,errf,iso,NULL,&pid)!=WP_OK) {

@@ -131,4 +131,9 @@ int  wp_sandbox_available(const char *wrapper);
 /* platform name, for diagnostics */
 const char *wp_platform_name(void);
 
+#ifdef _WIN32
+int wp_resolve_exe(const char *name, char *out, size_t cap);
+int wp_builtin(char *const arg[], int *status);
+#endif
+
 #endif

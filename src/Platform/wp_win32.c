@@ -219,6 +219,52 @@ static HANDLE open_redirect(const char *f, int write)
 }
 
 /* Common Win32 spawn on explicit handles (owned by the caller). */
+/* "<name>.exe" when <name> itself is not a file but <name>.exe is. */
+int wp_resolve_exe(const char *name, char *out, size_t cap)
+{
+  size_t l; DWORD a;
+  if(name==NULL) return 0;
+  l=strlen(name);
+  if(l>=4 && _stricmp(name+l-4,".exe")==0) return 0;
+  a=GetFileAttributesA(name);
+  if(a!=INVALID_FILE_ATTRIBUTES && !(a&FILE_ATTRIBUTE_DIRECTORY)) return 0;
+  if(l+5>cap) return 0;
+  snprintf(out,cap,"%s.exe",name);
+  a=GetFileAttributesA(out);
+  return a!=INVALID_FILE_ATTRIBUTES && !(a&FILE_ATTRIBUTE_DIRECTORY);
+}
+
+/* Shell utilities WIMS calls through call_ssh() ("mv a b", "rm -f a"),
+ * done in-process on Windows (no sh/coreutils). Returns 1 if handled. */
+int wp_builtin(char *const arg[], int *status)
+{
+  int i, k;
+  if(arg==NULL || arg[0]==NULL) return 0;
+  if(strcmp(arg[0],"mv")==0) {
+    char dst[MAX_PATH]; DWORD a;
+    for(k=0; arg[k]; k++); /* argc */
+    i=1; while(arg[i] && arg[i][0]=='-' && arg[i][1]) i++;
+    if(k-i<2) { *status=1; return 1; }
+    *status=0;
+    a=GetFileAttributesA(arg[k-1]);
+    for(; i<k-1; i++) {
+      if(a!=INVALID_FILE_ATTRIBUTES && (a&FILE_ATTRIBUTE_DIRECTORY)) {
+        const char *b=arg[i]+strlen(arg[i]);
+        while(b>arg[i] && b[-1]!='/' && b[-1]!='\\') b--;
+        snprintf(dst,sizeof(dst),"%s/%s",arg[k-1],b);
+      } else snprintf(dst,sizeof(dst),"%s",arg[k-1]);
+      if(!MoveFileExA(arg[i],dst,MOVEFILE_REPLACE_EXISTING|MOVEFILE_COPY_ALLOWED)) *status=1;
+    }
+    return 1;
+  }
+  if(strcmp(arg[0],"rm")==0) {
+    *status=0;
+    for(i=1; arg[i]; i++) if(arg[i][0]!='-') DeleteFileA(arg[i]);
+    return 1;
+  }
+  return 0;
+}
+
 static int spawn_core(char *const argv[], HANDLE hin, HANDLE hout, HANDLE herr,
                       wp_isolation iso, int lowprio, const char *progname,
                       wp_pid *pid)
@@ -230,8 +276,12 @@ static int spawn_core(char *const argv[], HANDLE hin, HANDLE hout, HANDLE herr,
   if(iso==WP_ISO_WRAPPER && !wp_sandbox_available(argv[0])) return WP_E_NOISOLATION;
   if(iso==WP_ISO_DROP_PRIV && token_elevated()) return WP_E_NOISOLATION;
   for(i=0;argv[i];i++) {
+    const char *a=argv[i]; char exe0[MAX_PATH];
     if(i) { if(n+1<sizeof(cmd)) cmd[n]=' '; n++; }
-    n+=quote_arg(cmd+n, n<sizeof(cmd)?sizeof(cmd)-n:0, argv[i]);
+    /* WIMS names helpers without extension (bin/pari, bin/insdraw..processor):
+     * CreateProcess only appends ".exe" when the name has no dot. */
+    if(i==0 && wp_resolve_exe(a,exe0,sizeof(exe0))) a=exe0;
+    n+=quote_arg(cmd+n, n<sizeof(cmd)?sizeof(cmd)-n:0, a);
   }
   if(n>=sizeof(cmd)) return WP_E_ARG;
   cmd[n]=0;

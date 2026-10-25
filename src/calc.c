@@ -226,7 +226,15 @@ void calc_exec(char *p)
     *p=0; return;
   }
   snprintf(cmdstr,sizeof(cmdstr),"%s/%s",bin_dir,namebuf);
+#ifdef _WIN32
+  if(ftest(cmdstr)!=is_exec) {
+    char exe[MAX_LINELEN+256];
+    snprintf(exe,sizeof(exe),"%s.exe",cmdstr);
+    if(ftest(exe)!=is_exec) goto wrong_command;
+  }
+#else
   if(ftest(cmdstr)!=is_exec) goto wrong_command;
+#endif
   abuf[0]=cmdstr;
   mkfname(outfname,"%s/exec.out",tmp_dir);
   mkfname(errorfname,"%s/exec.err",tmp_dir);

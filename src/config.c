@@ -59,7 +59,11 @@ char *gnuplot_format="gif";
 char *site_manager="wims@$httpd_HTTP_HOST";
 /* Main configure file, this name cannot be configured! */
 char *config_file="../log/wims.conf";
+#ifdef _WIN32
+char PATH[8192];  /* directory settings (Windows PATH is long) */
+#else
 char PATH[512];  /* directory settings */
+#endif
 char *commonpath="/usr/local/bin:/usr/bin:/usr/games:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/texbin:/usr/local/texbin";
 char *gap_command="gap.sh -T -m 64M";
 char *maxima_command="maxima -X '--dynamic-space-size 512'";
@@ -435,16 +439,33 @@ void main_configure(void)
   }
         /* check priority */
   if(priority[0] && checkhost(priority)>0) ispriority=1;
-  (void)getcwd(cwdbuf,sizeof(cwdbuf)); setvar("httpd_PWD",cwdbuf);
+  (void)getcwd(cwdbuf,sizeof(cwdbuf));
+#ifdef _WIN32
+  /* getcwd() returns D:\\...\\public_html: WIMS expects '/' (wims_home,
+   * then $w_wims_home/other/bin/flydraw in the draw processor). */
+  wp_path_slashes(cwdbuf);
+#endif
+  setvar("httpd_PWD",cwdbuf);
   setenv("wims_server_base",cwdbuf,1);
   p=strrchr(cwdbuf,'/');
   if(p!=NULL && strcmp(p,"/public_html")==0) {
+#ifdef _WIN32
+    /* keep the Windows PATH (system DLLs, Cygwin runtime for gap...) */
+    *p=0; snprintf(PATH,sizeof(PATH),"%s/other/bin;%s",cwdbuf,
+                   getenv("PATH")?getenv("PATH"):"");
+#else
     *p=0; snprintf(PATH,sizeof(PATH),"%s/other/bin:%s",cwdbuf,commonpath);
+#endif
     force_setvar("wims_home",cwdbuf);
     *p='/';
   }
   else {
+#ifdef _WIN32
+    snprintf(PATH,sizeof(PATH),"%s/../other/bin;%s",cwdbuf,
+             getenv("PATH")?getenv("PATH"):"");
+#else
     snprintf(PATH,sizeof(PATH),"%s/../other/bin:%s",cwdbuf,commonpath);
+#endif
     force_setvar("wims_home",cwdbuf);
   }
   setenv("PATH",PATH,1);

@@ -218,3 +218,17 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Écart 4.31b→4.33a moteur ≈110 lignes ; rebasage : 1 hunk en conflit / ~100 ; 1–2 j.
 - too_many_gotos : boucles de rejet sans re-tirage (procédures récursives non traduites par xml2oef), grands entiers en notation e+NN.
 - Détails : docs/Evaluation_OEF_wims4win.md.
+
+## 2026-10-25 — Décisions d'Arnaud : PARI, flydraw, taille des formules
+- On garde 4.33a (pas de rebasage). Le commit 8bf7078 de Claude ne contient qu'une doc Laragon, qui sert notre `wims-runtime`.
+- PARI/GP : `pari_command` est configuré dans `wims-runtime` et `wims-runtime-oef`. 00403 est identique à Linux ; 00509 donne too_many_gotos, comme sous Linux.
+- flydraw.exe : libgd statique en mingw. `insdraw..processor.exe` est natif. Les helpers sont résolus en `.exe`, `mv`/`rm` tournent en interne, et `wims_home` et PATH sont corrigés. 00001 est identique à Linux, image GIF comprise.
+- `log/wims4win.yaml` règle `formula.size`, 200 % par défaut, avec le même comportement sous Linux et Windows. L'écart 110/120 % venait d'un bug argv amont, expliqué dans Evaluation_OEF_wims4win.md §5.
+- `build-runtime-tree.sh` ajoute `default_texposition=2`, le yaml, flydraw et le processeur insdraw.
+- Échantillon PC de 10 fichiers : les 6 pages produites sont identiques à Linux et les 4 échecs sont les mêmes que sous Linux.
+- Les 58 too_many_gotos ne sont pas traités (décision d'Arnaud).
+- Reste à faire :
+  - animations ou conversion d'images dans insdraw (pas d'ImageMagick) ;
+  - texte freetype dans flydraw ;
+  - autres CAS ;
+  - Laragon/Apache arrêté sur le PC au moment du test (CGI validé en direct : 200).

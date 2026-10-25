@@ -49,7 +49,7 @@ void wp_cgi_prepare(void)
   /* All WIMS files are LF text and readfile() checks read()==st_size:
    * the CRT default text mode wrote CRLF (var.stat, var, logs...) and then
    * refused to read them back (sessions lost: cmd=reply became cmd=new). */
-  _set_fmode(_O_BINARY);
+  _fmode = _O_BINARY; /* _set_fmode() absent from older mingw-w64 msvcrt import libs (CI) */
   _setmode(0,_O_BINARY); _setmode(1,_O_BINARY); _setmode(2,_O_BINARY);
   l=GetModuleFileNameA(NULL,exe,sizeof(exe));
 

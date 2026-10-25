@@ -1,0 +1,30 @@
+\title{imageinput}
+
+\text{D1=draw(200,200
+xrange -5,5
+yrange -5,5
+hline 0,0,black
+vline 0,0,black)}
+\statement{
+<div class="spacer">
+\special{editarea
+\text{D=draw(200,200
+xrange -5,5
+yrange -5,5
+hline 0,0,black
+vline 0,0,black)}
+}
+</div>
+Code pour la réponse:
+<div class="spacer">\special{editarea
+\special{imageinput \D, 200x200,3
+reply 1,180x80
+reply 2,102x0}
+}
+</div>
+\special{imageinput \D1, 200x200,3
+reply 1,180x80
+reply 2,102x0}
+}
+\answer{}{x}{type=case}
+\answer{}{y}{type=case}

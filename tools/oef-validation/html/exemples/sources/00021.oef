@@ -1,0 +1,29 @@
+\title{Évolution d'un prix}
+\integer{n = randint(3..5)}
+\text{list_ans=reply1,reply2,reply3,reply4,reply5}
+\text{val = randint(4..50)}
+\text{listprix=\val}
+\for{s=1 to \n}{
+  \real{val=(1+0.01)*\val}
+  \real{valarr=round(100*\val)/100}
+  \text{listprix=\listprix,\valarr}
+ }
+ \text{rep=\listprix[2..-1]}
+\steps{\list_ans[1..\n]}
+\statement{Le billet de train pour aller à la gare X est actuellement
+  de \listprix[1] euros.
+  Compléter le tableau en donnant le prix de ce billet les \n prochaines
+  semaines si on suppose que son prix augmente de \(1\%\) par semaine.
+  <table class="wimscenter wimsborder">
+    <tr><th>Semaine</th>\for{u = 1 to \n}{<th> \u</th>}</tr>
+    <tr><th>Prix en euros</th>\for{u = 1 to \n}{<td>\embed{reply \u, 5}</td>}</tr>
+  </table>
+  <div class="wims_instruction">Donner les valeurs arrondies aux centimes
+   d'euros près. Par exemple, la valeur 4.345 sera arrondie en 4.35.
+  </div>
+}
+\answer{}{\rep[1]}{type=numexp}
+\answer{}{\rep[2]}{type=numexp}
+\answer{}{\rep[3]}{type=numexp}
+\answer{}{\rep[4]}{type=numexp}
+\answer{}{\rep[5]}{type=numexp}

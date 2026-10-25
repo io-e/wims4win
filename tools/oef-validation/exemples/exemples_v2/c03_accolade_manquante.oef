@@ -1,0 +1,5 @@
+\title{Somme}
+\integer{a=randint(1..9)}
+\integer{b=randint(1..9)
+\statement{Calculer \a + \b.}
+\answer{Somme}{\a+\b}

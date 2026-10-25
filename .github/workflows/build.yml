@@ -45,3 +45,15 @@ jobs:
             build/win32/*.exe
             tests/platform/test_platform.exe
           if-no-files-found: error
+
+  oef-validation:
+    name: OEF validation tools (oef2wims Linux/mingw, v2, trace)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install toolchains
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq build-essential mingw-w64 python3 patch
+      - name: Build and check
+        run: bash tools/oef-validation/ci.sh

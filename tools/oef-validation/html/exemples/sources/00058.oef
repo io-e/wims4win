@@ -1,0 +1,19 @@
+\title{*input avec symbols}
+\language{fr}
+\range{-5..5}
+\computeanswer{no}
+\format{html}
+\precision{10000}
+
+\statement{Code :
+<div class="spacer">
+\special{editarea
+
+\answer{}{3*alpha+2*beta}{type=formal}{option=symbols=[alpha beta]}
+}
+</div>
+Écrire \(3\alpha +2\beta\).
+<div class="wimscenter">\embed{r1, 30}</div>
+}
+
+\answer{}{3*alpha+2*beta}{type=formal}{option=symbols="alpha beta"}

@@ -1,0 +1,27 @@
+\title{drawinput}
+
+\text{dessin1=xrange -10,10
+yrange -10,10
+hline 0,0,black
+text black,-6,5,large,zone 2
+text black,-6,-5,large,zone 1}
+\statement{
+Code
+<div class="spacer">
+\special{editarea
+\special{drawinput [\dessin], 200 x 200, 20
+reply1,3 x -6
+reply2,3 x 5
+}
+}
+</div>
+En dessous ou en dessus de la ligne ?
+<div class="spacer">
+\special{drawinput [\dessin1], 200 x 200, 20
+ reply1,3 x -6
+ reply2,3 x 5
+ }
+ </div>
+}
+\answer{}{au dessous|dessous}{type=nocase}
+\answer{}{au dessus|dessus}{type=nocase}

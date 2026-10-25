@@ -1,0 +1,7 @@
+\title{Somme}
+\integer{a=random(2..9)}
+\integer{b=random(2..9)}
+\integer{s=\a+\b}
+\statement{Calculer \(\a+\b\).}
+\answer{Somme}{\s}{type=numeric}
+\solution{On a \(\a+\b=\s\).}

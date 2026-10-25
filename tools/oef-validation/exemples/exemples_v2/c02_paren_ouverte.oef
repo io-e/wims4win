@@ -1,0 +1,5 @@
+\title{Derivee}
+\real{a=randint(2..5)}
+\statement{Calculer la derivee de f(x)=\a x^2 en x=1.
+Donner f'(1.}
+\answer{f'(1)=}{2*\a}

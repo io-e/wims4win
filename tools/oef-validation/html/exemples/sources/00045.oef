@@ -1,0 +1,65 @@
+\title{Maladies infectieuses 3}
+\language{fr}
+\author{Sophie, Lemaire}
+\email{sophie.lemaire@math.u-psud.fr}
+
+\matrix{liste = Tuberculose,bactéries
+  Tétanos,bactéries
+  Typhoïde,bactéries
+  Lèpre,bactéries
+  Rage,virus
+  Poliomyélite,virus
+  Rougeole,virus
+  Hépatite,virus
+  Grippe,virus
+  Bronchiolite,virus
+  Paludisme,parasites
+  Toxoplasmose,parasites}
+\text{nom = randitem(bactéries,virus,parasites)}
+\text{mix = shuffle(rows(\liste))}
+\text{listchoix = \liste[\mix[1..6];]}
+\text{choix = \listchoix[;1],ces maladies ne sont pas dues à des \nom}
+\text{rep = position(\nom,\listchoix[;2])}
+\text{rep \rep= ? 7}
+
+\statement{Les maladies infectieuses peuvent être dues à des
+  \special{help virus, virus}, des \special{help bact,bactéries}
+  ou des \special{help para,parasites} qui se multiplient
+  dans l'organisme.
+  <p> Parmi les maladies suivantes, sélectionner toutes les maladies
+  qui sont dues à des \nom :
+  </p>
+<ul>
+  \for{h = 1 to 6}{
+    <li> \embed{reply1,\h}</li>
+  }
+</ul>
+ \embed{reply1,7}
+}
+\help{
+\if{\help_subject issametext bact or \help_subject issametext  }
+ {<p>Les <b>bactéries</b> sont des organismes vivants unicellulaires
+   caractérisées par une absence de noyau et d'organites.<br>
+   Les infections bactériennes peuvent être traitées grâce aux antibiotiques
+  qui le plus souvent inhibent une de leurs fonctions vitales. </p> }
+\if{\help_subject issametext virus or \help_subject issametext }
+ {<p>Un <b>virus</b> est une entité biologique qui nécessite une
+  cellule hôte, dont il utilise les constituants pour se multiplier.
+  Contrairement aux \special{help bact,bactéries}, ce n'est donc pas un
+  organisme vivant.
+  Les virus sont le plus souvent de très petite taille (comparée à celle
+  d'une bactérie par exemple).
+  Tous les êtres vivants peuvent être infectés par des virus
+  (les virus affectant des bactéries sont appelés des bactériophages)<br>
+  Les antibiotiques sont sans effet sur les virus.</p> }
+\if{\help_subject issametext para or \help_subject issametext }
+  {<p> En biologie, un <b>parasite</b> est un organisme vivant qui se nourrit,
+  s'abrite ou se reproduit en établissant une interaction durable avec
+  un autre organisme (l'hôte). <br>
+  En médecine humaine et vétérinaire, on appelle <b>parasite</b> un métazoaire
+  ou un protozoaire parasitant l'organisme et entraînant une parasitose
+  (n'incluant donc ni \special{help virus,virus},
+  ni \special{help bact,bactérie}, ni champignon).
+  </p>}
+}
+\answer{}{\rep;\choix}{type=checkbox}{option=split}

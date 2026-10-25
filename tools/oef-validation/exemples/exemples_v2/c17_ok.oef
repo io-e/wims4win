@@ -1,0 +1,4 @@
+\title{OK}
+\integer{a=randint(1..9)}
+\statement{Calculer \a + 1.}
+\answer{r=}{\a+1}

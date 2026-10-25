@@ -1,0 +1,46 @@
+diff -ru ../build/winsrc/OefMsg2wims/oef2wims.c src/OefMsg2wims/oef2wims.c
+--- ../build/winsrc/OefMsg2wims/oef2wims.c	2026-10-25 05:32:01.146763928 +0100
++++ src/OefMsg2wims/oef2wims.c	2026-10-25 06:45:05.932907416 +0100
+@@ -170,6 +170,9 @@
+ 
+   for(p=inpbuf,define_no=0;define_no<MAX_DEFINE && p<inpend;p++) {
+     if(*p!='\\' && *p!='{' && (*p>6 || *p<0)) continue;
++#ifdef OEF_TRACE /* OEF_TRACE: position courante dans le source OEF */
++    OEF_TRACE_POS(p);
++#endif
+     if(*p>0 && *p<=6) {
+       pe="";
+       switch(*p) {
+@@ -309,6 +312,9 @@
+     t=define[i].type;
+     if(directives[t].type!=typ) continue;
+     if(typ==t_def && define[i].tag!=deftag) continue;
++#ifdef OEF_TRACE /* OEF_TRACE: directive en cours de traduction */
++    OEF_TRACE_DIRECTIVE(directives[t].name,define[i].parm[0]);
++#endif
+     directives[t].processor(define[i].parm);
+   }
+ }
+@@ -426,6 +432,9 @@
+   mdef=getenv("oef2wims_mdef"); if(mdef==NULL) mdef="";
+   printf("%s..",argv[1]);
+   t=getinp(argv[1]);
++#ifdef OEF_TRACE /* OEF_TRACE: copie du source pour calculer ligne/colonne */
++  OEF_TRACE_INPUT(inpbuf,t);
++#endif
+   if(t<0) oef_error("Source file bad or too long.");
+   if(t==0) oef_error("Empty source file.");
+   if(checkparentheses(inpbuf,1)!=0) oef_error("Unmatched parentheses");
+diff -ru ../build/winsrc/OefMsg2wims/oeflines.c src/OefMsg2wims/oeflines.c
+--- ../build/winsrc/OefMsg2wims/oeflines.c	2026-10-25 05:32:01.146763928 +0100
++++ src/OefMsg2wims/oeflines.c	2026-10-25 06:46:01.362076052 +0100
+@@ -24,6 +24,9 @@
+ /* critical error situation */
+ void oef_error(char *s)
+ {
++#ifdef OEF_TRACE /* OEF_TRACE: mémorise le message d'erreur */
++  OEF_TRACE_ERROR(s);
++#endif
+   /* fputs(s,stderr); */
+   if(badpar!=NULL) {
+    char *p; int i,t,v;

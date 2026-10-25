@@ -1,0 +1,138 @@
+{
+ "runs": [
+  {
+   "file": "/tmp/exsrc/somme_demo.oef",
+   "seed": 2,
+   "html": "dist/html/exemples/somme_demo_s2.html",
+   "answers": 1,
+   "solution": true,
+   "analysis": true
+  },
+  {
+   "file": "/tmp/exsrc/somme_demo.oef",
+   "seed": 3,
+   "html": "dist/html/exemples/somme_demo_s3.html",
+   "answers": 1,
+   "solution": true,
+   "analysis": true
+  },
+  {
+   "file": "/tmp/exsrc/somme_demo.oef",
+   "seed": 4,
+   "html": "dist/html/exemples/somme_demo_s4.html",
+   "answers": 1,
+   "solution": true,
+   "analysis": true
+  },
+  {
+   "file": "/tmp/exsrc/00352.oef",
+   "seed": 2,
+   "html": "dist/html/exemples/00352_s2.html",
+   "answers": 1,
+   "solution": false,
+   "analysis": true
+  },
+  {
+   "file": "/tmp/exsrc/00352.oef",
+   "seed": 3,
+   "html": "dist/html/exemples/00352_s3.html",
+   "answers": 1,
+   "solution": false,
+   "analysis": true
+  },
+  {
+   "file": "/tmp/exsrc/00352.oef",
+   "seed": 4,
+   "html": "dist/html/exemples/00352_s4.html",
+   "answers": 1,
+   "solution": false,
+   "analysis": true
+  }
+ ],
+ "cgi_calls": [
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=somme_demo&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18434,
+   "s": 0.005,
+   "stderr": ""
+  },
+  {
+   "query": "session=VH99AA97A1.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 17539,
+   "s": 0.006,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=somme_demo&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18434,
+   "s": 0.005,
+   "stderr": ""
+  },
+  {
+   "query": "session=RY99AA97A4.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 17539,
+   "s": 0.006,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=somme_demo&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18434,
+   "s": 0.005,
+   "stderr": ""
+  },
+  {
+   "query": "session=L899AA97AB.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 17541,
+   "s": 0.006,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00352&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18571,
+   "s": 0.012,
+   "stderr": ""
+  },
+  {
+   "query": "session=SJ99AA9791.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 16851,
+   "s": 0.056,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00352&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18559,
+   "s": 0.011,
+   "stderr": ""
+  },
+  {
+   "query": "session=4T99AA978E.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 16838,
+   "s": 0.052,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00352&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18503,
+   "s": 0.011,
+   "stderr": ""
+  },
+  {
+   "query": "session=T199AA946F.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 16782,
+   "s": 0.06,
+   "stderr": ""
+  }
+ ]
+}

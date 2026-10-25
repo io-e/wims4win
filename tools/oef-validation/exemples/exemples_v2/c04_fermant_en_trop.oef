@@ -1,0 +1,4 @@
+\title{Produit}
+\integer{a=3}
+\statement{Calculer 3 x 4.)}
+\answer{Produit}{12}

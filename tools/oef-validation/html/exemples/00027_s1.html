@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>drawinput – graine 1</title>
+<style>
+body{font-family:"Segoe UI",Arial,sans-serif;max-width:52em;margin:2em auto;padding:0 1em;color:#222;line-height:1.5}
+header{border-bottom:3px solid #2c5f8a;margin-bottom:1em}
+h1{color:#2c5f8a;margin:.2em 0}
+.meta{color:#666;font-size:.85em}
+h2{font-size:1.2em;color:#fff;background:#2c5f8a;padding:.25em .6em;border-radius:4px}
+section.correction h2{background:#2e7d32}
+h3{font-size:1em;color:#2e7d32;margin-bottom:.3em}
+.statement,.form{margin:.5em 0}
+.form table{border-collapse:collapse}
+.form td{padding:.2em .5em}
+.blank{display:inline-block;min-width:6em;border-bottom:1px solid #444;margin:0 .2em}
+.blank.large{min-width:20em;min-height:3em;border:1px solid #444}
+.box{font-size:1.1em;margin-right:.3em}
+.menu{font-family:monospace;color:#555}
+table.answers{border-collapse:collapse;margin:.3em 0}
+table.answers th,table.answers td{border:1px solid #bbb;padding:.3em .7em;text-align:left;vertical-align:top}
+table.answers th{background:#eef5ee}
+.solution{border-left:4px solid #2e7d32;padding:.3em .8em;background:#f6fbf6}
+.feedback:not(:empty){margin-top:.8em;border-left:4px solid #e0a000;padding:.3em .8em;background:#fffaf0}
+.feedback:not(:empty)::before{content:"Feedback (pour la réponse test envoyée)";display:block;font-weight:bold;color:#a06d00}
+.muted{color:#888;font-style:italic}
+.hidden{display:none}
+.wims_mathml{display:inline}
+.oef_indgood{color:#2e7d32}.oef_indbad{color:#c62828}
+.inline{display:inline}.tt{font-family:monospace}
+img{max-width:100%}
+@media print{body{margin:0;max-width:none}section.correction{page-break-before:always}h2{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+</style>
+<script>window.MathJax={loader:{load:["input/mml"]}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>
+</head>
+<body>
+<header>
+  <h1>drawinput</h1>
+  <p class="meta">Fichier : <code>00027.oef</code> · Tirage (graine) : <strong>1</strong> · Généré le 25/10/2026 09:53 par WIMS 4.31b wims.cgi</p>
+</header>
+
+<section class="enonce">
+  <h2>Énoncé</h2>
+  <div class="statement">Code	<div class="spacer">	 
+<span class="blank large">&nbsp;</span>
+	</div>	En dessous ou en dessus de la ligne ?	<div class="spacer">	 
+          <script>
+          /*<![CDATA[*/
+          if( typeof(wims_status) === 'undefined' ){ var wims_status = "waiting";};          if( typeof(use_dragdrop_reply) === 'undefined' ){ var use_dragdrop_reply = false;};          if( typeof(canvas_scripts) === 'undefined' ){ var canvas_scripts = new Array();};          canvas_scripts.push("235719");
+/*]]>*/
+</script>
+            <div tabindex="0" id="canvas_div235719" style="max-width:200px;width:200px;height:200px" class="canvas_wrapper">             <canvas class="canvas_placeholder" width="200" height="200"></canvas>            </div>
+            <div id="tooltip_placeholder_div235719" style="text-align:center">             <span id="tooltip_placeholder235719" class="tooltip_placeholder"></span></div>            
+            <script>/*canvas*/
+/* begin generated javascript include for canvasdraw version 0.5 */
+"use strict";
+/* these variables and functions must be global */var read_dragdrop235719;var read_canvas_images;var read_canvas235719;var set_clock;var clear_draw_area235719;var update_draw_area235719;var place_image_on_canvas;var draw_boxplot;var redraw_all235719;var userdraw_primitive;var wims_canvas_function235719 = function(){
+/* common used stuff */var userdraw_x = [];var userdraw_y = [];var userdraw_radius = [];var xsize = 200;var ysize = 200;var precision = 100;var canvas_div = document.getElementById("canvas_div235719");var create_canvas235719 = function(canvas_type,size_x,size_y){var cnv;if(document.getElementById("wims_canvas235719"+canvas_type)){ cnv = document.getElementById("wims_canvas235719"+canvas_type);}else{try{ cnv = document.createElement("canvas"); }catch(e){alert("Your browser does not support HTML5 CANVAS:GET FIREFOX !");return;};canvas_div.appendChild(cnv);};cnv.width = size_x;cnv.height = size_y;cnv.style.top = 0;cnv.style.left = 0;cnv.style.position = "absolute";cnv.id = "wims_canvas235719"+canvas_type;return cnv;};function findPosX(i){ var obj = i;var curleft = 0;if(obj.offsetParent){while(1){curleft += obj.offsetLeft;if(!obj.offsetParent){break;};obj = obj.offsetParent;};}else{if(obj.x){curleft += obj.x;};};return curleft;};function findPosY(i){var obj = i;var curtop = 0;if(obj.offsetParent){while(1){curtop += obj.offsetTop;if(!obj.offsetParent){break;};obj = obj.offsetParent;};}else{if(obj.y){curtop += obj.y;};};return curtop;};function x2px(x){if(use_xlogscale == 0 ){let res=parseFloat((x-xmin)/(xmax - xmin)*xsize);return (res==xsize)?xsize-1:res;}else{let x_max = Math.log(xmax)/Math.log(xlogbase);let x_min = Math.log(xmin)/Math.log(xlogbase);let x_in = Math.log(x)/Math.log(xlogbase);let res=(x_in-x_min)/(x_max - x_min)*xsize; return (res==xsize)?xsize-1:res;};};function px2x(px){if(use_xlogscale == 0 ){return px*(xmax - xmin)/xsize + xmin;}else{let x_max = Math.log(xmax)/Math.log(xlogbase);let x_min = Math.log(xmin)/Math.log(xlogbase);let x_out = x_min +px*(x_max - x_min)/xsize;return Math.pow(xlogbase,x_out);};};function px2y(py){if(use_ylogscale == 0 ){return ymax - py*(ymax - ymin)/ysize;}else{let y_max = Math.log(ymax)/Math.log(ylogbase);let y_min = Math.log(ymin)/Math.log(ylogbase);let y_out = y_max +py*(y_min - y_max)/ysize;return Math.pow(ylogbase,y_out);};};function y2px(y){if(use_ylogscale == 0){let res= parseFloat((ymax-y)/(ymax - ymin)*ysize);return (res==ysize)?ysize-1:res;}else{var y_max = Math.log(ymax)/Math.log(ylogbase);var y_min = Math.log(ymin)/Math.log(ylogbase);var y_in = Math.log(y)/Math.log(ylogbase);return (y_max - y_in)*ysize/(y_max - y_min);};};function scale_x_radius(rx){return rx*xsize/(xmax - xmin);};function scale_y_radius(ry){return ry*ysize/(ymax - ymin);};function distance(x1,y1,x2,y2){return Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );};function distance_to_line (r,q,x,y){var c = (y) - (-1/r)*(x);var xs = r*(c - q)/(r*r+1);var ys = (r)*(xs)+(q);return parseInt(Math.sqrt( (xs-x)*(xs-x) + (ys-y)*(ys-y) ));};function move(obj,dx,dy){for(var p = 0 ; p < obj.x.length; p++){obj.x[p] = obj.x[p] + dx;obj.y[p] = obj.y[p] + dy;};return obj;};var snap_x = 1;var snap_y = 1;function snap_to_x(x){return x2px(snap_x*(Math.round((px2x(x))/snap_x)));};function snap_to_y(y){return y2px(snap_y*(Math.round((px2y(y))/snap_y)));};function multisnap_check(x,y,snap){switch(snap){case 1:return [snap_to_x(x),snap_to_y(y)];break;case 2:return [snap_to_x(x),y];break;case 3:return [x,snap_to_y(y)];break;case 4:return snap_to_points(x,y);break;case 5: return snap_to_fun(x,y);break;default: return [x,y];break;};};var xlogbase = 10;var ylogbase = 10;var use_xlogscale = 0;var use_ylogscale = 0;var x_strings = {};var x_strings_up = [];var y_strings = null;var use_jsmath = 0;var xstart = 0;var ystart = 0;var unit_x=" ";var unit_y=" ";var dragdrop_reply = [];var external_canvas = create_canvas235719(0,xsize,ysize);var xmin = -10.000000;var xmax = 10.000000;var ymin = -10.000000;var ymax = 10.000000;
+/* complete drag_drop_onclick shape library */  if( typeof(dragdrop_precision) == 'undefined' ){var dragdrop_precision = 100;};  function Shape(drag_type,object_cnt,onclick,use_snap,type,x,y,w,h,line_width,stroke_color,stroke_opacity,fill_color,fill_opacity,use_filled,use_dashed,dashtype0,dashtype1,use_rotate,angle,text,font_size,font_family,use_slider,rotation_center,use_offset){  this.drag_type = drag_type || 0;  this.stroke_opacity = stroke_opacity || 1.0;  this.stroke_color = "rgba("+stroke_color+","+stroke_opacity+")" || '#FF0000';  this.fill_opacity = fill_opacity || 1.0;  this.fill_color = "rgba("+fill_color+","+fill_opacity+")" || '#FF0000';  this.use_filled = use_filled || 0;  if( this.use_filled > 1 ){ this.fill_pattern = create_Pattern(0,0,this.use_filled,this.fill_color);};  this.use_slider = use_slider;  this.text = text || 0;  this.font_size = font_size || 12;  if( this.font_size == 12 ){ this.font_size = parseInt(font_family); };  this.font_family = font_family || this.font_size+'px Arial';  this.org_font_family = this.font_family;  this.textwidth = 0;  this.textheight = 0;  if(type == 14 ){ this.use_rotate = use_rotate;this.angle=angle*Math.PI/180;}else{this.angle=0;this.use_rotate=0;};  this.object_cnt = object_cnt;  this.onclick = onclick;  this.use_snap = use_snap || 0;  this.type = type || 1;  this.xorg = x;this.yorg = y;  this.use_once = true;  this.x = [x.length];this.y = [x.length];this.w = [x.length];this.h = [x.length];  for(var p=0;p<x.length;p++){this.x[p] = x2px(x[p]-xstart);this.y[p] = y2px(y[p]-ystart);if( p > w.length){this.w[p] = w[0];this.h[p] = h[0];}else{this.w[p] = w[p];this.h[p] = h[p];};};  if( rotation_center != null ){this.use_rotation_center = 1;this.rotation_center = [x2px(rotation_center[0]),y2px(rotation_center[1])];}else{this.use_rotation_center = 0;this.rotation_center = [this.x[0],this.y[0]];};  this.line_width = line_width || 2;  this.org_line_width = line_width || 2;  this.use_filled = use_filled || 0;  this.use_dashed = use_dashed || 0;  this.dashtype0 = dashtype0 || 4;  this.dashtype1 = dashtype1 || 4;  this.use_offset = use_offset || 0;  this.clicked = 0;  dragdrop_reply[object_cnt] = {object_cnt:this.object_cnt,type:onclick,x:this.x[0],y:this.y[0],r:this.w[0],angle:this.angle,clicked:0};  if(this.use_slider != -1 ){slidergroup[this.object_cnt] = this;};  };
+/* add basic drawstuff,but don't go here if nothing has changed... */Shape.prototype.draw = function(ctx){ if(dragstuff.valid === true){return;}; ctx.lineWidth = this.line_width;ctx.strokeStyle = this.stroke_color; if( this.use_filled > 1 ){ ctx.fillStyle = this.fill_pattern; }else{ ctx.fillStyle = this.fill_color; }; ctx.lineJoin = "round";ctx.save(); if(this.use_rotate == 1){if(this.use_rotation_center == 0 ){ this.rotation_center[0] = this.x[0];this.rotation_center[1] = this.y[0];};ctx.translate(this.rotation_center[0],this.rotation_center[1]);ctx.rotate(this.angle);ctx.translate(-1*(this.rotation_center[0]),-1*(this.rotation_center[1]));}; ctx.beginPath(); switch(this.type){default:break;case 4: for(var p = 0; p < this.x.length - 1;p++){ctx.moveTo(this.x[p], this.y[p]);ctx.lineTo(this.x[p+1],this.y[p+1]);};break;case 14: if( this.font_family == null ){ ctx.font = this.font_size+"px Arial";}else{ctx.font = this.font_family ;};if( this.use_once == true ){this.marge = 2*this.line_width;this.textwidth = ctx.measureText(this.text).width;this.textheight = ctx.measureText('W').width;};if(this.text.indexOf('_')>1 || this.text.indexOf('^')>1){draw_subsup(ctx,this.x[0],this.y[0],this.text,this.use_offset);}else{if( this.use_offset > 0 && this.use_once == true ){this.use_once = false;if(this.use_offset == 1){this.y[0] = this.y[0] - this.marge;}else{if(this.use_offset == 2){this.x[0] = this.x[0] + this.marge;}else{if(this.use_offset == 3){this.y[0] = this.y[0] - this.marge;this.x[0] = this.x[0] + this.marge;}else{if(this.use_offset == 4){this.y[0] = parseInt(this.y[0] + 0.25*(this.textheight));this.x[0] = parseInt(this.x[0] - 0.5*(this.textwidth));};};};};};ctx.fillText(this.text,this.x[0],this.y[0]);};break;}; if(this.use_filled > 0){ ctx.fill();} if(this.use_dashed == 1 ){if( ctx.setLineDash ){ ctx.setLineDash([this.dashtype0,this.dashtype1]);}else{ ctx.mozDash = [this.dashtype0,this.dashtype1];};}; ctx.stroke();ctx.restore();};
+/* no mouse actions needed */  var container_div = document.getElementById("canvas_div235719");  function CanvasState(canvas,container_div){this.canvas = canvas;this.width = canvas.width;this.height = canvas.height;var ctx = canvas.getContext("2d");this.ctx = ctx;this.shapes = [];this.moved = [];this.dragging = false;this.selection = null;this.draw();};  CanvasState.prototype.addShape = function(shape){this.shapes.push(shape);this.draw();};  CanvasState.prototype.clear = function(){this.ctx.clearRect(0, 0, this.width, this.height);};  CanvasState.prototype.draw = function(){var shapes = this.shapes;this.clear();var l = shapes.length;var shape;for(var i = 0; i < l; i++){shape = shapes[i];shape.draw(this.ctx);};};var obj = create_canvas235719(5,xsize,ysize);  var dragstuff = new CanvasState(obj,container_div);
+/* add reply stuff */read_dragdrop235719 = dragstuff.read_dragdrop;
+/* draw static input fields */if(typeof(input_cnt) !== 'undefined' ){var input_cnt = 0;};var draw_static_inputs = function(root_id,num,x,y,size,readonly,css_class,value,use_offset){var input = document.createElement("input");input.setAttribute("id","canvas_input"+num);input.setAttribute("style","text-align:center;position:absolute;left:"+x+"px;top:"+y+"px;");if(css_class != "none"){input.setAttribute("class",css_class);};input.setAttribute("size",size);input.setAttribute("value",value);input.addEventListener("touchstart", function(e){this.focus();},false);if( readonly == 0 || wims_status == "done" ){ input.setAttribute("readonly","readonly");if( wims_status == "done" ){input.setAttribute("value","");};};canvas_div.appendChild(input);if(use_offset != 0 ){ center_input('canvas_input'+num,x,y,css_class);};input_cnt++;};function center_input(id,x,y,css_class){ var inp = document.getElementById(id); var pos = inp.getBoundingClientRect(); var center_x = parseInt(x - 0.5*(pos.width)); var center_y = parseInt(y - 0.5*(pos.height)); try{if(css_class != "none"){inp.setAttribute("class",css_class);};inp.setAttribute("style","text-align:center;position:absolute;left:"+center_x+"px;top:"+center_y+"px;");} catch(e){console.log('error :'+e);return;};};
+/* set_reply_precision() */function set_reply_precision(){ var len = userdraw_x.length; var prec = 100; for(var p = 0 ; p < len ; p++ ){  userdraw_x[p] = (Math.round(prec*userdraw_x[p]))/prec;  userdraw_y[p] = (Math.round(prec*userdraw_y[p]))/prec; }; len = userdraw_radius.length; if( len > 0 ){  for(var p = 0 ; p < len ; p++ ){   userdraw_radius[p] = (Math.round(prec*userdraw_radius[p]))/prec;  }; };};
+/* function 15  read_canvas235719() */read_canvas235719 = function(){ var input_reply = new Array(); var p = 0; if( document.getElementById("canvas_input0")){  var t = 0;  while(document.getElementById("canvas_input"+t)){   if( ! document.getElementById("canvas_input"+t).getAttribute("readonly")){    input_reply[p] = document.getElementById("canvas_input"+t).value;    p++;   };   t++;  }; }; return input_reply;};/* end function 15 read_canvas235719() */
+/* add buffer */
+dragstuff.addShape(new Shape(-1,0,0,0,4,[-1000.000,1000.000],[0.000,0.000],[30,30],[30,30],2,"10,10,10",0.95,"10,10,10",0.95,0,0,4,4,0,0.0,"",12,"12px Arial",[-1],null,0));
+dragstuff.addShape(new Shape(-1,0,0,0,14,[-6.000],[5.000],[0],[0],2,"10,10,10",0.95,"10,10,10",0.95,0,0,0,0,0,0.000000,"zone 2",18,null,[-1],null,0));
+dragstuff.addShape(new Shape(-1,0,0,0,14,[-6.000],[-5.000],[0],[0],2,"10,10,10",0.95,"10,10,10",0.95,0,0,0,0,0,0.000000,"zone 1",18,null,[-1],null,0));
+draw_static_inputs(235719,0,130,160,20,1,"none"," ",0);
+draw_static_inputs(235719,1,130,50,20,1,"none","",0);
+};
+/* end wims_canvas_function */
+wims_canvas_function235719();
+</script>
+  <script>
+  /*<![CDATA[*/
+    function my_canvasdraw1() {
+      fun=eval('read_canvas235719');
+      var p= new Array(); p = fun();
+      document.getElementById('oefvar' + 1).value=p[1-1];
+    }
+    function my_canvasdraw2() {
+      fun=eval('read_canvas235719');
+      var p= new Array(); p = fun();
+      document.getElementById('oefvar' + 2).value=p[2-1];
+    }
+  /*]]>*/
+  </script>
+	 </div>	
+  <br class="clearall"></div>
+  <div class="form"></div>
+</section>
+
+<section class="correction ">
+  <h2>Correction</h2>
+  <h3>Bonne(s) réponse(s)</h3>
+  <table class="answers">
+<tr><th>[1]</th><td><div class="inline tt">au dessous</div></td></tr>
+<tr><th>[2]</th><td><div class="inline tt">au dessus</div></td></tr>
+</table>
+  <h3>Solution</h3>
+  <div class="solution"><p class="muted">(pas de \solution)</p></div>
+  <div class="feedback"></div>
+</section>
+</body>
+</html>

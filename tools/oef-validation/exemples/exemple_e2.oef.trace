@@ -1,0 +1,57 @@
+# oef2wims-trace (WIMS 4.31b) 2026-10-25 06:49:26
+# commande : [Z:\workspace\oefc\dist\oef2wims-trace.exe] [dos sier\e2.oef]
+# symboles : 1015 fonctions, 28331 lignes C
+# format : temps_ms  profondeur  ->fonction (fichier.c:ligne de definition) <- appelee depuis fichier.c:ligne  [OEF ligne:col]
+#          <-fonction  duree_ms
+     4.312   0 ->main (oef2wims.c:414) <- crtexe.c:267 (dans __tmainCRTStartup)
+     4.347   1   ->getinp (oef2wims.c:143) <- oef2wims.c:434 (dans main)
+     4.611   2     ->xmalloc (liblines.c:49) <- oef2wims.c:156 (dans getinp)
+     4.622   2     <-xmalloc  0.011 ms
+     4.651   1   <-getinp  0.304 ms
+     4.654   1   ->checkparentheses (oeflines.c:220) <- oef2wims.c:440 (dans main)
+     4.664   2     ->find_matching2 (oeflines.c:154) <- oeflines.c:235 (dans checkparentheses)
+     4.667   2     <-find_matching2  0.003 ms
+     4.669   2     ->find_matching2 (oeflines.c:154) <- oeflines.c:235 (dans checkparentheses)
+     4.671   2     <-find_matching2  0.002 ms
+     4.673   1   <-checkparentheses  0.019 ms
+     4.675   1   ->oef_error (oeflines.c:26) <- oef2wims.c:440 (dans main)
+
+== RESUME ==
+statut: oef_error (code de sortie 1)
+message_erreur: Unmatched parentheses
+dernier_appel: oef_error (oeflines.c:26)
+derniere_ligne_C: oef2wims.c:440 (dans main)
+derniere_ligne_OEF: 2 col 13 (position de l'erreur, badpar)
+appels_total: 7
+fonctions_distinctes: 6
+profondeur_max: 3
+duree_ms: 4.802
+contexte_OEF:
+         1 | \title{x}
+  >>     2 | \statement{ (oops }
+                       ^
+         3 | 
+== PILE D'APPELS A LA SORTIE (la plus recente en haut) ==
+  #1   oef_error (oeflines.c:26) appelee depuis oef2wims.c:440 (dans main)
+  #0   main (oef2wims.c:414) appelee depuis crtexe.c:267 (dans __tmainCRTStartup)
+== 12 DERNIERS EVENEMENTS ==
+       4.312   0 ->main <- crtexe.c:267 (dans __tmainCRTStartup)
+       4.347   1   ->getinp <- oef2wims.c:434 (dans main)
+       4.611   2     ->xmalloc <- oef2wims.c:156 (dans getinp)
+       4.622   2     <-xmalloc <- oef2wims.c:156 (dans getinp)
+       4.651   1   <-getinp <- oef2wims.c:434 (dans main)
+       4.654   1   ->checkparentheses <- oef2wims.c:440 (dans main)
+       4.664   2     ->find_matching2 <- oeflines.c:235 (dans checkparentheses)
+       4.667   2     <-find_matching2 <- oeflines.c:235 (dans checkparentheses)
+       4.669   2     ->find_matching2 <- oeflines.c:235 (dans checkparentheses)
+       4.671   2     <-find_matching2 <- oeflines.c:235 (dans checkparentheses)
+       4.673   1   <-checkparentheses <- oef2wims.c:440 (dans main)
+       4.675   1   ->oef_error <- oef2wims.c:440 (dans main)
+== COMPTEURS (appels par fonction) ==
+           2  find_matching2
+           1  xmalloc
+           1  getinp
+           1  oef_error
+           1  main
+           1  checkparentheses
+== FIN ==

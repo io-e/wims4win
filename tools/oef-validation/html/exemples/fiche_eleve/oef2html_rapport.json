@@ -1,0 +1,28 @@
+{
+ "runs": [
+  {
+   "file": "/tmp/exsrc/00072.oef",
+   "seed": 1,
+   "html": "dist/html/exemples/fiche_eleve/00072_s1.html",
+   "answers": 1,
+   "solution": true,
+   "analysis": true
+  }
+ ],
+ "cgi_calls": [
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00072&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 18787,
+   "s": 0.072,
+   "stderr": ""
+  },
+  {
+   "query": "session=YB99AA9431.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 17448,
+   "s": 0.033,
+   "stderr": ""
+  }
+ ]
+}

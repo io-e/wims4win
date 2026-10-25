@@ -1,0 +1,2 @@
+Copies non modifiées des sources WIMS 4.31b (arborescence src/ conservée).
+Exception : src/config.h n'existe pas dans l'archive ; il est GÉNÉRÉ par autoheader + configure (Linux).

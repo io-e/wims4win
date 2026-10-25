@@ -1,0 +1,265 @@
+%% Généré par xml2oef 1.0.0 à partir de 2391.xml ‹Eleda, id 2391, format source json›
+%% Nom Eleda : Equation premier degré N1
+
+\title{Équations du premier degré}
+\language{fr}
+\author{CELINE.RENOUX-MEUNIER}
+\description{Coefficients entiers ou décimaux}
+%% Eleda : max_attempts=2, default_feedback=false ‹pas d'équivalent direct en OEF›
+
+\real{decimales_coefficients=0}
+\real{decimales_solution=2}
+\real{nombres_negatifs=1}
+\real{coefficient_max=20}
+%% x2o appel de la procédure « Déterminer les coefficients »
+\real{coeff_min=0-\coefficient_max}
+\ifval{\nombres_negatifs == 0}{
+  \real{x2o1=0}
+}{
+  \text{x2o1=\coeff_min}
+}
+\real{x2o2=random(\x2o1..\coefficient_max)}
+\real{a=rint(\x2o2*10^\decimales_coefficients)/10^\decimales_coefficients}
+\ifval{\a == 0}{\integer{x2o3=1}}{\integer{x2o3=0}}
+\while{\x2o3 == 1}{
+  \ifval{\nombres_negatifs == 0}{
+    \real{x2o4=0}
+  }{
+    \text{x2o4=\coeff_min}
+  }
+  \real{x2o5=random(\x2o4..\coefficient_max)}
+  \real{a=rint(\x2o5*10^\decimales_coefficients)/10^\decimales_coefficients}
+  \ifval{\a == 0}{\integer{x2o3=1}}{\integer{x2o3=0}}
+}
+\ifval{\nombres_negatifs == 0}{
+  \real{x2o6=0}
+}{
+  \text{x2o6=\coeff_min}
+}
+\real{x2o7=random(\x2o6..\coefficient_max)}
+\real{b=rint(\x2o7*10^\decimales_coefficients)/10^\decimales_coefficients}
+\ifval{\b == 0}{\integer{x2o8=1}}{\integer{x2o8=0}}
+\while{\x2o8 == 1}{
+  \ifval{\nombres_negatifs == 0}{
+    \real{x2o9=0}
+  }{
+    \text{x2o9=\coeff_min}
+  }
+  \real{x2o10=random(\x2o9..\coefficient_max)}
+  \real{b=rint(\x2o10*10^\decimales_coefficients)/10^\decimales_coefficients}
+  \ifval{\b == 0}{\integer{x2o8=1}}{\integer{x2o8=0}}
+}
+\ifval{\nombres_negatifs == 0}{
+  \real{x2o11=0}
+}{
+  \text{x2o11=\coeff_min}
+}
+\real{x2o12=random(\x2o11..\coefficient_max)}
+\real{ap=rint(\x2o12*10^\decimales_coefficients)/10^\decimales_coefficients}
+\ifval{((\a == \ap) or ((abs((\a-\ap))) == 1)) or (\ap == 0)}{\integer{x2o13=1}}{\integer{x2o13=0}}
+\while{\x2o13 == 1}{
+  \ifval{\nombres_negatifs == 0}{
+    \real{x2o14=0}
+  }{
+    \text{x2o14=\coeff_min}
+  }
+  \real{x2o15=random(\x2o14..\coefficient_max)}
+  \real{ap=rint(\x2o15*10^\decimales_coefficients)/10^\decimales_coefficients}
+  \ifval{((\a == \ap) or ((abs((\a-\ap))) == 1)) or (\ap == 0)}{\integer{x2o13=1}}{\integer{x2o13=0}}
+}
+\ifval{\nombres_negatifs == 0}{
+  \real{x2o16=0}
+}{
+  \text{x2o16=\coeff_min}
+}
+\real{x2o17=random(\x2o16..\coefficient_max)}
+\real{bp=rint(\x2o17*10^\decimales_coefficients)/10^\decimales_coefficients}
+\ifval{\bp == 0}{\integer{x2o18=1}}{\integer{x2o18=0}}
+\while{\x2o18 == 1}{
+  \ifval{\nombres_negatifs == 0}{
+    \real{x2o19=0}
+  }{
+    \text{x2o19=\coeff_min}
+  }
+  \real{x2o20=random(\x2o19..\coefficient_max)}
+  \real{bp=rint(\x2o20*10^\decimales_coefficients)/10^\decimales_coefficients}
+  \ifval{\bp == 0}{\integer{x2o18=1}}{\integer{x2o18=0}}
+}
+\real{solution_v=(\bp-\b)/(\a-\ap)}
+\real{x2o21=(\solution_v*(10^\decimales_solution))-floor((\solution_v*(10^\decimales_solution)))}
+\ifval{((abs(\solution_v)) == 1) or ((\solution_v == 0) or ((\x2o21 != 0) or ((\nombres_negatifs == 0) and (\solution_v < 0))))}{\integer{x2o22=1}}{\integer{x2o22=0}}
+\while{\x2o22 == 1}{
+  %% x2o NON TRADUIT ‹procedures_callnoreturn, ligne XML 1344› : procédure récursive « Déterminer les coefficients » non traduite
+  \real{x2o21=(\solution_v*(10^\decimales_solution))-floor((\solution_v*(10^\decimales_solution)))}
+  \ifval{((abs(\solution_v)) == 1) or ((\solution_v == 0) or ((\x2o21 != 0) or ((\nombres_negatifs == 0) and (\solution_v < 0))))}{\integer{x2o22=1}}{\integer{x2o22=0}}
+}
+\text{x2o23=\a,\b}
+\text{exp_left=pari(Pol([\x2o23]))}
+\text{x2o25=\ap,\bp}
+\text{exp_right=pari(Pol([\x2o25]))}
+\real{compteur=0}
+
+\statement{<div class="x2o_q"> \embed{reply1}</div>
+L'équation \(\exp_left=\exp_right\) a pour solution \(x=~\)\reply1}
+
+\real{x2o27=\a-\ap}
+\text{x2o28=\x2o27,\b}
+\text{exp_left1=pari(Pol([\x2o28]))}
+\text{x2o30=0,\bp}
+\text{exp_right1=pari(Pol([\x2o30]))}
+\real{x2o32=\a-\ap}
+\text{x2o33=\x2o32,0}
+\text{exp_left2=pari(Pol([\x2o33]))}
+\real{x2o35=\bp-\b}
+\text{x2o36=0,\x2o35}
+\text{exp_right2=pari(Pol([\x2o36]))}
+%% x2o approximation ‹current_attempt, ligne XML 406› : OEF n'a pas de notion de tentative : tentative courante remplacée par 1
+%% x2o approximation ‹max_attempts, ligne XML 409› : nombre maximal de tentatives remplacé par la valeur de l'en-tête info
+%% x2o appel de la procédure « Afficher la résolution »
+\if{\ap > 0}{
+  \text{x2o38=-}
+}{
+  \text{x2o38=+}
+}
+\real{x2o39=abs(\ap)}
+\if{\ap > 0}{
+  \text{x2o40=-}
+}{
+  \text{x2o40=+}
+}
+\real{x2o41=abs(\ap)}
+\if{\b > 0}{
+  \text{x2o42=-}
+}{
+  \text{x2o42=+}
+}
+\real{x2o43=abs(\b)}
+\if{\b > 0}{
+  \text{x2o44=-}
+}{
+  \text{x2o44=+}
+}
+\real{x2o45=abs(\b)}
+\if{(\a-\ap) > 0}{
+  \text{x2o46=}
+}{
+  \text{x2o46=&#40;}
+}
+\real{x2o47=\a-\ap}
+\if{(\a-\ap) > 0}{
+  \text{x2o48=}
+}{
+  \text{x2o48=&#41;}
+}
+\if{(\a-\ap) > 0}{
+  \text{x2o49=}
+}{
+  \text{x2o49=&#40;}
+}
+\real{x2o50=\a-\ap}
+\if{(\a-\ap) > 0}{
+  \text{x2o51=}
+}{
+  \text{x2o51=&#41;}
+}
+\real{x2o52=\bp-\b}
+\real{x2o53=\a-\ap}
+\text{x2o54=x \downarrow&#125; \; \: &\qquad &#123;\color{blue} \scriptsize \downarrow }
+\text{x2o55=x&#125; \\}
+\if{((\sc_reply1 == 1) or (1 == 2)) and (\solution_v == (rint(\solution_v*10^4)/10^4))}{
+  \real{solution_affichee=rint(\solution_v*10^4)/10^4}
+}
+\if{((\sc_reply1 == 1) or (1 == 2)) and (\solution_v != (rint(\solution_v*10^4)/10^4))}{
+  \text{solution_affichee=(\bp-\b)/(\a-\ap)}
+}
+\ifval{\solution_v != (rint(\solution_v*10^4)/10^4)}{
+  \real{x2o57=rint(\solution_v*10^4)/10^4}
+  \text{x2o56=\approx\x2o57}
+}{
+  \real{x2o58=rint(\solution_v*10^4)/10^4}
+  \text{x2o56==\x2o58}
+}
+%% x2o appel de la procédure « Vérifier si la solution est correcte »
+\ifval{(\a != 0) or (\a != 1)}{
+  \text{x2o59=\a\times }
+}{
+  \text{x2o59=}
+}
+\if{\solution_v < 0}{
+  \text{x2o60=&#40;}
+}{
+  \text{x2o60=}
+}
+\ifval{\a != 0}{
+  \text{x2o61=\solution_affichee}
+}{
+  \text{x2o61=}
+}
+\if{\solution_v < 0}{
+  \text{x2o62=&#41;}
+}{
+  \text{x2o62=}
+}
+\ifval{(\a != 0) and (\b > 0)}{
+  \text{x2o63=+}
+}{
+  \text{x2o63=}
+}
+\ifval{\b != 0}{
+  \text{x2o64=\b}
+}{
+  \text{x2o64=}
+}
+\ifval{\solution_v == (rint(\solution_v*10^4)/10^4)}{
+  \real{x2o65=rint(((\a*((\bp-\b)/(\a-\ap)))+\b)*10^10)/10^10}
+}{
+  \text{x2o66=pari(((\a*(\bp-\b))+(\b*(\a-\ap)))/(\a-\ap))}
+  \text{x2o65=\x2o66}
+}
+\ifval{(\ap != 0) or (\ap != 1)}{
+  \text{x2o67=\ap\times }
+}{
+  \text{x2o67=}
+}
+\if{\solution_v < 0}{
+  \text{x2o68=&#40;}
+}{
+  \text{x2o68=}
+}
+\ifval{\ap != 0}{
+  \text{x2o69=\solution_affichee}
+}{
+  \text{x2o69=}
+}
+\if{\solution_v < 0}{
+  \text{x2o70=&#41;}
+}{
+  \text{x2o70=}
+}
+\ifval{(\ap != 0) and (\bp > 0)}{
+  \text{x2o71=+}
+}{
+  \text{x2o71=}
+}
+\ifval{\bp != 0}{
+  \text{x2o72=\bp}
+}{
+  \text{x2o72=}
+}
+\ifval{\solution_v == (rint(\solution_v*10^4)/10^4)}{
+  \real{x2o73=rint(((\ap*((\bp-\b)/(\a-\ap)))+\bp)*10^10)/10^10}
+}{
+  \text{x2o74=pari(((\ap*(\bp-\b))+(\bp*(\a-\ap)))/(\a-\ap))}
+  \text{x2o73=\x2o74}
+}
+\answer{Réponse 1}{\solution_v}{type=formal}
+
+\feedback{1=1}{<br>}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{<div style="text-align:center">\(\begin{align*} \exp_left&=~~\exp_right\\ &#123;\color{blue} \scriptsize \x2o38\x2o39\x2o54\x2o40\x2o41\x2o55\exp_left1&=~~\exp_right1\\ {\color{blue} \scriptsize \x2o42\x2o43\downarrow} \; \: &\qquad {\color{blue} \scriptsize \downarrow \x2o44\x2o45} \\\exp_left2&=~~\exp_right2\\ {\color{blue} \scriptsize \div \x2o46\x2o47\x2o48\downarrow} \; &\qquad  {\color{blue} \scriptsize \downarrow  \div\x2o49\x2o50\x2o51} \\ x &=~~ \frac{\x2o52}{\x2o53} \end{align*}\)</div>}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{<br>}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{\(x=(\bp-\b)/(\a-\ap)\x2o56\) est la solution de l'équation \(\exp_left=\exp_right\)}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{<br>}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{<span style="color:#3273dc">En effet :</span>}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{\(\x2o59\x2o60\x2o61\x2o62\x2o63\x2o64=\color{green}\x2o65\)}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{\(\qquad\)et}
+\feedback{(\sc_reply1 == 1) or (1 == 2)}{\(\x2o67\x2o68\x2o69\x2o70\x2o71\x2o72=\color{green}\x2o73\)}

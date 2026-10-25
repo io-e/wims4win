@@ -1,0 +1,4 @@
+\title{Fn}
+\real{a=randint(1..5}
+\statement{\a}
+\answer{r}{\a}

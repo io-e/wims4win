@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Rapport oef2wims-v2</title><style>body{font-family:Segoe UI,Arial,sans-serif;margin:24px;color:#222}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:4px 8px;vertical-align:top;font-size:14px}th{background:#f0f0f0;cursor:pointer}.ERREUR{background:#fde2e2}.OK{background:#e5f6e5}.av{background:#fff4d6}pre{background:#f7f7f7;padding:8px;overflow:auto;font-size:12px}.box{display:inline-block;padding:8px 16px;margin-right:8px;border-radius:6px;font-size:18px}</style><script>function s(c){var t=document.getElementById('t'),r=[].slice.call(t.rows,1);var d=t.getAttribute('data-d')==c?-1:1;t.setAttribute('data-d',d==1?c:'');r.sort(function(a,b){var x=a.cells[c].getAttribute('data-v')||a.cells[c].innerText,y=b.cells[c].getAttribute('data-v')||b.cells[c].innerText;return (isNaN(x-y)?x.localeCompare(y):x-y)*d});r.forEach(function(e){t.tBodies[0].appendChild(e)})}</script></head><body><h1>Rapport de compilation OEF</h1><p>2026-10-25 07:45:18.788 (UTC+01:00) — compilateur WIMS 4.31b (oef2wims.exe)</p><div><span class="box" style="background:#eee">17 fichier(s)</span><span class="box OK">5 OK</span><span class="box av">4 avec avertissements</span><span class="box ERREUR">12 en erreur</span></div><p>Cliquez sur un en-tête pour trier, sur un fichier pour voir les points à corriger.</p><table id="t"><thead><tr><th onclick="s(0)">Fichier</th><th onclick="s(1)">Verdict</th><th onclick="s(2)">Erreurs</th><th onclick="s(3)">Avert.</th><th onclick="s(4)">Premier point à corriger</th><th>Journaux</th></tr></thead><tbody><tr class="ERREUR"><td><details><summary>c01_vide.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, EMPTY) — ligne 1, colonne 1
+    Problème    : Empty source file.
+    &gt;&gt;    1 | 
+              ^
+    Explication : Le fichier .oef ne contient aucun octet.
+    Correction  : Vérifiez que l'enregistrement a bien eu lieu et que le bon fichier est compilé ; un OEF minimal contient au moins \title et \statement.
+    Exemple     : avant  -&gt;  (vide)
+                  après  -&gt;  \title{Exo} / \statement{Énoncé}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.1 c.1 : Empty source file.</td><td><a href="c01_vide.log">.log</a> <a href="c01_vide.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c02_paren_ouverte.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PAREN) — ligne 4, colonne 10
+    Problème    : Unmatched parentheses — Le compilateur signale le caractère '(' ligne 4 colonne 10. '(' ouvert ligne 4 col 10 n'est pas fermé : on rencontre '}' ligne 4 col 13 avant son ')'.
+          3 | \statement{Calculer la derivee de f(x)=\a x^2 en x=1.
+    &gt;&gt;    4 | Donner f'(1.}
+                       ^
+          5 | \answer{f'(1)=}{2*\a}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Ajoutez le ')' manquant avant la ligne 4 col 13 (ou supprimez ce '(' s'il est en trop). Dans un texte, écrivez &amp;#40; à la place du '('.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.4 c.10 : Unmatched parentheses — Le compilateur signale le caractère '(' ligne 4 colonne 10. '(' ouvert ligne 4 col 10 n'est pas fermé : on rencontre '}' ligne 4 col 13 avant son ')'.</td><td><a href="c02_paren_ouverte.log">.log</a> <a href="c02_paren_ouverte.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c03_accolade_manquante.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PAREN) — ligne 3, colonne 9
+    Problème    : Unmatched parentheses — Le compilateur signale le caractère '{' ligne 3 colonne 9. '{' ouvert ici n'est jamais fermé.
+          2 | \integer{a=randint(1..9)}
+    &gt;&gt;    3 | \integer{b=randint(1..9)
+                      ^
+          4 | \statement{Calculer \a + \b.}
+    Voir aussi ligne 4, colonne 1 :
+          3 | \integer{b=randint(1..9)
+    &gt;&gt;    4 | \statement{Calculer \a + \b.}
+              ^
+          5 | \answer{Somme}{\a+\b}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Ajoutez '}' à la fin de la directive commencée ici, très probablement avant la ligne 4 (début de la directive suivante).
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.3 c.9 : Unmatched parentheses — Le compilateur signale le caractère '{' ligne 3 colonne 9. '{' ouvert ici n'est jamais fermé.</td><td><a href="c03_accolade_manquante.log">.log</a> <a href="c03_accolade_manquante.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c04_fermant_en_trop.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PAREN) — ligne 3, colonne 27
+    Problème    : Unmatched parentheses — Le compilateur signale le caractère ')' ligne 3 colonne 27. ')' fermant en trop (aucun '(' ouvert avant).
+          2 | \integer{a=3}
+    &gt;&gt;    3 | \statement{Calculer 3 x 4.)}
+                                        ^
+          4 | \answer{Produit}{12}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Supprimez ce ')' ou ajoutez le '(' manquant plus haut. Dans un texte, écrivez &amp;#41; à la place.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.3 c.27 : Unmatched parentheses — Le compilateur signale le caractère ')' ligne 3 colonne 27. ')' fermant en trop (aucun '(' ouvert avant).</td><td><a href="c04_fermant_en_trop.log">.log</a> <a href="c04_fermant_en_trop.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c05_intervalle.oef</summary><pre>=== À CORRIGER (2 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PAREN) — ligne 2, colonne 30
+    Problème    : Unmatched parentheses — Le compilateur signale le caractère '[' ligne 2 colonne 30. '[' ouvert ligne 2 col 30 n'est pas fermé : on rencontre '}' ligne 2 col 36 avant son ']'.
+          1 | \title{Intervalle}
+    &gt;&gt;    2 | \statement{Donner un reel de [0;1[.}
+                                           ^
+          3 | \answer{x}{0.5}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Ajoutez le ']' manquant avant la ligne 2 col 36 (ou supprimez ce '[' s'il est en trop). Dans un texte, écrivez &amp;#91; à la place du '['.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+
+[2] ERREUR (pré-contrôle, PAREN) — ligne 2, colonne 34
+    Problème    : '[' ouvert ligne 2 col 34 n'est pas fermé : on rencontre '}' ligne 2 col 36 avant son ']'.
+          1 | \title{Intervalle}
+    &gt;&gt;    2 | \statement{Donner un reel de [0;1[.}
+                                               ^
+          3 | \answer{x}{0.5}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Ajoutez le ']' manquant avant la ligne 2 col 36 (ou supprimez ce '[' s'il est en trop). Dans un texte, écrivez &amp;#91; à la place du '['.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+</pre></details></td><td>ERREUR</td><td data-v="2">2</td><td data-v="0">0</td><td>l.2 c.30 : Unmatched parentheses — Le compilateur signale le caractère '[' ligne 2 colonne 30. '[' ouvert ligne 2 col 30 n'est pas fermé : on rencontre '}' ligne 2 col 36 avant son ']'.</td><td><a href="c05_intervalle.log">.log</a> <a href="c05_intervalle.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c06_mauvais_type.oef</summary><pre>=== À CORRIGER (2 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PAREN) — ligne 2, colonne 19
+    Problème    : Unmatched parentheses — Le compilateur signale le caractère '(' ligne 2 colonne 19. '(' ouvert ligne 2 col 19 n'est pas fermé : on rencontre '}' ligne 2 col 33 avant son ')'.
+          1 | \title{Mix}
+    &gt;&gt;    2 | \statement{Calcul (a+b] de test.}
+                                ^
+          3 | \answer{r}{1}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Ajoutez le ')' manquant avant la ligne 2 col 33 (ou supprimez ce '(' s'il est en trop). Dans un texte, écrivez &amp;#40; à la place du '('.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+
+[2] ERREUR (pré-contrôle, PAREN) — ligne 2, colonne 23
+    Problème    : ']' fermant en trop (aucun '[' ouvert avant).
+          1 | \title{Mix}
+    &gt;&gt;    2 | \statement{Calcul (a+b] de test.}
+                                    ^
+          3 | \answer{r}{1}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Supprimez ce ']' ou ajoutez le '[' manquant plus haut. Dans un texte, écrivez &amp;#93; à la place.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+</pre></details></td><td>ERREUR</td><td data-v="2">2</td><td data-v="0">0</td><td>l.2 c.19 : Unmatched parentheses — Le compilateur signale le caractère '(' ligne 2 colonne 19. '(' ouvert ligne 2 col 19 n'est pas fermé : on rencontre '}' ligne 2 col 33 avant son ')'.</td><td><a href="c06_mauvais_type.log">.log</a> <a href="c06_mauvais_type.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c07_sans_statement.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, NOSTMT) — ligne 3, colonne 1
+    Problème    : No statement defined. — Pas de \statement ; la première réponse (\answer) est ligne 3.
+          2 | \real{a=2}
+    &gt;&gt;    3 | \answer{x=}{\a}
+              ^
+    Explication : Tout exercice OEF doit contenir une directive \statement{...} (l'énoncé). Elle manque ou son nom est mal orthographié.
+    Correction  : Insérez \statement{...} juste avant la ligne 3.
+    Exemple     : avant  -&gt;  \title{Exo} / \answer{x=}{3}
+                  après  -&gt;  \title{Exo} / \statement{Résoudre 2x=6.} / \answer{x=}{3}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.3 c.1 : No statement defined. — Pas de \statement ; la première réponse (\answer) est ligne 3.</td><td><a href="c07_sans_statement.log">.log</a> <a href="c07_sans_statement.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c08_statment_faute.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, NOSTMT) — ligne 3, colonne 1
+    Problème    : No statement defined. — Pas de \statement : \statment ligne 3 est probablement une faute de frappe.
+          2 | \real{a=2}
+    &gt;&gt;    3 | \statment{Combien vaut a ?}
+              ^
+          4 | \answer{a=}{\a}
+    Explication : Tout exercice OEF doit contenir une directive \statement{...} (l'énoncé). Elle manque ou son nom est mal orthographié.
+    Correction  : Renommez \statment en \statement.
+    Exemple     : avant  -&gt;  \title{Exo} / \answer{x=}{3}
+                  après  -&gt;  \title{Exo} / \statement{Résoudre 2x=6.} / \answer{x=}{3}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.3 c.1 : No statement defined. — Pas de \statement : \statment ligne 3 est probablement une faute de frappe.</td><td><a href="c08_statment_faute.log">.log</a> <a href="c08_statment_faute.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c09_deux_statement.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, STMT2) — ligne 4, colonne 1
+    Problème    : Multiple definition of statement. — Second \statement ligne 4 (le premier est ligne 2).
+          3 | \answer{x}{1}
+    &gt;&gt;    4 | \statement{Partie 2}
+              ^
+          5 | \answer{y}{2}
+    Voir aussi ligne 2, colonne 1 :
+          1 | \title{Double}
+    &gt;&gt;    2 | \statement{Partie 1}
+              ^
+          3 | \answer{x}{1}
+    Explication : L'énoncé (\statement) doit être unique ; un second \statement est refusé.
+    Correction  : Fusionnez les deux énoncés dans un seul \statement{...}, ou renommez le second (par ex. \hint ou \feedback).
+    Exemple     : avant  -&gt;  \statement{Partie 1} / \statement{Partie 2}
+                  après  -&gt;  \statement{Partie 1 &lt;br&gt; Partie 2}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.4 c.1 : Multiple definition of statement. — Second \statement ligne 4 (le premier est ligne 2).</td><td><a href="c09_deux_statement.log">.log</a> <a href="c09_deux_statement.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c10_deux_steps.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, STEPS2) — ligne 5, colonne 1
+    Problème    : Multiple definition of steps. — Second \steps ligne 5 (déjà un \steps ligne 2).
+          4 | \answer{x}{1}
+    &gt;&gt;    5 | \steps{r2}
+              ^
+    Voir aussi ligne 2, colonne 1 :
+          1 | \title{Etapes}
+    &gt;&gt;    2 | \steps{r1}
+              ^
+          3 | \statement{test}
+    Explication : Un exercice ne peut avoir qu'une seule directive \steps ou \nextstep.
+    Correction  : Gardez une seule directive \steps{...} et regroupez-y toutes les étapes, séparées par des virgules ou des points-virgules.
+    Exemple     : avant  -&gt;  \steps{r1} / \steps{r2}
+                  après  -&gt;  \steps{r1 /  r2}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.5 c.1 : Multiple definition of steps. — Second \steps ligne 5 (déjà un \steps ligne 2).</td><td><a href="c10_deux_steps.log">.log</a> <a href="c10_deux_steps.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c11_prompt_long.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PROMPT) — ligne 3, colonne 9
+    Problème    : Answer prompt too long — Libellé de \answer de 60 caractères (maximum 39).
+          2 | \statement{Calculer.}
+    &gt;&gt;    3 | \answer{Donnez la valeur exacte de la derivee seconde en x egal deux}{3}
+                      ^
+    Explication : Le premier argument de \answer{libellé}{...} est limité à 39 caractères (MAX_PROMPTLEN=40, après remplacement des variables).
+    Correction  : Raccourcissez le libellé et déplacez la phrase explicative dans le \statement.
+    Exemple     : avant  -&gt;  \answer{Donnez la valeur exacte de la dérivée en x=2}{\d}
+                  après  -&gt;  \answer{f'(2) =}{\d}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.3 c.9 : Answer prompt too long — Libellé de \answer de 60 caractères (maximum 39).</td><td><a href="c11_prompt_long.log">.log</a> <a href="c11_prompt_long.json">.json</a></td></tr>
+<tr class="av"><td><details><summary>c12_directive_inconnue.oef</summary><pre>=== À CORRIGER (2 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] AVERTISSEMENT (pré-contrôle, DIRINC) — ligne 4, colonne 1
+    Problème    : Directive inconnue \Hint : le compilateur l'ignore SANS message, son contenu est perdu.
+          3 | \statement{Calculer \a.}
+    &gt;&gt;    4 | \Hint{Pensez au carre.}
+              ^
+          5 | \answr{a=}{\a}
+    Explication : Seules les directives de la table de oef2wims sont reconnues (title, statement, answer, choice, real, text, ...). Les majuscules comptent.
+    Correction  : Vouliez-vous écrire \hint ? (attention aux majuscules)
+
+[2] AVERTISSEMENT (pré-contrôle, DIRINC) — ligne 5, colonne 1
+    Problème    : Directive inconnue \answr : le compilateur l'ignore SANS message, son contenu est perdu.
+          4 | \Hint{Pensez au carre.}
+    &gt;&gt;    5 | \answr{a=}{\a}
+              ^
+          6 | \answer{a=}{\a}
+    Explication : Seules les directives de la table de oef2wims sont reconnues (title, statement, answer, choice, real, text, ...). Les majuscules comptent.
+    Correction  : Vouliez-vous écrire \answer ?
+</pre></details></td><td>OK (avertissements)</td><td data-v="0">0</td><td data-v="2">2</td><td>l.4 c.1 : Directive inconnue \Hint : le compilateur l'ignore SANS message, son contenu est perdu.</td><td><a href="c12_directive_inconnue.log">.log</a> <a href="c12_directive_inconnue.json">.json</a></td></tr>
+<tr class="av"><td><details><summary>c13_variable_non_definie.oef</summary><pre>=== À CORRIGER (2 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] AVERTISSEMENT (pré-contrôle, VARINC) — ligne 4, colonne 14
+    Problème    : Variable \resultat utilisée dans \answer mais jamais définie (\real, \integer, \text, \function, ...).
+          3 | \statement{Calculer 2*\a.}
+    &gt;&gt;    4 | \answer{2a=}{\resultat}
+                           ^
+          5 | \choice{Pair ?}{\oui}{non}
+    Explication : Une variable non définie est remplacée par une chaîne vide : la bonne réponse attendue sera vide ou fausse.
+    Correction  : Définissez-la avant \statement, par ex. \real{resultat=...}, ou corrigez son orthographe.
+
+[2] AVERTISSEMENT (pré-contrôle, VARINC) — ligne 5, colonne 17
+    Problème    : Variable \oui utilisée dans \choice mais jamais définie (\real, \integer, \text, \function, ...).
+          4 | \answer{2a=}{\resultat}
+    &gt;&gt;    5 | \choice{Pair ?}{\oui}{non}
+                              ^
+    Explication : Une variable non définie est remplacée par une chaîne vide : la bonne réponse attendue sera vide ou fausse.
+    Correction  : Définissez-la avant \statement, par ex. \real{oui=...}, ou corrigez son orthographe.
+</pre></details></td><td>OK (avertissements)</td><td data-v="0">0</td><td data-v="2">2</td><td>l.4 c.14 : Variable \resultat utilisée dans \answer mais jamais définie (\real, \integer, \text, \function, ...).</td><td><a href="c13_variable_non_definie.log">.log</a> <a href="c13_variable_non_definie.json">.json</a></td></tr>
+<tr class="av"><td><details><summary>c14_latin1_bom.oef</summary><pre>=== À CORRIGER (2 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] AVERTISSEMENT (pré-contrôle, BOM) — ligne 1, colonne 1
+    Problème    : Le fichier commence par une marque BOM UTF-8 (3 octets invisibles).
+    &gt;&gt;    1 | \title{Accents}
+              ^
+          2 | \statement{Calculer l'aire du carré.}
+    Explication : Ces octets sont copiés tels quels dans la sortie ; certains serveurs WIMS les affichent comme des caractères parasites.
+    Correction  : Réenregistrez le fichier en « UTF-8 » (sans BOM), par ex. dans Notepad++ : Encodage &gt; UTF-8.
+
+[2] AVERTISSEMENT (pré-contrôle, ENCODAGE) — ligne 2, colonne 35
+    Problème    : Octet 0xE9 non UTF-8 : le fichier semble être en Latin-1/Windows-1252.
+          1 | \title{Accents}
+    &gt;&gt;    2 | \statement{Calculer l'aire du carré.}
+                                                ^
+          3 | \answer{aire}{4}
+    Explication : Les accents seront mal affichés si le module WIMS est en UTF-8 (cas général depuis WIMS 4).
+    Correction  : Réenregistrez le fichier en UTF-8 (Notepad++ : Encodage &gt; Convertir en UTF-8).
+
+--- Pour information ---
+
+[3] INFO (pré-contrôle, CRLF)
+    Problème    : Fins de ligne Windows (CRLF) : 3 lignes.
+    Explication : Accepté : le compilateur remplace CR par un espace. Pour un dépôt sur un serveur WIMS, préférez LF.
+    Correction  : Facultatif : convertir en LF (Notepad++ : Édition &gt; Convertir les sauts de ligne &gt; Unix).
+</pre></details></td><td>OK (avertissements)</td><td data-v="0">0</td><td data-v="2">2</td><td>l.1 c.1 : Le fichier commence par une marque BOM UTF-8 (3 octets invisibles).</td><td><a href="c14_latin1_bom.log">.log</a> <a href="c14_latin1_bom.json">.json</a></td></tr>
+<tr class="av"><td><details><summary>c15_sans_titre.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] AVERTISSEMENT (pré-contrôle, NOTITLE) — ligne 1, colonne 1
+    Problème    : Pas de \title.
+    &gt;&gt;    1 | \statement{Combien font 2+2 ?}
+              ^
+          2 | \answer{r}{4}
+    Explication : Le titre sert à identifier l'exercice dans le module WIMS.
+    Correction  : Ajoutez \title{Titre de l'exercice} en première ligne.
+</pre></details></td><td>OK (avertissements)</td><td data-v="0">0</td><td data-v="1">1</td><td>l.1 c.1 : Pas de \title.</td><td><a href="c15_sans_titre.log">.log</a> <a href="c15_sans_titre.json">.json</a></td></tr>
+<tr class="ERREUR"><td><details><summary>c16_fonction_paren.oef</summary><pre>=== À CORRIGER (1 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+
+[1] ERREUR (compilateur, PAREN) — ligne 2, colonne 16
+    Problème    : Unmatched parentheses — Le compilateur signale le caractère '(' ligne 2 colonne 16. '(' ouvert ligne 2 col 16 n'est pas fermé : on rencontre '}' ligne 2 col 21 avant son ')'.
+          1 | \title{Fn}
+    &gt;&gt;    2 | \real{a=randint(1..5}
+                             ^
+          3 | \statement{\a}
+    Explication : Le compilateur compte les (), [] et {} dans TOUT le fichier, y compris dans le texte de l'énoncé, sans aucun échappement possible. Un caractère ouvrant sans fermant (ou un fermant en trop) bloque toute la compilation.
+    Correction  : Ajoutez le ')' manquant avant la ligne 2 col 21 (ou supprimez ce '(' s'il est en trop). Dans un texte, écrivez &amp;#40; à la place du '('.
+    Exemple     : avant  -&gt;  \statement{Calculer f(\x pour x = 2.}
+                  après  -&gt;  \statement{Calculer f(\x) pour x = 2.}
+</pre></details></td><td>ERREUR</td><td data-v="1">1</td><td data-v="0">0</td><td>l.2 c.16 : Unmatched parentheses — Le compilateur signale le caractère '(' ligne 2 colonne 16. '(' ouvert ligne 2 col 16 n'est pas fermé : on rencontre '}' ligne 2 col 21 avant son ')'.</td><td><a href="c16_fonction_paren.log">.log</a> <a href="c16_fonction_paren.json">.json</a></td></tr>
+<tr class="OK"><td><details><summary>c17_ok.oef</summary><pre>=== À CORRIGER (0 point(s) ; traitez-les dans l'ordre, puis recompilez) ===
+Rien à corriger.
+</pre></details></td><td>OK</td><td data-v="0">0</td><td data-v="0">0</td><td></td><td><a href="c17_ok.log">.log</a> <a href="c17_ok.json">.json</a></td></tr>
+</tbody></table></body></html>

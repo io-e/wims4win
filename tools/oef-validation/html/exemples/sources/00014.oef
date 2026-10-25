@@ -1,0 +1,25 @@
+\title{*clickfill1}
+\language{fr}
+\range{-5..5}
+\author{Chantal Causse}
+\email{Chantal.Causse@noos.fr}
+\computeanswer{no}
+\format{html}
+\precision{10000}
+
+\statement{Code :
+<div class="spacer">
+\special{editarea
+\answer{}{a,n,g,l,e;a,b,c,d,e}{type=clickfill}{option=sort}
+\answer{}{c,e,r,c,l,e}{type=clickfill}
+}
+</div>
+<p>
+Avec le type <i>clickfill</i>, chaque étiquette peut être utilisée plusieurs fois.
+Ici, les tailles des étiquettes ont été fixées.
+</p><div>
+Écrire le mot angle : \embed{reply1, 30 x 30}
+et le mot cercle : \embed{reply2, 30 x 30}
+</div> }
+\answer{}{a,n,g,l,e;a,b,c,d,e}{type=clickfill}{option=sort}
+\answer{}{c,e,r,c,l,e}{type=clickfill}

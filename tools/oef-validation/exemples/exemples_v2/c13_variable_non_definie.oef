@@ -1,0 +1,5 @@
+\title{Var}
+\integer{a=4}
+\statement{Calculer 2*\a.}
+\answer{2a=}{\resultat}
+\choice{Pair ?}{\oui}{non}

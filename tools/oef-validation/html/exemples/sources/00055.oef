@@ -1,0 +1,18 @@
+\title{Tangente (function)}
+\range{-5,5}
+\real{a = random(-1,1)*randint(1..30)/10}
+\real{b = randint(-20..20)/10}
+\real{c = randint(-20..20)/10}
+\function{f = \a*x^2+simplify(\b*x)+\c}
+\real{x0 = randint(-40..40)/10}
+\real{y0 = evalue(\f,x = \x0)}
+\function{df = diff(\f,x)}
+\real{df0 = evalue(\df,x = \x0)}
+\function{D = \df0*x-simplify(\df0*\x0-\y0)}
+
+\statement{ Donner l'équation de la tangente à la courbe d'équation
+\(y = \f\) au point (\x0, \y0).
+       <div class="wimscenter">\( y = \) \embed{reply1}</div>
+}
+
+\answer{y=}{\D,x}{type=function}

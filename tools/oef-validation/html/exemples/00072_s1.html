@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tangente 2 – graine 1</title>
+<style>
+body{font-family:"Segoe UI",Arial,sans-serif;max-width:52em;margin:2em auto;padding:0 1em;color:#222;line-height:1.5}
+header{border-bottom:3px solid #2c5f8a;margin-bottom:1em}
+h1{color:#2c5f8a;margin:.2em 0}
+.meta{color:#666;font-size:.85em}
+h2{font-size:1.2em;color:#fff;background:#2c5f8a;padding:.25em .6em;border-radius:4px}
+section.correction h2{background:#2e7d32}
+h3{font-size:1em;color:#2e7d32;margin-bottom:.3em}
+.statement,.form{margin:.5em 0}
+.form table{border-collapse:collapse}
+.form td{padding:.2em .5em}
+.blank{display:inline-block;min-width:6em;border-bottom:1px solid #444;margin:0 .2em}
+.blank.large{min-width:20em;min-height:3em;border:1px solid #444}
+.box{font-size:1.1em;margin-right:.3em}
+.menu{font-family:monospace;color:#555}
+table.answers{border-collapse:collapse;margin:.3em 0}
+table.answers th,table.answers td{border:1px solid #bbb;padding:.3em .7em;text-align:left;vertical-align:top}
+table.answers th{background:#eef5ee}
+.solution{border-left:4px solid #2e7d32;padding:.3em .8em;background:#f6fbf6}
+.feedback:not(:empty){margin-top:.8em;border-left:4px solid #e0a000;padding:.3em .8em;background:#fffaf0}
+.feedback:not(:empty)::before{content:"Feedback (pour la réponse test envoyée)";display:block;font-weight:bold;color:#a06d00}
+.muted{color:#888;font-style:italic}
+.hidden{display:none}
+.wims_mathml{display:inline}
+.oef_indgood{color:#2e7d32}.oef_indbad{color:#c62828}
+.inline{display:inline}.tt{font-family:monospace}
+img{max-width:100%}
+@media print{body{margin:0;max-width:none}section.correction{page-break-before:always}h2{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+</style>
+<script>window.MathJax={loader:{load:["input/mml"]}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>
+</head>
+<body>
+<header>
+  <h1>Tangente 2</h1>
+  <p class="meta">Fichier : <code>00072.oef</code> · Tirage (graine) : <strong>1</strong> · Généré le 25/10/2026 09:53 par WIMS 4.31b wims.cgi</p>
+</header>
+
+<section class="enonce">
+  <h2>Énoncé</h2>
+  <div class="statement">Donner l'équation de la tangente à la courbe	  d'équation  
+<span class="wims_mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mstyle id="wims_mathml478756" mathsize="110%"><mi>y</mi><mo>=</mo><mo lspace="verythinmathspace" rspace="0em">&minus;</mo><mn>3</mn><msup><mi>x</mi> <mn>2</mn></msup><mo>+</mo><mn>0.9</mn><mi>x</mi><mo>+</mo><mn>1.8</mn></mstyle></math></span> au point  d'abscisse -2.5.	  <div class="wimscenter"><img src="data:image/gif;base64,R0lGODdhyADIAKIAAP///wAAAAECA/7+/iMjjv8AAAAAAAAAACwAAAAAyADIAAAD/ji63P4wykmrvS3gzXsDYCiOZGmeaKqubCsGbizPoULfeK6vQb//NxtwSCyaejCj0iRcOp8zJBTanFqvI4J2y9ViddWvmNglIH0k7jgWXrtp3tE5eVK/6aP2e5+yk+YtflhneQN8h30EKXNoLnFXjD4DkZSVlpeYmZqblFqcn5GeoKOXhoinII8teDeqS5QAeqhjrqtAtUSEIrKzWIo3MKw4v0rCILy9U8Q0PsZwYsjJS7gxdM4z1ErR0mTLONbdVtvcP9454EXmRuPkOerfIdfuVKbtSu/fwU7ZO+z2Mvjgybu1xN8/FvzgXQmIw+DBPk4GpltX7+GwJxInEnFo/jENlIwagXDsGILhD5Ah+1UkGcgKynQmWYzsGPPknpopZj7EuePlPTArWaLg2fMQURI67R3V4fNnw6BCPYpp6pRGUm5LiyLKGgtq1FRuqE6z6vUrV6azll7tdRZtWhlrUbV1+9ZF3K18xELheZfPXK3JcPZ98xcw2xaD1xQ2fHhFYlqn9FqJ+fjLYsaNc5b9dxlz5hOVF86SLBpFaGW9SJdmsplcZ5sH8Z3eJ031aqStA3OzfXtX7s+jaZaYbeT1EN69j/0+Zfw4SXPEybRD7quQvQLYmzt/bp0cdgDfpwtdFj1HgVTnxY+vsdxN9vDkqFtmfx1+fLPKlT6UL0ZR/vmL+30FgH/tQWYRf/3998yBAqZS4HwdIZigNNpF1GBXFLIk4RcKOiLUhlh02JKGF4q4QoUYlfggah+qWFeLDZo4lIAgXiFjHTS6iFeOMa5Y1Vc1iuNjcRcGOcWNWVwIgJH0GKUkk08gWZKSS+pIGJVQOiHlgFRW2eNNXWZZ0JDldOmlgFKiOJWV/Zl55lc3qjmGmNqQOY+bdFJkIJ5sJvdknyy6+WZUJsq5Rp5FiGjooYA+seicjY4laDyR/igoohvZGcOjjH452aQvVCodqJR6uheppaKpKUKopgrnqie2CgKmQ0TH6R2ilinroEIRdyuuplqKKq0iwTrjrryy/jTbr8CqShuyyZJ0GrPNvioptMT+EBq11RJqrFTQRttRZdx22+u3IpQbVq4LhiuuRY+pu26wurr77kOJyTuvs0Po2ym/9dp770GD+fuvtQELnK1KBAnsqrcNOzzwP3cZvC/COlh8MMQZSxwqve16vDBQHXv88LklmzyxPVdpbK6ymrp8McetqHwyzADavHI7Sck8M8oh2zxyDjr5/DPOQas89FNJK82uCUYfLa2PUUs9LtU6y/E0uFnvTA5HVVsN74phbwz0iF3fPPWmaX8MMKttz7o1WHHLDfKxdS8dRHtlv7w23HV7zY0/fYuN73KFG04w4oGrfTXggetNVqyN3tv9No6VCy7NOIkrTnFunXvOMuiZW44x1KWbTjPqqUs+QzShi87zZrHL/jXtqat+Nteluw5XWbXbPjjwueuONO+9Rxq88Jt7tbzZx6dbvONjl/A89H8nOb3mybRxPfaPa7+972ys9D341Uu/vfHZ070++XZVdD76h6u/Pve9VDE/pKbuzz/A/ltT/+5HvfpxiYDsC18ABcivBX4BfogxhAMf6KIJDqKCCCzg4ix4wR5xEBIq+qBLSiTCEcaohFOAoEzQZTIVOoaFIptb5lyoAg/Y8IY4zCEGNKDDHt4wAQA7" alt=""></div>	
+  <br class="clearall"></div>
+  <div class="form"><div class='wims_form'>
+<table class="oefnoembed">
+  <tr><td><label for="reply1">y</label>&nbsp;=</td><td>
+<span class="blank">&nbsp;</span>
+  </td></tr>
+</table> 
+  </div></div>
+</section>
+
+<section class="correction ">
+  <h2>Correction</h2>
+  <h3>Bonne(s) réponse(s)</h3>
+  <table class="answers">
+<tr><th>y</th><td><div class="inline tt">15.9*x+20.55</div></td></tr>
+</table>
+  <h3>Solution</h3>
+  <div class="solution">La droite tangente au point d'abscisse -2.5 est dessinée en vert : <p class="wimscenter"><img src="data:image/gif;base64,R0lGODdhyADIAKIAAP///wAAAAECA/7+/iMjjv8AAACgAAAAACwAAAAAyADIAAAD/ji63P4wykkrNHaGzLuPQCiOZGmeaKqubGm0awDPdG0qdq7v7cuHgeBvyMMRj8geMShLOlfGp9TpGzKnWFI0y9VVeYSweBzuHrfmNOtLIxOYwtJYnUPT7y5bmQRvouZ4In5aA4GGI2wqgCV9MItqcISHh4l/BCp9cTN7aZlCA56hoqOkpaanogamYaitoqyusaaFk3iVJJwwgzq5U6EAdrVctyK9ukfGSZEjwcJYxACXOjK7O9JS1SHNzk/Q1zlC2TnfZtvcSMTJNH7ieuRZ5udEleo17En1SfHyPPRI907ePdnHL4e/f4KkCNRHq2CSRAt3hMOS7wdBhzMgPqHW/iWixYYYf7CpOE2Nxx0XQ674cpJHO4UDQao0OKKlyzs2aaScaYIll5dTcsLYyZNEFaESAyGFIrOokhBLSyqNeoKo06OdJlEtYbWoj63gaoEV0XXmVzpAzYwF1tQpirNoha0tG/LF2rByUbZ1m+cu3rx19vIVYddQWpOBB6coHOgw4hp0+TFuzC9q5HOTKVfWKZivAb83CyK97OyzMMd4hJKuZfo0RtWdvXJDnbrFakqgrai0eTtQa2e0azNVTFhecOEpet/5DZznSeVqmDd3njw2RmiGnUaEbgZ79qLbrUvGePzQQu7DyPMViP5ZyPLmb4jn5n0S/PiSrqq8j5/s/vxDBQRYn32KkdPeEQECYEABM/HXH1sqMaighO8RF41/ERawIIXqEXfNgUdsyJODWmnznyEDumbhhSAOkaKKFl7SYj98kSjWjDu8COOKBJxIh447xuhjGkAGSRyONhRZi421IEmDkkuuiKE80jnF5CROwgBllFJCiFlud1x5SJYrgRlml16WJqWYhpC5mJlndunmCVUOxmYgc/aE5p145GkUnHjweYefhAEaKJqEhlCnYoLSkeiijCI6JDoXoglAo2oQCmmkck46T6WWYppGnpntKalvoIZ66nKpqtopq4YS+OqPrboqJZmlWnrpqt1BpSsfvHaRq66iluNpkr7+/jpCsV0gCZeyCc2aXq2/MssFjs9CC0SwUmClbbS3Hqtlst9uK223xZQL7oogeqvurudSke678IY7hbvvWguPuIvVRK+59nYz77/6YoGeT//Wyy6/eg5MMLcu+puwwhZCN9LEFB/JMCK4YJyxYspdjHHBU/Qm8sgQ09SxxyRLcdvJKMerssQsp1wDzDEHnKMcHq9bMcMa9fzxYJcFLXTLMe3Ms9BD8xWZ0UfbvIYJsY4otQoHMd20W2VlzTTSTnTl9ddX03lC1UWBzdDNZ2vts8ZPtu02wAtn9MfcdP9sN9V45w33U3z3rTYSF6XTt98gz2f44YOfId7ijJetYApo/tcouTeHI050bJhnvrVT5mBXueUyc3y3558XtY3oqKfOUzPejU66zkYp0rrrMwUT++2NE2HH7rxDDHzrvQ+BRn2y2xks8rdr7jRIzDdf/EfFrZA8pwEPeL3ys2rfvPNcF+L997irpECK23Mf7vjkT18E+uSDD/p/6atfNwv12683/vHLr/p8+Zvd/WzXv/KFhCABFOD+CNg/9+nFegX03+usk0AF/u10EXSgDuJRQQsmjoEF1GBiMJjBq3XQg5sjYQlLR64IGhAj2zghCp8nNxdKMHd7keEMw1dDG4rQBsHQ4Q7nFzgb3tB8bRGiW34ImaYocYkQe6KVuCXFKcarcYppo6IRgXUuLGaxi1vkIu28aDVpkbGMOjtjg3ilxv2sqo1unBUcKyTHMDLiVHOko73y2KE92vGOneJjHxcmSIcwkTOFLMghZzCARCoSUY7kxyKHsrHMTdI2lYwcC+14SRZ84JOgDKUoQbmBUZpylAkAADs=" alt=""></p></div>
+  <div class="feedback"></div>
+</section>
+</body>
+</html>

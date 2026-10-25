@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>{{title}} – graine {{seed}}</title>
+<style>
+{{css}}
+</style>
+{{mathjax}}
+</head>
+<body>
+<header>
+  <h1>{{title}}</h1>
+  <p class="meta">Fichier : <code>{{source}}</code> · Tirage (graine) : <strong>{{seed}}</strong> · Généré le {{date}} par {{engine}}</p>
+</header>
+
+<section class="enonce">
+  <h2>Énoncé</h2>
+  <div class="statement">{{statement}}</div>
+  <div class="form">{{form}}</div>
+</section>
+
+<section class="correction {{correction_class}}">
+  <h2>Correction</h2>
+  <h3>Bonne(s) réponse(s)</h3>
+  {{answers}}
+  <h3>Solution</h3>
+  <div class="solution">{{solution}}</div>
+  <div class="feedback">{{feedback}}</div>
+</section>
+</body>
+</html>

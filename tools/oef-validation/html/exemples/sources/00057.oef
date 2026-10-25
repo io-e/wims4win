@@ -1,0 +1,21 @@
+\title{*dragfill avec plusieurs lignes}
+\language{fr}
+\range{-5..5}
+\computeanswer{no}
+\format{html}
+\precision{10000}
+
+\statement{Code :
+<div class="spacer">
+\special{editarea
+\statement{
+Donner la transposée de la matrice &#92;([1,2,3;4,5,6;7,8,9]&#92;)
+<div class="wimscenter">\embed{r1, 30x30x9x3}</div>
+}
+\answer{}{1,4,7,2,5,8,3,6,9}{type=dragfill}
+
+}
+</div>
+Donner la transposée de la matrice \([1,2,3;4,5,6;7,8,9]\)
+<div class="wimscenter">\embed{r1, 30x30x9x3}</div>}
+\answer{}{1,4,7,2,5,8,3,6,9}{type=dragfill}

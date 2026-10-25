@@ -1,0 +1,6 @@
+\title{Inconnue}
+\integer{a=4}
+\statement{Calculer \a.}
+\Hint{Pensez au carre.}
+\answr{a=}{\a}
+\answer{a=}{\a}

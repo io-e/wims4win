@@ -3,16 +3,20 @@ bash 5.3.20-2 bash-5.3.20-2-x86_64.pkg.tar.zst 0951e809c552dd7dd2835df1b2d590822
 bzip2 1.0.8-4 bzip2-1.0.8-4-x86_64.pkg.tar.zst 635c483775de60663bd38859bb4624e6aaa1086354acf8e36513b75c24f64b3c custom
 ca-certificates 20260816-2 ca-certificates-20260816-2-any.pkg.tar.zst 341401204ee1c0a7ce90336beead3b5dc4d35d4bf254fc955ade64036333d04e spdx:MPL-2.0 AND GPL-2.0-or-later
 coreutils 8.32-5 coreutils-8.32-5-x86_64.pkg.tar.zst 62dfee1c39fd15f99c39802b35e82643bc14fffc16d6c76d4001caa385ec77e3 GPL3
+db 6.2.32-6 db-6.2.32-6-x86_64.pkg.tar.zst 41bc94acad3b53eaa92227ec34412305f648848ffbc963bcad88274517e13e8d spdx:AGPL-3.0-or-later
 diffutils 3.12-1 diffutils-3.12-1-x86_64.pkg.tar.zst 7902c8ce3d4dd69a0f5e98dc9d5c83c17b23314ba486169db57ef6e2835ce3b6 spdx:GPL-3.0-or-later
 findutils 4.11.0-2 findutils-4.11.0-2-x86_64.pkg.tar.zst f19d3c6b1b073d4c5759ae83f5639d11a5f0227b772f7d86d600db573d9d5d32 spdx:GPL-3.0-or-later
 gawk 5.4.1-1 gawk-5.4.1-1-x86_64.pkg.tar.zst 4b1322cb6c83d61fde5100e229e3cabc5b7d01fc0d0d8bc311edc08df91916be spdx:GPL-3.0-or-later
 gcc-libs 16.2.0-1 gcc-libs-16.2.0-1-x86_64.pkg.tar.zst 50e1bbbb1b4186ba1ed8c08cdbb5c0a8c2343e4b5747bace24273e26fb148471 spdx:LGPL-2.1-or-later AND GPL-3.0-or-later WITH GCC-exception-3.1 AND GFDL-1.3-or-later
+gdbm 1.26-1 gdbm-1.26-1-x86_64.pkg.tar.zst 1f8e949be2bbe488c5644132db78ecda288c9945922e7ed2447384734e2adba2 GPL3
 gmp 6.3.0-2 gmp-6.3.0-2-x86_64.pkg.tar.zst f84536138e618d47a1df2da83916cfebbd449f159ffad52f994a71060a41cf34 LGPL3
 grep 1~3.0-7 grep-1~3.0-7-x86_64.pkg.tar.zst 2909b3bbef8d33d66980339fb7bd2d3d9145bae0f04191e6671df39868aea427 GPL3
 gzip 1.15-1 gzip-1.15-1-x86_64.pkg.tar.zst 3f967c87cf041391d0d43819c91174742917ccc2d1bb9419050df29ef22f4bfd spdx:GPL-3.0-or-later
 info 7.2-3 info-7.2-3-x86_64.pkg.tar.zst 69242603357aa7011356f7d15a2017ad086e5682c8577f13520943c94bd2b03e spdx:GPL-3.0-or-later
 libbz2 1.0.8-4 libbz2-1.0.8-4-x86_64.pkg.tar.zst 89fb0e1478b22b80effda55ab4ae7549388d01245d3841a096d8a2d63236c2a1 custom
+libdb 6.2.32-6 libdb-6.2.32-6-x86_64.pkg.tar.zst 27a35786f3aab14e625c02df7bcd8a9dda0da782ce4f0549a427a21316b4d179 spdx:AGPL-3.0-or-later
 libffi 3.8.0-1 libffi-3.8.0-1-x86_64.pkg.tar.zst e0a21ae5ee3f0ce1ff3f446ea2c95ad462803081014aecfa8fc1cd22bc4df187 spdx:MIT
+libgdbm 1.26-1 libgdbm-1.26-1-x86_64.pkg.tar.zst bb4b08b720dd3194db010589812e9c63bec3d29b32545e7cbd07b6443e51c5ed GPL3
 libgnutls 3.8.13-2 libgnutls-3.8.13-2-x86_64.pkg.tar.zst 144a34bda1456dfbc0ca83ce8ed1ce49e89d750987ef096ab4083676dbcb373e spdx:GPL-3.0-or-later|spdx:LGPL-2.1-or-later
 libhogweed 4.0-1 libhogweed-4.0-1-x86_64.pkg.tar.zst 1302b7e86c5c54c93bd431685ccefa89df5f1b01257c68e24f2609df953cfdc2 spdx:GPL-2.0-or-later OR LGPL-3.0-or-later
 libiconv 1.19-1 libiconv-1.19-1-x86_64.pkg.tar.zst 0fa55ea2a6ccf97cf8c58b24b2615815e15e16e6e4e888091c263c2c83c5313d LGPL
@@ -35,6 +39,7 @@ msys2-runtime 3.6.11-4 msys2-runtime-3.6.11-4-x86_64.pkg.tar.zst 7b1c4b625483cef
 ncurses 6.6-2 ncurses-6.6-2-x86_64.pkg.tar.zst 828c92f09b17f00d3b49362fcfa4affa58e5e50e238f290ea36eb7a690da3acb spdx:MIT
 openssl 3.6.5-1 openssl-3.6.5-1-x86_64.pkg.tar.zst 4dc7c1199010b26d6382c59d8b16a9dbc857d314d76d9668f0f333bc5fecdd38 spdx:Apache-2.0
 p11-kit 0.26.5-1 p11-kit-0.26.5-1-x86_64.pkg.tar.zst db341cc3e91c68f5de25d9a2eda3beb752ec8ac74a89f001f60453c817ce5f51 spdx:BSD-3-Clause
+perl 5.42.3-3 perl-5.42.3-3-x86_64.pkg.tar.zst 6a4dbc38cdcc53d16239904b5c87d2277cffc49ed92c6a7796f8bf6b49517d5b spdx:Artistic-1.0-Perl OR GPL-1.0-or-later
 sed 4.9-1 sed-4.9-1-x86_64.pkg.tar.zst 3748af28f69e946ec5a42e6670c9bbf6da7352dc93baaa537f69e99c5483b9fc GPL3
 tar 1.35-3 tar-1.35-3-x86_64.pkg.tar.zst 71983bed200c4026cdec157837d989728d3de65e8cf644e03876df41a0f1b7c4 GPL3
 unzip 6.0-3 unzip-6.0-3-x86_64.pkg.tar.zst c98ebac31ea92a63cf61c6190ed3e8284ccc0c29c43973f1b2c0de2874e5acfe custom

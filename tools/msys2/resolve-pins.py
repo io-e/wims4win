@@ -5,7 +5,7 @@ Only used when deliberately upgrading the pinned MSYS2 shell toolset."""
 import os,re,sys
 DB=sys.argv[1]
 ROOTS=["msys2-runtime","bash","coreutils","sed","grep","gawk","findutils","tar",
-       "gzip","diffutils","which","wget","unzip","bzip2","xz","ca-certificates"]
+       "gzip","diffutils","which","wget","unzip","bzip2","xz","ca-certificates","perl"]
 SKIP={"sh","less","bash-completion","libcurl-devel"}
 pk={}
 for d in os.listdir(DB):

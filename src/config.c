@@ -451,8 +451,8 @@ void main_configure(void)
   if(p!=NULL && strcmp(p,"/public_html")==0) {
 #ifdef _WIN32
     /* keep the Windows PATH (system DLLs, Cygwin runtime for gap...) */
-    *p=0; snprintf(PATH,sizeof(PATH),"%s/other/bin;%s",cwdbuf,
-                   getenv("PATH")?getenv("PATH"):"");
+    *p=0; snprintf(PATH,sizeof(PATH),"%s/other/bin;%s/other/msys2/usr/bin;%s",
+                   cwdbuf,cwdbuf,getenv("PATH")?getenv("PATH"):"");
 #else
     *p=0; snprintf(PATH,sizeof(PATH),"%s/other/bin:%s",cwdbuf,commonpath);
 #endif
@@ -461,8 +461,8 @@ void main_configure(void)
   }
   else {
 #ifdef _WIN32
-    snprintf(PATH,sizeof(PATH),"%s/../other/bin;%s",cwdbuf,
-             getenv("PATH")?getenv("PATH"):"");
+    snprintf(PATH,sizeof(PATH),"%s/../other/bin;%s/../other/msys2/usr/bin;%s",
+             cwdbuf,cwdbuf,getenv("PATH")?getenv("PATH"):"");
 #else
     snprintf(PATH,sizeof(PATH),"%s/../other/bin:%s",cwdbuf,commonpath);
 #endif

@@ -230,7 +230,12 @@ void calc_exec(char *p)
   if(ftest(cmdstr)!=is_exec) {
     char exe[MAX_LINELEN+256];
     snprintf(exe,sizeof(exe),"%s.exe",cmdstr);
-    if(ftest(exe)!=is_exec) goto wrong_command;
+    if(ftest(exe)!=is_exec) {
+      /* no exec bit on Windows: accept "#!" scripts (module .sh) */
+      char in[64];
+      if(ftest(cmdstr)!=is_file || !wp_script_interp(cmdstr,in,sizeof(in),NULL,0))
+        goto wrong_command;
+    }
   }
 #else
   if(ftest(cmdstr)!=is_exec) goto wrong_command;

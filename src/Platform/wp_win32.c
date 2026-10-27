@@ -234,6 +234,37 @@ int wp_resolve_exe(const char *name, char *out, size_t cap)
   return a!=INVALID_FILE_ATTRIBUTES && !(a&FILE_ATTRIBUTE_DIRECTORY);
 }
 
+/* "#!" scripts (module .sh, other/bin scripts): CreateProcess cannot run
+ * them, so return the interpreter basename ("sh", "perl", "bash"...), found
+ * through PATH (other/msys2/usr/bin), and its optional single argument. */
+int wp_script_interp(const char *name, char *interp, size_t cap,
+                     char *arg, size_t acap)
+{
+  FILE *f; char line[256], *p, *q, *b;
+  if(name==NULL) return 0;
+  f=fopen(name,"rb"); if(f==NULL) return 0;
+  if(fgets(line,sizeof(line),f)==NULL) { fclose(f); return 0; }
+  fclose(f);
+  if(line[0]!='#' || line[1]!='!') return 0;
+  p=line+2; while(*p==' '||*p=='\t') p++;
+  q=p; while(*q && *q!=' ' && *q!='\t' && *q!='\r' && *q!='\n') q++;
+  if(q==p) return 0;
+  b=q; while(b>p && b[-1]!='/' && b[-1]!='\\') b--;
+  if((size_t)(q-b)+1>cap) return 0;
+  memcpy(interp,b,q-b); interp[q-b]=0;
+  if(arg && acap) {
+    arg[0]=0;
+    while(*q==' '||*q=='\t') q++;
+    p=q; while(*q && *q!=' ' && *q!='\t' && *q!='\r' && *q!='\n') q++;
+    if(q>p && (size_t)(q-p)+1<=acap) { memcpy(arg,p,q-p); arg[q-p]=0; }
+  }
+  /* "#!/usr/bin/env perl": run the named program directly */
+  if(strcmp(interp,"env")==0 && arg && arg[0]) {
+    snprintf(interp,cap,"%s",arg); arg[0]=0;
+  }
+  return 1;
+}
+
 /* Shell utilities WIMS calls through call_ssh() ("mv a b", "rm -f a"),
  * done in-process on Windows (no sh/coreutils). Returns 1 if handled. */
 int wp_builtin(char *const arg[], int *status)
@@ -281,6 +312,17 @@ static int spawn_core(char *const argv[], HANDLE hin, HANDLE hout, HANDLE herr,
     /* WIMS names helpers without extension (bin/pari, bin/insdraw..processor):
      * CreateProcess only appends ".exe" when the name has no dot. */
     if(i==0 && wp_resolve_exe(a,exe0,sizeof(exe0))) a=exe0;
+    else if(i==0) {
+      char in[MAX_PATH], ia[MAX_PATH];
+      if(wp_script_interp(a,in,sizeof(in),ia,sizeof(ia))) {
+        n+=quote_arg(cmd+n, n<sizeof(cmd)?sizeof(cmd)-n:0, in);
+        if(n+1<sizeof(cmd)) cmd[n]=' '; n++;
+        if(ia[0]) {
+          n+=quote_arg(cmd+n, n<sizeof(cmd)?sizeof(cmd)-n:0, ia);
+          if(n+1<sizeof(cmd)) cmd[n]=' '; n++;
+        }
+      }
+    }
     n+=quote_arg(cmd+n, n<sizeof(cmd)?sizeof(cmd)-n:0, a);
   }
   if(n>=sizeof(cmd)) return WP_E_ARG;

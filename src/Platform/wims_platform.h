@@ -133,6 +133,7 @@ const char *wp_platform_name(void);
 
 #ifdef _WIN32
 int wp_resolve_exe(const char *name, char *out, size_t cap);
+int wp_script_interp(const char *name, char *interp, size_t cap, char *arg, size_t acap);
 int wp_builtin(char *const arg[], int *status);
 #endif
 

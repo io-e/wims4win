@@ -84,6 +84,9 @@ done
 bash "$ROOT/tools/build-misc-win32.sh" "$ROOT/build/misc-win" >/dev/null
 cp "$ROOT"/build/misc-win/public_html/bin/*.exe "$OUT/public_html/bin/"
 cp "$ROOT"/build/misc-win/bin/*.exe "$OUT/bin/"
+# the other Misc programs (canvasdraw, chemeq, units-filter, wrap..exec...)
+bash "$ROOT/tools/build-misc-extra-win32.sh" "$ROOT/build/misc-win" >/dev/null
+cp "$ROOT"/build/misc-win/other/bin/*.exe "$OUT/other/bin/"
 # drawing: flydraw.exe + native insdraw processor (replaces the sh script)
 cp "$ROOT/build/wims-win/other/bin/flydraw.exe" "$OUT/other/bin/"
 ${MINGW:-x86_64-w64-mingw32-gcc} -O2 -Wall -static -o "$OUT/public_html/bin/insdraw..processor.exe" \

@@ -278,3 +278,11 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - `mkindex` via sh.exe : 1 338 s, rc=1 (cpp, strfile absents ; `find: environment too large` en fin).
 - Retours Claude : GAP 8/8 en relançant (échec de 14 h 56 pendant mkindex, wrapper inchangé depuis le 23/10, donc pas de régression de code) ; limite CPU : le chemin WIMS (job + watchdog) passe < 6 s, le test .NET du harnais attache le job après démarrage et Windows n'applique pas PROCESS_TIME (30 s CPU sans arrêt) ; S2 : harnais sans cmd.exe (27071ff), 3/3.
 - oef2html : 6/6 identiques, 4 échecs identiques.
+
+## 2026-10-27 (soir) — latex2wims, CI, sandbox #8, wimslogd #1, helpers Misc
+- latex2wims (`feat/latex2wims-doc`) : 53b65e1 poussé ; 0449ac3 : `check` compte un symbole isolé (`\alpha`, image `mathfonts/`) comme formule rendue. Linux 11/11 (runtime de test avec `threshold1/2` et `default_texposition=2`). PC (`latex2wims_GROK`) : exemple OK, parité corpus 5/5 identique à Linux, 4 documents via `wims.cgi.exe` OK, codes 2/3/4 OK.
+- CI : les 3 runs signalés étaient déjà en success ; `timeout-minutes` ajoutés (031d2a4) ; runs suivants en success.
+- wimslogd (#1, 2258c89) : démon amont complet compilé mingw ; tube nommé ; tâches `fork()` relancées en `wimslogd.exe --task` dans un Job Object ; pile 32 Mo (tampons MAX_FILELEN de 2 Mo sur la pile). PC : getscore, record, readfile, cleaning, dispatch_log OK. Linux identique 13/13.
+- Sandbox (#8, 0c0fce7) : `ch..root.exe` à la syntaxe amont, AppContainer par exécution nettoyé, Job 15 processus, `--selftest` sans cmd.exe, `--grant-rx`, `--purge-profiles`. PC : 17/17 (S1–S5, S9) ; factor.fr via pari sandboxé OK.
+- Misc (af76b4c) : les 17 programmes restants + `wrap..exec` natif ; testés via `bin/` sur le PC.
+- Risque noté : `wims.exe` a la pile Windows par défaut (1 Mo) alors que le code a des tampons de 2 Mo sur la pile (vu dans wimslogd) ; à vérifier.

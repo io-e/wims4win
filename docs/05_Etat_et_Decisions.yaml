@@ -144,6 +144,7 @@ decisions:
     date: 2026-10-27
     decided_by: user
     status: "annulé (conclusion: cancelled)"
+    followup_2026_10_27: "40515698110, 40516823140, 40506106319 déjà terminés en success (rien à annuler) ; timeout-minutes 30 par job et 10 sur « Install mingw-w64 » (031d2a4) ; runs suivants en success"
 
 # ── Phases completed ────────────────────────────────────────────────
 
@@ -226,15 +227,29 @@ tests:
     result: "200 sur http://wims_paris_saclay_fr.test/wims/wims.cgi (2026-10-27) ; tool/algebra/factor.fr → 450 (module non installé, #3)"
 
   sandbox_evasion:
-    S1_read_outside: not_tested
-    S2_write_outside: not_tested
+    date: 2026-10-27
+    commit: 0c0fce7
+    runner: "other/tests/test_sandbox_evasion.ps1 -Runtime <runtime> (PC ShadowPC, sans cmd.exe) : 17/17"
+    S1_read_outside: PASS   # log/ du runtime et profil utilisateur illisibles
+    S2_write_outside: PASS  # log/, %TEMP%, dossier voisin des sessions
     S3_network: PASS
-    S4_fork_bomb: not_tested
-    S5_cmdline_injection: not_tested
-    S6_octave_system: not_tested
+    S4_fork_bomb: PASS      # Job Object ActiveProcessLimit=15 (14 enfants), aucun processus restant
+    S5_cmdline_injection: PASS  # guillemets, &, antislashs transmis tels quels
+    S6_octave_system: not_tested  # Octave non installé dans le runtime
     S7_octave_dos: not_tested
-    S8_maxima_lisp: not_tested
-    S9_registry_write: not_tested
+    S8_maxima_lisp: not_tested    # Maxima non configuré (seul pari_command)
+    S9_registry_write: PASS
+    extra: "« & sh|perl » non fiable refusé (127) ; cleantmpdir 0 ; pas de profil AppContainer ni d'ACE restants ; pari gp sandboxé : calcul OK, write() hors session refusé ; factor.fr via wims.cgi avec chroot/tmp/sessions/.chroot : OK, refusé si ch..root.exe absent"
+
+  wimslogd_win:
+    date: 2026-10-27
+    commit: 2258c89
+    result: "démon amont complet (mingw) sur le PC : ping, forkcnt, record/recordcnt, readfile, getscore (404 611 octets, classe 1000), bad_cmd, illegal_fname ; tâches cleaning et dispatch_log lancées (--task) sans exec.fail ; objets Linux identiques 13/13"
+
+  misc_helpers_win:
+    date: 2026-10-27
+    commit: af76b4c
+    result: "20 exe (17 programmes Misc + wrap..exec) ; sur le PC via bin/ : moneyprint, sigdigits, scienceprint, toascii, chemeq (perl), units-filter, lceb OK ; canvasdraw répond (« doit être utilisé dans wims ») ; crossword : format d'entrée à revoir (test hors wims)"
 
 # ── Remaining work ──────────────────────────────────────────────────
 
@@ -242,27 +257,18 @@ remaining:
   P0_sandbox_hardening:
     priority: 0
     github_issue: "#8"
-    description: "Write and run S1-S9 evasion tests — production gate"
-    owner: grok
-    effort: "1 week"
-    blocker_for: "Opening WIMS to students"
-    subtasks:
-      - "S1: read file outside session directory"
-      - "S2: write file outside session directory"
-      - "S4: fork bomb → Job Object kill"
-      - "S5: command-line injection via crafted OEF"
-      - "S6: Octave system() filtered"
-      - "S7: Octave dos()/winqueryreg filtered"
-      - "S8: Maxima :lisp sandboxed"
-      - "S9: HKCU registry write refused"
+    status: "fait sauf S6-S8 (CAS Octave/Maxima absents du runtime)"
+    remaining:
+      - "S6/S7 Octave, S8 Maxima :lisp : à jouer quand ces CAS seront installés (ch..root.exe --grant-rx <dossier du CAS>)"
+      - "Installation : --grant-rx sur chaque dossier CAS (étape à ajouter au guide 04) ; ~140 profils AppContainer « wims.chroot.* » orphelins des anciennes versions : ch..root.exe --purge-profiles (non lancé, accord d'Arnaud)"
+    decision_needed: "Activer le marqueur chroot/tmp/sessions/.chroot par défaut (fait dans build-runtime-tree.sh) : CAS refusés si le selftest échoue"
 
   P1_wimslogd_complete:
     priority: 1
     github_issue: "#1"
-    description: "Port scores, housekeeping, class management to Windows wimslogd"
-    owner: grok
-    effort: "1-2 weeks"
-    blocker_for: "Grading / class features"
+    status: "fait (2258c89)"
+    remaining:
+      - "housekeep.daily / modupdate.auto / backup : lancés par le démon via sh, pas encore observés (heures de déclenchement)"
 
   P3_public_html:
     priority: 2

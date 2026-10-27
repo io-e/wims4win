@@ -350,8 +350,20 @@ open_questions: []   # toutes tranchées, voir D15-D20
 
 runtime_r19040_status:
   date: 2026-10-27
-  issue_3: "fermée par Claude (8fbccc0) mais critères non atteints, voir Suivi"
-  missing:
-    - "webget.exe (modupdate) et translator.exe (wcalc) : helpers C Misc à porter en mingw"
-    - "MSYS2 sous other/msys2/ (racine distincte du runtime) + perl, pour mkindex/oefcompile"
-    - "runtime Claude : wims.conf, wims4win.yaml, liens svn:special, sh.exe, flydraw/insdraw, mkindex"
+  runtime_grok: "Reprise_Wims_Grok/wims-runtime-r19040-grok (build 5c7d55e + perl share + wims.exe 1b58be7)"
+  issue_3: "rouverte par Claude (accord) ; critères atteints côté runtime Grok, voir Suivi"
+  ok:
+    - "accueil fr/en, adm/doc, adm/class/classes, adm/class/regclass : 200 avec </html>"
+    - "tool/algebra/factor.fr : 200 (installé par webget.exe WinHTTP + tar via sh.exe ; module marqué deprecated en amont)"
+    - "tool/wcalc.fr : 200 (translator.exe)"
+    - "createqcm : plus de bad_cmd rmdepot.sh (scripts #! exécutés via l'interpréteur du PATH, 1b58be7)"
+    - "mkindex via sh.exe : 1338 s, index bases/site générés (12 modules SVN)"
+    - "oef2html échantillon 10 : 6/6 identiques, 4 échecs identiques"
+    - "équivalence CAS gap/maxima/octave 21/21 + multiexec"
+  remaining:
+    - "mkindex : cpp absent (scripts/oef/mkindex), strfile absent (fortune), 'find: environment too large' en fin (cleanup classes), rc=1"
+    - "modupdate complet : bases/site ne liste que les modules SVN ; un 'install' réinstallerait tout"
+    - "Can't duplicate classes : non reproduit sans classe de test ; cause probable identique (scripts/sh), à confirmer"
+    - "oefcompile via sh.exe non testé"
+    - "Misc à porter : clickzone (libgd), voronoi, canvasdraw, chemeq, units-filter, checkmol/matchmol, crossword, lceb_dynopt, moneyprint, scienceprint, sigdigits, toascii, whirlgif, bioinfo, symtext, mathexp, texgif"
+    - "CI : job mingw bloqué sur 'Install mingw-w64' (apt) pour ed2c3f7/1b58be7/27071ff ; proposer timeout-minutes"

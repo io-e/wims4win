@@ -268,3 +268,13 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
   - `bin/mkindex` via sh.exe : la racine MSYS2 tombe sur le runtime, donc `pwd` = `/` et `wims_home` = `//` ; `perl` absent du lot MSYS2. Le montage `bind` de `/bin` corrige les shebangs mais pas `wims_home`. À revoir : placer MSYS2 sous `other/msys2/` (racine distincte) et ajouter perl.
 - Runtime de Claude (`wims-port\wims-runtime-r19040`, `install-runtime-r19040.ps1`, 8fbccc0) contrôlé : accueil 200 mais tronqué (2 727 car., pas de `</html>`), factor.fr 450, wcalc 550 ; pas de `log/wims.conf` (donc ni `default_texposition=2` ni `pari_command`), ni `wims4win.yaml`, ni sh.exe/coreutils, ni flydraw/insdraw, ni index mkindex.
 
+
+## 2026-10-27 (après-midi) — Runtime Grok r19040 revalidé sur le PC
+- Runtime : `Reprise_Wims_Grok\wims-runtime-r19040-grok` (Laragon non modifié).
+- MSYS2 sous `other/msys2/` (racine propre) + perl épinglé, `usr/share/perl5` ajouté (ed2c3f7).
+- Helpers Misc mingw (5c7d55e) : webget (WinHTTP), translator, dicsort, modind, oef2wims, msg2wims, etc. (18).
+- `factor.fr` installé par webget.exe + tar via sh.exe (vérification `modupdate` en mode check : liste reçue de unice/wimsedu) → 200. `wcalc.fr` → 200.
+- `createqcm` : `bad_cmd rmdepot.sh` reproduit puis corrigé (1b58be7) ; Linux identique.
+- `mkindex` via sh.exe : 1 338 s, rc=1 (cpp, strfile absents ; `find: environment too large` en fin).
+- Retours Claude : GAP 8/8 en relançant (échec de 14 h 56 pendant mkindex, wrapper inchangé depuis le 23/10, donc pas de régression de code) ; limite CPU : le chemin WIMS (job + watchdog) passe < 6 s, le test .NET du harnais attache le job après démarrage et Windows n'applique pas PROCESS_TIME (30 s CPU sans arrêt) ; S2 : harnais sans cmd.exe (27071ff), 3/3.
+- oef2html : 6/6 identiques, 4 échecs identiques.

@@ -12,12 +12,12 @@
 
 ## Corrections à appliquer en lisant les parties A et B
 
-1. **Runtime à utiliser :** celui de Grok, construit par `tools/build-runtime-tree.sh` (à partir de `wims-4.32.tgz`, liens symboliques déréférencés, `default_texposition=2`, `log/wims4win.yaml`, `flydraw.exe`, `insdraw..processor.exe`). C'est lui que sert le vhost Laragon `wims_paris_saclay_fr.test`. Le runtime extrait du `.deb` n'est plus utilisé.
+1. **Runtime à utiliser :** construit par `tools/build-runtime-tree.sh` à partir d'un `svn export -r 19040` de `trunk/wims` (D15) : liens symboliques déréférencés, `default_texposition=2`, `log/wims4win.yaml`, `pari_command`, `flydraw.exe`, `insdraw..processor.exe`, binaires Windows, `sh.exe` + coreutils MSYS2 dans `other/bin/`, provenance dans `log/wims4win-provenance.txt`. Les modules se mettent à jour ensuite par `modupdate` (D16). Le runtime extrait du `.deb` et celui issu de `wims-4.32.tgz` ne sont plus la référence.
 2. **Maxima :** `maxima_command` lance `sbcl.exe --core …\maxima.core` directement ; `maxima.bat` ne doit jamais être appelé. `SBCL_HOME` et `MAXIMA_PREFIX` sont déduits du chemin de `sbcl.exe`.
 3. **GAP :** validé (« non encore validé » en A §4.4 est périmé) : `gap.exe` + runtime Cygwin dans le `PATH`.
 4. **PARI/GP :** `pari_command=<chemin>/gp.exe -f -q -p 150000` dans `log/wims.conf` des runtimes `wims-runtime` et `wims-runtime-oef`.
 5. **Taille des formules (DYS) :** `log/wims4win.yaml`, `formula: size: 200%` (50 % à 400 %).
-6. **MSYS2 `sh.exe` :** décrit en A §2.2 comme prérequis ; le moteur actuel n'en dépend pas pour `mv`/`rm`. Les modules qui lancent des scripts sh peuvent encore échouer.
+6. **MSYS2 `sh.exe` :** il n'est plus à installer à part (A §2.2) : `tools/fetch-msys2-sh.sh` place `sh.exe`, bash, coreutils, sed, grep, gawk, find, tar, gzip, wget, unzip… (versions et sha256 épinglés, licences dans `other/MSYS2-LICENSES.txt`) dans `other/bin/` du runtime, en tête du `PATH`. Jamais de `cmd.exe` ni de `.bat` (D17).
 7. **wimslogd :** démarré à la volée par `wims.exe` ; un named pipe par arbre runtime, plus de collision entre instances.
 8. **Sécurité :** n'ouvrir le serveur aux élèves qu'après les tests S1–S9 (issue #8).
 9. **Mot de passe webmaster** (`log/.wimspass`) : toujours vide, à définir.

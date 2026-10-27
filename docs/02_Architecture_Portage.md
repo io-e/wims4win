@@ -1,6 +1,6 @@
 # 02 — Architecture du portage natif Windows de WIMS (document consolidé)
 
-*Document consolidé le 27/10/2026 (heure de Paris). Il fusionne l'architecture de Claude (V1_3), la revue Grok V2, la fusion V3 et l'étude « portage natif MSVC » de Claude.*
+*Document consolidé le 27/10/2026 (heure de Paris). Il fusionne l'architecture de Claude (V1_3), la revue Grok V2, la fusion V3 et l'étude « portage natif MSVC » de Claude. Les titres « MSVC » des parties A–D sont historiques : la cible est mingw-w64 uniquement (D18).*
 
 ## Sources fusionnées
 
@@ -13,7 +13,9 @@
 
 ## Architecture réellement implémentée (prime sur les parties A à D)
 
-- **Chaîne de build :** cross-compilation **mingw-w64 depuis Debian** (`tools/build-*.sh`), CI GitHub Actions. Le build **MSVC/CMake** décrit en parties A–D **n'est pas implémenté**.
+- **Chaîne de build :** cross-compilation **mingw-w64 uniquement** depuis Debian (`tools/build-*.sh`), CI GitHub Actions (décision D18 d'Arnaud, 27/10/2026). Les mentions MSVC/CMake des parties A–D sont **historiques** : ce n'est plus une cible.
+- **Runtime :** reconstruit depuis SVN trunk **r19040** (`tools/build-runtime-tree.sh`, provenance dans `log/wims4win-provenance.txt`), modules mis à jour ensuite par `modupdate` (D15, D16).
+- **Shell :** `sh.exe` MSYS2 + coreutils embarqués dans `other/bin/` (`tools/fetch-msys2-sh.sh`, versions et sha256 épinglés) ; `other/bin` est en tête du `PATH` posé par `config.c`, donc `call_sh` (`sh -c …`) et les scripts `bin/` les utilisent sans `cmd.exe` ; scripts non réécrits (D17).
 - **Couche portable `src/Platform/` :** `wims_platform.h`, `wp_posix.c` / `wp_win32.c` (CreateProcess, pipes overlapped, Job Objects, watchdog CPU), `wp_mx.c` (multiexec), `wp_alarm.c` (TimerQueue), `wp_cgi_win32.c` (préparation CGI), crypt DES + BCrypt, `sandbox/chroot_win.c` (AppContainer sans capability), `tools/insdraw_win.c`.
 - **Frontal web :** Apache (Laragon) en CGI ; `wimsd` n'est pas porté.
 - **wimslogd :** named pipe dont le nom est un hash FNV-1a du chemin du runtime (une instance par arbre) ; `wp_daemon_spawn` n'hérite pas du stdout CGI.
@@ -24,9 +26,9 @@
 
 ## Divergences résolues
 
-1. **MSVC + CMake (A–D) contre mingw-w64 + scripts sh (code) :** le code fait foi ; la partie CMake reste une cible documentaire. Voir « Points à trancher » dans `README.md`.
+1. **MSVC + CMake (A–D) contre mingw-w64 (code) :** tranché par Arnaud (D18) : mingw-w64 uniquement ; MSVC/CMake n'est conservé qu'en historique.
 2. **IPC wimslogd :** V1_3/V3 conservaient AF_UNIX ; le code utilise un named pipe (accepté par l'audit Claude V2).
-3. **`sh.exe` MSYS2 embarqué pour `call_sh` :** prévu en A–B ; non embarqué à ce jour, les commandes `mv`/`rm` sont internes. Les autres appels `call_sh` restent à traiter (point ouvert).
+3. **`sh.exe` MSYS2 embarqué pour `call_sh` :** prévu en A–B (V1_3 §9) et confirmé par Arnaud (D17) : embarqué dans `other/bin/` ; `mv`/`rm` restent traités en interne (`wp_builtin`).
 4. **Stratégie de test VPS (partie B §15) :** la box Debian de Grok sert de référence Linux ; pas de VPS séparé (issue #5 fermée). Tests parallèles sur 200 modules et charge à 30 utilisateurs hors périmètre.
 5. **Chiffrage (6–7 mois en V3) :** caduc ; voir `05_Etat_et_Decisions.yaml`.
 

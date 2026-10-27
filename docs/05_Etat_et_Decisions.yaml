@@ -112,6 +112,39 @@ decisions:
     decided_by: user
     note: "Originaux dans docs/archive/ ; Claude écrit directement dans les documents consolidés"
 
+  D15_runtime_from_svn:
+    decision: "Runtime (public_html, modules, scripts) reconstruit depuis SVN trunk r19040, pour correspondre au moteur 4.33a"
+    date: 2026-10-27
+    decided_by: user
+    github_issue: "#3"
+
+  D16_modules_source:
+    decision: "Modules : base initiale depuis SVN r19040, puis modupdate (via sh.exe) pour les mises à jour ; pas de paquets Debian"
+    date: 2026-10-27
+    decided_by: user
+
+  D17_msys2_sh_bundled:
+    decision: "sh.exe MSYS2 + coreutils embarqués dans other/bin/ ; scripts .sh non réécrits (oefcompile, mkindex, backup, modupdate…) ; jamais cmd.exe ni .bat"
+    date: 2026-10-27
+    decided_by: user
+    detail: "tools/fetch-msys2-sh.sh, versions et sha256 épinglés dans tools/msys2/msys2-pins.txt"
+
+  D18_mingw_only:
+    decision: "mingw-w64 uniquement ; MSVC/CMake retiré comme cible (mentionné en historique seulement)"
+    date: 2026-10-27
+    decided_by: user
+
+  D19_keep_eleda_00352:
+    decision: "Garder l'exemple Eleda 00352 dans tools/oef-validation/html/exemples (cas réel too_many_gotos)"
+    date: 2026-10-27
+    decided_by: user
+
+  D20_cancel_stale_ci:
+    decision: "Annuler le run CI bloqué de 769bab0 (40493026828)"
+    date: 2026-10-27
+    decided_by: user
+    status: "annulé (conclusion: cancelled)"
+
 # ── Phases completed ────────────────────────────────────────────────
 
 phases_done:
@@ -288,7 +321,8 @@ out_of_scope:
   - "Parallel launch stress tests (D5)"
   - "58 old exercises with too_many_gotos (D8)"
   - "Rebase on 4.31b (D1)"
-  - "PowerShell rewrite of shell scripts (proposition d'architecture Claude V1_3, non validée explicitement par Arnaud)"
+  - "Rewrite of shell scripts (PowerShell or other) — D17"
+  - "MSVC / CMake build — D18"
 
 # ── Estimated timeline ──────────────────────────────────────────────
 
@@ -302,7 +336,7 @@ timeline:
 
 divergences_resolved:
   - "Version : audits « 4.32 » → code et décision 4.33a r19040 (D1)"
-  - "Build : architecture MSVC + CMake → réel : cross mingw-w64 depuis Debian + CI GitHub"
+  - "Build : architecture MSVC + CMake → mingw-w64 uniquement (D18)"
   - "CAS : cahier d'audit « 3/4, GAP manquant » → 4/4 (GAP 4.16.1 validé)"
   - "T11 / T-CROSS « VPS requis » → faits sur la box Debian (D9)"
   - "IPC wimslogd : AF_UNIX prévu → named pipe par arbre runtime"
@@ -310,11 +344,6 @@ divergences_resolved:
   - "log.c:521 NULL SERVER_ADDR : contournement → corrigé"
   - "Chiffrage 3-7 mois → reste ~2-3 semaines (Grok)"
 
-# ── Points à trancher par Arnaud ────────────────────────────────────
+# ── Questions tranchées par Arnaud (2026-10-27) ─────────────────────
 
-open_questions:
-  - "Runtime 4.32 (wims-4.32.tgz) avec binaire 4.33a : reconstruire l'arbre depuis le SVN r19040 (#3) ou garder 4.32 ?"
-  - "Source des modules exercices : modupdate/wimsget, paquets Debian wims-modules-*, ou SVN public_html (#3) ?"
-  - "Scripts sh de bin/ et call_sh : embarquer sh.exe MSYS2 (proposé par Claude) ou porter au cas par cas ?"
-  - "Garder MSVC/CMake comme cible future ou acter mingw-w64 seul ?"
-  - "Exemple Eleda 00352 dans tools/oef-validation/html/exemples : le garder ou le retirer ?"
+open_questions: []   # toutes tranchées, voir D15-D20

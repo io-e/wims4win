@@ -27,13 +27,13 @@ Les audits datent du 23/10/2026, avant le code. La vérité est le code du dép�
 | `crypt()` | Moyen | DES (musl) + BCrypt PBKDF2 : 8/8 |
 | Flydraw (libgd) | Moyen | `flydraw.exe` (libgd 2.3.3 statique mingw) : image identique à Linux ; reste police TrueType (freetype) et animations |
 | Texgif | Bloquant (natif) | Non porté ; MathJax + flydraw utilisés |
-| Scripts `bin/` (sh) | Moyen/bloquant | Non portés ; `mv`/`rm` exécutés en interne par le moteur. Voir « Points à trancher » |
-| `public_html` / modules | Non vérifiable | Runtime construit depuis `wims-4.32.tgz` (`tools/build-runtime-tree.sh`) ; modules hors distribution absents (issue #3) |
+| Scripts `bin/` (sh) | Moyen/bloquant | Non réécrits : `sh.exe` + coreutils MSYS2 embarqués dans `other/bin/` (D17) ; `mv`/`rm` restent internes |
+| `public_html` / modules | Non vérifiable | Runtime reconstruit depuis SVN r19040 (D15) ; mises à jour par `modupdate` (D16) ; issue #3 |
 
 ## Divergences résolues
 
 1. **Version de référence :** les audits parlent de « WIMS 4.32 ». Le code suit le trunk **r19040 / 4.33a**, sans rebasage sur 4.31b (décision d'Arnaud du 25/10/2026 ; issue #4 fermée).
-2. **Stratégie :** l'audit v1 hésitait entre Cygwin/MSYS2 (Grok) et un portage partiel ou l'interpréteur OEF Python (Claude). Le code réalisé est un **portage natif mingw-w64** via la couche `src/Platform`, avec Apache en frontal.
+2. **Stratégie :** l'audit v1 hésitait entre Cygwin/MSYS2 (Grok) et un portage partiel ou l'interpréteur OEF Python (Claude). Le code réalisé est un **portage natif mingw-w64** (seule cible, D18) via la couche `src/Platform`, avec Apache en frontal ; seuls `sh.exe` et les coreutils MSYS2 sont embarqués pour les scripts (D17).
 3. **Effort :** les estimations de 3 à 6 mois (Claude) ou 6 à 7 mois (V3) sont dépassées par le réel : phases 1–4 faites ; il reste environ 2 à 3 semaines côté Grok (voir `05_Etat_et_Decisions.yaml`).
 4. **Texgif « bloquant » / « chemins à adapter » :** tranché par l'audit v2 (bloquant en natif) ; sans objet en pratique, l'affichage passe par MathJax.
 5. **Mémoire partagée System V :** corrigé, c'est du `mmap` POSIX (`wimsshm.h`).

@@ -4,23 +4,41 @@
 # Linux ELF binary, with the Windows executables placed where wims.exe
 # expects them.
 #
-# Usage: tools/build-runtime-tree.sh [wims-4.xx.tgz] [workdir]
-#   tarball: official release from SourceSup, e.g.
-#     https://sourcesup.renater.fr/frs/download.php/file/6765/wims-4.32.tgz
-#   (svn export of trunk/wims/public_html is an alternative but very slow;
-#    from the Grok box Renater TLS is refused, so the tarball was fetched
-#    on the PC and copied over).
+# Usage: tools/build-runtime-tree.sh <source> [workdir]
+#   source (reference, decision Q1/Q2 of 2026-10-27): an `svn export -r 19040`
+#     of https://subversion.renater.fr/anonscm/svn/wimsdev/trunk/wims, given
+#     as a directory or a .tgz/.tar.gz of it, so that public_html, modules and
+#     scripts match the 4.33a engine. Set WIMS_SVN_REV (default 19040).
+#     From the Grok box Renater TLS is refused: export on the PC with SlikSVN,
+#     then copy the archive over.
+#   legacy: an official release tarball (wims-4.32.tgz) still works.
+# Environment:
+#   WIMS_SVN_REV   revision recorded in log/wims4win-provenance.txt (19040)
+#   PARI_COMMAND   optional pari_command line for log/wims.conf
+#   NO_MSYS2=1     skip tools/fetch-msys2-sh.sh (sh.exe + coreutils)
 # Debian prerequisites:
 #   build-essential flex bison libfl-dev libgd-dev libgmp-dev wget unzip
 #   mingw-w64 (gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64)
 # Output: <workdir>/wims-runtime.tgz
 set -e
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
-TGZ=${1:-wims-4.32.tgz}
+SRC=${1:?usage: build-runtime-tree.sh <svn-export dir|tgz> [workdir]}
+SRC=$(readlink -f "$SRC")
 WD=${2:-$ROOT/build/runtime}
-mkdir -p "$WD/src"; cd "$WD/src"
+# not named "src": canvasdraw locates other/bin with awk -F/src
+mkdir -p "$WD/wims"; cd "$WD/wims"
 [ -x public_html/wims ] || {
-  tar xzf "$TGZ"
+  if [ -d "$SRC" ]; then cp -a "$SRC"/. .
+  else tar xzf "$SRC"; [ -d wims ] && { cp -a wims/. . && rm -rf wims; }; fi
+  # an svn export made on Windows (SlikSVN) loses the exec bits: restore
+  # them on every script (#!) and on configure
+  find . -type f ! -name '*.[ch]' -exec sh -c 'for f; do [ "$(head -c2 "$f")" = "#!" ] && chmod +x "$f"; done; true' _ {} +
+  chmod +x compile src/configure 2>/dev/null || true
+  # SVN trunk ships .wims_maintainer_mode (doc/maintainer targets needing
+  # ImageMagick, pdflatex): build like a release instead
+  rm -f .wims_maintainer_mode
+  # the upstream Makefile is not parallel-safe (mkindex before modind)
+  unset MAKEFLAGS
   # --shtooka is skipped: downloadcenter.wimsedu.info is unreachable (optional audio).
   yes "" | ./compile --mathjax --geogebra > "$WD/compile.log" 2>&1
   bin/mkindex > "$WD/mkindex.log" 2>&1 || true
@@ -33,7 +51,7 @@ OUT=$WD/wims-runtime; rm -rf "$OUT"; mkdir -p "$OUT"
 # -h: Windows has no usable symlinks; WIMS relies on ~260 of them
 # (html/themes -> ../themes, scripts/themes, anstype aliases...), so copy
 # their targets. wims.cgi -> wims is dropped (replaced by wims.exe).
-tar -C "$WD/src" -h --exclude=./public_html/wims.cgi --exclude=./src --exclude=./other --exclude=./tmp --exclude=./sessions \
+tar -C "$WD/wims" -h --exclude=./public_html/wims.cgi --exclude=./src --exclude=./other --exclude=./tmp --exclude=./sessions \
     --exclude=./s2 --exclude=./lib --exclude=./download --exclude='./compile*' --exclude='./*.log' --exclude='*.tgz' -cf - . | tar -C "$OUT" -xf -
 # drop every Linux ELF binary (and the wims.cgi symlink)
 find "$OUT" -type f -exec sh -c 'head -c4 "$1" | grep -q ELF && rm -f "$1"' _ {} \;
@@ -54,6 +72,19 @@ rm -f "$OUT/public_html/bin/insdraw..processor"
 grep -q '^default_texposition=' "$OUT/log/wims.conf" 2>/dev/null || \
   printf 'default_texposition=2\n' >> "$OUT/log/wims.conf"
 cp "$ROOT/docs/wims4win.yaml" "$OUT/log/wims4win.yaml"
+[ -n "$PARI_COMMAND" ] && { sed -i '/^pari_command=/d' "$OUT/log/wims.conf"; \
+  printf 'pari_command=%s\n' "$PARI_COMMAND" >> "$OUT/log/wims.conf"; }
+# sh.exe + coreutils (MSYS2, pinned) for call_sh and the bin/ scripts
+[ -n "$NO_MSYS2" ] || bash "$ROOT/tools/fetch-msys2-sh.sh" "$OUT"
+# provenance of the tree
+{ echo "source: $(basename "$SRC")"
+  [ -f "$SRC" ] && echo "source_sha256: $(sha256sum "$SRC" | cut -d' ' -f1)"
+  echo "svn_url: https://subversion.renater.fr/anonscm/svn/wimsdev/trunk/wims"
+  echo "svn_revision: ${WIMS_SVN_REV:-19040}"
+  echo "wims_version: $(cat "$WD/wims/version" 2>/dev/null)"
+  echo "wims4win_commit: $(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null)"
+  echo "built: $(date -u +%Y-%m-%dT%H:%MZ)"
+} > "$OUT/log/wims4win-provenance.txt"
 for i in gap maxima octave pari m2 scilab yacas; do
   [ -f "$ROOT/build/win32/$i.exe" ] && cp "$ROOT/build/win32/$i.exe" "$OUT/public_html/bin/"
 done

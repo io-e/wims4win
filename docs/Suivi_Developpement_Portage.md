@@ -257,3 +257,14 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Laragon démarré par Arnaud : `wims.cgi` → 200 ; `tool/algebra/factor.fr` → 450 (module non installé, issue #3).
 - Aucune modification de code.
 
+## 2026-10-27 — Décisions Q1–Q6 d'Arnaud et runtime r19040
+- Décisions D15–D20 inscrites dans `05_Etat_et_Decisions.yaml` ; 01/02/04 mis à jour (MSVC/CMake en historique seulement). Run CI 40493026828 annulé.
+- `tools/build-runtime-tree.sh` : construit depuis un `svn export -r 19040` ; restaure les ~225 liens svn:special qu'un export Windows transforme en fichiers « link … » (sinon accueil tronqué), les bits d'exécution, supprime `.wims_maintainer_mode`, `make` séquentiel ; provenance dans `log/wims4win-provenance.txt` ; `PARI_COMMAND`.
+- `tools/fetch-msys2-sh.sh` + `tools/msys2/msys2-pins.txt` : 43 paquets MSYS2 épinglés (sha256), licences dans `other/MSYS2-LICENSES.txt`.
+- Mesures sur le runtime Grok (box, déployé puis retiré du PC) : accueil fr 200 (26 700 car., `</html>`), en 200, adm/doc 200, adm/class/classes 200 ; parité oef2html sur l'échantillon de 10 : 6/6 pages identiques au run PC de référence, 4 échecs identiques (00347, 00352, 00509 too_many_gotos ; 01012 bad_index).
+- Échecs constatés :
+  - `tool/algebra/factor.fr` → 450 : ce module n'est pas dans trunk r19040 ; il faut `modupdate`, qui appelle `public_html/bin/webget` (helper C Linux, pas encore porté).
+  - `tool/wcalc.fr` → 550 : helper `translator` (C, Misc) non porté sous Windows.
+  - `bin/mkindex` via sh.exe : la racine MSYS2 tombe sur le runtime, donc `pwd` = `/` et `wims_home` = `//` ; `perl` absent du lot MSYS2. Le montage `bind` de `/bin` corrige les shebangs mais pas `wims_home`. À revoir : placer MSYS2 sous `other/msys2/` (racine distincte) et ajouter perl.
+- Runtime de Claude (`wims-port\wims-runtime-r19040`, `install-runtime-r19040.ps1`, 8fbccc0) contrôlé : accueil 200 mais tronqué (2 727 car., pas de `</html>`), factor.fr 450, wcalc 550 ; pas de `log/wims.conf` (donc ni `default_texposition=2` ni `pari_command`), ni `wims4win.yaml`, ni sh.exe/coreutils, ni flydraw/insdraw, ni index mkindex.
+

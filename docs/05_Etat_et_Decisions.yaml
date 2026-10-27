@@ -347,3 +347,11 @@ divergences_resolved:
 # ── Questions tranchées par Arnaud (2026-10-27) ─────────────────────
 
 open_questions: []   # toutes tranchées, voir D15-D20
+
+runtime_r19040_status:
+  date: 2026-10-27
+  issue_3: "fermée par Claude (8fbccc0) mais critères non atteints, voir Suivi"
+  missing:
+    - "webget.exe (modupdate) et translator.exe (wcalc) : helpers C Misc à porter en mingw"
+    - "MSYS2 sous other/msys2/ (racine distincte du runtime) + perl, pour mkindex/oefcompile"
+    - "runtime Claude : wims.conf, wims4win.yaml, liens svn:special, sh.exe, flydraw/insdraw, mkindex"

@@ -24,7 +24,7 @@ set -e
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 SRC=${1:?usage: build-runtime-tree.sh <svn-export dir|tgz> [workdir]}
 SRC=$(readlink -f "$SRC")
-WD=${2:-$ROOT/build/runtime}
+WD=${2:-$ROOT/build/runtime}; mkdir -p "$WD"; WD=$(cd "$WD" && pwd)
 # not named "src": canvasdraw locates other/bin with awk -F/src
 mkdir -p "$WD/wims"; cd "$WD/wims"
 [ -x public_html/wims ] || {
@@ -69,8 +69,17 @@ cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.cgi.exe"
 cp "$ROOT/build/wims-win/wimslogd.exe" "$OUT/bin/"
 cp "$ROOT/build/wims-win/bin/wims_mathml.exe" "$OUT/bin/"
 cp "$ROOT/build/tests-win/ch..root.exe" "$OUT/public_html/bin/"
-# drawing: flydraw.exe + native insdraw processor (replaces the sh script)
+# other/bin scripts from the tree (src2def, imgindex, findnoexec), not the ELF
 mkdir -p "$OUT/other/bin"
+for f in "$WD/wims/other/bin/"*; do
+  [ -f "$f" ] && ! head -c4 "$f" | grep -q ELF && cp "$f" "$OUT/other/bin/"
+done
+# C helpers of Misc/OefMsg2wims built for Windows (translator, dicsort,
+# modind, oef2wims, msg2wims, webget...)
+bash "$ROOT/tools/build-misc-win32.sh" "$ROOT/build/misc-win" >/dev/null
+cp "$ROOT"/build/misc-win/public_html/bin/*.exe "$OUT/public_html/bin/"
+cp "$ROOT"/build/misc-win/bin/*.exe "$OUT/bin/"
+# drawing: flydraw.exe + native insdraw processor (replaces the sh script)
 cp "$ROOT/build/wims-win/other/bin/flydraw.exe" "$OUT/other/bin/"
 ${MINGW:-x86_64-w64-mingw32-gcc} -O2 -Wall -static -o "$OUT/public_html/bin/insdraw..processor.exe" \
    "$ROOT/src/Platform/tools/insdraw_win.c"

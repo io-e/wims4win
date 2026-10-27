@@ -25,8 +25,8 @@ d’origine).
 | 3 | `ch..root.exe` (AppContainer), `wims.exe` mingw, strip CR | ✅ partiel |
 | 4 | wimslogd min (named pipe), crypt DES+BCrypt, MathML via `wp_spawn`, CAS Win (pari/maxima/octave/GAP), limite CPU au spawn + watchdog | ✅ (voir limites) |
 
-Détail : `docs/Suivi_Developpement_Portage.md`. Architecture :
-`docs/Architecture_Portage_MSVC_WIMS_V3.md`. Audits : `docs/Audit_*`.
+Détail : `docs/Suivi_Developpement_Portage.md`. Documentation consolidée
+(audit, architecture, recette, installation, état et décisions) : `docs/README.md`.
 
 ## Structure utile
 
@@ -38,7 +38,7 @@ src/Mathml/       helper wims_mathml (flex/bison)
 tools/            build-win32.sh, build-wims-win32.sh, check-linux-identical.sh…
 tests/platform/   unitaires Platform (Linux + mingw)
 tests/interfaces/ suites d’équivalence + run_equiv_pc.ps1
-docs/             audits, architecture, suivi
+docs/             documents consolidés 01–07, suivi, archive/
 ```
 
 ## Compilation

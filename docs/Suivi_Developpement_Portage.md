@@ -1,7 +1,7 @@
 # Suivi du développement — Portage natif Windows de WIMS (r19040 / 4.33a)
 
 Dépôt de travail : `/workspace/wims-port` (box Debian 13) — copie : `D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\wims-port`.
-Architecture de référence : `Architecture_Portage_MSVC_WIMS_V3.md`.
+Architecture de référence : `02_Architecture_Portage.md` (documents consolidés : `README.md`).
 
 ---
 
@@ -217,13 +217,13 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Formule absente = `default_texposition=2` manquant (voie GIF/flydraw inopérante sous Windows) ; correction absente = bug CRLF (mode texte CRT) corrigé : binaire global.
 - Écart 4.31b→4.33a moteur ≈110 lignes ; rebasage : 1 hunk en conflit / ~100 ; 1–2 j.
 - too_many_gotos : boucles de rejet sans re-tirage (procédures récursives non traduites par xml2oef), grands entiers en notation e+NN.
-- Détails : docs/Evaluation_OEF_wims4win.md.
+- Détails : docs/03_Cahier_Audit_et_Recette.md, partie C (original : docs/archive/Evaluation_OEF_wims4win.md).
 
 ## 2026-10-25 — Décisions d'Arnaud : PARI, flydraw, taille des formules
 - On garde 4.33a (pas de rebasage). Le commit 8bf7078 de Claude ne contient qu'une doc Laragon, qui sert notre `wims-runtime`.
 - PARI/GP : `pari_command` est configuré dans `wims-runtime` et `wims-runtime-oef`. 00403 est identique à Linux ; 00509 donne too_many_gotos, comme sous Linux.
 - flydraw.exe : libgd statique en mingw. `insdraw..processor.exe` est natif. Les helpers sont résolus en `.exe`, `mv`/`rm` tournent en interne, et `wims_home` et PATH sont corrigés. 00001 est identique à Linux, image GIF comprise.
-- `log/wims4win.yaml` règle `formula.size`, 200 % par défaut, avec le même comportement sous Linux et Windows. L'écart 110/120 % venait d'un bug argv amont, expliqué dans Evaluation_OEF_wims4win.md §5.
+- `log/wims4win.yaml` règle `formula.size`, 200 % par défaut, avec le même comportement sous Linux et Windows. L'écart 110/120 % venait d'un bug argv amont, expliqué dans 03_Cahier_Audit_et_Recette.md, partie C §5.
 - `build-runtime-tree.sh` ajoute `default_texposition=2`, le yaml, flydraw et le processeur insdraw.
 - Échantillon PC de 10 fichiers : les 6 pages produites sont identiques à Linux et les 4 échecs sont les mêmes que sous Linux.
 - Les 58 too_many_gotos ne sont pas traités (décision d'Arnaud).
@@ -245,5 +245,15 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Vérifié depuis le dépôt : parités Linux/Windows, v2 et trace à 1438/1438 ; build Linux identique à celui d'origine ; oef2html identique à Linux (Linux 3/3, wine 2/2).
 - Le corpus se reconstruit depuis le tarball : 338/338 fichiers (333 upstream + 5 cas d'erreur), et 1438/1438 si l'on fournit le dossier Eleda.
 - CI : nouveau job `oef-validation` (`ci.sh`, 37 OEF de référence).
-- Handoff pour Claude : `docs/HANDOFF_Claude_OEF_Python.md`, avec une copie dans `Reprise_Wims_Grok`.
+- Handoff pour Claude : `docs/07_Handoffs.md`, partie A (original : `docs/archive/HANDOFF_Claude_OEF_Python.md`), avec une copie dans `Reprise_Wims_Grok`.
 - Laragon (vhost `wims_paris_saclay_fr.test`, qui sert `wims-runtime`) : `wims.cgi` répond 200.
+
+## 2026-10-27 — Documents de Claude intégrés puis fusionnés
+- Commit de Claude `769bab0` (11 documents dans `docs/claude/`) poussé sur `master`.
+- Fusion en documents uniques dans `docs/` : `01_Audit_Migration.md`, `02_Architecture_Portage.md`, `03_Cahier_Audit_et_Recette.md`, `04_Guide_Installation_et_CGI_Laragon.md`, `05_Etat_et_Decisions.yaml`, `06_Recherche_Projets.md`, `07_Handoffs.md` ; index `docs/README.md`.
+- Originaux Claude et Grok déplacés par `git mv` dans `docs/archive/` (historique conservé).
+- Chaque document indique ses sources et une section « Divergences résolues » (le code et les mesures font foi) ; les questions non tranchées sont dans `05_Etat_et_Decisions.yaml` (`open_questions`).
+- Claude écrit désormais directement dans les documents consolidés.
+- Laragon démarré par Arnaud : `wims.cgi` → 200 ; `tool/algebra/factor.fr` → 450 (module non installé, issue #3).
+- Aucune modification de code.
+

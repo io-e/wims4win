@@ -1,0 +1,320 @@
+# 05_Etat_et_Decisions.yaml — état du projet et décisions (document consolidé)
+# Consolidé le 2026-10-27 (heure de Paris) par Grok.
+# Sources : archive/State_Wims4Win_CLAUDE_V1.yaml (Claude, base),
+#           Suivi_Developpement_Portage.md et archive/Evaluation_OEF_wims4win.md (Grok),
+#           état GitHub des issues (io-e/wims4win) au 2026-10-27.
+# Règle : la vérité est le code et les résultats mesurés. Les décisions
+# « decided_by: user » viennent uniquement de ce qu'Arnaud a dit.
+# Claude et Grok mettent ce fichier à jour directement (plus de copie séparée).
+# Repo: io-e/wims4win (private)
+
+project:
+  name: wims4win
+  description: Native Windows port of WIMS 4.33a (r19040)
+  repo: https://github.com/io-e/wims4win
+  license: GPL-2.0
+  created: 2026-10-23
+
+team:
+  claude:
+    role: Architecture, audit, documentation, upstream reporting
+    env: ShadowPC Windows 11 (no Docker/WSL2/Hyper-V)
+  grok:
+    role: Prototype code, cross-build, testing
+    env: Box Debian de Grok (référence Linux ; pas de VPS séparé, cf. D9)
+  user:
+    role: Decision maker, project owner
+    github: io-e
+
+# ── Decisions (locked) ──────────────────────────────────────────────
+
+decisions:
+  D1_engine_version:
+    decision: "WIMS 4.33a (trunk r19040) — no rebase on 4.31b"
+    date: 2026-10-25
+    decided_by: user
+    github_issue: "#4 — closed"
+
+  D2_single_repo:
+    decision: "Single private repo io-e/wims4win"
+    date: 2026-10-23
+    decided_by: user+grok
+
+  D3_maxima_sbcl_direct:
+    decision: "Launch sbcl.exe --core directly, no maxima.bat, no cmd.exe"
+    date: 2026-10-23
+    decided_by: grok
+    commit: 3c59829
+    github_issue: "#2 — closed"
+
+  D4_cpu_limit_at_spawn:
+    decision: "CREATE_SUSPENDED → Job assign → ResumeThread + watchdog"
+    date: 2026-10-23
+    decided_by: grok
+    commit: 5f5523b
+
+  D5_load_test_out_of_scope:
+    decision: "Load test (30 concurrent users) and parallel launches out of scope"
+    date: 2026-10-27
+    decided_by: user
+
+  D6_flydraw_ported:
+    decision: "flydraw ported to Windows"
+    date: 2026-10-25
+    decided_by: user (porté par grok)
+    detail: "libgd 2.3.3 statique mingw, insdraw..processor.exe natif ; 00001 identique à Linux (GIF sha256)"
+    limits: "animations = 1re image ; pas de texte TrueType (freetype) ; pas de conversion de format"
+    status: done
+
+  D7_formula_size_yaml:
+    decision: "Formula size configurable in log/wims4win.yaml — largest possible for DYS"
+    date: 2026-10-25
+    detail: "formula.size 200% par défaut, plage 50-400% ; même comportement Linux/Windows ; corrige le bug argv amont --tex-size (110% vs 120%)"
+    decided_by: user+grok
+
+  D8_too_many_gotos_skipped:
+    decision: "58 old exercises blocked on too_many_gotos — left aside"
+    date: 2026-10-25
+    decided_by: user
+    note: "Exercices Eleda convertis par xml2oef (1100 des 1438 du corpus), non publiés"
+
+  D9_vps_not_blocking:
+    decision: "Grok's Debian box IS the Linux reference — no separate VPS needed"
+    date: 2026-10-27
+    decided_by: grok (issue #5 fermée)
+    note: "Parity validated on 1438 OEF files"
+
+  D10_bat_never:
+    decision: "Never use .bat wrappers for CAS (cmd.exe injection risk)"
+    date: 2026-10-23
+    decided_by: claude+grok
+
+  D11_appcontainer_no_capabilities:
+    decision: "AppContainer without capability SIDs (no network, registry, clipboard)"
+    date: 2026-10-23
+    decided_by: claude
+
+  D12_pari_branched:
+    decision: "PARI/GP branché (pari_command dans wims-runtime et wims-runtime-oef)"
+    date: 2026-10-25
+    decided_by: user
+    note: "00403 identique à Linux"
+
+  D13_oef_tools_in_repo:
+    decision: "Outil de test OEF d'OEF_VALIDATION dans un dossier à part : tools/oef-validation/"
+    date: 2026-10-25
+    decided_by: user
+    note: ".exe, zip, runtime, corpus Eleda et oef_validate.py (validateur d'Arnaud) non publiés"
+
+  D14_docs_merged:
+    decision: "Documents Claude + Grok intégrés au dépôt puis fusionnés en documents uniques dans docs/"
+    date: 2026-10-27
+    decided_by: user
+    note: "Originaux dans docs/archive/ ; Claude écrit directement dans les documents consolidés"
+
+# ── Phases completed ────────────────────────────────────────────────
+
+phases_done:
+  phase1:
+    name: "Platform API + refactor Interfaces/common.c"
+    status: done
+    commits: "5afd05e → de74127"
+
+  phase2:
+    name: "Job Objects, overlapped I/O, multiexec, equiv PARI/Maxima (wine)"
+    status: done
+    commits: "641bf5e → db52741"
+
+  phase3:
+    name: "Sandbox AppContainer, wims.exe mingw, strip CR, 7 CAS interfaces"
+    status: done
+    commits: "b9670a6 → 4374c68"
+
+  phase4:
+    name: "wimslogd min, crypt DES+BCrypt, CPU fix, MathML, CAS 4/4, CGI 200"
+    status: done
+    commits: "44bde53 → ad7a415"
+    milestone: "wims.exe serves HTTP 200 on ShadowPC"
+
+  github_setup:
+    name: "GitHub repo, CI, LICENSE, README, Maxima SBCL fix"
+    status: done
+    commits: "16c0232 → 1b2f79b"
+
+  oef_toolchain:
+    name: "OEF validation tools (oef2html, oef_llm_fix, v2 validator)"
+    status: done
+    commits: "fff15f5 → 1cdd5e3"
+
+  additional:
+    name: "flydraw port, GAP install, PARI branch, Laragon CGI, formula YAML"
+    status: done
+    decided: 2026-10-27
+
+# ── Test results ────────────────────────────────────────────────────
+
+tests:
+  platform_unit:
+    total: 22
+    passed: 22
+    env: "ShadowPC native Windows"
+
+  cas_equiv:
+    total: 24
+    passed: 24
+    cas: [PARI 2.19, Maxima 5.49, Octave 11.3, GAP 4.16.1]
+    env: "ShadowPC native Windows"
+    scenarios: [calc, factor, large, illegal, about, timeout, absent, multiexec]
+
+  crypt:
+    total: 8
+    passed: 8
+    detail: "DES 4/4, BCrypt 3/3, cross 1/1"
+
+  cgi_smoke:
+    result: "Status 200"
+    module: "adm/doc"
+
+  mathml:
+    result: PASS
+
+  sandbox_network:
+    result: "PASS — ping blocked (rc=1)"
+
+  cpu_limit:
+    result: "PASS — busy child killed within 6s"
+
+  oef_parity:
+    total: 1438
+    note: "Linux/Windows parity on 1438 OEF files (Grok's Debian) — oef2wims, v2 et trace 1438/1438"
+    pc_sample: "10 fichiers, graine 1 : 6 pages identiques à Linux, 4 échecs identiques (00347, 00352, 00509 too_many_gotos ; 01012 bad_index)"
+
+  laragon_cgi:
+    result: "200 sur http://wims_paris_saclay_fr.test/wims/wims.cgi (2026-10-27) ; tool/algebra/factor.fr → 450 (module non installé, #3)"
+
+  sandbox_evasion:
+    S1_read_outside: not_tested
+    S2_write_outside: not_tested
+    S3_network: PASS
+    S4_fork_bomb: not_tested
+    S5_cmdline_injection: not_tested
+    S6_octave_system: not_tested
+    S7_octave_dos: not_tested
+    S8_maxima_lisp: not_tested
+    S9_registry_write: not_tested
+
+# ── Remaining work ──────────────────────────────────────────────────
+
+remaining:
+  P0_sandbox_hardening:
+    priority: 0
+    github_issue: "#8"
+    description: "Write and run S1-S9 evasion tests — production gate"
+    owner: grok
+    effort: "1 week"
+    blocker_for: "Opening WIMS to students"
+    subtasks:
+      - "S1: read file outside session directory"
+      - "S2: write file outside session directory"
+      - "S4: fork bomb → Job Object kill"
+      - "S5: command-line injection via crafted OEF"
+      - "S6: Octave system() filtered"
+      - "S7: Octave dos()/winqueryreg filtered"
+      - "S8: Maxima :lisp sandboxed"
+      - "S9: HKCU registry write refused"
+
+  P1_wimslogd_complete:
+    priority: 1
+    github_issue: "#1"
+    description: "Port scores, housekeeping, class management to Windows wimslogd"
+    owner: grok
+    effort: "1-2 weeks"
+    blocker_for: "Grading / class features"
+
+  P3_public_html:
+    priority: 2
+    github_issue: "#3"
+    description: "Script to install full modules into Windows runtime. Fixes 450 error on factor.fr"
+    owner: grok
+    effort: "2-3 days"
+
+  P5_recette_200_modules:
+    priority: 3
+    github_issue: "#6"
+    description: "HTML diff Linux vs Windows on ~200 modules (sequential, Grok's box)"
+    owner: grok
+    effort: "3-5 days"
+    note: "Uses OEF tool already in repo. Load test removed from scope (D5)."
+
+  P7_doc_cpu_zero:
+    priority: 4
+    github_issue: "#7"
+    description: "Document Win11 kernel behavior (user-time=0 for busy loop)"
+    owner: claude
+    effort: "1 day"
+
+  P8_calc_bug_upstream:
+    priority: 5
+    github_issue: "#9"
+    description: "Report calc.c:241 timeout/infinite-wait bug to wimsdev (GPL upstream)"
+    owner: claude
+    effort: "1 day"
+
+  small_items:
+    priority: 3
+    description: "Miscellaneous remaining items"
+    items:
+      - "Webmaster password setup"
+      - "Shtooka audio integration"
+      - "TrueType font in flydraw"
+      - "Install/configure Octave and Maxima in OEF runtime"
+
+# ── Issues to close ─────────────────────────────────────────────────
+
+issues_closed:
+  - issue: "#2"
+    reason: "Maxima sbcl direct (D3)"
+  - issue: "#4"
+    reason: "Tag decision made — 4.33a (D1)"
+  - issue: "#5"
+    reason: "VPS not blocking — Grok's Debian box is the reference (D9)"
+
+issues_open: ["#1", "#3", "#6", "#7 (documentation seulement, CPU corrigé par D4)", "#8", "#9"]
+
+# ── Removed from scope ─────────────────────────────────────────────
+
+out_of_scope:
+  - "Load test 30 concurrent users (D5)"
+  - "Parallel launch stress tests (D5)"
+  - "58 old exercises with too_many_gotos (D8)"
+  - "Rebase on 4.31b (D1)"
+  - "PowerShell rewrite of shell scripts (proposition d'architecture Claude V1_3, non validée explicitement par Arnaud)"
+
+# ── Estimated timeline ──────────────────────────────────────────────
+
+timeline:
+  remaining_grok: "2-3 weeks"
+  remaining_claude: "2-3 days (doc + upstream)"
+  critical_path: "P0 (sandbox 1w) → P1 (wimslogd 1-2w) in parallel with P3 (2-3d)"
+  gate: "P0 done = can open to students (with scoring limited until P1)"
+
+# ── Divergences résolues (consolidation 2026-10-27) ─────────────────
+
+divergences_resolved:
+  - "Version : audits « 4.32 » → code et décision 4.33a r19040 (D1)"
+  - "Build : architecture MSVC + CMake → réel : cross mingw-w64 depuis Debian + CI GitHub"
+  - "CAS : cahier d'audit « 3/4, GAP manquant » → 4/4 (GAP 4.16.1 validé)"
+  - "T11 / T-CROSS « VPS requis » → faits sur la box Debian (D9)"
+  - "IPC wimslogd : AF_UNIX prévu → named pipe par arbre runtime"
+  - "Runtime de test : .deb Debian 4.31b → runtime Grok depuis wims-4.32.tgz (build-runtime-tree.sh)"
+  - "log.c:521 NULL SERVER_ADDR : contournement → corrigé"
+  - "Chiffrage 3-7 mois → reste ~2-3 semaines (Grok)"
+
+# ── Points à trancher par Arnaud ────────────────────────────────────
+
+open_questions:
+  - "Runtime 4.32 (wims-4.32.tgz) avec binaire 4.33a : reconstruire l'arbre depuis le SVN r19040 (#3) ou garder 4.32 ?"
+  - "Source des modules exercices : modupdate/wimsget, paquets Debian wims-modules-*, ou SVN public_html (#3) ?"
+  - "Scripts sh de bin/ et call_sh : embarquer sh.exe MSYS2 (proposé par Claude) ou porter au cas par cas ?"
+  - "Garder MSVC/CMake comme cible future ou acter mingw-w64 seul ?"
+  - "Exemple Eleda 00352 dans tools/oef-validation/html/exemples : le garder ou le retirer ?"

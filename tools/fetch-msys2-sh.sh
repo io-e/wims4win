@@ -37,7 +37,7 @@ grep -v '^#' "$PINS" | while read -r name ver file sha lic; do
   f=$CACHE/$file
   [ -f "$f" ] || curl -fsSL --retry 3 -o "$f" "$REPO/$file"
   echo "$sha  $f" | sha256sum -c --quiet - || { echo "sha256 mismatch: $file" >&2; exit 1; }
-  unzst "$f" | tar -x -C "$STAGE" usr/bin usr/lib/perl5 etc 2>/dev/null || true
+  unzst "$f" | tar -x -C "$STAGE" usr/bin usr/lib/perl5 usr/share/perl5 etc 2>/dev/null || true
   printf '%-18s %-14s %s\n' "$name" "$ver" "$lic" >> "$LIC"
 done
 # executables and DLLs only (no docs/headers)
@@ -52,4 +52,5 @@ done
 [ -d "$STAGE/etc/ssl" ] && cp -r "$STAGE/etc/ssl" "$MS/etc/" || true
 printf 'none / cygdrive binary,posix=0,noacl,user 0 0\n' > "$MS/etc/fstab"
 [ -d "$STAGE/usr/lib/perl5" ] && { mkdir -p "$MS/usr/lib"; cp -r "$STAGE/usr/lib/perl5" "$MS/usr/lib/"; }
+[ -d "$STAGE/usr/share/perl5" ] && { mkdir -p "$MS/usr/share"; cp -r "$STAGE/usr/share/perl5" "$MS/usr/share/"; }
 echo "msys2: $(ls "$MS/usr/bin" | wc -l) files in $MS/usr/bin"

@@ -30,6 +30,13 @@ mkdir -p "$WD/wims"; cd "$WD/wims"
 [ -x public_html/wims ] || {
   if [ -d "$SRC" ]; then cp -a "$SRC"/. .
   else tar xzf "$SRC"; [ -d wims ] && { cp -a wims/. . && rm -rf wims; }; fi
+  # an svn export made on Windows (SlikSVN) turns svn:special symlinks into
+  # small text files "link <target>" (~225 in r19040: html/themes, msg,
+  # scripts/model aliases...): turn them back into symlinks
+  find . -type f -size -300c -exec grep -lI -m1 '^link ' {} + 2>/dev/null | while read -r f; do
+    [ "$(wc -l < "$f")" -eq 0 ] || continue
+    t=$(sed 's/^link //' "$f"); rm -f "$f"; ln -s "$t" "$f"
+  done
   # an svn export made on Windows (SlikSVN) loses the exec bits: restore
   # them on every script (#!) and on configure
   find . -type f ! -name '*.[ch]' -exec sh -c 'for f; do [ "$(head -c2 "$f")" = "#!" ] && chmod +x "$f"; done; true' _ {} +

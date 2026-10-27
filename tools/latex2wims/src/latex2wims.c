@@ -337,7 +337,7 @@ static int do_check(runtime *r, const char *mod, const char *title) {
       if (!contains(b, "</html>")) { ok = 0; strcat(why, " ; pas de </html>"); }
       if (contains(b, "existe pas") || contains(b, "WIMS User Error")) { ok = 0; strcat(why, " ; erreur WIMS dans la page"); }
       if (k == 0 && title && !contains(b, title)) { ok = 0; strcat(why, " ; titre absent"); }
-      if (contains(b, "<math")) nmath++;
+      if (contains(b, "<math") || contains(b, "mathfonts/")) nmath++; /* symbole isolé (\\alpha) : WIMS sert une image mathfonts */
     }
     msg("%s bloc %s%s%s", ok ? "PASS" : "FAIL", blocks[k], *why ? " :" : "", why);
     if (!ok) fail = 1; nblocks++;

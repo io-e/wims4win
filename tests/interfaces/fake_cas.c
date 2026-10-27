@@ -34,6 +34,12 @@ int main(int argc, char **argv)
     }
   }
 #endif
+  /* "write <file>": sandbox write tests without cmd.exe (rc 0 = written) */
+  if(strcmp(mode,"write")==0) {
+    FILE *f=argc>2?fopen(argv[2],"wb"):NULL;
+    if(f==NULL) return 3;
+    fputs("ok\n",f); return fclose(f)==0?0:3;
+  }
   if(strcmp(mode,"busy")==0) { volatile unsigned long x=0; for(;;) x++; }
   if(strcmp(mode,"noread")==0) for(;;) {
 #ifdef _WIN32

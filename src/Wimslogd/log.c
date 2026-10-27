@@ -84,8 +84,13 @@ void dispatch_log(void)
   #define TEMP_LOG_2 "log/temp-2.log"
 
   fflush(NULL);
+#ifdef _WIN32
+  (void)pid;
+  if(!wl_task) {wl_spawn_task("dispatch_log",0,1); return;}
+#else
   pid=fork(); if(pid>0) {addfork(pid,1); return;}
   close(commsock);
+#endif
   call_sh(1,"ls %s* 2>/dev/null >/dev/null || exit;\n\
   for f in %s*; do mv $f $f.bb; done;\n\
 sleep 1;\n\

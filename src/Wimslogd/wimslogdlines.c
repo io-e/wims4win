@@ -21,6 +21,38 @@
 
 int exec_wait;
 
+#ifdef _WIN32
+/* No fork: CreateProcess in a Job Object (wp_spawn). "#!" scripts run through
+ * the interpreter found in PATH (MSYS2 sh/perl), names without ".exe" are
+ * resolved. CPU budget = MAX_DELAY of fork.c (housekeep, modupdate, backup). */
+int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
+{
+  wp_chan c; wp_pid pid; int status=0, r;
+  memset(&c,0,sizeof(c));
+  fflush(NULL);
+  wp_set_job(NULL,1500,0);
+  r=wp_spawn(&c,arg,inf?inf:"NUL",outf?outf:"NUL",errf?errf:"NUL",
+             WP_ISO_NONE,NULL,&pid);
+  if(r!=WP_OK) {
+    char buf[4096]; int k, t;
+    snprintf(buf,sizeof(buf),"Failed to execute");
+    for(k=0;arg[k];k++) {
+      t=strlen(buf);
+      snprintf(buf+t,sizeof(buf)-t," %s",arg[k]);
+    }
+    t=strlen(buf);
+    snprintf(buf+t,sizeof(buf)-t,"\n	error %lu\n",(unsigned long)GetLastError());
+    wlogdaccessfile(buf,"a","%s/exec.fail",tmpd);
+    exec_wait=1; return 127;
+  }
+  if(exec_wait) {
+    wp_wait(&pid,&status);
+    CloseHandle(pid.h); if(pid.job) CloseHandle(pid.job);
+    return status;
+  }
+  exec_wait=1; addfork_w(&pid,0); return 0;
+}
+#else
 int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
 {
   pid_t pid;
@@ -66,6 +98,8 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
     }
   }
 }
+
+#endif
 
 /* my system(), but with variable parms
  * More secure than system(), and direct fork.

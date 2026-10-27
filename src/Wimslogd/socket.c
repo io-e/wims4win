@@ -18,6 +18,7 @@
 /* WIMS log daemon, socket routines */
 #include "wimslogd.h"
 
+#ifndef _WIN32 /* Windows: named pipe, win/wimslogd_win.c */
 void errorquit(char *p)
 {
     wimslogd_error(p); exit(1);
@@ -93,3 +94,4 @@ void answer(int fh)
   if(options()>=0) cmd();
   end: (void)chdir(cwd); cwdtype=dir_home; output(fh);
 }
+#endif

@@ -143,8 +143,13 @@ void cleaning(int withmain)
       lastclean_stat.st_mtime>nowtime-300 &&
       lastclean_stat.st_mtime<nowtime+100) return;
   fflush(NULL);
+#ifdef _WIN32
+  (void)pid;
+  if(!wl_task) {wl_spawn_task("cleaning",withmain,0); return;}
+#else
   pid=fork(); if(pid>0) {addfork(pid,0); return;}
   close(commsock);
+#endif
   if(withmain) _cleaning(sesd,1);
   _cleaning("s2",2);
   _cleaning("tmp/sessions",0);

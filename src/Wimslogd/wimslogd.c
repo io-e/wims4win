@@ -58,8 +58,13 @@ void logexec(void)
   pid_t pid;
   if(stat("log/wimslogd.exec",&st)) return;
   fflush(NULL);
+#ifdef _WIN32
+  (void)pid;
+  if(!wl_task) {wl_spawn_task("logexec",0,1); return;}
+#else
   pid=fork(); if(pid>0) {addfork(pid,1); return;}
   close(commsock); msleep(100);
+#endif
   call_ssh(1,"sh log/wimslogd.exec >tmp/log/wimslogdexec.out 2>tmp/log/wimslogdexec.err");
   unlink("log/wimslogd.exec"); exit(0);
 }
@@ -124,6 +129,7 @@ int verify_tables(void)
   return 0;
 }
 
+#ifndef _WIN32 /* Windows main loop: win/wimslogd_win.c */
 int main(int argc, char *argv[])
 {
   char *p;
@@ -238,4 +244,4 @@ int main(int argc, char *argv[])
   while(1==1);
   return 0;
 }
-
+#endif

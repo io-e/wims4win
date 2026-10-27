@@ -18,8 +18,10 @@
 /* student score management, definitions */
 
 #include <utime.h>
+#ifndef _WIN32
 #include <sys/socket.h>
 #include <sys/un.h>
+#endif
 #include "../Lib/libwims.h"
 
 /* how many seconds in a minute? */
@@ -165,3 +167,12 @@ int call_ssh(int wait,char *s,...);
 int call_sh(int wait,char *s,...);
 extern int exec_wait;
 void getdef(char *fname, char *name, char value[]);
+
+#ifdef _WIN32
+/* Native Windows (no fork): see win/wimslogd_win.c */
+#include "../Platform/wims_platform.h"
+extern int wl_task;           /* 1 in a child started by wl_spawn_task() */
+void wl_spawn_task(const char *task, int arg, int type);
+void addfork_w(wp_pid *p, int type);
+void logexec(void);
+#endif

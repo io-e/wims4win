@@ -11,6 +11,7 @@ jobs:
   linux-platform:
     name: Linux Platform unit tests
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Build and run test_platform
@@ -22,9 +23,11 @@ jobs:
   mingw-cross:
     name: mingw-w64 cross-build (interfaces)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Install mingw-w64
+        timeout-minutes: 10
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq mingw-w64
@@ -49,6 +52,7 @@ jobs:
   oef-validation:
     name: OEF validation tools (oef2wims Linux/mingw, v2, trace)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Install toolchains

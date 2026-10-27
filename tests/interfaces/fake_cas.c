@@ -40,6 +40,34 @@ int main(int argc, char **argv)
     if(f==NULL) return 3;
     fputs("ok\n",f); return fclose(f)==0?0:3;
   }
+  /* sandbox tests (S1, S4, S5, S9) */
+  if(strcmp(mode,"read")==0) {          /* rc 0 = file readable */
+    FILE *f=argc>2?fopen(argv[2],"rb"):NULL; char b[16];
+    if(f==NULL) return 3;
+    (void)fread(b,1,sizeof(b),f); fclose(f); return 0;
+  }
+  if(strcmp(mode,"args")==0) {          /* one argument per line */
+    int k; for(k=2;k<argc;k++) printf("[%s]\n",argv[k]); return 0;
+  }
+#ifdef _WIN32
+  if(strcmp(mode,"reg")==0) {           /* rc 0 = HKCU key written */
+    HKEY k; LONG e=RegCreateKeyExA(HKEY_CURRENT_USER,"Software\\wims-sandbox-test",0,NULL,0,KEY_WRITE,NULL,&k,NULL);
+    if(e!=ERROR_SUCCESS) return 3;
+    e=RegSetValueExA(k,"x",0,REG_SZ,(const BYTE*)"1",2); RegCloseKey(k);
+    return e==ERROR_SUCCESS?0:3;
+  }
+  if(strcmp(mode,"bomb")==0) {          /* prints how many children started */
+    int k, ok=0; STARTUPINFOA si; PROCESS_INFORMATION pi; char cmd[1024];
+    for(k=0;k<100;k++) {
+      memset(&si,0,sizeof(si)); si.cb=sizeof(si);
+      snprintf(cmd,sizeof(cmd),"\"%s\" noread",argv[0]);
+      if(CreateProcessA(NULL,cmd,NULL,NULL,FALSE,CREATE_NO_WINDOW,NULL,NULL,&si,&pi)) {
+        ok++; CloseHandle(pi.hThread); CloseHandle(pi.hProcess);
+      }
+    }
+    printf("children=%d\n",ok); return 0;
+  }
+#endif
   if(strcmp(mode,"busy")==0) { volatile unsigned long x=0; for(;;) x++; }
   if(strcmp(mode,"noread")==0) for(;;) {
 #ifdef _WIN32

@@ -69,6 +69,11 @@ cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.cgi.exe"
 cp "$ROOT/build/wims-win/wimslogd.exe" "$OUT/bin/"
 cp "$ROOT/build/wims-win/bin/wims_mathml.exe" "$OUT/bin/"
 cp "$ROOT/build/tests-win/ch..root.exe" "$OUT/public_html/bin/"
+# CAS sandbox on (#8): Interfaces/common.c runs every CAS through
+# bin/ch..root.exe (AppContainer + Job Object) when this marker exists; wims
+# refuses the CAS if the sandbox selftest fails. Each CAS install dir must be
+# readable by AppContainers: ch..root.exe --grant-rx <dir> (see docs).
+mkdir -p "$OUT/chroot/tmp/sessions"; : > "$OUT/chroot/tmp/sessions/.chroot"
 # other/bin scripts from the tree (src2def, imgindex, findnoexec), not the ELF
 mkdir -p "$OUT/other/bin"
 for f in "$WD/wims/other/bin/"*; do

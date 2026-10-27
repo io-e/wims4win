@@ -1,28 +1,35 @@
-/* Win32 counterpart of bin/ch..root: launch a CAS under a Restricted Token
- * in an AppContainer, with ACL-restricted access to the session directory.
- * GPL v2 or later.
+/* Win32 counterpart of bin/ch..root (src/Misc/chroot.c). GPL v2 or later.
  *
- * Usage:
- *   ch..root.exe --selftest                 exit 0 if AppContainer works
- *   ch..root.exe --cmd <cmd> [args...]      run cmd under the sandbox
- *                                           (stdin/stdout/stderr inherited)
+ * Command line (same forms as the Linux wrapper, plus Windows-only options):
+ *   ch..root.exe <prog> [args...]     run prog in the sandbox (form used by
+ *                                     Interfaces/common.c, WP_ISO_WRAPPER)
+ *   ch..root.exe & sh|perl <code>     untrusted !exec sh/perl (calc.c): refused
+ *                                     with 127, as the Linux wrapper does when it
+ *                                     cannot chroot (no MSYS2 sh in AppContainer)
+ *   ch..root.exe cleantmpdir          no chroot tree on Windows: no-op, 0
+ *   ch..root.exe --cmd <prog> [args]  same as the first form (older callers)
+ *   ch..root.exe --selftest           exit 0 iff the sandbox works here
+ *                                     (re-runs itself with --noop: no cmd.exe)
+ *   ch..root.exe --grant-rx <dir>...  install step: read+execute for
+ *                                     ALL APPLICATION PACKAGES on CAS dirs
+ *   ch..root.exe --purge-profiles     delete leftover "wims.chroot.*"
+ *                                     AppContainer profiles (older versions)
  *
- * Security model (deliberately weaker than Linux chroot, but never silent):
- *  - RestrictedToken (DisableMaxPrivilege + LuaToken) drops SeDebug /
- *    SeImpersonate / SeTcb / SeLoadDriver / SeTakeOwnership / SeBackup /
- *    SeRestore / SeSecurity / SeSystemEnvironment / SeCreateToken /
- *    SeAssignPrimaryToken / SeIncreaseQuota / SeShutdown / SeTrustedCredManAccess.
- *  - AppContainer named "wims.chroot.<pid>" with NO capability SIDs: no
- *    network, no registry (HKCU write), no clipboard, no named objects.
- *  - The session working directory (TMPDIR or the current directory) gets an
- *    explicit ACE for the AppContainer SID (GENERIC_ALL); everything else
- *    is denied by the AppContainer profile.
- *  - The child is run under that identity via CreateProcessAsUser.
- *
- * If AppContainer / RestrictedToken is unavailable (Windows < 8, missing
- * UserEnv, or CreateAppContainerProfile fails), the program exits with code
- * 2, never falling back to an unrestricted CreateProcess.
- */
+ * Sandbox, never silently weaker: any failure exits 2 (or 127), no fallback
+ * to an unrestricted CreateProcess.
+ *  - Restricted token (DisableMaxPrivilege + LUA, Administrators/System/
+ *    Network/LocalService SIDs deny-only, every privilege removed).
+ *  - AppContainer "wims.chroot.<pid>.<tick>" without capability SIDs: no
+ *    network, no HKCU write, no named objects outside the container; files
+ *    are readable only where ALL APPLICATION PACKAGES or the container SID
+ *    has an ACE (System32, the CAS dirs granted by --grant-rx).
+ *  - The session dir (TMPDIR, else tmp_dir) gets a GENERIC_ALL ACE for this
+ *    container SID only for the duration of the run; the ACE and the profile
+ *    are removed afterwards (no registry/ACL accumulation).
+ *  - Job Object around the child: at most PROC_QUOTA processes (fork bomb,
+ *    Linux RLIMIT_NPROC=15), killed with the wrapper (KILL_ON_JOB_CLOSE).
+ *    CPU/memory limits come from the enclosing wims job (wp_spawn).
+ *  - Environment cleaned like the Linux wrapper (env_rm). */
 #define WIN32_LEAN_AND_MEAN
 #define _WIN32_WINNT 0x0602
 #include <windows.h>
@@ -33,16 +40,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-#pragma comment(lib, "userenv")
-#pragma comment(lib, "advapi32")
+#define PROC_QUOTA 15
+
+static const char *env_rm[]={
+  "s2_dir", "w_wims_home", "session_base_dir", "trusted_module",
+  "session_dir", "wims_server_base", "w_httpd_PWD",
+  "w_wims_sesdir", "HTTP_CONNECTION",
+  "w_gnuplot_format", "w_insplot_font", "w_ins_anim_limit",
+  "w_ins_density", "w_ins_format",
+  "texgif_fontdir", "texgif_texheader",
+  "w_wims_tmp_debug", "w_insmath_logic", "w_insmath_rawmath",
+  "SERVER_ADMIN", "SERVER_ADDR", "SERVER_NAME", NULL
+};
 
 static void fail(const char *m, DWORD e)
 { fprintf(stderr,"ch..root: %s (err=%lu)\n",m,(unsigned long)e); fflush(stderr); }
 
-/* Build a Restricted Token that cannot elevate: strip every privilege and
- * apply LUA_TOKEN (no elevation). SIDs to disable are built only when the
- * corresponding CreateWellKnownSid succeeds (wine / older Windows may lack
- * some of them). */
 static HANDLE make_restricted(void)
 {
   HANDLE cur=NULL, rest=NULL; TOKEN_PRIVILEGES *tp=NULL; DWORD n=0, i, nsa=0;
@@ -76,72 +89,94 @@ static HANDLE make_restricted(void)
   return rest;
 }
 
-/* Create (or reopen) a named AppContainer and return its SID. */
-static PSID make_appcontainer(const char *name, HANDLE *out_token)
+static PSID make_appcontainer(const WCHAR *wname)
 {
-  HRESULT hr; PSID sid=NULL; WCHAR wname[128]; HANDLE tok=*out_token;
-  MultiByteToWideChar(CP_UTF8,0,name,-1,wname,128);
+  HRESULT hr; PSID sid=NULL;
   hr=CreateAppContainerProfile(wname,wname,wname,NULL,0,&sid);
   if(hr==HRESULT_FROM_WIN32(ERROR_ALREADY_EXISTS)) {
-    /* reopen: delete + recreate keeps the same SID for a given name */
     DeleteAppContainerProfile(wname);
     hr=CreateAppContainerProfile(wname,wname,wname,NULL,0,&sid);
   }
-  if(FAILED(hr) || sid==NULL) {
-    fail("CreateAppContainerProfile",(DWORD)hr); return NULL;
-  }
-  (void)tok; (void)out_token;
+  if(FAILED(hr) || sid==NULL) { fail("CreateAppContainerProfile",(DWORD)hr); return NULL; }
   return sid;
 }
 
-/* Grant GENERIC_ALL on dir to the AppContainer SID (session sandbox). */
-static int grant_session(const char *dir, PSID sid)
+/* add (mode=GRANT_ACCESS) or remove (REVOKE_ACCESS) an inheritable ACE */
+static int set_ace(const char *dir, PSID sid, DWORD rights, ACCESS_MODE mode)
 {
-  EXPLICIT_ACCESS_A ea; PACL old=NULL, neu=NULL; PSECURITY_DESCRIPTOR sd=NULL;
-  DWORD e;
+  EXPLICIT_ACCESS_A ea; PACL old=NULL, neu=NULL; PSECURITY_DESCRIPTOR sd=NULL; DWORD e;
   memset(&ea,0,sizeof(ea));
-  ea.grfAccessPermissions=GENERIC_ALL;
-  ea.grfAccessMode=GRANT_ACCESS;
+  ea.grfAccessPermissions=rights; ea.grfAccessMode=mode;
   ea.grfInheritance=SUB_CONTAINERS_AND_OBJECTS_INHERIT;
-  ea.Trustee.TrusteeForm=TRUSTEE_IS_SID;
-  ea.Trustee.TrusteeType=TRUSTEE_IS_USER;
+  ea.Trustee.TrusteeForm=TRUSTEE_IS_SID; ea.Trustee.TrusteeType=TRUSTEE_IS_UNKNOWN;
   ea.Trustee.ptstrName=(LPSTR)sid;
-  e=GetNamedSecurityInfoA(dir,SE_FILE_OBJECT,DACL_SECURITY_INFORMATION,
-                          NULL,NULL,&old,NULL,&sd);
+  e=GetNamedSecurityInfoA(dir,SE_FILE_OBJECT,DACL_SECURITY_INFORMATION,NULL,NULL,&old,NULL,&sd);
   if(e!=ERROR_SUCCESS) { fail("GetNamedSecurityInfo",e); return -1; }
   e=SetEntriesInAclA(1,&ea,old,&neu);
   if(e!=ERROR_SUCCESS) { fail("SetEntriesInAcl",e); LocalFree(sd); return -1; }
-  e=SetNamedSecurityInfoA((LPSTR)dir,SE_FILE_OBJECT,DACL_SECURITY_INFORMATION,
-                          NULL,NULL,neu,NULL);
+  e=SetNamedSecurityInfoA((LPSTR)dir,SE_FILE_OBJECT,DACL_SECURITY_INFORMATION,NULL,NULL,neu,NULL);
   LocalFree(neu); LocalFree(sd);
   if(e!=ERROR_SUCCESS) { fail("SetNamedSecurityInfo",e); return -1; }
   return 0;
 }
 
-/* Launch argv under the restricted AppContainer token. Inherit std handles. */
-static int launch(HANDLE tok, PSID ac_sid, char *const argv[])
+/* Microsoft C runtime argv quoting (backslashes before quotes doubled) */
+static size_t quote_arg(char *d, size_t cap, const char *a)
 {
-  char cmd[32768]; size_t n=0; int i, ok;
+  size_t n=0; const char *p; int bs;
+  #define PUT(c) do { if(n+1<cap) d[n]=(c); n++; } while(0)
+  if(*a && !strpbrk(a," \t\n\v\"")) { for(p=a;*p;p++) PUT(*p); return n; }
+  PUT('"');
+  for(p=a;;p++) {
+    bs=0; while(*p=='\\') { bs++; p++; }
+    if(*p==0) { while(bs--) { PUT('\\'); PUT('\\'); } break; }
+    if(*p=='"') { while(bs--) { PUT('\\'); PUT('\\'); } PUT('\\'); PUT('"'); }
+    else { while(bs--) PUT('\\'); PUT(*p); }
+  }
+  PUT('"');
+  #undef PUT
+  return n;
+}
+
+static int purge_profiles_ex(int stale, int verbose);
+
+static int resolve_exe(const char *name, char *out, size_t cap)
+{
+  size_t l=strlen(name); DWORD a;
+  snprintf(out,cap,"%s",name);
+  if(l>=4 && _stricmp(name+l-4,".exe")==0) return 1;
+  a=GetFileAttributesA(name);
+  if(a!=INVALID_FILE_ATTRIBUTES && !(a&FILE_ATTRIBUTE_DIRECTORY)) return 1;
+  snprintf(out,cap,"%s.exe",name);
+  return 1;
+}
+
+static int launch(HANDLE tok, PSID ac_sid, char *const argv[], const char *cwd)
+{
+  static char cmd[32768]; size_t n=0; int i, ok; char exe0[MAX_PATH];
   STARTUPINFOEXA si; PROCESS_INFORMATION pi; SIZE_T asz=0;
   SECURITY_CAPABILITIES sc; LPPROC_THREAD_ATTRIBUTE_LIST al=NULL;
+  JOBOBJECT_EXTENDED_LIMIT_INFORMATION li; HANDLE job; DWORD code=1;
   for(i=0;argv[i];i++) {
+    const char *a=argv[i];
+    if(i==0) { resolve_exe(a,exe0,sizeof(exe0)); a=exe0; }
     if(i) { if(n+1<sizeof(cmd)) cmd[n]=' '; n++; }
-    /* simple quoting: wrap if spaces */
-    if(strpbrk(argv[i]," \t\"")) {
-      if(n+1<sizeof(cmd)) cmd[n++]='"';
-      for(const char *p=argv[i];*p && n+1<sizeof(cmd);p++) {
-        if(*p=='"') { if(n+2<sizeof(cmd)) { cmd[n++]='\\'; cmd[n++]='"'; } }
-        else cmd[n++]=*p;
-      }
-      if(n+1<sizeof(cmd)) cmd[n++]='"';
-    } else for(const char *p=argv[i];*p && n+1<sizeof(cmd);p++) cmd[n++]=*p;
+    n+=quote_arg(cmd+n,n<sizeof(cmd)?sizeof(cmd)-n:0,a);
   }
-  if(n>=sizeof(cmd)) return 2;
+  if(n>=sizeof(cmd)) { fail("command line too long",0); return 2; }
   cmd[n]=0;
+  job=CreateJobObjectA(NULL,NULL);
+  if(!job) { fail("CreateJobObject",GetLastError()); return 2; }
+  memset(&li,0,sizeof(li));
+  li.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+       |JOB_OBJECT_LIMIT_ACTIVE_PROCESS|JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
+  li.BasicLimitInformation.ActiveProcessLimit=PROC_QUOTA;
+  if(!SetInformationJobObject(job,JobObjectExtendedLimitInformation,&li,sizeof(li)))
+    { fail("SetInformationJobObject",GetLastError()); CloseHandle(job); return 2; }
   memset(&sc,0,sizeof(sc)); sc.AppContainerSid=ac_sid;
   InitializeProcThreadAttributeList(NULL,1,0,&asz);
   al=(LPPROC_THREAD_ATTRIBUTE_LIST)malloc(asz);
-  if(!al || !InitializeProcThreadAttributeList(al,1,0,&asz)) return 2;
+  if(!al || !InitializeProcThreadAttributeList(al,1,0,&asz)) { CloseHandle(job); return 2; }
   UpdateProcThreadAttribute(al,0,PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES,
                             &sc,sizeof(sc),NULL,NULL);
   memset(&si,0,sizeof(si)); si.StartupInfo.cb=sizeof(si);
@@ -151,45 +186,116 @@ static int launch(HANDLE tok, PSID ac_sid, char *const argv[])
   si.StartupInfo.hStdError=GetStdHandle(STD_ERROR_HANDLE);
   si.lpAttributeList=al;
   ok=CreateProcessAsUserA(tok,NULL,cmd,NULL,NULL,TRUE,
-                          CREATE_NO_WINDOW|EXTENDED_STARTUPINFO_PRESENT,
-                          NULL,NULL,&si.StartupInfo,&pi);
+                          CREATE_NO_WINDOW|EXTENDED_STARTUPINFO_PRESENT|CREATE_SUSPENDED,
+                          NULL,cwd,&si.StartupInfo,&pi);
   DeleteProcThreadAttributeList(al); free(al);
-  if(!ok) { fail("CreateProcessAsUser",GetLastError()); return 2; }
+  if(!ok) { fail("CreateProcessAsUser",GetLastError()); CloseHandle(job); return 127; }
+  if(!AssignProcessToJobObject(job,pi.hProcess)) {
+    fail("AssignProcessToJobObject",GetLastError());
+    TerminateProcess(pi.hProcess,127); CloseHandle(pi.hThread); CloseHandle(pi.hProcess);
+    CloseHandle(job); return 2;
+  }
+  ResumeThread(pi.hThread); CloseHandle(pi.hThread);
   WaitForSingleObject(pi.hProcess,INFINITE);
-  { DWORD code=1; GetExitCodeProcess(pi.hProcess,&code);
-    CloseHandle(pi.hThread); CloseHandle(pi.hProcess); return (int)code; }
+  GetExitCodeProcess(pi.hProcess,&code); CloseHandle(pi.hProcess);
+  TerminateJobObject(job,137); CloseHandle(job);  /* leftover grandchildren */
+  return (int)code;
 }
 
-static int selftest(void)
+/* run argv in a fresh container; session dir granted for the run only */
+static int sandbox_run(char *const argv[], const char *dir)
 {
-  HANDLE tok; PSID sid; char name[64]; char *av[]={"cmd.exe","/c","exit","0",NULL};
-  int r;
-  snprintf(name,sizeof(name),"wims.chroot.selftest.%lu",GetCurrentProcessId());
+  HANDLE tok; PSID sid; WCHAR wname[96]; int r, granted=0;
+  _snwprintf(wname,96,L"wims.chroot.%lu.%lu",GetCurrentProcessId(),GetTickCount());
+  wname[95]=0;
+  purge_profiles_ex(1,0);
   tok=make_restricted(); if(!tok) return 2;
-  sid=make_appcontainer(name,&tok); if(!sid) { CloseHandle(tok); return 2; }
-  r=launch(tok,sid,av);
+  sid=make_appcontainer(wname); if(!sid) { CloseHandle(tok); return 2; }
+  if(dir && *dir && GetFileAttributesA(dir)!=INVALID_FILE_ATTRIBUTES)
+    granted=set_ace(dir,sid,GENERIC_ALL,GRANT_ACCESS)==0;
+  /* cwd = session dir (the Linux wrapper chdirs into the chroot): the
+   * caller's cwd (public_html) is not readable from the container */
+  r=launch(tok,sid,argv,granted?dir:NULL);
+  if(granted) set_ace(dir,sid,GENERIC_ALL,REVOKE_ACCESS);
   FreeSid(sid); CloseHandle(tok);
-  DeleteAppContainerProfile(L"wims.chroot.selftest"); /* best effort */
-  return r==0?0:2;
+  DeleteAppContainerProfile(wname);
+  return r;
+}
+
+static int grant_rx(int n, char **dirs)
+{
+  PSID all=NULL; int i, rc=0;
+  if(!ConvertStringSidToSidA("S-1-15-2-1",&all)) { fail("ALL APPLICATION PACKAGES SID",GetLastError()); return 1; }
+  for(i=0;i<n;i++) {
+    if(set_ace(dirs[i],all,GENERIC_READ|GENERIC_EXECUTE,GRANT_ACCESS)) rc=1;
+    else printf("granted RX to ALL APPLICATION PACKAGES: %s\n",dirs[i]);
+  }
+  LocalFree(all); return rc;
+}
+
+/* stale=1: only profiles "wims.chroot.<pid>.<tick>" whose wrapper process is
+ * gone (killed with its job by wims before it could clean up) */
+static int purge_profiles_ex(int stale, int verbose);
+static int purge_profiles(void) { return purge_profiles_ex(0,1); }
+
+static int pid_alive(unsigned long pid)
+{
+  HANDLE h=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION,FALSE,pid); DWORD c=0;
+  if(!h) return GetLastError()==ERROR_ACCESS_DENIED;
+  if(!GetExitCodeProcess(h,&c)) c=STILL_ACTIVE;
+  CloseHandle(h); return c==STILL_ACTIVE;
+}
+
+static int purge_profiles_ex(int stale, int verbose)
+{
+  HKEY k; DWORD i=0, n; char sub[256]; WCHAR mon[256]; int cnt=0;
+  const char *key="Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\CurrentVersion\\AppContainer\\Mappings";
+  static WCHAR names[4096][96]; int nn=0, j;
+  if(RegOpenKeyExA(HKEY_CURRENT_USER,key,0,KEY_READ,&k)!=ERROR_SUCCESS) return 0;
+  for(i=0;;i++) {
+    HKEY s2; DWORD sz=sizeof(mon); n=sizeof(sub);
+    if(RegEnumKeyExA(k,i,sub,&n,NULL,NULL,NULL,NULL)!=ERROR_SUCCESS) break;
+    if(RegOpenKeyExA(k,sub,0,KEY_READ,&s2)!=ERROR_SUCCESS) continue;
+    if(RegQueryValueExW(s2,L"Moniker",NULL,NULL,(BYTE*)mon,&sz)==ERROR_SUCCESS
+       && wcsncmp(mon,L"wims.chroot.",12)==0 && nn<4096
+       && (!stale || (wcsncmp(mon,L"wims.chroot.selftest",20)!=0
+                      && !pid_alive(wcstoul(mon+12,NULL,10))))) {
+      mon[95]=0; wcscpy(names[nn++],mon);
+    }
+    RegCloseKey(s2);
+  }
+  RegCloseKey(k);
+  for(j=0;j<nn;j++) if(SUCCEEDED(DeleteAppContainerProfile(names[j]))) cnt++;
+  if(verbose) printf("deleted %d wims.chroot.* AppContainer profile(s)\n",cnt);
+  return 0;
 }
 
 int main(int argc, char **argv)
 {
-  HANDLE tok; PSID sid; char name[64]; char *const *av; const char *dir; int r;
-  if(argc>=2 && strcmp(argv[1],"--selftest")==0) return selftest();
-  if(argc<3 || strcmp(argv[1],"--cmd")!=0) {
-    fprintf(stderr,"usage: ch..root.exe --selftest | --cmd <cmd> [args...]\n");
-    return 2;
+  const char *dir; int i;
+  if(argc<2) return 0;
+  if(strcmp(argv[1],"--noop")==0) return 0;
+  if(strcmp(argv[1],"--selftest")==0) {
+    char self[MAX_PATH]; char *av[3];
+    if(!GetModuleFileNameA(NULL,self,sizeof(self))) return 2;
+    av[0]=self; av[1]="--noop"; av[2]=NULL;
+    return sandbox_run(av,NULL)==0?0:2;
   }
-  av=argv+2;
-  snprintf(name,sizeof(name),"wims.chroot.%lu",GetCurrentProcessId());
-  tok=make_restricted(); if(!tok) return 2;
-  sid=make_appcontainer(name,&tok); if(!sid) { CloseHandle(tok); return 2; }
-  dir=getenv("TMPDIR"); if(!dir || !*dir) dir=".";
-  if(grant_session(dir,sid)<0) {
-    /* non-fatal on a missing dir; child will simply not see it */
+  if(strcmp(argv[1],"--grant-rx")==0) return grant_rx(argc-2,argv+2);
+  if(strcmp(argv[1],"--purge-profiles")==0) return purge_profiles();
+  if(strcmp(argv[1],"cleantmpdir")==0) return 0;
+  if(argv[1][0]=='&') {
+    fprintf(stderr,"ch..root: untrusted %s refused on Windows.\n",argc>2?argv[2]:"exec");
+    return 127;
   }
-  r=launch(tok,sid,av);
-  FreeSid(sid); CloseHandle(tok);
-  return r;
+  i=1; if(strcmp(argv[1],"--cmd")==0) i=2;
+  if(i>=argc) { fprintf(stderr,"usage: ch..root.exe <prog> [args...] | --selftest | --grant-rx <dir>...\n"); return 2; }
+  dir=getenv("TMPDIR"); if(!dir || !*dir) dir=getenv("tmp_dir");
+  { static char d[MAX_PATH];
+    /* absolute, since the child runs in it: $TMPDIR/x must stay valid */
+    if(dir && GetFullPathNameA(dir,sizeof(d),d,NULL)>0) {
+      dir=d; SetEnvironmentVariableA("TMPDIR",d); SetEnvironmentVariableA("tmp_dir",d);
+    } else dir=NULL; }
+  { int k; for(k=0; env_rm[k]; k++) SetEnvironmentVariableA(env_rm[k],NULL); }
+  return sandbox_run(argv+(strcmp(argv[1],"--cmd")==0?2:1),dir);
 }

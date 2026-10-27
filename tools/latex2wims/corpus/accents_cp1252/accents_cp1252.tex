@@ -1,0 +1,13 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\input wims.sty
+\begin{document}
+\title{Accents et typographie « française »}
+\author{Corpus latex2wims}
+\section{Caractères windows-1252}
+Œuvre, cœur, déjà, garçon, naïf, l’apostrophe, les guillemets « » et “ ”,
+le tiret – et — ; l’euro 20 € ; points de suspension… ; ½.
+\section{Hors windows-1252}
+Ces caractères ne sont pas représentables : α, ∀, → (remplacés par ? avec un diagnostic).
+On préfère les écrire en LaTeX : \(\alpha\), \(\forall\), \(\rightarrow\).
+\end{document}

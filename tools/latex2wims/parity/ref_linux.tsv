@@ -1,0 +1,7 @@
+# latex2wims 0.1.0 corpus linux
+#fichier	statut	blocs	fichiers	empreinte_arbre
+accents_cp1252	ok	3	22	cf5d76ac8fc4b927ba112445e8e4353de4a8e3419c783669c848d89623881b81
+environnements	ok	8	37	5fc652c978cb68e1a2cd9926a1848761e12a5cdbcbf717b647a47c9d2e58e464
+exemple	ok	3	22	437677e2c560f88bc9a89653cdfc652deac437de9948128432f143efa0799ef9
+fichier_test	ok	12	48	f3ee47dc62dfdf6eadc11b53c74eb5ae2e9322676fa962c0449f37a5b164b022
+sections_maths	ok	8	37	30b3c7df6a5e438329083f3b6d81b8ceff679d25483fc61cca92da27a03daed2

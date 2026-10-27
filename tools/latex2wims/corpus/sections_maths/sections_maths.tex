@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\input wims.sty
+\begin{document}
+\title{Sections et mathématiques}
+\section{Algèbre}
+\subsection{Matrices}
+\[ A=\begin{pmatrix}1&2\\3&4\end{pmatrix},\quad \det A=-2. \]
+\subsection{Équations}
+\begin{equation}
+x^2-5x+6=0 \iff x\in\{2,3\}
+\end{equation}
+\section{Analyse}
+\subsection{Limites}
+\[ \lim_{x\to 0}\frac{\sin x}{x}=1 \]
+\subsubsection{Développements}
+\(e^x = \sum_{n\geq 0} \frac{x^n}{n!}\) et \(\ln(1+x)=x-\frac{x^2}{2}+o(x^2)\).
+\section{Probabilités}
+Si \(X\sim\mathcal{B}(n,p)\), alors \(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\).
+\end{document}

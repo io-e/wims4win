@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm,amsmath,amsfonts}
+\input wims.sty
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exo}{Exercice}
+\newtheorem{rem}{Remarque}
+\newenvironment{sol}{}{}
+\begin{document}
+\title{Environnements wims.sty}
+\author{Corpus latex2wims}
+\email{corpus@exemple.fr}
+\section{Théorèmes et démonstrations}
+\begin{thm}[Pythagore]
+Dans un triangle rectangle, \(a^2+b^2=c^2\).
+\end{thm}
+\begin{proof}
+Découper le carré construit sur l'hypoténuse.
+\end{proof}
+\begin{defn}
+Une suite \((u_n)\) est \emph{croissante} si \(u_{n+1}\geq u_n\).
+\end{defn}
+\begin{rem}
+Remarque avec \textbf{gras}, \textit{italique} et \texttt{code}.
+\end{rem}
+\subsection{Plis (typefold)}
+\begin{exo}
+Calculer \(\sum_{k=1}^n k\).
+\begin{sol}
+\[ \sum_{k=1}^n k = \frac{n(n+1)}{2}. \]
+\end{sol}
+\end{exo}
+\section{Listes et tableaux}
+\begin{itemize}
+\item premier élément ;
+\item second élément, avec \(\sqrt{2}\).
+\end{itemize}
+\begin{enumerate}
+\item un
+\item deux
+\end{enumerate}
+\begin{description}
+\item[Graphe] un ensemble de sommets et d'arêtes.
+\item[Arbre] un graphe connexe sans cycle.
+\end{description}
+\begin{tabular}{|l|c|}
+\hline
+\(x\) & \(x^2\) \\
+\hline
+2 & 4 \\
+\hline
+\end{tabular}
+\section{Liens WIMS}
+\begin{center}
+Un exercice : \exercise{module=H6/analysis/oefcourbe.fr&exo=courb1}{Courbes}.
+\end{center}
+\begin{quote}
+Une citation.
+\end{quote}
+Un lien externe : \url{https://wims.univ-cotedazur.fr}.
+\begin{latexonly}
+Ce paragraphe n'apparaît que dans le PDF.
+\end{latexonly}
+\begin{wimsonly}
+Ce paragraphe n'apparaît que dans WIMS.
+\end{wimsonly}
+\end{document}

@@ -59,7 +59,7 @@ OUT=$WD/wims-runtime; rm -rf "$OUT"; mkdir -p "$OUT"
 # (html/themes -> ../themes, scripts/themes, anstype aliases...), so copy
 # their targets. wims.cgi -> wims is dropped (replaced by wims.exe).
 tar -C "$WD/wims" -h --exclude=./public_html/wims.cgi --exclude=./src --exclude=./other --exclude=./tmp --exclude=./sessions \
-    --exclude=./s2 --exclude=./lib --exclude=./download --exclude='./compile*' --exclude='./*.log' --exclude='*.tgz' -cf - . | tar -C "$OUT" -xf -
+    --exclude=./s2 --exclude=./lib --exclude=./download --exclude=./dfsg --exclude=./wimstest --exclude=./localwims --exclude=./Makefile.for.debian --exclude=./mkdistsvn --exclude=./README.template --exclude='./compile*' --exclude='./*.log' --exclude='*.tgz' -cf - . | tar -C "$OUT" -xf -
 # drop every Linux ELF binary (and the wims.cgi symlink)
 find "$OUT" -type f -exec sh -c 'head -c4 "$1" | grep -q ELF && rm -f "$1"' _ {} \;
 find "$OUT" -type l -delete   # broken links only (tar -h kept the rest)

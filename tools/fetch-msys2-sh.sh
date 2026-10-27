@@ -11,14 +11,18 @@
 # Licences: GPL/LGPL and others, listed in <runtime>/other/MSYS2-LICENSES.txt.
 #   Corresponding sources: https://github.com/msys2/MSYS2-packages (and
 #   https://repo.msys2.org/msys/sources/ for the exact pinned versions).
-# Layout: MSYS2 maps "/" to the parent of the directory holding
-#   msys-2.0.dll, i.e. <runtime>/other ; /tmp = other/tmp, /etc = other/etc.
+# Layout (measured on Windows 11): msys-2.0.dll in <runtime>/other/bin makes
+#   MSYS2 map "/" to <runtime> itself, so /tmp = <runtime>/tmp (WIMS tmp),
+#   /etc = <runtime>/etc, and /bin = /usr/bin = <runtime>/bin (the WIMS bin/
+#   scripts). sh.exe, bash.exe and env.exe are therefore also copied into
+#   <runtime>/bin so that "#!/bin/sh", "#!/bin/bash" and "#!/usr/bin/env"
+#   shebangs resolve. config.c puts <runtime>/other/bin first in PATH.
 set -e
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
 RT=${1:?runtime dir}; CACHE=${2:-$ROOT/build/msys2-cache}
 PINS=$ROOT/tools/msys2/msys2-pins.txt
 REPO=${MSYS2_REPO:-https://repo.msys2.org/msys/x86_64}
-mkdir -p "$CACHE" "$RT/other/bin" "$RT/other/tmp" "$RT/other/etc"
+mkdir -p "$CACHE" "$RT/other/bin" "$RT/tmp" "$RT/etc" "$RT/bin"
 unzst() {  # file.tar.zst -> tar on stdout
   if command -v zstd >/dev/null; then zstd -dc "$1"
   else python3 -c 'import sys,zstandard;zstandard.ZstdDecompressor().copy_stream(open(sys.argv[1],"rb"),sys.stdout.buffer)' "$1"; fi
@@ -44,7 +48,8 @@ for f in "$STAGE"/usr/bin/*; do   # shell-script wrappers (gunzip, zcat, egrep..
 done
 [ -f "$RT/other/bin/sh.exe" ] || cp "$RT/other/bin/bash.exe" "$RT/other/bin/sh.exe"
 # minimal /etc for wget (TLS CAs) ; fstab: noacl avoids NTFS ACL rewrites
-[ -d "$STAGE/etc/pki" ] && cp -r "$STAGE/etc/pki" "$RT/other/etc/" || true
-[ -d "$STAGE/etc/ssl" ] && cp -r "$STAGE/etc/ssl" "$RT/other/etc/" || true
-printf 'none / cygdrive binary,posix=0,noacl,user 0 0\n' > "$RT/other/etc/fstab"
+[ -d "$STAGE/etc/pki" ] && cp -r "$STAGE/etc/pki" "$RT/etc/" || true
+[ -d "$STAGE/etc/ssl" ] && cp -r "$STAGE/etc/ssl" "$RT/etc/" || true
+printf 'none / cygdrive binary,posix=0,noacl,user 0 0\n' > "$RT/etc/fstab"
+cp -f "$RT/other/bin/sh.exe" "$RT/other/bin/bash.exe" "$RT/other/bin/env.exe" "$RT/bin/"
 echo "msys2: $(ls "$RT/other/bin" | wc -l) files in $RT/other/bin"

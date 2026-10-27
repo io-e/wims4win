@@ -278,3 +278,9 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - `mkindex` via sh.exe : 1 338 s, rc=1 (cpp, strfile absents ; `find: environment too large` en fin).
 - Retours Claude : GAP 8/8 en relançant (échec de 14 h 56 pendant mkindex, wrapper inchangé depuis le 23/10, donc pas de régression de code) ; limite CPU : le chemin WIMS (job + watchdog) passe < 6 s, le test .NET du harnais attache le job après démarrage et Windows n'applique pas PROCESS_TIME (30 s CPU sans arrêt) ; S2 : harnais sans cmd.exe (27071ff), 3/3.
 - oef2html : 6/6 identiques, 4 échecs identiques.
+
+## 2026-10-27 — Branche feat/latex2wims-doc : documents LaTeX hors de l'application
+- Étude r19040 : `modules/adm/latex2wims/latex2wims.pl` (Perl, Text::Balanced) convertit le `.tex` (wims.sty) en `doc/<n>/src/*` + `.hd` ; `scripts/docu/mkindex` (via `other/bin/src2def`) produit les `.def` avec `msg2wims` et `conversion.pl` ; le moteur sert un module de catégorie `document` (`scripts/docu/var.proc`, `doc/<n>/.def` obligatoire avec `tit=`). Pas de TeX requis.
+- `tools/latex2wims/latex2wims-doc.sh` (même script Linux / sh.exe MSYS2), `exemple.tex`, `test.sh`, README.
+- Mesures : Linux (box) 4/4 ; PC `wims-runtime-r19040-grok` 4/4 (200, texte, MathML), 5 s. Exemple installé sur le PC : `module=local/exemple.fr`.
+- Piège trouvé : une variable `wims_home` héritée visait le runtime de Claude ; le script la force.

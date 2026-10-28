@@ -46,6 +46,13 @@ int main(int argc, char **argv)
     if(f==NULL) return 3;
     (void)fread(b,1,sizeof(b),f); fclose(f); return 0;
   }
+  /* "echo w...": words on one line ending in CRLF, "errline": CRLF line on
+     stderr (replace "cmd /c echo" in tests/platform, PLT-02: no cmd.exe) */
+  if(strcmp(mode,"echo")==0) {
+    int k; for(k=2;k<argc;k++) printf("%s%s",k>2?" ":"",argv[k]);
+    printf("\r\n"); return 0;
+  }
+  if(strcmp(mode,"errline")==0) { fputs("ERRLINE\r\n",stderr); return 0; }
   if(strcmp(mode,"args")==0) {          /* one argument per line */
     int k; for(k=2;k<argc;k++) printf("[%s]\n",argv[k]); return 0;
   }

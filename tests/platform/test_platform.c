@@ -93,11 +93,11 @@ int main(int argc, char **argv)
     T("win32: DROP_PRIV refused iff elevated", elev ? r==WP_E_NOISOLATION : r!=WP_E_NOISOLATION);
     if(r==WP_OK) { wp_kill(&p); wp_wait(&p,&st); }
   }
-  {
-    char *av_echo[]={"cmd","/c","echo","hello world",NULL};
+  if(fake) {
+    char *av_echo[]={fake,"echo","hello world",NULL};
     char buf[128]; long k=0, m; int i;
     wp_chan_open(&c);
-    T("win32: spawn cmd /c echo (no isolation)",
+    T("win32: spawn fake_cas echo (no isolation)",
       wp_spawn(&c,av_echo,NULL,NULL,NULL,WP_ISO_NONE,"t",&p)==WP_OK);
     for(i=0;i<50 && k<(long)sizeof(buf)-1;i++) {
       if(wp_poll(&c,1,0,100000,&cr,NULL)>0 && cr) {
@@ -108,12 +108,12 @@ int main(int argc, char **argv)
     buf[k]=0;
     T("win32: child output has CRLF", strstr(buf,"\r\n")!=NULL);
     k=wp_strip_cr(buf,k);
-    T("win32: CR stripped", strcmp(buf,"\"hello world\"\n")==0 || strcmp(buf,"hello world\n")==0);
+    T("win32: CR stripped", strcmp(buf,"hello world\n")==0);
     T("win32: wait", wp_wait(&p,&st)==1 && st==0);
     T("win32: not alive after exit", wp_alive(&p)==0);
   }
-  {
-    char *av_e[]={"cmd","/c","echo ERRLINE 1>&2",NULL}; char e[64]; wp_fd er, ew; long l;
+  if(fake) {
+    char *av_e[]={fake,"errline",NULL}; char e[64]; wp_fd er, ew; long l;
     wp_chan_open(&c); wp_pipe_open(&er,&ew);
     T("win32: spawn_mx", wp_spawn_mx(&c,av_e,ew,WP_ISO_NONE,1,"t",&p)==WP_OK);
     T("win32: spawn_mx stderr pipe readable", wp_fd_readable(er,3000000)==1);

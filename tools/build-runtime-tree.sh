@@ -50,6 +50,9 @@ mkdir -p "$WD/wims"; cd "$WD/wims"
   yes "" | ./compile --mathjax --geogebra > "$WD/compile.log" 2>&1
   bin/mkindex > "$WD/mkindex.log" 2>&1 || true
 }
+# theme CSS / icon CSS / wimsedu1-2 icons: generated at release time upstream,
+# absent from an SVN export (item 5 of 2026-10-28): run mkcss.pl + gifs/themes/mkindex
+bash "$ROOT/tools/gen-theme-assets.sh" "$WD/wims"
 # Windows executables
 for s in build-win32 build-wims-win32 build-wimslogd-win32 build-chroot-win32 build-wims-mathml-win32 build-flydraw-win32; do
   bash "$ROOT/tools/$s.sh" >/dev/null

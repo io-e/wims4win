@@ -182,7 +182,7 @@ Runner: `$rt\other\tests\test_sandbox_evasion.ps1 -Runtime $rt` (MF-61), with `f
 | SBX-S3 | MF-11 no capability SID | `PING.EXE -n 1 1.1.1.1` inside sandbox | rc≠0 | — | P0 | PASS (2026-10-27; earlier phase 3) |
 | SBX-S4a/b | MF-11 `launch` Job `ActiveProcessLimit=15`, `TerminateJobObject` after exit | `fake_cas bomb` | children ≤ 14; 0 left after | RLIMIT_NPROC=15 | P0 | PASS (children=14, 0→0) |
 | SBX-S5 | MF-11 `quote_arg` (MS CRT rules) | `fake_cas args 'a" & PING.EXE … & "b' 'x\" y' 'c:\dir with space\'` | 3 lines equal to inputs | execv argv | P0 | PASS (2026-10-27) |
-| SBX-S5b | MF-20 `execredirected` arg split (`'…'` quoting) | OEF whose parameter contains `"`, `&`, `;` sent to pari | literal text reaches CAS, no extra process | Linux same split | P0 | NOT RUN |
+| SBX-S5b | MF-20 `execredirected` arg split (`'…'` quoting) | OEF whose parameter contains `"`, `&`, `;` sent to pari | literal text reaches CAS, no extra process | Linux same split | P0 | PASS (2026-10-28, via Laragon: formula with `"; system("PING.EXE…"); "` and `&` sanitized by wims, no PING.EXE/cmd.exe created) |
 | SBX-S6 | MF-22 `octave.c illegal[]` (system) + MF-11 | Octave `system("PING.EXE 127.0.0.1")` through the interface | refused by interface | same list | P0 | BLOCKED (Octave not installed in E-RT; waiver needed) |
 | SBX-S7 | MF-22 `illegal[]` += dos/winqueryreg/winopen | Octave `dos('x')`, `winqueryreg(...)` | refused | n/a (Win only) | P0 | BLOCKED (Octave) |
 | SBX-S8 | MF-21 + MF-11 | Maxima `:lisp (with-open-file (s "D:/…/log/x" :direction :output))` | denied by ACL | chroot | P0 | BLOCKED (Maxima not configured in E-RT) |
@@ -197,7 +197,7 @@ Runner: `$rt\other\tests\test_sandbox_evasion.ps1 -Runtime $rt` (MF-61), with `f
 | SBX-17 | MF-11 + real CAS | pari `write("…/log/gp-evil.txt",1)` inside sandbox | error, file absent | — | P0 | PASS (2026-10-27) |
 | SBX-18 | MF-11 env cleaning (`env_rm`) | `fake_cas` mode printing env (to add) | no `w_wims_home`, `SERVER_ADDR`… | chroot.c env_rm | P1 | NOT RUN (fake_cas mode to add) |
 | SBX-19 | MF-11 TMPDIR made absolute | CAS writing `$TMPDIR/out` | file in session dir | — | P1 | PASS indirectly (factor.fr in sandbox) |
-| SBX-20 | MF-54 marker by default | fresh `build-runtime-tree.sh` → `chroot/tmp/sessions/.chroot` exists | present | — | P0 | NOT RUN on a fresh tree (decision: default on, Arnaud) |
+| SBX-20 | MF-54 marker by default | fresh `build-runtime-tree.sh` → `chroot/tmp/sessions/.chroot` exists | present | — | P0 | PASS (2026-10-28, fresh box build-runtime-tree.sh: marker present) |
 | SBX-21 | MF-03 `token_elevated` (DROP_PRIV refused iff elevated) | PLT-01 case "DROP_PRIV refused iff elevated"; run wims from an elevated shell | refused | — | P1 | PASS (in PLT-01) |
 
 ### 4.5 LOGD — wimslogd (issue #1)
@@ -213,6 +213,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | LOGD-05 | `options()` path guards over IPC | `-c 1/../.. readfile log/wims.conf` | `ERROR 2 illegal_fname` | same | P0 | PASS |
 | LOGD-06 | `cmd()` bad_cmd | `nosuchcmd` | `ERROR 2 bad_cmd` | same | P1 | PASS |
 | LOGD-07 | MF-50 `--stack,33554432` (MAX_FILELEN 2 MB buffers on stack) | `recordcnt` on a file | no crash (stack overflow found and fixed) | 8 MB stack | P0 | PASS (wine + PC, 2026-10-27) |
+| BLD-05 | MF-50 `build-wims-win32.sh` `--stack,8388608` | `-fstack-usage` frames up to ~287 KB (calc_listunion); reserve was 2 MB (mingw default) | 8 MB reserve as on Linux | ulimit 8 MB | P1 | PASS (2026-10-28, SizeOfStackReserve 0x800000, deployed, CGI runs OK) |
 | LOGD-08 | `cmd_getscore` over pipe | `-c 1000 -u anonymous getscore` | binary answer (404 611 bytes), daemon alive | same size expected | P0 | PASS (size); Linux byte parity NOT RUN |
 | LOGD-09 | MF-30 `wl_spawn_task("cleaning")`, `run_task` | wait ≥ 2 min with env `wimslogd="3600 3600 3600 10 0 0 -1 0 8 100"`; old session dir (mtime −2 days) | old session removed, `tmp/log/lastclean` created, kept session with `wims_user=` | forked child | P0 | PASS (wine 2026-10-27; PC: lastclean created) |
 | LOGD-10 | `dispatch_log` task via `sh -c` (MSYS2) | as LOGD-09, check `tmp/log/exec.fail` absent | no exec.fail | — | P1 | PASS (PC 2026-10-27) |
@@ -231,7 +232,8 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | CGI-03 | MF-07 incomplete tree → 500 | rename `$rt\public_html\themes` temporarily | `Status: 500 WIMS runtime tree incomplete` listing it | — | P2 | NOT RUN |
 | CGI-04 | MF-26 SERVER_ADDR NULL (f999023) | run CGI without `SERVER_ADDR` | no access violation | — | P1 | PASS (all PowerShell runs omit it) |
 | CGI-05 | E-WEB + MF-58 vhost | browser: `http://wims_paris_saclay_fr.test/wims/wims.cgi` | 200 home | — | P0 | PASS on Claude's runtime (2026-10-27); NOT RUN with `WIMS_RT` → Grok runtime |
-| CGI-06 | E-WEB | `http://wims_paris_saclay_fr.test/wims/wims.cgi?module=tool/algebra/factor.fr&lang=fr` → enter `2^64+1` | `274177 × 67280421310721` | Linux | P0 | NOT RUN via Apache (PASS via direct CGI, SMK-02) |
+| CGI-06 | E-WEB | `http://wims_paris_saclay_fr.test/wims/wims.cgi?module=tool/algebra/factor.fr&lang=fr` → enter `2^64+1` | `274177 × 67280421310721` | Linux | P0 | PASS (2026-10-28, after ch..root ensure_profile_env fix: Apache minimal env made CreateProcessAsUser fail with err 203) |
+| CGI-08 | E-WEB `ScriptAliasMatch` | exercise image `/wims/wims.gif?cmd=getins…` (e.g. chronology) via Laragon | 200 image/gif | Linux apache-config maps wims.* | P1 | NOT RUN via Apache (CGI direct PASS: image/gif 3065 B; needs the 4 ScriptAliasMatch lines of docs/apache-laragon-wims-runtime.conf, applied by Arnaud) |
 | CGI-07 | MF-25 PATH 8 KiB, `wims_home` with `/` | `W` home page with a long inherited PATH (>4 KiB) | 200 | — | P2 | NOT RUN |
 
 ### 4.7 IFC — CAS interfaces
@@ -243,7 +245,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | IFC-03 | MF-22 GAP direct exe (51b54d5) | GAP scenarios of IFC-01 | 8/8 on rerun | Linux | P1 | PASS (Claude 2026-10-27: 21/24 then 8/8 on rerun; first failure during mkindex load) |
 | IFC-04 | D12 `pari_command` in `log/wims.conf` (MF-54 `PARI_COMMAND`) | `Select-String pari_command $rt\log\wims.conf`; `!exec pari about` | path to gp.exe | — | P0 | PASS |
 | IFC-05 | MF-24 CR strip on exec.err | CAS error message in a module | no `\r` in page | — | P1 | PASS (PLT-03, f81abf1) |
-| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | NOT RUN (only PARI tested inside sandbox) |
+| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | FAIL for GAP (Cygwin cannot create \\BaseNamedObjects\\cygwin1S5-… in an AppContainer, 0xC0000022; decision pending: native GAP or weaker policy); Octave/Maxima BLOCKED (not installed) |
 
 ### 4.8 MML — MathML and formula size (D7)
 
@@ -252,7 +254,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | MML-01 | MF-27 `mathml()` via `wp_spawn` (`bin/wims_mathml.exe`); MF-61 `win/test_mathml_spawn.c` | page with formula (latex2wims example, `\frac`) | `<math` in page | same MathML | P0 | PASS (`05` mathml; latex2wims PC check "MathML 2/3 blocks") |
 | MML-02 | MF-54 `default_texposition=2` | `Select-String default_texposition $rt\log\wims.conf` | `=2` | — | P0 | PASS |
 | YAML-01 | MF-27 + MF-58 `log/wims4win.yaml` `formula: size: 200%` | page source: formula style font-size 200 % | 200 % | identical on Linux (9b38fb7) | P1 | PASS (d3c33a3/d60e1f9 results) |
-| YAML-02 | range 50–400 clamp | set `size: 900%` then `10%` | clamped to 400 % / 50 % | same | P1 | NOT RUN |
+| YAML-02 | range 50–400 clamp | set `size: 900%` then `10%` | clamped to 400 % / 50 % | same | P1 | PASS (2026-10-28: 900%→400%, 30%→50%, abc→200% on local/exemple.fr block=mainS1; mathml.c now clamps) |
 | YAML-03 | missing YAML | rename `wims4win.yaml` | default 200 %, no error | same | P2 | NOT RUN |
 
 ### 4.9 HLP — Helpers (Misc/OefMsg2wims, webget, flydraw, insdraw, the 17 programs)
@@ -285,7 +287,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | MSYS-02 | MF-55 separate root `other/msys2` (a0e0f62) | `sh -c 'pwd; echo $wims_home'` from `$rt` | real runtime path (not `/`, not `//`) | P1 | PASS (fix a0e0f62, mkindex now runs) |
 | MSYS-03 | MF-25 PATH order | `W` + `!exec sh` path; `Get-Command sh` inside CGI env | `other\msys2\usr\bin\sh.exe` | P1 | PASS |
 | MSYS-04 | ed2c3f7 perl5 modules | `perl -Mstrict -Mwarnings -e 1` | rc 0 | P1 | PASS |
-| MSYS-05 | no cmd.exe anywhere (D10, D17) | during SMK-01…03 and LOGD-09: `Get-CimInstance Win32_Process -Filter "Name='cmd.exe'"` filtered on ParentProcessId chain | none spawned by WIMS | P0 | NOT RUN (systematic check to do) |
+| MSYS-05 | no cmd.exe anywhere (D10, D17) | during SMK-01…03 and LOGD-09: `Get-CimInstance Win32_Process -Filter "Name='cmd.exe'"` filtered on ParentProcessId chain | none spawned by WIMS | P0 | PASS (2026-10-28: 0 cmd.exe during sandbox suite GROK_V1 26/26 and Laragon CGI runs) |
 
 ### 4.11 OEF — oef-validation and oef2html parity (D13, D19)
 
@@ -386,20 +388,21 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
 
-## 7. Counts (updated 2026-10-28 10:45 Paris time)
+## 7. Counts (updated 2026-10-28 afternoon, Paris time)
 
-138 test cases (3 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp).
+140 test cases (5 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp, CGI-08 getins image, BLD-05 wims.exe stack).
 
 | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
 |---|---|---|---|---|---|
-| P0 | 51 | 43 | 5 | 3 | 0 |
-| P1 | 66 | 55 | 11 | 0 | 0 |
+| P0 | 51 | 47 | 0 | 3 | 1 |
+| P1 | 68 | 57 | 11 | 0 | 0 |
 | P2 | 21 | 6 | 14 | 0 | 1 |
-| **Total** | **138** | **104** | **30** | **3** | **1** |
+| **Total** | **140** | **110** | **25** | **3** | **2** |
 
-Per area: SBX 26, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 7, BLD/CI 7, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
+Per area: SBX 26, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
 
 **Production gate:**
-- P0 still NOT RUN: SBX-S5b, SBX-20, CGI-06, IFC-06, MSYS-05.
+- P0 NOT RUN: none.
+- P0 FAIL: IFC-06 (GAP Cygwin vs AppContainer, decision pending).
 - P0 BLOCKED: SBX-S6/S7/S8 (Octave/Maxima not installed, per Arnaud's instruction of 2026-10-28).
 - **Gate not yet met.**

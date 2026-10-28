@@ -295,3 +295,12 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - **modupdate** de bout en bout sur un module : `installone()` de `bin/modupdate` (webget WinHTTP, tar, mv), avec le harnais `Reprise_Wims_Grok\tools\mu_one.sh`, sur U1/physics/oefelecmag.fr : « Successful », page en 200.
 - **PLT-02** (d4d7892) : `cmd /c echo` remplacé par `fake_cas echo/errline` ; 22/22 sur ShadowPC et sous Linux.
 - Vérification Linux : check-linux-identical 14/14, plus Misc/modind.c IDENTICAL.
+
+## 2026-10-28 (après-midi)
+
+- **YAML-02** : `mathml.c` borne désormais la taille à 50..400 % au lieu d'ignorer la valeur. PC : 900 % → 400 %, 30 % → 50 %, abc → 200 %. Le test de Claude lisait adm/doc, qui ne contient aucune formule.
+- **Pile de wims.exe** : lien avec `--stack,8388608` (8 Mo, comme Linux) ; `-fstack-usage` montre des trames jusqu'à ~287 Ko, alors que mingw réservait 2 Mo.
+- **ch..root** : `ensure_profile_env()` reconstruit USERPROFILE, LOCALAPPDATA, APPDATA, TEMP et TMP. Sous Apache (environnement minimal), CreateProcessAsUser échouait avec l'erreur 203 et tous les CAS étaient refusés. `--cmd & sh` est maintenant refusé explicitement (127).
+- **Suite sandbox** `tests/platform/test-sandbox-grok.ps1` : 26/26 sur ShadowPC. Les 8 échecs de la suite Claude venaient de `param([string[]]$Args)` (variable automatique PowerShell) et du nom localisé de S-1-15-2-1. Réponse détaillée dans `tests-win_ALF\11_Handoff_Grok_to_Claude_GROK_V1.md`.
+- **P0** : SBX-S5b, SBX-20, CGI-06 et MSYS-05 PASS. IFC-06 FAIL pour GAP (Cygwin ne peut pas créer ses objets nommés dans un AppContainer) ; décision à prendre. `--grant-rx` appliqué sur `tests-win\cas\gap\runtime`.
+- **Image 404 `wims.gif?cmd=getins`** : le CGI sert bien l'image ; seul le vhost ne mappe que `/wims/wims.cgi`. Les lignes ScriptAliasMatch sont dans `docs/apache-laragon-wims-runtime.conf`, à appliquer par Arnaud.

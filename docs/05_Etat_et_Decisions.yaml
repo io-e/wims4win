@@ -260,6 +260,13 @@ tests:
   oefcompile_pc: "PASS — U1/physics/oefelecmag.fr 13/13"
   modupdate_one_module: "PASS — installone via webget : U1/physics/oefelecmag.fr Successful, 200"
   platform_unit_no_cmd: "PASS — 22/22 sans cmd.exe (PLT-02)"
+  sandbox_grok_v1: "PASS — tests/platform/test-sandbox-grok.ps1 26/26 sur ShadowPC (les 8 échecs de la suite Claude venaient de $Args, variable automatique PowerShell)"
+  yaml_02: "PASS — mathml.c borne la taille à 50..400 % (900→400, 30→50, abc→200)"
+  cgi_06_laragon: "PASS après correctif — Apache passe un environnement minimal ; ch..root reconstruit USERPROFILE/LOCALAPPDATA/APPDATA/TEMP (ensure_profile_env), sinon erreur 203"
+  sbx_s5b_sbx_20_msys_05: "PASS"
+  ifc_06: "FAIL GAP (Cygwin incompatible AppContainer, 0xC0000022) ; Octave/Maxima BLOQUÉ ; décision Arnaud en attente"
+  wims_stack: "PASS — wims.exe lié avec une pile de 8 Mo (comme Linux), trames jusqu'à ~287 Ko"
+  cgi_08_getins: "EN ATTENTE — CGI correct (image/gif) ; 4 lignes ScriptAliasMatch à appliquer par Arnaud dans Laragon"
 
 remaining:
   P0_sandbox_hardening:

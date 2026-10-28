@@ -11,6 +11,7 @@ Depuis le 27/10/2026, les documents de Claude et de Grok sont **fusionnés en do
 | [`05_Etat_et_Decisions.yaml`](05_Etat_et_Decisions.yaml) | État, décisions, travaux restants, points à trancher | `State_Wims4Win_CLAUDE_V1.yaml` + Suivi |
 | [`06_Recherche_Projets.md`](06_Recherche_Projets.md) | Pistes de migration étudiées | `Recherche_Projets_Migration_WIMS_CLAUDE_V1_1.md` |
 | [`07_Handoffs.md`](07_Handoffs.md) | Handoffs Claude ↔ Grok | `HANDOFF_Claude_OEF_Python.md`, `Handoff_Grok_Wims02/03_CLAUDE_V1.md` |
+| [`08_Test_Plan_Windows_Migration.md`](08_Test_Plan_Windows_Migration.md) | Test plan (EN) — code modifié pour le portage uniquement, traçabilité D/issues → code → tests | — |
 | [`Suivi_Developpement_Portage.md`](Suivi_Developpement_Portage.md) | Journal chronologique du développement | — |
 | `wims4win.yaml`, `apache-laragon-wims-runtime.conf` | Fichiers de configuration utilisés par le build | — |
 | [`archive/`](archive/) | Originaux Claude et Grok, en lecture seule (historique git conservé) | — |

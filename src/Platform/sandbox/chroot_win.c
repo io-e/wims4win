@@ -270,10 +270,33 @@ static int purge_profiles_ex(int stale, int verbose)
   return 0;
 }
 
+/* Apache (mod_cgi) gives CGIs a minimal environment (PATH, SystemRoot...):
+ * without USERPROFILE/LOCALAPPDATA, CreateProcessAsUser of an AppContainer
+ * process fails with ERROR_ENVVAR_NOT_FOUND (203), so every CAS was refused
+ * under Laragon while direct runs worked. Rebuild the per-user variables
+ * from the process token when they are missing. */
+static void ensure_profile_env(void)
+{
+  char prof[MAX_PATH], b[MAX_PATH+32]; DWORD n=sizeof(prof); HANDLE tk;
+  if(GetEnvironmentVariableA("USERPROFILE",prof,sizeof(prof))==0) {
+    if(!OpenProcessToken(GetCurrentProcess(),TOKEN_QUERY,&tk)) return;
+    if(!GetUserProfileDirectoryA(tk,prof,&n)) { CloseHandle(tk); return; }
+    CloseHandle(tk); SetEnvironmentVariableA("USERPROFILE",prof);
+  }
+  if(GetEnvironmentVariableA("LOCALAPPDATA",b,sizeof(b))==0)
+    { snprintf(b,sizeof(b),"%s\\AppData\\Local",prof); SetEnvironmentVariableA("LOCALAPPDATA",b); }
+  if(GetEnvironmentVariableA("APPDATA",b,sizeof(b))==0)
+    { snprintf(b,sizeof(b),"%s\\AppData\\Roaming",prof); SetEnvironmentVariableA("APPDATA",b); }
+  snprintf(b,sizeof(b),"%s\\AppData\\Local\\Temp",prof);
+  { char t[8]; if(GetEnvironmentVariableA("TEMP",t,sizeof(t))==0) SetEnvironmentVariableA("TEMP",b);
+    if(GetEnvironmentVariableA("TMP",t,sizeof(t))==0) SetEnvironmentVariableA("TMP",b); }
+}
+
 int main(int argc, char **argv)
 {
   const char *dir; int i;
   if(argc<2) return 0;
+  ensure_profile_env();
   if(strcmp(argv[1],"--noop")==0) return 0;
   if(strcmp(argv[1],"--selftest")==0) {
     char self[MAX_PATH]; char *av[3];
@@ -284,12 +307,13 @@ int main(int argc, char **argv)
   if(strcmp(argv[1],"--grant-rx")==0) return grant_rx(argc-2,argv+2);
   if(strcmp(argv[1],"--purge-profiles")==0) return purge_profiles();
   if(strcmp(argv[1],"cleantmpdir")==0) return 0;
-  if(argv[1][0]=='&') {
-    fprintf(stderr,"ch..root: untrusted %s refused on Windows.\n",argc>2?argv[2]:"exec");
-    return 127;
-  }
   i=1; if(strcmp(argv[1],"--cmd")==0) i=2;
   if(i>=argc) { fprintf(stderr,"usage: ch..root.exe <prog> [args...] | --selftest | --grant-rx <dir>...\n"); return 2; }
+  /* "& sh|perl <code>" (also after --cmd): untrusted shell, refused */
+  if(argv[i][0]=='&') {
+    fprintf(stderr,"ch..root: untrusted %s refused on Windows.\n",i+1<argc?argv[i+1]:"exec");
+    return 127;
+  }
   dir=getenv("TMPDIR"); if(!dir || !*dir) dir=getenv("tmp_dir");
   { static char d[MAX_PATH];
     /* absolute, since the child runs in it: $TMPDIR/x must stay valid */

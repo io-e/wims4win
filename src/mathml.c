@@ -21,7 +21,7 @@ int disable_mathml;
 /* wims4win: formula size from ../log/wims4win.yaml (same on Linux and
  * Windows). Accessibility (DYS): large formulas by default.
  *   formula:
- *     size: 200%        # mathsize given to wims_mathml, 50%..400%
+ *     size: 200%        # mathsize given to wims_mathml, clamped to 50%..400%
  * Upstream computed a size from useropts/wims_texbasesize but, on Linux,
  * passed "--tex-size 100%" as a single argv word, so wims_mathml ignored it
  * and used its own default 110%; the Win32 port passed it correctly (120%).
@@ -51,7 +51,11 @@ static const char *wims4win_formula_size(void)
     val:
     while(isspace((unsigned char)*p) || *p=='"' || *p=='\'') p++;
     v=(int)strtol(p,&q,10);
-    if(q>p && v>=50 && v<=400) snprintf(size,sizeof(size),"%d%%",v);
+    if(q>p && v>0) {          /* out-of-range values are clamped to 50..400 */
+      if(v<50) v=50;
+      if(v>400) v=400;
+      snprintf(size,sizeof(size),"%d%%",v);
+    }
   }
   fclose(f);
   return size;

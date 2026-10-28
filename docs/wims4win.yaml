@@ -4,7 +4,7 @@
 
 formula:
   # Taille des formules MathML (attribut mathsize transmis à wims_mathml).
-  # Accessibilité DYS : grande par défaut. Valeurs : 50% à 400%.
+  # Accessibilité DYS : grande par défaut. Valeurs : 50% à 400% (hors plage : ramenée à 50 % ou 400 %).
   # Sans ce fichier (ou sans la clé), wims utilise 200%.
   # Référence : WIMS amont = 110% (défaut interne de wims_mathml).
   size: 200%

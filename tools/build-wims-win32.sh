@@ -13,5 +13,8 @@ for f in $SRCS; do
   o=$OUT/obj/$(echo $f | tr / _).o
   $CC $CFLAGS -c "$STAGE/$f" -o "$o"; objs+=("$o")
 done
-$CC -O2 -static -o "$OUT/wims.exe" "${objs[@]}" -lws2_32 -ladvapi32 -lshell32 -lbcrypt -lm
+# 8 MiB stack like the Linux default (ulimit -s 8192): wims nests output()/
+# exec/calc frames of up to ~287 KB each (MAX_LINELEN=45000 buffers, see
+# -fstack-usage), so the 2 MiB mingw default overflows ~4x sooner than Linux.
+$CC -O2 -static -Wl,--stack,8388608 -o "$OUT/wims.exe" "${objs[@]}" -lws2_32 -ladvapi32 -lshell32 -lbcrypt -lm
 echo "built $OUT/wims.exe ($(stat -c%s "$OUT/wims.exe") bytes)"

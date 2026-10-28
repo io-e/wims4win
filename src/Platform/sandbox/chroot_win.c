@@ -14,6 +14,21 @@
  *                                     ALL APPLICATION PACKAGES on CAS dirs
  *   ch..root.exe --purge-profiles     delete leftover "wims.chroot.*"
  *                                     AppContainer profiles (older versions)
+ *   ch..root.exe --policy <prog>      print the policy <prog> would run under
+ *                                     ("appcontainer" or "lowil"), audit aid
+ *
+ * Policy (D21): every program runs in an AppContainer, except the programs
+ * listed with "lowil <name>" in ch..root.conf next to ch..root.exe (shipped
+ * with "lowil gap.exe" only: Cygwin cannot create its named objects inside an
+ * AppContainer, 0xC0000022). A "lowil" program runs with the same restricted
+ * token at LOW integrity (no write to anything not labelled low: profile,
+ * HKCU outside AppDataLow, runtime) in a Job with PROC_QUOTA processes,
+ * "memory_mb" (default 2048) of committed memory and kill-on-close
+ * ("lowil_path <dirs>" is prepended to PATH for them: Cygwin DLLs); only the
+ * session dir is labelled low for the run. It is NOT isolated for reads or
+ * network, like the Linux chroot. No file or no match = AppContainer.
+ * <name> without '\' matches the program's file name, with '\' the full
+ * path (case-insensitive).
  *
  * Sandbox, never silently weaker: any failure exits 2 (or 127), no fallback
  * to an unrestricted CreateProcess.
@@ -41,6 +56,48 @@
 #include <string.h>
 
 #define PROC_QUOTA 15
+#define MAX_LOWIL 16
+
+static char lowil[MAX_LOWIL][MAX_PATH]; static int nlowil;
+static unsigned long memory_mb=2048;
+static char lowil_path[4096];   /* prepended to PATH for lowil runs (Cygwin bin) */
+
+/* ch..root.conf next to the exe: "lowil <name>", "memory_mb <n>", '#' comments */
+static void load_conf(void)
+{
+  char path[MAX_PATH], line[512], *p, *e; FILE *f; DWORD n;
+  n=GetModuleFileNameA(NULL,path,sizeof(path));
+  if(!n || n>=sizeof(path)) return;
+  p=strrchr(path,'\\'); if(!p) return;
+  snprintf(p+1,sizeof(path)-(p+1-path),"ch..root.conf");
+  if(!(f=fopen(path,"r"))) return;
+  while(fgets(line,sizeof(line),f)) {
+    for(p=line; *p==' '||*p=='\t'; p++);
+    if(*p=='#') continue;
+    for(e=p+strlen(p); e>p && (e[-1]=='\n'||e[-1]=='\r'||e[-1]==' '||e[-1]=='\t'); ) *--e=0;
+    if(strncmp(p,"lowil",5)==0 && (p[5]==' '||p[5]=='\t') && nlowil<MAX_LOWIL) {
+      for(p+=6; *p==' '||*p=='\t'; p++);
+      if(*p) snprintf(lowil[nlowil++],MAX_PATH,"%s",p);
+    } else if(strncmp(p,"lowil_path",10)==0 && (p[10]==' '||p[10]=='\t')) {
+      for(p+=11; *p==' '||*p=='\t'; p++);
+      snprintf(lowil_path,sizeof(lowil_path),"%s",p);
+    } else if(strncmp(p,"memory_mb",9)==0) {
+      unsigned long v=strtoul(p+9,NULL,10); if(v>=16) memory_mb=v;
+    }
+  }
+  fclose(f);
+}
+
+static int is_lowil(const char *exe)
+{
+  char full[MAX_PATH]; const char *base; int i;
+  if(!GetFullPathNameA(exe,sizeof(full),full,NULL)) snprintf(full,sizeof(full),"%s",exe);
+  base=strrchr(full,'\\'); base=base?base+1:full;
+  { const char *b2=strrchr(base,'/'); if(b2) base=b2+1; }
+  for(i=0;i<nlowil;i++)
+    if(_stricmp(lowil[i],strchr(lowil[i],'\\')?full:base)==0) return 1;
+  return 0;
+}
 
 static const char *env_rm[]={
   "s2_dir", "w_wims_home", "session_base_dir", "trusted_module",
@@ -151,7 +208,7 @@ static int resolve_exe(const char *name, char *out, size_t cap)
   return 1;
 }
 
-static int launch(HANDLE tok, PSID ac_sid, char *const argv[], const char *cwd)
+static int launch(HANDLE tok, PSID ac_sid, char *const argv[], const char *cwd, SIZE_T memlim)
 {
   static char cmd[32768]; size_t n=0; int i, ok; char exe0[MAX_PATH];
   STARTUPINFOEXA si; PROCESS_INFORMATION pi; SIZE_T asz=0;
@@ -171,14 +228,19 @@ static int launch(HANDLE tok, PSID ac_sid, char *const argv[], const char *cwd)
   li.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
        |JOB_OBJECT_LIMIT_ACTIVE_PROCESS|JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
   li.BasicLimitInformation.ActiveProcessLimit=PROC_QUOTA;
+  if(memlim) {
+    li.BasicLimitInformation.LimitFlags|=JOB_OBJECT_LIMIT_JOB_MEMORY;
+    li.JobMemoryLimit=memlim;
+  }
   if(!SetInformationJobObject(job,JobObjectExtendedLimitInformation,&li,sizeof(li)))
     { fail("SetInformationJobObject",GetLastError()); CloseHandle(job); return 2; }
   memset(&sc,0,sizeof(sc)); sc.AppContainerSid=ac_sid;
   InitializeProcThreadAttributeList(NULL,1,0,&asz);
   al=(LPPROC_THREAD_ATTRIBUTE_LIST)malloc(asz);
   if(!al || !InitializeProcThreadAttributeList(al,1,0,&asz)) { CloseHandle(job); return 2; }
-  UpdateProcThreadAttribute(al,0,PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES,
-                            &sc,sizeof(sc),NULL,NULL);
+  if(ac_sid && !UpdateProcThreadAttribute(al,0,PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES,
+                            &sc,sizeof(sc),NULL,NULL))
+    { fail("UpdateProcThreadAttribute",GetLastError()); DeleteProcThreadAttributeList(al); free(al); CloseHandle(job); return 2; }
   memset(&si,0,sizeof(si)); si.StartupInfo.cb=sizeof(si);
   si.StartupInfo.dwFlags=STARTF_USESTDHANDLES;
   si.StartupInfo.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
@@ -215,10 +277,69 @@ static int sandbox_run(char *const argv[], const char *dir)
     granted=set_ace(dir,sid,GENERIC_ALL,GRANT_ACCESS)==0;
   /* cwd = session dir (the Linux wrapper chdirs into the chroot): the
    * caller's cwd (public_html) is not readable from the container */
-  r=launch(tok,sid,argv,granted?dir:NULL);
+  r=launch(tok,sid,argv,granted?dir:NULL,0);
   if(granted) set_ace(dir,sid,GENERIC_ALL,REVOKE_ACCESS);
   FreeSid(sid); CloseHandle(tok);
   DeleteAppContainerProfile(wname);
+  return r;
+}
+
+/* low (or, with low=0, no) mandatory label on dir, inherited (OI|CI) */
+static int set_low_label(const char *dir, int low)
+{
+  PSECURITY_DESCRIPTOR sd=NULL; PACL sacl=NULL; BOOL pres=FALSE, def=FALSE; DWORD e;
+  ACL empty;
+  if(low) {
+    if(!ConvertStringSecurityDescriptorToSecurityDescriptorA("S:(ML;OICI;NW;;;LW)",
+         SDDL_REVISION_1,&sd,NULL)) { fail("label SDDL",GetLastError()); return -1; }
+    GetSecurityDescriptorSacl(sd,&pres,&sacl,&def);
+  } else {
+    InitializeAcl(&empty,sizeof(empty),ACL_REVISION); sacl=&empty;
+  }
+  e=SetNamedSecurityInfoA((LPSTR)dir,SE_FILE_OBJECT,LABEL_SECURITY_INFORMATION,NULL,NULL,NULL,sacl);
+  if(sd) LocalFree(sd);
+  if(e!=ERROR_SUCCESS) { fail("SetNamedSecurityInfo(label)",e); return -1; }
+  return 0;
+}
+
+static PSID current_user_sid(BYTE *buf, DWORD cap)
+{
+  HANDLE t; DWORD n=0; PSID r=NULL;
+  if(!OpenProcessToken(GetCurrentProcess(),TOKEN_QUERY,&t)) return NULL;
+  if(GetTokenInformation(t,TokenUser,buf,cap,&n)) r=((TOKEN_USER*)buf)->User.Sid;
+  CloseHandle(t); return r;
+}
+
+/* D21 "lowil" policy: restricted token at low integrity + Job (processes,
+ * memory, kill-on-close), no AppContainer; session dir labelled low for the
+ * run, TEMP/TMP pointed at it (the profile temp is not writable at low IL) */
+static int lowil_run(char *const argv[], const char *dir)
+{
+  HANDLE tok; PSID low=NULL, user=NULL; TOKEN_MANDATORY_LABEL ml; int r, labelled=0;
+  BYTE ubuf[SECURITY_MAX_SID_SIZE+sizeof(TOKEN_USER)];
+  tok=make_restricted(); if(!tok) return 2;
+  if(!ConvertStringSidToSidA("S-1-16-4096",&low)) { fail("low IL SID",GetLastError()); CloseHandle(tok); return 2; }
+  memset(&ml,0,sizeof(ml)); ml.Label.Sid=low; ml.Label.Attributes=SE_GROUP_INTEGRITY;
+  if(!SetTokenInformation(tok,TokenIntegrityLevel,&ml,sizeof(ml)+GetLengthSid(low)))
+    { fail("SetTokenInformation(low IL)",GetLastError()); LocalFree(low); CloseHandle(tok); return 2; }
+  LocalFree(low);
+  if(*lowil_path) {
+    static char np[32768]; char *op=getenv("PATH");
+    snprintf(np,sizeof(np),"%s;%s",lowil_path,op?op:"");
+    SetEnvironmentVariableA("PATH",np);
+  }
+  if(dir && *dir && GetFileAttributesA(dir)!=INVALID_FILE_ATTRIBUTES) {
+    /* relabelling needs WRITE_OWNER, which "Modify" ACLs do not give: the
+     * owner (WRITE_DAC) adds it for itself for the run */
+    user=current_user_sid(ubuf,sizeof(ubuf));
+    if(user) set_ace(dir,user,WRITE_OWNER,GRANT_ACCESS);
+    if(set_low_label(dir,1)) { if(user) set_ace(dir,user,WRITE_OWNER,REVOKE_ACCESS); CloseHandle(tok); return 2; }
+    labelled=1;
+    SetEnvironmentVariableA("TEMP",dir); SetEnvironmentVariableA("TMP",dir);
+  }
+  r=launch(tok,NULL,argv,labelled?dir:NULL,(SIZE_T)memory_mb<<20);
+  if(labelled) { set_low_label(dir,0); if(user) set_ace(dir,user,WRITE_OWNER,REVOKE_ACCESS); }
+  CloseHandle(tok);
   return r;
 }
 
@@ -307,6 +428,12 @@ int main(int argc, char **argv)
   if(strcmp(argv[1],"--grant-rx")==0) return grant_rx(argc-2,argv+2);
   if(strcmp(argv[1],"--purge-profiles")==0) return purge_profiles();
   if(strcmp(argv[1],"cleantmpdir")==0) return 0;
+  load_conf();
+  if(strcmp(argv[1],"--policy")==0) {
+    char e[MAX_PATH]; if(argc<3) return 2;
+    resolve_exe(argv[2],e,sizeof(e));
+    printf("%s\n",is_lowil(e)?"lowil":"appcontainer"); return 0;
+  }
   i=1; if(strcmp(argv[1],"--cmd")==0) i=2;
   if(i>=argc) { fprintf(stderr,"usage: ch..root.exe <prog> [args...] | --selftest | --grant-rx <dir>...\n"); return 2; }
   /* "& sh|perl <code>" (also after --cmd): untrusted shell, refused */
@@ -321,5 +448,7 @@ int main(int argc, char **argv)
       dir=d; SetEnvironmentVariableA("TMPDIR",d); SetEnvironmentVariableA("tmp_dir",d);
     } else dir=NULL; }
   { int k; for(k=0; env_rm[k]; k++) SetEnvironmentVariableA(env_rm[k],NULL); }
-  return sandbox_run(argv+(strcmp(argv[1],"--cmd")==0?2:1),dir);
+  { char e[MAX_PATH]; resolve_exe(argv[i],e,sizeof(e));
+    if(is_lowil(e)) return lowil_run(argv+i,dir); }
+  return sandbox_run(argv+i,dir);
 }

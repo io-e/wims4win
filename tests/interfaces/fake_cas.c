@@ -52,6 +52,11 @@ int main(int argc, char **argv)
     int k; for(k=2;k<argc;k++) printf("%s%s",k>2?" ":"",argv[k]);
     printf("\r\n"); return 0;
   }
+  if(strcmp(mode,"alloc")==0) {         /* "alloc <MB>": rc 0 = committed, 3 = refused */
+    size_t n=(size_t)(argc>2?strtoul(argv[2],NULL,10):0)<<20; char *b=malloc(n?n:1);
+    if(!b) return 3;
+    memset(b,1,n); printf("allocated=%s\n",argc>2?argv[2]:"0"); free(b); return 0;
+  }
   if(strcmp(mode,"errline")==0) { fputs("ERRLINE\r\n",stderr); return 0; }
   if(strcmp(mode,"args")==0) {          /* one argument per line */
     int k; for(k=2;k<argc;k++) printf("[%s]\n",argv[k]); return 0;

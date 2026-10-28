@@ -75,6 +75,7 @@ cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.cgi.exe"
 cp "$ROOT/build/wims-win/wimslogd.exe" "$OUT/bin/"
 cp "$ROOT/build/wims-win/bin/wims_mathml.exe" "$OUT/bin/"
 cp "$ROOT/build/tests-win/ch..root.exe" "$OUT/public_html/bin/"
+cp "$ROOT/src/Platform/sandbox/ch..root.conf" "$OUT/public_html/bin/"   # D21 policy list
 # CAS sandbox on (#8): Interfaces/common.c runs every CAS through
 # bin/ch..root.exe (AppContainer + Job Object) when this marker exists; wims
 # refuses the CAS if the sandbox selftest fails. Each CAS install dir must be

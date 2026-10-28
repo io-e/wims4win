@@ -47,3 +47,6 @@ wget 1.25.0-4 wget-1.25.0-4-x86_64.pkg.tar.zst 533bd9beb98fe40789558de0343aa2936
 which 2.25-1 which-2.25-1-x86_64.pkg.tar.zst a299e7b9076e5d9381e59fd67538aa39346eb36bb16a93834fb99cccc3f2055b GPL3
 xz 5.8.4-1 xz-5.8.4-1-x86_64.pkg.tar.zst cad72459be8f5b99920bed2f122dfe81e05fc599c33f5b871bd35d72b726ef9e spdx:GPL-2.0-or-later
 zlib 1.3.2-1 zlib-1.3.2-1-x86_64.pkg.tar.zst a04aa79996c57f0db936be66cf94326d7e67e9cd8dbffe4cf6e97693d0a1d9ef custom
+gcc 16.2.0-1 gcc-16.2.0-1-x86_64.pkg.tar.zst 5a6a7a9bbfdb6ee9505cb3ca185f3d8eea328c05c0f49c354be70b416374c05c spdx:GPL-3.0-or-later WITH GCC-exception-3.1 AND GFDL-1.3-or-later
+isl 0.28-1 isl-0.28-1-x86_64.pkg.tar.zst 20c8d3a623fe948c9175b236236ae31b09e77e66dc514f8467d35e81a8514f95 spdx:MIT
+mpc 1.4.1-1 mpc-1.4.1-1-x86_64.pkg.tar.zst 0f5073ec2e8be265854ee3c7cb1079b5e8e02264d53e659d8414988c6c182f16 spdx:LGPL-3.0-or-later

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Fetch a pinned MSYS2 shell toolset (sh.exe/bash.exe + coreutils, sed, grep,
-# gawk, find, tar, gzip, wget, unzip...) and install it into
+# gawk, find, tar, gzip, wget, unzip, perl, cpp...) and install it into
 # <runtime>/other/bin, so WIMS shell scripts (call_sh, oefcompile, mkindex,
 # modupdate, backup...) run on Windows without cmd.exe and without rewriting.
 #
@@ -37,7 +37,13 @@ grep -v '^#' "$PINS" | while read -r name ver file sha lic; do
   f=$CACHE/$file
   [ -f "$f" ] || curl -fsSL --retry 3 -o "$f" "$REPO/$file"
   echo "$sha  $f" | sha256sum -c --quiet - || { echo "sha256 mismatch: $file" >&2; exit 1; }
-  unzst "$f" | tar -x -C "$STAGE" usr/bin usr/lib/perl5 usr/share/perl5 etc 2>/dev/null || true
+  if [ "$name" = gcc ]; then
+    # only the C preprocessor (cpp.exe + cc1.exe) for scripts/oef/mkindex
+    # ("cpp -P -C -nostdinc ..." on src/cpp/*.cpp OEF models, bin/mkindex)
+    unzst "$f" | tar -x -C "$STAGE" usr/bin/cpp.exe "usr/lib/gcc/x86_64-pc-cygwin/${ver%-*}/cc1.exe"
+  else
+    unzst "$f" | tar -x -C "$STAGE" usr/bin usr/lib/perl5 usr/share/perl5 etc 2>/dev/null || true
+  fi
   printf '%-18s %-14s %s\n' "$name" "$ver" "$lic" >> "$LIC"
 done
 # executables and DLLs only (no docs/headers)
@@ -51,6 +57,7 @@ done
 [ -d "$STAGE/etc/pki" ] && cp -r "$STAGE/etc/pki" "$MS/etc/" || true
 [ -d "$STAGE/etc/ssl" ] && cp -r "$STAGE/etc/ssl" "$MS/etc/" || true
 printf 'none / cygdrive binary,posix=0,noacl,user 0 0\n' > "$MS/etc/fstab"
+[ -d "$STAGE/usr/lib/gcc" ] && { mkdir -p "$MS/usr/lib"; cp -r "$STAGE/usr/lib/gcc" "$MS/usr/lib/"; }
 [ -d "$STAGE/usr/lib/perl5" ] && { mkdir -p "$MS/usr/lib"; cp -r "$STAGE/usr/lib/perl5" "$MS/usr/lib/"; }
 [ -d "$STAGE/usr/share/perl5" ] && { mkdir -p "$MS/usr/share"; cp -r "$STAGE/usr/share/perl5" "$MS/usr/share/"; }
 echo "msys2: $(ls "$MS/usr/bin" | wc -l) files in $MS/usr/bin"

@@ -60,6 +60,9 @@ OUT=$WD/wims-runtime; rm -rf "$OUT"; mkdir -p "$OUT"
 # their targets. wims.cgi -> wims is dropped (replaced by wims.exe).
 tar -C "$WD/wims" -h --exclude=./public_html/wims.cgi --exclude=./src --exclude=./other --exclude=./tmp --exclude=./sessions \
     --exclude=./s2 --exclude=./lib --exclude=./download --exclude=./dfsg --exclude=./wimstest --exclude=./localwims --exclude=./Makefile.for.debian --exclude=./mkdistsvn --exclude=./README.template --exclude='./compile*' --exclude='./*.log' --exclude='*.tgz' -cf - . | tar -C "$OUT" -xf -
+# Windows-only script fixes (scripts otherwise unchanged, D17):
+#  bin/mkindex: pass mlist/slist/glist to modind as files (32767-char env limit)
+patch -s -d "$OUT" -p1 < "$ROOT/tools/patches/mkindex-wims4win.patch"
 # drop every Linux ELF binary (and the wims.cgi symlink)
 find "$OUT" -type f -exec sh -c 'head -c4 "$1" | grep -q ELF && rm -f "$1"' _ {} \;
 find "$OUT" -type l -delete   # broken links only (tar -h kept the rest)

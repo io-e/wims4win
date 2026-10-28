@@ -1,0 +1,32 @@
+--- a/bin/mkindex
++++ b/bin/mkindex
+@@ -21,7 +21,11 @@
+ cd $WIMS_HOME
+ WIMS_HOME=`pwd`
+ 
+-export mlist slist glist dicsort_separator dicsort_grouping
++# wims4win: Windows limits a process environment to 32767 characters and
++# mlist (every module) is ~40 KB, so every program started after it is set
++# would fail ("find: environment too large"). The lists are kept unexported
++# and handed to bin/modind as files (mlist_file, slist_file, glist_file).
++export dicsort_separator dicsort_grouping
+ export w_translator_unknown w_dictionary w_translator_switch translator_input
+ LANG=C
+ 
+@@ -113,7 +117,15 @@
+ 
+ cd $WIMS_HOME
+ echo " bin/mkindex > bin/modind"
+-bin/modind || exit
++mkdir -p "$WIMS_HOME/tmp"
++printf '%s\n' "$mlist" > "$WIMS_HOME/tmp/mkindex.mlist"
++printf '%s\n' "$slist" > "$WIMS_HOME/tmp/mkindex.slist"
++printf '%s\n' "$glist" > "$WIMS_HOME/tmp/mkindex.glist"
++wpath() { cygpath -m "$1" 2>/dev/null || echo "$1"; }
++mlist_file=`wpath "$WIMS_HOME/tmp/mkindex.mlist"` \
++slist_file=`wpath "$WIMS_HOME/tmp/mkindex.slist"` \
++glist_file=`wpath "$WIMS_HOME/tmp/mkindex.glist"` \
++  bin/modind || exit
+ 
+ echo " bin/mkindex > sorting indexation lists..."
+ cd $BASES/site2 || exit

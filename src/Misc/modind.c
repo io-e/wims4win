@@ -23,6 +23,27 @@
 #include "translator_.h"
 #include "suffix.h"
 
+#ifdef _WIN32
+/* wims4win: a Windows process environment is limited to 32767 characters,
+ * while bin/mkindex exports the full module list (mlist, ~40 KB in r19040).
+ * The Windows runtime's bin/mkindex (tools/patches/mkindex-wims4win.patch)
+ * therefore passes the lists as files: <name>_file=<path>. */
+static char *wl_getlist(const char *name)
+{
+  char k[32], *f, *b; FILE *fp; long n;
+  char *s=getenv(name); if(s!=NULL) return s;
+  snprintf(k,sizeof(k),"%s_file",name); f=getenv(k); if(f==NULL) return NULL;
+  fp=fopen(f,"rb"); if(fp==NULL) return NULL;
+  fseek(fp,0,SEEK_END); n=ftell(fp); fseek(fp,0,SEEK_SET);
+  if(n<0 || n>100*MAX_LINELEN) {fclose(fp); return NULL;}
+  b=xmalloc(n+1); n=(long)fread(b,1,n,fp); b[n]=0; fclose(fp);
+  return b;
+}
+#define getenv_list(n) wl_getlist(n)
+#else
+#define getenv_list(n) getenv(n)
+#endif
+
 #define MAX_LANGS    MAX_LANGUAGES
 #define MAX_MODULES    65536
 char *moduledir=    "public_html/modules";
@@ -328,7 +349,7 @@ void prep(void)
   serialf=fopen(buf,"w");
   if(!serialf) { fprintf(stderr,"modind: error creating output files serial.\n"); exit(1);}
 
-  s=getenv("mlist"); if(s==NULL) exit(1);
+  s=getenv_list("mlist"); if(s==NULL) exit(1);
   l=strlen(s); if(l<0 || l>100*MAX_LINELEN) exit(1);
   mlist=xmalloc(l+16); ovlstrcpy(mlist,s);
 
@@ -411,7 +432,7 @@ void sprep(void)
   if(!addrf) { fprintf(stderr,"modind: error creating output files addr.\n"); exit(1);}
   snprintf(buf,sizeof(buf),"%s/serial",sheetoutdir);
   serialf=fopen(buf,"w");
-  s=getenv("slist"); if(s==NULL) return;
+  s=getenv_list("slist"); if(s==NULL) return;
   l=strlen(s); if(l<0 || l>100*MAX_LINELEN) return;
   mlist=xmalloc(l+16); ovlstrcpy(mlist,s);
   for(t=0,p1=find_word_start(mlist); *p1 && modcnt<MAX_MODULES; p1=find_word_start(p2),t++) {
@@ -444,7 +465,7 @@ void gprep(void)
   if(!addrf) { fprintf(stderr,"modind: error creating output files addr.\n"); exit(1);}
   snprintf(buf,sizeof(buf),"%s/serial",glossaryoutdir);
   serialf=fopen(buf,"w");
-  s=getenv("glist"); if(s==NULL) return;
+  s=getenv_list("glist"); if(s==NULL) return;
   l=strlen(s); if(l<0 || l>100*MAX_LINELEN) return;
   mlist=xmalloc(l+16); ovlstrcpy(mlist,s);
   for(t=0,p1=find_word_start(mlist); *p1 && modcnt<MAX_MODULES; p1=find_word_start(p2),t++) {

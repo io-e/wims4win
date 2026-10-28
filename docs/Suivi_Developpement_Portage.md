@@ -304,3 +304,12 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - **Suite sandbox** `tests/platform/test-sandbox-grok.ps1` : 26/26 sur ShadowPC. Les 8 échecs de la suite Claude venaient de `param([string[]]$Args)` (variable automatique PowerShell) et du nom localisé de S-1-15-2-1. Réponse détaillée dans `tests-win_ALF\11_Handoff_Grok_to_Claude_GROK_V1.md`.
 - **P0** : SBX-S5b, SBX-20, CGI-06 et MSYS-05 PASS. IFC-06 FAIL pour GAP (Cygwin ne peut pas créer ses objets nommés dans un AppContainer) ; décision à prendre. `--grant-rx` appliqué sur `tests-win\cas\gap\runtime`.
 - **Image 404 `wims.gif?cmd=getins`** : le CGI sert bien l'image ; seul le vhost ne mappe que `/wims/wims.cgi`. Les lignes ScriptAliasMatch sont dans `docs/apache-laragon-wims-runtime.conf`, à appliquer par Arnaud.
+
+## 2026-10-28 (fin d'après-midi) — D21, GAP hors AppContainer
+
+- Décision D21 (option B d'Arnaud) : `ch..root.exe` lit `public_html/bin/ch..root.conf`. Les programmes listés en `lowil` (livré : `gap.exe` seulement) tournent avec le jeton restreint au niveau d'intégrité bas, dans un Job (15 processus, 2048 Mo, kill-on-close), cwd/TEMP = session. Tous les autres restent en AppContainer. `--policy <prog>` affiche la politique.
+- Pour étiqueter la session en intégrité basse, il faut WRITE_OWNER, que l'ACL « Modification » ne donne pas : le propriétaire se l'ajoute le temps de l'exécution, puis l'étiquette et l'ACE sont retirées.
+- `lowil_path` ajoute le dossier de cygwin1.dll au PATH : Apache ne le fournit pas, et la configuration Laragon n'est pas modifiée.
+- Runtime PC : `log/wims.conf` reçoit `gap_command=…\runtime\opt\gap-4.16.1\gap.exe -T -n`, et `ch..root.conf` reçoit `lowil_path`. Sauvegardes dans `backup-exe-20261028c`.
+- Résultats : SBX-21 20/20, suite sandbox 26/26, IFC-06 GAP via Laragon (Factorial(10)=3628800, |S5|=120), 0 cmd.exe. check-linux-identical 14/14.
+- Compromis : GAP n'est isolé ni en lecture ni en réseau (même modèle que le chroot Linux).

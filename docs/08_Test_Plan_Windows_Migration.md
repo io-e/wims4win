@@ -198,6 +198,7 @@ Runner: `$rt\other\tests\test_sandbox_evasion.ps1 -Runtime $rt` (MF-61), with `f
 | SBX-18 | MF-11 env cleaning (`env_rm`) | `fake_cas` mode printing env (to add) | no `w_wims_home`, `SERVER_ADDR`… | chroot.c env_rm | P1 | NOT RUN (fake_cas mode to add) |
 | SBX-19 | MF-11 TMPDIR made absolute | CAS writing `$TMPDIR/out` | file in session dir | — | P1 | PASS indirectly (factor.fr in sandbox) |
 | SBX-20 | MF-54 marker by default | fresh `build-runtime-tree.sh` → `chroot/tmp/sessions/.chroot` exists | present | — | P0 | PASS (2026-10-28, fresh box build-runtime-tree.sh: marker present) |
+| SBX-21 | D21 `lowil` policy (`ch..root.conf`, Cygwin CAS) | `tests/platform/test-sandbox-lowil.ps1`: explicit list (gap.exe only), `--policy` report, other CAS still AppContainer, write only in session (profile, profile TEMP, log, sibling session denied), no HKCU write, 15-process limit, memory_mb limit, kill-on-close, `& sh` refused, label removed, real GAP runs and cannot write to profile | 20/20; read and network NOT isolated (accepted trade-off, D21-14 informative) | Linux chroot (same model) | P0 | PASS (2026-10-28, 20/20 on ShadowPC; sandbox suite GROK_V1 still 26/26) |
 | SBX-21 | MF-03 `token_elevated` (DROP_PRIV refused iff elevated) | PLT-01 case "DROP_PRIV refused iff elevated"; run wims from an elevated shell | refused | — | P1 | PASS (in PLT-01) |
 
 ### 4.5 LOGD — wimslogd (issue #1)
@@ -245,7 +246,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | IFC-03 | MF-22 GAP direct exe (51b54d5) | GAP scenarios of IFC-01 | 8/8 on rerun | Linux | P1 | PASS (Claude 2026-10-27: 21/24 then 8/8 on rerun; first failure during mkindex load) |
 | IFC-04 | D12 `pari_command` in `log/wims.conf` (MF-54 `PARI_COMMAND`) | `Select-String pari_command $rt\log\wims.conf`; `!exec pari about` | path to gp.exe | — | P0 | PASS |
 | IFC-05 | MF-24 CR strip on exec.err | CAS error message in a module | no `\r` in page | — | P1 | PASS (PLT-03, f81abf1) |
-| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | FAIL for GAP (Cygwin cannot create \\BaseNamedObjects\\cygwin1S5-… in an AppContainer, 0xC0000022; decision pending: native GAP or weaker policy); Octave/Maxima BLOCKED (not installed) |
+| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | GAP part PASS (2026-10-28, D21 lowil policy: GAP via ch..root.exe with `.chroot` marker on, through Laragon `tool/directexec` sw=gap: Factorial(10)=3628800, Size(SymmetricGroup(5))=120, 0 cmd.exe); Octave/Maxima BLOCKED (not installed) |
 
 ### 4.8 MML — MathML and formula size (D7)
 
@@ -390,19 +391,19 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 
 ## 7. Counts (updated 2026-10-28 afternoon, Paris time)
 
-140 test cases (5 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp, CGI-08 getins image, BLD-05 wims.exe stack).
+141 test cases (6 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp, CGI-08 getins image, BLD-05 wims.exe stack, SBX-21 D21 lowil policy).
 
 | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
 |---|---|---|---|---|---|
-| P0 | 51 | 47 | 0 | 3 | 1 |
+| P0 | 52 | 48 | 0 | 4 | 0 |
 | P1 | 68 | 57 | 11 | 0 | 0 |
 | P2 | 21 | 6 | 14 | 0 | 1 |
-| **Total** | **140** | **110** | **25** | **3** | **2** |
+| **Total** | **141** | **111** | **25** | **4** | **1** |
 
-Per area: SBX 26, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
+Per area: SBX 27, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
 
 **Production gate:**
 - P0 NOT RUN: none.
-- P0 FAIL: IFC-06 (GAP Cygwin vs AppContainer, decision pending).
-- P0 BLOCKED: SBX-S6/S7/S8 (Octave/Maxima not installed, per Arnaud's instruction of 2026-10-28).
+- P0 FAIL: none. IFC-06 GAP part PASS under D21 (restricted low-integrity token + Job, no AppContainer for gap.exe only); its Octave/Maxima part is BLOCKED.
+- P0 BLOCKED: SBX-S6/S7/S8 and IFC-06 Octave/Maxima part (Octave/Maxima not installed, per Arnaud's instruction of 2026-10-28).
 - **Gate not yet met.**

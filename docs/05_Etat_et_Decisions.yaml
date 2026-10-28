@@ -146,6 +146,16 @@ decisions:
     status: "annulé (conclusion: cancelled)"
     followup_2026_10_27: "40515698110, 40516823140, 40506106319 déjà terminés en success (rien à annuler) ; timeout-minutes 30 par job et 10 sur « Install mingw-w64 » (031d2a4) ; runs suivants en success"
 
+  D21_gap_lowil_sandbox:
+    decision: "GAP (Cygwin) tourne sous ch..root.exe sans AppContainer : jeton restreint (Administrateurs/Système deny-only, aucun privilège) au niveau d'intégrité BAS + Job Object (15 processus, memory_mb=2048 Mo, kill-on-close ; limite CPU héritée du job wims), refus de « & sh » et nettoyage d'environnement inchangés, cwd/TEMP = dossier de session (étiqueté bas pendant l'exécution seulement)"
+    date: 2026-10-28
+    decided_by: user (option B)
+    reason: "Cygwin ne peut pas créer \\BaseNamedObjects\\cygwin1S5-… dans un AppContainer (0xC0000022) : GAP était inutilisable avec le sandbox"
+    selection: "explicite et auditable : lignes « lowil <prog> » de public_html/bin/ch..root.conf (livré avec gap.exe seulement) ; « ch..root.exe --policy <prog> » affiche la politique ; sans fichier ou sans correspondance = AppContainer (défaut pour tous les autres CAS) ; « lowil_path » = dossier de cygwin1.dll ajouté au PATH pour ces programmes"
+    tradeoff: "GAP n'est PAS isolé en lecture (il peut lire hors session) ni en réseau ; il ne peut pas écrire hors du dossier de session (profil, TEMP, HKCU, log refusés). C'est le modèle Linux (chroot, pas de conteneur). Acceptable : exercices d'algèbre/théorie des groupes sans réseau"
+    tests: "SBX-21 tests/platform/test-sandbox-lowil.ps1 20/20 ; IFC-06 partie GAP PASS via Laragon ; suite sandbox 26/26 inchangée"
+    status: "fait"
+
 # ── Phases completed ────────────────────────────────────────────────
 
 phases_done:
@@ -264,7 +274,8 @@ tests:
   yaml_02: "PASS — mathml.c borne la taille à 50..400 % (900→400, 30→50, abc→200)"
   cgi_06_laragon: "PASS après correctif — Apache passe un environnement minimal ; ch..root reconstruit USERPROFILE/LOCALAPPDATA/APPDATA/TEMP (ensure_profile_env), sinon erreur 203"
   sbx_s5b_sbx_20_msys_05: "PASS"
-  ifc_06: "FAIL GAP (Cygwin incompatible AppContainer, 0xC0000022) ; Octave/Maxima BLOQUÉ ; décision Arnaud en attente"
+  ifc_06: "partie GAP PASS (D21, politique lowil) via Laragon tool/directexec : 3628800 et 120 ; Octave/Maxima BLOQUÉ"
+  sbx_21_lowil: "PASS — 20/20 (écriture hors session refusée, HKCU refusé, 15 processus, limite mémoire, & sh refusé, autres CAS en AppContainer)"
   wims_stack: "PASS — wims.exe lié avec une pile de 8 Mo (comme Linux), trames jusqu'à ~287 Ko"
   cgi_08_getins: "EN ATTENTE — CGI correct (image/gif) ; 4 lignes ScriptAliasMatch à appliquer par Arnaud dans Laragon"
 
@@ -367,7 +378,7 @@ divergences_resolved:
 
 # ── Questions tranchées par Arnaud (2026-10-27) ─────────────────────
 
-open_questions: []   # toutes tranchées, voir D15-D20
+open_questions: []   # toutes tranchées, voir D15-D21
 
 runtime_r19040_status:
   date: 2026-10-27

@@ -386,19 +386,20 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
 
-## 7. Counts (2026-10-28)
+## 7. Counts (updated 2026-10-28 10:45 Paris time)
 
-135 test cases in total (sub-cases S2a/b/c and S4a/b are counted as one row).
+138 test cases (3 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp).
 
-| Area | Tests | | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
-|---|---|---|---|---|---|---|---|---|
-| LIN 5, PLT 10, JOB 7, SBX 26, LOGD 15 | 63 | | P0 | 50 | 42 | 5 | 3 | 0 |
-| CGI 7, IFC 6, MML/YAML 5, HLP 17 | 35 | | P1 | 64 | 49 | 14 | 0 | 1 |
-| MSYS 5, OEF 4, L2W 6, BLD/CI 6, ENC/PATH/FS/SEC 13, SMK 3 | 37 | | P2 | 21 | 5 | 15 | 0 | 1 |
-| **Total** | **135** | | | **135** | **96** | **34** | **3** | **2** |
+| Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
+|---|---|---|---|---|---|
+| P0 | 51 | 43 | 5 | 3 | 0 |
+| P1 | 66 | 55 | 11 | 0 | 0 |
+| P2 | 21 | 6 | 14 | 0 | 1 |
+| **Total** | **138** | **104** | **30** | **3** | **1** |
 
-**Production gate status:**
-- 5 P0 NOT RUN: SBX-S5b, SBX-20, CGI-06 (Grok runtime behind Apache; CGI-05 also still to redo on it), IFC-06, MSYS-05.
-- 3 P0 BLOCKED: SBX-S6/S7/S8 (Octave/Maxima absent in E-RT).
+Per area: SBX 26, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 7, BLD/CI 7, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
 
-**Gate: NOT YET MET.**
+**Production gate:**
+- P0 still NOT RUN: SBX-S5b, SBX-20, CGI-06, IFC-06, MSYS-05.
+- P0 BLOCKED: SBX-S6/S7/S8 (Octave/Maxima not installed, per Arnaud's instruction of 2026-10-28).
+- **Gate not yet met.**

@@ -253,6 +253,14 @@ tests:
 
 # ── Remaining work ──────────────────────────────────────────────────
 
+  # 2026-10-28
+  charset_oef: "PASS — cause : modules en UTF-8, WIMS sert windows-1252 (identique Linux) ; convert-module-cp1252.ps1 ; 42/42, 0 mojibake, ° = 0xB0 via Laragon"
+  theme_assets: "PASS — gen-theme-assets.sh ; css.css et icon-min.css en 200 via Laragon"
+  mkindex_pc: "PASS — rc=0 (~27 min) ; listes en fichiers, cpp MSYS2 ; strfile/fortune et pdflatex absents (P2)"
+  oefcompile_pc: "PASS — U1/physics/oefelecmag.fr 13/13"
+  modupdate_one_module: "PASS — installone via webget : U1/physics/oefelecmag.fr Successful, 200"
+  platform_unit_no_cmd: "PASS — 22/22 sans cmd.exe (PLT-02)"
+
 remaining:
   P0_sandbox_hardening:
     priority: 0

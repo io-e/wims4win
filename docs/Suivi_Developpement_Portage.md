@@ -328,3 +328,20 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Octave échoue en AppContainer : `GetFinalPathNameByHandleW(VOLUME_NAME_DOS)` renvoie ERROR_ACCESS_DENIED (vérifié avec un petit exécutable de test ; VOLUME_NAME_NT fonctionne). Octave rattache alors ses fonctions .m au cwd. SBX-S6, SBX-S7 et IFC-06 Octave restent BLOQUÉS ; décision d'Arnaud attendue. Octave n'est pas ajouté à la liste lowil.
 - Suites sandbox : 26/26 et 20/20.
 - CGI-08 : Apache ne tournait pas (connexion refusée), test à relancer après démarrage.
+
+## 2026-11-04 (suite) — D22, Octave sous la politique lowil
+
+- Arnaud décide de faire tourner Octave comme GAP (D22). `lowil octave-cli.exe` est ajouté à `ch..root.conf`, dans le dépôt et sur le PC (sauvegarde dans `backup-exe-20261104`). `lowil_path` n'est pas nécessaire, car les DLL d'Octave sont à côté de l'exécutable.
+- `--policy` : gap et octave-cli renvoient lowil ; gp, maxima, sbcl et fake_cas renvoient appcontainer.
+- La suite lowil passe à 22/22 avec D22-01 et D22-02 :
+  - Octave exécute det, ispc et strjoin ;
+  - fopen dans le profil ou dans log renvoie -1 ; dans la session, l'écriture réussit.
+- La suite sandbox reste à 26/26.
+- Tests par wims.cgi.exe direct, avec un environnement de type Apache :
+  - IFC-06 Octave : -2, 0.5 et a-b ;
+  - SBX-S6 et SBX-S7 : system, dos, winqueryreg et __w2mpth__ sont refusés par l'interface ; aucun cmd.exe ni PING.EXE n'est lancé.
+  - En contournant l'interface, `system("echo x > profil")` répond « Accès refusé ».
+  - `unix()` n'est pas dans illegal[], mais c'est un no-op sous Windows.
+- Gate P0 : 52/52.
+- Apache est toujours arrêté : CGI-08 et les tests Laragon d'IFC-06 restent NON EXÉCUTÉS.
+- check-linux-identical : 14/14.

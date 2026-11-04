@@ -5,6 +5,7 @@
 #   pwsh -File test-sandbox-lowil.ps1 [-RuntimePath <runtime root>] [-GapExe <gap.exe>]
 param([string]$RuntimePath = 'D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\wims-runtime-r19040-grok',
       [string]$GapExe = 'D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\tests-win\cas\gap\runtime\opt\gap-4.16.1\gap.exe',
+      [string]$OctaveExe = 'D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\tests-win\cas\octave\octave-11.3.0-w64\mingw64\bin\octave-cli.exe',
       [string]$GapBin = 'D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\tests-win\cas\gap\runtime\bin')
 $ErrorActionPreference = 'Continue'
 $ch   = Join-Path $RuntimePath 'public_html\bin\ch..root.exe'
@@ -31,10 +32,12 @@ $t0 = Get-Date
 # 1. selection is explicit: shipped conf lists gap.exe only
 $conf = Join-Path (Split-Path $ch) 'ch..root.conf'
 $lines = @(Get-Content $conf -EA SilentlyContinue | ? { $_ -match '^\s*lowil\s' })
-T 'D21-01-conf-gap-only' ($lines.Count -eq 1 -and $lines[0] -match 'gap\.exe') ("lowil lines: " + ($lines -join '; '))
+$want = @('lowil gap.exe', 'lowil octave-cli.exe')
+T 'D21-01-conf-explicit-list' ($lines.Count -eq 2 -and -not (Compare-Object ($lines | % Trim) $want)) ("lowil lines: " + ($lines -join '; '))
 $p1 = (RUN $ch @('--policy', 'gap.exe')).out; $p2 = (RUN $ch @('--policy', $fake)).out
 $p3 = (RUN $ch @('--policy', 'gp.exe')).out; $p4 = (RUN $ch @('--policy', 'maxima.exe')).out
-T 'D21-02-policy-report' ("$p1" -eq 'lowil' -and "$p2" -eq 'appcontainer' -and "$p3" -eq 'appcontainer' -and "$p4" -eq 'appcontainer') "gap=$p1 fake_cas=$p2 gp=$p3 maxima=$p4"
+$p5 = (RUN $ch @('--policy', 'octave-cli.exe')).out; $p6 = (RUN $ch @('--policy', 'sbcl.exe')).out
+T 'D21-02-policy-report' ("$p1" -eq 'lowil' -and "$p5" -eq 'lowil' -and "$p2" -eq 'appcontainer' -and "$p3" -eq 'appcontainer' -and "$p4" -eq 'appcontainer' -and "$p6" -eq 'appcontainer') "gap=$p1 octave-cli=$p5 fake_cas=$p2 gp=$p3 maxima=$p4 sbcl=$p6"
 # other CAS still in AppContainer: a write to log\ fails and no network
 $evil = Join-Path $RuntimePath 'log\d21-ac-evil.txt'; Remove-Item $evil -EA SilentlyContinue
 $r = RUN $ch @($fake, 'write', $evil)
@@ -89,6 +92,18 @@ if (Test-Path $GapExe) {
   $r = RUN $ch @($GapExe, '-q', '-T', '-n') "PrintTo(`"$gp`", 1);`nQUIT;"
   T 'D21-16-gap-no-profile-write' (-not (Test-Path $ge)) "file absent=$(-not (Test-Path $ge))"
 } else { Write-Host "SKIP D21-15/16 (no $GapExe)" }
+
+# 4. real Octave through the shipped conf (D22, IFC-06 Octave part)
+if (Test-Path $OctaveExe) {
+  $oa = @('-Hq', '--no-line-editing', '--no-window-system', '--silent')
+  $r = RUN $ch (@($OctaveExe) + $oa) "disp(det([1 2;3 4]))`ndisp(ispc())`ndisp(strjoin({'a','b'},'-'))`nexit"
+  T 'D22-01-octave-runs' ("$($r.out)" -match '-2' -and "$($r.out)" -match 'a-b' -and "$($r.out) $($r.err)" -notmatch 'no such file') "rc=$($r.rc) out='$($r.out -join ' ')' err='$($r.err)'"
+  $oe = Join-Path $env:USERPROFILE 'wims-d22-oct-evil.txt'; $ol = Join-Path $RuntimePath 'log\d22-oct-evil.txt'
+  Remove-Item $oe, $ol -EA SilentlyContinue
+  $src = "f=fopen('$($oe.Replace('\','/'))','w'); disp(f)`nf=fopen('$($ol.Replace('\','/'))','w'); disp(f)`nf=fopen('oct-ok.txt','w'); disp(f>0); fclose('all');`nexit"
+  $r = RUN $ch (@($OctaveExe) + $oa) $src
+  T 'D22-02-octave-write-confined' (-not (Test-Path $oe) -and -not (Test-Path $ol) -and (Test-Path "$tmp\oct-ok.txt")) "out='$($r.out -join ' ')' profile=$(Test-Path $oe) log=$(Test-Path $ol) session=$(Test-Path "$tmp\oct-ok.txt")"
+} else { Write-Host "SKIP D22 (no $OctaveExe)" }
 
 $cmds = @(Get-CimInstance Win32_Process -Filter "Name='cmd.exe'" | ? { $_.CreationDate -ge $t0 })
 T 'D21-17-no-cmdexe' ($cmds.Count -eq 0) "cmd.exe started: $($cmds.Count)"

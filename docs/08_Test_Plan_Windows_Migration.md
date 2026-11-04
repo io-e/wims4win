@@ -183,8 +183,8 @@ Runner: `$rt\other\tests\test_sandbox_evasion.ps1 -Runtime $rt` (MF-61), with `f
 | SBX-S4a/b | MF-11 `launch` Job `ActiveProcessLimit=15`, `TerminateJobObject` after exit | `fake_cas bomb` | children ≤ 14; 0 left after | RLIMIT_NPROC=15 | P0 | PASS (children=14, 0→0) |
 | SBX-S5 | MF-11 `quote_arg` (MS CRT rules) | `fake_cas args 'a" & PING.EXE … & "b' 'x\" y' 'c:\dir with space\'` | 3 lines equal to inputs | execv argv | P0 | PASS (2026-10-27) |
 | SBX-S5b | MF-20 `execredirected` arg split (`'…'` quoting) | OEF whose parameter contains `"`, `&`, `;` sent to pari | literal text reaches CAS, no extra process | Linux same split | P0 | PASS (2026-10-28, via Laragon: formula with `"; system("PING.EXE…"); "` and `&` sanitized by wims, no PING.EXE/cmd.exe created) |
-| SBX-S6 | MF-22 `octave.c illegal[]` (system) + MF-11 | Octave `system("PING.EXE 127.0.0.1")` through the interface | refused by interface | same list | P0 | BLOCKED (2026-11-04: Octave 11.3.0 (portable zip, tests-win\cas\octave) cannot run in the AppContainer: GetFinalPathNameByHandleW(VOLUME_NAME_DOS) returns ERROR_ACCESS_DENIED (5) inside the container (VOLUME_NAME_NT works), so Octave resolves every load-path function to the cwd (`no such file …\\sessions\\<id>\\ispc.m`) and the interface reports `octave not_INStalled`; decision needed (lowil like D21, or a patched Octave)) |
-| SBX-S7 | MF-22 `illegal[]` += dos/winqueryreg/winopen | Octave `dos('x')`, `winqueryreg(...)` | refused | n/a (Win only) | P0 | BLOCKED (2026-11-04: same Octave/AppContainer issue as SBX-S6) |
+| SBX-S6 | MF-22 `octave.c illegal[]` (system) + MF-11 | Octave `system("PING.EXE 127.0.0.1")` through the interface | refused by interface | same list | P0 | PASS (2026-11-04, D22 lowil, wims.cgi.exe direct with Apache-like env: `system("PING.EXE…")` and `[s,o]=system("echo x > <profile>")` refused by the interface (rewritten `sJstem`, undefined), 0 cmd.exe/PING.EXE, no file. Bypassing the interface (Octave directly under ch..root): `system("echo x > <profile>")` → "Accès refusé", file absent; same in session → written. Note: `unix()` is not in illegal[] but is a no-op on Windows (returned 1, nothing started)) |
+| SBX-S7 | MF-22 `illegal[]` += dos/winqueryreg/winopen | Octave `dos('x')`, `winqueryreg(...)` | refused | n/a (Win only) | P0 | PASS (2026-11-04, D22: `dos(…)`, `winqueryreg(…)`, `__w2mpth__` refused by the interface (undefined `dJs`/`wJnqueryreg`), 0 cmd.exe; HKCU write refused at low IL (D21-08)) |
 | SBX-S8 | MF-21 + MF-11 | Maxima `:lisp (with-open-file (s "D:/…/log/x" :direction :output))` | denied by ACL | chroot | P0 | PASS (2026-11-04, Maxima 5.49.0 sbcl.exe --core in AppContainer: `:lisp with-open-file` on log\ and on the profile → "Error opening … Accès refusé", file absent; in session → written; `sb-ext:run-program` PING.EXE and cmd.exe fail, 0 cmd.exe. Through the web the interface already mangles the Lisp text) |
 | SBX-S9 | MF-11 no HKCU write | `fake_cas reg` | rc≠0, key absent | — | P0 | PASS (2026-10-27) |
 | SBX-10 | MF-11 `main` `& sh\|perl` → 127 | `ch..root.exe '&' sh 'echo pwned > x'` | 127 | upstream non-root behaviour | P0 | PASS |
@@ -198,7 +198,7 @@ Runner: `$rt\other\tests\test_sandbox_evasion.ps1 -Runtime $rt` (MF-61), with `f
 | SBX-18 | MF-11 env cleaning (`env_rm`) | `fake_cas` mode printing env (to add) | no `w_wims_home`, `SERVER_ADDR`… | chroot.c env_rm | P1 | NOT RUN (fake_cas mode to add) |
 | SBX-19 | MF-11 TMPDIR made absolute | CAS writing `$TMPDIR/out` | file in session dir | — | P1 | PASS indirectly (factor.fr in sandbox) |
 | SBX-20 | MF-54 marker by default | fresh `build-runtime-tree.sh` → `chroot/tmp/sessions/.chroot` exists | present | — | P0 | PASS (2026-10-28, fresh box build-runtime-tree.sh: marker present) |
-| SBX-21 | D21 `lowil` policy (`ch..root.conf`, Cygwin CAS) | `tests/platform/test-sandbox-lowil.ps1`: explicit list (gap.exe only), `--policy` report, other CAS still AppContainer, write only in session (profile, profile TEMP, log, sibling session denied), no HKCU write, 15-process limit, memory_mb limit, kill-on-close, `& sh` refused, label removed, real GAP runs and cannot write to profile | 20/20; read and network NOT isolated (accepted trade-off, D21-14 informative) | Linux chroot (same model) | P0 | PASS (2026-10-28, 20/20 on ShadowPC; sandbox suite GROK_V1 still 26/26) |
+| SBX-21 | D21 `lowil` policy (`ch..root.conf`, Cygwin CAS) | `tests/platform/test-sandbox-lowil.ps1`: explicit list (gap.exe, octave-cli.exe), `--policy` report, other CAS still AppContainer, write only in session (profile, profile TEMP, log, sibling session denied), no HKCU write, 15-process limit, memory_mb limit, kill-on-close, `& sh` refused, label removed, real GAP runs and cannot write to profile | 22/22 (incl. D22 Octave: runs, writes confined); read and network NOT isolated (accepted trade-off, D21-14 informative) | Linux chroot (same model) | P0 | PASS (2026-11-04, 22/22 on ShadowPC; sandbox suite GROK_V1 26/26) |
 | SBX-21 | MF-03 `token_elevated` (DROP_PRIV refused iff elevated) | PLT-01 case "DROP_PRIV refused iff elevated"; run wims from an elevated shell | refused | — | P1 | PASS (in PLT-01) |
 
 ### 4.5 LOGD — wimslogd (issue #1)
@@ -234,7 +234,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | CGI-04 | MF-26 SERVER_ADDR NULL (f999023) | run CGI without `SERVER_ADDR` | no access violation | — | P1 | PASS (all PowerShell runs omit it) |
 | CGI-05 | E-WEB + MF-58 vhost | browser: `http://wims_paris_saclay_fr.test/wims/wims.cgi` | 200 home | — | P0 | PASS on Claude's runtime (2026-10-27); NOT RUN with `WIMS_RT` → Grok runtime |
 | CGI-06 | E-WEB | `http://wims_paris_saclay_fr.test/wims/wims.cgi?module=tool/algebra/factor.fr&lang=fr` → enter `2^64+1` | `274177 × 67280421310721` | Linux | P0 | PASS (2026-10-28, after ch..root ensure_profile_env fix: Apache minimal env made CreateProcessAsUser fail with err 203) |
-| CGI-08 | E-WEB `ScriptAliasMatch` | exercise image `/wims/wims.gif?cmd=getins…` (e.g. chronology) via Laragon | 200 image/gif | Linux apache-config maps wims.* | P1 | NOT RUN via Apache (2026-11-04: the vhost lines are in place per Arnaud, but Apache/Laragon was not running (connection refused, no httpd process): start or reload Apache, then rerun. CGI direct PASS: image/gif 3065 B) |
+| CGI-08 | E-WEB `ScriptAliasMatch` | exercise image `/wims/wims.gif?cmd=getins…` (e.g. chronology) via Laragon | 200 image/gif | Linux apache-config maps wims.* | P1 | NOT RUN via Apache (2026-11-04 10:4x: Apache/Laragon still not running, connection refused; start/reload Apache then rerun. CGI direct PASS: image/gif 3065 B) |
 | CGI-07 | MF-25 PATH 8 KiB, `wims_home` with `/` | `W` home page with a long inherited PATH (>4 KiB) | 200 | — | P2 | NOT RUN |
 
 ### 4.7 IFC — CAS interfaces
@@ -246,7 +246,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | IFC-03 | MF-22 GAP direct exe (51b54d5) | GAP scenarios of IFC-01 | 8/8 on rerun | Linux | P1 | PASS (Claude 2026-10-27: 21/24 then 8/8 on rerun; first failure during mkindex load) |
 | IFC-04 | D12 `pari_command` in `log/wims.conf` (MF-54 `PARI_COMMAND`) | `Select-String pari_command $rt\log\wims.conf`; `!exec pari about` | path to gp.exe | — | P0 | PASS |
 | IFC-05 | MF-24 CR strip on exec.err | CAS error message in a module | no `\r` in page | — | P1 | PASS (PLT-03, f81abf1) |
-| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | GAP PASS (2026-10-28, D21 lowil). Maxima PASS (2026-11-04, AppContainer, tool/directexec sw=maxima through wims.cgi.exe with an Apache-like minimal env: factor(x^4-1)=(x-1)*(x+1)*(x^2+1), integrate(x*sin(x),x)=sin(x)-x*cos(x); Laragon was not running at test time). Octave BLOCKED (AppContainer, see SBX-S6) |
+| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | GAP PASS (2026-10-28, D21 lowil). Maxima PASS (2026-11-04, AppContainer, tool/directexec sw=maxima through wims.cgi.exe with an Apache-like minimal env: factor(x^4-1)=(x-1)*(x+1)*(x^2+1), integrate(x*sin(x),x)=sin(x)-x*cos(x); Laragon was not running at test time). Octave PASS (2026-11-04, D22 lowil, wims.cgi.exe direct: det([1 2;3 4])=-2, mean=0.5, strjoin a-b). Laragon runs NOT RUN: Apache not running (connection refused at 10:4x Paris time) |
 
 ### 4.8 MML — MathML and formula size (D7)
 
@@ -395,15 +395,15 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 
 | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
 |---|---|---|---|---|---|
-| P0 | 52 | 49 | 0 | 3 | 0 |
+| P0 | 52 | 52 | 0 | 0 | 0 |
 | P1 | 68 | 57 | 11 | 0 | 0 |
 | P2 | 21 | 6 | 14 | 0 | 1 |
-| **Total** | **141** | **112** | **25** | **3** | **1** |
+| **Total** | **141** | **115** | **25** | **0** | **1** |
 
 Per area: SBX 27, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
 
 **Production gate:**
 - P0 NOT RUN: none.
 - P0 FAIL: none. IFC-06 GAP part PASS under D21 (restricted low-integrity token + Job, no AppContainer for gap.exe only); its Octave/Maxima part is BLOCKED.
-- P0 BLOCKED (2026-11-04): SBX-S6, SBX-S7 and IFC-06 Octave part: Octave cannot run in the AppContainer (decision pending). SBX-S8 and IFC-06 Maxima part PASS. (Earlier: Octave/Maxima not installed, per Arnaud's instruction of 2026-10-28).
-- **Gate not yet met.**
+- P0 BLOCKED: none (2026-11-04: Octave under D22 lowil; SBX-S6/S7/S8 and IFC-06 GAP/Maxima/Octave PASS).
+- **P0 gate met (2026-11-04)**, with Laragon re-runs of IFC-06 (Maxima/Octave) and CGI-08 (P1) pending an Apache start.

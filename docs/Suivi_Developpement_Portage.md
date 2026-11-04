@@ -313,3 +313,18 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Runtime PC : `log/wims.conf` reçoit `gap_command=…\runtime\opt\gap-4.16.1\gap.exe -T -n`, et `ch..root.conf` reçoit `lowil_path`. Sauvegardes dans `backup-exe-20261028c`.
 - Résultats : SBX-21 20/20, suite sandbox 26/26, IFC-06 GAP via Laragon (Factorial(10)=3628800, |S5|=120), 0 cmd.exe. check-linux-identical 14/14.
 - Compromis : GAP n'est isolé ni en lecture ni en réseau (même modèle que le chroot Linux).
+
+## 2026-11-04 — Octave et Maxima dans le runtime PC
+
+- Installations portables sous `Reprise_Wims_Grok\tests-win\cas`, sans installateur système :
+  - Maxima 5.49.0 : extrait de l'installateur NSIS avec 7-Zip, sans vtk, gnuplot ni clisp, soit 295 Mo. `share/info` a été conservé, car Maxima en a besoin.
+  - Octave 11.3.0 : zip officiel GNU.
+  - `--grant-rx` a été appliqué sur les deux dossiers.
+- `log\wims.conf` (sauvegarde dans `backup-exe-20261104`) :
+  - `maxima_command` : `sbcl.exe --core …\maxima.core --noinform --dynamic-space-size 512 --end-runtime-options --eval (cl-user::run) --end-toplevel-options`, sans .bat ni cmd.exe ;
+  - `octave_command` : `octave-cli.exe -Hq --no-line-editing --no-window-system --silent` ;
+  - les anciennes lignes (C:\maxima-5.49.0 et Octave dans AppData) sont commentées « superseded ».
+- Maxima fonctionne en AppContainer. SBX-S8 PASS ; IFC-06 Maxima PASS par wims.cgi.exe direct, avec un environnement minimal de type Apache.
+- Octave échoue en AppContainer : `GetFinalPathNameByHandleW(VOLUME_NAME_DOS)` renvoie ERROR_ACCESS_DENIED (vérifié avec un petit exécutable de test ; VOLUME_NAME_NT fonctionne). Octave rattache alors ses fonctions .m au cwd. SBX-S6, SBX-S7 et IFC-06 Octave restent BLOQUÉS ; décision d'Arnaud attendue. Octave n'est pas ajouté à la liste lowil.
+- Suites sandbox : 26/26 et 20/20.
+- CGI-08 : Apache ne tournait pas (connexion refusée), test à relancer après démarrage.

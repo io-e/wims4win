@@ -1,0 +1,19 @@
+{
+ "name": "00076",
+ "seed": 1,
+ "title": "createQCMtype1",
+ "statement": "<table class=\"wimscenter\" style=\"background-color:lightblue;width:80%\">\t  <tr>\t    <td>\t      On considère la suite réelle <span class=\"wims_mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mstyle id=\"wims_mathml468540\" mathsize=\"200%\"><mo stretchy=\"false\">(</mo><msub><mi>u</mi> <mi>n</mi></msub><msub><mo stretchy=\"false\">)</mo> <mrow><mi>n</mi><mo>&Element;</mo><mi>&Nopf;</mi></mrow></msub></mstyle></math></span> définie par <span class=\"wims_mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mstyle id=\"wims_mathml506311\" mathsize=\"200%\"><msub><mi>u</mi> <mi>n</mi></msub><mo>=</mo><mn>1</mn><mo>+</mo><msup><mi>e</mi> <mrow><mo lspace=\"verythinmathspace\" rspace=\"0em\">&minus;</mo><mi>n</mi></mrow></msup></mstyle></math></span>.\t      <div style=\"background-color:moccasin\">\t      Dans la liste suivante, cochez toutes les propiétés vérifiées par la suite <span class=\"wims_mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mstyle id=\"wims_mathml540162\" mathsize=\"200%\"><msub><mi>u</mi> <mi>n</mi></msub><mo>=</mo><mn>1</mn><mo>+</mo><msup><mi>e</mi> <mrow><mo lspace=\"verythinmathspace\" rspace=\"0em\">&minus;</mo><mi>n</mi></mrow></msup></mstyle></math></span>.\t      </div>\t    </td>\t  </tr>\t</table>\t\t  <table class=\"wimscenter\" style=\"background-color:darkcyan\">\t     \n\t    <tr>\t      <td style=\"background-color:lemonchiffon;text-align:left\">\t        <table>\t   <tr>\t     <td style=\"background-color:sandybrown\">\t        \n  <span class=\"box\">&#9633;</span>\n    <label for=\"reply1_1\">1</label>\n\t     </td>\t     <td>\t      non monotone\t     </td>\t   </tr>\t </table>\t      </td>\t      <td style=\"background-color:azure; text-align:left\">\t        <table>\t   <tr>\t     <td style=\"background-color:sandybrown;\">\t               \n  <span class=\"box\">&#9633;</span>\n    <label for=\"reply1_4\">4</label>\n\t     </td>\t     <td>\t      croissante\t     </td>\t   </tr>\t </table>\t      </td>\t    </tr>\t     \n\t    <tr>\t      <td style=\"background-color:lavender;text-align:left\">\t        <table>\t   <tr>\t     <td style=\"background-color:sandybrown\">\t        \n  <span class=\"box\">&#9633;</span>\n    <label for=\"reply1_2\">2</label>\n\t     </td>\t     <td>\t      alternée\t     </td>\t   </tr>\t </table>\t      </td>\t      <td style=\"background-color:lemonchiffon; text-align:left\">\t        <table>\t   <tr>\t     <td style=\"background-color:sandybrown;\">\t               \n  <span class=\"box\">&#9633;</span>\n    <label for=\"reply1_5\">5</label>\n\t     </td>\t     <td>\t      convergente\t     </td>\t   </tr>\t </table>\t      </td>\t    </tr>\t     \n\t    <tr>\t      <td style=\"background-color:azure;text-align:left\">\t        <table>\t   <tr>\t     <td style=\"background-color:sandybrown\">\t        \n  <span class=\"box\">&#9633;</span>\n    <label for=\"reply1_3\">3</label>\n\t     </td>\t     <td>\t      décroissante\t     </td>\t   </tr>\t </table>\t      </td>\t      <td style=\"background-color:lavender; text-align:left\">\t        <table>\t   <tr>\t     <td style=\"background-color:sandybrown;\">\t               \n  <span class=\"box\">&#9633;</span>\n    <label for=\"reply1_6\">6</label>\n\t     </td>\t     <td>\t      <span style=\"color:magenta\">Choix vide</span>\t     </td>\t   </tr>\t </table>\t      </td>\t    </tr>\t     \n\t  </table>\t</center>\t\n  <br class=\"clearall\">",
+ "form": "",
+ "fields": [
+  "reply1"
+ ],
+ "answers": [
+  [
+   "[1]",
+   "<div class=\"inline tt\">3, 5</div>"
+  ]
+ ],
+ "feedback": "",
+ "solution": "",
+ "ok": true
+}

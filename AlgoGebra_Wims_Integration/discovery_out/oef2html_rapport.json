@@ -1,0 +1,42 @@
+{
+ "runs": [
+  {
+   "file": "tools\\oef-validation\\html\\exemples\\sources\\00006.oef",
+   "seed": 1,
+   "html": "AlgoGebra_Wims_Integration\\discovery_out\\00006_s1.html",
+   "answers": 1,
+   "solution": false,
+   "analysis": true
+  }
+ ],
+ "cgi_calls": [
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00006&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 19029,
+   "s": 2.336,
+   "stderr": ""
+  },
+  {
+   "query": "session=WM01C1D019.1&cmd=reply&module=H6/test/oef2html.fr&reply1=0",
+   "rc": 0,
+   "bytes": 16686,
+   "s": 0.273,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00006&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 19029,
+   "s": 0.275,
+   "stderr": ""
+  },
+  {
+   "query": "session=XY01C3BA85.1&cmd=reply&module=H6/test/oef2html.fr&reply1=2",
+   "rc": 0,
+   "bytes": 17041,
+   "s": 0.262,
+   "stderr": ""
+  }
+ ]
+}

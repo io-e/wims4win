@@ -1,0 +1,42 @@
+{
+ "runs": [
+  {
+   "file": "tools\\oef-validation\\html\\exemples\\sources\\00076.oef",
+   "seed": 1,
+   "html": "D:\\ALF_ZGit\\02-wims4win\\AlgoGebra_Wims_Integration\\discovery_out_00076\\00076_s1.html",
+   "answers": 1,
+   "solution": false,
+   "analysis": true
+  }
+ ],
+ "cgi_calls": [
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00076&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 21657,
+   "s": 1.117,
+   "stderr": ""
+  },
+  {
+   "query": "session=VP1579AAF9.1&cmd=reply&module=H6/test/oef2html.fr&reply1=1",
+   "rc": 0,
+   "bytes": 19781,
+   "s": 0.233,
+   "stderr": ""
+  },
+  {
+   "query": "module=H6/test/oef2html.fr&cmd=new&exo=00076&qnum=1&qcmlevel=1&intro_expert=yes&intro_sol=1&intro_good=1&intro_feed=1&lang=fr",
+   "rc": 0,
+   "bytes": 21657,
+   "s": 0.235,
+   "stderr": ""
+  },
+  {
+   "query": "session=KS157BC075.1&cmd=reply&module=H6/test/oef2html.fr&reply1=3%2C%205",
+   "rc": 0,
+   "bytes": 19305,
+   "s": 0.208,
+   "stderr": ""
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+!set title=	createQCMtype1	
+!if $wims_read_parm!=$empty
+ !goto $wims_read_parm
+!endif
+oef2wims_version=3.22
+author=Joachim YAMEOGO	
+email=yameogo@math.unice.fr	
+
+ansorder=r
+varcnt=46
+prevarcnt=45
+postvarcnt=0
+replycnt=1
+choicecnt=0
+conditioncnt=0
+feedbackcnt=0
+format=html
+
+val1=$imagedir
+val2=$confparm1
+val3=$confparm2
+val4=$confparm3
+val5=$confparm4
+
+!if $testcondition=yes
+ !goto test
+!endif
+!if $status=waiting
+ !exit
+!endif
+
+val6=$[rint(1	)]
+tmp0=!replace internal ? by &#63; in (\(u_{n}=1-\frac{1}{n+1}))	(\(u_{n}=2+\sin(\frac{\pi}{2}n)))	(\(u_{n}=\sqrt{n+1}))	(\(u_{n}=\frac{(-1)^{n}}{n+1}))	(\(u_{n}=1-\ln(n+1)))	(\(u_{n}=1+e^{-n}))
+
+tmp=!trim $(tmp0)	
+val7=!translate internal $	\
+$ to ;; in $tmp
+tmp0=!rowcnt $val7
+
+val8=$[rint($(tmp0))]
+tmp0=!replace internal ? by &#63; in minorée	majorée	décroissante	croissante	monotone	convergente	bornée	non monotone	stationnaire	alternée	<span style="color:magenta">Choix vide</span>
+
+tmp=!trim $(tmp0)	
+val9=!translate internal $	\
+$ to ;; in $tmp
+tmp0=!rowcnt $val9
+
+val10=$[rint($(tmp0)-1)]
+tmp0=!replace internal ? by &#63; in 1,2,4,5,6,7	1,2,7,8	1,4,5	1,2,6,7,8,10	2,3,5	1,2,3,5,6,7
+
+tmp=!trim $(tmp0)	
+val11=!translate internal $	\
+$ to ;; in $tmp
+tmp0=!replace internal ? by &#63; in (1,Etudier la fonction \(f:x\mapsto 1-\frac{1}{1+x}) pour \(x\geq 0).)	(0,0)	(1,Considérer la fonction \(f:x\mapsto \sqrt{x+1}).)	(0,0)	(0,0)	(0,0)
+
+tmp=!trim $(tmp0)	
+val12=!translate internal $	\
+$ to ;; in $tmp
+val13=$[rint(2	)]
+val14=$[rint()]
+val15=$[rint()]
+val16=$[rint()]
+tmp0=!randint 2, 10
+
+val17=$[rint($(tmp0)	)]
+val18=lavender,lemonchiffon,azure
+val19=$[rint(floor(($val17+1)/2))]
+val20=$[rint((($val17+1)%2))]
+tmp0=!randint 1, $val8
+
+val21=$[rint($(tmp0))]
+tmp0=!trim $(val7[$val21;])
+
+val22=$(tmp0)
+tmp0=!char 2 to -2 of $val22
+
+val22=$(tmp0)
+val23=$(val11[$val21;])
+tmp0=!shuffle $val10
+
+val24=$(tmp0)
+tmp0=!item 1 to $val17 of $val24
+
+val24=$(tmp0)
+val25=$[rint($val10+1)]
+tmp0=!append item $val25 to $val24
+
+val24=$(tmp0)
+val26=
+!for val27  in $val24 
+tmp0=!append line $(val9[$val27;]) to $val26
+
+val26=$(tmp0)
+!next
+tmp=!trim $val26
+val26=!translate internal $	\
+$ to ;; in $tmp
+val28=$[rint($val17+1)]
+tmp0=!values i for i=1 to $val28
+
+val29=$(tmp0)
+tmp0=!listintersect $val23 and $val24
+
+val30=$(tmp0)
+tmp0=!itemcnt $val30
+
+val31=$[rint($(tmp0))]
+!if $val31=0 
+val32=$val28
+!else
+val32=
+!for val27  in $val30 
+tmp0=!positionof item $val27 in $val24
+
+val33=$(tmp0)
+tmp0=!append item $val33 to $val32
+
+val32=$(tmp0)
+!next
+!endif
+tmp0=!sort numeric item $val32
+
+val32=$(tmp0)
+val34=Les propriétés de $val22
+tmp0=!values i for i=1 to $val19
+
+val35=$(tmp0)
+tmp0=!values $val19+i for i=1 to $val19
+
+val36=$(tmp0)
+val37=<table class="wimscenter" style="background-color:lightblue;width:80%">	  <tr>	    <td>	      On considère la suite réelle \((u_{n})_{n\in\NN}) définie par $val22.	      <div style="background-color:moccasin">	      Dans la liste suivante, cochez toutes les propiétés vérifiées par la suite $val22.	      </div>	    </td>	  </tr>	</table>	
+tmp0=!trim $(val12[$val21;])
+
+val38=$(tmp0)
+tmp0=!char 4 to -2 of $val38
+
+val38=$(tmp0)
+tmp0=!trim $val38
+
+val38=$(tmp0)
+tmp0=!charcnt $val38
+
+val39=$[rint($(tmp0))]
+replytype1=checkbox
+replyname1=$val34
+replygood1=$val32;$val29
+question=__EXECUTED_1692754_EXERCISE__
+hint=__EXECUTED_1692754_EXERCISE__
+
+!goto stat
+
+!exit
+
+:question
+$()	$val37	  <table class="wimscenter" style="background-color:darkcyan">	     
+!for m_k=1 to $val19 
+$()	    <tr>	      <td style="background-color:$(val18[(2*$m_k-1)%3+1]);text-align:left">	        <table>	   <tr>	     <td style="background-color:sandybrown">	        
+!read oef/embed.phtml reply 1,$(val35[$m_k]) 
+$()	     </td>	     <td>	      $(val26[$m_k;])	     </td>	   </tr>	 </table>	      </td>	      <td style="background-color:$(val18[(2*$m_k)%3+1]); text-align:left">	        <table>	   <tr>	     <td style="background-color:sandybrown;">	               
+!read oef/embed.phtml reply 1,$(val36[$m_k]) 
+$()	     </td>	     <td>	      $(val26[($m_k+$val19);])	     </td>	   </tr>	 </table>	      </td>	    </tr>	     
+!next
+$()	    
+!if $val20<>0 
+$()	    <tr>	      <td style="background-color:$(val18[$val28%3+1])" colspan="2">	        <table>	   <tr>	     <td style="background-color:sandybrown">	        
+!read oef/embed.phtml reply 1,$val28 
+$()	     </td>	     <td>	              $(val26[$val28;])	     </td>	   </tr>	 </table>	      </td>	    </tr>	     
+!endif
+$()	  </table>	</center>	
+$()
+!exit
+
+:hint
+$()	  <div style="background-color:moccasin;width:80%">	  
+!if $val39>1 
+$()	      $val38	       
+!else
+$() 	      <span style="color:magenta">désolé: il n' y a pas d'indication.</span>	       
+!endif
+$()	  </div>	
+$()
+!exit
+
+:help
+$()
+$()
+!exit
+
+:solution
+$()
+$()
+!exit
+
+:latex
+$()
+$()
+!exit
+
+:feedback
+
+!exit
+
+:test
+
+!exit
+
+:stat
+vsavelist=18,19,20,26,28,35,36,37,38,39
+embedcnt=3

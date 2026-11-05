@@ -162,7 +162,8 @@ decisions:
     decided_by: user
     reason: "Dans l'AppContainer, GetFinalPathNameByHandleW(VOLUME_NAME_DOS) renvoie ERROR_ACCESS_DENIED (5) (VOLUME_NAME_NT fonctionne). Octave canonicalise ses dossiers de chargement avec cette fonction : chaque fonction .m est rattachée au cwd (« no such file …\\sessions\\<id>\\ispc.m ») et l'interface répond « octave not_INStalled »"
     tradeoff: "Identique à D21 : pas d'isolation en lecture ni réseau ; écriture limitée au dossier de session. Le filtre illegal[] de octave.c (system, dos, winqueryreg…) reste la première barrière"
-    tests: "SBX-S6, SBX-S7, IFC-06 Octave PASS ; suite lowil 22/22 ; suite sandbox 26/26"
+    tests: "SBX-S6, SBX-S7, IFC-06 Octave PASS ; suite lowil 23/23 ; suite sandbox 26/26"
+    followup_2026_11_05: "`unix` added to illegal[] in Interfaces/octave.c (same rewrite as system → sJstem → uJix); Linux unit + rebuild; Windows octave.exe redeployed"
     status: "fait"
 
 # ── Phases completed ────────────────────────────────────────────────
@@ -289,7 +290,8 @@ tests:
   maxima_appcontainer: "PASS — Maxima tourne en AppContainer ; SBX-S8 PASS (écriture log/profil refusée, run-program sans effet) ; IFC-06 Maxima PASS"
   octave_lowil: "PASS (D22) — det=-2, system/dos/winqueryreg refusés par l'interface, écriture hors session refusée"
   octave_appcontainer_initial: "BLOQUÉ — GetFinalPathNameByHandleW(VOLUME_NAME_DOS) renvoie 5 dans l'AppContainer : Octave ne trouve plus ses fonctions .m ; SBX-S6/S7 et IFC-06 Octave bloqués ; options : lowil (décision Arnaud) ou Octave patché"
-  cgi_08: "NON EXÉCUTÉ — Apache/Laragon toujours arrêté à 10h4x (connexion refusée) ; idem pour IFC-06 Maxima/Octave via Laragon"
+  cgi_08: "NON EXÉCUTÉ — Apache toujours arrêté le 2026-11-05 ~11h (connexion refusée) ; idem Laragon IFC-06 Maxima/Octave"
+  octave_unix_illegal: "PASS — unix dans illegal[] ; CGI: erreur 'uJix' undefined"
   sbx_21_lowil: "PASS — 20/20 (écriture hors session refusée, HKCU refusé, 15 processus, limite mémoire, & sh refusé, autres CAS en AppContainer)"
   wims_stack: "PASS — wims.exe lié avec une pile de 8 Mo (comme Linux), trames jusqu'à ~287 Ko"
   cgi_08_getins: "EN ATTENTE — CGI correct (image/gif) ; 4 lignes ScriptAliasMatch à appliquer par Arnaud dans Laragon"

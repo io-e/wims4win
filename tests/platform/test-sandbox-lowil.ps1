@@ -103,6 +103,12 @@ if (Test-Path $OctaveExe) {
   $src = "f=fopen('$($oe.Replace('\','/'))','w'); disp(f)`nf=fopen('$($ol.Replace('\','/'))','w'); disp(f)`nf=fopen('oct-ok.txt','w'); disp(f>0); fclose('all');`nexit"
   $r = RUN $ch (@($OctaveExe) + $oa) $src
   T 'D22-02-octave-write-confined' (-not (Test-Path $oe) -and -not (Test-Path $ol) -and (Test-Path "$tmp\oct-ok.txt")) "out='$($r.out -join ' ')' profile=$(Test-Path $oe) log=$(Test-Path $ol) session=$(Test-Path "$tmp\oct-ok.txt")"
+  # D22-03: unix is in illegal[] of the Octave interface (same rewrite as system →
+  # sJstem: second letter → J → "uJix"). Behaviour is covered by the CGI SBX-S6 unix
+  # case (error: 'uJix' undefined); here we guard the binary still lists the word.
+  $octIface = Join-Path $RuntimePath 'public_html\bin\octave.exe'
+  $txt = if (Test-Path $octIface) { [Text.Encoding]::ASCII.GetString([IO.File]::ReadAllBytes($octIface)) } else { '' }
+  T 'D22-03-unix-in-illegal' ($txt.Contains('unix') -and $txt.Contains('system')) "octave.exe contains unix+system ($octIface)"
 } else { Write-Host "SKIP D22 (no $OctaveExe)" }
 
 $cmds = @(Get-CimInstance Win32_Process -Filter "Name='cmd.exe'" | ? { $_.CreationDate -ge $t0 })

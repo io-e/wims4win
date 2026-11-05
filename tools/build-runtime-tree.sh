@@ -57,5 +57,14 @@ cp "$ROOT/docs/wims4win.yaml" "$OUT/log/wims4win.yaml"
 for i in gap maxima octave pari m2 scilab yacas; do
   [ -f "$ROOT/build/win32/$i.exe" ] && cp "$ROOT/build/win32/$i.exe" "$OUT/public_html/bin/"
 done
+# AlgoGebra JSON grade hook (GROK_V1) — cmd=reply&special_parm=algogebra_json
+# Sources live under AlgoGebra_Wims_Integration/runtime_patch/; skip if absent.
+AG_INSTALL="$ROOT/AlgoGebra_Wims_Integration/runtime_patch/install_algogebra_hook_GROK_V1.sh"
+if [ -x "$AG_INSTALL" ] || [ -f "$AG_INSTALL" ]; then
+  echo "Installing AlgoGebra JSON hook into $OUT ..."
+  bash "$AG_INSTALL" "$OUT"
+else
+  echo "WARN: AlgoGebra hook installer missing ($AG_INSTALL); runtime has no algogebra_json" >&2
+fi
 tar -C "$WD" -czf "$WD/wims-runtime.tgz" wims-runtime
 echo "packaged $WD/wims-runtime.tgz ($(du -h "$WD/wims-runtime.tgz" | cut -f1))"

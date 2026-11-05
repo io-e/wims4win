@@ -69,6 +69,14 @@ patch -s -d "$OUT" -p1 < "$ROOT/tools/patches/mkindex-wims4win.patch"
 # drop every Linux ELF binary (and the wims.cgi symlink)
 find "$OUT" -type f -exec sh -c 'head -c4 "$1" | grep -q ELF && rm -f "$1"' _ {} \;
 find "$OUT" -type l -delete   # broken links only (tar -h kept the rest)
+# AlgoGebra JSON hook (special_parm=algogebra_json on cmd=reply): phtml-only.
+# Applied when the patch dir exists (default: AlgoGebra_Wims_Integration/runtime_patch,
+# from branch feat/algogebra-wims-integration); ALGOGEBRA_HOOK=0 disables it.
+AG_PATCH=${ALGOGEBRA_HOOK_DIR:-$ROOT/AlgoGebra_Wims_Integration/runtime_patch}
+if [ "${ALGOGEBRA_HOOK:-1}" != 0 ] && [ -f "$AG_PATCH/algogebra_json.phtml" ]; then
+  bash "$ROOT/tools/install-algogebra-hook.sh" "$OUT" "$AG_PATCH"
+  rm -f "$OUT/public_html/scripts/oef/answer.phtml.bak_pre_algogebra"   # pristine copy stays in $WD/src
+fi
 mkdir -p "$OUT/tmp/log" "$OUT/tmp/sessions" "$OUT/sessions" "$OUT/s2"
 cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.exe"
 cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.cgi.exe"

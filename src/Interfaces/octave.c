@@ -70,7 +70,7 @@ struct {
 
 /* names which are not allowed */
 char *illegal[]={
-      "system","fopen","fclose","readdir","popen","mkdir","rmdir",
+      "system","unix","fopen","fclose","readdir","popen","mkdir","rmdir",
       "dir","ls","cd","chdir","more","save","load","diary",
       "fork","putenv","graw","eval",
       "scanf","exec","unlink","umask","lstat","stat","rename",

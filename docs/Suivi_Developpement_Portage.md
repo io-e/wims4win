@@ -345,3 +345,12 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Gate P0 : 52/52.
 - Apache est toujours arrêté : CGI-08 et les tests Laragon d'IFC-06 restent NON EXÉCUTÉS.
 - check-linux-identical : 14/14.
+
+## 2026-11-05 — `unix()` interdit dans l'interface Octave
+
+- `unix` ajouté à `illegal[]` de `src/Interfaces/octave.c` (même mécanisme que `system`/`dos` : `find_illegal` remplace la 2ᵉ lettre par J → `uJix`).
+- Vérifié sous Linux : rebuild de `Interfaces/octave` OK ; unit test `system`→`sJstem`, `unix`→`uJix`, `myunix` non modifié.
+- Windows : `octave.exe` reconstruit (mingw), sauvegardé dans `backup-exe-20261105`, déployé dans le runtime PC.
+- PC : IFC-06 Octave PASS (-2, 0.5, a-b) ; SBX-S6 (`system` et `unix` refusés) ; SBX-S7 (`dos`/`winqueryreg`) ; suites 26/26 et 23/23 (D22-03).
+- Apache toujours arrêté : CGI-08 et IFC-06 via Laragon NON EXÉCUTÉS.
+- Gate P0 : 52/52 inchangé.

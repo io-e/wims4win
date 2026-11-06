@@ -396,12 +396,12 @@ Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106`.
 - **JOB-05** PASS : `wp_job_kill` via test_platform 22/22.
 - **HLP-09** PASS : module local `canvasdraw_hlp09.fr`, JS canvasdraw servi en getfile.
 - **LOGD-12** PASS (scripts sh) ; démon laissé tourner, keepdate effacé — collecte overnight dans `tests-win_ALF/LOGD-12_15_overnight.txt`.
-- **LOGD-15** NOT RUN (sibling adm/class OK ; login classe 9001 bloqué sur passcheck CGI — e2e score à finir).
+- **LOGD-15** PASS (sibling) : cause = `HAVE_CRYPT` absent du config.h Win32 → `_passcrypt` no-op ; PR #12 ; exercice élève + Notes superviseur.
 - **LIN-03** WAIVED → YAML-02.
 - **SEC-02** WAITING : script `tests-win_ALF/SEC-02_pipe_acl_steps.ps1` ; 2e utilisateur Windows à fournir par Arnaud.
 - P2 cheap : **PLT-02**, **HLP-11** (partiel), **PATH-02**, **YAML-03**, **CGI-07** PASS ; **SBX-14** skip (Arnaud : pas de purge) ; autres P2 différés avec motif.
-- Incident `wims.cgi.exe` : pas Defender (0 détection / quarantine vide). Horodatage Europe/Paris : `wims.cgi` sans extension créé 14:52:56 ; `wims.cgi.exe` restauré 14:59:28 ; AH02811 14:57–14:58. Cause probable : rename/copie vers `wims.cgi` sans `.exe` (ou nettoyage externe), pas AV.
-- Totaux §7 (script) : **125/138 PASS**, 0 FAIL, P0 **51/51** (inchangé — LOGD-15 toujours NOT RUN).
+- Incident `wims.cgi.exe` : **accident extensionless `wims.cgi` (pas AV)**. Créé 14:52:56 Europe/Paris ; exe restauré 14:59:28 ; AH02811 14:57–14:58. Defender 0.
+- Totaux §7 (script) : **126/138 PASS**, 0 FAIL, P0 **51/51** (LOGD-15 PASS sur sibling).
 
 ### 2026-11-06 — sibling adm/class (décision propriétaire)
 
@@ -417,3 +417,11 @@ Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106`.
 - Ligne de bascule proposée (non appliquée) :
   `Define WIMS_RT "D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106/public_html"`
 - PR #11 laissée ouverte (fusion par Arnaud).
+
+
+### 2026-11-06 — fix HAVE_CRYPT (login classe)
+
+- Cause login 9001 `bad_password` : `src/Platform/win32/config.h` sans `HAVE_CRYPT` → `_passcrypt` vide alors que `wp_descrypt.c` est déjà linké.
+- Correctif : `#define HAVE_CRYPT 1` ; `tools/check-linux-identical.sh` IDENTICAL pour `calc.c`.
+- PR https://github.com/io-e/wims4win/pull/12 (non fusionnée). Déployé **uniquement** sur sibling `hook-class-20261106` (backup `Bak/cgi-before-have-crypt-20261106`). Live Laragon inchangé.
+- LOGD-15 : élève `anonymous` feuille 1 exo exi1 → `score/anonymous1` ; superviseur page **Notes** 200.

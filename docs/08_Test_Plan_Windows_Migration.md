@@ -222,7 +222,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | PASS (2026-11-06: `housekeep.daily` via MSYS sh → `tmp/log/housekeep.log` written (rc=1 only for missing `log/stat/*` on slim tree); `modupdate.auto` → OK. Daemon left running; `keepdate` cleared so next daily window can fire — collect later: housekeep.log/modupdate.log mtimes + wimslogd.out. Notes: tests-win_ALF/LOGD-12_15_overnight.txt) |
 | LOGD-13 | MF-06 `pipe_name` per tree hash | two runtimes (wims-runtime, r19040-grok, tests-win) running simultaneously | each CGI talks to its own daemon | — | P1 | PASS (3 daemons coexisting on PC, 2026-10-27) |
 | LOGD-14 | MF-30 pid check / daily restart (`wait_children`) | overwrite `tmp/log/wimslogd.pid` | daemon exits within 1 min; next request restarts it | same | P2 | NOT RUN (deferred 2026-11-06: pid overwrite / daemon restart — disruptive) |
-| LOGD-15 | class scores end-to-end | in a test class: student does an exercise, then teacher score page | scores shown | Linux | P1 | NOT RUN (2026-11-06 evening: sibling `wims-runtime-r19040-grok-hook-class-20261106` has adm/class 200 + class 9001; userscore module 200. Full student→supervisor score e2e still blocked — CGI login to 9001 fails `passcheck`/`bad_password` despite DES hash verified by test_crypt; creds only in PC `C:\Users\Shadow\wims_test_creds.txt`. Live WIMS_RT untouched. See overnight notes.) |
+| LOGD-15 | class scores end-to-end | in a test class: student does an exercise, then teacher score page | scores shown | Linux | P1 | PASS (2026-11-06 sibling hook-class only: root cause was missing `HAVE_CRYPT` in win32 config.h — `_passcrypt` no-op → passcheck always no. Fixed in PR #12; cgi deployed to sibling only. Student anonymous login + worksheet exi1 reply → score file `log/classes/9001/score/anonymous1`; supervisor userscore **Notes** 200 shows class sheets. Live Laragon untouched.) |
 
 ### 4.6 CGI — wims.exe CGI and Apache/Laragon
 
@@ -389,7 +389,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
 
-## 7. Counts (updated 2026-11-06 late afternoon, Paris time)
+## 7. Counts (updated 2026-11-06 evening, Paris time)
 
 **Row source of truth:** every status row in §4. Status vocabulary: PASS, NOT RUN, WAIVED,
 WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked after the 2026-11-06
@@ -398,9 +398,9 @@ P1/P2 batch.
 | Priority | Tests | PASS | NOT RUN | WAIVED | WAITING | BLOCKED | FAIL |
 |---|---|---|---|---|---|---|---|
 | P0 | 51 | 51 | 0 | 0 | 0 | 0 | 0 |
-| P1 | 66 | 63 | 1 | 1 | 1 | 0 | 0 |
+| P1 | 66 | 64 | 0 | 1 | 1 | 0 | 0 |
 | P2 | 21 | 11 | 10 | 0 | 0 | 0 | 0 |
-| **Total** | **138** | **125** | **11** | **1** | **1** | **0** | **0** |
+| **Total** | **138** | **126** | **10** | **1** | **1** | **0** | **0** |
 
 Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
 
@@ -409,6 +409,9 @@ Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W
 **2026-11-06 sibling adm/class (owner decision [pt87u]/:** created `Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106` = copy of live hook + full `adm/class` (1537 files) from `wims-runtime-r19040-grok`. Live Laragon `WIMS_RT` unchanged (`…/hook-20261106/public_html`). Direct CGI smoke on sibling: `adm/class/classes` Status 200 title Virtual classes; AlgoGebra hook 00006/00076 **8/8**; CAS `tool/algebra/factor.fr` (seeded into sibling only) → `67280421310721`; userscore page 200. Proposed cutover (not applied): `Define WIMS_RT "D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106/public_html"`.
 
 **wims.cgi.exe disappearance (read-only):** Defender `Get-MpThreatDetection`/`Get-MpThreat` = 0; Quarantine file count 0; no Operational events matching wims.cgi. Apache `AH02811` 2026-11-06 14:57:50–14:58:56 Europe/Paris on live hook tree. Timestamps: extensionless `wims.cgi` CreationTime 14:52:56; `wims.cgi.exe` restored CreationTime 14:59:28 (same hash as PATH-01 copy). No script under Shadow/`tests-win_ALF` deleting cgi found. **Cause: not Windows Defender quarantine; most likely accidental rename/copy to extensionless `wims.cgi` (or external clean) around 14:52, restored ~14:59 from PATH-01.**
+
+
+**2026-11-06 HAVE_CRYPT / LOGD-15:** Class login failed because `src/Platform/win32/config.h` lacked `#define HAVE_CRYPT 1`, so `calc.c` `_passcrypt` compiled empty (wp_descrypt already linked). PR https://github.com/io-e/wims4win/pull/12 (unmerged). Sibling cgi replaced (backup in `Bak/cgi-before-have-crypt-20261106`); live hook cgi unchanged. **wims.cgi.exe incident:** accidental extensionless `wims.cgi`, not AV.
 
 **Production gate:**
 - P0 NOT RUN / FAIL / BLOCKED: none — **51/51 P0 PASS**.

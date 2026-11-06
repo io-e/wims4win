@@ -354,3 +354,11 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - PC : IFC-06 Octave PASS (-2, 0.5, a-b) ; SBX-S6 (`system` et `unix` refusés) ; SBX-S7 (`dos`/`winqueryreg`) ; suites 26/26 et 23/23 (D22-03).
 - Apache toujours arrêté : CGI-08 et IFC-06 via Laragon NON EXÉCUTÉS.
 - Gate P0 : 52/52 inchangé.
+
+## 2026-11-06 — Hook JSON AlgoGebra vendu dans le build runtime
+
+- `tools/algogebra-hook/` : `algogebra_json.phtml`, installateurs / désinstallateurs (`.sh` et `.ps1`), `NOTICE.md` (GPL-2 du hook, client AlgoGebra EUPL hors arbre).
+- `tools/build-runtime-tree.sh` installe toujours le hook dans l'arbre Linux (`$WD/wims`) et l'arbre Windows (`$OUT`). Plus de dépendance à `AlgoGebra_Wims_Integration/runtime_patch`. Opt-out : `ALGOGEBRA_HOOK=0`.
+- Documentation : `docs/09_Hook_JSON_AlgoGebra.md`. Désinstallation : restauration de `answer.phtml` depuis `.bak_pre_algogebra` (ou retrait du bloc injecté).
+- Pas de redéploiement du runtime PC sans accord. Issue #3 : commentaire préparé dans `docs/drafts/Issue_3_Comment_Hook_JSON_GROK_V1.md` (non publié).
+

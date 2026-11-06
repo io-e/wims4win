@@ -385,3 +385,20 @@ changée ; seulement les 6 statuts HLP-16/17, JOB-06, OEF-03/04, HLP-10. Les tot
 venaient de 3 ID fantômes (**ENC-05**, **BLD-04**, **HLP-18**) comptées dans §7 depuis
 `b885a1f` sans jamais avoir de ligne §4. Aucune ligne légitime perdue. Totaux corrects :
 **138** / **114 PASS** / **24 NOT RUN** / **0 FAIL** (P0 **51/51**, P1 57/9, P2 6/15).
+
+## 2026-11-06 (soir) — Batch P1 restants + P2 cheap
+
+Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106`.
+
+- **PATH-01** PASS : copie `rt with space` (live intact) ; SMK-01/02/03 OK (factor.fr greffé seulement dans la copie).
+- **SBX-18** PASS : `fake_cas env` + ch..root ; PR https://github.com/io-e/wims4win/pull/11 (non fusionnée).
+- **JOB-04** PASS : Job mem 64 Mo, alloc 200→3 / 32→0.
+- **JOB-05** PASS : `wp_job_kill` via test_platform 22/22.
+- **HLP-09** PASS : module local `canvasdraw_hlp09.fr`, JS canvasdraw servi en getfile.
+- **LOGD-12** PASS (scripts sh) ; démon laissé tourner, keepdate effacé — collecte overnight dans `tests-win_ALF/LOGD-12_15_overnight.txt`.
+- **LOGD-15** NOT RUN (setup class 9001 ; UI adm/class en 404 sur l’arbre slim).
+- **LIN-03** WAIVED → YAML-02.
+- **SEC-02** WAITING : script `tests-win_ALF/SEC-02_pipe_acl_steps.ps1` ; 2e utilisateur Windows à fournir par Arnaud.
+- P2 cheap : **PLT-02**, **HLP-11** (partiel), **PATH-02**, **YAML-03**, **CGI-07** PASS ; **SBX-14** skip ; autres P2 différés avec motif.
+- Incident : `wims.cgi.exe` disparu du live pendant la session → restauré depuis la copie PATH-01 (hash identique). Cause non identifiée (pas un move PATH-01).
+- Totaux §7 (script) : voir plan 08.

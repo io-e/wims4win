@@ -404,7 +404,7 @@ P1/P2 batch.
 
 Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
 
-**2026-11-06 batch notes:** SBX-14 still NOT RUN (Arnaud: no purge). SEC-02 WAITING on a second Windows user. LOGD-15 still NOT RUN (sibling adm/class ready; login/passcheck blocks e2e). Deferred P2: PLT-06/07/08, JOB-07, LOGD-14, CGI-03, HLP-12, CI-03, FS-02 (reasons in row text). Code: PR #11 `fake_cas env` unmerged (Arnaud merges).
+**2026-11-06 batch notes:** SBX-14 still NOT RUN (Arnaud: no purge). SEC-02 WAITING on a second Windows user. LOGD-15 PASS on sibling (HAVE_CRYPT fix PR #12). Deferred P2: PLT-06/07/08, JOB-07, LOGD-14, CGI-03, HLP-12, CI-03, FS-02 (reasons in row text). Code: PR #11 `fake_cas env` unmerged (Arnaud merges).
 
 **2026-11-06 sibling adm/class (owner decision [pt87u]/:** created `Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106` = copy of live hook + full `adm/class` (1537 files) from `wims-runtime-r19040-grok`. Live Laragon `WIMS_RT` unchanged (`…/hook-20261106/public_html`). Direct CGI smoke on sibling: `adm/class/classes` Status 200 title Virtual classes; AlgoGebra hook 00006/00076 **8/8**; CAS `tool/algebra/factor.fr` (seeded into sibling only) → `67280421310721`; userscore page 200. Proposed cutover (not applied): `Define WIMS_RT "D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106/public_html"`.
 

@@ -21,6 +21,7 @@ if [ -z "$test" ]; then WIMS_HOME=..; else WIMS_HOME=$test/..; fi
 cd $WIMS_HOME
 WIMS_HOME=`pwd`
 
+export PATH="/usr/bin:/bin:$PATH"
 export mlist slist glist dicsort_separator dicsort_grouping
 export w_translator_unknown w_dictionary w_translator_switch translator_input
 LANG=C

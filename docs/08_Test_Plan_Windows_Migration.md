@@ -164,7 +164,7 @@ Columns:
 | JOB-03 | MF-03 job tree kill (KILL_ON_JOB_CLOSE) | `fake_cas.exe spawn` (grandchild `silent`), end of request; `Get-Process fake_cas` | no grandchild left | kill by exec.pid | P0 | PASS (phase 2 "tree kill", 68377ef tests) |
 | JOB-04 | MF-03 `wp_set_job` mem limit | spawn with mem 64 MB, `fake_cas flood` | process killed / alloc fails | RLIMIT_AS | P1 | NOT RUN |
 | JOB-05 | MF-03 `wp_job_kill` named job `Local\wims-job-<session>` | open session, start CAS, `cleaning` of session | job terminated | exec.pid kill | P1 | NOT RUN |
-| JOB-06 | MF-25 `set_rlimits` → `wp_set_job` | `log/wims.conf` `rlimit_cpu=3`; OEF with heavy pari loop | CAS stopped after ~3 s, WIMS error shown | same message | P1 | NOT RUN |
+| JOB-06 | MF-25 `set_rlimits` → `wp_set_job` | `log/wims.conf` `rlimit_cpu=3`; OEF with heavy pari loop | CAS stopped after ~3 s, WIMS error shown | same message | P1 | PASS (2026-11-06 Laragon, runtime hook-20261106: rlimit_cpu=3 then heavy `sum(n=1,8*10^7,n%97)` via tool/directexec sw=pari → ~3.3 s, page 200 with « PARI/GP n'a pas pu exécuter votre code »; health check 200; light factor(2^64+1) OK after restore. Conf restored (no rlimit_cpu left; backup backup-exe-20261106/wims.conf.before-job06)) |
 | JOB-07 | MF-31 `execredirected` Win (CPU 1500 s) | wimslogd task `housekeep.daily` runs > 20 s without kill | not killed before 1500 s | — | P2 | NOT RUN |
 
 ### 4.4 SBX — Sandbox ch..root.exe (issue #8, D10, D11)
@@ -271,14 +271,14 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | HLP-07 | MF-52 moneyprint, sigdigits, scienceprint, toascii | `sh bin/<name>` with parameters of §5 of the Suivi | `1.20,30.10,0.40,-0.23`; `5,1,4,1,0,1`; `1.23*10^4`; toascii output | identical (wine) | P1 | PASS ×4 |
 | HLP-08 | MF-52 lceb_dynopt | `sh bin/lceb` with `100 1 2 3 4 5 6` | FOUND + steps | — | P1 | PASS (MSYS2 `ulimit -f` warning harmless) |
 | HLP-09 | MF-52 canvasdraw (`canvasdraw_win.h`) | inside a module using canvasdraw (`!exec canvasdraw`) | canvas JS emitted | Linux | P1 | NOT RUN (outside WIMS it only answers "should be used within wims") |
-| HLP-10 | MF-52 crossword (`sys/times.h`) | module using crossword | grid | Linux | P2 | FAIL/unclear (standalone test "Cannot open bcd": input format to recheck) |
+| HLP-10 | MF-52 crossword (`sys/times.h`) | module using crossword | grid | Linux | P2 | PASS (2026-11-06: standalone `other/bin/crossword.exe wordlist` rc=0 produces a grid; « Cannot open bcd » was a bad argv — bcd is not a wordlist file. Laragon exo=crossword → 200, no Cannot open/bcd. No code change.) |
 | HLP-11 | MF-52 mathexp (libgnurx), symtext, voronoi, whirlgif, bioinfo×4, checkmol/matchmol | one call each through its `bin/` script | non-empty, matches Linux | Linux | P2 | NOT RUN |
 | HLP-12 | MF-16 clickzone `system()` → `sh -c` | module with clickzone on a GIF | zone detected; no cmd.exe (`Get-Process`) | — | P2 | NOT RUN |
 | HLP-13 | MF-15 wrap..exec.exe | `.\bin\wrap..exec.exe ../other/bin/units-filter` | runs, returns child rc | wrap.c | P1 | PASS (rc propagated, 2026-10-27) |
 | HLP-14 | MF-53 flydraw.exe, MF-13 insdraw..processor.exe | OEF 00001 with drawing | GIF identical to Linux | Linux | P1 | PASS (Suivi: "00001 identical, GIF included") |
 | HLP-15 | MF-40 `other/bin/src2def` via sh | latex2wims/mkindex path, `sh other/bin/src2def` | .def generated | Linux | P1 | PASS indirectly (mkindex runs) |
-| HLP-16 | `bin/mkindex` via MSYS2 sh (D17) | `sh bin/mkindex` | rc 0 | Linux | P1 | FAIL (2026-10-27: rc=1 after 1 338 s, `cpp` and `strfile` missing, "find: environment too large") |
-| HLP-17 | `bin/oefcompile` via sh | compile a local OEF module | `.oef` → `.def` | Linux | P1 | NOT RUN |
+| HLP-16 | `bin/mkindex` via MSYS2 sh (D17) | `sh bin/mkindex` | rc 0 | Linux | P1 | PASS (2026-11-06 hook-20261106: `bin/run-mkindex.sh` -> EXIT:0, Start-Process ExitCode=0 (C:/Users/Shadow/mkindex5.log, ~27 min Paris time). Without PATH fix, Windows find.exe shadowed MSYS find and cleanup exited 2 (Fichier introuvable - *.bin). Fix: export PATH="/usr/bin:/bin:$PATH" at start of mkindex (tools/patches/mkindex-wims4win.patch + live runtime). With PATH: 0x Fichier introuvable in stderr; cleanup classes OK. Benign: no strfile; missing modules/data/images.) |
+| HLP-17 | `bin/oefcompile` via sh | compile a local OEF module | `.oef` → `.def` | Linux | P1 | PASS (2026-11-06: `sh -c './bin/oefcompile test local/oef2html_web.fr'` from runtime root → 42 sources, 42 compiled, Total failure: 0) |
 
 ### 4.10 MSYS — MSYS2 bundle (D17)
 
@@ -296,8 +296,8 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 |---|---|---|---|---|---|---|
 | OEF-01 | MF-70 `tools/oef-validation/oef2wims/parity.sh`, CI job 3 | E-LNX/CI: oef2wims Linux vs mingw (wine), v2, trace on 1 438 files | 1438/1438 | Linux | P1 | PASS (`05` oef_parity; CI green) |
 | OEF-02 | MF-70 + wims.exe | PC sample 10 files, seed 1 | 6 identical pages, 4 identical failures (00347, 00352, 00509 too_many_gotos; 01012 bad_index) | Linux | P1 | PASS (2026-10-27 on runtime r19040-grok) |
-| OEF-03 | module `local/exemple.fr` | `W 'module=local/exemple.fr&cmd=new&lang=fr'` | 200, exercise rendered | Linux | P1 | NOT RUN (module not verified on E-RT) |
-| OEF-04 | module `local/oef2html_web.fr` (42 OEF from `D:\ALF_ZGit\03-oef2html_Web\src\oef\fr`) | for each of the 42 `exo=`: new + reply | 42 × 200, no `WIMS User Error`; parity with Linux on seed | Linux | P1 | NOT RUN (Arnaud's request pt63u pending) |
+| OEF-03 | module `local/exemple.fr` | `W 'module=local/exemple.fr&cmd=new&lang=fr'` | 200, exercise rendered | Linux | P1 | PASS (2026-11-06 Laragon: module=local/exemple.fr&cmd=new&lang=fr → 200, page rendered, len≈12810) |
+| OEF-04 | module `local/oef2html_web.fr` (42 OEF from `D:\ALF_ZGit\03-oef2html_Web\src\oef\fr`) | for each of the 42 `exo=`: new + reply | 42 × 200, no `WIMS User Error`; parity with Linux on seed | Linux | P1 | PASS (2026-11-06 Laragon: all 42 exo of local/oef2html_web.fr → new 42/42 status 200, reply 42/42 status 200, no WIMS User Error; use module name with .fr) |
 
 ### 4.12 L2W — latex2wims (branch feat/latex2wims-doc)
 
@@ -391,19 +391,22 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 
 ## 7. Counts (updated 2026-11-06, Paris time)
 
-141 test cases (6 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp, CGI-08 getins image, BLD-05 wims.exe stack, SBX-21 D21 lowil policy).
+138 test cases with a status row in §4 (reconciled from every table row; the earlier "141" figure
+counted ENC-05 / BLD-04 / HLP-18 which were named in the changelog but never received §4 rows).
+Duplicate id SBX-21 appears twice (P0 lowil suite + P1 elevated DROP_PRIV) and is counted twice.
 
 | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
 |---|---|---|---|---|---|
-| P0 | 52 | 52 | 0 | 0 | 0 |
-| P1 | 68 | 58 | 10 | 0 | 0 |
-| P2 | 21 | 6 | 14 | 0 | 1 |
-| **Total** | **141** | **116** | **24** | **0** | **1** |
+| P0 | 51 | 51 | 0 | 0 | 0 |
+| P1 | 66 | 57 | 9 | 0 | 0 |
+| P2 | 21 | 6 | 15 | 0 | 0 |
+| **Total** | **138** | **114** | **24** | **0** | **0** |
 
-Per area: SBX 27, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
+Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
 
 **Production gate:**
 - P0 NOT RUN: none.
-- P0 FAIL: none. IFC-06 GAP part PASS under D21 (restricted low-integrity token + Job, no AppContainer for gap.exe only); its Octave/Maxima part is BLOCKED.
+- P0 FAIL: none.
 - P0 BLOCKED: none (2026-11-04: Octave under D22 lowil; SBX-S6/S7/S8 and IFC-06 GAP/Maxima/Octave PASS).
-- **P0 gate met (2026-11-04)**; Laragon re-runs of IFC-06 Maxima/Octave and CGI-08 (P1) PASS on 2026-11-06 (sibling runtime hook-20261106).
+- **P0 gate met (2026-11-04)** — 51/51 P0 rows PASS; Laragon re-runs of IFC-06 Maxima/Octave and CGI-08 (P1) PASS on 2026-11-06 (sibling runtime hook-20261106).
+- 2026-11-06 sequence also PASS: HLP-16 (mkindex EXIT:0 + PATH fix), OEF-03, OEF-04 (42/42), HLP-17 (oefcompile 42/0), JOB-06 (rlimit_cpu + restore), HLP-10 (crossword triage, no code change).

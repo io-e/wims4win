@@ -1,10 +1,15 @@
 --- a/bin/mkindex
 +++ b/bin/mkindex
-@@ -21,7 +21,11 @@
+@@ -21,7 +21,16 @@
  cd $WIMS_HOME
  WIMS_HOME=`pwd`
  
 -export mlist slist glist dicsort_separator dicsort_grouping
++# wims4win: prefer MSYS tools over same-named Windows builtins (e.g. find.exe
++# in System32 returns "Fichier introuvable" for `find . -type f` and made the
++# final cleanup exit 2). /usr/bin must come first when mkindex is launched
++# from a Laragon/PowerShell PATH that prepends System32.
++export PATH="/usr/bin:/bin:$PATH"
 +# wims4win: Windows limits a process environment to 32767 characters and
 +# mlist (every module) is ~40 KB, so every program started after it is set
 +# would fail ("find: environment too large"). The lists are kept unexported

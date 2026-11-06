@@ -363,3 +363,16 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - **IFC-06 via Laragon** `tool/directexec` : Maxima PASS (`(x-1)*(x+1)*(x^2+1)`, `sin(x)-x*cos(x)`) ; Octave PASS (`-2`, `0.5`, `a-b`) ; 0 cmd.exe.
 - **CGI-08 via Laragon** : image flydraw → `/wims/wims.gif?cmd=getins…` → 200 `image/gif` GIF87a 839 o.
 - Totaux plan 08 : 141 tests, 116 PASS, 24 NOT RUN, 0 BLOCKED, 1 FAIL (P2). Gate P0 toujours 52/52.
+
+## 2026-11-06 (suite) — HLP-16, OEF-03/04, HLP-17, JOB-06, HLP-10
+
+Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106` (sans édition de la config Laragon).
+
+- **HLP-16** PASS : `bin/run-mkindex.sh` → `EXIT:0` / Start-Process ExitCode=0 (`C:\Users\Shadow\mkindex5.log`, démarré 13:19, fini 13:46 heure de Paris). Cause du rc=2 : `find.exe` de System32 devant le `find` MSYS (« Fichier introuvable - *.bin »). Correctif : `export PATH="/usr/bin:/bin:$PATH"` en tête de `bin/mkindex` (patch `tools/patches/mkindex-wims4win.patch` + runtime). Avec PATH : 0× Fichier introuvable. Bénin : pas de `strfile` ; `modules/data/images` absent.
+- **OEF-03** PASS : `module=local/exemple.fr&cmd=new&lang=fr` → 200, page ~12810 o.
+- **OEF-04** PASS : `local/oef2html_web.fr` — 42 exo, new 42/42 status 200, reply 42/42 status 200, pas de WIMS User Error (le nom de module doit inclure `.fr`).
+- **HLP-17** PASS : `./bin/oefcompile test local/oef2html_web.fr` → 42 sources, 42 compiled, Total failure: 0.
+- **JOB-06** PASS : `rlimit_cpu=3` puis PARI lourd `sum(n=1,8*10^7,n%97)` via tool/directexec → ~3,3 s, message « PARI/GP n'a pas pu exécuter votre code » ; factor léger OK après restore. `log/wims.conf` restauré (0 ligne `rlimit`).
+- **HLP-10** PASS (triage) : `crossword.exe wordlist` rc=0 ; « Cannot open bcd » = mauvais argv. Laragon exo=crossword → 200. Pas de correctif code.
+- Totaux plan 08 (§7 réconcilié avec chaque ligne) : **138** tests, **114 PASS**, **24 NOT RUN**, **0 BLOCKED**, **0 FAIL** (P0 51/51, P1 57/9, P2 6/15).
+- Dépôt : docs + patch PATH mkindex poussés sur `master` ; pas de branche code hors patch.

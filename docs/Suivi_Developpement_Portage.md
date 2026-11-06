@@ -354,3 +354,12 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - PC : IFC-06 Octave PASS (-2, 0.5, a-b) ; SBX-S6 (`system` et `unix` refusés) ; SBX-S7 (`dos`/`winqueryreg`) ; suites 26/26 et 23/23 (D22-03).
 - Apache toujours arrêté : CGI-08 et IFC-06 via Laragon NON EXÉCUTÉS.
 - Gate P0 : 52/52 inchangé.
+
+## 2026-11-06 — Laragon : CGI-08 et IFC-06 Maxima/Octave
+
+- WIMS_RT pointe vers le runtime frère `wims-runtime-r19040-grok-hook-20261106` (sans toucher à la config Laragon).
+- Apache n'écoutait pas au démarrage (Laragon et MySQL oui, httpd non ; unclean shutdown dans error.log). `httpd.exe` relancé ; config Syntax OK ; vhost déjà avec les 4 ScriptAliasMatch.
+- Config CAS du sibling déjà alignée (maxima/octave/gap_command, `lowil gap.exe` + `lowil octave-cli.exe`, octave.exe avec `unix` dans illegal[]).
+- **IFC-06 via Laragon** `tool/directexec` : Maxima PASS (`(x-1)*(x+1)*(x^2+1)`, `sin(x)-x*cos(x)`) ; Octave PASS (`-2`, `0.5`, `a-b`) ; 0 cmd.exe.
+- **CGI-08 via Laragon** : image flydraw → `/wims/wims.gif?cmd=getins…` → 200 `image/gif` GIF87a 839 o.
+- Totaux plan 08 : 141 tests, 116 PASS, 24 NOT RUN, 0 BLOCKED, 1 FAIL (P2). Gate P0 toujours 52/52.

@@ -234,7 +234,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | CGI-04 | MF-26 SERVER_ADDR NULL (f999023) | run CGI without `SERVER_ADDR` | no access violation | — | P1 | PASS (all PowerShell runs omit it) |
 | CGI-05 | E-WEB + MF-58 vhost | browser: `http://wims_paris_saclay_fr.test/wims/wims.cgi` | 200 home | — | P0 | PASS on Claude's runtime (2026-10-27); NOT RUN with `WIMS_RT` → Grok runtime |
 | CGI-06 | E-WEB | `http://wims_paris_saclay_fr.test/wims/wims.cgi?module=tool/algebra/factor.fr&lang=fr` → enter `2^64+1` | `274177 × 67280421310721` | Linux | P0 | PASS (2026-10-28, after ch..root ensure_profile_env fix: Apache minimal env made CreateProcessAsUser fail with err 203) |
-| CGI-08 | E-WEB `ScriptAliasMatch` | exercise image `/wims/wims.gif?cmd=getins…` (e.g. chronology) via Laragon | 200 image/gif | Linux apache-config maps wims.* | P1 | NOT RUN via Apache (2026-11-05 ~11:1x Paris: Apache still down, connection refused; CGI direct PASS: image/gif 3065 B) |
+| CGI-08 | E-WEB `ScriptAliasMatch` | exercise image `/wims/wims.gif?cmd=getins…` (e.g. chronology) via Laragon | 200 image/gif | Linux apache-config maps wims.* | P1 | PASS (2026-11-06 Laragon HTTP, runtime wims-runtime-r19040-grok-hook-20261106: `/wims/wims.gif?cmd=getins&session=…&special_parm=insert-1.gif` via flydraw through tool/directexec → 200 Content-Type: image/gif, GIF87a, 839 B; ScriptAliasMatch for wims.* active) |
 | CGI-07 | MF-25 PATH 8 KiB, `wims_home` with `/` | `W` home page with a long inherited PATH (>4 KiB) | 200 | — | P2 | NOT RUN |
 
 ### 4.7 IFC — CAS interfaces
@@ -246,7 +246,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | IFC-03 | MF-22 GAP direct exe (51b54d5) | GAP scenarios of IFC-01 | 8/8 on rerun | Linux | P1 | PASS (Claude 2026-10-27: 21/24 then 8/8 on rerun; first failure during mkindex load) |
 | IFC-04 | D12 `pari_command` in `log/wims.conf` (MF-54 `PARI_COMMAND`) | `Select-String pari_command $rt\log\wims.conf`; `!exec pari about` | path to gp.exe | — | P0 | PASS |
 | IFC-05 | MF-24 CR strip on exec.err | CAS error message in a module | no `\r` in page | — | P1 | PASS (PLT-03, f81abf1) |
-| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | GAP PASS (2026-10-28, D21 lowil). Maxima PASS (2026-11-04, AppContainer, tool/directexec sw=maxima through wims.cgi.exe with an Apache-like minimal env: factor(x^4-1)=(x-1)*(x+1)*(x^2+1), integrate(x*sin(x),x)=sin(x)-x*cos(x); Laragon was not running at test time). Octave PASS (2026-11-04, D22 lowil, wims.cgi.exe direct: det([1 2;3 4])=-2, mean=0.5, strjoin a-b). Laragon runs NOT RUN: Apache not running (connection refused at 10:4x Paris time) Reconfirmed 2026-11-05 after unix() in illegal[]: det=-2, mean=0.5, a-b. Laragon still NOT RUN (Apache down). |
+| IFC-06 | MF-20 + sandbox for Maxima/Octave/GAP | with `.chroot` marker + `--grant-rx` on each CAS dir, rerun IFC-01 | 24/24 | — | P0 | GAP/Maxima/Octave PASS under sandbox (D21/D22). Laragon HTTP 2026-11-06 on sibling wims-runtime-r19040-grok-hook-20261106 tool/directexec: Maxima factor(x^4-1)=(x-1)*(x+1)*(x^2+1), integrate=sin(x)-x*cos(x); Octave det=-2, mean=0.5, a-b; 0 cmd.exe. Earlier wims.cgi.exe-direct evidence kept as corroboration. |
 
 ### 4.8 MML — MathML and formula size (D7)
 
@@ -389,16 +389,16 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
 
-## 7. Counts (updated 2026-10-28 afternoon, Paris time)
+## 7. Counts (updated 2026-11-06, Paris time)
 
 141 test cases (6 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp, CGI-08 getins image, BLD-05 wims.exe stack, SBX-21 D21 lowil policy).
 
 | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
 |---|---|---|---|---|---|
 | P0 | 52 | 52 | 0 | 0 | 0 |
-| P1 | 68 | 57 | 11 | 0 | 0 |
+| P1 | 68 | 58 | 10 | 0 | 0 |
 | P2 | 21 | 6 | 14 | 0 | 1 |
-| **Total** | **141** | **115** | **25** | **0** | **1** |
+| **Total** | **141** | **116** | **24** | **0** | **1** |
 
 Per area: SBX 27, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
 
@@ -406,4 +406,4 @@ Per area: SBX 27, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD
 - P0 NOT RUN: none.
 - P0 FAIL: none. IFC-06 GAP part PASS under D21 (restricted low-integrity token + Job, no AppContainer for gap.exe only); its Octave/Maxima part is BLOCKED.
 - P0 BLOCKED: none (2026-11-04: Octave under D22 lowil; SBX-S6/S7/S8 and IFC-06 GAP/Maxima/Octave PASS).
-- **P0 gate met (2026-11-04)**, with Laragon re-runs of IFC-06 (Maxima/Octave) and CGI-08 (P1) pending an Apache start.
+- **P0 gate met (2026-11-04)**; Laragon re-runs of IFC-06 Maxima/Octave and CGI-08 (P1) PASS on 2026-11-06 (sibling runtime hook-20261106).

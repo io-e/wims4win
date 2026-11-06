@@ -391,9 +391,37 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 
 ## 7. Counts (updated 2026-11-06, Paris time)
 
-138 test cases with a status row in §4 (reconciled from every table row; the earlier "141" figure
-counted ENC-05 / BLD-04 / HLP-18 which were named in the changelog but never received §4 rows).
-Duplicate id SBX-21 appears twice (P0 lowil suite + P1 elevated DROP_PRIV) and is counted twice.
+**Row source of truth:** every status row in §4 (### 4.x tables). Scripted diff of §4
+between `0bb1553` and `1b47d97`: **no test ID added, removed, or renamed**; **no priority
+change**. Only six status cells changed (the approved sequence):
+
+| ID | Priority | `0bb1553` | `1b47d97` |
+|---|---|---|---|
+| HLP-16 | P1 | FAIL | PASS |
+| HLP-17 | P1 | NOT RUN | PASS |
+| JOB-06 | P1 | NOT RUN | PASS |
+| OEF-03 | P1 | NOT RUN | PASS |
+| OEF-04 | P1 | NOT RUN | PASS |
+| HLP-10 | P2 | FAIL | PASS |
+
+Parsed §4 at both commits: **N = 138** (P0 51, P1 66, P2 21). Duplicate id `SBX-21`
+counts twice (P0 lowil suite + P1 elevated DROP_PRIV). Combined labels `SBX-S2a/b/c`
+and `SBX-S4a/b` each count as **one** row (as written).
+
+**Why §7 at `0bb1553` said 141 / P0 52 / 116 PASS:** that summary was already ahead of
+the tables. Since `b885a1f` (2026-10-28) the narrative “added” **ENC-05**, **BLD-04**,
+**HLP-18** into the §7 total and per-area tallies (**HLP 18**, **ENC/PATH/FS/SEC 14**,
+**BLD/CI 8**) but those three IDs **never received a §4 row in any commit** (verified
+with `git log` over this file). Real rows added later were only **CGI-08**, **BLD-05**
+(`4062f19`) and **SBX-21** P0 (`dc09f2f`). So `138` real rows + `3` phantom IDs = the
+old `141`; phantom split matched the priority gap (`+1` P0, `+2` P1 → claimed P0 52 /
+P1 68 vs row P0 51 / P1 66). PASS/NOT RUN/FAIL in that §7 were also out of sync with
+§4 (at `0bb1553` rows were 108 PASS / 28 NOT RUN / 2 FAIL, not 116 / 24 / 1).
+
+**No legit §4 row was dropped** in `1b47d97`. Phantoms ENC-05 / BLD-04 / HLP-18 are
+not restored as rows (they never existed as rows; add them later only if Arnaud wants
+new cases). Headline PASS moved 116 → 114 because the old 116 was inflated; true delta
+is 108 → 114 (+6).
 
 | Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
 |---|---|---|---|---|---|
@@ -408,5 +436,5 @@ Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W
 - P0 NOT RUN: none.
 - P0 FAIL: none.
 - P0 BLOCKED: none (2026-11-04: Octave under D22 lowil; SBX-S6/S7/S8 and IFC-06 GAP/Maxima/Octave PASS).
-- **P0 gate met (2026-11-04)** — 51/51 P0 rows PASS; Laragon re-runs of IFC-06 Maxima/Octave and CGI-08 (P1) PASS on 2026-11-06 (sibling runtime hook-20261106).
-- 2026-11-06 sequence also PASS: HLP-16 (mkindex EXIT:0 + PATH fix), OEF-03, OEF-04 (42/42), HLP-17 (oefcompile 42/0), JOB-06 (rlimit_cpu + restore), HLP-10 (crossword triage, no code change).
+- **P0 gate met** — **51/51** P0 rows PASS; Laragon re-runs of IFC-06 Maxima/Octave and CGI-08 (P1) PASS on 2026-11-06 (sibling runtime hook-20261106).
+- 2026-11-06 sequence PASS: HLP-16 (mkindex EXIT:0 + PATH fix), OEF-03, OEF-04 (42/42), HLP-17 (oefcompile 42/0), JOB-06 (rlimit_cpu + restore), HLP-10 (crossword triage, no code change).

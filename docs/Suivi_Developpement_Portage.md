@@ -376,3 +376,12 @@ Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106` (sans édition de la 
 - **HLP-10** PASS (triage) : `crossword.exe wordlist` rc=0 ; « Cannot open bcd » = mauvais argv. Laragon exo=crossword → 200. Pas de correctif code.
 - Totaux plan 08 (§7 réconcilié avec chaque ligne) : **138** tests, **114 PASS**, **24 NOT RUN**, **0 BLOCKED**, **0 FAIL** (P0 51/51, P1 57/9, P2 6/15).
 - Dépôt : docs + patch PATH mkindex poussés sur `master` ; pas de branche code hors patch.
+
+## 2026-11-06 (soir) — Audit des totaux §7 du plan 08
+
+Arnaud a demandé de tracer 141/P0 52 (`0bb1553`) → 138/P0 51 (`1b47d97`) malgré 6 PASS.
+Diff scripté des lignes §4 : **aucune** ID ajoutée/retirée/renommée ; **aucune** priorité
+changée ; seulement les 6 statuts HLP-16/17, JOB-06, OEF-03/04, HLP-10. Les totaux 141
+venaient de 3 ID fantômes (**ENC-05**, **BLD-04**, **HLP-18**) comptées dans §7 depuis
+`b885a1f` sans jamais avoir de ligne §4. Aucune ligne légitime perdue. Totaux corrects :
+**138** / **114 PASS** / **24 NOT RUN** / **0 FAIL** (P0 **51/51**, P1 57/9, P2 6/15).

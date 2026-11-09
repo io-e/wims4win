@@ -425,3 +425,21 @@ Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106`.
 - Correctif : `#define HAVE_CRYPT 1` ; `tools/check-linux-identical.sh` IDENTICAL pour `calc.c`.
 - PR https://github.com/io-e/wims4win/pull/12 (non fusionnée). Déployé **uniquement** sur sibling `hook-class-20261106` (backup `Bak/cgi-before-have-crypt-20261106`). Live Laragon inchangé.
 - LOGD-15 : élève `anonymous` feuille 1 exo exi1 → `score/anonymous1` ; superviseur page **Notes** 200.
+
+## 2026-11-09 — LOGD-12 overnight collection (PC online)
+
+Scheduled Nov 7 09:00 Europe/Paris collect found ShadowPC offline; re-run today 16:10 Europe/Paris (PowerShell only, no .bat/cmd.exe; live runtime untouched).
+
+- Confirmed Laragon `WIMS_RT` → `wims-runtime-r19040-grok-hook-20261106/public_html` (read-only).
+- Logs under runtime `tmp/log/` (sibling of `public_html`):
+  - `housekeep.log` 789 B, mtime **2026-11-06 14:52:45** (manual MSYS sh proof; missing `log/stat/*` messages)
+  - `modupdate.log` 50 B, mtime **2026-11-06 14:52:55** (« Waiting… OK. »)
+  - `wimslogd.out` 53 B, mtime 2026-11-06 10:16:45 — only `wimslogd 12944 started at 20261106.10:16:45 (win32).`
+  - `keepdate` absent (cleared 2026-11-06); bak `keepdate.bak-logd12` = `20261106`
+  - `lastclean` mtime 2026-11-06 16:04:27; `mupdate` = `20261106`
+  - `exec.fail` (mtime 2026-11-06 10:21:24): daemon failed to spawn `bin/housekeep.daily` and `bin/modupdate.auto` (error 0) earlier that morning
+- **No Nov 7 / 8 / 9 overnight housekeep or modupdate** from wimslogd.
+- `wimslogd` not running (stale pid file 12944). Laragon process up; ambient `cmd.exe` child of laragon.exe (started 2026-11-09 11:33) — not used by this collect or by the MSYS sh housekeep proof.
+- **LOGD-12** remains **PASS** on the 2026-11-06 MSYS sh evidence; overnight daemon path did not add new runs.
+- Totaux §7 (script, one row = one test) : **126/138 PASS**, 0 FAIL, P0 **51/51**, NOT RUN 10, WAIVED 1 (LIN-03), WAITING 1 (SEC-02).
+

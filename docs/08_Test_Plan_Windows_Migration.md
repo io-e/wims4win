@@ -219,7 +219,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | LOGD-09 | MF-30 `wl_spawn_task("cleaning")`, `run_task` | wait ≥ 2 min with env `wimslogd="3600 3600 3600 10 0 0 -1 0 8 100"`; old session dir (mtime −2 days) | old session removed, `tmp/log/lastclean` created, kept session with `wims_user=` | forked child | P0 | PASS (wine 2026-10-27; PC: lastclean created) |
 | LOGD-10 | `dispatch_log` task via `sh -c` (MSYS2) | as LOGD-09, check `tmp/log/exec.fail` absent | no exec.fail | — | P1 | PASS (PC 2026-10-27) |
 | LOGD-11 | per-task stderr file + NUL fallback (`wl_spawn_task`) | two tasks overlapping | both start | — | P1 | PASS (fix after sharing violation, wine) |
-| LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | PASS (2026-11-06: `housekeep.daily` via MSYS sh → `tmp/log/housekeep.log` written (rc=1 only for missing `log/stat/*` on slim tree); `modupdate.auto` → OK. Daemon left running; `keepdate` cleared so next daily window can fire — collect later: housekeep.log/modupdate.log mtimes + wimslogd.out. Notes: tests-win_ALF/LOGD-12_15_overnight.txt) |
+| LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | PASS (2026-11-06 MSYS sh: `housekeep.daily` → `tmp/log/housekeep.log` 789 B (rc=1 only for missing `log/stat/*` on slim tree); `modupdate.auto` → OK. **Overnight collect 2026-11-09 16:10 Europe/Paris** on live `WIMS_RT`=hook-20261106: housekeep.log mtime still **2026-11-06 14:52:45**, modupdate.log **14:52:55**, wimslogd.out only start line `wimslogd 12944 started at 20261106.10:16:45 (win32)`; `keepdate` still absent; `lastclean` mtime 2026-11-06 16:04:27; **no Nov 7/8/9 daemon housekeep/modupdate**. `wimslogd` not running (stale pid 12944); `exec.fail` earlier same day recorded daemon spawn fail for `bin/housekeep.daily` / `bin/modupdate.auto` (error 0). Collection PowerShell-only; ambient Laragon `cmd.exe` child present, not used by housekeep proof. Notes: tests-win_ALF/LOGD-12_15_overnight.txt) |
 | LOGD-13 | MF-06 `pipe_name` per tree hash | two runtimes (wims-runtime, r19040-grok, tests-win) running simultaneously | each CGI talks to its own daemon | — | P1 | PASS (3 daemons coexisting on PC, 2026-10-27) |
 | LOGD-14 | MF-30 pid check / daily restart (`wait_children`) | overwrite `tmp/log/wimslogd.pid` | daemon exits within 1 min; next request restarts it | same | P2 | NOT RUN (deferred 2026-11-06: pid overwrite / daemon restart — disruptive) |
 | LOGD-15 | class scores end-to-end | in a test class: student does an exercise, then teacher score page | scores shown | Linux | P1 | PASS (2026-11-06 sibling hook-class only: root cause was missing `HAVE_CRYPT` in win32 config.h — `_passcrypt` no-op → passcheck always no. Fixed in PR #12; cgi deployed to sibling only. Student anonymous login + worksheet exi1 reply → score file `log/classes/9001/score/anonymous1`; supervisor userscore **Notes** 200 shows class sheets. Live Laragon untouched.) |
@@ -389,11 +389,11 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
 
-## 7. Counts (updated 2026-11-06 evening, Paris time)
+## 7. Counts (updated 2026-11-09 afternoon, Paris time)
 
 **Row source of truth:** every status row in §4. Status vocabulary: PASS, NOT RUN, WAIVED,
-WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked after the 2026-11-06
-P1/P2 batch.
+WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked 2026-11-09 after LOGD-12
+overnight collection (one table row = one test; L2W-PC-* included).
 
 | Priority | Tests | PASS | NOT RUN | WAIVED | WAITING | BLOCKED | FAIL |
 |---|---|---|---|---|---|---|---|
@@ -403,6 +403,8 @@ P1/P2 batch.
 | **Total** | **138** | **126** | **10** | **1** | **1** | **0** | **0** |
 
 Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
+
+**2026-11-09 LOGD-12 overnight collect:** PC back online; read-only on live hook-20261106. No daemon-triggered housekeep/modupdate after 2026-11-06 14:52 (daemon dead; scheduled Nov 7 run had found PC off). LOGD-12 stays PASS on the 2026-11-06 MSYS sh proof. Totals unchanged 126/138.
 
 **2026-11-06 batch notes:** SBX-14 still NOT RUN (Arnaud: no purge). SEC-02 WAITING on a second Windows user. LOGD-15 PASS on sibling (HAVE_CRYPT fix PR #12). Deferred P2: PLT-06/07/08, JOB-07, LOGD-14, CGI-03, HLP-12, CI-03, FS-02 (reasons in row text). Code: PR #11 `fake_cas env` unmerged (Arnaud merges).
 

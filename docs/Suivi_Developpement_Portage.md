@@ -443,3 +443,18 @@ Scheduled Nov 7 09:00 Europe/Paris collect found ShadowPC offline; re-run today 
 - **LOGD-12** remains **PASS** on the 2026-11-06 MSYS sh evidence; overnight daemon path did not add new runs.
 - Totaux §7 (script, one row = one test) : **126/138 PASS**, 0 FAIL, P0 **51/51**, NOT RUN 10, WAIVED 1 (LIN-03), WAITING 1 (SEC-02).
 
+## 2026-11-09 — wimslogd restart + housekeep/modupdate spawn retest
+
+Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106` only; trigger daily jobs via daemon path.
+
+- Pre: stale pid 12944; `exec.fail` already had two «Failed to execute … error 0» from 2026-11-06 10:21; logs from manual MSYS sh only.
+- Start 16:20:04 Europe/Paris: removed stale pid; `Start-Process bin\wimslogd.exe -WorkingDirectory <runtime root> -WindowStyle Hidden`; PATH put bundled `other\msys2\usr\bin\sh.exe` first. PID **5132**, `wimslogd.out`: `wimslogd 5132 started at 20261109.16:20:04 (win32).`
+- Daemon path (not hand-run scripts): `housekeep()` / `modupdate()` via `thismin` ticks (`MINLENGTH` 47 + random `rshift`).
+  - **16:22:08** housekeep: `keepdate=20261109`; `housekeep.log` truncated to **0 B**; `exec.fail` += housekeep.daily error 0.
+  - **16:29:12** modupdate: `mupdate=20261109`; `modupdate.log` **0 B**; `exec.fail` += modupdate.auto error 0.
+- PowerShell CreateFile repro: two `GENERIC_WRITE` opens on same path with `FILE_SHARE_READ` only → 2nd handle INVALID, **Win32 32 ERROR_SHARING_VIOLATION**; with `FILE_SHARE_READ|FILE_SHARE_WRITE` both OK.
+- **Root cause:** `housekeep.c` `call_ssh(0,"bin/… &>%s/….log",tmpd)` → `outf==errf`; `wp_win32.c` `open_redirect` share mode too tight for stdout+stderr same file.
+- **Proposed fix (not applied / not committed):** open once + `DuplicateHandle` for the second std handle when paths match (preferred), or add `FILE_SHARE_WRITE` in `open_redirect`.
+- Daemon **left running** (PID 5132, healthy). No Laragon/config/code changes. Ambient Laragon `cmd.exe` unchanged; collect used PowerShell only.
+- Totaux §7 inchangés : **126/138 PASS**, P0 51/51.
+

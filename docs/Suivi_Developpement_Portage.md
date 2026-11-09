@@ -458,3 +458,13 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - Daemon **left running** (PID 5132, healthy). No Laragon/config/code changes. Ambient Laragon `cmd.exe` unchanged; collect used PowerShell only.
 - Totaux §7 inchangés : **126/138 PASS**, P0 51/51.
 
+## 2026-11-09 — fix win32 `&>` shared redirect (LOGD-12 daemon spawn)
+
+- **Debian ?** Non. Chemin Linux : `src/Wimslogd/wimslogdlines.c` `#else` → `fork` + `freopen(outf)` puis `freopen(errf)` (même chemin OK). Repro box : child_status=0, log écrit. Pas de `CreateFile` / partage de handles.
+- **Fix Windows** (branche `fix/win32-wimslogd-shared-redirect`, PR ouverte, fusion par Arnaud) :
+  - `wp_spawn` : si `outf` et `errf` même chemin → un `open_redirect` + `DuplicateHandle` pour stderr
+  - `open_redirect` écriture : `FILE_SHARE_READ|FILE_SHARE_WRITE` (ceinture)
+  - `execredirected` / `wp_spawn` : conserver le vrai `GetLastError` avant `CloseHandle`
+- Build : `tools/build-wimslogd-win32.sh` → `wimslogd.exe` ; `tests/platform` 22/22 Linux ; `test_platform.exe` rebuild mingw.
+- Vérif sibling PC prévue : `wims-runtime-r19040-grok-hook-logd-20261109` (live PID 5132 intact).
+

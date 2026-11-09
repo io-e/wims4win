@@ -468,3 +468,13 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - Build : `tools/build-wimslogd-win32.sh` → `wimslogd.exe` ; `tests/platform` 22/22 Linux ; `test_platform.exe` rebuild mingw.
 - Vérif sibling PC prévue : `wims-runtime-r19040-grok-hook-logd-20261109` (live PID 5132 intact).
 
+### Sibling verify (logd-20261109)
+
+- Copie live → `wims-runtime-r19040-grok-hook-logd-20261109` (ask-before-overwrite: n'existait pas).
+- `wimslogd.exe` corrigé déployé **uniquement** dans le sibling (bak `.bak-before-fix`). Live Laragon / PID **5132** intact.
+- Sibling daemon PID **23708** démarré 16:44:28 Europe/Paris (pipe hashé par arbre → pas de collision).
+- **housekeep OK** ~16:46 : `keepdate=20261109`, `housekeep.log` 809 o, **pas** de `exec.fail`.
+- modupdate pas encore observé (PC offline ~16:53) ; même `call_ssh &>` que housekeep.
+- CI PR #13 : Linux Platform / mingw interfaces / OEF tools = SUCCESS.
+- À la reconnexion : confirmer modupdate + arrêter PID 23708 (pas 5132).
+

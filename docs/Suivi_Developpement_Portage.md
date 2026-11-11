@@ -458,3 +458,10 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - Daemon **left running** (PID 5132, healthy). No Laragon/config/code changes. Ambient Laragon `cmd.exe` unchanged; collect used PowerShell only.
 - Totaux §7 inchangés : **126/138 PASS**, P0 51/51.
 
+## 2026-11-11 — English admin guide (Windows + Debian)
+
+- New `docs/10_Server_Administration_Windows_Debian.md` on branch `docs/admin-guide-win-debian`.
+- Sources: GEM report (`02-wims4win/docs/Officiel/…`, untracked), official WIMS EDU / UCA docs, repo code and docs/04–08. Web + disk search found no existing EN Windows+Debian operations guide.
+- Password management (§3) and rights/permissions (§4) are placed immediately after the inventory: `log/.wimspass`, `passcrypt`/`passcheck`, HAVE_CRYPT / PR #12, class 9001, `manager_site`, NTFS vs Unix setuid wrappers, pipe ACL SEC-02.
+- §17 adds test rows PWD-01…10, ACL-01…11 (mapped to LOGD-15, SEC-01/02, SBX-*), plus ADM-01…08.
+- Index line added in `docs/README.md`. Copy of the guide also goes to `D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\docs-admin\`.

@@ -465,3 +465,14 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - Password management (§3) and rights/permissions (§4) are placed immediately after the inventory: `log/.wimspass`, `passcrypt`/`passcheck`, HAVE_CRYPT / PR #12, class 9001, `manager_site`, NTFS vs Unix setuid wrappers, pipe ACL SEC-02.
 - §17 adds test rows PWD-01…10, ACL-01…11 (mapped to LOGD-15, SEC-01/02, SBX-*), plus ADM-01…08.
 - Index line added in `docs/README.md`. Copy of the guide also goes to `D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\docs-admin\`.
+
+## 2026-11-12 — Admin tests (docs/10 §17)
+
+- PRs **#10–#14 all still OPEN** (not merged). No new code from those PRs on `master`.
+- Ran docs/10 §17 items on:
+  - Debian: isolated tree `/workspace/mw-wims-debian/` (copy; no other folder deleted).
+  - Windows siblings only: `wims-runtime-r19040-grok-hook-class-20261106` (HAVE_CRYPT CGI) and `wims-runtime-r19040-grok-hook-logd-20261109` (fixed wimslogd, CGI **without** HAVE_CRYPT). Live `hook-20261106` read-only (stale `wimslogd.pid`, 0 process). Laragon and `Reprise_Wims_Claude` untouched.
+- Credentials only from `C:\Users\Shadow\wims_test_creds.txt` or generated secrets; class files and `.wimspass` restored; no secret in git or this log.
+- **PASS (no FAIL):** PWD-01…09, ACL-01…04, ACL-09, ACL-10, ADM-01, ADM-02, ADM-04, ADM-05. PWD-07: hook-logd/live CGI still rejects class logins; hook-class accepts.
+- **NOT RUN:** PWD-10, ACL-05 (no root / `setwrapexec`), ACL-11, ADM-03, ADM-06 (no load tests), ADM-07, ADM-08, SBX-14, SEC-02/ACL-06 (Arnaud).
+- docs/08 §4.16 added. Totals §7 (baseline 138 + 27 new IDs): **145/165 PASS**, 0 FAIL, P0 **53/53**, NOT RUN 17, WAIVED 1, WAITING 2 (SEC-02, ACL-06).

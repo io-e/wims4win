@@ -560,40 +560,41 @@ uninstall: hook doc on the hook branch.
 
 ## 17. Items to test
 
-Statuses cited below are from [docs/08](08_Test_Plan_Windows_Migration.md) as
-of 2026-11-11 (master). Re-read §7 of that plan before a campaign.
+Statuses below include the 2026-11-12 campaign (Europe/Paris). Re-read §7 of
+[docs/08](08_Test_Plan_Windows_Migration.md) before a new campaign. New totals
+there: **145/165 PASS**, 0 FAIL, P0 **53/53**, WAITING 2 (SEC-02 + ACL-06).
 
 ### 17.1 Password and account tests (dedicated)
 
 | ID | Procedure | Expected | Priority | Status / note |
 |---|---|---|---|---|
-| **PWD-01** | Site manager login at `adm/manage` from an IP in `manager_site`, with `log/.wimspass` set | maintenance UI; `wims_ismanager=2` | P0 | **NEW** — Win + Debian |
-| **PWD-02** | Replace `log/.wimspass` with a new secret; confirm old fails and new works; file becomes hashed (`*` present) and not group/world readable | only new password works | P1 | **NEW** |
-| **PWD-03** | Remove `log/.wimspass`; one-time password appears in `tmp/log/.wimspassone` and works once | official one-time mode | P2 | **NEW** |
-| **PWD-04** | Supervisor changes own password via `adm/class/passwd` (`job=user`) | old rejected, new accepted | P1 | **NEW** (uses same `passcrypt` as LOGD-15) |
-| **PWD-05** | Supervisor sets a participant password (`job=part`); student logs in | student can enter; `user_forcechpwd` as designed | P1 | **NEW** |
-| **PWD-06** | Class **9001** teacher + student login and a scored exercise | scores visible to supervisor | P1 | Map: **LOGD-15 PASS** on hook-class sibling with HAVE_CRYPT CGI; **not** on live hook tree |
-| **PWD-07** | CGI **without** `HAVE_CRYPT` vs fixed CGI on the same class hashes | pre-fix rejects all; post-fix accepts | P1 | **NEW** (documents PR #12); do this only on a sibling |
-| **PWD-08** | Empty and wrong passwords | `bad_password` / `wrongpass`, no session upgrade | P1 | **NEW** |
-| **PWD-09** | Grep / archive check: no password files in git or shared docs | no `log/.wimspass` or class secrets in the repo | P1 | **NEW** (process) |
-| **PWD-10** | Create/change a module developer password in `adm/manage/developer` | login to Modtool works | P2 | **NEW** |
+| **PWD-01** | Site manager login at `adm/manage` from an IP in `manager_site`, with `log/.wimspass` set | maintenance UI; `wims_ismanager=2` | P0 | **PASS** 2026-11-12 (Debian + Windows hook-class; ismanager=2, hashed `.wimspass`) |
+| **PWD-02** | Replace `log/.wimspass` with a new secret; confirm old fails and new works; file becomes hashed (`*` present) and not group/world readable | only new password works | P1 | **PASS** 2026-11-12 (Debian + Windows hook-class; old rejected, new accepted, hashed, mode 600) |
+| **PWD-03** | Remove `log/.wimspass`; one-time password appears in `tmp/log/.wimspassone` and works once | official one-time mode | P2 | **PASS** 2026-11-12 (Debian + Windows hook-class; `.wimspassone` + login `ismanager=2`) |
+| **PWD-04** | Supervisor changes own password via `adm/class/passwd` (`job=user`) | old rejected, new accepted | P1 | **PASS** 2026-11-12 (Debian 9001 + Windows hook-class; files restored, no secret recorded) |
+| **PWD-05** | Supervisor sets a participant password (`job=part`); student logs in | student can enter; `user_forcechpwd` as designed | P1 | **PASS** 2026-11-12 (Debian + Windows hook-class; files restored) |
+| **PWD-06** | Class **9001** teacher + student login and a scored exercise | scores visible to supervisor | P1 | **PASS** 2026-11-12 (Debian + Windows hook-class HAVE_CRYPT login; student may be `anonymousN`; scored exercise remains LOGD-15, not re-driven). Live CGI still lacks HAVE_CRYPT. |
+| **PWD-07** | CGI **without** `HAVE_CRYPT` vs fixed CGI on the same class hashes | pre-fix rejects all; post-fix accepts | P1 | **PASS** 2026-11-12 (Windows: hook-logd CGI = live hash, supervisor login empty; hook-class HAVE_CRYPT accepts, 302 + identity). Linux `config.h` already defines HAVE_CRYPT. PR #12 still unmerged; do not switch Laragon to logd CGI. |
+| **PWD-08** | Empty and wrong passwords | `bad_password` / `wrongpass`, no session upgrade | P1 | **PASS** 2026-11-12 (Debian + Windows: empty → auth form, wrong → `wrongpass`, ismanager≠2) |
+| **PWD-09** | Grep / archive check: no password files in git or shared docs | no `log/.wimspass` or class secrets in the repo | P1 | **PASS** 2026-11-12 (`git ls-files`: no `.wimspass`, creds, or class user files; docs mention the path only) |
+| **PWD-10** | Create/change a module developer password in `adm/manage/developer` | login to Modtool works | P2 | **NOT RUN** 2026-11-12 (developer UI not exercised; manager path already proven) |
 | SEC-01 | platform crypt / descrypt | PASS | P0 | Existing **PASS** |
 
 ### 17.2 Rights, ACL, and sandbox tests (dedicated)
 
 | ID | Procedure | Expected | Priority | Status / note |
 |---|---|---|---|---|
-| **ACL-01** | Request home / `adm/manage` from an IP **not** in `manager_site` | no working management link / cannot authenticate | P0 | **NEW** |
-| **ACL-02** | (Debian) `chmod` `log/wims.conf` group-readable; retry manage | `wims_ismanager=-1`, warning | P1 | **NEW**; Windows mode bits **to verify** |
-| **ACL-03** | (Debian) `chmod` `log/.wimspass` group-readable | `wims_ismanager=-2` | P1 | **NEW**; Windows NTFS **to verify** |
-| **ACL-04** | Windows NTFS: other interactive user cannot read `.wimspass`; Apache can write `tmp\log`, `log\classes` | access denied vs write OK | P1 | **NEW** |
-| **ACL-05** | Debian: `setwrapexec` results (`wrap..exec` 6755 `nobody`) | matches script; CGI still works | P1 | **NEW** (official script) |
-| **ACL-06** | Second Windows user opens `\\.\pipe\wims-wimslogd-<hash>` | deny, or documented risk | P1 | Map: **SEC-02 WAITING** |
-| **ACL-07** | Sandbox cannot read `log\` or write the profile | denied, files absent | P0 | Map: **SBX-S1a/b, S2, S9, S17 PASS** |
-| **ACL-08** | GAP/Octave lowil + Octave `unix()`/`system()` refused | D21/D22 behaviour | P0 | Map: **SBX-21, SBX-S6/S7 PASS** |
-| **ACL-09** | Supervisor of class A cannot open class B data | denied | P1 | **NEW** |
-| **ACL-10** | Student cannot open supervisor / userscore as teacher | denied | P1 | **NEW** (complement to LOGD-15) |
-| **ACL-11** | Developer account cannot perform site-manager actions | denied | P2 | **NEW** |
+| **ACL-01** | Request home / `adm/manage` from an IP **not** in `manager_site` | no working management link / cannot authenticate | P0 | **PASS** 2026-11-12 (Debian + Windows, `REMOTE_ADDR=203.0.113.50`: `wims_ismanager=0`, job=`no_right`) |
+| **ACL-02** | (Debian) `chmod` `log/wims.conf` group-readable; retry manage | `wims_ismanager=-1`, warning | P1 | **PASS** 2026-11-12 (Debian `chmod 640` `wims.conf` → badconf). Windows: see ACL-04. |
+| **ACL-03** | (Debian) `chmod` `log/.wimspass` group-readable | `wims_ismanager=-2` | P1 | **PASS** 2026-11-12 (Debian `chmod 640` `.wimspass` → badconf). Windows: see ACL-04. |
+| **ACL-04** | Windows NTFS: other interactive user cannot read `.wimspass`; Apache can write `tmp\log`, `log\classes` | access denied vs write OK | P1 | **PASS** 2026-11-12 (hook-class: default inherited Authenticated Users (M) on parent; after `icacls /inheritance:r` + grant user only, open ACEs removed). Cross-user read not tested (SEC-02). |
+| **ACL-05** | Debian: `setwrapexec` results (`wrap..exec` 6755 `nobody`) | matches script; CGI still works | P1 | **NOT RUN** 2026-11-12 (no root on the box; `setwrapexec` refuses non-root; wrap..exec was 755 box:box) |
+| **ACL-06** | Second Windows user opens `\\.\pipe\wims-wimslogd-<hash>` | deny, or documented risk | P1 | **NOT RUN** / WAITING 2026-11-12 (SEC-02 reserved for Arnaud; second Windows user) |
+| **ACL-07** | Sandbox cannot read `log\` or write the profile | denied, files absent | P0 | Mapped: **SBX-S1a/b, S2, S9, S17 PASS** (not re-run 2026-11-12) |
+| **ACL-08** | GAP/Octave lowil + Octave `unix()`/`system()` refused | D21/D22 behaviour | P0 | Mapped: **SBX-21, SBX-S6/S7 PASS** (not re-run 2026-11-12) |
+| **ACL-09** | Supervisor of class A cannot open class B data | denied | P1 | **PASS** 2026-11-12 (Debian + Windows: 9001 supervisor did not open class 1000 tools) |
+| **ACL-10** | Student cannot open supervisor / userscore as teacher | denied | P1 | **PASS** 2026-11-12 (Debian + Windows: student session has no usermanage tools) |
+| **ACL-11** | Developer account cannot perform site-manager actions | denied | P2 | **NOT RUN** 2026-11-12 (depends on PWD-10) |
 | SEC-03, SEC-04 | related platform / sandbox rights | PASS | P0–P1 | Existing **PASS** |
 | SBX-14 | purge AppContainer profiles | only with owner approval | P2 | Existing **NOT RUN** (do not run) |
 
@@ -614,18 +615,15 @@ of 2026-11-11 (master). Re-read §7 of that plan before a campaign.
 
 | ID | Procedure | Priority | Note |
 |---|---|---|---|
-| **ADM-01** | After Windows reboot: stale pid removed or CGI bring-up; `wimslogd` live | P1 | Observed need for manual start on 2026-11-10 |
-| **ADM-02** | Live + sibling daemons after reboot, stop only sibling by path | P1 | Partly done 2026-11-10 |
-| **ADM-03** | `bin/backup` via daemon (`backup_hour`) writes `backup/` and log | P2 | Overlaps LOGD-12 backup; not separately recorded |
-| **ADM-04** | MOTD `log/motd.phtml.fr` appears, then removal | P2 | Official upgrade practice |
-| **ADM-05** | Hook opt-out `ALGOGEBRA_HOOK=0` and uninstall script | P2 | See hook doc |
-| **ADM-06** | Load-threshold change vs CPU count; site still serves | P2 | Wiki/GEM; **to verify** numbers |
-| **ADM-07** | Uninstall/teardown of a sibling without touching live or Claude trees | P2 | **To verify** |
-| **ADM-08** | Debian package or manual upgrade + `setwrapexec` + class data intact | P1 | Official wiki; **to verify** on the target host |
-
-**Counts:** 10 new PWD rows + 1 mapped existing (SEC-01 / LOGD-15). 11 new ACL
-rows + mapped SEC-02 / SBX / SEC-03/04. 8 new ADM rows. About 20 existing
-docs/08 IDs listed as already covering start, jobs, CAS, CGI, and sandbox.
+| **ADM-01** | After Windows reboot: stale pid removed or CGI bring-up; `wimslogd` live | P1 | **PASS** 2026-11-12 (live pidfile present, 0 live process after reboot — stale; sibling start/CGI only; live not started) |
+| **ADM-02** | Live + sibling daemons after reboot, stop only sibling by path | P1 | **PASS** 2026-11-12 (hook-class + hook-logd started; stopped logd by path, class stayed; both stopped at end; live procs 0) |
+| **ADM-03** | `bin/backup` via daemon (`backup_hour`) writes `backup/` and log | P2 | **NOT RUN** 2026-11-12 (not forced; overlaps LOGD-12) |
+| **ADM-04** | MOTD `log/motd.phtml.fr` appears, then removal | P2 | **PASS** 2026-11-12 (Debian: MOTD token on home then removed) |
+| **ADM-05** | Hook opt-out `ALGOGEBRA_HOOK=0` and uninstall script | P2 | **PASS** 2026-11-12 (hook phtml on hook-class; `ALGOGEBRA_HOOK=0` + uninstall scripts on hook branch; uninstall not executed on existing trees) |
+| **ADM-06** | Load-threshold change vs CPU count; site still serves | P2 | **NOT RUN** 2026-11-12 (load tests out of scope) |
+| **ADM-07** | Uninstall/teardown of a sibling without touching live or Claude trees | P2 | **NOT RUN** 2026-11-12 (no throwaway sibling created; ask-before-overwrite) |
+| **ADM-08** | Debian package or manual upgrade + `setwrapexec` + class data intact | P1 | **NOT RUN** 2026-11-12 (no root / no apt upgrade; isolated tree only) |
+**Counts (2026-11-12):** PWD-01…09 PASS (PWD-10 NOT RUN); ACL-01…04, 09, 10 PASS; ACL-05/11 NOT RUN; ACL-06 WAITING (SEC-02); ACL-07/08 remain mapped PASS. ADM-01, 02, 04, 05 PASS; ADM-03, 06, 07, 08 NOT RUN. No FAIL. Live Laragon and Claude trees were not modified. PR #12 still unmerged — live CGI still rejects class passwords.
 
 ---
 

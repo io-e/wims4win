@@ -88,7 +88,17 @@ This is the path used in §10, because the box could not cross-compile that day.
 1. Choose a source **software** tree that already has modules, `public_html`, bundled MSYS2, and preferably a HAVE_CRYPT `wims.cgi.exe`. On the lab PC: `wims-runtime-r19040-grok-hook-class-20261106` (CGI SHA-256 `42BBAE9D…D8015C`, 933537 bytes, built 2026-11-06 17:09 Paris from PR #12).
 2. `robocopy` it to a **new** sibling (ask before overwrite). Example (2026-11-12 11:59–12:01 Paris): destination `wims-runtime-r19040-grok-setup-test-20261112`, 22922 files, 432.46 MB, `robocopy` exit 1 = success.
 3. Replace `bin\wimslogd.exe` with the PR #13 binary if the source still has the unfixed daemon. On the lab PC the fixed binary is in `wims-runtime-r19040-grok-hook-logd-20261109\bin\wimslogd.exe` (SHA-256 `19E7E257…C4A3C4E1`, 543754 bytes, 2026-11-09 16:44 Paris). Do **not** copy that sibling’s CGI (it has no `HAVE_CRYPT`).
-4. Do **not** copy class `9001` into the “fresh” instance if you are about to restore it; or copy it, take the backup first (on the copy, not the source), then delete `log\classes\9001` before restore.
+4. Hash **both** `public_html\wims.cgi` (no extension) and `public_html\wims.cgi.exe`. They must both be the HAVE_CRYPT build (lab: SHA-256 `42BBAE9D…D8015C`, 933537 bytes, 2026-11-06 17:09 Paris). `Get-ChildItem wims.cgi*` returns the extensionless name first, so CGI-direct tests will invoke a stale `wims.cgi` even when `wims.cgi.exe` is correct. On these lab trees `public_html\wims.exe` is the **pre-HAVE_CRYPT** binary (SHA-256 `7C8FFCED…2643`, 933025 bytes) — never copy it over `wims.cgi`. If the hashes differ, copy the good `.exe` over the extensionless name:
+
+```powershell
+$good = Join-Path $rt "public_html\wims.cgi.exe"
+$alias = Join-Path $rt "public_html\wims.cgi"
+$want = "42BBAE9D1F571F720B82C35B2A50DB4CFF9934C49F8B5699885CFBDF56D8015C"
+if ((Get-FileHash $good -Algorithm SHA256).Hash -ne $want) { throw "wims.cgi.exe is not the HAVE_CRYPT build" }
+Copy-Item $good $alias -Force
+```
+
+5. Do **not** copy class `9001` into the “fresh” instance if you are about to restore it; or copy it, take the backup first (on the copy, not the source), then delete `log\classes\9001` before restore.
 
 A local merge of PR #12 and PR #13 was created on the box at `/workspace/wims-port-merge-setup` (branch `local/merge-pr12-pr13`, **not pushed**). Cross-compile was blocked as noted in §3.1.
 
@@ -130,7 +140,7 @@ Start-Process -FilePath (Join-Path $rt "bin\wimslogd.exe") `
 
 Stop a test sibling **by executable path**, never by image name alone (several `wimslogd.exe` can run at once; the pipe name is hashed per runtime).
 
-`HAVE_CRYPT` is mandatory for class logins on Windows (docs/10 §3.4, PWD-07). A runtime whose `wims.cgi.exe` was built without it will reject every class password. Confirm the CGI you placed in the new sibling is a PR #12 (or later) build.
+`HAVE_CRYPT` is mandatory for class logins on Windows (docs/10 §3.4, PWD-07). A runtime whose CGI was built without it will reject every class password (`!passcheck` writes `??????` in `log/classes/<id>/.log.auth`). Confirm **both** `wims.cgi` and `wims.cgi.exe` are a PR #12 (or later) build — hashing only the `.exe` is not enough (that miss is what made BKP-06 look like a restore failure on 2026-11-12; see §10.3). Apache `ScriptAlias` to `wims.cgi.exe` would have used the good binary; CGI-direct tests did not.
 
 ---
 
@@ -329,11 +339,25 @@ Login POST must use `auth_user` (not `login`) and `agreecgu=yes`. An earlier att
 | Create `log\.wimspass` + `icacls` lockdown | PASS (inheritance removed; only `Shadow:(R,W)`) | 12:09:21 |
 | Official restore + `.build-index` | PASS (score SHA-256 matches source and Debian; 7 users; index updated; `.build-index` exit 0) | 12:11:32 |
 | `wimslogd` start (pid 22400, path = setup-test) + first CGI | PASS (200 OK, session, 27031 bytes) | 12:11:32–12:11:37 |
-| Supervisor + student login | **FAIL** | 12:11:37 (and retests 12:12:26–12:18:21) |
+| Supervisor + student login (first pass, extensionless `wims.cgi`) | **FAIL** (stale pre-HAVE_CRYPT CGI; see below) | 12:11:37 (retests 12:12–12:18 and bisect 12:28–12:29) |
 | Scores / Notes on disk | PASS (same 117-byte file / SHA-256) | 12:11:37 |
-| Stop `wimslogd` by path; source + live hashes unchanged | PASS | 12:11:37 |
+| Stop `wimslogd` by path; source + live hashes unchanged | PASS | 12:11:37, rechecked 12:37 |
+| Control login on source sibling `hook-class` | PASS (supervisor, then student `anonymous5`) | 12:28:37 |
+| Login on setup-test via `wims.cgi.exe` (HAVE_CRYPT), same restore, same creds, PR #13 daemon | PASS (supervisor 302 + `var.class.prep`; student `anonymous`) | 12:35–12:36 |
+| Same login via stale extensionless `wims.cgi` (`7C8FFCED…`) | FAIL as expected (`??????`, HTTP 200, no prep) | 12:35–12:36 |
+| Align `wims.cgi` ← `wims.cgi.exe`; BKP-06 retest via default `wims.cgi*` glob | **PASS** (supervisor 302 + prep; student `anonymous1`) | 12:36 Paris |
 
-**BKP-06 failure (Windows class login after restore):** `log/classes/9001/.log.auth` recorded `supervisor` and `anonymous` with `??????` (`var.auth` writes that marker when `!passcheck` returns `no`). The restored `supervisor` and `.users/anonymous` files are **byte-identical** to the read-only source (`36EDBC0A…` and `260B094B…`). The same official archive plus the same credentials **succeed on Debian** (BKP-04). The same HAVE_CRYPT CGI and credentials **succeeded** on the source sibling the same morning (PWD-04/06, docs/10 §17). Retries with GET instead of POST and without MSYS2 on `PATH` still failed. CGI stderr was empty. This is a **code or environment bug to investigate**, not a corrupt archive. No code change was committed. Hypotheses to test (do not swap live binaries): interaction of the PR #12 CGI with the PR #13 `wimslogd` (that pair had not been logged-in together before); something in the fresh sibling environment (new `.wimspass`, tighter ACLs) that does not affect a direct disk read of the user files. `current_pass` is used by `!passcheck` in `var.auth` and is not obviously assigned from `auth_password` in the script; that is also worth a careful read, because a platform difference in how that variable is set would explain a `passcheck=no` with a correct stored hash.
+**BKP-06 root cause (procedure, not a restore or engine bug):** CGI-direct tests used `Get-ChildItem public_html\wims.cgi* | Select-Object -First 1`, which picks the extensionless `wims.cgi`. On the new sibling that file was the **pre-HAVE_CRYPT** binary (SHA-256 `7C8FFCED…2643`, 933025 bytes, 2026-11-06 10:10:42 — the same hash as `public_html\wims.exe` and the live CGI). `wims.cgi.exe` was already the correct HAVE_CRYPT build (`42BBAE9D…D8015C`, 933537 bytes). The morning hash check and the 12:28 `CMP-CGI` compared only the `.exe`, so they reported a false PASS. `_passcrypt` is a no-op without `HAVE_CRYPT`, so `!passcheck` failed and `var.auth` wrote `??????`, which looked like a bad restore.
+
+Ruled out the same day (12:28–12:29 bisect, then 12:35–12:36 confirmation):
+
+- Official pack restore and class password files: `supervisor`, `.users/anonymous`, `.def`, `score/anonymous1` were byte-identical to the source and LF (no CRLF). Debian login with the same archive already passed (BKP-04).
+- `wimslogd`: failure reproduced with both the PR #13 daemon (`19E7E257…`) and the older hook-class daemon (`AA9D5B0B…`).
+- `log\.wimspass` and the `icacls` lockdown: failure reproduced with `.wimspass` moved aside (the source sibling has none) and after `icacls /reset` on `log\` and `tmp\`.
+- Environment or clock: the source sibling still logged in at 12:28 with the same credentials and the same HAVE_CRYPT CGI.
+- Not a need to change C code: invoking `wims.cgi.exe` on the **unmodified** restored class tree already passed; after copying that `.exe` over the extensionless `wims.cgi` (setup-test sibling only), the default glob login passed too (BKP-06-SUP / BKP-06-STU). Test daemon stopped by path; no `wimslogd` left (12:37). Live CGI/`wimslogd` and source `.def` / `score/anonymous1` unchanged.
+
+The fix is in this procedure (§3.3 step 4 and the `HAVE_CRYPT` note in §3.4): after any binary drop-in, hash-check and align **both** CGI names; never copy `wims.exe` onto `wims.cgi` on these trees. Apache `ScriptAlias` to `wims.cgi.exe` (§8) would have used the good binary; do not cut over Laragon until that alias (or an aligned `wims.cgi`) is what the vhost runs.
 
 ### 10.4 Setup options that were not run
 
@@ -363,7 +387,7 @@ See docs/08 §4.17 for IDs, priorities, and the 2026-11-12 status. Summary:
 | BKP-03 | Restore official pack on Debian + files/scores | P0 | PASS |
 | BKP-04 | Debian supervisor + student login after restore | P0 | PASS |
 | BKP-05 | Restore official pack on Windows + files/scores | P0 | PASS |
-| BKP-06 | Windows supervisor + student login after restore | P0 | **FAIL** (see §10.3) |
+| BKP-06 | Windows supervisor + student login after restore | P0 | **PASS** (12:36 Paris, after aligning `wims.cgi` with the HAVE_CRYPT `.exe`; first-pass FAIL was a stale CGI, see §10.3) |
 | BKP-07 | Source class + live runtime untouched | P1 | PASS |
 
 ---

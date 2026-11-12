@@ -488,4 +488,12 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
   - Windows new sibling `wims-runtime-r19040-grok-setup-test-20261112`: setup, `icacls`, `wimslogd` start/stop, file restore and score hash **PASS**; **class logins FAIL** (BKP-06: `.log.auth` `??????` / `!passcheck=no` despite byte-identical user files and a Debian-successful archive). No code change committed.
 - Test daemons stopped (Debian pid, Windows by path). Live CGI/`wimslogd` hashes and source 9001 `.def`/`score` unchanged.
 - docs/08 §4.17 added. Totals §7: **157/180 PASS**, **1 FAIL** (BKP-06), NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 59/60 PASS.
-- Needs Arnaud: review/merge PRs #12–#14 and this docs PR; optional Laragon `WIMS_RT` lines in docs/11 §8; diagnosis of BKP-06 (do not replace live binaries first); SETUP-07 (apt/`./compile`) when Debian mirrors work.
+- Needs Arnaud (as of 12:25): review/merge PRs #12–#14 and this docs PR; optional Laragon `WIMS_RT` lines in docs/11 §8; diagnosis of BKP-06 (do not replace live binaries first); SETUP-07 (apt/`./compile`) when Debian mirrors work.
+
+## 2026-11-12 — BKP-06 root cause and retest
+
+- Windows class login after a good official restore failed only because CGI-direct tests invoked the extensionless `public_html\wims.cgi`, which on `wims-runtime-r19040-grok-setup-test-20261112` was the pre-HAVE_CRYPT binary (`7C8FFCED…`, 933025 bytes). `wims.cgi.exe` was already the HAVE_CRYPT build (`42BBAE9D…`). The official pack, class password files, PR #13 vs old `wimslogd`, `.wimspass`, and `icacls` were ruled out. The source sibling still logged in at 12:28 (not time-based).
+- Fix (procedure only, no C-code commit): docs/11 §3.3 step 4 now requires hashing and aligning both CGI names; never copy `wims.exe` onto `wims.cgi`. On the setup-test sibling only, `wims.cgi.exe` was copied over `wims.cgi`.
+- Retest 12:36 Paris: BKP-06 supervisor + student **PASS**. Test `wimslogd` stopped by path. Live binaries and source `.def` / `score/anonymous1` unchanged at 12:37.
+- docs/08 §7 totals (script-checked increment from the 12:25 table): **158/180 PASS**, **0 FAIL**, NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 **60/60 PASS**.
+- Needs Arnaud: review/merge PRs #12–#15 (and later the automation PR); optional Laragon `WIMS_RT` cutover in docs/11 §8 (now unblocked for class login, still not applied); SETUP-07 when Debian mirrors work.

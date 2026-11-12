@@ -476,3 +476,16 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - **PASS (no FAIL):** PWD-01…09, ACL-01…04, ACL-09, ACL-10, ADM-01, ADM-02, ADM-04, ADM-05. PWD-07: hook-logd/live CGI still rejects class logins; hook-class accepts.
 - **NOT RUN:** PWD-10, ACL-05 (no root / `setwrapexec`), ACL-11, ADM-03, ADM-06 (no load tests), ADM-07, ADM-08, SBX-14, SEC-02/ACL-06 (Arnaud).
 - docs/08 §4.16 added. Totals §7 (baseline 138 + 27 new IDs): **145/165 PASS**, 0 FAIL, P0 **53/53**, NOT RUN 17, WAIVED 1, WAITING 2 (SEC-02, ACL-06).
+
+## 2026-11-12 — Setup procedure and per-class backup/restore (docs/11)
+
+- New document [`docs/11_Setup_and_Class_Backup_Windows_Debian.md`](11_Setup_and_Class_Backup_Windows_Debian.md) (English): step-by-step setup of a WIMS instance on native Windows and Debian 13, plus backup/restore of **one class** via official `adm/class/config/arch/pack.sh` (`tgz`) and a filesystem `tar` fallback. Branch `docs/setup-class-backup` (sits on `docs/admin-guide-win-debian` / PR #14).
+- Local merge of PR #12 (`HAVE_CRYPT`) and PR #13 (`wimslogd` share fix) at `/workspace/wims-port-merge-setup` (`local/merge-pr12-pr13`). **Not pushed.** Cross-compile on the box was blocked (`deb.debian.org` HTTP 500; no mingw/`make`/`flex`). The new Windows sibling therefore uses previously built binaries from those branches (hook-class CGI, hook-logd `wimslogd`).
+- Drill (Europe/Paris), without touching live `hook-20261106`, Laragon, or `Reprise_Wims_Claude`. Source class 9001 in `hook-class-20261106` was read-only.
+  - Official pack: `docs-admin/backups-20261112/9001-wims-pack-20261112.tgz` (7 155 000 bytes, sha256 `c94b37a6…aa408f`, 12:03:41, top-level `class/`).
+  - Filesystem fallback: `9001-filesystem-20261112.tgz` (7 173 356 bytes, sha256 `afc1a478…d89976`, 12:02:50, top-level `9001/`).
+  - Debian fresh tree `/workspace/mw-wims-setup-debian/`: restore + supervisor/student logins + scores **PASS** (12:05–12:07).
+  - Windows new sibling `wims-runtime-r19040-grok-setup-test-20261112`: setup, `icacls`, `wimslogd` start/stop, file restore and score hash **PASS**; **class logins FAIL** (BKP-06: `.log.auth` `??????` / `!passcheck=no` despite byte-identical user files and a Debian-successful archive). No code change committed.
+- Test daemons stopped (Debian pid, Windows by path). Live CGI/`wimslogd` hashes and source 9001 `.def`/`score` unchanged.
+- docs/08 §4.17 added. Totals §7: **157/180 PASS**, **1 FAIL** (BKP-06), NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 59/60 PASS.
+- Needs Arnaud: review/merge PRs #12–#14 and this docs PR; optional Laragon `WIMS_RT` lines in docs/11 §8; diagnosis of BKP-06 (do not replace live binaries first); SETUP-07 (apt/`./compile`) when Debian mirrors work.

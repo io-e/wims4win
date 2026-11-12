@@ -383,6 +383,29 @@ Run 2026-11-12, Europe/Paris, on an isolated Debian tree `/workspace/mw-wims-deb
 | ADM-08 | Debian upgrade + `setwrapexec` | package or manual upgrade, class data intact | official wiki path | P1 | NOT RUN (2026-11-12: no root / no apt upgrade of a production package; isolated tree only) |
 
 
+### 4.17 SETUP/BKP — fresh instance and per-class backup/restore (docs/11)
+
+Run 2026-11-12, Europe/Paris. Debian: new tree `/workspace/mw-wims-setup-debian/` (other trees not deleted). Windows: new sibling `wims-runtime-r19040-grok-setup-test-20261112` only. Live `hook-20261106`, Laragon, and `Reprise_Wims_Claude` were not touched. Source class 9001 in `wims-runtime-r19040-grok-hook-class-20261106` was read-only (official `pack.sh` ran on a copy). Credentials only from `C:\Users\Shadow\wims_test_creds.txt`; no secret is recorded here. Local merge of PR #12 and PR #13 was created on the box and not pushed; cross-compile was blocked (`deb.debian.org` HTTP 500, no mingw/make/flex), so previously built PR #12 CGI and PR #13 `wimslogd` binaries were installed in the new sibling.
+
+| ID | Linked code | Steps | Expected | Prio | Status |
+|---|---|---|---|---|---|
+| SETUP-01 | pre-built r19040 tree | deploy a fresh Debian instance in a new folder; strip example 9001; `chmod 600` conf | tree boots | P1 | PASS (2026-11-12 12:05 Paris: `/workspace/mw-wims-setup-debian/`; apt/`./compile` not used — see SETUP-07) |
+| SETUP-02 | `bringuplogd`, `tmp/log/wimslogd.pid` | first CGI starts `wimslogd`; stop by pid afterwards | daemon lives then stops | P1 | PASS (2026-11-12 12:07: pid 294617, home 200 OK; stopped) |
+| SETUP-03 | sibling runtime policy | `robocopy` a built runtime to a new folder; refuse overwrite | new sibling only | P0 | PASS (2026-11-12 11:59–12:01: `wims-runtime-r19040-grok-setup-test-20261112`, 22922 files) |
+| SETUP-04 | `HAVE_CRYPT` (PR #12), `DuplicateHandle` (PR #13) | new sibling has HAVE_CRYPT CGI and fixed `wimslogd` | both fixes present | P0 | PASS (2026-11-12: CGI sha256 42BBAE9D…D8015C, wimslogd 19E7E257…C4A3C4E1; box compile of the local merge was blocked) |
+| SETUP-05 | `log/.wimspass`, `icacls` | create manager password file if missing; lockdown `.wimspass` / `log` / `tmp` | tight ACL, no Auth Users on `.wimspass` | P1 | PASS (2026-11-12 12:09: created `.wimspass`; `Shadow:(R,W)` only) |
+| SETUP-06 | docs/10 §9.1 | start `wimslogd` (drop stale pid), first CGI, stop **by path** | path-matched pid, then none | P1 | PASS (2026-11-12 12:11: pid 22400, CGI 200 OK 27031 bytes; stopped by path) |
+| SETUP-07 | `./compile`, `apt-get install wims` | from-source Debian compile or official package | official install path | P2 | NOT RUN (2026-11-12: `deb.debian.org` HTTP 500; `make`/`flex`/`mingw` absent) |
+| SETUP-08 | Laragon `WIMS_RT` | owner applies vhost lines from docs/11 §8 | HTTP front-end on the new sibling | P2 | WAITING (2026-11-12: lines given, not applied) |
+| BKP-01 | `arch/pack.sh`, `download.proc` | official `tgz` of class 9001 from a copy; source `.def` unchanged | archive stored off-tree | P0 | PASS (2026-11-12 12:03:41: 7155000 bytes, sha256 c94b37a6…aa408f, 510 entries, top-level `class/`; source `.def` mtime still 2017-06-06) |
+| BKP-02 | filesystem tar of `log/classes/9001` | `System32\tar.exe -czf` from the source, read-only | fallback archive | P1 | PASS (2026-11-12 12:02:50: 7173356 bytes, sha256 afc1a478…d89976, 523 entries, top-level `9001/`) |
+| BKP-03 | `restore.sh` format, `.build-index` | restore official pack into fresh Debian 9001; files and scores | class + score hash match | P0 | PASS (2026-11-12 12:05:47: 7 users, `score/anonymous1` 117 bytes sha256 19A23E2F…6692, index line added) |
+| BKP-04 | `adm/class/classes` `var.auth` | Debian supervisor + student login after restore | both identities set | P0 | PASS (2026-11-12 12:07: `wims_user=supervisor` and `anonymous`; POST `auth_user` + `agreecgu=yes`) |
+| BKP-05 | same restore on Windows | official pack into the new sibling; `.build-index`; score hash | files match source | P0 | PASS (2026-11-12 12:11:32: same score SHA-256, 7 users, index rebuilt, `.build-index` exit 0) |
+| BKP-06 | `var.auth` `!passcheck`, HAVE_CRYPT | Windows supervisor + student login after restore | both identities set | P0 | FAIL (2026-11-12 12:11–12:18: `.log.auth` records `??????` / `passcheck=no`. Restored user files are byte-identical to the source; the same archive+creds work on Debian; the same CGI+creds worked on the source sibling that morning. No code change committed; see docs/11 §10.3.) |
+| BKP-07 | live + source integrity | hashes of source 9001 `.def`/`score` and live CGI/`wimslogd` unchanged | no writes to live/source | P1 | PASS (2026-11-12 12:11:37 and 12:19: source `.def`/`score` and live binaries unchanged) |
+
+
 ## 5. Traceability matrix (decision / requirement → code → tests)
 
 | Req. | Statement | Code | Tests |
@@ -424,22 +447,24 @@ Run 2026-11-12, Europe/Paris, on an isolated Debian tree `/workspace/mw-wims-deb
 10. **OEF/latex2wims:** OEF-02…04, L2W-PC-01…05.
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
+13. **Setup / per-class backup:** SETUP-01…08, BKP-01…07 (docs/11).
 
-## 7. Counts (updated 2026-11-12 06:20, Paris time)
+## 7. Counts (updated 2026-11-12 12:25, Paris time)
 
 **Row source of truth:** every status row in §4. Status vocabulary: PASS, NOT RUN, WAIVED,
-WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked 2026-11-12 after admin-guide
-tests (one table row = one test, except SBX-S2a/b/c ×3 and SBX-S4a/b ×2; L2W-PC-* included;
-second SBX-21 row already in the 138 baseline as part of historical counts).
+WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked 2026-11-12 after the setup /
+per-class backup drill: start from the 06:20 baseline of **165** (138 including SBX-S2a/b/c ×3
+and SBX-S4a/b ×2, plus 27 §4.16 IDs; L2W-PC-* included; second SBX-21 row already in that
+baseline) and add **15** new §4.17 IDs (SETUP-01…08, BKP-01…07).
 
 | Priority | Tests | PASS | NOT RUN | WAIVED | WAITING | BLOCKED | FAIL |
 |---|---|---|---|---|---|---|---|
-| P0 | 53 | 53 | 0 | 0 | 0 | 0 | 0 |
-| P1 | 83 | 78 | 2 | 1 | 2 | 0 | 0 |
-| P2 | 29 | 14 | 15 | 0 | 0 | 0 | 0 |
-| **Total** | **165** | **145** | **17** | **1** | **2** | **0** | **0** |
+| P0 | 60 | 59 | 0 | 0 | 0 | 0 | 1 |
+| P1 | 89 | 84 | 2 | 1 | 2 | 0 | 0 |
+| P2 | 31 | 14 | 16 | 0 | 1 | 0 | 0 |
+| **Total** | **180** | **157** | **18** | **1** | **3** | **0** | **1** |
 
-Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, PWD 10, ACL 9, CGI 8, ADM 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
+Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, PWD 10, ACL 9, CGI 8, ADM 8, SETUP 8, JOB 7, BKP 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
 
-Totals keep the previous 138-test baseline (including SBX-S2a/b/c ×3 and SBX-S4a/b ×2) and add 27 new §4.16 IDs.
+The single FAIL is BKP-06 (Windows class login after a successful file restore; see docs/11 §10.3). SETUP-08 is WAITING on a Laragon `WIMS_RT` change (owner). SETUP-07 is NOT RUN (apt/`./compile` blocked on the box that day).
 

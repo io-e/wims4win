@@ -1,0 +1,12 @@
+# Copy this file, fill in the values, and keep it outside the git tree.
+# Pass the path with --creds or WIMS_CREDS_FILE. Never commit real values.
+# Keys may also be supplied as environment variables (see README).
+class=
+supervisor_login=
+supervisor_password=
+participant_login=
+participant_password=
+# Optional exercise defaults (class 9001 tutorial sheet 1 uses these):
+# exercise_module=classes/fr
+# exercise_exo=exi1
+# exercise_sheet=1

@@ -1,0 +1,206 @@
+--- spec_draft/Spec_WIMS_Message_Integration_GROK_V1_1_reference_copy.md	2026-11-13 17:31:09.127202400 +0100
++++ spec_draft/Spec_WIMS_Message_Integration_GROK_V1_2_DRAFT_CLAUDE_V1_1.md	2026-11-13 17:57:49.403280600 +0100
+@@ -1,15 +1,29 @@
+-<!-- GROK_V1_1 -->
++<!-- GROK_V1_2 -->
++<!-- CLAUDE_V1_1 : draft prepared by Claude, 2026-11-13. Four [V1_2] rules APPROVED by Arnaud 2026-11-13 as the working contract; NOT committed to io-e/AlgoGebra until PR #10 contains the hook V2 body. -->
+ # Specification — WIMS Message Integration in AlgoGebra
+ 
+ | Field | Value |
+ |---|---|
+-| Document | `02-Cdc/Spec_WIMS_Message_Integration_GROK_V1_1.md` |
+-| Version | GROK_V1_1 |
+-| Date | 2026-11-05 |
+-| Status | **Draft** — aligned with wims4win L2-1 prototype (`bb929e3`) |
+-| Supersedes | `Spec_WIMS_Message_Integration_CLAUDE_V1.md` (keep as archive) |
++| Document | `02-Cdc/Spec_WIMS_Message_Integration_GROK_V1_2.md` |
++| Version | GROK_V1_2 (**draft**; four rules approved 2026-11-13, commit to `io-e/AlgoGebra` deferred until PR #10 ships V2) |
++| Date | 2026-11-13 |
++| Status | **Draft** — aligned with wims4win hook V2 (`feat/algogebra-wims-integration` @ `bece517`, `runtime_patch/algogebra_json_CLAUDE_V2.phtml`) and the Windows corpus review |
++| Supersedes | `Spec_WIMS_Message_Integration_GROK_V1_1.md` (keep as archive) |
+ | Depends on | `Cdc_WIMS_Integration_AlgoGebra_GROK_V2_2.md` (WI-20..WI-24), `Decisions_WIMS_CDC_Open_Points_Owner_GROK_V1_1.md` (D-WIMS-G01), `Spec_State_Contract_CLAUDE_V1.md` (§5 submission), `Spec_Activity_Manifest_CLAUDE_V1.md` |
+-| Evidence | `GV_Residual_Results_GBOT_V1.md` (G-A6), `AlgoGebra_Wims_Integration/OEF_Variable_Map_GROK_V1.md`, `tests/test_algogebra_json_GROK_V1.py` |
++| Evidence | `GV_Residual_Results_GBOT_V1.md` (G-A6), wims4win `AlgoGebra_Wims_Integration/OEF_Variable_Map_GROK_V1.md`, `tests/test_algogebra_json_GROK_V1.py`, **`Review_Hook_JSON_Windows_CLAUDE_V1.md` (F1–F6)**, `tests/out_corpus_CLAUDE_V2_hook_CLAUDE_V1.json` (10 real blocks, usable as client fixtures) |
++
++---
++
++## 0. Changes since GROK_V1_1
++
++Only four points change; everything else is carried over verbatim. Each change is tagged **[V1_2]** in the body.
++
++| § | Change | Origin |
++|---|---|---|
++| 3.1 | `qnum` is never sent; it stays at the WIMS default (1). Series are out of scope. | Review F5 |
++| 3.2 | `expected` is the text the form posts (option text for menu / radio / checkbox and the same family), never `<index>;<option list>`. The JSON block is in the **page charset** (`windows-1252` on this server), not ASCII. | Review F1, F6 |
++| 5.2 | The reply POST is percent-encoded in the **charset of the `cmd=new` response**, not UTF-8. | Review F6 |
++| 6 | New error `INVALID_ANSWER`: HTTP 200, no JSON block, `class="wims_msg alert"` present. `NO_JSON_BLOCK` keeps its meaning when no alert is present. No new JSON field. | Review F4, owner decision (no schema change) |
+ 
+ ---
+ 
+@@ -68,9 +82,12 @@
+ | `cmd` | string | Yes | Always `new` |
+ | `lang` | string | No | Language code (`fr`, `en`). Default: WIMS server locale |
+ | `exo` | string | Yes | Exercise identifier within the module |
++| `qnum` | — | **Never sent** | **[V1_2]** WIMS defaults to 1 (one question per session). With `qnum>1`, `module_score` is undefined until the last question and the hook reports `grade: 0` on intermediate questions (review F5). Series are out of scope; a provisional grade would need a hook change. |
+ 
+ **Response:** `200 OK`, `Content-Type: text/html; charset=windows-1252`
+ 
++**[V1_2]** The client **must record the charset** of this response (from `Content-Type`, fallback `windows-1252`): it is the charset in which the `cmd=reply` body is percent-encoded (§5.2), exactly as a browser does for the form it was served.
++
+ The response is standard WIMS exercise HTML containing:
+ - Exercise text with input fields (`reply1`, `reply2`, ...)
+ - Session identifier (in form hidden fields or cookies)
+@@ -146,7 +163,23 @@
+ ALGOGEBRA_JSON_END -->
+ ```
+ 
+-V1 hook notes: `feedback` strings may be empty; checkbox `expected` may retain a `;optionlist` suffix; charset of the surrounding page is typically `windows-1252` while the JSON block is ASCII-safe.
++**Field contract (hook V2) [V1_2]:**
++
++| Field | Contract |
++|---|---|
++| `grade` | JSON number, `module_score / 10`, in [0, 1]. Equals the score WIMS prints. |
++| `seed` | JSON number, `wims_seed` of the session. |
++| `answers[]` | One entry per **graded** `\answer` / `\choice`, in the order of the analysis rows WIMS displays. Replies with an empty good answer (free point) and replies of steps not reached yet (`\steps`) are **omitted**, as WIMS omits them. The count can therefore be smaller than the number of `replyN` fields in the form. |
++| `id` | `replyN` / `choiceN`, matching the form field name. |
++| `correct` | JSON boolean, `score >= 1`. |
++| `score` | JSON number per reply: `0`, `0.5` (partial / precision) or `1`. |
++| `expected` | **The text the form posts for the good answer**, in display form, `!singlespace`d: option text for `menu`, `radio`, `checkbox`, `click`, `mark`, `multipleclick`, `flashcard` (comma-separated when several); first row of the good answer for `clickfill`, `dragfill`, `case`, `nocase`, `atext`, `compose`, `coord`, `imgcomp`, `javacurve`, `reorder`, `textcomp`, `wlist`; the raw good answer otherwise (`numeric`, `numexp`, `algexp`, `function`, `formal`, `matrix`, …). It is never `<index>;<option list>`. Replaying `expected` as `given` yields `grade: 1.0` on the reference corpus. |
++| `given` | The posted value after `!singlespace`. |
++| `feedback` | Reserved, empty string in V2 (both per answer and global). |
++
++Escaping: `\` → `\\`, `"` → `\"`, and `--` is neutralised so the HTML comment cannot be closed early.
++
++**Charset [V1_2]:** the JSON block is **not** ASCII-safe. Strings are emitted in the page charset (`windows-1252` on wims4win / Debian default) whenever an option text or a text answer contains non-ASCII characters (e.g. `Poliomyélite`). The client decodes the whole response body with the `Content-Type` charset (§5.2) **before** locating the markers and parsing the JSON; no `\uNNNN` escaping is performed by the hook.
+ 
+ ### 3.3 `adm/raw` auxiliary calls
+ 
+@@ -293,10 +326,20 @@
+ private static final String JSON_BEGIN = "<!-- ALGOGEBRA_JSON_BEGIN";
+ private static final String JSON_END = "ALGOGEBRA_JSON_END -->";
+ 
++// [V1_2] WIMS redisplays the form with this class on bad_answer / empty_data,
++// and answer.phtml exits before the hook on bad_exo. HTTP status is 200.
++private static final Pattern WIMS_ALERT =
++    Pattern.compile("<div[^>]*class=\"wims_msg alert\"[^>]*>(.*?)</div>", Pattern.DOTALL);
++
+ GradeResult extractGradeJson(String html) throws WimsException {
+     int start = html.indexOf(JSON_BEGIN);
+     int end = html.indexOf(JSON_END);
+     if (start < 0 || end < 0 || end <= start) {
++        Matcher m = WIMS_ALERT.matcher(html);                 // [V1_2]
++        if (m.find()) {
++            throw new WimsException(WimsError.INVALID_ANSWER,
++                stripTags(m.group(1)).trim());                 // the WIMS message, shown to the user
++        }
+         throw new WimsException(WimsError.NO_JSON_BLOCK,
+             "WIMS response did not contain ALGOGEBRA_JSON block. " +
+             "Is the L2-1 JSON hook installed?");
+@@ -306,6 +349,8 @@
+ }
+ ```
+ 
++`html` is already decoded with the response charset (§5.2), so `expected` / `given` strings are correct Java `String`s with no further transcoding. **[V1_2]**
++
+ ---
+ 
+ ## 5. Encoding
+@@ -318,21 +363,24 @@
+ 
+ | Direction | Encoding | Responsibility |
+ |---|---|---|
+-| AlgoGebra → WIMS | UTF-8 in POST body | `HttpWimsClient` URL-encodes with UTF-8 |
+-| WIMS → AlgoGebra | `windows-1252` (HTML) or `iso-8859-1` (`adm/raw` JSON) | `HttpWimsClient` reads `Content-Type` charset, decodes accordingly |
++| AlgoGebra → WIMS | **[V1_2] Charset of the `cmd=new` response** (`windows-1252` on this server), never UTF-8 | `HttpWimsClient` URL-encodes keys and values with `session.charset`, as a browser does for the form it was served. WIMS reads form bytes in the page charset: `Poliomyélite` sent as UTF-8 arrives as `PoliomyÃ©lite` and is graded wrong (review F6, reproduced: 0.33 with UTF-8, 1.0 with `windows-1252`). Characters outside the page charset cannot be submitted; the client replaces them (`?`) and warns. |
++| WIMS → AlgoGebra | `windows-1252` (HTML, **including the JSON block**) or `iso-8859-1` (`adm/raw` JSON) | `HttpWimsClient` reads `Content-Type` charset, decodes the whole body accordingly, then extracts the JSON (§4.4). **[V1_2]** |
+ | Internal storage | UTF-8 | All `GradeResult`, `SessionState`, `course.json` |
+ 
+ ```java
+-private String postForm(Map<String, String> params) throws WimsException {
++// [V1_2] formCharset: UTF_8 for the very first cmd=new (nothing to encode but ASCII),
++// then session.charset = charset of the cmd=new response for every cmd=reply.
++private String postForm(Map<String, String> params, Charset formCharset)
++        throws WimsException {
+     String body = params.entrySet().stream()
+-        .map(e -> URLEncoder.encode(e.getKey(), UTF_8) + "=" +
+-                  URLEncoder.encode(e.getValue(), UTF_8))
++        .map(e -> URLEncoder.encode(e.getKey(), formCharset) + "=" +
++                  URLEncoder.encode(e.getValue(), formCharset))
+         .collect(Collectors.joining("&"));
+ 
+     HttpRequest request = HttpRequest.newBuilder()
+         .uri(endpoint.baseUrl)
+         .header("Content-Type",
+-                "application/x-www-form-urlencoded; charset=UTF-8")
++                "application/x-www-form-urlencoded; charset=" + formCharset.name())
+         .POST(HttpRequest.BodyPublishers.ofString(body))
+         .timeout(Duration.ofSeconds(30))
+         .build();
+@@ -341,6 +389,7 @@
+         httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+ 
+     Charset responseCharset = extractCharset(response);
++    lastResponseCharset = responseCharset;      // [V1_2] stored into WimsSession by createSession()
+     return new String(response.body(), responseCharset);
+ }
+ 
+@@ -356,10 +405,12 @@
+             try { return Charset.forName(cs); }
+             catch (Exception e) { return StandardCharsets.ISO_8859_1; }
+         })
+-        .orElse(StandardCharsets.ISO_8859_1); // WIMS default
++        .orElse(Charset.forName("windows-1252")); // [V1_2] WIMS default page charset
+ }
+ ```
+ 
++**[V1_2]** `WimsSession` gains a `charset` field (the `cmd=new` response charset). `submitAnswers()` calls `postForm(params, session.charset)`. `SessionState` persists it with the session id (§8.2).
++
+ ---
+ 
+ ## 6. Error handling
+@@ -368,7 +419,11 @@
+ 
+ | HTTP status | WIMS meaning | AlgoGebra action |
+ |---|---|---|
+-| `200` | Success (HTML or JSON) | Parse response |
++| `200` + JSON block | Success | Parse the block (§4.4) |
++| `200` + no block + `class="wims_msg alert"` | **[V1_2]** WIMS rejected the submission: `bad_answer` (answer not understood / wrong syntax), `empty_data` (nothing filled in), `bad_exo` (exercise failed to run, e.g. CAS unavailable). The form is redisplayed, the session stays `waiting`. | `WimsError.INVALID_ANSWER` — show the WIMS message, let the student correct and resubmit on the **same** session. Not a hook problem. |
++| `200` + no block + no alert | Hook absent or not triggered | `WimsError.NO_JSON_BLOCK` |
++
++**[V1_2]** Resubmit on the **same session** only for `bad_answer` and `empty_data` (the student can correct the input). `bad_exo` (CAS missing, exercise failed to run) is not a student typo: show the WIMS message and stop; retrying will not fix it. The three cases share the same `wims_msg alert` markup, so the client tells them apart by the message text when WIMS exposes it, and otherwise offers the retry but does not loop on it.
+ | `450` | Invalid command (e.g., `cmd=getresult`) | `WimsError.INVALID_COMMAND` — programming error, not user error |
+ | `400` | Bad request (missing param) | `WimsError.BAD_REQUEST` |
+ | `403` | Authentication required/failed | `WimsError.AUTH_FAILED` |
+@@ -386,7 +441,8 @@
+     INVALID_COMMAND,        // cmd= not in WIMS's closed list
+     BAD_REQUEST,            // Missing required parameter
+     SERVER_ERROR,           // WIMS 500
+-    NO_JSON_BLOCK,          // L2-1 hook not installed or not triggered
++    NO_JSON_BLOCK,          // L2-1 hook not installed or not triggered (200, no block, no alert)
++    INVALID_ANSWER,         // [V1_2] 200, no block, wims_msg alert: WIMS rejected the answer, retry
+     MALFORMED_JSON,         // JSON block present but unparseable
+     SESSION_EXPIRED,        // WIMS session no longer valid
+     ENCODING_ERROR          // Response charset unreadable
+@@ -401,6 +457,7 @@
+ | `TIMEOUT` | "WIMS server did not respond in time. Try again." |
+ | `AUTH_FAILED` | "Authentication failed. Check your WIMS connection settings." |
+ | `NO_JSON_BLOCK` | "WIMS returned a grade but AlgoGebra could not read it. The JSON hook may not be installed on this server." |
++| `INVALID_ANSWER` | **[V1_2]** "WIMS did not accept this answer: {wims message}. Please correct it and submit again." (the WIMS message, tags stripped, in the exercise language) |
+ | `SESSION_EXPIRED` | "Your exercise session has expired. Starting a new one." |
+ 
+ ---
+@@ -567,7 +624,7 @@
+ 
+ ## 12. Dependencies on L2-1 JSON hook
+ 
+-**WA-8 status (2026-11-05):** Windows prototype **done** on wims4win (`bb929e3`: `answer.phtml` + `algogebra_json.phtml`, smoke test PASS). Without the hook on a given server:
++**WA-8 status (2026-11-13) [V1_2]:** hook vendored by GBot in wims4win `tools/algogebra-hook/` (PR #10, installed by `build-runtime-tree.sh`, `ALGOGEBRA_HOOK=0` opts out). Body **V2** (`runtime_patch/algogebra_json_CLAUDE_V2.phtml`, same schema) fixes `expected` for the menu family, omits free-point replies and unreached steps; Windows corpus review: 10/10 graded exercises, `expected` replays to 1.0, pages identical outside the block. PR #10 is to adopt V2 before merge. `function` / `formal` types remain to be replayed on a runtime with Maxima (Debian or Laragon sibling). Without the hook on a given server:
+ 
+ - `cmd=reply` returns HTML only — no `ALGOGEBRA_JSON` block
+ - `HttpWimsClient.submitAnswers()` throws `WimsError.NO_JSON_BLOCK`
+@@ -577,4 +634,4 @@
+ 
+ ---
+ 
+-*End of `Spec_WIMS_Message_Integration_GROK_V1_1.md`.*
++*End of `Spec_WIMS_Message_Integration_GROK_V1_2.md` (draft).*

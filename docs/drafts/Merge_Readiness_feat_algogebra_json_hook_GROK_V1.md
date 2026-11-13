@@ -26,6 +26,7 @@
 | Laragon `WIMS_RT` cutover | Done (owner) |
 | Laragon Maxima / Octave / CGI-08 | PASS (`0bb1553` on **master**) |
 | Issue #3 | Closed |
+| Hook body GROK_V2 (F1–F3) | Adopted 2026-11-13; Debian re-run pending |
 
 ---
 
@@ -40,6 +41,7 @@
 | M5 | PR description: hook trigger = reply-only `special_parm=algogebra_json`; fields `replyN` | Author | Draft below |
 | M6 | No force-push; no merge to `master` without owner | Everyone | Standing rule |
 | M7 | AlgoGebra client WA-9 can proceed in parallel (does not block merge of WIMS hook) | Codex | Unblocked |
+| M8 | body V2 adopted, marker bumped, docs/09 recipe extended (00004, 00008, 00045, 00085, 00021) and re-run green (handoff « M4 » delta, 2026-11-13) | GBot | Pending Debian re-run (H2) |
 
 ---
 

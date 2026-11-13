@@ -9,13 +9,17 @@
 !! The AlgoGebra client (EUPL) only consumes the emitted JSON over HTTP;
 !! it is not combined with this template.
 !!
-!! GROK_V1
+!! GROK_V2 (adopts CLAUDE_V2 body: F1–F3; same JSON schema, no new fields)
 !! AlgoGebra JSON hook body — emit one JSON object (no comment markers).
 !! Caller (answer.phtml) wraps with ALGOGEBRA_JSON_BEGIN / END when
 !! special_parm=algogebra_json.
 !! Escape policy (V1): singlespace + escape \ and " + neutralize -- for HTML comments.
-!! See Discovery_Variable_Dump_GROK_V1.md
-
+!! V2: F1 expected via replyGood / first row of replygood; F2 skip empty replygood;
+!! F3 list only reached steps when $oefsteps is set.
+!! See Discovery_Variable_Dump_GROK_V1.md and
+!! AlgoGebra_Wims_Integration/Review_Hook_JSON_Windows_CLAUDE_V1.md
+!! (branch feat/algogebra-wims-integration @ bece517 / 3899569).
+!!
 !default module_score=0
 !default replycnt=0
 !default choicecnt=0
@@ -26,18 +30,33 @@
 
 {"grade":$ag_grade,"seed":$wims_seed,"answers":[
 !for i=1 to $replycnt
+  !if $(replygood$i)=$empty
+    !goto ag_next_reply
+  !endif
+  !if $oefsteps!=$empty and r$i notitemof $gotsteps
+    !goto ag_next_reply
+  !endif
   !default m_sc_reply$i=0
-  !default diareply$i=bad
   !default reply$i=
-  !default replygood$i=
+  !set ag_type=$(replytype$i)
+  !if $ag_type iswordof menu radio checkbox click mark multipleclick flashcard and $(replyGood$i)!=$empty
+    !set ag_expected=!detag $(replyGood$i)
+  !else
+    !if $ag_type iswordof clickfill dragfill atext case nocase compose coord imgcomp javacurve reorder textcomp wlist
+      !set ag_expected=!rows2lines $(replygood$i)
+      !set ag_expected=!line 1 of $ag_expected
+    !else
+      !set ag_expected=$(replygood$i)
+    !endif
+  !endif
   !set ag_given=!singlespace $(reply$i)
-  !set ag_expected=!singlespace $(replygood$i)
+  !set ag_expected=!singlespace $ag_expected
   !set ag_given=!replace internal \ by \\ in $ag_given
   !set ag_given=!replace internal " by \" in $ag_given
-  !set ag_given=!replace internal -- by \u002d\u002d in $ag_given
+  !set ag_given=!replace internal -- by -- in $ag_given
   !set ag_expected=!replace internal \ by \\ in $ag_expected
   !set ag_expected=!replace internal " by \" in $ag_expected
-  !set ag_expected=!replace internal -- by \u002d\u002d in $ag_expected
+  !set ag_expected=!replace internal -- by -- in $ag_expected
   !ifval $(m_sc_reply$i)>=1
     !set ag_correct=true
   !else
@@ -45,20 +64,23 @@
   !endif
   $ag_sep{"id":"reply$i","correct":$ag_correct,"score":$(m_sc_reply$i),"feedback":"","expected":"$ag_expected","given":"$ag_given"}
   !set ag_sep=,
+  :ag_next_reply
 !next i
 !for i=1 to $choicecnt
+  !if $oefsteps!=$empty and c$i notitemof $gotsteps
+    !goto ag_next_choice
+  !endif
   !default m_sc_choice$i=0
-  !default diachoice$i=bad
   !default choice$i=
   !default choicegood$i=
-  !set ag_given=!singlespace $(choice$i)
+  !set ag_given=!singlespace $(m_choice$i)
   !set ag_expected=!singlespace $(choicegood$i)
   !set ag_given=!replace internal \ by \\ in $ag_given
   !set ag_given=!replace internal " by \" in $ag_given
-  !set ag_given=!replace internal -- by \u002d\u002d in $ag_given
+  !set ag_given=!replace internal -- by -- in $ag_given
   !set ag_expected=!replace internal \ by \\ in $ag_expected
   !set ag_expected=!replace internal " by \" in $ag_expected
-  !set ag_expected=!replace internal -- by \u002d\u002d in $ag_expected
+  !set ag_expected=!replace internal -- by -- in $ag_expected
   !ifval $(m_sc_choice$i)>=1
     !set ag_correct=true
   !else
@@ -66,5 +88,6 @@
   !endif
   $ag_sep{"id":"choice$i","correct":$ag_correct,"score":$(m_sc_choice$i),"feedback":"","expected":"$ag_expected","given":"$ag_given"}
   !set ag_sep=,
+  :ag_next_choice
 !next i
 ],"feedback":""}

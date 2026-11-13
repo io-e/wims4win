@@ -1,0 +1,11 @@
+===== 00021_reply.stdout =====
+Status: 450 WIMS User Error Status: 450 WIMS User Error Server: WIMS 4.33a (WWW Interactive Multipurpose Server) Content-type: text/html; charset=windows-1252 Cache-Control: no-cache Pragma: no-cache Désolé WIMS a besoin du logiciel PARI pour traiter votre requête, mais ce logiciel n'est pas disponible (ou pas visible à WIMS) sur ce serveur. Vous pouvez écrire au gestionnaire du site pour l'informer de ce problème, ou choisir un site miroir du tableau ci-dessous. WIMS sommaire . 
+
+===== 00055_new.stdout =====
+Status: 450 WIMS User Error Status: 450 WIMS User Error Server: WIMS 4.33a (WWW Interactive Multipurpose Server) Content-type: text/html; charset=windows-1252 Cache-Control: no-cache Pragma: no-cache Désolé WIMS a besoin du logiciel MAXIMA pour traiter votre requête, mais ce logiciel n'est pas disponible (ou pas visible à WIMS) sur ce serveur. Vous pouvez écrire au gestionnaire du site pour l'informer de ce problème, ou choisir un site miroir du tableau ci-dessous. WIMS sommaire . 
+
+===== 00058_reply.stdout =====
+Status: 450 WIMS User Error Status: 450 WIMS User Error Server: WIMS 4.33a (WWW Interactive Multipurpose Server) Content-type: text/html; charset=windows-1252 Cache-Control: no-cache Pragma: no-cache Désolé WIMS a besoin du logiciel MAXIMA pour traiter votre requête, mais ce logiciel n'est pas disponible (ou pas visible à WIMS) sur ce serveur. Vous pouvez écrire au gestionnaire du site pour l'informer de ce problème, ou choisir un site miroir du tableau ci-dessous. WIMS sommaire . 
+
+===== 00072_new.stdout =====
+Status: 450 WIMS User Error Status: 450 WIMS User Error Server: WIMS 4.33a (WWW Interactive Multipurpose Server) Content-type: text/html; charset=windows-1252 Cache-Control: no-cache Pragma: no-cache Désolé WIMS a besoin du logiciel MAXIMA pour traiter votre requête, mais ce logiciel n'est pas disponible (ou pas visible à WIMS) sur ce serveur. Vous pouvez écrire au gestionnaire du site pour l'informer de ce problème, ou choisir un site miroir du tableau ci-dessous. WIMS sommaire . 

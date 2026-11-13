@@ -1,0 +1,100 @@
+!! algogebra_json.phtml
+!! Copyright (C) 2026 wims4win contributors
+!! GNU General Public License version 2, like WIMS (see LICENSE and
+!! tools/algogebra-hook/NOTICE.md). The AlgoGebra client (EUPL) only
+!! consumes the emitted JSON over HTTP; it is not combined with this file.
+!!
+!! CLAUDE_V2_1 (supersedes GROK_V1 body; same JSON schema, no new fields)
+!! V2_1: restores the GROK_V1 escape of "--" to \u002d\u002d, which V2 had
+!!       turned into a no-op (reported by GBot after adopting V2 in PR #10,
+!!       c188d9f). A "--" inside the HTML comment would otherwise end it early.
+!! AlgoGebra JSON hook body - emit one JSON object (no comment markers).
+!! Caller (answer.phtml) wraps with ALGOGEBRA_JSON_BEGIN / END when
+!! special_parm=algogebra_json.
+!!
+!! Changes vs GROK_V1 (corpus review 2026-11-13, Windows runtime):
+!!  F1 expected: menu/radio/checkbox family -> $(replyGoodN), the option
+!!     text(s) WIMS prints as "la bonne reponse est" and the value the form
+!!     posts (GROK_V1 emitted "<index>;<option list>", neither displayable
+!!     nor replayable). Fill/text family -> first row of $(replygoodN), the
+!!     engine's own rows2lines / line 1 idiom. Other types unchanged (matrix
+!!     keeps ';' as row separator).
+!!  F2 replies whose replygoodN is empty are not graded by WIMS (free
+!!     point, no analysis row): they are no longer listed as wrong.
+!!  F3 stepped exercises (\steps): only replies of the steps reached so far
+!!     are listed, like answer.phtml does (r<N> isitemof $gotsteps).
+!! Escape policy unchanged: singlespace, escape \ and ", neutralise -- for
+!! the HTML comment. Strings are in the page charset (windows-1252), not
+!! ASCII: the client decodes the body with the Content-Type charset first.
+
+!default module_score=0
+!default replycnt=0
+!default choicecnt=0
+!default wims_seed=0
+
+!set ag_grade=$[$module_score/10]
+!set ag_sep=
+
+{"grade":$ag_grade,"seed":$wims_seed,"answers":[
+!for i=1 to $replycnt
+  !if $(replygood$i)=$empty
+    !goto ag_next_reply
+  !endif
+  !if $oefsteps!=$empty and r$i notitemof $gotsteps
+    !goto ag_next_reply
+  !endif
+  !default m_sc_reply$i=0
+  !default reply$i=
+  !set ag_type=$(replytype$i)
+  !if $ag_type iswordof menu radio checkbox click mark multipleclick flashcard and $(replyGood$i)!=$empty
+    !set ag_expected=!detag $(replyGood$i)
+  !else
+    !if $ag_type iswordof clickfill dragfill atext case nocase compose coord imgcomp javacurve reorder textcomp wlist
+      !set ag_expected=!rows2lines $(replygood$i)
+      !set ag_expected=!line 1 of $ag_expected
+    !else
+      !set ag_expected=$(replygood$i)
+    !endif
+  !endif
+  !set ag_given=!singlespace $(reply$i)
+  !set ag_expected=!singlespace $ag_expected
+  !set ag_given=!replace internal \ by \\ in $ag_given
+  !set ag_given=!replace internal " by \" in $ag_given
+  !set ag_given=!replace internal -- by \u002d\u002d in $ag_given
+  !set ag_expected=!replace internal \ by \\ in $ag_expected
+  !set ag_expected=!replace internal " by \" in $ag_expected
+  !set ag_expected=!replace internal -- by \u002d\u002d in $ag_expected
+  !ifval $(m_sc_reply$i)>=1
+    !set ag_correct=true
+  !else
+    !set ag_correct=false
+  !endif
+  $ag_sep{"id":"reply$i","correct":$ag_correct,"score":$(m_sc_reply$i),"feedback":"","expected":"$ag_expected","given":"$ag_given"}
+  !set ag_sep=,
+  :ag_next_reply
+!next i
+!for i=1 to $choicecnt
+  !if $oefsteps!=$empty and c$i notitemof $gotsteps
+    !goto ag_next_choice
+  !endif
+  !default m_sc_choice$i=0
+  !default choice$i=
+  !default choicegood$i=
+  !set ag_given=!singlespace $(m_choice$i)
+  !set ag_expected=!singlespace $(choicegood$i)
+  !set ag_given=!replace internal \ by \\ in $ag_given
+  !set ag_given=!replace internal " by \" in $ag_given
+  !set ag_given=!replace internal -- by \u002d\u002d in $ag_given
+  !set ag_expected=!replace internal \ by \\ in $ag_expected
+  !set ag_expected=!replace internal " by \" in $ag_expected
+  !set ag_expected=!replace internal -- by \u002d\u002d in $ag_expected
+  !ifval $(m_sc_choice$i)>=1
+    !set ag_correct=true
+  !else
+    !set ag_correct=false
+  !endif
+  $ag_sep{"id":"choice$i","correct":$ag_correct,"score":$(m_sc_choice$i),"feedback":"","expected":"$ag_expected","given":"$ag_given"}
+  !set ag_sep=,
+  :ag_next_choice
+!next i
+],"feedback":""}

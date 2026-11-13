@@ -1,0 +1,161 @@
+[
+ {
+  "exo": "00002",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.count_matches_def": true,
+   "W.grade_matches_html": false,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": false,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [
+   "no 'note de X sur 10' sentence (status/qnum?); grade=0",
+   "replaying expected does not grade 1.0 (grade=0): []"
+  ],
+  "errors": [],
+  "def": {
+   "replycnt": 2,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "default",
+    "2": "default"
+   }
+  },
+  "sent": {
+   "reply1": "0",
+   "reply2": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"4/7\",\"given\":\"0\"}\n  ,{\"id\":\"reply2\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"-1\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "4/7",
+     "given": "0"
+    },
+    {
+     "id": "reply2",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "-1",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "html_score": null,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">4/7</div>",
+    false,
+    "0"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">-1</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": false,
+   "grade": 0,
+   "correct": [
+    true,
+    true
+   ],
+   "html_score": null,
+   "bad": []
+  },
+  "seconds": 30.5
+ },
+ {
+  "exo": "somme_demo",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.count_matches_def": true,
+   "W.grade_matches_html": false,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": false,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [
+   "no 'note de X sur 10' sentence (status/qnum?); grade=0",
+   "replaying expected does not grade 1.0 (grade=0): []"
+  ],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "numeric"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"14\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "14",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "html_score": null,
+  "html_rows": [
+   [
+    "Somme",
+    "<div class=\"inline tt\">14</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": false,
+   "grade": 0,
+   "correct": [
+    true
+   ],
+   "html_score": null,
+   "bad": []
+  },
+  "seconds": 0.9
+ }
+]

@@ -1,0 +1,916 @@
+[
+ {
+  "exo": "00002",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 2,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "default",
+    "2": "default"
+   }
+  },
+  "sent": {
+   "reply1": "0",
+   "reply2": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"4/7\",\"given\":\"0\"}\n  ,{\"id\":\"reply2\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"-1\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "4/7",
+     "given": "0"
+    },
+    {
+     "id": "reply2",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "-1",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 2,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">4/7</div>",
+    false,
+    "0"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">-1</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 30.4
+ },
+ {
+  "exo": "00004",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "radio"
+   }
+  },
+  "sent": {
+   "reply1": "blu e verde"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"blu e arancio\",\"given\":\"blu e verde\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "blu e arancio",
+     "given": "blu e verde"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "SCELTA",
+    "<div class=\"inline tt\">blu e arancio</div>",
+    false,
+    "blu e verde"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 1.2
+ },
+ {
+  "exo": "00008",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "menu"
+   }
+  },
+  "sent": {
+   "reply1": "vera"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"falsa\",\"given\":\"vera\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "falsa",
+     "given": "vera"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    null,
+    false,
+    ""
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.6
+ },
+ {
+  "exo": "00014",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": null,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 2,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "clickfill",
+    "2": "clickfill"
+   }
+  },
+  "sent": {
+   "reply1": "0",
+   "reply2": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"a,n,g,l,e\",\"given\":\"0\"}\n  ,{\"id\":\"reply2\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"c,e,r,c,l,e\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "a,n,g,l,e",
+     "given": "0"
+    },
+    {
+     "id": "reply2",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "c,e,r,c,l,e",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 2,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\"><div class=\"fill_container\" style=\"width:180px\"><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">a</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">n</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">g</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">l</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">e</div>\n  </div></div></div>",
+    null,
+    "<div class=\"fill_container\" style=\"width:36px\"><div\n    class=\"drag_label \" style=\"justify-content:center;width:34px;height:34px;\">\n      <div class=\"drag_content\" style=\"text-align:center\">0</div>\n    </div></div>"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\"><div class=\"fill_container\" style=\"width:216px\"><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">c</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">e</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">r</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">c</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">l</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">e</div>\n  </div></div></div>",
+    null,
+    "<div class=\"fill_container\" style=\"width:36px\"><div\n    class=\"drag_label \" style=\"justify-content:center;width:34px;height:34px;\">\n      <div class=\"drag_content\" style=\"text-align:center\">0</div>\n    </div></div>"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.7
+ },
+ {
+  "exo": "00021",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [
+   "answers=4, def replycnt=5 choicecnt=0 (ungraded replies omitted?)"
+  ],
+  "errors": [],
+  "def": {
+   "replycnt": 5,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "numexp",
+    "2": "numexp",
+    "3": "numexp",
+    "4": "numexp",
+    "5": "numexp"
+   }
+  },
+  "sent": {
+   "reply1": "0",
+   "reply2": "0",
+   "reply3": "0",
+   "reply4": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"50.5\",\"given\":\"0\"}\n  ,{\"id\":\"reply2\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"51.01\",\"given\":\"0\"}\n  ,{\"id\":\"reply3\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"51.52\",\"given\":\"0\"}\n  ,{\"id\":\"reply4\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"52.03\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "50.5",
+     "given": "0"
+    },
+    {
+     "id": "reply2",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "51.01",
+     "given": "0"
+    },
+    {
+     "id": "reply3",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "51.52",
+     "given": "0"
+    },
+    {
+     "id": "reply4",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "52.03",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 5,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">50.5</div>",
+    false,
+    "0"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">51.01</div>",
+    false,
+    "0"
+   ],
+   [
+    "[3]",
+    "<div class=\"inline tt\">51.52</div>",
+    false,
+    "0"
+   ],
+   [
+    "[4]",
+    "<div class=\"inline tt\">52.03</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 1.7
+ },
+ {
+  "exo": "00027",
+  "checks": {},
+  "findings": [],
+  "errors": [
+   "exception: RuntimeError('no session in cmd=new: ?')"
+  ],
+  "seconds": 0.1
+ },
+ {
+  "exo": "00045",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": false,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "checkbox"
+   }
+  },
+  "sent": {
+   "reply1": "Toxoplasmose"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"Grippe, Poliomyélite, Hépatite\",\"given\":\"Toxoplasmose\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "Grippe, Poliomyélite, Hépatite",
+     "given": "Toxoplasmose"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">Grippe, Poliomyélite, Hépatite</div>",
+    false,
+    "Toxoplasmose"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.6
+ },
+ {
+  "exo": "00047",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 2,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "case",
+    "2": "case"
+   }
+  },
+  "sent": {
+   "reply2": "0",
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"x\",\"given\":\"0\"}\n  ,{\"id\":\"reply2\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"y\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "x",
+     "given": "0"
+    },
+    {
+     "id": "reply2",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "y",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 2,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">x</div>",
+    false,
+    "0"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">y</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 1.0
+ },
+ {
+  "exo": "00055",
+  "checks": {
+   "W.marker": false
+  },
+  "findings": [],
+  "errors": [
+   "hook marker missing on cmd=reply (answer_analysis=False)"
+  ],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "function"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "html_excerpt": "Tangente (function)\n\n\n\n\n\n\n\n\n\n\n\n\n\n Donner l'équation de la tangente à la courbe d'équation \t\ny=−3x 2+1.8 au point (-2.5, -16.95). \t       \ny=  \n\n\n\n\n\n\n\n\n0 [1]\n \t\n\n\n  \n\n\n\n\n\n\n\n    \n\n\n\n  À cause d'une erreur dans l'exercice (la bonne réponse pour la question 1 \n      [1]\n      n'est pas valable), il est ",
+  "seconds": 9.8
+ },
+ {
+  "exo": "00057",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": null,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "dragfill"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"1,4,7,2,5,8,3,6,9\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "1,4,7,2,5,8,3,6,9",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\"><div class=\"fill_container\" style=\"width:108px\"><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">1</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">4</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">7</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">2</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">5</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">8</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">3</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">6</div>\n  </div><div class=\"drag_label oef_indgood\" style=\"justify-content:center;width:34px;height:34px;\">\n    <div class=\"drag_content 3\" style=\"text-align:center\">9</div>\n  </div></div></div>",
+    null,
+    "<div class=\"fill_container\" style=\"width:108px\"><div\n    class=\"drag_label \" style=\"justify-content:center;width:34px;height:34px;\">\n      <div class=\"drag_content\" style=\"text-align:center\">0</div>\n    </div></div>"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.8
+ },
+ {
+  "exo": "00058",
+  "checks": {
+   "W.marker": false
+  },
+  "findings": [],
+  "errors": [
+   "hook marker missing on cmd=reply (answer_analysis=False)"
+  ],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "formal"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "html_excerpt": "*input avec symbols\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode : \t \t \n\n\n\n\n\\answer{}{3*alpha+2*beta}{type=formal}{option=symbols=[alpha beta]}\n\n\n\n \t \tÉcrire \n3α+2β. \t \n\n\n\n\n\n\n\n\n0 [1]\n \t\n\n\n  \n\n\n\n\n\n\n\n    \n\n\n\n  À cause d'une erreur dans l'exercice (la bonne réponse pour la question 1 \n      [1]\n      n'est pas valable), il est i",
+  "seconds": 9.8
+ },
+ {
+  "exo": "00072",
+  "checks": {
+   "W.marker": false
+  },
+  "findings": [],
+  "errors": [
+   "hook marker missing on cmd=reply (answer_analysis=False)"
+  ],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "function"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "html_excerpt": "Tangente 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nDonner l'équation de la tangente à la courbe \t  d'équation  \ny=−3x 2+1.8 au point  d'abscisse -2.5. \t   \t\n\n\n  \n\n\n\n\n\n\n\n    \n\n\n\n  À cause d'une erreur dans l'exercice (la bonne réponse pour la question 1 \n      y\n      n'est pas valable), il est impossible d'analyser\n  votre ré",
+  "seconds": 10.1
+ },
+ {
+  "exo": "00085",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [
+   "answers=2, def replycnt=12 choicecnt=0 (ungraded replies omitted?)"
+  ],
+  "errors": [],
+  "def": {
+   "replycnt": 12,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "checkbox",
+    "2": "default",
+    "3": "default",
+    "4": "default",
+    "5": "default",
+    "6": "set",
+    "7": "fset",
+    "8": "vector",
+    "9": "function",
+    "10": "algexp",
+    "11": "formal",
+    "12": "matrix"
+   }
+  },
+  "sent": {
+   "reply1": "1",
+   "reply3": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"2, 3\",\"given\":\"1\"}\n  ,{\"id\":\"reply3\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"2\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "2, 3",
+     "given": "1"
+    },
+    {
+     "id": "reply3",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "2",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 12,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">2, 3</div>",
+    false,
+    "1"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">2</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 1.4
+ },
+ {
+  "exo": "00352",
+  "checks": {},
+  "findings": [],
+  "errors": [
+   "exception: RuntimeError('no session in cmd=new: ?')"
+  ],
+  "seconds": 3.5
+ },
+ {
+  "exo": "somme_demo",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "numeric"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"14\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "14",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "Somme",
+    "<div class=\"inline tt\">14</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.8
+ }
+]

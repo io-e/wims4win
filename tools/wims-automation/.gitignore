@@ -1,0 +1,8 @@
+*.out
+*.hdr
+*.body
+cookies.txt
+session_*
+last.*
+exercise.out
+__pycache__/

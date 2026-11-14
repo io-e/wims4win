@@ -1,0 +1,4 @@
+# Optional. Install only if you want the browser end-to-end test:
+#   pip install -r requirements.txt
+#   playwright install chromium
+playwright>=1.40

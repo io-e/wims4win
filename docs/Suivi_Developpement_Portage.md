@@ -507,6 +507,27 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - **NOT RUN:** PWD-10, ACL-05 (no root / `setwrapexec`), ACL-11, ADM-03, ADM-06 (no load tests), ADM-07, ADM-08, SBX-14, SEC-02/ACL-06 (Arnaud).
 - docs/08 §4.16 added. Totals §7 (baseline 138 + 27 new IDs): **145/165 PASS**, 0 FAIL, P0 **53/53**, NOT RUN 17, WAIVED 1, WAITING 2 (SEC-02, ACL-06).
 
+## 2026-11-12 — Setup procedure and per-class backup/restore (docs/11)
+
+- New document [`docs/11_Setup_and_Class_Backup_Windows_Debian.md`](11_Setup_and_Class_Backup_Windows_Debian.md) (English): step-by-step setup of a WIMS instance on native Windows and Debian 13, plus backup/restore of **one class** via official `adm/class/config/arch/pack.sh` (`tgz`) and a filesystem `tar` fallback. Branch `docs/setup-class-backup` (sits on `docs/admin-guide-win-debian` / PR #14).
+- Local merge of PR #12 (`HAVE_CRYPT`) and PR #13 (`wimslogd` share fix) at `/workspace/wims-port-merge-setup` (`local/merge-pr12-pr13`). **Not pushed.** Cross-compile on the box was blocked (`deb.debian.org` HTTP 500; no mingw/`make`/`flex`). The new Windows sibling therefore uses previously built binaries from those branches (hook-class CGI, hook-logd `wimslogd`). **Update 2026-11-14:** PR #12 and PR #13 were later merged into `master` (`da7b03a`, `05f6c70`).
+- Drill (Europe/Paris), without touching live `hook-20261106`, Laragon, or `Reprise_Wims_Claude`. Source class 9001 in `hook-class-20261106` was read-only.
+  - Official pack: `docs-admin/backups-20261112/9001-wims-pack-20261112.tgz` (7 155 000 bytes, sha256 `c94b37a6…aa408f`, 12:03:41, top-level `class/`).
+  - Filesystem fallback: `9001-filesystem-20261112.tgz` (7 173 356 bytes, sha256 `afc1a478…d89976`, 12:02:50, top-level `9001/`).
+  - Debian fresh tree `/workspace/mw-wims-setup-debian/`: restore + supervisor/student logins + scores **PASS** (12:05–12:07).
+  - Windows new sibling `wims-runtime-r19040-grok-setup-test-20261112`: setup, `icacls`, `wimslogd` start/stop, file restore and score hash **PASS**; **class logins FAIL** (BKP-06: `.log.auth` `??????` / `!passcheck=no` despite byte-identical user files and a Debian-successful archive). No code change committed.
+- Test daemons stopped (Debian pid, Windows by path). Live CGI/`wimslogd` hashes and source 9001 `.def`/`score` unchanged.
+- docs/08 §4.17 added. Totals §7: **157/180 PASS**, **1 FAIL** (BKP-06), NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 59/60 PASS.
+- Needs Arnaud (as of 12:25): review/merge PRs #12–#14 and this docs PR; optional Laragon `WIMS_RT` lines in docs/11 §8; diagnosis of BKP-06 (do not replace live binaries first); SETUP-07 (apt/`./compile`) when Debian mirrors work.
+
+## 2026-11-12 — BKP-06 root cause and retest
+
+- Windows class login after a good official restore failed only because CGI-direct tests invoked the extensionless `public_html\wims.cgi`, which on `wims-runtime-r19040-grok-setup-test-20261112` was the pre-HAVE_CRYPT binary (`7C8FFCED…`, 933025 bytes). `wims.cgi.exe` was already the HAVE_CRYPT build (`42BBAE9D…`). The official pack, class password files, PR #13 vs old `wimslogd`, `.wimspass`, and `icacls` were ruled out. The source sibling still logged in at 12:28 (not time-based).
+- Fix (procedure only, no C-code commit): docs/11 §3.3 step 4 now requires hashing and aligning both CGI names; never copy `wims.exe` onto `wims.cgi`. On the setup-test sibling only, `wims.cgi.exe` was copied over `wims.cgi`.
+- Retest 12:36 Paris: BKP-06 supervisor + student **PASS**. Test `wimslogd` stopped by path. Live binaries and source `.def` / `score/anonymous1` unchanged at 12:37.
+- docs/08 §7 totals (script-checked increment from the 12:25 table): **158/180 PASS**, **0 FAIL**, NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 **60/60 PASS**.
+- Needs Arnaud (as of 12:37): review/merge PRs #12–#15 (and later the automation PR); optional Laragon `WIMS_RT` cutover in docs/11 §8 (now unblocked for class login, still not applied); SETUP-07 when Debian mirrors work. **Update 2026-11-14:** PR #12 and PR #13 are now on `master`; #14, #15 and later PRs were still open at this writing.
+
 ## 2026-11-14 — PR #12 and #13 merged into master
 
 - PR #12 `fix/win32-have-crypt-passcheck` merged as `da7b03a` (2026-11-14 09:37:31 Europe/Paris).

@@ -378,3 +378,173 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - **IFC-06 via Laragon** `tool/directexec` : Maxima PASS (`(x-1)*(x+1)*(x^2+1)`, `sin(x)-x*cos(x)`) ; Octave PASS (`-2`, `0.5`, `a-b`) ; 0 cmd.exe.
 - **CGI-08 via Laragon** : image flydraw → `/wims/wims.gif?cmd=getins…` → 200 `image/gif` GIF87a 839 o.
 - Totaux plan 08 : 141 tests, 116 PASS, 24 NOT RUN, 0 BLOCKED, 1 FAIL (P2). Gate P0 toujours 52/52.
+
+## 2026-11-06 (suite) — HLP-16, OEF-03/04, HLP-17, JOB-06, HLP-10
+
+Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106` (sans édition de la config Laragon).
+
+- **HLP-16** PASS : `bin/run-mkindex.sh` → `EXIT:0` / Start-Process ExitCode=0 (`C:\Users\Shadow\mkindex5.log`, démarré 13:19, fini 13:46 heure de Paris). Cause du rc=2 : `find.exe` de System32 devant le `find` MSYS (« Fichier introuvable - *.bin »). Correctif : `export PATH="/usr/bin:/bin:$PATH"` en tête de `bin/mkindex` (patch `tools/patches/mkindex-wims4win.patch` + runtime). Avec PATH : 0× Fichier introuvable. Bénin : pas de `strfile` ; `modules/data/images` absent.
+- **OEF-03** PASS : `module=local/exemple.fr&cmd=new&lang=fr` → 200, page ~12810 o.
+- **OEF-04** PASS : `local/oef2html_web.fr` — 42 exo, new 42/42 status 200, reply 42/42 status 200, pas de WIMS User Error (le nom de module doit inclure `.fr`).
+- **HLP-17** PASS : `./bin/oefcompile test local/oef2html_web.fr` → 42 sources, 42 compiled, Total failure: 0.
+- **JOB-06** PASS : `rlimit_cpu=3` puis PARI lourd `sum(n=1,8*10^7,n%97)` via tool/directexec → ~3,3 s, message « PARI/GP n'a pas pu exécuter votre code » ; factor léger OK après restore. `log/wims.conf` restauré (0 ligne `rlimit`).
+- **HLP-10** PASS (triage) : `crossword.exe wordlist` rc=0 ; « Cannot open bcd » = mauvais argv. Laragon exo=crossword → 200. Pas de correctif code.
+- Totaux plan 08 (§7 réconcilié avec chaque ligne) : **138** tests, **114 PASS**, **24 NOT RUN**, **0 BLOCKED**, **0 FAIL** (P0 51/51, P1 57/9, P2 6/15).
+- Dépôt : docs + patch PATH mkindex poussés sur `master` ; pas de branche code hors patch.
+
+## 2026-11-06 (soir) — Audit des totaux §7 du plan 08
+
+Arnaud a demandé de tracer 141/P0 52 (`0bb1553`) → 138/P0 51 (`1b47d97`) malgré 6 PASS.
+Diff scripté des lignes §4 : **aucune** ID ajoutée/retirée/renommée ; **aucune** priorité
+changée ; seulement les 6 statuts HLP-16/17, JOB-06, OEF-03/04, HLP-10. Les totaux 141
+venaient de 3 ID fantômes (**ENC-05**, **BLD-04**, **HLP-18**) comptées dans §7 depuis
+`b885a1f` sans jamais avoir de ligne §4. Aucune ligne légitime perdue. Totaux corrects :
+**138** / **114 PASS** / **24 NOT RUN** / **0 FAIL** (P0 **51/51**, P1 57/9, P2 6/15).
+
+## 2026-11-06 (soir) — Batch P1 restants + P2 cheap
+
+Runtime Laragon : `wims-runtime-r19040-grok-hook-20261106`.
+
+- **PATH-01** PASS : copie `rt with space` (live intact) ; SMK-01/02/03 OK (factor.fr greffé seulement dans la copie).
+- **SBX-18** PASS : `fake_cas env` + ch..root ; PR https://github.com/io-e/wims4win/pull/11 (non fusionnée).
+- **JOB-04** PASS : Job mem 64 Mo, alloc 200→3 / 32→0.
+- **JOB-05** PASS : `wp_job_kill` via test_platform 22/22.
+- **HLP-09** PASS : module local `canvasdraw_hlp09.fr`, JS canvasdraw servi en getfile.
+- **LOGD-12** PASS (scripts sh) ; démon laissé tourner, keepdate effacé — collecte overnight dans `tests-win_ALF/LOGD-12_15_overnight.txt`.
+- **LOGD-15** PASS (sibling) : cause = `HAVE_CRYPT` absent du config.h Win32 → `_passcrypt` no-op ; PR #12 ; exercice élève + Notes superviseur.
+- **LIN-03** WAIVED → YAML-02.
+- **SEC-02** WAITING : script `tests-win_ALF/SEC-02_pipe_acl_steps.ps1` ; 2e utilisateur Windows à fournir par Arnaud.
+- P2 cheap : **PLT-02**, **HLP-11** (partiel), **PATH-02**, **YAML-03**, **CGI-07** PASS ; **SBX-14** skip (Arnaud : pas de purge) ; autres P2 différés avec motif.
+- Incident `wims.cgi.exe` : **accident extensionless `wims.cgi` (pas AV)**. Créé 14:52:56 Europe/Paris ; exe restauré 14:59:28 ; AH02811 14:57–14:58. Defender 0.
+- Totaux §7 (script) : **126/138 PASS**, 0 FAIL, P0 **51/51** (LOGD-15 PASS sur sibling).
+
+### 2026-11-06 — sibling adm/class (décision propriétaire)
+
+- Nouveau runtime sibling (live intact) :
+  `D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\wims-runtime-r19040-grok-hook-class-20261106`
+  = copie du hook live + modules `adm/class` complets (1537 fichiers) depuis `wims-runtime-r19040-grok`.
+- Laragon `WIMS_RT` **non modifié** : toujours `…/hook-20261106/public_html`.
+- Smokes CGI directs (env Apache-like) sur le sibling :
+  - `adm/class/classes` → Status **200**, titre Virtual classes
+  - AlgoGebra hook H6/test/oef2html.fr 00006/00076 → **8/8** (`hook_smoke_8.csv`)
+  - CAS : `tool/algebra/factor.fr` greffé dans le sibling seulement → factor `2^64+1` = `67280421310721`
+  - `adm/class/userscore` → 200 (page scores) ; login enseignant/élève 9001 encore en échec passcheck
+- Ligne de bascule proposée (non appliquée) :
+  `Define WIMS_RT "D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106/public_html"`
+- PR #11 laissée ouverte (fusion par Arnaud).
+
+
+### 2026-11-06 — fix HAVE_CRYPT (login classe)
+
+- Cause login 9001 `bad_password` : `src/Platform/win32/config.h` sans `HAVE_CRYPT` → `_passcrypt` vide alors que `wp_descrypt.c` est déjà linké.
+- Correctif : `#define HAVE_CRYPT 1` ; `tools/check-linux-identical.sh` IDENTICAL pour `calc.c`.
+- PR https://github.com/io-e/wims4win/pull/12 (non fusionnée). Déployé **uniquement** sur sibling `hook-class-20261106` (backup `Bak/cgi-before-have-crypt-20261106`). Live Laragon inchangé.
+- LOGD-15 : élève `anonymous` feuille 1 exo exi1 → `score/anonymous1` ; superviseur page **Notes** 200.
+
+## 2026-11-09 — LOGD-12 overnight collection (PC online)
+
+Scheduled Nov 7 09:00 Europe/Paris collect found ShadowPC offline; re-run today 16:10 Europe/Paris (PowerShell only, no .bat/cmd.exe; live runtime untouched).
+
+- Confirmed Laragon `WIMS_RT` → `wims-runtime-r19040-grok-hook-20261106/public_html` (read-only).
+- Logs under runtime `tmp/log/` (sibling of `public_html`):
+  - `housekeep.log` 789 B, mtime **2026-11-06 14:52:45** (manual MSYS sh proof; missing `log/stat/*` messages)
+  - `modupdate.log` 50 B, mtime **2026-11-06 14:52:55** (« Waiting… OK. »)
+  - `wimslogd.out` 53 B, mtime 2026-11-06 10:16:45 — only `wimslogd 12944 started at 20261106.10:16:45 (win32).`
+  - `keepdate` absent (cleared 2026-11-06); bak `keepdate.bak-logd12` = `20261106`
+  - `lastclean` mtime 2026-11-06 16:04:27; `mupdate` = `20261106`
+  - `exec.fail` (mtime 2026-11-06 10:21:24): daemon failed to spawn `bin/housekeep.daily` and `bin/modupdate.auto` (error 0) earlier that morning
+- **No Nov 7 / 8 / 9 overnight housekeep or modupdate** from wimslogd.
+- `wimslogd` not running (stale pid file 12944). Laragon process up; ambient `cmd.exe` child of laragon.exe (started 2026-11-09 11:33) — not used by this collect or by the MSYS sh housekeep proof.
+- **LOGD-12** remains **PASS** on the 2026-11-06 MSYS sh evidence; overnight daemon path did not add new runs.
+- Totaux §7 (script, one row = one test) : **126/138 PASS**, 0 FAIL, P0 **51/51**, NOT RUN 10, WAIVED 1 (LIN-03), WAITING 1 (SEC-02).
+
+## 2026-11-09 — wimslogd restart + housekeep/modupdate spawn retest
+
+Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106` only; trigger daily jobs via daemon path.
+
+- Pre: stale pid 12944; `exec.fail` already had two «Failed to execute … error 0» from 2026-11-06 10:21; logs from manual MSYS sh only.
+- Start 16:20:04 Europe/Paris: removed stale pid; `Start-Process bin\wimslogd.exe -WorkingDirectory <runtime root> -WindowStyle Hidden`; PATH put bundled `other\msys2\usr\bin\sh.exe` first. PID **5132**, `wimslogd.out`: `wimslogd 5132 started at 20261109.16:20:04 (win32).`
+- Daemon path (not hand-run scripts): `housekeep()` / `modupdate()` via `thismin` ticks (`MINLENGTH` 47 + random `rshift`).
+  - **16:22:08** housekeep: `keepdate=20261109`; `housekeep.log` truncated to **0 B**; `exec.fail` += housekeep.daily error 0.
+  - **16:29:12** modupdate: `mupdate=20261109`; `modupdate.log` **0 B**; `exec.fail` += modupdate.auto error 0.
+- PowerShell CreateFile repro: two `GENERIC_WRITE` opens on same path with `FILE_SHARE_READ` only → 2nd handle INVALID, **Win32 32 ERROR_SHARING_VIOLATION**; with `FILE_SHARE_READ|FILE_SHARE_WRITE` both OK.
+- **Root cause:** `housekeep.c` `call_ssh(0,"bin/… &>%s/….log",tmpd)` → `outf==errf`; `wp_win32.c` `open_redirect` share mode too tight for stdout+stderr same file.
+- **Proposed fix (not applied / not committed):** open once + `DuplicateHandle` for the second std handle when paths match (preferred), or add `FILE_SHARE_WRITE` in `open_redirect`.
+- Daemon **left running** (PID 5132, healthy). No Laragon/config/code changes. Ambient Laragon `cmd.exe` unchanged; collect used PowerShell only.
+- Totaux §7 inchangés : **126/138 PASS**, P0 51/51.
+
+## 2026-11-09 — fix win32 `&>` shared redirect (LOGD-12 daemon spawn)
+
+- **Debian ?** Non. Chemin Linux : `src/Wimslogd/wimslogdlines.c` `#else` → `fork` + `freopen(outf)` puis `freopen(errf)` (même chemin OK). Repro box : child_status=0, log écrit. Pas de `CreateFile` / partage de handles.
+- **Fix Windows** (branche `fix/win32-wimslogd-shared-redirect`, PR #13 merged into `master` 2026-11-14, `05f6c70`) :
+  - `wp_spawn` : si `outf` et `errf` même chemin → un `open_redirect` + `DuplicateHandle` pour stderr
+  - `open_redirect` écriture : `FILE_SHARE_READ|FILE_SHARE_WRITE` (ceinture)
+  - `execredirected` / `wp_spawn` : conserver le vrai `GetLastError` avant `CloseHandle`
+- Build : `tools/build-wimslogd-win32.sh` → `wimslogd.exe` ; `tests/platform` 22/22 Linux ; `test_platform.exe` rebuild mingw.
+- Vérif sibling PC prévue : `wims-runtime-r19040-grok-hook-logd-20261109` (live PID 5132 intact).
+
+### Sibling verify (logd-20261109)
+
+- Copie live → `wims-runtime-r19040-grok-hook-logd-20261109` (ask-before-overwrite: n'existait pas).
+- `wimslogd.exe` corrigé déployé **uniquement** dans le sibling (bak `.bak-before-fix`). Live Laragon / PID **5132** intact.
+- Sibling daemon PID **23708** démarré 16:44:28 Europe/Paris (pipe hashé par arbre → pas de collision).
+- **housekeep OK** ~16:46 : `keepdate=20261109`, `housekeep.log` 809 o, **pas** de `exec.fail`.
+- modupdate pas encore observé (PC offline ~16:53) ; même `call_ssh &>` que housekeep.
+- CI PR #13 : Linux Platform / mingw interfaces / OEF tools = SUCCESS.
+- À la reconnexion : confirmer modupdate + arrêter PID 23708 (pas 5132).
+
+### Sibling modupdate confirm (2026-11-10 01:05–01:22 Europe/Paris)
+
+- PC back online after reboot: neither daemon running (stale pids 23708 / 5132).
+- Sibling: restarted fixed `wimslogd` (PID 18880 then 2068); `mupdate` reset to `20261101`.
+- Early morning: `modupdatetime` (random 0–350) can block modupdate; one restart re-rolled the gate.
+- **modupdate PASS 01:21:50–01:22:00:** `mupdate=20261110`, `modupdate.log` 50 B (« Waiting for running processes to terminate… OK. »), **pas de `exec.fail`**.
+- housekeep also re-ran for 20261110 → log 809 B (spawn OK).
+- Sibling daemon **PID 2068 stopped** (path `…hook-logd-20261109…` only).
+- Live: restarted **old** binary as PID **11056** (hash ≠ fixed); Laragon/config untouched.
+
+## 2026-11-11 — English admin guide (Windows + Debian)
+
+- New `docs/10_Server_Administration_Windows_Debian.md` on branch `docs/admin-guide-win-debian`.
+- Sources: GEM report (`02-wims4win/docs/Officiel/…`, untracked), official WIMS EDU / UCA docs, repo code and docs/04–08. Web + disk search found no existing EN Windows+Debian operations guide.
+- Password management (§3) and rights/permissions (§4) are placed immediately after the inventory: `log/.wimspass`, `passcrypt`/`passcheck`, HAVE_CRYPT / PR #12, class 9001, `manager_site`, NTFS vs Unix setuid wrappers, pipe ACL SEC-02.
+- §17 adds test rows PWD-01…10, ACL-01…11 (mapped to LOGD-15, SEC-01/02, SBX-*), plus ADM-01…08.
+- Index line added in `docs/README.md`. Copy of the guide also goes to `D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\docs-admin\`.
+
+## 2026-11-12 — Admin tests (docs/10 §17)
+
+- At the time of these tests, PRs **#10–#14 were all still OPEN** (not merged). No new code from those PRs was on `master` then. **Update 2026-11-14:** PR #12 (`da7b03a`, 09:37:31 Europe/Paris) and PR #13 (`05f6c70`, 09:37:40 Europe/Paris) were merged into `master`. #10, #11, #14 and later docs/tools PRs were still open at this writing.
+- Ran docs/10 §17 items on:
+  - Debian: isolated tree `/workspace/mw-wims-debian/` (copy; no other folder deleted).
+  - Windows siblings only: `wims-runtime-r19040-grok-hook-class-20261106` (HAVE_CRYPT CGI) and `wims-runtime-r19040-grok-hook-logd-20261109` (fixed wimslogd, CGI **without** HAVE_CRYPT). Live `hook-20261106` read-only (stale `wimslogd.pid`, 0 process). Laragon and `Reprise_Wims_Claude` untouched.
+- Credentials only from `C:\Users\Shadow\wims_test_creds.txt` or generated secrets; class files and `.wimspass` restored; no secret in git or this log.
+- **PASS (no FAIL):** PWD-01…09, ACL-01…04, ACL-09, ACL-10, ADM-01, ADM-02, ADM-04, ADM-05. PWD-07: hook-logd/live CGI still rejects class logins; hook-class accepts. The HAVE_CRYPT source fix is now on `master` (PR #12, 2026-11-14); the live CGI binary is still unfixed until a new runtime is switched.
+- **NOT RUN:** PWD-10, ACL-05 (no root / `setwrapexec`), ACL-11, ADM-03, ADM-06 (no load tests), ADM-07, ADM-08, SBX-14, SEC-02/ACL-06 (Arnaud).
+- docs/08 §4.16 added. Totals §7 (baseline 138 + 27 new IDs): **145/165 PASS**, 0 FAIL, P0 **53/53**, NOT RUN 17, WAIVED 1, WAITING 2 (SEC-02, ACL-06).
+
+## 2026-11-12 — Setup procedure and per-class backup/restore (docs/11)
+
+- New document [`docs/11_Setup_and_Class_Backup_Windows_Debian.md`](11_Setup_and_Class_Backup_Windows_Debian.md) (English): step-by-step setup of a WIMS instance on native Windows and Debian 13, plus backup/restore of **one class** via official `adm/class/config/arch/pack.sh` (`tgz`) and a filesystem `tar` fallback. Branch `docs/setup-class-backup` (sits on `docs/admin-guide-win-debian` / PR #14).
+- Local merge of PR #12 (`HAVE_CRYPT`) and PR #13 (`wimslogd` share fix) at `/workspace/wims-port-merge-setup` (`local/merge-pr12-pr13`). **Not pushed.** Cross-compile on the box was blocked (`deb.debian.org` HTTP 500; no mingw/`make`/`flex`). The new Windows sibling therefore uses previously built binaries from those branches (hook-class CGI, hook-logd `wimslogd`). **Update 2026-11-14:** PR #12 and PR #13 were later merged into `master` (`da7b03a`, `05f6c70`).
+- Drill (Europe/Paris), without touching live `hook-20261106`, Laragon, or `Reprise_Wims_Claude`. Source class 9001 in `hook-class-20261106` was read-only.
+  - Official pack: `docs-admin/backups-20261112/9001-wims-pack-20261112.tgz` (7 155 000 bytes, sha256 `c94b37a6…aa408f`, 12:03:41, top-level `class/`).
+  - Filesystem fallback: `9001-filesystem-20261112.tgz` (7 173 356 bytes, sha256 `afc1a478…d89976`, 12:02:50, top-level `9001/`).
+  - Debian fresh tree `/workspace/mw-wims-setup-debian/`: restore + supervisor/student logins + scores **PASS** (12:05–12:07).
+  - Windows new sibling `wims-runtime-r19040-grok-setup-test-20261112`: setup, `icacls`, `wimslogd` start/stop, file restore and score hash **PASS**; **class logins FAIL** (BKP-06: `.log.auth` `??????` / `!passcheck=no` despite byte-identical user files and a Debian-successful archive). No code change committed.
+- Test daemons stopped (Debian pid, Windows by path). Live CGI/`wimslogd` hashes and source 9001 `.def`/`score` unchanged.
+- docs/08 §4.17 added. Totals §7: **157/180 PASS**, **1 FAIL** (BKP-06), NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 59/60 PASS.
+- Needs Arnaud (as of 12:25): review/merge PRs #12–#14 and this docs PR; optional Laragon `WIMS_RT` lines in docs/11 §8; diagnosis of BKP-06 (do not replace live binaries first); SETUP-07 (apt/`./compile`) when Debian mirrors work.
+
+## 2026-11-12 — BKP-06 root cause and retest
+
+- Windows class login after a good official restore failed only because CGI-direct tests invoked the extensionless `public_html\wims.cgi`, which on `wims-runtime-r19040-grok-setup-test-20261112` was the pre-HAVE_CRYPT binary (`7C8FFCED…`, 933025 bytes). `wims.cgi.exe` was already the HAVE_CRYPT build (`42BBAE9D…`). The official pack, class password files, PR #13 vs old `wimslogd`, `.wimspass`, and `icacls` were ruled out. The source sibling still logged in at 12:28 (not time-based).
+- Fix (procedure only, no C-code commit): docs/11 §3.3 step 4 now requires hashing and aligning both CGI names; never copy `wims.exe` onto `wims.cgi`. On the setup-test sibling only, `wims.cgi.exe` was copied over `wims.cgi`.
+- Retest 12:36 Paris: BKP-06 supervisor + student **PASS**. Test `wimslogd` stopped by path. Live binaries and source `.def` / `score/anonymous1` unchanged at 12:37.
+- docs/08 §7 totals (script-checked increment from the 12:25 table): **158/180 PASS**, **0 FAIL**, NOT RUN 18, WAIVED 1, WAITING 3 (SEC-02, ACL-06, SETUP-08). P0 **60/60 PASS**.
+- Needs Arnaud (as of 12:37): review/merge PRs #12–#15 (and later the automation PR); optional Laragon `WIMS_RT` cutover in docs/11 §8 (now unblocked for class login, still not applied); SETUP-07 when Debian mirrors work. **Update 2026-11-14:** PR #12 and PR #13 are now on `master`; #14, #15 and later PRs were still open at this writing.
+
+## 2026-11-14 — PR #12 and #13 merged into master
+
+- PR #12 `fix/win32-have-crypt-passcheck` merged as `da7b03a` (2026-11-14 09:37:31 Europe/Paris).
+- PR #13 `fix/win32-wimslogd-shared-redirect` merged as `05f6c70` (2026-11-14 09:37:40 Europe/Paris).
+- Live Laragon runtime still uses the old binaries until a new sibling built from `master` is switched.

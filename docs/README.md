@@ -13,6 +13,8 @@ Depuis le 27/10/2026, les documents de Claude et de Grok sont **fusionnés en do
 | [`07_Handoffs.md`](07_Handoffs.md) | Handoffs Claude ↔ Grok | `HANDOFF_Claude_OEF_Python.md`, `Handoff_Grok_Wims02/03_CLAUDE_V1.md` |
 | [`08_Test_Plan_Windows_Migration.md`](08_Test_Plan_Windows_Migration.md) | Test plan (EN) — code modifié pour le portage uniquement, traçabilité D/issues → code → tests | — |
 | [`09_Hook_JSON_AlgoGebra.md`](09_Hook_JSON_AlgoGebra.md) | Hook JSON AlgoGebra : install / uninstall Windows et Debian | — |
+| [`10_Server_Administration_Windows_Debian.md`](10_Server_Administration_Windows_Debian.md) | Administration d’un serveur WIMS sous Windows et Debian (EN) : mots de passe, droits, wimslogd, jobs, tests | Rapport GEM + docs officielles WIMS EDU |
+| [`11_Setup_and_Class_Backup_Windows_Debian.md`](11_Setup_and_Class_Backup_Windows_Debian.md) | Procédure EN : mise en place Windows/Debian et sauvegarde/restauration **par classe** | docs/04, docs/10, modules `adm/class/config/arch` |
 | [`Suivi_Developpement_Portage.md`](Suivi_Developpement_Portage.md) | Journal chronologique du développement | — |
 | `wims4win.yaml`, `apache-laragon-wims-runtime.conf` | Fichiers de configuration utilisés par le build | — |
 | [`archive/`](archive/) | Originaux Claude et Grok, en lecture seule (historique git conservé) | — |

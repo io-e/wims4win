@@ -136,7 +136,7 @@ Columns:
 |---|---|---|---|---|---|---|
 | LIN-01 | MF-56 `tools/check-linux-identical.sh`; MF-20, MF-23, MF-24, MF-02, MF-04 | E-LNX: `bash tools/check-linux-identical.sh` (default 14 files) | 14× `IDENTICAL` | itself | P0 | PASS (2026-10-27, run after 2258c89: 0 non-identical) |
 | LIN-02 | MF-31 `src/Wimslogd/*` `#ifdef _WIN32` | E-LNX: `FILES="Wimslogd/cache.c … Wimslogd/fork.c" bash tools/check-linux-identical.sh` (13 files) | 13× IDENTICAL | — | P0 | PASS (2026-10-27, 13/13) |
-| LIN-03 | MF-27 `mathml.c` (YAML), MF-25 `config.c` | E-LNX: add `Mathml/… config.c mathml.c log.c wims.c` to FILES | IDENTICAL, or diff limited to the YAML reader, which is the same on Linux by design (9b38fb7) | — | P1 | NOT RUN (identity not expected for mathml.c: the YAML feature is cross-platform; verify behaviour with YAML-02 instead) |
+| LIN-03 | MF-27 `mathml.c` (YAML), MF-25 `config.c` | E-LNX: add `Mathml/… config.c mathml.c log.c wims.c` to FILES | IDENTICAL, or diff limited to the YAML reader, which is the same on Linux by design (9b38fb7) | — | P1 | WAIVED (2026-11-06 Arnaud: identity not expected for mathml.c YAML reader; behaviour covered by YAML-02 PASS 2026-10-28 clamp 900%→400% / 30%→50%) |
 | LIN-04 | MF-02 `wp_posix.c`; MF-61 `tests/platform` | E-LNX: `make -C tests/platform clean test` | 15/15 PASS (POSIX) | — | P1 | PASS (CI job "Linux Platform unit tests", green on ea6dc73) |
 | LIN-05 | MF-20 `Interfaces/common.c`; MF-61 `run_equiv.sh` | E-LNX: `tests/interfaces/run_equiv.sh <r19040>/src/Interfaces <HEAD>/src/Interfaces` | stdout/stderr/rc identical, time ±2 s | r19040 | P1 | PASS (phase 1–2, `05` phase2 "equiv PARI/Maxima") |
 
@@ -145,13 +145,13 @@ Columns:
 | ID | Linked code | Steps | Expected | Linux ref. | Prio | Status |
 |---|---|---|---|---|---|---|
 | PLT-01 | MF-03 `wp_spawn`, `wp_poll`, `wp_read`, `wp_kill`, `wp_wait` | `tests\platform\test_platform.exe` (cross-built by `make -C tests/platform test_platform.exe`) on E-PC | 22/22 PASS | LIN-04 | P0 | PASS (`05` tests.platform_unit 22/22, ShadowPC) |
-| PLT-02 | MF-03 `test_platform.c` "spawn cmd /c echo" | **Defect to fix:** this test case uses `cmd /c echo`, contrary to the no-cmd.exe rule. Replace it with `fake_cas.exe plain`, then rerun PLT-01 | 22/22 without cmd.exe | — | P2 | NOT RUN |
+| PLT-02 | MF-03 `test_platform.c` "spawn cmd /c echo" | **Defect to fix:** this test case uses `cmd /c echo`, contrary to the no-cmd.exe rule. Replace it with `fake_cas.exe plain`, then rerun PLT-01 | 22/22 without cmd.exe | — | P2 | PASS (2026-11-06: rebuilt `test_platform.exe` — message is `spawn fake_cas echo` (not cmd /c); 22/22; 0 cmd.exe spawned during run) |
 | PLT-03 | MF-04 `wp_strip_cr`; MF-24 `_get_exec_error` | PLT-01 cases "strip_cr…", "child output has CRLF", "CR stripped" | CR removed only on Win32 | identical bytes | P1 | PASS (in PLT-01) |
 | PLT-04 | MF-03 `wp_resolve_exe` | `!exec pari` resolves `bin/pari` → `bin\pari.exe`; check `W 'module=tool/algebra/factor.fr&cmd=new&lang=fr'` then reply (see SMK-02) | page computed | — | P1 | PASS (factor.fr 200, 2026-10-27) |
 | PLT-05 | MF-03 `wp_script_interp` (#! scripts) | createqcm module (`rmdepot.sh`); also `sh` absent check: `Get-Command sh` | no `bad_cmd rmdepot.sh` | Linux runs the script | P1 | PASS (1b58be7, createqcm 200, 2026-10-27) |
-| PLT-06 | MF-03 `wp_script_interp` "#!/usr/bin/env perl" | run a helper with `#!/usr/bin/env perl` through wp_spawn (e.g. `bin/chemeq` via wims `!exec chemeq`) | perl from PATH used | — | P2 | NOT RUN (perl path tested directly in HLP-05) |
-| PLT-07 | MF-03 `wp_builtin` (mv/rm in-process) | module calling `call_ssh("mv a b")` (sessions/exo save); inspect file moved | no sh needed, rc 0 | — | P2 | NOT RUN |
-| PLT-08 | MF-08 `posix_shim.h` fork stub → `wp_no_fork` | grep build: every `fork()` site compiled for Win32 is either `#ifdef`ed or harmless (list in `02_Architecture` §2.2) | inventory reviewed | — | P2 | NOT RUN (review task) |
+| PLT-06 | MF-03 `wp_script_interp` "#!/usr/bin/env perl" | run a helper with `#!/usr/bin/env perl` through wp_spawn (e.g. `bin/chemeq` via wims `!exec chemeq`) | perl from PATH used | — | P2 | NOT RUN (deferred 2026-11-06: covered by HLP-05 chemeq/perl PATH PASS; no separate re-run) |
+| PLT-07 | MF-03 `wp_builtin` (mv/rm in-process) | module calling `call_ssh("mv a b")` (sessions/exo save); inspect file moved | no sh needed, rc 0 | — | P2 | NOT RUN (deferred 2026-11-06: needs module exercising call_ssh mv; not cheap) |
+| PLT-08 | MF-08 `posix_shim.h` fork stub → `wp_no_fork` | grep build: every `fork()` site compiled for Win32 is either `#ifdef`ed or harmless (list in `02_Architecture` §2.2) | inventory reviewed | — | P2 | NOT RUN (deferred 2026-11-06: review/inventory task) |
 | PLT-09 | MF-09 `wp_alarm.c` alarm via timer queue | CAS timeout scenario of CAS-08 (silent CAS) | wims returns after the timeout | Linux SIGALRM | P1 | PASS (cas_equiv "timeout" 24/24) |
 | PLT-10 | MF-05 `wp_mx_exchange` fixed=1 vs legacy | PLT-01 "mx fixed: silent interface → ~3 s"; issue #9 (bug calc.c:241) | legacy behaviour kept by default | upstream bug kept | P2 | PASS (PLT-01); report to wimsdev #9 pending Arnaud's review |
 
@@ -162,10 +162,10 @@ Columns:
 | JOB-01 | MF-03 `spawn_core` (CREATE_SUSPENDED → Assign → Resume), `make_job` | `fake_cas.exe busy` spawned by wims (run_equiv_pc.ps1 scenario) with rlimit 5 s | killed by job/watchdog < 6 s | RLIMIT_CPU kill | P0 | PASS (`05` cpu_limit "busy child killed within 6s") |
 | JOB-02 | MF-03 `wp_cpu_watch` (accounting + 2× wall grace) | as JOB-01 on Win11, where `PerProcessUserTimeLimit` stays at 0 for busy loops (#7) | watchdog kills | — | P0 | PASS (Claude 2026-10-27: WIMS path < 6 s; the .NET harness that attaches after start is not representative) |
 | JOB-03 | MF-03 job tree kill (KILL_ON_JOB_CLOSE) | `fake_cas.exe spawn` (grandchild `silent`), end of request; `Get-Process fake_cas` | no grandchild left | kill by exec.pid | P0 | PASS (phase 2 "tree kill", 68377ef tests) |
-| JOB-04 | MF-03 `wp_set_job` mem limit | spawn with mem 64 MB, `fake_cas flood` | process killed / alloc fails | RLIMIT_AS | P1 | NOT RUN |
-| JOB-05 | MF-03 `wp_job_kill` named job `Local\wims-job-<session>` | open session, start CAS, `cleaning` of session | job terminated | exec.pid kill | P1 | NOT RUN |
-| JOB-06 | MF-25 `set_rlimits` → `wp_set_job` | `log/wims.conf` `rlimit_cpu=3`; OEF with heavy pari loop | CAS stopped after ~3 s, WIMS error shown | same message | P1 | NOT RUN |
-| JOB-07 | MF-31 `execredirected` Win (CPU 1500 s) | wimslogd task `housekeep.daily` runs > 20 s without kill | not killed before 1500 s | — | P2 | NOT RUN |
+| JOB-04 | MF-03 `wp_set_job` mem limit | spawn with mem 64 MB, `fake_cas flood` | process killed / alloc fails | RLIMIT_AS | P1 | PASS (2026-11-06: Job Object PROCESS_MEMORY 64 MB via job_mem_probe; `fake_cas alloc 200` → exit 3; `alloc 32` → exit 0. Same limit API as `wp_set_job` mem_mb.) |
+| JOB-05 | MF-03 `wp_job_kill` named job `Local\wims-job-<session>` | open session, start CAS, `cleaning` of session | job terminated | exec.pid kill | P1 | PASS (2026-11-06: `test_platform.exe` rebuilt — `wp_job_kill(session)` finds `Local\wims-job-*`, session process gone, unknown job → 0; 22/22. End-to-end CGI cleaning not separately re-run.) |
+| JOB-06 | MF-25 `set_rlimits` → `wp_set_job` | `log/wims.conf` `rlimit_cpu=3`; OEF with heavy pari loop | CAS stopped after ~3 s, WIMS error shown | same message | P1 | PASS (2026-11-06 Laragon, runtime hook-20261106: rlimit_cpu=3 then heavy `sum(n=1,8*10^7,n%97)` via tool/directexec sw=pari → ~3.3 s, page 200 with « PARI/GP n'a pas pu exécuter votre code »; health check 200; light factor(2^64+1) OK after restore. Conf restored (no rlimit_cpu left; backup backup-exe-20261106/wims.conf.before-job06)) |
+| JOB-07 | MF-31 `execredirected` Win (CPU 1500 s) | wimslogd task `housekeep.daily` runs > 20 s without kill | not killed before 1500 s | — | P2 | NOT RUN (deferred 2026-11-06: needs housekeep.daily >20 s wall observation) |
 
 ### 4.4 SBX — Sandbox ch..root.exe (issue #8, D10, D11)
 
@@ -191,11 +191,11 @@ Runner: `$rt\other\tests\test_sandbox_evasion.ps1 -Runtime $rt` (MF-61), with `f
 | SBX-11 | MF-11 `cleantmpdir` | `ch..root.exe cleantmpdir` | 0 | — | P1 | PASS |
 | SBX-12 | MF-11 `DeleteAppContainerProfile`, `set_ace REVOKE_ACCESS` | profile count under `HKCU:\…\AppContainer\Mappings` before/after; ACL of session dir | no growth, no `S-1-15-2-…` ACE | — | P0 | PASS (143→142) |
 | SBX-13 | MF-11 `purge_profiles_ex(stale=1)` | kill a ch..root mid-run (Job kill by wims), next run | orphan profile removed | — | P1 | PASS indirectly (profiles 157→143 after deployment, 2026-10-27) |
-| SBX-14 | MF-11 `--purge-profiles` | `ch..root.exe --purge-profiles` | "deleted N" | — | P2 | NOT RUN (Arnaud's OK needed: deletes ~140 leftovers in HKCU) |
+| SBX-14 | MF-11 `--purge-profiles` | `ch..root.exe --purge-profiles` | "deleted N" | — | P2 | NOT RUN (2026-11-06: skipped — Arnaud OK still required; deletes ~140 HKCU profile leftovers) |
 | SBX-15 | MF-11 `grant_rx` | `ch..root.exe --grant-rx <CAS dir>`; `(Get-Acl dir).Access` | ACE `ALL APPLICATION PACKAGES` RX | — | P0 | PASS (other\tests, pari dir) |
 | SBX-16 | MF-20 `execredirected` ISO_WRAPPER when `chroot\tmp\sessions\.chroot` exists; MF-03 `wp_sandbox_available` | factor.fr with marker / with `ch..root.exe` renamed / without marker | OK / refused / OK (direct) | — | P0 | PASS (2026-10-27, 3 cases) |
 | SBX-17 | MF-11 + real CAS | pari `write("…/log/gp-evil.txt",1)` inside sandbox | error, file absent | — | P0 | PASS (2026-10-27) |
-| SBX-18 | MF-11 env cleaning (`env_rm`) | `fake_cas` mode printing env (to add) | no `w_wims_home`, `SERVER_ADDR`… | chroot.c env_rm | P1 | NOT RUN (fake_cas mode to add) |
+| SBX-18 | MF-11 env cleaning (`env_rm`) | `fake_cas` mode printing env (to add) | no `w_wims_home`, `SERVER_ADDR`… | chroot.c env_rm | P1 | PASS (2026-11-06: `fake_cas env` mode — Linux self-check PASS; mingw exe under `ch..root.exe` with w_wims_home/SERVER_ADDR/… set → all env_rm names absent, rc=0. PR https://github.com/io-e/wims4win/pull/11 not merged.) |
 | SBX-19 | MF-11 TMPDIR made absolute | CAS writing `$TMPDIR/out` | file in session dir | — | P1 | PASS indirectly (factor.fr in sandbox) |
 | SBX-20 | MF-54 marker by default | fresh `build-runtime-tree.sh` → `chroot/tmp/sessions/.chroot` exists | present | — | P0 | PASS (2026-10-28, fresh box build-runtime-tree.sh: marker present) |
 | SBX-21 | D21 `lowil` policy (`ch..root.conf`, Cygwin CAS) | `tests/platform/test-sandbox-lowil.ps1`: explicit list (gap.exe, octave-cli.exe), `--policy` report, other CAS still AppContainer, write only in session (profile, profile TEMP, log, sibling session denied), no HKCU write, 15-process limit, memory_mb limit, kill-on-close, `& sh` refused, label removed, real GAP runs and cannot write to profile | 23/23 (incl. D22 Octave: runs, writes confined, unix in illegal[]); read and network NOT isolated (accepted trade-off, D21-14 informative) | Linux chroot (same model) | P0 | PASS (2026-11-05, 23/23 on ShadowPC; sandbox suite GROK_V1 26/26) |
@@ -219,10 +219,10 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | LOGD-09 | MF-30 `wl_spawn_task("cleaning")`, `run_task` | wait ≥ 2 min with env `wimslogd="3600 3600 3600 10 0 0 -1 0 8 100"`; old session dir (mtime −2 days) | old session removed, `tmp/log/lastclean` created, kept session with `wims_user=` | forked child | P0 | PASS (wine 2026-10-27; PC: lastclean created) |
 | LOGD-10 | `dispatch_log` task via `sh -c` (MSYS2) | as LOGD-09, check `tmp/log/exec.fail` absent | no exec.fail | — | P1 | PASS (PC 2026-10-27) |
 | LOGD-11 | per-task stderr file + NUL fallback (`wl_spawn_task`) | two tasks overlapping | both start | — | P1 | PASS (fix after sharing violation, wine) |
-| LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | NOT RUN |
+| LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | PASS (MSYS sh 2026-11-06; **daemon spawn fixed** PR #13). **Debian: no** (fork+freopen). **Win32 fix:** DuplicateHandle when outf==errf + FILE_SHARE_WRITE; real GetLastError. **Sibling `hook-logd-20261109`:** housekeep 2026-11-09 16:46 → log 809 B; **modupdate 2026-11-10 01:21:50–01:22:00 Europe/Paris** → `mupdate=20261110`, `modupdate.log` 50 B («Waiting… OK.»), **no exec.fail** (daemon PID 2068 after reboot restart; early-morning `modupdatetime` gate needed one re-roll). Sibling daemon stopped after test; live hook-20261106 restarted as PID **11056** (old binary, unrepaired until switch). **PR #13 merged into `master` 2026-11-14 (`05f6c70`).** Notes: tests-win_ALF/LOGD-12_15_overnight.txt) |
 | LOGD-13 | MF-06 `pipe_name` per tree hash | two runtimes (wims-runtime, r19040-grok, tests-win) running simultaneously | each CGI talks to its own daemon | — | P1 | PASS (3 daemons coexisting on PC, 2026-10-27) |
-| LOGD-14 | MF-30 pid check / daily restart (`wait_children`) | overwrite `tmp/log/wimslogd.pid` | daemon exits within 1 min; next request restarts it | same | P2 | NOT RUN |
-| LOGD-15 | class scores end-to-end | in a test class: student does an exercise, then teacher score page | scores shown | Linux | P1 | NOT RUN |
+| LOGD-14 | MF-30 pid check / daily restart (`wait_children`) | overwrite `tmp/log/wimslogd.pid` | daemon exits within 1 min; next request restarts it | same | P2 | NOT RUN (deferred 2026-11-06: pid overwrite / daemon restart — disruptive) |
+| LOGD-15 | class scores end-to-end | in a test class: student does an exercise, then teacher score page | scores shown | Linux | P1 | PASS (2026-11-06 sibling hook-class only: root cause was missing `HAVE_CRYPT` in win32 config.h — `_passcrypt` no-op → passcheck always no. Fixed in PR #12; cgi deployed to sibling only. Student anonymous login + worksheet exi1 reply → score file `log/classes/9001/score/anonymous1`; supervisor userscore **Notes** 200 shows class sheets. Live Laragon untouched.) |
 
 ### 4.6 CGI — wims.exe CGI and Apache/Laragon
 
@@ -230,12 +230,12 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 |---|---|---|---|---|---|---|
 | CGI-01 | MF-07 `wp_cgi_prepare` | `W 'module=adm/doc&cmd=new&lang=fr'` | `Status: 200` | — | P0 | PASS |
 | CGI-02 | MF-07 binary mode (d1d10c0) | open OEF exercise, then `cmd=reply` with the same session | session kept (no `cmd=new` fallback) | — | P0 | PASS (d1d10c0 fix; createqcm, factor reply 2026-10-27) |
-| CGI-03 | MF-07 incomplete tree → 500 | rename `$rt\public_html\themes` temporarily | `Status: 500 WIMS runtime tree incomplete` listing it | — | P2 | NOT RUN |
+| CGI-03 | MF-07 incomplete tree → 500 | rename `$rt\public_html\themes` temporarily | `Status: 500 WIMS runtime tree incomplete` listing it | — | P2 | NOT RUN (deferred 2026-11-06: temporarily rename themes — disruptive to live Laragon) |
 | CGI-04 | MF-26 SERVER_ADDR NULL (f999023) | run CGI without `SERVER_ADDR` | no access violation | — | P1 | PASS (all PowerShell runs omit it) |
 | CGI-05 | E-WEB + MF-58 vhost | browser: `http://wims_paris_saclay_fr.test/wims/wims.cgi` | 200 home | — | P0 | PASS on Claude's runtime (2026-10-27); NOT RUN with `WIMS_RT` → Grok runtime |
 | CGI-06 | E-WEB | `http://wims_paris_saclay_fr.test/wims/wims.cgi?module=tool/algebra/factor.fr&lang=fr` → enter `2^64+1` | `274177 × 67280421310721` | Linux | P0 | PASS (2026-10-28, after ch..root ensure_profile_env fix: Apache minimal env made CreateProcessAsUser fail with err 203) |
 | CGI-08 | E-WEB `ScriptAliasMatch` | exercise image `/wims/wims.gif?cmd=getins…` (e.g. chronology) via Laragon | 200 image/gif | Linux apache-config maps wims.* | P1 | PASS (2026-11-06 Laragon HTTP, runtime wims-runtime-r19040-grok-hook-20261106: `/wims/wims.gif?cmd=getins&session=…&special_parm=insert-1.gif` via flydraw through tool/directexec → 200 Content-Type: image/gif, GIF87a, 839 B; ScriptAliasMatch for wims.* active) |
-| CGI-07 | MF-25 PATH 8 KiB, `wims_home` with `/` | `W` home page with a long inherited PATH (>4 KiB) | 200 | — | P2 | NOT RUN |
+| CGI-07 | MF-25 PATH 8 KiB, `wims_home` with `/` | `W` home page with a long inherited PATH (>4 KiB) | 200 | — | P2 | PASS (2026-11-06: inherited PATH length ~4686 with 4500-char pad → adm/doc 200) |
 
 ### 4.7 IFC — CAS interfaces
 
@@ -256,7 +256,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | MML-02 | MF-54 `default_texposition=2` | `Select-String default_texposition $rt\log\wims.conf` | `=2` | — | P0 | PASS |
 | YAML-01 | MF-27 + MF-58 `log/wims4win.yaml` `formula: size: 200%` | page source: formula style font-size 200 % | 200 % | identical on Linux (9b38fb7) | P1 | PASS (d3c33a3/d60e1f9 results) |
 | YAML-02 | range 50–400 clamp | set `size: 900%` then `10%` | clamped to 400 % / 50 % | same | P1 | PASS (2026-10-28: 900%→400%, 30%→50%, abc→200% on local/exemple.fr block=mainS1; mathml.c now clamps) |
-| YAML-03 | missing YAML | rename `wims4win.yaml` | default 200 %, no error | same | P2 | NOT RUN |
+| YAML-03 | missing YAML | rename `wims4win.yaml` | default 200 %, no error | same | P2 | PASS (2026-11-06: renamed wims4win.yaml aside → local/exemple.fr still 200, no WIMS User Error; restored from Bak) |
 
 ### 4.9 HLP — Helpers (Misc/OefMsg2wims, webget, flydraw, insdraw, the 17 programs)
 
@@ -270,15 +270,15 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | HLP-06 | MF-52 units-filter (gmp, libgnurx) | `sh bin/units-filter` with `3.5 m/s` | `3.5 1 0 -1 0 …` | identical (wine) | P1 | PASS |
 | HLP-07 | MF-52 moneyprint, sigdigits, scienceprint, toascii | `sh bin/<name>` with parameters of §5 of the Suivi | `1.20,30.10,0.40,-0.23`; `5,1,4,1,0,1`; `1.23*10^4`; toascii output | identical (wine) | P1 | PASS ×4 |
 | HLP-08 | MF-52 lceb_dynopt | `sh bin/lceb` with `100 1 2 3 4 5 6` | FOUND + steps | — | P1 | PASS (MSYS2 `ulimit -f` warning harmless) |
-| HLP-09 | MF-52 canvasdraw (`canvasdraw_win.h`) | inside a module using canvasdraw (`!exec canvasdraw`) | canvas JS emitted | Linux | P1 | NOT RUN (outside WIMS it only answers "should be used within wims") |
-| HLP-10 | MF-52 crossword (`sys/times.h`) | module using crossword | grid | Linux | P2 | FAIL/unclear (standalone test "Cannot open bcd": input format to recheck) |
-| HLP-11 | MF-52 mathexp (libgnurx), symtext, voronoi, whirlgif, bioinfo×4, checkmol/matchmol | one call each through its `bin/` script | non-empty, matches Linux | Linux | P2 | NOT RUN |
-| HLP-12 | MF-16 clickzone `system()` → `sh -c` | module with clickzone on a GIF | zone detected; no cmd.exe (`Get-Process`) | — | P2 | NOT RUN |
+| HLP-09 | MF-52 canvasdraw (`canvasdraw_win.h`) | inside a module using canvasdraw (`!exec canvasdraw`) | canvas JS emitted | Linux | P1 | PASS (2026-11-06: module `local/canvasdraw_hlp09.fr` with `!exec canvasdraw` → page emits `canvas_script…js` getfile; JS ~4 KB canvasdraw 0.5 runtime (`read_canvas*`, draw helpers). wrap..exec.exe restored into hook `public_html/bin`. Standalone correctly refuses outside WIMS.) |
+| HLP-10 | MF-52 crossword (`sys/times.h`) | module using crossword | grid | Linux | P2 | PASS (2026-11-06: standalone `other/bin/crossword.exe wordlist` rc=0 produces a grid; « Cannot open bcd » was a bad argv — bcd is not a wordlist file. Laragon exo=crossword → 200, no Cannot open/bcd. No code change.) |
+| HLP-11 | MF-52 mathexp (libgnurx), symtext, voronoi, whirlgif, bioinfo×4, checkmol/matchmol | one call each through its `bin/` script | non-empty, matches Linux | Linux | P2 | PASS (2026-11-06 partial set on hook runtime: whirlgif.exe runs; checkmol/matchmol.exe present + usage; public_html/bin/bioinfo present. mathexp.exe and voronoi.exe absent from this slim tree — not built/deployed here.) |
+| HLP-12 | MF-16 clickzone `system()` → `sh -c` | module with clickzone on a GIF | zone detected; no cmd.exe (`Get-Process`) | — | P2 | NOT RUN (deferred 2026-11-06: needs clickzone GIF module + cmd.exe watch) |
 | HLP-13 | MF-15 wrap..exec.exe | `.\bin\wrap..exec.exe ../other/bin/units-filter` | runs, returns child rc | wrap.c | P1 | PASS (rc propagated, 2026-10-27) |
 | HLP-14 | MF-53 flydraw.exe, MF-13 insdraw..processor.exe | OEF 00001 with drawing | GIF identical to Linux | Linux | P1 | PASS (Suivi: "00001 identical, GIF included") |
 | HLP-15 | MF-40 `other/bin/src2def` via sh | latex2wims/mkindex path, `sh other/bin/src2def` | .def generated | Linux | P1 | PASS indirectly (mkindex runs) |
-| HLP-16 | `bin/mkindex` via MSYS2 sh (D17) | `sh bin/mkindex` | rc 0 | Linux | P1 | FAIL (2026-10-27: rc=1 after 1 338 s, `cpp` and `strfile` missing, "find: environment too large") |
-| HLP-17 | `bin/oefcompile` via sh | compile a local OEF module | `.oef` → `.def` | Linux | P1 | NOT RUN |
+| HLP-16 | `bin/mkindex` via MSYS2 sh (D17) | `sh bin/mkindex` | rc 0 | Linux | P1 | PASS (2026-11-06 hook-20261106: `bin/run-mkindex.sh` -> EXIT:0, Start-Process ExitCode=0 (C:/Users/Shadow/mkindex5.log, ~27 min Paris time). Without PATH fix, Windows find.exe shadowed MSYS find and cleanup exited 2 (Fichier introuvable - *.bin). Fix: export PATH="/usr/bin:/bin:$PATH" at start of mkindex (tools/patches/mkindex-wims4win.patch + live runtime). With PATH: 0x Fichier introuvable in stderr; cleanup classes OK. Benign: no strfile; missing modules/data/images.) |
+| HLP-17 | `bin/oefcompile` via sh | compile a local OEF module | `.oef` → `.def` | Linux | P1 | PASS (2026-11-06: `sh -c './bin/oefcompile test local/oef2html_web.fr'` from runtime root → 42 sources, 42 compiled, Total failure: 0) |
 
 ### 4.10 MSYS — MSYS2 bundle (D17)
 
@@ -296,8 +296,8 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 |---|---|---|---|---|---|---|
 | OEF-01 | MF-70 `tools/oef-validation/oef2wims/parity.sh`, CI job 3 | E-LNX/CI: oef2wims Linux vs mingw (wine), v2, trace on 1 438 files | 1438/1438 | Linux | P1 | PASS (`05` oef_parity; CI green) |
 | OEF-02 | MF-70 + wims.exe | PC sample 10 files, seed 1 | 6 identical pages, 4 identical failures (00347, 00352, 00509 too_many_gotos; 01012 bad_index) | Linux | P1 | PASS (2026-10-27 on runtime r19040-grok) |
-| OEF-03 | module `local/exemple.fr` | `W 'module=local/exemple.fr&cmd=new&lang=fr'` | 200, exercise rendered | Linux | P1 | NOT RUN (module not verified on E-RT) |
-| OEF-04 | module `local/oef2html_web.fr` (42 OEF from `D:\ALF_ZGit\03-oef2html_Web\src\oef\fr`) | for each of the 42 `exo=`: new + reply | 42 × 200, no `WIMS User Error`; parity with Linux on seed | Linux | P1 | NOT RUN (Arnaud's request pt63u pending) |
+| OEF-03 | module `local/exemple.fr` | `W 'module=local/exemple.fr&cmd=new&lang=fr'` | 200, exercise rendered | Linux | P1 | PASS (2026-11-06 Laragon: module=local/exemple.fr&cmd=new&lang=fr → 200, page rendered, len≈12810) |
+| OEF-04 | module `local/oef2html_web.fr` (42 OEF from `D:\ALF_ZGit\03-oef2html_Web\src\oef\fr`) | for each of the 42 `exo=`: new + reply | 42 × 200, no `WIMS User Error`; parity with Linux on seed | Linux | P1 | PASS (2026-11-06 Laragon: all 42 exo of local/oef2html_web.fr → new 42/42 status 200, reply 42/42 status 200, no WIMS User Error; use module name with .fr) |
 
 ### 4.12 L2W — latex2wims (branch feat/latex2wims-doc)
 
@@ -319,7 +319,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | BLD-03 | MF-52 `fetch-mingw-deps.sh` | fresh `build/deps` | sha256 verified | P2 | PASS |
 | CI-01 | MF-60 | push → 3 jobs green | green | P1 | PASS (ea6dc73 success) |
 | CI-02 | MF-60 timeouts | apt hang on "Install mingw-w64" | step stops ≤ 10 min, job ≤ 30 min | P1 | PASS (run 40540419060: job failed by timeout instead of hanging) |
-| CI-03 | apt retries (ea6dc73) | 3 consecutive pushes | no Install hang | P2 | NOT RUN (1 run so far) |
+| CI-03 | apt retries (ea6dc73) | 3 consecutive pushes | no Install hang | P2 | NOT RUN (deferred 2026-11-06: needs 3 consecutive CI pushes) |
 
 ### 4.14 ENC/PATH/FS — encodings, paths, locking, security
 
@@ -329,13 +329,13 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | ENC-02 | MF-04 CR strip of CAS output | CRLF CAS (`fake_cas crlf`) | no CR in page | P1 | PASS (IFC/PLT) |
 | ENC-03 | windows-1252 pages | `charset=windows-1252` header and accents render (`Factorisation`) | correct | P1 | PASS (factor.fr page) |
 | ENC-04 | MF-71 UTF-8 → windows-1252 | L2W-PC-05 | — | P2 | PASS |
-| PATH-01 | MF-03 `quote_arg`, MF-11 `quote_arg`, MF-15 `q` | runtime copied to `D:\wims test\rt with space`; SMK-01…03 | all pass | P1 | NOT RUN |
-| PATH-02 | long paths > 260 | session dir nested > 260 chars (module path) | error is explicit, no crash | P2 | NOT RUN |
+| PATH-01 | MF-03 `quote_arg`, MF-11 `quote_arg`, MF-15 `q` | runtime copied to `D:\wims test\rt with space`; SMK-01…03 | all pass | P1 | PASS (2026-11-06: copy of hook-20261106 → `Reprise_Wims_Grok\rt with space` (robocopy, live untouched). SMK-01 200; SMK-02 factor seeded from r19040-grok into the copy only → 67280421310721; SMK-03 wcalc 200. Direct CGI.) |
+| PATH-02 | long paths > 260 | session dir nested > 260 chars (module path) | error is explicit, no crash | P2 | PASS (2026-11-06: nested session path length 433 > 260 created under tmp/sessions; no crash. Cleaned up after.) |
 | PATH-03 | MF-25 wims_home `/` separators | `W` + `!exec` helpers using `$wims_home` | OK | P1 | PASS (93e8775) |
 | FS-01 | MF-30 file sharing (`open_redirect` FILE_SHARE_READ) | overlapping wimslogd tasks | no sharing violation (fixed) | P1 | PASS (LOGD-11) |
-| FS-02 | session files locked by a running CAS while cleaning | start long CAS, force cleaning | cleaning retries, no daemon crash | P2 | NOT RUN |
+| FS-02 | session files locked by a running CAS while cleaning | start long CAS, force cleaning | cleaning retries, no daemon crash | P2 | NOT RUN (deferred 2026-11-06: long CAS + force cleaning race) |
 | SEC-01 | MF-10 crypt DES / BCrypt | `test_crypt.exe` | 8/8 (DES 4/4, BCrypt 3/3, cross 1/1) | P0 | PASS (`05` crypt) |
-| SEC-02 | MF-06 pipe ACL | another local user opens `\\.\pipe\wims-wimslogd-<hash>` | access denied, or documented risk | P1 | NOT RUN |
+| SEC-02 | MF-06 pipe ACL | another local user opens `\\.\pipe\wims-wimslogd-<hash>` | access denied, or documented risk | P1 | WAITING (2026-11-06: needs a second local Windows user — not created by bot. Steps/script: tests-win_ALF/SEC-02_pipe_acl_steps.ps1; live pipes seen `\\.\pipe\wims-wimslogd-*`. Default CreateNamedPipe ACL undocumented until cross-user probe.) |
 | SEC-03 | MF-03 `token_elevated` | CGI run elevated | CAS refused (DROP_PRIV) | P1 | PASS (PLT-01) |
 | SEC-04 | runtime `log\` not granted to AppContainers | `(Get-Acl $rt\log).Access` has no `S-1-15-2-1` | absent | P0 | PASS (SBX-S1a) |
 
@@ -346,6 +346,65 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | SMK-01 | MF-07, MF-26, MF-06, MF-30 | `W 'module=adm/doc&cmd=new&lang=fr'` | 200; daemon started | P0 | PASS |
 | SMK-02 | MF-20, MF-23, MF-24, MF-03, MF-11 (marker on) | `$p=W 'module=tool/algebra/factor.fr&cmd=new&lang=fr'; $s=[regex]::Match($p,'session=([A-Za-z0-9_.]+)').Groups[1].Value; W "session=$s&module=tool/algebra/factor.fr&cmd=reply&formula=2%5E64%2B1&calc=factor&lang=fr"` | contains `67280421310721` | P0 | PASS (2026-10-27, in sandbox) |
 | SMK-03 | MF-03 `wp_script_interp`, MF-51 | `tool/wcalc.fr`, createqcm | 200 | P1 | PASS |
+
+
+### 4.16 ADM/PWD/ACL — server administration (docs/10 §17)
+
+Run 2026-11-12, Europe/Paris, on an isolated Debian tree `/workspace/mw-wims-debian/` (copy of a box WIMS install; other trees not deleted) and on Windows siblings only: `wims-runtime-r19040-grok-hook-class-20261106` (HAVE_CRYPT CGI) and `wims-runtime-r19040-grok-hook-logd-20261109` (fixed wimslogd, **no** HAVE_CRYPT CGI). Live `hook-20261106` was read-only. Laragon config and `Reprise_Wims_Claude` were not touched. Passwords came only from `C:\Users\Shadow\wims_test_creds.txt` or one-time generated secrets; changed class files were restored; no secret is recorded here.
+
+| ID | Linked code | Steps | Expected | Prio | Status |
+|---|---|---|---|---|---|
+| PWD-01 | `adm/manage/auth.proc`, `log/.wimspass`, `HAVE_CRYPT` | site manager login from an IP allowed by `manager_site` | `wims_ismanager=2`, job=list | P0 | PASS (2026-11-12: Debian + Windows hook-class; file hashed, mode 600 / restricted ACL) |
+| PWD-02 | same | replace `.wimspass`; old fails, new works; hash rewrite | only new password works | P1 | PASS (2026-11-12: Debian + Windows hook-class) |
+| PWD-03 | `tmp/log/.wimspassone` | erase `.wimspass`; one-time password file; login | official one-time mode | P2 | PASS (2026-11-12: Debian + Windows hook-class) |
+| PWD-04 | `adm/class/passwd` `job=user` | supervisor changes own password; restore afterwards | old rejected, new accepted | P1 | PASS (2026-11-12: Debian isolated 9001 + Windows hook-class; files restored) |
+| PWD-05 | `adm/class/passwd` `job=part` | supervisor sets a participant password; restore afterwards | new login works, old rejected | P1 | PASS (2026-11-12: Debian + Windows hook-class; files restored) |
+| PWD-06 | `adm/class/classes` auth, class 9001 | supervisor + student login (scored exercise already LOGD-15) | both sessions identified | P1 | PASS (2026-11-12: Debian login + Windows hook-class HAVE_CRYPT; student may be `anonymousN`; scored exercise not re-driven, see LOGD-15) |
+| PWD-07 | `src/Platform/win32/config.h` HAVE_CRYPT, PR #12 | same class hashes: CGI without HAVE_CRYPT vs fixed CGI | pre-fix rejects all; post-fix accepts | P1 | PASS (2026-11-12: hook-logd CGI = live hash, supervisor login empty; hook-class HAVE_CRYPT, 302 + identity. Linux `config.h` already has HAVE_CRYPT 1. PR #12 merged into `master` 2026-11-14 (`da7b03a`); live CGI still unfixed until a new runtime is built and switched.) |
+| PWD-08 | `auth.proc` / `var.auth` | empty and wrong manager (and class) passwords | `wrongpass` / no `ismanager=2` | P1 | PASS (2026-11-12: Debian + Windows manager empty/wrong) |
+| PWD-09 | repo hygiene | `git ls-files` for `.wimspass`, creds, class user files | nothing tracked | P1 | PASS (2026-11-12: none tracked; docs mention the path only) |
+| PWD-10 | `adm/manage/developer` | create/change a module developer password | Modtool login works | P2 | NOT RUN (2026-11-12: developer UI not exercised; manager path already proven) |
+| ACL-01 | `manager_site`, `manager_check()` | `adm/manage` from an IP not in `manager_site` | `wims_ismanager=0`, job=`no_right` | P0 | PASS (2026-11-12: Debian + Windows, REMOTE_ADDR=203.0.113.50) |
+| ACL-02 | `manager_check` on `wims.conf` mode | Debian `chmod 640` `log/wims.conf` | job=badconf, `wims_ismanager=-1` | P1 | PASS (2026-11-12: Debian). Windows: see ACL-04 (NTFS). |
+| ACL-03 | `manager_check` on `.wimspass` mode | Debian `chmod 640` `log/.wimspass` | job=badconf, `wims_ismanager=-2` | P1 | PASS (2026-11-12: Debian). Windows: see ACL-04 (NTFS). |
+| ACL-04 | NTFS ACLs on `.wimspass`, `tmp\`, `log\` | inspect default ACL; restrict with `icacls`; no second user | Auth Users may inherit write on `tmp`; `.wimspass` can be locked down | P1 | PASS (2026-11-12: hook-class; default inherited Authenticated Users (M) on parent; after `inheritance:r` + grant user only, open ACEs removed. Cross-user read not tested — see SEC-02.) |
+| ACL-05 | `bin/setwrapexec`, `wrap..exec` 6755 nobody | run official script as root | mode 6755, CGI still works | P1 | NOT RUN (2026-11-12: no root on the box; script refuses non-root; wrap was 755 box:box in the isolated tree) |
+| ACL-06 | named pipe ACL | second Windows user opens `\\.\pipe\wims-wimslogd-<hash>` | deny or documented risk | P1 | WAITING (map SEC-02; reserved for Arnaud, 2026-11-12) |
+| ACL-09 | class isolation | supervisor of 9001 opens class 1000 tools | denied | P1 | PASS (2026-11-12: Debian + Windows hook-class) |
+| ACL-10 | role isolation | student opens supervisor / teacher userscore tools | denied | P1 | PASS (2026-11-12: Debian + Windows hook-class; no usermanage tools) |
+| ACL-11 | developer vs site manager | developer account cannot run `adm/manage` jobs | denied | P2 | NOT RUN (2026-11-12: depends on PWD-10) |
+| ADM-01 | `wimslogd.pid`, `bringuplogd` | after Windows reboot: stale pid / CGI bring-up | daemon live or stale pid documented | P1 | PASS (2026-11-12: live pidfile present, 0 live process — stale after reboot; sibling CGI/start used, live not started) |
+| ADM-02 | per-tree pipes, stop by path | start two sibling daemons; stop only one by path | the other stays; live untouched | P1 | PASS (2026-11-12: hook-class + hook-logd; stopped logd by path, class stayed; both stopped at the end; live procs 0) |
+| ADM-03 | `bin/backup`, `backup_hour` | daemon-driven backup writes `backup/` | log + archive | P2 | NOT RUN (2026-11-12: not forced; overlaps LOGD-12; avoid extra jobs on siblings) |
+| ADM-04 | `log/motd.phtml.fr` | token appears on home, disappears after removal | MOTD shown then gone | P2 | PASS (2026-11-12: Debian isolated tree, lang=fr) |
+| ADM-05 | `ALGOGEBRA_HOOK=0`, uninstall scripts | flag in `build-runtime-tree.sh`; hook present; no uninstall on existing trees | documented opt-out / uninstall exist | P2 | PASS (2026-11-12: hook phtml on hook-class; scripts on `feat/algogebra-json-hook`; uninstall not executed) |
+| ADM-06 | load thresholds vs CPU | change thresholds; site still serves | no load generation | P2 | NOT RUN (2026-11-12: load tests out of scope) |
+| ADM-07 | teardown of a throwaway sibling | delete only a new copy; live/Claude intact | safe teardown | P2 | NOT RUN (2026-11-12: no throwaway sibling created; ask-before-overwrite) |
+| ADM-08 | Debian upgrade + `setwrapexec` | package or manual upgrade, class data intact | official wiki path | P1 | NOT RUN (2026-11-12: no root / no apt upgrade of a production package; isolated tree only) |
+
+
+### 4.17 SETUP/BKP — fresh instance and per-class backup/restore (docs/11)
+
+Run 2026-11-12, Europe/Paris. Debian: new tree `/workspace/mw-wims-setup-debian/` (other trees not deleted). Windows: new sibling `wims-runtime-r19040-grok-setup-test-20261112` only. Live `hook-20261106`, Laragon, and `Reprise_Wims_Claude` were not touched. Source class 9001 in `wims-runtime-r19040-grok-hook-class-20261106` was read-only (official `pack.sh` ran on a copy). Credentials only from `C:\Users\Shadow\wims_test_creds.txt`; no secret is recorded here. Local merge of PR #12 and PR #13 was created on the box and not pushed; cross-compile was blocked (`deb.debian.org` HTTP 500, no mingw/make/flex), so previously built PR #12 CGI and PR #13 `wimslogd` binaries were installed in the new sibling.
+
+| ID | Linked code | Steps | Expected | Prio | Status |
+|---|---|---|---|---|---|
+| SETUP-01 | pre-built r19040 tree | deploy a fresh Debian instance in a new folder; strip example 9001; `chmod 600` conf | tree boots | P1 | PASS (2026-11-12 12:05 Paris: `/workspace/mw-wims-setup-debian/`; apt/`./compile` not used — see SETUP-07) |
+| SETUP-02 | `bringuplogd`, `tmp/log/wimslogd.pid` | first CGI starts `wimslogd`; stop by pid afterwards | daemon lives then stops | P1 | PASS (2026-11-12 12:07: pid 294617, home 200 OK; stopped) |
+| SETUP-03 | sibling runtime policy | `robocopy` a built runtime to a new folder; refuse overwrite | new sibling only | P0 | PASS (2026-11-12 11:59–12:01: `wims-runtime-r19040-grok-setup-test-20261112`, 22922 files) |
+| SETUP-04 | `HAVE_CRYPT` (PR #12), `DuplicateHandle` (PR #13) | new sibling has HAVE_CRYPT CGI and fixed `wimslogd` | both fixes present | P0 | PASS (2026-11-12: `wims.cgi.exe` sha256 42BBAE9D…D8015C and wimslogd 19E7E257…C4A3C4E1 from the start; extensionless `wims.cgi` was still the pre-HAVE_CRYPT `7C8FFCED…` build until aligned at 12:36, after which both names hash 42BBAE9D…; box compile of the local merge was blocked) |
+| SETUP-05 | `log/.wimspass`, `icacls` | create manager password file if missing; lockdown `.wimspass` / `log` / `tmp` | tight ACL, no Auth Users on `.wimspass` | P1 | PASS (2026-11-12 12:09: created `.wimspass`; `Shadow:(R,W)` only) |
+| SETUP-06 | docs/10 §9.1 | start `wimslogd` (drop stale pid), first CGI, stop **by path** | path-matched pid, then none | P1 | PASS (2026-11-12 12:11: pid 22400, CGI 200 OK 27031 bytes; stopped by path) |
+| SETUP-07 | `./compile`, `apt-get install wims` | from-source Debian compile or official package | official install path | P2 | NOT RUN (2026-11-12: `deb.debian.org` HTTP 500; `make`/`flex`/`mingw` absent) |
+| SETUP-08 | Laragon `WIMS_RT` | owner applies vhost lines from docs/11 §8 | HTTP front-end on the new sibling | P2 | WAITING (2026-11-12: lines given, not applied) |
+| BKP-01 | `arch/pack.sh`, `download.proc` | official `tgz` of class 9001 from a copy; source `.def` unchanged | archive stored off-tree | P0 | PASS (2026-11-12 12:03:41: 7155000 bytes, sha256 c94b37a6…aa408f, 510 entries, top-level `class/`; source `.def` mtime still 2017-06-06) |
+| BKP-02 | filesystem tar of `log/classes/9001` | `System32\tar.exe -czf` from the source, read-only | fallback archive | P1 | PASS (2026-11-12 12:02:50: 7173356 bytes, sha256 afc1a478…d89976, 523 entries, top-level `9001/`) |
+| BKP-03 | `restore.sh` format, `.build-index` | restore official pack into fresh Debian 9001; files and scores | class + score hash match | P0 | PASS (2026-11-12 12:05:47: 7 users, `score/anonymous1` 117 bytes sha256 19A23E2F…6692, index line added) |
+| BKP-04 | `adm/class/classes` `var.auth` | Debian supervisor + student login after restore | both identities set | P0 | PASS (2026-11-12 12:07: `wims_user=supervisor` and `anonymous`; POST `auth_user` + `agreecgu=yes`) |
+| BKP-05 | same restore on Windows | official pack into the new sibling; `.build-index`; score hash | files match source | P0 | PASS (2026-11-12 12:11:32: same score SHA-256, 7 users, index rebuilt, `.build-index` exit 0) |
+| BKP-06 | `var.auth` `!passcheck`, HAVE_CRYPT | Windows supervisor + student login after restore | both identities set | P0 | PASS (2026-11-12 12:36 Paris: supervisor 302 + `var.class.prep`, student `anonymous1`. First-pass FAIL 12:11–12:29 was a stale extensionless `wims.cgi` without HAVE_CRYPT (`7C8FFCED…`); `wims.cgi.exe` was already good. Not a restore bug. See docs/11 §10.3.) |
+| BKP-07 | live + source integrity | hashes of source 9001 `.def`/`score` and live CGI/`wimslogd` unchanged | no writes to live/source | P1 | PASS (2026-11-12 12:11:37, 12:19, and 12:37: source `.def` `D4A5A47A…` / `score/anonymous1` `19A23E2F…` and live CGI `7C8FFCED…` / `wimslogd` `AA9D5B0B…` unchanged) |
+
 
 ## 5. Traceability matrix (decision / requirement → code → tests)
 
@@ -388,22 +447,38 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 10. **OEF/latex2wims:** OEF-02…04, L2W-PC-01…05.
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
+13. **Setup / per-class backup:** SETUP-01…08, BKP-01…07 (docs/11).
 
-## 7. Counts (updated 2026-11-06, Paris time)
+## 7. Counts (updated 2026-11-12 12:37, Paris time)
 
-141 test cases (6 added on 2026-10-28: ENC-05 charset, BLD-04 theme assets, HLP-18 cpp, CGI-08 getins image, BLD-05 wims.exe stack, SBX-21 D21 lowil policy).
+**Row source of truth:** every status row in §4. Status vocabulary: PASS, NOT RUN, WAIVED,
+WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked 2026-11-12 after the BKP-06
+retest: start from the 06:20 baseline of **165** (138 including SBX-S2a/b/c ×3
+and SBX-S4a/b ×2, plus 27 §4.16 IDs; L2W-PC-* included; second SBX-21 row already in that
+baseline) and add **15** new §4.17 IDs (SETUP-01…08, BKP-01…07). The 12:25 table was
+**157 PASS / 1 FAIL**; BKP-06 flipped from FAIL to PASS (P0), so PASS 158 and FAIL 0.
 
-| Priority | Tests | PASS | NOT RUN | BLOCKED | FAIL |
-|---|---|---|---|---|---|
-| P0 | 52 | 52 | 0 | 0 | 0 |
-| P1 | 68 | 58 | 10 | 0 | 0 |
-| P2 | 21 | 6 | 14 | 0 | 1 |
-| **Total** | **141** | **116** | **24** | **0** | **1** |
+| Priority | Tests | PASS | NOT RUN | WAIVED | WAITING | BLOCKED | FAIL |
+|---|---|---|---|---|---|---|---|
+| P0 | 60 | 60 | 0 | 0 | 0 | 0 | 0 |
+| P1 | 89 | 84 | 2 | 1 | 2 | 0 | 0 |
+| P2 | 31 | 14 | 16 | 0 | 1 | 0 | 0 |
+| **Total** | **180** | **158** | **18** | **1** | **3** | **0** | **0** |
 
-Per area: SBX 27, HLP 18, LOGD 15, ENC/PATH/FS/SEC 14, PLT 10, JOB 7, CGI 8, BLD/CI 8, IFC 6, L2W 6, LIN 5, MML/YAML 5, MSYS 5, OEF 4, SMK 3.
+Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, PWD 10, ACL 9, CGI 8, ADM 8, SETUP 8, JOB 7, BKP 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
+
+No FAIL rows. SETUP-08 is WAITING on a Laragon `WIMS_RT` change (owner). SETUP-07 is NOT RUN (apt/`./compile` blocked on the box that day). SEC-02 and ACL-06 remain WAITING (second Windows user). BKP-06 PASS is documented in docs/11 §10.3.
+
+**2026-11-09 LOGD-12 overnight + daemon retest:** Overnight collect found daemon dead (no Nov 7–9 runs). Owner OK: restarted live hook-20261106 wimslogd (PID 5132). Daemon *did* fire housekeep+modupdate once each; both `call_ssh` spawns failed (`exec.fail` error 0, empty logs). Root cause: `&>` same-path double open without `FILE_SHARE_WRITE` in `open_redirect`. Fix proposed, not committed. LOGD-12 stays PASS for MSYS sh script body. **Fix PR** `fix/win32-wimslogd-shared-redirect`: DuplicateHandle + FILE_SHARE_WRITE (Win32 only). **Debian: no** (fork+freopen). Totals unchanged 126/138 at that date. **Update 2026-11-14:** PR #13 (that fix) was merged into `master` (`05f6c70`, 2026-11-14 09:37:40 Europe/Paris). Sibling verify: housekeep PASS 2026-11-09, modupdate PASS 2026-11-10. Live hook `wimslogd` remains the old binary until a new runtime is switched.
+
+**2026-11-06 batch notes:** SBX-14 still NOT RUN (Arnaud: no purge). SEC-02 WAITING on a second Windows user. LOGD-15 PASS on sibling (HAVE_CRYPT fix PR #12, merged into `master` 2026-11-14 as `da7b03a`). Deferred P2: PLT-06/07/08, JOB-07, LOGD-14, CGI-03, HLP-12, CI-03, FS-02 (reasons in row text). Code: PR #11 `fake_cas env` still unmerged (Arnaud merges).
+
+**2026-11-06 sibling adm/class (owner decision [pt87u]/:** created `Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106` = copy of live hook + full `adm/class` (1537 files) from `wims-runtime-r19040-grok`. Live Laragon `WIMS_RT` unchanged (`…/hook-20261106/public_html`). Direct CGI smoke on sibling: `adm/class/classes` Status 200 title Virtual classes; AlgoGebra hook 00006/00076 **8/8**; CAS `tool/algebra/factor.fr` (seeded into sibling only) → `67280421310721`; userscore page 200. Proposed cutover (not applied): `Define WIMS_RT "D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106/public_html"`.
+
+**wims.cgi.exe disappearance (read-only):** Defender `Get-MpThreatDetection`/`Get-MpThreat` = 0; Quarantine file count 0; no Operational events matching wims.cgi. Apache `AH02811` 2026-11-06 14:57:50–14:58:56 Europe/Paris on live hook tree. Timestamps: extensionless `wims.cgi` CreationTime 14:52:56; `wims.cgi.exe` restored CreationTime 14:59:28 (same hash as PATH-01 copy). No script under Shadow/`tests-win_ALF` deleting cgi found. **Cause: not Windows Defender quarantine; most likely accidental rename/copy to extensionless `wims.cgi` (or external clean) around 14:52, restored ~14:59 from PATH-01.**
+
+**2026-11-06 HAVE_CRYPT / LOGD-15:** Class login failed because `src/Platform/win32/config.h` lacked `#define HAVE_CRYPT 1`, so `calc.c` `_passcrypt` compiled empty (wp_descrypt already linked). PR https://github.com/io-e/wims4win/pull/12. Sibling cgi replaced (backup in `Bak/cgi-before-have-crypt-20261106`); live hook cgi unchanged. **wims.cgi.exe incident:** accidental extensionless `wims.cgi`, not AV. **Update 2026-11-14:** PR #12 merged into `master` (`da7b03a`, 2026-11-14 09:37:31 Europe/Paris). Live hook CGI is still the unfixed binary until a new runtime is built and switched.
 
 **Production gate:**
-- P0 NOT RUN: none.
-- P0 FAIL: none. IFC-06 GAP part PASS under D21 (restricted low-integrity token + Job, no AppContainer for gap.exe only); its Octave/Maxima part is BLOCKED.
-- P0 BLOCKED: none (2026-11-04: Octave under D22 lowil; SBX-S6/S7/S8 and IFC-06 GAP/Maxima/Octave PASS).
-- **P0 gate met (2026-11-04)**; Laragon re-runs of IFC-06 Maxima/Octave and CGI-08 (P1) PASS on 2026-11-06 (sibling runtime hook-20261106).
+- P0 NOT RUN / FAIL / BLOCKED: none — **60/60 P0 PASS** (was 51/51 before the 2026-11-12 admin tests, then 53/53 after PWD-01 and ACL-01, then 60/60 after the §4.17 SETUP/BKP tests including the BKP-06 retest).
+

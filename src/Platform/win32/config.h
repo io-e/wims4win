@@ -37,6 +37,10 @@
 #define HAVE_UNISTD_H 1
 #define HAVE_UTIME 1
 #define HAVE_UTIME_H 1
+/* Enable calc.c _passcrypt/passcheck via Platform/wp_descrypt.c crypt().
+ * Without this, !passcrypt is a no-op and class login always fails passcheck
+ * (stored plaintext never gets a leading *, so authdelay returns no). */
+#define HAVE_CRYPT 1
 #define PACKAGE_BUGREPORT "wimsdev@groupes.renater.fr"
 #define PACKAGE_NAME "WIMS"
 #define PACKAGE_STRING "WIMS4.33a"

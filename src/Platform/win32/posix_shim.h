@@ -93,6 +93,18 @@ struct rusage {
 int getrusage(int who, struct rusage *u);
 int pipe(int fildes[2]);
 #include <time.h>
-int nanosleep(const struct timespec *req, struct timespec *rem);
+/* Recent mingw-w64 winpthreads may already define nanosleep as a static
+ * inline in pthread_time.h (pulled in by <time.h>; CI logs this as
+ * WINPTHREAD_NANOSLEEP_DECL). A second nanosleep() definition then
+ * fails with a redefinition. Older mingw only declares it, and wims.exe
+ * does not always link -lpthread. Keep a Sleep()-based helper under a
+ * private name (defined in wp_win32.c, which both the CGI and interface
+ * builds already compile) and map the POSIX name to it.
+ */
+int wp_nanosleep(const struct timespec *req, struct timespec *rem);
+#ifdef nanosleep
+# undef nanosleep
+#endif
+#define nanosleep wp_nanosleep
 #endif
 #endif

@@ -219,7 +219,7 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | LOGD-09 | MF-30 `wl_spawn_task("cleaning")`, `run_task` | wait ≥ 2 min with env `wimslogd="3600 3600 3600 10 0 0 -1 0 8 100"`; old session dir (mtime −2 days) | old session removed, `tmp/log/lastclean` created, kept session with `wims_user=` | forked child | P0 | PASS (wine 2026-10-27; PC: lastclean created) |
 | LOGD-10 | `dispatch_log` task via `sh -c` (MSYS2) | as LOGD-09, check `tmp/log/exec.fail` absent | no exec.fail | — | P1 | PASS (PC 2026-10-27) |
 | LOGD-11 | per-task stderr file + NUL fallback (`wl_spawn_task`) | two tasks overlapping | both start | — | P1 | PASS (fix after sharing violation, wine) |
-| LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | PASS (MSYS sh 2026-11-06; **daemon spawn fixed** PR #13). **Debian: no** (fork+freopen). **Win32 fix:** DuplicateHandle when outf==errf + FILE_SHARE_WRITE; real GetLastError. **Sibling `hook-logd-20261109`:** housekeep 2026-11-09 16:46 → log 809 B; **modupdate 2026-11-10 01:21:50–01:22:00 Europe/Paris** → `mupdate=20261110`, `modupdate.log` 50 B («Waiting… OK.»), **no exec.fail** (daemon PID 2068 after reboot restart; early-morning `modupdatetime` gate needed one re-roll). Sibling daemon stopped after test; live hook-20261106 restarted as PID **11056** (old binary, unrepaired until switch). Notes: tests-win_ALF/LOGD-12_15_overnight.txt) |
+| LOGD-12 | housekeep.daily / modupdate.auto / backup | leave daemon running past trigger times; read `tmp/log/housekeep.log` | scripts run via sh | Linux | P1 | PASS (MSYS sh 2026-11-06; **daemon spawn fixed** PR #13). **Debian: no** (fork+freopen). **Win32 fix:** DuplicateHandle when outf==errf + FILE_SHARE_WRITE; real GetLastError. **Sibling `hook-logd-20261109`:** housekeep 2026-11-09 16:46 → log 809 B; **modupdate 2026-11-10 01:21:50–01:22:00 Europe/Paris** → `mupdate=20261110`, `modupdate.log` 50 B («Waiting… OK.»), **no exec.fail** (daemon PID 2068 after reboot restart; early-morning `modupdatetime` gate needed one re-roll). Sibling daemon stopped after test; live hook-20261106 restarted as PID **11056** (old binary, unrepaired until switch). **PR #13 merged into `master` 2026-11-14 (`05f6c70`).** Notes: tests-win_ALF/LOGD-12_15_overnight.txt) |
 | LOGD-13 | MF-06 `pipe_name` per tree hash | two runtimes (wims-runtime, r19040-grok, tests-win) running simultaneously | each CGI talks to its own daemon | — | P1 | PASS (3 daemons coexisting on PC, 2026-10-27) |
 | LOGD-14 | MF-30 pid check / daily restart (`wait_children`) | overwrite `tmp/log/wimslogd.pid` | daemon exits within 1 min; next request restarts it | same | P2 | NOT RUN (deferred 2026-11-06: pid overwrite / daemon restart — disruptive) |
 | LOGD-15 | class scores end-to-end | in a test class: student does an exercise, then teacher score page | scores shown | Linux | P1 | PASS (2026-11-06 sibling hook-class only: root cause was missing `HAVE_CRYPT` in win32 config.h — `_passcrypt` no-op → passcheck always no. Fixed in PR #12; cgi deployed to sibling only. Student anonymous login + worksheet exi1 reply → score file `log/classes/9001/score/anonymous1`; supervisor userscore **Notes** 200 shows class sheets. Live Laragon untouched.) |
@@ -347,6 +347,42 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 | SMK-02 | MF-20, MF-23, MF-24, MF-03, MF-11 (marker on) | `$p=W 'module=tool/algebra/factor.fr&cmd=new&lang=fr'; $s=[regex]::Match($p,'session=([A-Za-z0-9_.]+)').Groups[1].Value; W "session=$s&module=tool/algebra/factor.fr&cmd=reply&formula=2%5E64%2B1&calc=factor&lang=fr"` | contains `67280421310721` | P0 | PASS (2026-10-27, in sandbox) |
 | SMK-03 | MF-03 `wp_script_interp`, MF-51 | `tool/wcalc.fr`, createqcm | 200 | P1 | PASS |
 
+
+### 4.16 ADM/PWD/ACL — server administration (docs/10 §17)
+
+Run 2026-11-12, Europe/Paris, on an isolated Debian tree `/workspace/mw-wims-debian/` (copy of a box WIMS install; other trees not deleted) and on Windows siblings only: `wims-runtime-r19040-grok-hook-class-20261106` (HAVE_CRYPT CGI) and `wims-runtime-r19040-grok-hook-logd-20261109` (fixed wimslogd, **no** HAVE_CRYPT CGI). Live `hook-20261106` was read-only. Laragon config and `Reprise_Wims_Claude` were not touched. Passwords came only from `C:\Users\Shadow\wims_test_creds.txt` or one-time generated secrets; changed class files were restored; no secret is recorded here.
+
+| ID | Linked code | Steps | Expected | Prio | Status |
+|---|---|---|---|---|---|
+| PWD-01 | `adm/manage/auth.proc`, `log/.wimspass`, `HAVE_CRYPT` | site manager login from an IP allowed by `manager_site` | `wims_ismanager=2`, job=list | P0 | PASS (2026-11-12: Debian + Windows hook-class; file hashed, mode 600 / restricted ACL) |
+| PWD-02 | same | replace `.wimspass`; old fails, new works; hash rewrite | only new password works | P1 | PASS (2026-11-12: Debian + Windows hook-class) |
+| PWD-03 | `tmp/log/.wimspassone` | erase `.wimspass`; one-time password file; login | official one-time mode | P2 | PASS (2026-11-12: Debian + Windows hook-class) |
+| PWD-04 | `adm/class/passwd` `job=user` | supervisor changes own password; restore afterwards | old rejected, new accepted | P1 | PASS (2026-11-12: Debian isolated 9001 + Windows hook-class; files restored) |
+| PWD-05 | `adm/class/passwd` `job=part` | supervisor sets a participant password; restore afterwards | new login works, old rejected | P1 | PASS (2026-11-12: Debian + Windows hook-class; files restored) |
+| PWD-06 | `adm/class/classes` auth, class 9001 | supervisor + student login (scored exercise already LOGD-15) | both sessions identified | P1 | PASS (2026-11-12: Debian login + Windows hook-class HAVE_CRYPT; student may be `anonymousN`; scored exercise not re-driven, see LOGD-15) |
+| PWD-07 | `src/Platform/win32/config.h` HAVE_CRYPT, PR #12 | same class hashes: CGI without HAVE_CRYPT vs fixed CGI | pre-fix rejects all; post-fix accepts | P1 | PASS (2026-11-12: hook-logd CGI = live hash, supervisor login empty; hook-class HAVE_CRYPT, 302 + identity. Linux `config.h` already has HAVE_CRYPT 1. PR #12 merged into `master` 2026-11-14 (`da7b03a`); live CGI still unfixed until a new runtime is built and switched.) |
+| PWD-08 | `auth.proc` / `var.auth` | empty and wrong manager (and class) passwords | `wrongpass` / no `ismanager=2` | P1 | PASS (2026-11-12: Debian + Windows manager empty/wrong) |
+| PWD-09 | repo hygiene | `git ls-files` for `.wimspass`, creds, class user files | nothing tracked | P1 | PASS (2026-11-12: none tracked; docs mention the path only) |
+| PWD-10 | `adm/manage/developer` | create/change a module developer password | Modtool login works | P2 | NOT RUN (2026-11-12: developer UI not exercised; manager path already proven) |
+| ACL-01 | `manager_site`, `manager_check()` | `adm/manage` from an IP not in `manager_site` | `wims_ismanager=0`, job=`no_right` | P0 | PASS (2026-11-12: Debian + Windows, REMOTE_ADDR=203.0.113.50) |
+| ACL-02 | `manager_check` on `wims.conf` mode | Debian `chmod 640` `log/wims.conf` | job=badconf, `wims_ismanager=-1` | P1 | PASS (2026-11-12: Debian). Windows: see ACL-04 (NTFS). |
+| ACL-03 | `manager_check` on `.wimspass` mode | Debian `chmod 640` `log/.wimspass` | job=badconf, `wims_ismanager=-2` | P1 | PASS (2026-11-12: Debian). Windows: see ACL-04 (NTFS). |
+| ACL-04 | NTFS ACLs on `.wimspass`, `tmp\`, `log\` | inspect default ACL; restrict with `icacls`; no second user | Auth Users may inherit write on `tmp`; `.wimspass` can be locked down | P1 | PASS (2026-11-12: hook-class; default inherited Authenticated Users (M) on parent; after `inheritance:r` + grant user only, open ACEs removed. Cross-user read not tested — see SEC-02.) |
+| ACL-05 | `bin/setwrapexec`, `wrap..exec` 6755 nobody | run official script as root | mode 6755, CGI still works | P1 | NOT RUN (2026-11-12: no root on the box; script refuses non-root; wrap was 755 box:box in the isolated tree) |
+| ACL-06 | named pipe ACL | second Windows user opens `\\.\pipe\wims-wimslogd-<hash>` | deny or documented risk | P1 | WAITING (map SEC-02; reserved for Arnaud, 2026-11-12) |
+| ACL-09 | class isolation | supervisor of 9001 opens class 1000 tools | denied | P1 | PASS (2026-11-12: Debian + Windows hook-class) |
+| ACL-10 | role isolation | student opens supervisor / teacher userscore tools | denied | P1 | PASS (2026-11-12: Debian + Windows hook-class; no usermanage tools) |
+| ACL-11 | developer vs site manager | developer account cannot run `adm/manage` jobs | denied | P2 | NOT RUN (2026-11-12: depends on PWD-10) |
+| ADM-01 | `wimslogd.pid`, `bringuplogd` | after Windows reboot: stale pid / CGI bring-up | daemon live or stale pid documented | P1 | PASS (2026-11-12: live pidfile present, 0 live process — stale after reboot; sibling CGI/start used, live not started) |
+| ADM-02 | per-tree pipes, stop by path | start two sibling daemons; stop only one by path | the other stays; live untouched | P1 | PASS (2026-11-12: hook-class + hook-logd; stopped logd by path, class stayed; both stopped at the end; live procs 0) |
+| ADM-03 | `bin/backup`, `backup_hour` | daemon-driven backup writes `backup/` | log + archive | P2 | NOT RUN (2026-11-12: not forced; overlaps LOGD-12; avoid extra jobs on siblings) |
+| ADM-04 | `log/motd.phtml.fr` | token appears on home, disappears after removal | MOTD shown then gone | P2 | PASS (2026-11-12: Debian isolated tree, lang=fr) |
+| ADM-05 | `ALGOGEBRA_HOOK=0`, uninstall scripts | flag in `build-runtime-tree.sh`; hook present; no uninstall on existing trees | documented opt-out / uninstall exist | P2 | PASS (2026-11-12: hook phtml on hook-class; scripts on `feat/algogebra-json-hook`; uninstall not executed) |
+| ADM-06 | load thresholds vs CPU | change thresholds; site still serves | no load generation | P2 | NOT RUN (2026-11-12: load tests out of scope) |
+| ADM-07 | teardown of a throwaway sibling | delete only a new copy; live/Claude intact | safe teardown | P2 | NOT RUN (2026-11-12: no throwaway sibling created; ask-before-overwrite) |
+| ADM-08 | Debian upgrade + `setwrapexec` | package or manual upgrade, class data intact | official wiki path | P1 | NOT RUN (2026-11-12: no root / no apt upgrade of a production package; isolated tree only) |
+
+
 ## 5. Traceability matrix (decision / requirement → code → tests)
 
 | Req. | Statement | Code | Tests |
@@ -389,31 +425,34 @@ Client: `$rt\other\tests\wl_client.exe tmp/log/.wimslogd <cmd…>` (MF-32), run 
 11. **Apache:** CGI-05/06 after Arnaud applies `WIMS_RT`.
 12. **Robustness:** ENC/PATH/FS/SEC-02.
 
-## 7. Counts (updated 2026-11-09 16:30, Paris time)
+## 7. Counts (updated 2026-11-12 06:20, Paris time)
 
 **Row source of truth:** every status row in §4. Status vocabulary: PASS, NOT RUN, WAIVED,
-WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked 2026-11-09 after LOGD-12
-overnight collection (one table row = one test; L2W-PC-* included).
+WAITING (blocked on Arnaud action), BLOCKED, FAIL. Script-checked 2026-11-12 after admin-guide
+tests (one table row = one test, except SBX-S2a/b/c ×3 and SBX-S4a/b ×2; L2W-PC-* included;
+second SBX-21 row already in the 138 baseline as part of historical counts).
 
 | Priority | Tests | PASS | NOT RUN | WAIVED | WAITING | BLOCKED | FAIL |
 |---|---|---|---|---|---|---|---|
-| P0 | 51 | 51 | 0 | 0 | 0 | 0 | 0 |
-| P1 | 66 | 64 | 0 | 1 | 1 | 0 | 0 |
-| P2 | 21 | 11 | 10 | 0 | 0 | 0 | 0 |
-| **Total** | **138** | **126** | **10** | **1** | **1** | **0** | **0** |
+| P0 | 53 | 53 | 0 | 0 | 0 | 0 | 0 |
+| P1 | 83 | 78 | 2 | 1 | 2 | 0 | 0 |
+| P2 | 29 | 14 | 15 | 0 | 0 | 0 | 0 |
+| **Total** | **165** | **145** | **17** | **1** | **2** | **0** | **0** |
 
-Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, CGI 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
+Per area (row counts): SBX 27, HLP 17, LOGD 15, PLT 10, PWD 10, ACL 9, CGI 8, ADM 8, JOB 7, IFC 6, L2W 6, LIN 5, MSYS 5, BLD 4, OEF 4, ENC 4, SEC 4, YAML 3, CI 3, PATH 3, SMK 3, MML 2, FS 2.
 
-**2026-11-09 LOGD-12 overnight + daemon retest:** Overnight collect found daemon dead (no Nov 7–9 runs). Owner OK: restarted live hook-20261106 wimslogd (PID 5132). Daemon *did* fire housekeep+modupdate once each; both `call_ssh` spawns failed (`exec.fail` error 0, empty logs). Root cause: `&>` same-path double open without `FILE_SHARE_WRITE` in `open_redirect`. Fix proposed, not committed. LOGD-12 stays PASS for MSYS sh script body. **Fix PR** `fix/win32-wimslogd-shared-redirect`: DuplicateHandle + FILE_SHARE_WRITE (Win32 only). **Debian: no** (fork+freopen). Totals unchanged 126/138.
+Totals keep the previous 138-test baseline (including SBX-S2a/b/c ×3 and SBX-S4a/b ×2) and add 27 new §4.16 IDs.
 
-**2026-11-06 batch notes:** SBX-14 still NOT RUN (Arnaud: no purge). SEC-02 WAITING on a second Windows user. LOGD-15 PASS on sibling (HAVE_CRYPT fix PR #12). Deferred P2: PLT-06/07/08, JOB-07, LOGD-14, CGI-03, HLP-12, CI-03, FS-02 (reasons in row text). Code: PR #11 `fake_cas env` unmerged (Arnaud merges).
+**2026-11-09 LOGD-12 overnight + daemon retest:** Overnight collect found daemon dead (no Nov 7–9 runs). Owner OK: restarted live hook-20261106 wimslogd (PID 5132). Daemon *did* fire housekeep+modupdate once each; both `call_ssh` spawns failed (`exec.fail` error 0, empty logs). Root cause: `&>` same-path double open without `FILE_SHARE_WRITE` in `open_redirect`. Fix proposed, not committed. LOGD-12 stays PASS for MSYS sh script body. **Fix PR** `fix/win32-wimslogd-shared-redirect`: DuplicateHandle + FILE_SHARE_WRITE (Win32 only). **Debian: no** (fork+freopen). Totals unchanged 126/138 at that date. **Update 2026-11-14:** PR #13 (that fix) was merged into `master` (`05f6c70`, 2026-11-14 09:37:40 Europe/Paris). Sibling verify: housekeep PASS 2026-11-09, modupdate PASS 2026-11-10. Live hook `wimslogd` remains the old binary until a new runtime is switched.
+
+**2026-11-06 batch notes:** SBX-14 still NOT RUN (Arnaud: no purge). SEC-02 WAITING on a second Windows user. LOGD-15 PASS on sibling (HAVE_CRYPT fix PR #12, merged into `master` 2026-11-14 as `da7b03a`). Deferred P2: PLT-06/07/08, JOB-07, LOGD-14, CGI-03, HLP-12, CI-03, FS-02 (reasons in row text). Code: PR #11 `fake_cas env` still unmerged (Arnaud merges).
 
 **2026-11-06 sibling adm/class (owner decision [pt87u]/:** created `Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106` = copy of live hook + full `adm/class` (1537 files) from `wims-runtime-r19040-grok`. Live Laragon `WIMS_RT` unchanged (`…/hook-20261106/public_html`). Direct CGI smoke on sibling: `adm/class/classes` Status 200 title Virtual classes; AlgoGebra hook 00006/00076 **8/8**; CAS `tool/algebra/factor.fr` (seeded into sibling only) → `67280421310721`; userscore page 200. Proposed cutover (not applied): `Define WIMS_RT "D:/ALF_ZGit/43-wims-paris-saclay_fr/Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-class-20261106/public_html"`.
 
 **wims.cgi.exe disappearance (read-only):** Defender `Get-MpThreatDetection`/`Get-MpThreat` = 0; Quarantine file count 0; no Operational events matching wims.cgi. Apache `AH02811` 2026-11-06 14:57:50–14:58:56 Europe/Paris on live hook tree. Timestamps: extensionless `wims.cgi` CreationTime 14:52:56; `wims.cgi.exe` restored CreationTime 14:59:28 (same hash as PATH-01 copy). No script under Shadow/`tests-win_ALF` deleting cgi found. **Cause: not Windows Defender quarantine; most likely accidental rename/copy to extensionless `wims.cgi` (or external clean) around 14:52, restored ~14:59 from PATH-01.**
 
-
-**2026-11-06 HAVE_CRYPT / LOGD-15:** Class login failed because `src/Platform/win32/config.h` lacked `#define HAVE_CRYPT 1`, so `calc.c` `_passcrypt` compiled empty (wp_descrypt already linked). PR https://github.com/io-e/wims4win/pull/12 (unmerged). Sibling cgi replaced (backup in `Bak/cgi-before-have-crypt-20261106`); live hook cgi unchanged. **wims.cgi.exe incident:** accidental extensionless `wims.cgi`, not AV.
+**2026-11-06 HAVE_CRYPT / LOGD-15:** Class login failed because `src/Platform/win32/config.h` lacked `#define HAVE_CRYPT 1`, so `calc.c` `_passcrypt` compiled empty (wp_descrypt already linked). PR https://github.com/io-e/wims4win/pull/12. Sibling cgi replaced (backup in `Bak/cgi-before-have-crypt-20261106`); live hook cgi unchanged. **wims.cgi.exe incident:** accidental extensionless `wims.cgi`, not AV. **Update 2026-11-14:** PR #12 merged into `master` (`da7b03a`, 2026-11-14 09:37:31 Europe/Paris). Live hook CGI is still the unfixed binary until a new runtime is built and switched.
 
 **Production gate:**
-- P0 NOT RUN / FAIL / BLOCKED: none — **51/51 P0 PASS**.
+- P0 NOT RUN / FAIL / BLOCKED: none — **53/53 P0 PASS** (was 51/51 before the 2026-11-12 admin tests, which added PWD-01 and ACL-01).
+

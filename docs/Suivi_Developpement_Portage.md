@@ -461,7 +461,7 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 ## 2026-11-09 — fix win32 `&>` shared redirect (LOGD-12 daemon spawn)
 
 - **Debian ?** Non. Chemin Linux : `src/Wimslogd/wimslogdlines.c` `#else` → `fork` + `freopen(outf)` puis `freopen(errf)` (même chemin OK). Repro box : child_status=0, log écrit. Pas de `CreateFile` / partage de handles.
-- **Fix Windows** (branche `fix/win32-wimslogd-shared-redirect`, PR ouverte, fusion par Arnaud) :
+- **Fix Windows** (branche `fix/win32-wimslogd-shared-redirect`, PR #13 merged into `master` 2026-11-14, `05f6c70`) :
   - `wp_spawn` : si `outf` et `errf` même chemin → un `open_redirect` + `DuplicateHandle` pour stderr
   - `open_redirect` écriture : `FILE_SHARE_READ|FILE_SHARE_WRITE` (ceinture)
   - `execredirected` / `wp_spawn` : conserver le vrai `GetLastError` avant `CloseHandle`
@@ -488,3 +488,27 @@ Owner OK (t90u): restart daemon on live `wims-runtime-r19040-grok-hook-20261106`
 - Sibling daemon **PID 2068 stopped** (path `…hook-logd-20261109…` only).
 - Live: restarted **old** binary as PID **11056** (hash ≠ fixed); Laragon/config untouched.
 
+## 2026-11-11 — English admin guide (Windows + Debian)
+
+- New `docs/10_Server_Administration_Windows_Debian.md` on branch `docs/admin-guide-win-debian`.
+- Sources: GEM report (`02-wims4win/docs/Officiel/…`, untracked), official WIMS EDU / UCA docs, repo code and docs/04–08. Web + disk search found no existing EN Windows+Debian operations guide.
+- Password management (§3) and rights/permissions (§4) are placed immediately after the inventory: `log/.wimspass`, `passcrypt`/`passcheck`, HAVE_CRYPT / PR #12, class 9001, `manager_site`, NTFS vs Unix setuid wrappers, pipe ACL SEC-02.
+- §17 adds test rows PWD-01…10, ACL-01…11 (mapped to LOGD-15, SEC-01/02, SBX-*), plus ADM-01…08.
+- Index line added in `docs/README.md`. Copy of the guide also goes to `D:\ALF_ZGit\43-wims-paris-saclay_fr\Reprise_Wims_Grok\docs-admin\`.
+
+## 2026-11-12 — Admin tests (docs/10 §17)
+
+- At the time of these tests, PRs **#10–#14 were all still OPEN** (not merged). No new code from those PRs was on `master` then. **Update 2026-11-14:** PR #12 (`da7b03a`, 09:37:31 Europe/Paris) and PR #13 (`05f6c70`, 09:37:40 Europe/Paris) were merged into `master`. #10, #11, #14 and later docs/tools PRs were still open at this writing.
+- Ran docs/10 §17 items on:
+  - Debian: isolated tree `/workspace/mw-wims-debian/` (copy; no other folder deleted).
+  - Windows siblings only: `wims-runtime-r19040-grok-hook-class-20261106` (HAVE_CRYPT CGI) and `wims-runtime-r19040-grok-hook-logd-20261109` (fixed wimslogd, CGI **without** HAVE_CRYPT). Live `hook-20261106` read-only (stale `wimslogd.pid`, 0 process). Laragon and `Reprise_Wims_Claude` untouched.
+- Credentials only from `C:\Users\Shadow\wims_test_creds.txt` or generated secrets; class files and `.wimspass` restored; no secret in git or this log.
+- **PASS (no FAIL):** PWD-01…09, ACL-01…04, ACL-09, ACL-10, ADM-01, ADM-02, ADM-04, ADM-05. PWD-07: hook-logd/live CGI still rejects class logins; hook-class accepts. The HAVE_CRYPT source fix is now on `master` (PR #12, 2026-11-14); the live CGI binary is still unfixed until a new runtime is switched.
+- **NOT RUN:** PWD-10, ACL-05 (no root / `setwrapexec`), ACL-11, ADM-03, ADM-06 (no load tests), ADM-07, ADM-08, SBX-14, SEC-02/ACL-06 (Arnaud).
+- docs/08 §4.16 added. Totals §7 (baseline 138 + 27 new IDs): **145/165 PASS**, 0 FAIL, P0 **53/53**, NOT RUN 17, WAIVED 1, WAITING 2 (SEC-02, ACL-06).
+
+## 2026-11-14 — PR #12 and #13 merged into master
+
+- PR #12 `fix/win32-have-crypt-passcheck` merged as `da7b03a` (2026-11-14 09:37:31 Europe/Paris).
+- PR #13 `fix/win32-wimslogd-shared-redirect` merged as `05f6c70` (2026-11-14 09:37:40 Europe/Paris).
+- Live Laragon runtime still uses the old binaries until a new sibling built from `master` is switched.

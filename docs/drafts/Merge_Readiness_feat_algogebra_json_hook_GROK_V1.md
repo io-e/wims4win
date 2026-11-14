@@ -26,7 +26,7 @@
 | Laragon `WIMS_RT` cutover | Done (owner) |
 | Laragon Maxima / Octave / CGI-08 | PASS (`0bb1553` on **master**) |
 | Issue #3 | Closed |
-| Hook body GROK_V2_1 (F1–F3, `--` escape restored) | Adopted 2026-11-14; Debian re-run of previous set + dash case pending |
+| Hook body GROK_V2_1 (F1–F3, `--` escape restored) | Adopted 2026-11-14; Debian re-run PASS (previous set + dash case). Evidence: docs/evidence/20261114-gbot-hook-v2_1-debian_GROK_V2_1/ |
 
 ---
 
@@ -42,7 +42,7 @@
 | M6 | No force-push; no merge to `master` without owner | Everyone | Standing rule |
 | M7 | AlgoGebra client WA-9 can proceed in parallel (does not block merge of WIMS hook) | Codex | Unblocked |
 | M8 | body V2 adopted, marker bumped, docs/09 recipe extended (00004, 00008, 00045, 00085, 00021) and Debian re-run (handoff « M4 » delta, 2026-11-13) | GBot | Partial: 00006/00076 + 00004/00008/00045/00085 PASS; 00021 and Maxima types BLOCKED (PARI/Maxima not on the box; apt mirrors HTTP 500). Evidence: docs/evidence/20261113-gbot-hook-v2-debian_GROK_V2/ |
-| M9 | body V2_1 adopted (`--` escaped as `\\u002d\\u002d`), marker bumped, Debian re-run of 00006/00076/00004/00008/00045/00085 plus dash case | GBot | Pending Debian re-run |
+| M9 | body V2_1 adopted (`--` escaped as `\u002d\u002d`), marker bumped, Debian re-run of 00006/00076/00004/00008/00045/00085 plus dash case | GBot | PASS 2026-11-14. Evidence: docs/evidence/20261114-gbot-hook-v2_1-debian_GROK_V2_1/ |
 
 ---
 

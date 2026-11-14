@@ -1,0 +1,197 @@
+[
+ {
+  "exo": "00021",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [
+   "answers=4, def replycnt=5 choicecnt=0 (ungraded replies omitted?)"
+  ],
+  "errors": [],
+  "def": {
+   "replycnt": 5,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "numexp",
+    "2": "numexp",
+    "3": "numexp",
+    "4": "numexp",
+    "5": "numexp"
+   }
+  },
+  "sent": {
+   "reply1": "0",
+   "reply2": "0",
+   "reply3": "0",
+   "reply4": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"50.5\",\"given\":\"0\"}\n  ,{\"id\":\"reply2\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"51.01\",\"given\":\"0\"}\n  ,{\"id\":\"reply3\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"51.52\",\"given\":\"0\"}\n  ,{\"id\":\"reply4\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"52.03\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "50.5",
+     "given": "0"
+    },
+    {
+     "id": "reply2",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "51.01",
+     "given": "0"
+    },
+    {
+     "id": "reply3",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "51.52",
+     "given": "0"
+    },
+    {
+     "id": "reply4",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "52.03",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 5,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">50.5</div>",
+    false,
+    "0"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">51.01</div>",
+    false,
+    "0"
+   ],
+   [
+    "[3]",
+    "<div class=\"inline tt\">51.52</div>",
+    false,
+    "0"
+   ],
+   [
+    "[4]",
+    "<div class=\"inline tt\">52.03</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 4.0
+ },
+ {
+  "exo": "00055",
+  "checks": {
+   "W.marker": false
+  },
+  "findings": [],
+  "errors": [
+   "hook marker missing on cmd=reply (answer_analysis=False)"
+  ],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "function"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "html_excerpt": "Tangente (function)\n\n\n\n\n\n\n\n\n\n\n\n\n\n Donner l'équation de la tangente à la courbe d'équation \t\ny=−3x 2+1.8 au point (-2.5, -16.95). \t       \ny=  \n\n\n\n\n\n\n\n\n0 [1]\n \t\n\n\n  \n\n\n\n\n\n\n\n    \n\n\n\n  À cause d'une erreur dans l'exercice (la bonne réponse pour la question 1 \n      [1]\n      n'est pas valable), il est ",
+  "seconds": 9.9
+ },
+ {
+  "exo": "00058",
+  "checks": {
+   "W.marker": false
+  },
+  "findings": [],
+  "errors": [
+   "hook marker missing on cmd=reply (answer_analysis=False)"
+  ],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "formal"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "html_excerpt": "*input avec symbols\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode : \t \t \n\n\n\n\n\\answer{}{3*alpha+2*beta}{type=formal}{option=symbols=[alpha beta]}\n\n\n\n \t \tÉcrire \n3α+2β. \t \n\n\n\n\n\n\n\n\n0 [1]\n \t\n\n\n  \n\n\n\n\n\n\n\n    \n\n\n\n  À cause d'une erreur dans l'exercice (la bonne réponse pour la question 1 \n      [1]\n      n'est pas valable), il est i",
+  "seconds": 9.8
+ },
+ {
+  "exo": "00072",
+  "checks": {
+   "W.marker": false
+  },
+  "findings": [],
+  "errors": [
+   "hook marker missing on cmd=reply (answer_analysis=False)"
+  ],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "function"
+   }
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "html_excerpt": "Tangente 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nDonner l'équation de la tangente à la courbe \t  d'équation  \ny=−3x 2+1.8 au point  d'abscisse -2.5. \t   \t\n\n\n  \n\n\n\n\n\n\n\n    \n\n\n\n  À cause d'une erreur dans l'exercice (la bonne réponse pour la question 1 \n      y\n      n'est pas valable), il est impossible d'analyser\n  votre ré",
+  "seconds": 10.5
+ }
+]

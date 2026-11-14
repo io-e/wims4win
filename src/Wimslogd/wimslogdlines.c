@@ -34,6 +34,7 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
   r=wp_spawn(&c,arg,inf?inf:"NUL",outf?outf:"NUL",errf?errf:"NUL",
              WP_ISO_NONE,NULL,&pid);
   if(r!=WP_OK) {
+    DWORD gle=GetLastError(); /* before further Win32 calls */
     char buf[4096]; int k, t;
     snprintf(buf,sizeof(buf),"Failed to execute");
     for(k=0;arg[k];k++) {
@@ -41,7 +42,7 @@ int execredirected(char *cmdf, char *inf, char *outf, char *errf, char *arg[])
       snprintf(buf+t,sizeof(buf)-t," %s",arg[k]);
     }
     t=strlen(buf);
-    snprintf(buf+t,sizeof(buf)-t,"\n	error %lu\n",(unsigned long)GetLastError());
+    snprintf(buf+t,sizeof(buf)-t,"\n	error %lu\n",(unsigned long)gle);
     wlogdaccessfile(buf,"a","%s/exec.fail",tmpd);
     exec_wait=1; return 127;
   }

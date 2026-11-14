@@ -214,7 +214,11 @@ static HANDLE open_redirect(const char *f, int write)
 {
   SECURITY_ATTRIBUTES sa;
   sa.nLength=sizeof(sa); sa.lpSecurityDescriptor=NULL; sa.bInheritHandle=TRUE;
-  return CreateFileA(f, write?GENERIC_WRITE:GENERIC_READ, FILE_SHARE_READ, &sa,
+  /* Write opens share WRITE too: call_ssh "&>file" sets outf==errf and used to
+   * fail the second CreateFile with ERROR_SHARING_VIOLATION (32). Prefer the
+   * DuplicateHandle path in wp_spawn; this share mode is belt-and-braces. */
+  return CreateFileA(f, write?GENERIC_WRITE:GENERIC_READ,
+                     write?(FILE_SHARE_READ|FILE_SHARE_WRITE):FILE_SHARE_READ, &sa,
                      write?CREATE_ALWAYS:OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 }
 
@@ -370,15 +374,29 @@ int wp_spawn(wp_chan *c, char *const argv[], const char *inf,
              const char *outf, const char *errf, wp_isolation iso,
              const char *progname, wp_pid *pid)
 {
-  HANDLE hin, hout, herr; int r;
+  HANDLE hin, hout, herr; int r; DWORD gle; int herr_dup=0;
   if(argv==NULL || argv[0]==NULL || pid==NULL) return WP_E_ARG;
   hin = inf ? open_redirect(inf,0) : c->in_r;
   hout= outf? open_redirect(outf,1): c->out_w;
-  herr= errf? open_redirect(errf,1): GetStdHandle(STD_ERROR_HANDLE);
+  /* call_ssh "cmd &>log" sets outf and errf to the same path. Opening the
+   * file twice for GENERIC_WRITE fails without FILE_SHARE_WRITE; even with
+   * share, prefer one open + DuplicateHandle so both std handles refer to
+   * the same open (matches Linux freopen of one path). */
+  if(outf && errf && strcmp(outf,errf)==0 && hout!=INVALID_HANDLE_VALUE) {
+    if(!DuplicateHandle(GetCurrentProcess(),hout,GetCurrentProcess(),&herr,
+                        0,TRUE,DUPLICATE_SAME_ACCESS))
+      herr=INVALID_HANDLE_VALUE;
+    else herr_dup=1;
+  } else {
+    herr= errf? open_redirect(errf,1): GetStdHandle(STD_ERROR_HANDLE);
+  }
   r=spawn_core(argv,hin,hout,herr,iso,0,progname,pid);
+  gle=GetLastError();
   if(inf && hin!=INVALID_HANDLE_VALUE) CloseHandle(hin);
   if(outf && hout!=INVALID_HANDLE_VALUE) CloseHandle(hout);
-  if(errf && herr!=INVALID_HANDLE_VALUE) CloseHandle(herr);
+  if(errf && herr!=INVALID_HANDLE_VALUE && (herr_dup || herr!=hout))
+    CloseHandle(herr);
+  if(r!=WP_OK) SetLastError(gle);
   return r;
 }
 

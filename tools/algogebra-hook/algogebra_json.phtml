@@ -9,16 +9,18 @@
 !! The AlgoGebra client (EUPL) only consumes the emitted JSON over HTTP;
 !! it is not combined with this template.
 !!
-!! GROK_V2 (adopts CLAUDE_V2 body: F1–F3; same JSON schema, no new fields)
+!! GROK_V2_1 (adopts CLAUDE_V2_1 body: F1–F3 plus restored -- escape)
 !! AlgoGebra JSON hook body — emit one JSON object (no comment markers).
 !! Caller (answer.phtml) wraps with ALGOGEBRA_JSON_BEGIN / END when
 !! special_parm=algogebra_json.
-!! Escape policy (V1): singlespace + escape \ and " + neutralize -- for HTML comments.
+!! Escape policy: singlespace + escape \ and " + neutralize -- as \u002d\u002d
+!! so a raw "--" cannot close the HTML comment early (lost in V2, restored in V2_1).
 !! V2: F1 expected via replyGood / first row of replygood; F2 skip empty replygood;
 !! F3 list only reached steps when $oefsteps is set.
-!! See Discovery_Variable_Dump_GROK_V1.md and
+!! See Discovery_Variable_Dump_GROK_V1.md,
 !! AlgoGebra_Wims_Integration/Review_Hook_JSON_Windows_CLAUDE_V1.md
-!! (branch feat/algogebra-wims-integration @ bece517 / 3899569).
+!! and Handoff_GBot_Hook_V2_PR10_CLAUDE_V1_3.md
+!! (branch feat/algogebra-wims-integration @ cb490b7 / 55ef351 / 4799a50).
 !!
 !default module_score=0
 !default replycnt=0
@@ -53,10 +55,10 @@
   !set ag_expected=!singlespace $ag_expected
   !set ag_given=!replace internal \ by \\ in $ag_given
   !set ag_given=!replace internal " by \" in $ag_given
-  !set ag_given=!replace internal -- by -- in $ag_given
+  !set ag_given=!replace internal -- by \u002d\u002d in $ag_given
   !set ag_expected=!replace internal \ by \\ in $ag_expected
   !set ag_expected=!replace internal " by \" in $ag_expected
-  !set ag_expected=!replace internal -- by -- in $ag_expected
+  !set ag_expected=!replace internal -- by \u002d\u002d in $ag_expected
   !ifval $(m_sc_reply$i)>=1
     !set ag_correct=true
   !else
@@ -77,10 +79,10 @@
   !set ag_expected=!singlespace $(choicegood$i)
   !set ag_given=!replace internal \ by \\ in $ag_given
   !set ag_given=!replace internal " by \" in $ag_given
-  !set ag_given=!replace internal -- by -- in $ag_given
+  !set ag_given=!replace internal -- by \u002d\u002d in $ag_given
   !set ag_expected=!replace internal \ by \\ in $ag_expected
   !set ag_expected=!replace internal " by \" in $ag_expected
-  !set ag_expected=!replace internal -- by -- in $ag_expected
+  !set ag_expected=!replace internal -- by \u002d\u002d in $ag_expected
   !ifval $(m_sc_choice$i)>=1
     !set ag_correct=true
   !else

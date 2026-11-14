@@ -1,6 +1,6 @@
 # 09 — Hook JSON AlgoGebra : installation et désinstallation
 
-*Document du 6 novembre 2026 (heure de Paris), mis à jour le 13 novembre 2026. Il décrit le hook livré comme pièce du produit wims4win (branche `feat/algogebra-json-hook`), pour Windows et Debian. Le corps du hook est **GROK_V2** (corps CLAUDE_V2 : F1–F3). Pourquoi V2 : `AlgoGebra_Wims_Integration/Review_Hook_JSON_Windows_CLAUDE_V1.md` sur la branche `feat/algogebra-wims-integration` (commit `bece517` / `3899569`).*
+*Document du 6 novembre 2026 (heure de Paris), mis à jour le 14 novembre 2026. Il décrit le hook livré comme pièce du produit wims4win (branche `feat/algogebra-json-hook`), pour Windows et Debian. Le corps du hook est **GROK_V2_1** (corps CLAUDE_V2_1 : F1–F3, et l’échappement `--` → `\\u002d\\u002d` perdu dans V2). Pourquoi V2 : `AlgoGebra_Wims_Integration/Review_Hook_JSON_Windows_CLAUDE_V1.md` ; V2_1 : `Handoff_GBot_Hook_V2_PR10_CLAUDE_V1_3.md` sur `feat/algogebra-wims-integration` (`cb490b7` / `55ef351`).*
 
 Le hook ajoute un bloc JSON dans la page de correction OEF lorsque le client envoie `cmd=reply` **et** `special_parm=algogebra_json`. Sans ce paramètre, WIMS se comporte comme avant. Le chemin de notation n'est pas `adm/raw` ni `job=getresult`. Les champs de réponse restent `replyN` / `choiceN`.
 
@@ -79,15 +79,17 @@ Exercices supplémentaires (sources `tools/oef-validation/html/exemples/sources/
 
 | Exercice | Type | Contrôle dans le bloc |
 |---|---|---|
-| 00004 | `radio` | `expected` est le texte d'option (`blu e verde`), pas `2;blu e verde,…` ; le rejouer comme `reply1` donne `grade:1` |
-| 00008 | `menu` | `expected` est le texte d'option (`vera`), pas `2;vera,falsa` ; le rejouer donne `grade:1` |
+| 00004 | `radio` | `expected` est le texte d'option (`blu e arancio` à la graine 1, 2e item), pas `2;blu e verde,blu e arancio,…` ; le rejouer comme `reply1` donne `grade:1` |
+| 00008 | `menu` | `expected` est le texte d'option (`falsa` à la graine 1, 2e item), pas `2;vera,falsa` ; le rejouer donne `grade:1` |
 | 00045 | `checkbox`, options accentuées | `expected` = textes d'options séparés par des virgules ; le bloc se décode en `windows-1252` ; un POST `windows-1252` donne `grade:1` (un POST UTF-8 donne 0.33, c'est attendu) |
 | 00085 | `\steps`, 12 réponses | étape 1 : exactement 2 entrées (`reply1`, `reply3`), aucune avec `given:""` |
 | 00021 | 5 réponses, la 5e libre | 4 entrées, `grade` cohérent avec `answers[]` |
 
+Cas `--` (V2_1) : un exercice `case` dont la réponse est `a-->b` doit émettre `\\u002d\\u002d` *à l’intérieur* du commentaire HTML (pas un `--` brut, qui fermerait le commentaire). Après décodage JSON, `given` et `expected` valent `a-->b`. Voir `test_algogebra_json_smoke_CLAUDE_V1_1.py`.
+
 Sur un runtime Debian avec Maxima, inclure aussi au moins un exercice `function` / `formal` / `algexp` (00055, 00058 ou 00072) : V2 les traite comme les « autres types » (`replygood` brut), comme GROK_V1.
 
-Recette manuelle Windows (optionnelle, pas pour la CI) : `python -X utf8 -I AlgoGebra_Wims_Integration/tests/test_algogebra_json_corpus_CLAUDE_V1.py` depuis un checkout de `feat/algogebra-wims-integration`, avec `--sources tools/oef-validation/html/exemples/sources` (le script cible un runtime Windows).
+Recette manuelle Windows (optionnelle, pas pour la CI) : `python -X utf8 -I AlgoGebra_Wims_Integration/tests/test_algogebra_json_corpus_CLAUDE_V1.py` depuis un checkout de `feat/algogebra-wims-integration`, avec `--sources tools/oef-validation/html/exemples/sources` (le script cible un runtime Windows). Fumée Windows **et** Linux (00006/00076 + cas `--`) : `WIMS_HOME=… OEF2WIMS=… OEF_SOURCES=… python3 -X utf8 -I AlgoGebra_Wims_Integration/tests/test_algogebra_json_smoke_CLAUDE_V1_1.py`.
 
 ## Fichiers concernés
 

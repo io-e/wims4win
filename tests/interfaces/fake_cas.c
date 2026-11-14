@@ -6,7 +6,9 @@
  *        | flood (20 MB after each echo) | silent (reads, never answers)
  *        | noread (never reads stdin: fills the pipe) | busy (CPU loop)
  *        | spawn (starts a grandchild "fake_cas silent" then behaves as plain:
- *          used to check that killing the job kills the whole tree) */
+ *          used to check that killing the job kills the whole tree)
+ *        | env (print sorted NAME=value lines of the process environment;
+ *          used by SBX-18 to verify ch..root env_rm stripped CGI secrets) */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -60,6 +62,34 @@ int main(int argc, char **argv)
   if(strcmp(mode,"errline")==0) { fputs("ERRLINE\r\n",stderr); return 0; }
   if(strcmp(mode,"args")==0) {          /* one argument per line */
     int k; for(k=2;k<argc;k++) printf("[%s]\n",argv[k]); return 0;
+  }
+  if(strcmp(mode,"env")==0) {           /* dump environment, one NAME=value per line */
+#ifdef _WIN32
+    char *env = GetEnvironmentStringsA();
+    char *p;
+    if(!env) return 3;
+    /* Collect pointers then sort for stable output (SBX-18 assertions). */
+    {
+      char *list[4096]; int n=0, i, j;
+      for(p=env; *p && n<(int)(sizeof(list)/sizeof(list[0])); p+=strlen(p)+1)
+        if(*p!='=') list[n++]=p; /* skip =hidden Windows entries */
+      for(i=0;i<n;i++) for(j=i+1;j<n;j++) if(strcmp(list[j],list[i])<0){ char *t=list[i]; list[i]=list[j]; list[j]=t; }
+      for(i=0;i<n;i++) puts(list[i]);
+    }
+    FreeEnvironmentStringsA(env);
+    return 0;
+#else
+    extern char **environ;
+    char **e; int n=0, i, j; char **list;
+    for(e=environ; *e; e++) n++;
+    list=(char**)malloc((size_t)n*sizeof(char*));
+    if(!list) return 3;
+    for(i=0,e=environ; *e; e++,i++) list[i]=*e;
+    for(i=0;i<n;i++) for(j=i+1;j<n;j++) if(strcmp(list[j],list[i])<0){ char *t=list[i]; list[i]=list[j]; list[j]=t; }
+    for(i=0;i<n;i++) puts(list[i]);
+    free(list);
+    return 0;
+#endif
   }
 #ifdef _WIN32
   if(strcmp(mode,"reg")==0) {           /* rc 0 = HKCU key written */

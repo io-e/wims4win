@@ -51,12 +51,4 @@ int pipe(int fildes[2])
 {
   return _pipe(fildes,4096,O_BINARY);
 }
-int nanosleep(const struct timespec *req, struct timespec *rem)
-{
-  DWORD ms; (void)rem;
-  if(!req) return -1;
-  ms=(DWORD)(req->tv_sec*1000 + req->tv_nsec/1000000);
-  if(ms) Sleep(ms);
-  return 0;
-}
 #endif

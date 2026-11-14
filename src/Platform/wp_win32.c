@@ -25,6 +25,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "wims_platform.h"
+#include <time.h>
 
 const char *wp_platform_name(void) { return "win32"; }
 
@@ -522,5 +523,14 @@ int wp_fd_readable(wp_fd fd, long timeout_usec)
     if(waited>=limit) return 0;
     Sleep(10); waited+=10;
   }
+}
+
+int wp_nanosleep(const struct timespec *req, struct timespec *rem)
+{
+  DWORD ms; (void)rem;
+  if(!req) return -1;
+  ms=(DWORD)(req->tv_sec*1000 + req->tv_nsec/1000000);
+  if(ms) Sleep(ms);
+  return 0;
 }
 #endif

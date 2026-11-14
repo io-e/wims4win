@@ -11,7 +11,7 @@ import subprocess
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import urlsplit
 
 LIVE_BASENAME = "wims-runtime-r19040-grok-hook-20261106"
 
@@ -71,7 +71,10 @@ class Handler(BaseHTTPRequestHandler):
         env.update(
             {
                 "REQUEST_METHOD": self.command,
-                "QUERY_STRING": unquote(parsed.query),  # %2B -> +; do not use unquote_plus
+                # Pass the query raw. Unquoting the whole string turns %20 into a
+                # literal space (and would break values like "3, 5"); the CGI decodes
+                # percent-escapes per field, including %2B -> +.
+                "QUERY_STRING": parsed.query,
                 "CONTENT_TYPE": self.headers.get("Content-Type", ""),
                 "CONTENT_LENGTH": str(len(body)),
                 "GATEWAY_INTERFACE": "CGI/1.1",

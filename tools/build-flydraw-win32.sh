@@ -16,7 +16,7 @@ CFLAGS="-O2 -Wall -Wno-unused-result -Wno-format-truncation -D_WIN32 -DNOMINMAX 
 objs=()
 for f in Flydraw/flylines.c Flydraw/nametab.c Flydraw/vimg.c Flydraw/objects.c Flydraw/flydraw.c \
          Lib/evalue.c Lib/liblines.c Lib/libwims.c Lib/math.c Lib/mt19937ar.c Lib/text.c Lib/dir.c Lib/levelcurve.c \
-         Platform/wp_compat.c; do
+         Platform/wp_compat.c Platform/wp_win32.c; do
   o=$OBJ/$(echo $f | tr / _).o; $CC $CFLAGS -c "$STAGE/$f" -o "$o"; objs+=("$o")
 done
 $CC -O2 -static -o "$OUT/flydraw.exe" "${objs[@]}" -L"$GD/lib" -lgd -lm -Wl,-Bstatic -lwinpthread

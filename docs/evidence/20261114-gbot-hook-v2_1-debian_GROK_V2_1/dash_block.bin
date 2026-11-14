@@ -1,0 +1,7 @@
+ALGOGEBRA_JSON_BEGIN
+
+
+{"grade":1,"seed":1,"answers":[
+  {"id":"reply1","correct":true,"score":1,"feedback":"","expected":"a\u002d\u002d>b","given":"a\u002d\u002d>b"}
+],"feedback":""}
+

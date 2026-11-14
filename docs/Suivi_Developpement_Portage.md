@@ -355,6 +355,21 @@ Décision **H9** : dépôt unique `wims-port` (confirmé).
 - Apache toujours arrêté : CGI-08 et IFC-06 via Laragon NON EXÉCUTÉS.
 - Gate P0 : 52/52 inchangé.
 
+## 2026-11-06 — Hook JSON AlgoGebra vendu dans le build runtime
+
+- `tools/algogebra-hook/` : `algogebra_json.phtml`, installateurs / désinstallateurs (`.sh` et `.ps1`), `NOTICE.md` (GPL-2 du hook, client AlgoGebra EUPL hors arbre).
+- `tools/build-runtime-tree.sh` installe toujours le hook dans l'arbre Linux (`$WD/wims`) et l'arbre Windows (`$OUT`). Plus de dépendance à `AlgoGebra_Wims_Integration/runtime_patch`. Opt-out : `ALGOGEBRA_HOOK=0`.
+- Documentation : `docs/09_Hook_JSON_AlgoGebra.md`. Désinstallation : restauration de `answer.phtml` depuis `.bak_pre_algogebra` (ou retrait du bloc injecté).
+- Pas de redéploiement du runtime PC sans accord. Issue #3 : commentaire préparé dans `docs/drafts/Issue_3_Comment_Hook_JSON_GROK_V1.md` (non publié).
+
+
+## 2026-11-06 — MW-N1 sibling runtime + MW-N3 Debian HTTP
+
+- Runtime Windows construit depuis `feat/algogebra-json-hook` (`faa983e`) : `wims-runtime.tgz` sha256 `45ee6cd8f8f2cf4fcd12ba54e0722e46bebb4f1e2ddcde0777f5db066dfe0090`.
+- Déposé en frère (sans écraser le runtime Laragon) : `Reprise_Wims_Grok/wims-runtime-r19040-grok-hook-20261106`. Smoke CGI 8/8 + `ch..root --selftest` + PARI → 4.
+- Fumée HTTP Debian (port 18441, arbre Linux empaqueté) : 8/8. Preuves : `docs/evidence/20261106-gbot-algogebra-json-debian_GROK_V1/`.
+- Laragon / `WIMS_RT` non modifié.
+
 ## 2026-11-06 — Laragon : CGI-08 et IFC-06 Maxima/Octave
 
 - WIMS_RT pointe vers le runtime frère `wims-runtime-r19040-grok-hook-20261106` (sans toucher à la config Laragon).

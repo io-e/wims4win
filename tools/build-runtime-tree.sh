@@ -16,6 +16,7 @@
 #   WIMS_SVN_REV   revision recorded in log/wims4win-provenance.txt (19040)
 #   PARI_COMMAND   optional pari_command line for log/wims.conf
 #   NO_MSYS2=1     skip tools/fetch-msys2-sh.sh (sh.exe + coreutils)
+#   ALGOGEBRA_HOOK=0  do not install the AlgoGebra JSON hook (default: install)
 # Debian prerequisites:
 #   build-essential flex bison libfl-dev libgd-dev libgmp-dev wget unzip
 #   mingw-w64 (gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64)
@@ -69,6 +70,15 @@ patch -s -d "$OUT" -p1 < "$ROOT/tools/patches/mkindex-wims4win.patch"
 # drop every Linux ELF binary (and the wims.cgi symlink)
 find "$OUT" -type f -exec sh -c 'head -c4 "$1" | grep -q ELF && rm -f "$1"' _ {} \;
 find "$OUT" -type l -delete   # broken links only (tar -h kept the rest)
+# AlgoGebra JSON hook (special_parm=algogebra_json on cmd=reply): phtml-only,
+# vendored in tools/algogebra-hook/. Always installed into the Linux compile
+# tree ($WD/wims) and the Windows packaged tree ($OUT). ALGOGEBRA_HOOK=0 skips.
+if [ "${ALGOGEBRA_HOOK:-1}" != 0 ]; then
+  AG_HOOK=${ALGOGEBRA_HOOK_DIR:-$ROOT/tools/algogebra-hook}
+  [ -f "$AG_HOOK/algogebra_json.phtml" ] || { echo "missing vendored hook: $AG_HOOK/algogebra_json.phtml" >&2; exit 1; }
+  bash "$AG_HOOK/install-algogebra-hook.sh" "$WD/wims" "$AG_HOOK"
+  bash "$AG_HOOK/install-algogebra-hook.sh" "$OUT" "$AG_HOOK"
+fi
 mkdir -p "$OUT/tmp/log" "$OUT/tmp/sessions" "$OUT/sessions" "$OUT/s2"
 cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.exe"
 cp "$ROOT/build/wims-win/wims.exe" "$OUT/public_html/wims.cgi.exe"

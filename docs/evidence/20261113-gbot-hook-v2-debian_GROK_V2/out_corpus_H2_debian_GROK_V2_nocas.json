@@ -1,0 +1,443 @@
+[
+ {
+  "exo": "00004",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "radio"
+   }
+  },
+  "sent": {
+   "reply1": "blu e verde"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"blu e arancio\",\"given\":\"blu e verde\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "blu e arancio",
+     "given": "blu e verde"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "SCELTA",
+    "<div class=\"inline tt\">blu e arancio</div>",
+    false,
+    "blu e verde"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.1
+ },
+ {
+  "exo": "00006",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 1,
+   "types": {}
+  },
+  "sent": {
+   "reply1": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"2\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "2",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "Valore della tangente di a",
+    "<div class=\"inline tt\">2</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.2
+ },
+ {
+  "exo": "00008",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "menu"
+   }
+  },
+  "sent": {
+   "reply1": "vera"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"falsa\",\"given\":\"vera\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "falsa",
+     "given": "vera"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    null,
+    false,
+    ""
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.0
+ },
+ {
+  "exo": "00045",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": false,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "checkbox"
+   }
+  },
+  "sent": {
+   "reply1": "Toxoplasmose"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"Grippe, Poliomyélite, Hépatite\",\"given\":\"Toxoplasmose\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "Grippe, Poliomyélite, Hépatite",
+     "given": "Toxoplasmose"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">Grippe, Poliomyélite, Hépatite</div>",
+    false,
+    "Toxoplasmose"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.0
+ },
+ {
+  "exo": "00076",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [],
+  "errors": [],
+  "def": {
+   "replycnt": 1,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "checkbox"
+   }
+  },
+  "sent": {
+   "reply1": "1"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"3, 5\",\"given\":\"1\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "3, 5",
+     "given": "1"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 1,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">3, 5</div>",
+    false,
+    "1"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.1
+ },
+ {
+  "exo": "00085",
+  "checks": {
+   "W.marker": true,
+   "W.json_valid": true,
+   "W.schema_keys": true,
+   "W.seed": true,
+   "W.grade_matches_html": true,
+   "W.count_matches_html_rows": true,
+   "W.correct_matches_html": true,
+   "W.correct_iff_score1": true,
+   "W.given_matches_sent": true,
+   "E.block_ascii": true,
+   "E.types_numeric": true,
+   "R.expected_replays_to_1": true,
+   "N.no_marker": true,
+   "N.page_identical_outside_block": true
+  },
+  "findings": [
+   "answers=2, def replycnt=12 choicecnt=0 (ungraded replies omitted?)"
+  ],
+  "errors": [],
+  "def": {
+   "replycnt": 12,
+   "choicecnt": 0,
+   "feedbackcnt": 0,
+   "types": {
+    "1": "checkbox",
+    "2": "default",
+    "3": "default",
+    "4": "default",
+    "5": "default",
+    "6": "set",
+    "7": "fset",
+    "8": "vector",
+    "9": "function",
+    "10": "algexp",
+    "11": "formal",
+    "12": "matrix"
+   }
+  },
+  "sent": {
+   "reply1": "1",
+   "reply3": "0"
+  },
+  "charset": "windows-1252",
+  "json_raw": "{\"grade\":0,\"seed\":1,\"answers\":[\n  {\"id\":\"reply1\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"2, 3\",\"given\":\"1\"}\n  ,{\"id\":\"reply3\",\"correct\":false,\"score\":0,\"feedback\":\"\",\"expected\":\"2\",\"given\":\"0\"}\n],\"feedback\":\"\"}",
+  "json": {
+   "grade": 0,
+   "seed": 1,
+   "answers": [
+    {
+     "id": "reply1",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "2, 3",
+     "given": "1"
+    },
+    {
+     "id": "reply3",
+     "correct": false,
+     "score": 0,
+     "feedback": "",
+     "expected": "2",
+     "given": "0"
+    }
+   ],
+   "feedback": ""
+  },
+  "n_def": 12,
+  "html_score": 0.0,
+  "html_rows": [
+   [
+    "[1]",
+    "<div class=\"inline tt\">2, 3</div>",
+    false,
+    "1"
+   ],
+   [
+    "[2]",
+    "<div class=\"inline tt\">2</div>",
+    false,
+    "0"
+   ]
+  ],
+  "replay": {
+   "ok": true,
+   "grade": 1,
+   "correct": [
+    true,
+    true
+   ],
+   "html_score": 10.0,
+   "bad": []
+  },
+  "seconds": 0.1
+ }
+]

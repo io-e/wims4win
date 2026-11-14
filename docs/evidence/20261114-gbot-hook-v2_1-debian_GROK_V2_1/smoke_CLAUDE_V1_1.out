@@ -1,0 +1,10 @@
+runtime /workspace/mw-hook-v2-debian  cgi wims.cgi
+[00006 numeric]
+  wrong: {"grade": 0, "seed": 1, "answers": [{"id": "reply1", "correct": false, "score": 0, "feedback": "", "expected": "2", "given": "0"}], "feedback": ""}
+  right: {"grade": 1, "seed": 1, "answers": [{"id": "reply1", "correct": true, "score": 1, "feedback": "", "expected": "2", "given": "2"}], "feedback": ""}
+[00076 checkbox]
+  wrong: {"grade": 0, "seed": 1, "answers": [{"id": "reply1", "correct": false, "score": 0, "feedback": "", "expected": "3, 5", "given": "1"}], "feedback": ""}
+  right: {"grade": 1, "seed": 1, "answers": [{"id": "reply1", "correct": true, "score": 1, "feedback": "", "expected": "3, 5", "given": "3, 5"}], "feedback": ""}
+[dash case]
+  block: {"grade":1,"seed":1,"answers":[   {"id":"reply1","correct":true,"score":1,"feedback":"","expected":"a\u002d\u002d>b","given":"a\u002d\u002d>b"} ],"feedback":""}
+ALL PASS

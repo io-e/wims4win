@@ -15,6 +15,11 @@
 # Environment:
 #   WIMS_SVN_REV   revision recorded in log/wims4win-provenance.txt (19040)
 #   PARI_COMMAND   optional pari_command line for log/wims.conf
+#   MAXIMA_COMMAND / GAP_COMMAND / OCTAVE_COMMAND   same for the other CAS
+#                  (without them the built-in default, e.g. plain `gp`, is
+#                  used and every numexp/litexp/CAS answer is graded wrong
+#                  unless the binary is on PATH). The build warns about each
+#                  one that is missing; see tools/set-cas-conf.ps1.
 #   NO_MSYS2=1     skip tools/fetch-msys2-sh.sh (sh.exe + coreutils)
 #   ALGOGEBRA_HOOK=0  do not install the AlgoGebra JSON hook (default: install)
 # Debian prerequisites:
@@ -113,8 +118,20 @@ rm -f "$OUT/public_html/bin/insdraw..processor"
 grep -q '^default_texposition=' "$OUT/log/wims.conf" 2>/dev/null || \
   printf 'default_texposition=2\n' >> "$OUT/log/wims.conf"
 cp "$ROOT/docs/wims4win.yaml" "$OUT/log/wims4win.yaml"
-[ -n "$PARI_COMMAND" ] && { sed -i '/^pari_command=/d' "$OUT/log/wims.conf"; \
-  printf 'pari_command=%s\n' "$PARI_COMMAND" >> "$OUT/log/wims.conf"; }
+# CAS commands: log/wims.conf is site configuration that must survive a runtime
+# rebuild/cutover. Without *_command lines WIMS falls back to bare `gp`,
+# `maxima`... which are not on the Windows PATH: every answer compared through
+# PARI (numexp, calcul*, OEFevalwimscalc...) or Maxima (litexp) is then marked
+# wrong although the "expected answer" shown is right (2026-11-15).
+for v in pari maxima gap octave; do
+  V=$(echo "$v" | tr a-z A-Z); eval "val=\${${V}_COMMAND:-}"
+  if [ -n "$val" ]; then
+    sed -i "/^${v}_command=/d" "$OUT/log/wims.conf"
+    printf '%s_command=%s\n' "$v" "$val" >> "$OUT/log/wims.conf"
+  else
+    echo "WARNING: ${V}_COMMAND not set: ${v}_command missing from log/wims.conf (CAS exercises will be graded wrong); run tools/set-cas-conf.ps1 on the PC" >&2
+  fi
+done
 # sh.exe + coreutils (MSYS2, pinned) for call_sh and the bin/ scripts
 [ -n "$NO_MSYS2" ] || bash "$ROOT/tools/fetch-msys2-sh.sh" "$OUT"
 # provenance of the tree

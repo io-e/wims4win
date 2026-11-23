@@ -1,0 +1,229 @@
+{
+ "cases": [
+  {
+   "client": "builtin",
+   "mode": "ok",
+   "ms": 1,
+   "result": "OK",
+   "transport": null,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "refused",
+   "ms": 2004,
+   "result": "OEF worker unreachable",
+   "transport": 1,
+   "requests_seen_by_server": 0,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "backlog",
+   "ms": 2002,
+   "result": "OEF worker unreachable",
+   "transport": 1,
+   "requests_seen_by_server": 0,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "silent",
+   "ms": 3003,
+   "result": "OEF worker timeout",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "big",
+   "ms": 7,
+   "result": "OEF worker response too large",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "redirect",
+   "ms": 0,
+   "result": "OEF worker redirect refused",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "html",
+   "ms": 0,
+   "result": "OEF worker HTTP 200 (not JSON)",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "badjson",
+   "ms": 1,
+   "result": "OEF worker HTTP 200 (not JSON)",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "garbage",
+   "ms": 1,
+   "result": "OEF worker: no HTTP answer",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "array",
+   "ms": 0,
+   "result": "OEF worker HTTP 200 (not JSON)",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "builtin",
+   "mode": "non-loopback url in config",
+   "result": "bad url in OEF bridge config (loopback only)",
+   "ms": 0,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "ok",
+   "ms": 1,
+   "result": "OK",
+   "transport": null,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "refused",
+   "ms": 2006,
+   "result": "OEF worker unreachable",
+   "transport": 1,
+   "requests_seen_by_server": 0,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "backlog",
+   "ms": 3003,
+   "result": "OEF worker timeout",
+   "transport": 1,
+   "requests_seen_by_server": 0,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "silent",
+   "ms": 3004,
+   "result": "OEF worker timeout",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "big",
+   "ms": 8,
+   "result": "OEF worker response too large",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "redirect",
+   "ms": 1,
+   "result": "OEF worker redirect refused",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "html",
+   "ms": 1,
+   "result": "OEF worker HTTP 200 (not JSON)",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "badjson",
+   "ms": 1,
+   "result": "OEF worker HTTP 200 (malformed JSON)",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "garbage",
+   "ms": 1,
+   "result": "OEF worker unreachable",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "array",
+   "ms": 1,
+   "result": "OEF worker HTTP 200 (malformed JSON)",
+   "transport": 1,
+   "requests_seen_by_server": 1,
+   "pass": true
+  },
+  {
+   "client": "tiny",
+   "mode": "non-loopback url in config",
+   "result": "bad url in OEF bridge config (loopback only)",
+   "ms": 0,
+   "pass": true
+  }
+ ],
+ "safe": [
+  {
+   "client": "builtin",
+   "inside_safe": true,
+   "result": "OK",
+   "ms": 5
+  },
+  {
+   "client": "tiny",
+   "inside_safe": true,
+   "result": {
+    "error": "OEF bridge HTTP::Tiny: Can't locate object method \"new\" via package \"HTTP::Tiny::Handle\" (perhaps you forgot to load \"HTTP::Tiny::Handle\"?) at ",
+    "ok": 0,
+    "transport": 1
+   },
+   "ms": 4
+  }
+ ],
+ "builtin_request_head": [
+  "POST /oef/render HTTP/1.0",
+  "Host: 127.0.0.1:3031",
+  "Content-Type: application/json",
+  "Content-Length: 75",
+  "Connection: close"
+ ],
+ "builtin_no_keepalive": true,
+ "tiny_works_inside_safe": false,
+ "builtin_works_inside_safe": true,
+ "builtin_all_cases_pass": true,
+ "chosen_client": "builtin",
+ "pass": true
+}

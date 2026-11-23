@@ -1,0 +1,29 @@
+{
+ "cycles": 50,
+ "sequential": true,
+ "view_ms": {
+  "p50": 251,
+  "p95": 300,
+  "max": 351
+ },
+ "submit_ms": {
+  "p50": 258,
+  "p95": 312,
+  "max": 314
+ },
+ "cycle_ms": {
+  "p50": 501,
+  "p95": 590
+ },
+ "right_answers_scored_100": "50/50",
+ "worker_rss_kb": [
+  94976,
+  95016
+ ],
+ "wims_sessions": [
+  998,
+  998
+ ],
+ "load_test_1000": "NOT RUN (owner rule: no load tests)",
+ "pass": true
+}

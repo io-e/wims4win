@@ -1,0 +1,279 @@
+[
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "approx",
+  "steps_src": false,
+  "types": [
+   "set"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "decimal2rat",
+  "steps_src": false,
+  "types": [
+   "numexp"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "decimal2rat0",
+  "steps_src": false,
+  "types": [],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "decimal2rat2",
+  "steps_src": false,
+  "types": [
+   "numexp"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "decimal2rat3",
+  "steps_src": false,
+  "types": [],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "decprod",
+  "steps_src": false,
+  "types": [
+   "set"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "findrational",
+  "steps_src": false,
+  "types": [
+   "rational"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "perdecimal1",
+  "steps_src": false,
+  "types": [
+   "nocase"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ],
+   [
+    "reply2",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true,
+   "reply2": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "perdecimal2",
+  "steps_src": false,
+  "types": [
+   "nocase"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ],
+   [
+    "reply2",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true,
+   "reply2": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "perdecimal3",
+  "steps_src": false,
+  "types": [],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "perden",
+  "steps_src": false,
+  "types": [
+   "menu"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "menu"
+   ]
+  ],
+  "error": null,
+  "oracle": {}
+ },
+ {
+  "module": "U2/arithmetic/oefrational.fr",
+  "exo": "ratapprox",
+  "steps_src": true,
+  "types": [],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true,
+   "reply2": true
+  }
+ }
+]

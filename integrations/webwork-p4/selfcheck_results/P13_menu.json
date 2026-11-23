@@ -1,0 +1,114 @@
+{
+ "items": [
+  {
+   "user": "stud1",
+   "seed": 2539,
+   "case": "wrong/wrong",
+   "primes": [
+    11,
+    41,
+    137,
+    271
+   ],
+   "period_oracle": 40,
+   "render_ok": true,
+   "choices_shown_in_webwork": [
+    "multiple",
+    "diviseur"
+   ],
+   "blanks": 2,
+   "worker_score": 0,
+   "worker_per_field": [
+    [
+     "reply1",
+     0
+    ],
+    [
+     "reply2",
+     0
+    ]
+   ],
+   "ww_status_last": 0.0,
+   "past_answer_scores": "00",
+   "leak_in_view": false,
+   "period_in_native_statement": false,
+   "correct_answer_cells": [],
+   "pass": true
+  },
+  {
+   "user": "stud1",
+   "seed": 2539,
+   "case": "wrong menu/right period",
+   "primes": [
+    11,
+    41,
+    137,
+    271
+   ],
+   "period_oracle": 40,
+   "render_ok": true,
+   "choices_shown_in_webwork": [
+    "multiple",
+    "diviseur"
+   ],
+   "blanks": 2,
+   "worker_score": 0.25,
+   "worker_per_field": [
+    [
+     "reply1",
+     0
+    ],
+    [
+     "reply2",
+     1
+    ]
+   ],
+   "ww_status_last": null,
+   "past_answer_scores": "01",
+   "leak_in_view": false,
+   "period_in_native_statement": false,
+   "correct_answer_cells": [],
+   "pass": true
+  },
+  {
+   "user": "stud2",
+   "seed": 2088,
+   "case": "right/right",
+   "primes": [
+    41,
+    101,
+    101
+   ],
+   "period_oracle": 2020,
+   "render_ok": true,
+   "choices_shown_in_webwork": [
+    "multiple",
+    "diviseur"
+   ],
+   "blanks": 2,
+   "worker_score": 1,
+   "worker_per_field": [
+    [
+     "reply1",
+     1
+    ],
+    [
+     "reply2",
+     1
+    ]
+   ],
+   "ww_status_last": 1.0,
+   "past_answer_scores": "11",
+   "leak_in_view": false,
+   "period_in_native_statement": false,
+   "correct_answer_cells": [],
+   "pass": true
+  }
+ ],
+ "status_final": {
+  "stud1": 0.5,
+  "stud2": 1.0
+ },
+ "pass": true,
+ "note": "WeBWorK status = best of the per-blank averages; the menu is shown as WeBWorK radio buttons."
+}

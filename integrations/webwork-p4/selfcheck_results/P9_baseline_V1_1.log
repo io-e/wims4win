@@ -1,0 +1,19 @@
+Grade_Baseline: WW_COURSES=/workspace/mw-p4-20261123/ww/courses WEBWORK_ROOT=/workspace/mw-p4-20261123/ww/src PG_ROOT=/workspace/mw-p4-20261123/ww/src/pg
+50/530
+100/530
+150/530
+200/530
+250/530
+300/530
+350/530
+400/530
+450/530
+500/530
+530/530
+summary {"PASS": 450, "RENDER_ERR": 30, "SELF_FAIL": 50}
+rows 530 vs baseline 530; differing 0
+
+real	9m20.282s
+user	2m27.622s
+sys	0m8.191s
+exit 0

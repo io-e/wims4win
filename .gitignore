@@ -37,3 +37,17 @@ Thumbs.db
 gpwin/
 octwin/
 cas/
+
+# GROK_V1 P4 (integrations/webwork-p4): secrets, generated config and run outputs are never committed
+integrations/webwork-p4/**/secrets/
+integrations/webwork-p4/**/p4_results*/
+integrations/webwork-p4/**/tmp/
+integrations/webwork-p4/**/__pycache__/
+oef_bridge.conf
+oef_token
+wims_p4_token
+wims_p4grok_password
+p4_secret.proc
+localOverrides.conf
+pg_config.yml
+*.sqlite

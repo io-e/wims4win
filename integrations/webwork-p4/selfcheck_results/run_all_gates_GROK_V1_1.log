@@ -1,0 +1,59 @@
+=== gate_P0_P1_GROK_V1.py
+no WIMS call during P1: True [92, 92] [20007, 20007]
+P1 PASS
+=== gate_P1b_bridge_client_GROK_V1.py
+builtin request head: ['POST /oef/render HTTP/1.0', 'Host: 127.0.0.1:3031', 'Content-Type: application/json', 'Content-Length: 75', 'Connection: close']
+chosen client: builtin P1b PASS
+=== gate_P4_grade_GROK_V1.py
+{"user": "stud3", "n": 8, "exo": "perdecimal1", "mode": "partial", "n_blanks": 2, "banner": null, "status": 0.5, "expected_status": 0.5, "pass": true}
+P4 PASS 22/22 classes 57 -> 57
+=== gate_P7_steps_GROK_V1.py
+}
+P7 PASS
+=== gate_P2_noleak_GROK_V1.py
+positive control: [{'n': 1, 'exo': 'antecedant', 'values_found': '1/1'}, {'n': 2, 'exo': 'fnctlin2', 'values_found': '0/0'}, {'n': 3, 'exo': 'image', 'values_found': '1/1'}, {'n': 4, 'exo': 'prob2', 'values_found': '3/3'}, {'n': 5, 'exo': 'ratapprox', 'values_found': '2/2'}, {'n': 6, 'exo': 'approx', 'values_found': '1/1'}, {'n': 7, 'exo': 'decprod', 'values_found': '1/1'}, {'n': 8, 'exo': 'perdecimal1', 'values_found': '2/2'}, {'n': 9, 'exo': 'decimal2rat0', 'values_found': '1/1'}, {'n': 10, 'exo': 'perdecimal2', 'values_found': '2/2'}] True
+P2 PASS
+=== gate_P3_seed_GROK_V1.py
+{'n': 10, 'exo': 'perdecimal2', 'seed': 1692, 'session_a': 'f4d2daa88ac77489', 'session_b': 'f4d2daa88ac77489', 'worker_1': '60189f9c42cd3b54', 'worker_2': '60189f9c42cd3b54', 'reseeded': 9611, 'after_reseed': '2fdcf6deb28cbd59', 'restored': 'f4d2daa88ac77489', 'same_seed_same': True, 'reseed_changes': True, 'restore_same': True, 'valid_pages': True, 'pass': True}
+P3 PASS
+=== gate_P6_comma_GROK_V1.py
+{'case': 'stud3 problem 4, all answers with decimal commas', 'status': 1.0, 'pass': True}
+P6 PASS
+=== gate_P8_hardcopy_GROK_V1.py
+{"who": "p4prof_for_stud1", "http": 200, "content_type": "application/pdf", "is_pdf": true, "bytes": 49327, "problems": [{"n": 1, "exo": "antecedant", "statement_key_words": ["Soit", "fonction", "linéaire", "coefficient"], "statement_present": true, "expected_found": [], "visible_in_statement": [], "not_judged_1char": [], "math_numbers": ["21", "7"], "math_numbers_missing": [], "figure_placeholder": false}, {"n": 2, "exo": "fnctlin2", "statement_key_words": ["L'image", "fonction", "l'image", "peut"], "statement_present": true, "expected_found": [], "visible_in_statement": [], "not_judged_1char": [], "math_numbers": ["17", "171", "19", "4", "68", "9"], "math_numbers_missing": [], "figure_placeholder": false}, {"n": 3, "exo": "image", "statement_key_words": ["Soit", "fonction", "linéaire", "coefficient"], "statement_present": true, "expected_found": [], "visible_in_statement": [], "not_judged_1char": [], "math_numbers": ["30", "6"], "math_numbers_missing": [], "figure_placeholder": false}, {"n": 4, "exo": "prob2", "statement_key_words": ["magasin", "offre", "réduction", "tous"], "statement_present": true, "expected_found": [], "visible_in_statement": [], "not_judged_1char": [], "math_numbers": [], "math_numbers_missing": [], "figure_placeholder": false}, {"n": 5, "exo": "ratapprox", "statement_key_words": ["Avec", "quelle", "précision", "minimale"], "statement_present": true, "expected_found": [], "visible_in_statement": [], "not_judged_1char": ["reply1"], "math_numbers": ["907
+P8 PASS
+=== gate_P13_menu_GROK_V1_1.py
+final status {'stud1': 0.5, 'stud2': 1.0}
+P13 PASS
+=== gate_P10c_session_cleanup_GROK_V1_1.py --baseline
+{"t": 1795435939.6466193, "sessions": 977, "wimslogd_pid": 497946}
+P10c baseline recorded (PASS)
+=== gate_P10_functional50_GROK_V1.py
+}
+P10 (50 sequential cycles) PASS | 1,000-cycle load test NOT RUN (owner rule: no load tests)
+=== gate_P10c_session_cleanup_GROK_V1_1.py
+{"baseline_before_P10": 977, "right_after_P10": 998, "final": 895, "seconds_waited": 100, "trace_s_count": [[0, 998], [100, 895]], "wimslogd_pid": 497946, "pass": true}
+P10c PASS
+=== gate_P10b_recycling_GROK_V1.py
+{"max_requests": 5, "calls": 23, "http_codes": [200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200], "ms": [44, 18, 23, 15, 24, 16, 48, 16, 17, 27, 17, 44, 17, 15, 30, 18, 26, 16, 44, 17, 18, 28, 16], "distinct_worker_pids": 10, "no_client_retry": true, "pass": true}
+P10b PASS
+=== gate_P5_worker_down_GROK_V1.py
+restart case pass: True
+P5 PASS
+=== gate_P5b_no_score_when_down_GROK_V1_1.py
+unlimited: True down: True control: [{'n': 1, 'exo': 'antecedant', 'banner': None, 'status': 1.0, 'message': False}, {'n': 4, 'exo': 'prob2', 'banner': None, 'status': 1.0, 'message': False}]
+P5b PASS
+=== gate_P11_wims_hardening_GROK_V1.py
+PASS adm/raw sessions holding the password removed (10 folders), files still holding it: 0 :: 
+P11 PASS 27/27
+=== gate_P12_wims_auth_GROK_V1_1.py
+PASS WIMS bound to 127.0.0.1 only {'addrs': ['127.0.0.1:8892']}
+P12 PASS
+=== gate_P14_no_secret_in_logs_GROK_V1_1.py
+{"secrets_checked": ["mariadb_webworkWrite_password", "mojolicious_secret", "oef_token", "wims_p4_token", "wims_p4grok_password", "ww_admin_password", "ww_prof_password", "ww_student_password"], "log_files_scanned": 157, "log_files_scanned_bytes": 8112248, "files_containing_secret_logs": {"wims_p4grok_password": 0, "wims_p4_token": 0, "oef_token": 0, "mojolicious_secret": 0, "mariadb_webworkWrite_password": 0, "ww_admin_password": 0, "ww_prof_password": 0, "ww_student_password": 0}, "session_files_scanned": 1884, "files_containing_secret_sessions": {"wims_p4grok_password": 0, "wims_p4_token": 0, "oef_token": 0, "mojolicious_secret": 0, "mariadb_webworkWrite_password": 0, "ww_admin_password": 0, "ww_prof_password": 0, "ww_student_password": 0}, "positive_control_token_found_in_log/p4_auth/p4_secret.proc": 1, "pass": true}
+P14 PASS
+run_all exit 0
+
+real	4m42.567s
+user	0m6.791s
+sys	0m1.856s

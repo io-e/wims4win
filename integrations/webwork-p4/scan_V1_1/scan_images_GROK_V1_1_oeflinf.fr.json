@@ -1,0 +1,398 @@
+[
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "CORequa3",
+  "steps_src": false,
+  "types": [
+   "correspond"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "CORequa4",
+  "steps_src": false,
+  "types": [
+   "correspond"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "CORequa5",
+  "steps_src": false,
+  "types": [
+   "correspond"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "CORfonct3",
+  "steps_src": false,
+  "types": [
+   "correspond"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "CORfonct4",
+  "steps_src": false,
+  "types": [
+   "correspond"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "CORfonct5",
+  "steps_src": false,
+  "types": [
+   "correspond"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "antecedant",
+  "steps_src": false,
+  "types": [
+   "numexp"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "classer1",
+  "steps_src": false,
+  "types": [
+   "clickfill"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "classer2",
+  "steps_src": false,
+  "types": [
+   "clickfill"
+  ],
+  "imgs": [
+   2,
+   2,
+   2
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "fnctlin1",
+  "steps_src": false,
+  "types": [
+   "auto"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "fnctlin2",
+  "steps_src": false,
+  "types": [],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "choice1",
+    "radio"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "choice1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "graph-ant",
+  "steps_src": false,
+  "types": [
+   "range"
+  ],
+  "imgs": [],
+  "fields": null,
+  "error": "bad exo name",
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "graph-fnct",
+  "steps_src": false,
+  "types": [
+   "auto"
+  ],
+  "imgs": [],
+  "fields": null,
+  "error": "bad exo name",
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "graph-img",
+  "steps_src": false,
+  "types": [
+   "range"
+  ],
+  "imgs": [],
+  "fields": null,
+  "error": "bad exo name",
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "image",
+  "steps_src": false,
+  "types": [
+   "numexp"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "img-ant",
+  "steps_src": false,
+  "types": [
+   "numexp"
+  ],
+  "imgs": [],
+  "fields": null,
+  "error": "bad exo name",
+  "oracle": {
+   "reply1": true
+  }
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "prob1",
+  "steps_src": false,
+  "types": [
+   "algexp",
+   "auto",
+   "units"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ],
+   [
+    "reply2",
+    "text"
+   ],
+   [
+    "reply3",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {}
+ },
+ {
+  "module": "H3/analysis/oeflinf.fr",
+  "exo": "prob2",
+  "steps_src": false,
+  "types": [
+   "algexp",
+   "numexp",
+   "numexp"
+  ],
+  "imgs": [
+   0,
+   0,
+   0
+  ],
+  "fields": [
+   [
+    "reply1",
+    "text"
+   ],
+   [
+    "reply2",
+    "text"
+   ],
+   [
+    "reply3",
+    "text"
+   ]
+  ],
+  "error": null,
+  "oracle": {
+   "reply1": true,
+   "reply2": true,
+   "reply3": true
+  }
+ }
+]

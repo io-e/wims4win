@@ -1,0 +1,18 @@
+{
+ "baseline_before_P10": 977,
+ "right_after_P10": 998,
+ "final": 895,
+ "seconds_waited": 100,
+ "trace_s_count": [
+  [
+   0,
+   998
+  ],
+  [
+   100,
+   895
+  ]
+ ],
+ "wimslogd_pid": 497946,
+ "pass": true
+}

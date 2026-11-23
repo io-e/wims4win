@@ -1,0 +1,15 @@
+assignmentType = default
+openDate          = 11/01/2026 at 12:00am CET
+reducedScoringDate =
+dueDate           = 11/01/2027 at 12:00am CET
+answerDate        = 11/02/2027 at 12:00am CET
+paperHeaderFile   =
+screenHeaderFile  =
+description = GROK_V1_1 P4 test set (gate P13, not part of the pilot): OEF drop-down menu field
+
+problemListV2
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/perden.pg
+value = 1
+max_attempts = -1
+problem_end

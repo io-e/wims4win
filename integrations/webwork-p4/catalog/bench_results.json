@@ -1,0 +1,169 @@
+{
+ "list_cold_ms": 1787,
+ "list_bytes": 28817093,
+ "list_warm_ms_median": 346,
+ "client": {
+  "parse_ms": 263.6,
+  "items": 84250,
+  "filters": {
+   "derivative chain rule": {
+    "hits": 167,
+    "ms": 60.5
+   },
+   "binomial probability": {
+    "hits": 21,
+    "ms": 43.1
+   },
+   "integration by parts": {
+    "hits": 10,
+    "ms": 14.4
+   },
+   "eigenvalue matrix": {
+    "hits": 0,
+    "ms": 10.5
+   },
+   "limit": {
+    "hits": 1157,
+    "ms": 9.9
+   },
+   "fraction": {
+    "hits": 1400,
+    "ms": 8.5
+   },
+   "intégrale": {
+    "hits": 27,
+    "ms": 9.7
+   },
+   "vecteur": {
+    "hits": 17,
+    "ms": 8.3
+   },
+   "verrerie": {
+    "hits": 2,
+    "ms": 8.3
+   },
+   "deriv": {
+    "hits": 3167,
+    "ms": 8.9
+   }
+  }
+ },
+ "search": {
+  "derivative chain rule": {
+   "total": 561,
+   "by_type": {
+    "pg": 561
+   },
+   "http_ms_median": 7.8,
+   "server_ms": 5.3,
+   "bytes": 24663,
+   "top": "The Chain Rule"
+  },
+  "binomial probability": {
+   "total": 247,
+   "by_type": {
+    "oef": 71,
+    "pg": 176
+   },
+   "http_ms_median": 3.6,
+   "server_ms": 2.6,
+   "bytes": 23710,
+   "top": "Apply the Binomial Distribution"
+  },
+  "integration by parts": {
+   "total": 279,
+   "by_type": {
+    "pg": 279
+   },
+   "http_ms_median": 4.9,
+   "server_ms": 3.5,
+   "bytes": 26291,
+   "top": "Definite Integration by Parts"
+  },
+  "eigenvalue matrix": {
+   "total": 64,
+   "by_type": {
+    "pg": 64
+   },
+   "http_ms_median": 2.5,
+   "server_ms": 1.5,
+   "bytes": 26469,
+   "top": "Compute the eigenvalues of a 2x2 matrix."
+  },
+  "limit": {
+   "total": 2424,
+   "by_type": {
+    "oef": 213,
+    "pg": 2211
+   },
+   "http_ms_median": 7.3,
+   "server_ms": 6.5,
+   "bytes": 23169,
+   "top": "Trig-limit-01"
+  },
+  "fraction": {
+   "total": 4974,
+   "by_type": {
+    "oef": 1622,
+    "pg": 3352
+   },
+   "http_ms_median": 11.6,
+   "server_ms": 11.3,
+   "bytes": 21019,
+   "top": "N15 ★ Encadrer une fraction"
+  },
+  "intégrale": {
+   "total": 113,
+   "by_type": {
+    "oef": 113
+   },
+   "http_ms_median": 1.9,
+   "server_ms": 1,
+   "bytes": 22815,
+   "top": "Intégrale impropre avec ln"
+  },
+  "vecteur": {
+   "total": 242,
+   "by_type": {
+    "oef": 242
+   },
+   "http_ms_median": 2.2,
+   "server_ms": 1.7,
+   "bytes": 23849,
+   "top": "04. Représenter un vecteur égal à un vecteur donné"
+  },
+  "verrerie": {
+   "total": 4,
+   "by_type": {
+    "oef": 4
+   },
+   "http_ms_median": 1.2,
+   "server_ms": 0.6,
+   "bytes": 2065,
+   "top": "Ecrire le nom d'un matériel de verrerie"
+  },
+  "deriv": {
+   "total": 6014,
+   "by_type": {
+    "oef": 522,
+    "pg": 5492
+   },
+   "http_ms_median": 12.9,
+   "server_ms": 11.6,
+   "bytes": 23329,
+   "top": "Higher Derivatives"
+  },
+  "type=oef q=fraction": {
+   "http_ms_median": 10.0,
+   "total": 1622
+  },
+  "no q page 100": {
+   "http_ms_median": 4.8,
+   "total": 84254
+  },
+  "folder filter": {
+   "http_ms_median": 6.4,
+   "total": 767
+  }
+ }
+}

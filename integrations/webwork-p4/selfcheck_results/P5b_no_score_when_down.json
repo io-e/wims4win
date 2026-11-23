@@ -1,0 +1,238 @@
+{
+ "worker_down_during_test": true,
+ "message_on_view_while_down": true,
+ "unlimited_attempts": true,
+ "max_attempts_global": [
+  {
+   "problem_id": "8",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "7",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "6",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "5",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "4",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "3",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "2",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "1",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "9",
+   "max_attempts": "-1"
+  },
+  {
+   "problem_id": "10",
+   "max_attempts": "-1"
+  }
+ ],
+ "items": [
+  {
+   "n": 1,
+   "exo": "antecedant",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 2,
+   "exo": "fnctlin2",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 3,
+   "exo": "image",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 4,
+   "exo": "prob2",
+   "blanks": 3,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "000"
+   ],
+   "pass": true
+  },
+  {
+   "n": 5,
+   "exo": "ratapprox",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 6,
+   "exo": "approx",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 7,
+   "exo": "decprod",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 8,
+   "exo": "perdecimal1",
+   "blanks": 2,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "00"
+   ],
+   "pass": true
+  },
+  {
+   "n": 9,
+   "exo": "decimal2rat0",
+   "blanks": 1,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "0"
+   ],
+   "pass": true
+  },
+  {
+   "n": 10,
+   "exo": "perdecimal2",
+   "blanks": 2,
+   "message_submit": true,
+   "banner": null,
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1,
+   "past_answer_scores": [
+    "00"
+   ],
+   "pass": true
+  }
+ ],
+ "second_outage_attempt": {
+  "n": 1,
+  "blanks_on_view_while_down": 1,
+  "message": true,
+  "num_incorrect_after_1st": 1,
+  "num_incorrect_after_2nd": 2,
+  "past_answer_rows_after_2nd": 2,
+  "scores": [
+   "0",
+   "0"
+  ],
+  "status": 0.0
+ },
+ "second_ok": true,
+ "teacher_view": {
+  "past_answers_page_http": 200,
+  "past_answers_page_rows_problem1": [
+   "incorrect",
+   "incorrect",
+   "correct"
+  ],
+  "past_answer_rows_problem1": 3,
+  "problem_user_problem1_after_control": {
+   "status": "1",
+   "num_correct": "1",
+   "num_incorrect": "2",
+   "attempted": "1"
+  },
+  "reading": "past answers page: one row per attempt with the typed answer; outage attempts are marked incorrect (red) even when the typed answer is right, with no outage note; num_incorrect counts them; the final status is the best score (1.0 after the worker came back)"
+ },
+ "control_after_restart": [
+  {
+   "n": 1,
+   "exo": "antecedant",
+   "banner": null,
+   "status": 1.0,
+   "message": false
+  },
+  {
+   "n": 4,
+   "exo": "prob2",
+   "banner": null,
+   "status": 1.0,
+   "message": false
+  }
+ ],
+ "control_ok": true,
+ "pass": true,
+ "note": "WeBWorK still counts each outage submission as an attempt (num_incorrect +1, score 0): unlimited attempts make it harmless; WeBWorK cannot cancel an attempt without a webwork2 patch."
+}

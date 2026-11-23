@@ -1,0 +1,8 @@
+# GROK_V1 P4 OEF bridge site config, read once by WeBWorK::OEFBridge at module load (outside Safe).
+# Its path is given to the webwork2 process by the environment variable OEF_BRIDGE_CONF.
+# Keep the real file in a chmod-600 secrets dir; never in a course, never in the archive.
+url=http://127.0.0.1:3003
+token_file=/ABSOLUTE/PATH/TO/secrets/oef_token
+connect_timeout=2
+read_timeout=15
+# http_client=builtin (default; works inside Safe) | tiny (HTTP::Tiny; dies inside Safe, see gate P1b)

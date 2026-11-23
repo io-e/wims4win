@@ -1,0 +1,493 @@
+{
+ "runs": [
+  {
+   "who": "stud1",
+   "http": 200,
+   "content_type": "application/pdf",
+   "is_pdf": true,
+   "bytes": 49326,
+   "problems": [
+    {
+     "n": 1,
+     "exo": "antecedant",
+     "statement_key_words": [
+      "Soit",
+      "fonction",
+      "linéaire",
+      "coefficient"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "21",
+      "7"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 2,
+     "exo": "fnctlin2",
+     "statement_key_words": [
+      "L'image",
+      "fonction",
+      "l'image",
+      "peut"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "17",
+      "171",
+      "19",
+      "4",
+      "68",
+      "9"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 3,
+     "exo": "image",
+     "statement_key_words": [
+      "Soit",
+      "fonction",
+      "linéaire",
+      "coefficient"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "30",
+      "6"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 4,
+     "exo": "prob2",
+     "statement_key_words": [
+      "magasin",
+      "offre",
+      "réduction",
+      "tous"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 5,
+     "exo": "ratapprox",
+     "statement_key_words": [
+      "Avec",
+      "quelle",
+      "précision",
+      "minimale"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [
+      "reply1"
+     ],
+     "math_numbers": [
+      "907"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 6,
+     "exo": "approx",
+     "statement_key_words": [
+      "valeur",
+      "approchée",
+      "défaut",
+      "fraction"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "0.2033",
+      "10",
+      "4",
+      "477"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 7,
+     "exo": "decprod",
+     "statement_key_words": [
+      "Trouver",
+      "tous",
+      "nombres",
+      "décimaux"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "16940"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 8,
+     "exo": "perdecimal1",
+     "statement_key_words": [
+      "Calculer",
+      "période",
+      "développement",
+      "décimal"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "0.0103092783505154639",
+      "1",
+      "10",
+      "14",
+      "21",
+      "28",
+      "35",
+      "42",
+      "49",
+      "56",
+      "63",
+      "7",
+      "70",
+      "97"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 9,
+     "exo": "decimal2rat0",
+     "statement_key_words": [
+      "Voici",
+      "développement",
+      "décimal",
+      "infini"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [
+      "reply1"
+     ],
+     "math_numbers": [
+      "10",
+      "3152684968496849",
+      "4"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 10,
+     "exo": "perdecimal2",
+     "statement_key_words": [
+      "Calculer",
+      "période",
+      "développement",
+      "décimal"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "0.000413393964448119058",
+      "1",
+      "10",
+      "14",
+      "21",
+      "2419",
+      "28",
+      "35",
+      "42",
+      "49",
+      "56",
+      "63",
+      "7",
+      "70"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    }
+   ],
+   "pdf_pages": 2,
+   "acroform_fields": 0,
+   "oef_error_in_pdf": false,
+   "figure_anywhere": false,
+   "pass": true
+  },
+  {
+   "who": "p4prof_for_stud1",
+   "http": 200,
+   "content_type": "application/pdf",
+   "is_pdf": true,
+   "bytes": 49327,
+   "problems": [
+    {
+     "n": 1,
+     "exo": "antecedant",
+     "statement_key_words": [
+      "Soit",
+      "fonction",
+      "linéaire",
+      "coefficient"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "21",
+      "7"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 2,
+     "exo": "fnctlin2",
+     "statement_key_words": [
+      "L'image",
+      "fonction",
+      "l'image",
+      "peut"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "17",
+      "171",
+      "19",
+      "4",
+      "68",
+      "9"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 3,
+     "exo": "image",
+     "statement_key_words": [
+      "Soit",
+      "fonction",
+      "linéaire",
+      "coefficient"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "30",
+      "6"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 4,
+     "exo": "prob2",
+     "statement_key_words": [
+      "magasin",
+      "offre",
+      "réduction",
+      "tous"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 5,
+     "exo": "ratapprox",
+     "statement_key_words": [
+      "Avec",
+      "quelle",
+      "précision",
+      "minimale"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [
+      "reply1"
+     ],
+     "math_numbers": [
+      "907"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 6,
+     "exo": "approx",
+     "statement_key_words": [
+      "valeur",
+      "approchée",
+      "défaut",
+      "fraction"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "0.2033",
+      "10",
+      "4",
+      "477"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 7,
+     "exo": "decprod",
+     "statement_key_words": [
+      "Trouver",
+      "tous",
+      "nombres",
+      "décimaux"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "16940"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 8,
+     "exo": "perdecimal1",
+     "statement_key_words": [
+      "Calculer",
+      "période",
+      "développement",
+      "décimal"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "0.0103092783505154639",
+      "1",
+      "10",
+      "14",
+      "21",
+      "28",
+      "35",
+      "42",
+      "49",
+      "56",
+      "63",
+      "7",
+      "70",
+      "97"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 9,
+     "exo": "decimal2rat0",
+     "statement_key_words": [
+      "Voici",
+      "développement",
+      "décimal",
+      "infini"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [
+      "reply1"
+     ],
+     "math_numbers": [
+      "10",
+      "3152684968496849",
+      "4"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    },
+    {
+     "n": 10,
+     "exo": "perdecimal2",
+     "statement_key_words": [
+      "Calculer",
+      "période",
+      "développement",
+      "décimal"
+     ],
+     "statement_present": true,
+     "expected_found": [],
+     "visible_in_statement": [],
+     "not_judged_1char": [],
+     "math_numbers": [
+      "0.000413393964448119058",
+      "1",
+      "10",
+      "14",
+      "21",
+      "2419",
+      "28",
+      "35",
+      "42",
+      "49",
+      "56",
+      "63",
+      "7",
+      "70"
+     ],
+     "math_numbers_missing": [],
+     "figure_placeholder": false
+    }
+   ],
+   "pdf_pages": 2,
+   "acroform_fields": 0,
+   "oef_error_in_pdf": false,
+   "figure_anywhere": false,
+   "pass": true
+  }
+ ],
+ "pass": true
+}

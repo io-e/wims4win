@@ -1,0 +1,73 @@
+{
+ "cases": [
+  {
+   "case": "view while up, worker stopped before submit (connection refused)",
+   "http": 200,
+   "ms": 2210,
+   "blanks_in_view": 1,
+   "view_message": [],
+   "submit_message": [
+    "Service de correction indisponible / grading service unavailable"
+   ],
+   "typed_kept": true,
+   "pg_warning_block": true,
+   "error_flag_seen": true,
+   "exception": false,
+   "result_line": "Résultat pour cette tentative : 0%",
+   "status_db": "1",
+   "pass": true
+  },
+  {
+   "case": "view and submit while worker stopped",
+   "http": 200,
+   "ms": 2215,
+   "blanks_in_view": 1,
+   "view_message": [
+    "Service de correction indisponible / grading service unavailable"
+   ],
+   "submit_message": [
+    "Service de correction indisponible / grading service unavailable"
+   ],
+   "typed_kept": true,
+   "pg_warning_block": true,
+   "error_flag_seen": true,
+   "exception": false,
+   "result_line": "Résultat pour cette tentative : 0%",
+   "status_db": "1",
+   "pass": true
+  },
+  {
+   "case": "view while up, worker hung before submit (accepts, never answers)",
+   "http": 200,
+   "ms": 15232,
+   "blanks_in_view": 1,
+   "view_message": [],
+   "submit_message": [
+    "Service de correction indisponible / grading service unavailable"
+   ],
+   "typed_kept": true,
+   "pg_warning_block": true,
+   "error_flag_seen": true,
+   "exception": false,
+   "result_line": "Résultat pour cette tentative : 0%",
+   "status_db": "1",
+   "pass": true
+  },
+  {
+   "case": "worker restarted (normal again, wrong answer 5 -> 0 %, no error message)",
+   "http": 200,
+   "ms": 266,
+   "blanks_in_view": 1,
+   "view_message": [],
+   "submit_message": [],
+   "typed_kept": true,
+   "pg_warning_block": false,
+   "error_flag_seen": false,
+   "exception": false,
+   "result_line": "Résultat pour cette tentative : 0%",
+   "status_db": "1",
+   "pass": true
+  }
+ ],
+ "pass": true
+}

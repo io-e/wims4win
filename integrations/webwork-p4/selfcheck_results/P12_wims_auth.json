@@ -1,0 +1,133 @@
+{
+ "cases": [
+  {
+   "case": "p4render without token",
+   "pass": true,
+   "http": 200,
+   "redirect": false
+  },
+  {
+   "case": "p4render empty token",
+   "pass": true,
+   "http": 200,
+   "redirect": false
+  },
+  {
+   "case": "p4render wrong token (same length)",
+   "pass": true,
+   "http": 200,
+   "redirect": false
+  },
+  {
+   "case": "p4render truncated token",
+   "pass": true,
+   "http": 200,
+   "redirect": false
+  },
+  {
+   "case": "p4render upper-case token",
+   "pass": true,
+   "http": 200,
+   "redirect": false
+  },
+  {
+   "case": "p4render token + 1 char",
+   "pass": true,
+   "http": 200,
+   "redirect": false
+  },
+  {
+   "case": "p4render GET with wrong token",
+   "pass": true,
+   "http": 200
+  },
+  {
+   "case": "p4render with token, emod=adm/raw",
+   "pass": true,
+   "http": 200
+  },
+  {
+   "case": "p4render with token -> 302 to the exercise, session marked",
+   "pass": true,
+   "http": 302
+  },
+  {
+   "case": "p4_json in a lightpopup session -> auth error only",
+   "pass": true,
+   "block": "{\"p4\":1,\"error\":\"auth\"}"
+  },
+  {
+   "case": "p4_json in a direct module session -> auth error only",
+   "pass": true,
+   "block": "{\"p4\":1,\"error\":\"auth\"}"
+  },
+  {
+   "case": "p4_json with forged wims_p4_auth=yes -> auth error only",
+   "pass": true,
+   "block": "{\"p4\":1,\"error\":\"auth\"}"
+  },
+  {
+   "case": "p4_json in the p4render session -> grading JSON (right answer 1)",
+   "pass": true,
+   "block_keys": [
+    "done",
+    "error",
+    "feedback",
+    "grade",
+    "kind",
+    "p4",
+    "per_field",
+    "seed",
+    "step",
+    "steps"
+   ]
+  },
+  {
+   "case": "worker with token: right 1 / wrong 0",
+   "pass": true,
+   "scores": [
+    1,
+    0
+   ]
+  },
+  {
+   "case": "normal: lightpopup still opens an OEF exercise",
+   "pass": true,
+   "http": [
+    302,
+    200
+   ]
+  },
+  {
+   "case": "normal: anonymous exercise new + reply (normal feedback page, no P4 block)",
+   "pass": true,
+   "http": [
+    200,
+    200
+   ]
+  },
+  {
+   "case": "normal: adm/raw listmodules (no-auth job)",
+   "pass": true,
+   "http": 200
+  },
+  {
+   "case": "normal: home page",
+   "pass": true,
+   "http": 200
+  },
+  {
+   "case": "normal: tool module wcalc.fr",
+   "pass": true,
+   "http": 200
+  },
+  {
+   "case": "WIMS bound to 127.0.0.1 only",
+   "pass": true,
+   "addrs": [
+    "127.0.0.1:8892"
+   ]
+  }
+ ],
+ "pass": true
+}

@@ -1,0 +1,328 @@
+{
+ "cases": [
+  {
+   "case": "no token",
+   "http": 403,
+   "want": 403,
+   "error": "missing or wrong X-LumaPlus-Token",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad token",
+   "http": 403,
+   "want": 403,
+   "error": "missing or wrong X-LumaPlus-Token",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad token same length prefix",
+   "http": 403,
+   "want": 403,
+   "error": "missing or wrong X-LumaPlus-Token",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad Host",
+   "http": 403,
+   "want": 403,
+   "error": "bad Host",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad Host localhost alias",
+   "http": 403,
+   "want": 403,
+   "error": "bad Host",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad Origin",
+   "http": 403,
+   "want": 403,
+   "error": "bad Origin",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "non-JSON content type",
+   "http": 415,
+   "want": 415,
+   "error": "Content-Type must be application/json",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "body over 64 KiB",
+   "http": 413,
+   "want": 413,
+   "error": "body larger than 64 KiB",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "JSON not an object",
+   "http": 400,
+   "want": 400,
+   "error": "body must be a JSON object",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "module with ..",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "absolute module",
+   "http": 400,
+   "want": 400,
+   "error": "absolute module path refused",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "module outside roots",
+   "http": 400,
+   "want": 400,
+   "error": "module not in the site allowlist",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module adm/raw",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module adm/raw (check)",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module adm/class",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module home",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module classes/fr",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module tool/wcalc.fr",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 module moduletest",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 area dir H3/analysis (no def/)",
+   "http": 400,
+   "want": 400,
+   "error": "module not in the site allowlist",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 exo without def/<exo>.def",
+   "http": 400,
+   "want": 400,
+   "error": "exercise not found in the module",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 exo name of a module file (INDEX)",
+   "http": 400,
+   "want": 400,
+   "error": "exercise not found in the module",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 OEF module present on disk but not in the site allowlist (H2/algebra/oefcalcul.fr)",
+   "http": 400,
+   "want": 400,
+   "error": "module not in the site allowlist",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 empty module name",
+   "http": 400,
+   "want": 400,
+   "error": "module missing",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 empty exo name",
+   "http": 400,
+   "want": 400,
+   "error": "bad exo name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 traversal from an allowed module",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 allowed module + trailing slash",
+   "http": 400,
+   "want": 400,
+   "error": "bad module name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 absolute path to an allowed module",
+   "http": 400,
+   "want": 400,
+   "error": "absolute module path refused",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "F1 exo without def (check)",
+   "http": 400,
+   "want": 400,
+   "error": "exercise not found in the module",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad exo name (dash)",
+   "http": 400,
+   "want": 400,
+   "error": "bad exo name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad exo name (shell)",
+   "http": 400,
+   "want": 400,
+   "error": "bad exo name",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad seed",
+   "http": 400,
+   "want": 400,
+   "error": "bad seed",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "bad answer key",
+   "http": 400,
+   "want": 400,
+   "error": "bad answer key",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "answer too long",
+   "http": 400,
+   "want": 400,
+   "error": "answer too long",
+   "cors_headers": [],
+   "pass": true
+  },
+  {
+   "case": "unknown path",
+   "http": 404,
+   "want": 404,
+   "error": "not found",
+   "cors_headers": [],
+   "pass": true
+  }
+ ],
+ "listen_refusal": [
+  {
+   "case": "start with OEF_LISTEN=0.0.0.0:3015",
+   "exit": 255,
+   "stderr": "OEF_LISTEN must be a loopback address (127.0.0.1:PORT), got '0.0.0.0:3015'",
+   "pass": true
+  },
+  {
+   "case": "start with non-loopback OEF_WIMS_BASE",
+   "exit": 255,
+   "stderr": "OEF_WIMS_BASE must be a loopback http URL",
+   "pass": true
+  },
+  {
+   "case": "start without OEF_MODULES",
+   "exit": 255,
+   "stderr": "OEF_MODULES (exact allowlist of permitted OEF modules) is required",
+   "pass": true
+  },
+  {
+   "case": "start with adm/raw in OEF_MODULES",
+   "exit": 255,
+   "stderr": "OEF_MODULES: bad module name adm/raw",
+   "pass": true
+  },
+  {
+   "case": "start with ../ in OEF_MODULES",
+   "exit": 255,
+   "stderr": "OEF_MODULES: bad module name H3/../adm/raw",
+   "pass": true
+  }
+ ],
+ "not_listed_module_exists_with_def": true,
+ "wims_calls_worker_counter": [
+  92,
+  92
+ ],
+ "wims_dev_server_log_lines": [
+  20007,
+  20007
+ ],
+ "note": "wims_calls is per worker process (prefork): informative only; the logs are the evidence",
+ "no_wims_call": true,
+ "pass": true
+}

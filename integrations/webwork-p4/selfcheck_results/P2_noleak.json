@@ -1,0 +1,218 @@
+{
+ "items": [
+  {
+   "n": 1,
+   "exo": "antecedant",
+   "seed": 4094,
+   "expected_text_fields": {
+    "reply1": "<redacted len=2>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 2,
+   "exo": "fnctlin2",
+   "seed": 1401,
+   "expected_text_fields": {},
+   "choice_fields": [
+    "choice1"
+   ],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 3,
+   "exo": "image",
+   "seed": 3852,
+   "expected_text_fields": {
+    "reply1": "<redacted len=4>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 4,
+   "exo": "prob2",
+   "seed": 3213,
+   "expected_text_fields": {
+    "reply1": "<redacted len=6>",
+    "reply2": "<redacted len=5>",
+    "reply3": "<redacted len=5>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 5,
+   "exo": "ratapprox",
+   "seed": 1570,
+   "expected_text_fields": {
+    "reply1": "<redacted len=1>",
+    "reply2": "<redacted len=3>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 6,
+   "exo": "approx",
+   "seed": 3843,
+   "expected_text_fields": {
+    "reply1": "<redacted len=2>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 7,
+   "exo": "decprod",
+   "seed": 2576,
+   "expected_text_fields": {
+    "reply1": "<redacted len=26>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 8,
+   "exo": "perdecimal1",
+   "seed": 2169,
+   "expected_text_fields": {
+    "reply1": "<redacted len=2>",
+    "reply2": "<redacted len=3>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 9,
+   "exo": "decimal2rat0",
+   "seed": 4655,
+   "expected_text_fields": {
+    "reply1": "<redacted len=1>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  },
+  {
+   "n": 10,
+   "exo": "perdecimal2",
+   "seed": 3012,
+   "expected_text_fields": {
+    "reply1": "<redacted len=3>",
+    "reply2": "<redacted len=3>"
+   },
+   "choice_fields": [],
+   "leaks": {},
+   "visible_in_native_wims_statement": [],
+   "bad_keys": [],
+   "show_correct_has_correct_column": true,
+   "pass": true
+  }
+ ],
+ "positive_control_stud2_past_answer": [
+  {
+   "n": 1,
+   "exo": "antecedant",
+   "values_found": "1/1"
+  },
+  {
+   "n": 2,
+   "exo": "fnctlin2",
+   "values_found": "0/0"
+  },
+  {
+   "n": 3,
+   "exo": "image",
+   "values_found": "1/1"
+  },
+  {
+   "n": 4,
+   "exo": "prob2",
+   "values_found": "3/3"
+  },
+  {
+   "n": 5,
+   "exo": "ratapprox",
+   "values_found": "2/2"
+  },
+  {
+   "n": 6,
+   "exo": "approx",
+   "values_found": "1/1"
+  },
+  {
+   "n": 7,
+   "exo": "decprod",
+   "values_found": "1/1"
+  },
+  {
+   "n": 8,
+   "exo": "perdecimal1",
+   "values_found": "2/2"
+  },
+  {
+   "n": 9,
+   "exo": "decimal2rat0",
+   "values_found": "1/1"
+  },
+  {
+   "n": 10,
+   "exo": "perdecimal2",
+   "values_found": "2/2"
+  }
+ ],
+ "positive_control_ok": true,
+ "secrets_in_logs": {
+  "files_scanned": 157,
+  "files_containing": {
+   "wims_p4grok_password": 0,
+   "wims_p4_token": 0,
+   "oef_token": 0,
+   "mojolicious_secret": 0,
+   "mariadb_webworkWrite_password": 0,
+   "ww_admin_password": 0,
+   "ww_prof_password": 0,
+   "ww_student_password": 0
+  },
+  "pass": true
+ },
+ "past_answers_page_ok": true,
+ "pass": true
+}

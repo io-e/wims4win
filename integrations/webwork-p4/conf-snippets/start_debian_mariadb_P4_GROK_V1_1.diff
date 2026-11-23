@@ -1,0 +1,32 @@
+# GROK_V1_1 P4 proposal for the reference Debian start script (webwork4win-mariadb/start_debian_mariadb.sh).
+# Not applied by this build. Generator-integrated: with P4_GENERATOR=<dir>/Apply_WebWork4Win_Conf_P4_GROK_V1_1.py
+# (the sibling, placed next to Apply_WebWork4Win_Conf_GROK_V1.py) every start regenerates the config WITH the P4
+# lines; without P4_GENERATOR the script behaves as before. Also P4_SITE_LIB in PERL5LIB.
+# Apply in the webwork4win-mariadb dir: patch -p1 < start_debian_mariadb_P4_GROK_V1_1.diff
+--- a/start_debian_mariadb.sh	2026-11-23 12:41:04.660042433 +0100
++++ b/start_debian_mariadb.sh	2026-11-23 12:41:04.672047091 +0100
+@@ -9,7 +9,8 @@
+ SITE_URL="http://127.0.0.1:3000/webwork2/"
+ port_open() { (exec 3<>"/dev/tcp/127.0.0.1/$1") 2>/dev/null; }
+ 
+-python3 "$ROOT/Apply_WebWork4Win_Conf_GROK_V1.py" --links
++# GROK_V1_1 P4: the P4 sibling generator (runs Apply_WebWork4Win_Conf_GROK_V1.py unchanged, plus the P4 lines)
++python3 "${P4_GENERATOR:-$ROOT/Apply_WebWork4Win_Conf_GROK_V1.py}" --links
+ if port_open 3000; then echo "WeBWorK is already running at $SITE_URL"; exit 0; fi
+ port_open 3307 || "$BASE/mariadb/start.sh"
+ port_open 3307 || { echo "MariaDB did not open 127.0.0.1:3307" >&2; exit 1; }
+@@ -17,11 +18,12 @@
+ # Admin = OS user via unix socket. Do not interpolate the password into SQL (V2 / F4).
+ # --create does not rotate an existing password; use Provision_MariaDB_Users_GROK_V2.pl --rotate for that.
+ perl "$ROOT/Provision_MariaDB_Users_GROK_V2.pl" --create --password-file "$BASE/secrets/mariadb_webworkWrite_password" --socket "$BASE/mariadb/mariadb.sock"
+-python3 "$ROOT/Apply_WebWork4Win_Conf_GROK_V1.py"
++python3 "${P4_GENERATOR:-$ROOT/Apply_WebWork4Win_Conf_GROK_V1.py}"
+ for H in "$SRC/htdocs" "$SRC/pg/htdocs"; do
+ 	if [ ! -d "$H/node_modules" ] || [ ! -f "$H/static-assets.json" ]; then (cd "$H" && npm ci); fi
+ done
+-export PERL5LIB="$ROOT/lib:$SRC/lib:$SRC/pg/lib"
++# GROK_V1_1 P4: P4_SITE_LIB = dir holding WeBWorK/OEFBridge.pm; OEF_BRIDGE_CONF is inherited from the caller
++export PERL5LIB="${P4_SITE_LIB:+$P4_SITE_LIB:}$ROOT/lib:$SRC/lib:$SRC/pg/lib"
+ PERL5OPT=""; for m in ${WW4WIN_MODULES:-}; do PERL5OPT="$PERL5OPT -MWeBWorK4Win::$m"; done
+ export PERL5OPT="${PERL5OPT# }"; echo "PERL5OPT=${PERL5OPT:-<none>}"
+ perl "$ROOT/Ensure_WebWork_Tables_GROK_V1.pl"

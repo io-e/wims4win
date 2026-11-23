@@ -1,0 +1,60 @@
+assignmentType = default
+openDate          = 11/01/2026 at 12:00am CET
+reducedScoringDate =
+dueDate           = 11/01/2027 at 12:00am CET
+answerDate        = 11/02/2027 at 12:00am CET
+paperHeaderFile   =
+screenHeaderFile  =
+description = GROK_V1 P4 pilot: WIMS OEF exercises graded by WIMS, scores in WeBWorK
+
+problemListV2
+problem_start
+source_file = OEF/H3/analysis/oeflinf.fr/antecedant.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/H3/analysis/oeflinf.fr/fnctlin2.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/H3/analysis/oeflinf.fr/image.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/H3/analysis/oeflinf.fr/prob2.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/ratapprox.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/approx.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/decprod.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/perdecimal1.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/decimal2rat0.pg
+value = 1
+max_attempts = -1
+problem_end
+problem_start
+source_file = OEF/U2/arithmetic/oefrational.fr/perdecimal2.pg
+value = 1
+max_attempts = -1
+problem_end

@@ -1,0 +1,68 @@
+{
+ "webwork": {
+  "right": {
+   "step1_text": [
+    "Étape 2/2 : l&#39;étape précédente est validée, continuez."
+   ],
+   "step1_blanks_after": [
+    "AnSwEr0001",
+    "AnSwEr0002"
+   ],
+   "status": 1.0,
+   "num_correct": 1,
+   "num_incorrect": 1,
+   "past_answers": 2
+  },
+  "wrong": {
+   "status": 0.0,
+   "num_correct": 0,
+   "num_incorrect": 1
+  }
+ },
+ "worker_trace": [
+  {
+   "case": "step 1 only",
+   "done": false,
+   "step": 2,
+   "steps": 2,
+   "score": 0,
+   "fields_in_view": [
+    "reply1",
+    "reply2"
+   ]
+  },
+  {
+   "case": "step 1 + step 2",
+   "done": true,
+   "step": 2,
+   "steps": 2,
+   "score": 1,
+   "fields_in_view": [
+    "reply1",
+    "reply2"
+   ]
+  },
+  {
+   "case": "step 1 wrong",
+   "done": true,
+   "step": 1,
+   "steps": 2,
+   "score": 0.11,
+   "fields_in_view": [
+    "reply1"
+   ]
+  },
+  {
+   "case": "step 1 right, step 2 wrong",
+   "done": true,
+   "step": 2,
+   "steps": 2,
+   "score": 0.44,
+   "fields_in_view": [
+    "reply1",
+    "reply2"
+   ]
+  }
+ ],
+ "pass": true
+}

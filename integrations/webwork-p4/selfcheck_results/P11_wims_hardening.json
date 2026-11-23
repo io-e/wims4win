@@ -1,0 +1,140 @@
+{
+ "tests": [
+  {
+   "test": "connection files: only p4grok has a password",
+   "pass": true,
+   "body": "{\"wimsunice\": \"DISABLED(*)\", \"p4grok\": \"set\", \"myself\": \"DISABLED(*)\"}"
+  },
+  {
+   "test": "myself refused (passwd example default)",
+   "pass": true,
+   "body": "ERROR Identification Failure : bad login/pwd "
+  },
+  {
+   "test": "myself refused (passwd empty)",
+   "pass": true,
+   "body": "ERROR Identification Failure : bad login/pwd "
+  },
+  {
+   "test": "myself refused (passwd '*')",
+   "pass": true,
+   "body": "ERROR Identification Failure : bad login/pwd "
+  },
+  {
+   "test": "p4grok gettime allowed",
+   "pass": true,
+   "body": "{\"status\" : \"OK\",\"code\":\"401273\" ,\"job\":\"gettime\" ,\"server_time\":\"20261123.13:15:37\"}"
+  },
+  {
+   "test": "p4grok listmodules allowed",
+   "pass": true,
+   "body": "{\"status\" : \"OK\",\"code\":\"156216\" ,\"job\":\"listmodules\" ,\"base_directory\":\"/\", \"nbelement\":7, \"lang_exists\":\"yes\", \"lang\":\"en\", \"title\":\"\", \"listContent\":[ {\"id\":\"H2\", \"module_path\":\"/H2\", \"title\":\"Middle school year 2\"},{\"id\":\"H3\", \"module_path\":\"/H3\", \"title\":\"Middle school year 3\""
+  },
+  {
+   "test": "p4grok getmodule allowed",
+   "pass": true,
+   "body": "{\"status\" : \"OK\",\"code\":\"818081\" ,\"job\":\"getmodule\" ,\"index_url\" : \"http://127.0.0.1:8892/wims/wims.cgi?module=title\" ,\"module_metadatas\" : \"\" ,\"module_id\" : \"title\" ,\"title\" : \"\" ,\"description\" : \"\" ,\"language\" : \"\" ,\"category\" : \"\" ,\"domain\" : \"\" ,\"level\" : \"\" ,\"keywords\" : \"\" ,\"require\" : \"\" ,\"sc"
+  },
+  {
+   "test": "p4grok listclasses refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"957086\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok addclass refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"149884\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok getclass refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"802363\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok authuser refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"696002\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok getscores refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"606676\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok delclass refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"695420\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok addexo refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"156301\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "p4grok getcsv refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"145906\",\"message\":\"illegal job\"}"
+  },
+  {
+   "test": "INFO lightpopup is a no-auth job: it answers with or without ident (ident_allow does not apply to it)",
+   "pass": true,
+   "body": " <!DOCTYPE html> <html lang=\"en\"><head> <meta name=\"viewport\" content=\"width=device-width, initial-scale="
+  },
+  {
+   "test": "p4grok bad password refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"328602\",\"message\":\"Identification Failure : bad login/pwd\"}"
+  },
+  {
+   "test": "p4grok bad user agent refused",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"315631\",\"message\":\"Identification Failure : 'curl' is a bad Agent\"}"
+  },
+  {
+   "test": "ident_site enforced (p4grokip ident_site=10.9.9.9, call from 127.0.0.1)",
+   "pass": true,
+   "body": "{\"status\" : \"ERROR\",\"code\":\"836645\",\"message\":\"Identification Failure : '127.0.0.1' is a bad IP\"}"
+  },
+  {
+   "test": "temporary p4grokip removed",
+   "pass": true,
+   "body": ""
+  },
+  {
+   "test": "WIMS bound to 127.0.0.1 only",
+   "pass": true,
+   "body": "State Recv-Q Send-Q Local Address:Port Peer Address:Port LISTEN 0 5 127.0.0.1:8892 0.0.0.0:* "
+  },
+  {
+   "test": "172.30.0.2:8892 unreachable (lightpopup / worker from non-loopback)",
+   "pass": true,
+   "body": "refused/unreachable (ConnectionRefusedError)"
+  },
+  {
+   "test": "172.30.0.2:3013 unreachable (lightpopup / worker from non-loopback)",
+   "pass": true,
+   "body": "refused/unreachable (ConnectionRefusedError)"
+  },
+  {
+   "test": "172.17.0.1:8892 unreachable (lightpopup / worker from non-loopback)",
+   "pass": true,
+   "body": "refused/unreachable (ConnectionRefusedError)"
+  },
+  {
+   "test": "172.17.0.1:3013 unreachable (lightpopup / worker from non-loopback)",
+   "pass": true,
+   "body": "refused/unreachable (ConnectionRefusedError)"
+  },
+  {
+   "test": "note: lightpopup needs no ident (allowed_jobs_without_auth) -> loopback bind is the control",
+   "pass": true,
+   "body": "lightpopup on 127.0.0.1 answers without ident"
+  },
+  {
+   "test": "adm/raw sessions holding the password removed (10 folders), files still holding it: 0",
+   "pass": true,
+   "body": ""
+  }
+ ],
+ "pass": true
+}

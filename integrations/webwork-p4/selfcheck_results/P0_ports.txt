@@ -1,0 +1,20 @@
+# P0 ports and bindings (ss -ltnp), 2026-11-23 13:10:56 CET
+# Instance under test: WeBWorK 3020, MariaDB 3308, OEF worker 3013, WIMS 8892 (builder's dev instance; 3000/3307 belong to LW_WEBWORK and are only observed)
+3020  WeBWorK                      127.0.0.1:3020  OK
+3013  OEF worker                   127.0.0.1:3013  OK
+3308  MariaDB                      127.0.0.1:3308  OK
+8892  WIMS                         127.0.0.1:8892  OK
+
+# 3000/3307 (other instance, only observed):
+LISTEN 0      4096       127.0.0.1:3000       0.0.0.0:*    users:(("/workspace/ww-d",pid=411874,fd=3),("/workspace/ww-d",pid=411849,fd=3))
+LISTEN 0      80         127.0.0.1:3307       0.0.0.0:*    users:(("mariadbd",pid=67581,fd=25))                                           
+
+# raw ss lines
+LISTEN 0      4096       127.0.0.1:3020       0.0.0.0:*    users:(("/workspace/mw-p",pid=478934,fd=3),("/workspace/mw-p",pid=478921,fd=3))
+LISTEN 0      4096       127.0.0.1:3013       0.0.0.0:*    users:(("perl",pid=528848,fd=5),("perl",pid=528845,fd=5))                      
+LISTEN 0      4096       127.0.0.1:3000       0.0.0.0:*    users:(("/workspace/ww-d",pid=411874,fd=3),("/workspace/ww-d",pid=411849,fd=3))
+LISTEN 0      80         127.0.0.1:3308       0.0.0.0:*    users:(("mariadbd",pid=293598,fd=25))                                          
+LISTEN 0      80         127.0.0.1:3307       0.0.0.0:*    users:(("mariadbd",pid=67581,fd=25))                                           
+LISTEN 0      5          127.0.0.1:8892       0.0.0.0:*    users:(("python3",pid=432143,fd=3))                                            
+
+P0 PASS

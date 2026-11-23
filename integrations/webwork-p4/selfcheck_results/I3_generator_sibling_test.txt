@@ -1,0 +1,16 @@
+== base win (068de76875619c4e)
+P4 localOverrides.conf: added
+P4 pg_config.yml: added
+run 1 LO OEFBridge lines: 1 | push form: True | assignment $pg{modules} = (replace) added: False | PG items: 1 | generator's own block kept: True
+P4 localOverrides.conf: added
+P4 pg_config.yml: added
+run 2 LO OEFBridge lines: 1 | push form: True | assignment $pg{modules} = (replace) added: False | PG items: 1 | generator's own block kept: True
+win/src/conf/localOverrides.conf syntax OK
+== base deb (bb9b20c3032fe66e)
+P4 localOverrides.conf: added
+P4 pg_config.yml: added
+run 1 LO OEFBridge lines: 1 | push form: True | assignment $pg{modules} = (replace) added: False | PG items: 1 | generator's own block kept: True
+P4 localOverrides.conf: added
+P4 pg_config.yml: added
+run 2 LO OEFBridge lines: 1 | push form: True | assignment $pg{modules} = (replace) added: False | PG items: 1 | generator's own block kept: True
+deb/src/conf/localOverrides.conf syntax OK

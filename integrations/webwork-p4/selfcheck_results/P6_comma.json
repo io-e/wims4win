@@ -1,0 +1,83 @@
+{
+ "prob2_seed": 1325,
+ "wims_alone": [
+  {
+   "case": "dots",
+   "kind": null,
+   "grade": null
+  },
+  {
+   "case": "commas",
+   "kind": null,
+   "grade": null
+  }
+ ],
+ "worker": [
+  {
+   "case": "dots",
+   "kind": "final",
+   "grade": 1,
+   "per_field": {
+    "reply1": 1,
+    "reply2": 1,
+    "reply3": 1
+   },
+   "pass": true
+  },
+  {
+   "case": "commas everywhere (algexp + numexp)",
+   "kind": "final",
+   "grade": 1,
+   "per_field": {
+    "reply1": 1,
+    "reply2": 1,
+    "reply3": 1
+   },
+   "pass": true
+  },
+  {
+   "case": "trailing zero with comma",
+   "kind": "final",
+   "grade": 1,
+   "per_field": {
+    "reply1": 1,
+    "reply2": 1,
+    "reply3": 1
+   },
+   "pass": true
+  },
+  {
+   "case": "comma, one digit short (must be read as a number, wrong)",
+   "kind": "final",
+   "grade": 0.44,
+   "per_field": {
+    "reply1": 1,
+    "reply2": 0,
+    "reply3": 1
+   },
+   "pass": true
+  },
+  {
+   "case": "double comma (left alone, WIMS refuses)",
+   "kind": "input",
+   "grade": 0,
+   "per_field": {},
+   "pass": true
+  },
+  {
+   "case": "type=set keeps its comma separator (approx, expected has a comma)",
+   "kind": "final",
+   "grade": 1,
+   "comma_in_expected": true,
+   "pass": true
+  }
+ ],
+ "webwork": [
+  {
+   "case": "stud3 problem 4, all answers with decimal commas",
+   "status": 1.0,
+   "pass": true
+  }
+ ],
+ "pass": true
+}

@@ -1,0 +1,216 @@
+# GROK_V1_1 P4 WIMS patch (cumulative: replaces p4_json_GROK_V1.diff). Apply in public_html: patch -p1 < p4_wims_GROK_V1_1.diff
+# - special_parm=p4_json stripped grading hook (never emits the expected answer), as in V1;
+# - V1_1: adm/raw job=p4render = lightpopup copy that requires the P4 shared secret (POST field p4_auth), OEF modules only, marks the session wims_p4_auth=yes;
+# - V1_1: the p4_json hook answers only in sessions marked by p4render, otherwise {"p4":1,"error":"auth"};
+# - V1_1: scripts/p4/p4_auth.proc reads the secret from wimshome/log/p4_auth/p4_secret.proc (written by harden_wims_p4_GROK_V1_1.py) and compares every character.
+# lightpopup and every other WIMS page are unchanged. GPL-2 like WIMS. Written by Grok Bot.
+diff -ruN a/modules/adm/raw/jobs/p4render.proc b/modules/adm/raw/jobs/p4render.proc
+--- a/modules/adm/raw/jobs/p4render.proc	1970-01-01 01:00:00.000000000 +0100
++++ b/modules/adm/raw/jobs/p4render.proc	2026-11-23 12:14:40.381399262 +0100
+@@ -0,0 +1,24 @@
++# GROK_V1_1 P4: authenticated copy of lightpopup for the P4 OEF worker (lightpopup itself is unchanged, it is
++# used by WIMS's own "about"/embed pages). Requires the P4 shared secret in the POST field p4_auth.
++# Marks the session wims_p4_auth=yes (the p4_json hook answers only then).
++# Only OEF exercise modules (emod with a def/ folder, not adm/) are opened.
++!read defs
++ident_type=json
++code=p4
++!read p4/p4_auth.proc
++!if $p4_auth_ok!=yes
++ !changeto error.proc p4_auth_refused
++!endif
++!if adm/ isin $emod or .. isin $emod or $emod=$empty
++ !changeto error.proc p4_bad_module
++!endif
++option=noabout
++!setdef wims_lightpopup=yes in wimshome/sessions/$wims_session/var.stat
++!setdef w_wims_lightpopup=yes in wimshome/sessions/$wims_session/var
++!setdef wims_lightpopup_option=$option in wimshome/sessions/$wims_session/var.stat
++!setdef w_wims_lightpopup_option=$option in wimshome/sessions/$wims_session/var
++!! session binding: the p4_json hook of scripts/oef only answers in sessions marked here
++!setdef wims_p4_auth=yes in wimshome/sessions/$wims_session/var.stat
++!setdef wims_protocol=$wims_protocol in wimshome/sessions/$wims_session/var.stat
++parm=!replace internal ; by & in $parm
++!restart session=$wims_session&module=$emod&$parm
+diff -ruN a/modules/adm/raw/var.def b/modules/adm/raw/var.def
+--- a/modules/adm/raw/var.def	2026-11-20 15:33:24.294725019 +0100
++++ b/modules/adm/raw/var.def	2026-11-23 12:13:29.637953348 +0100
+@@ -22,4 +22,6 @@
+ search_category init
+ separator init
+ emod	any
+-parm	any
+\ No newline at end of file
++parm	any
++# GROK_V1_1 P4: shared secret of job=p4render (cleared before the session is saved)
++p4_auth	any
+diff -ruN a/modules/adm/raw/var.proc b/modules/adm/raw/var.proc
+--- a/modules/adm/raw/var.proc	2026-11-20 15:33:24.246722546 +0100
++++ b/modules/adm/raw/var.proc	2026-11-23 12:12:37.517732575 +0100
+@@ -1,6 +1,10 @@
+ !if $job=lightpopup
+  !changeto jobs/lightpopup.proc
+ !endif
++# GROK_V1_1 P4: authenticated render entry for the P4 OEF worker (jobs/p4render.proc checks the secret)
++!if $job=p4render
++ !changeto jobs/p4render.proc
++!endif
+ 
+ wims_prefix=class user tmp n sharing sharable ident
+ !if $job=help or $job=$empty
+diff -ruN a/scripts/oef/Main.phtml b/scripts/oef/Main.phtml
+--- a/scripts/oef/Main.phtml	2026-11-23 12:14:58.276341856 +0100
++++ b/scripts/oef/Main.phtml	2026-11-23 10:33:29.112231437 +0100
+@@ -209,6 +209,17 @@
+     !endif
+     </div> <!-- id oef_helphint-->
+   !endif
++  !! GROK_V1 P4: reply not graded yet (intermediate \steps step passed, or input refused)
++  !if $special_parm=p4_json and $cmd=reply
++    !if $error!=$empty
++      !set p4_kind=input
++    !else
++      !set p4_kind=step
++    !endif
++<!-- P4_JSON_BEGIN
++    !read oef/p4_json.phtml $p4_kind
++P4_JSON_END -->
++  !endif
+   !read oef/form.phtml
+   <div id="oef_actions">
+     !if $fieldtot = 0
+diff -ruN a/scripts/oef/answer.phtml b/scripts/oef/answer.phtml
+--- a/scripts/oef/answer.phtml	2026-11-23 12:14:58.276341856 +0100
++++ b/scripts/oef/answer.phtml	2026-11-23 10:33:29.112231437 +0100
+@@ -120,6 +120,12 @@
+ !read oef/algogebra_json.phtml
+ ALGOGEBRA_JSON_END -->
+ !endif
++!! GROK_V1 P4 stripped JSON hook (special_parm=p4_json, never the expected answer)
++!if $special_parm=p4_json
++<!-- P4_JSON_BEGIN
++!read oef/p4_json.phtml final
++P4_JSON_END -->
++!endif
+ !!presentsol=1 deprecated
+ !! givesol=1: always if $score=10 or at the last try of all versions
+ !if $solution!=$empty and ($givesol=$empty or (($presentsol=1 and $score<10)\
+diff -ruN a/scripts/oef/p4_json.phtml b/scripts/oef/p4_json.phtml
+--- a/scripts/oef/p4_json.phtml	1970-01-01 01:00:00.000000000 +0100
++++ b/scripts/oef/p4_json.phtml	2026-11-23 12:14:28.400751201 +0100
+@@ -0,0 +1,76 @@
++!! p4_json.phtml (GROK_V1_1: answers only in sessions opened by the authenticated job=p4render)
++!! GROK_V1 (wims4win P4). GPL-2, same licence as WIMS. Written by Grok Bot.
++!! Stripped grading JSON for the P4 OEF worker (WeBWorK owns the gradebook).
++!! Emitted only when the request carries special_parm=p4_json. NEVER emits the expected answer
++!! (no replygood/choicegood/answer text) and never echoes the given answer.
++!! Parameter (wims_read_parm): final | step | input
++!!   final : answer analysis reached (answer.phtml) -> done=true, grade and per-field scores
++!!   step  : an intermediate \steps step was passed (Main.phtml, status=waiting) -> done=false
++!!   input : the reply was refused before grading (syntax / empty field) -> done=false, error=input
++!default module_score=0
++!default replycnt=0
++!default choicecnt=0
++!default wims_seed=0
++!default oefstep=0
++!default oefstepcnt=0
++!set p4_kind=!word 1 of $wims_read_parm
++!! GROK_V1_1: the JSON is emitted only in a session opened by job=p4render of adm/raw, which checked the P4
++!! shared secret (wims_p4_auth=yes in the session's var.stat; wims_* variables cannot be set by a request).
++!! An OEF module is not trusted, so it cannot read the secret file itself (wimshome/ is refused).
++!if $wims_p4_auth!=yes
++{"p4":1,"error":"auth"}
++  !exit
++!endif
++!if $p4_kind=final
++  !set p4_grade=$[$module_score/10]
++  !set p4_done=true
++!else
++  !set p4_grade=0
++  !set p4_done=false
++!endif
++!if $p4_kind=input
++  !set p4_err="input"
++!else
++  !set p4_err=null
++!endif
++!set p4_sep=
++{"p4":1,"kind":"$p4_kind","grade":$p4_grade,"seed":$wims_seed,"done":$p4_done,"step":$oefstep,"steps":$oefstepcnt,"error":$p4_err,"per_field":[
++!if $p4_kind=final
++  !for i=1 to $replycnt
++    !if $oefsteps!=$empty and r$i notitemof $gotsteps
++      !goto p4_next_reply
++    !endif
++    !default m_sc_reply$i=0
++    !ifval $(m_sc_reply$i)>=1
++      !set p4_c=true
++    !else
++      !set p4_c=false
++    !endif
++    !set p4_s=$[$(m_sc_reply$i)]
++    !if NaN isin $p4_s or $p4_s=$empty
++      !set p4_s=0
++    !endif
++    $p4_sep{"id":"reply$i","correct":$p4_c,"score":$p4_s,"feedback":""}
++    !set p4_sep=,
++    :p4_next_reply
++  !next i
++  !for i=1 to $choicecnt
++    !if $oefsteps!=$empty and c$i notitemof $gotsteps
++      !goto p4_next_choice
++    !endif
++    !default m_sc_choice$i=0
++    !ifval $(m_sc_choice$i)>=1
++      !set p4_c=true
++    !else
++      !set p4_c=false
++    !endif
++    !set p4_s=$[$(m_sc_choice$i)]
++    !if NaN isin $p4_s or $p4_s=$empty
++      !set p4_s=0
++    !endif
++    $p4_sep{"id":"choice$i","correct":$p4_c,"score":$p4_s,"feedback":""}
++    !set p4_sep=,
++    :p4_next_choice
++  !next i
++!endif
++],"feedback":""}
+diff -ruN a/scripts/p4/p4_auth.proc b/scripts/p4/p4_auth.proc
+--- a/scripts/p4/p4_auth.proc	1970-01-01 01:00:00.000000000 +0100
++++ b/scripts/p4/p4_auth.proc	2026-11-23 12:10:45.742367751 +0100
+@@ -0,0 +1,35 @@
++!! p4_auth.proc
++!! GROK_V1_1 (wims4win P4). GPL-2, same licence as WIMS. Written by Grok Bot.
++!! Shared-secret check for the P4 OEF worker. Input: request field p4_auth (sent by the worker in a
++!! multipart/form-data POST, so it is not in QUERY_STRING, access.log or post.log). Secret: the file
++!! wimshome/log/p4_auth/p4_secret.proc (chmod 600, written by harden_wims_p4_GROK_V1_1.py, never served).
++!! Output: p4_auth_ok=yes|no. The given value and the secret are cleared before returning.
++!! Comparison: every character is compared (no early exit) once the lengths match; only hex accepted.
++!set p4_auth_ok=no
++!set p4_secret=
++!read wimshome/log/p4_auth/p4_secret.proc
++!set p4_given=$p4_auth
++!set p4_auth=
++!set p4_l1=!charcnt $p4_secret
++!set p4_l2=!charcnt $p4_given
++!set p4_hexok=yes
++!if $p4_l1>=32 and $p4_l1=$p4_l2
++  !set p4_diff=0
++  !for p4_i=1 to $p4_l1
++    !set p4_ca=!char $p4_i of $p4_secret
++    !set p4_cb=!char $p4_i of $p4_given
++    !if $p4_cb notin 0123456789abcdef
++      !set p4_hexok=no
++    !endif
++    !if $p4_ca!=$p4_cb
++      !set p4_diff=1
++    !endif
++  !next p4_i
++  !if $p4_diff=0 and $p4_hexok=yes
++    !set p4_auth_ok=yes
++  !endif
++!endif
++!set p4_secret=
++!set p4_given=
++!set p4_ca=
++!set p4_cb=

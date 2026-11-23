@@ -1,0 +1,12 @@
+# GROK_V1_1 P8b: worker TeX formulas typeset by WeBWorK's own MathJax (webwork2_files/node_modules/mathjax/tex-svg.js, served by Morbo 3020),
+# headless Chrome, statement of each P4pilot problem as stud1 (inputs replaced by [input]). sent = number of \( in the page; typeset = mjx-container; errors = merror
+p1 sent=4 typeset=4 errors=0
+p2 sent=6 typeset=6 errors=0
+p3 sent=4 typeset=4 errors=0
+p4 sent=5 typeset=5 errors=0
+p5 sent=1 typeset=1 errors=0
+p6 sent=4 typeset=4 errors=0
+p7 sent=2 typeset=2 errors=0
+p8 sent=23 typeset=23 errors=0
+p9 sent=7 typeset=7 errors=0
+p10 sent=23 typeset=23 errors=0
